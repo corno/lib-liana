@@ -1,0 +1,31 @@
+{
+  "author": "Corno",
+  "bugs": {
+    "url": "https://github.com/corno/lib-liana/issues"
+  },
+  "description": "liana is a package for creating complex data structures of which the references are automatically resolved",
+  "homepage": "https://github.com/corno/lib-liana#readme",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "license": "ISC",
+  "main": "./dist",
+  "types": "./dist",
+  "name": "lib-liana",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/lib-liana.git"
+  },
+  "dependencies": {
+    "lib-fountain-pen": "^0.5.0",
+    "pareto-core-lib": "^0.12.0",
+    "pareto-core-raw": "^0.3.0",
+    "res-pareto-collation": "^0.6.0",
+    "res-pareto-tostring": "^0.1.0"
+  },
+  "scripts": {},
+  "version": "0.1.0",
+  "interface-fingerprint": "6ef6c1ce981205d17ff60fcd06fc96e35668a556",
+  "content-fingerprint": "988a631ffecba46de9afe46a798b2804e31877ca"
+}

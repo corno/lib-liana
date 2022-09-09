@@ -1,0 +1,47 @@
+import * as pt from "pareto-core-types"
+
+import * as collation from "api-pareto-collation"
+
+import { TGlobalInterface, TGlobalType, TImport, TTypeParameter, TDependencyDefinition, TFunctionDefinition, TNamespace } from "../types/types.p"
+
+
+export type PEnrichedForEach = <T> (
+    $: pt.Dictionary<T>,
+    $i: {
+        onBegin: () => void
+        onEnd: () => void
+        onEntry: ($: {
+            key: string
+            value: T,
+            isFirst: boolean
+        }) => void
+    }
+) => void
+
+export type TKeyValuePair<T> = {
+    key: string,
+    value: T
+}
+
+export type DDependencies<PAnnotation> = {
+    escapeType: ($: TKeyValuePair<TGlobalType<PAnnotation>>) => string
+    escapeNamespace: ($: TKeyValuePair<TNamespace<PAnnotation>>) => string
+    escapeImportedType: ($: {
+        module: TImport<PAnnotation>,
+        type: TKeyValuePair<TGlobalType<PAnnotation>>,
+    }) => string
+    escapeTypeParameter: ($: TKeyValuePair<TTypeParameter<PAnnotation>>) => string
+    escapeInterface: ($: TKeyValuePair<TGlobalInterface<PAnnotation>>) => string
+    escapeImportedInterface: ($: {
+        module: TImport<PAnnotation>,
+        interface: TKeyValuePair<TGlobalInterface<PAnnotation>>,
+    }) => string
+    escapeDependencyDefinition: ($: TKeyValuePair<TDependencyDefinition<PAnnotation>>) => string
+
+    escapeImportedFunction: ($: {
+        module: TImport<PAnnotation>,
+        function: TKeyValuePair<TFunctionDefinition<PAnnotation>>,
+    }) => string
+    enrichedForEach: PEnrichedForEach,
+    sortedForEach: collation.PSortedForEach
+}
