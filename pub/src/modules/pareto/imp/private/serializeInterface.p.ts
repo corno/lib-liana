@@ -1,4 +1,8 @@
+import * as fp from "lib-fountain-pen"
+
 import * as api from "../../interface"
+
+
 import { serializeLocalInterface } from "./serializeLocalInterface.p"
 import { serializeLocalType } from "./serializeLocalType.p"
 
@@ -18,19 +22,23 @@ export function serializeInterface<PAnnotation>(
                         "types.p.ts",
                         ($i) => {
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from "pareto-core-types"`)
+                            })
+                            $i.line(($i) => {
+                                $i.snippet(`type Reference<T> = {}`)
                             })
                             function doNamespace(
-                                $: api.TNamespace<PAnnotation>
+                                $: api.TNamespace<PAnnotation>,
+                                $i: fp.IBlock,
                             ) {
                                 const namespaceParameters = $.parameters
 
                                 $d.sortedForEach($.namespaces, ($) => {
                                     $i.line(($i) => { })
                                     $i.line(($i) => {
-                                        $i.snippet(`export namespace ${$d.escapeNamespace($)} {`)
+                                        $i.snippet(`export namespace ${$d.escapeNamespace($.key)} {`)
                                         $i.indent(($i) => {
-                                            doNamespace($.value)
+                                            doNamespace($.value, $i)
                                         })
                                         $i.snippet(`}`)
                                     })
@@ -40,7 +48,7 @@ export function serializeInterface<PAnnotation>(
 
                                     })
                                     $i.line(($i) => {
-                                        $i.snippet(`export type ${$d.escapeType($)}`)
+                                        $i.snippet(`export type ${$d.escapeType($.key)}`)
                                         $d.enrichedForEach(
                                             namespaceParameters,
                                             {
@@ -54,10 +62,7 @@ export function serializeInterface<PAnnotation>(
                                                     if (!$.isFirst) {
                                                         $i.snippet(`, `)
                                                     }
-                                                    $i.snippet(`${$d.escapeTypeParameter({
-                                                        key: $.key,
-                                                        value: $.value,
-                                                    })}`)
+                                                    $i.snippet(`${$d.escapeTypeParameter($.key)}`)
                                                 }
                                             }
                                         )
@@ -70,7 +75,7 @@ export function serializeInterface<PAnnotation>(
                                     })
                                 })
                             }
-                            doNamespace($.namespace)
+                            doNamespace($.namespace, $i)
                         }
                     )
                 }
@@ -82,14 +87,14 @@ export function serializeInterface<PAnnotation>(
                         "interfaces.p.ts",
                         ($i) => {
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from "pareto-core-types"`)
                             })
                             $d.sortedForEach($.interfaces, ($) => {
                                 $i.line(($i) => {
 
                                 })
                                 $i.line(($i) => {
-                                    $i.snippet(`export type I${$d.escapeInterface($)}`)
+                                    $i.snippet(`export type I${$d.escapeInterface($.key)}`)
                                     $d.enrichedForEach(
                                         $.value.parameters,
                                         {
@@ -103,7 +108,7 @@ export function serializeInterface<PAnnotation>(
                                                 if (!$.isFirst) {
                                                     $i.snippet(`, `)
                                                 }
-                                                $i.snippet(`${$d.escapeTypeParameter($)}`)
+                                                $i.snippet(`${$d.escapeTypeParameter($.key)}`)
                                             }
                                         }
                                     )
@@ -128,14 +133,14 @@ export function serializeInterface<PAnnotation>(
                         ($i) => {
 
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from "pareto-core-types"`)
                             })
                             $d.sortedForEach($.dependencies, ($) => {
                                 $i.line(($i) => {
 
                                 })
                                 $i.line(($i) => {
-                                    $i.snippet(`export type I${$d.escapeDependencyDefinition($)} = {`)
+                                    $i.snippet(`export type I${$d.escapeDependencyDefinition($.key)} = {`)
                                     $i.indent(($i) => {
                                         $d.sortedForEach(
                                             $.value.functions,

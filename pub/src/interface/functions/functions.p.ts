@@ -4,4 +4,4 @@ import * as pareto from "../../modules/pareto"
 
 export type FMapToPareto = <PAnnotation>(
     $: TSchema<PAnnotation>,
-) => pareto.TModule<null | PAnnotation>
+) => pareto.Troot<null | PAnnotation>

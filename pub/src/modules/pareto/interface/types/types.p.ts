@@ -27,6 +27,7 @@ export type TReferenceType<PAnnotation> =
     | ["type", {
         readonly "type":
         | ["sibling", {
+            readonly "namespace steps": pt.Array<Reference<PAnnotation, TNamespace<PAnnotation>>>
             readonly "global type": SiblingReference<PAnnotation, TGlobalType<PAnnotation>>
         }]
         | ["import", {
@@ -40,13 +41,15 @@ export type TTypeType<PAnnotation> =
     | ["null", {}]
     | ["boolean", {}]
     | ["string", {}]
-    | ["undefined", {}]
     | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
         readonly "properties": pt.Dictionary<TLocalType<PAnnotation>>
     }]
     | ["list", TLocalType<PAnnotation>]
-    | ["reference", TReferenceType<PAnnotation>]
+    | ["component", TReferenceType<PAnnotation>]
+    | ["reference", {
+        readonly "type": string
+    }]
     | ["tagged union", {
         readonly "options": pt.Dictionary<TLocalType<PAnnotation>>
     }]
@@ -190,4 +193,9 @@ export type TImplementation<PAnnotation> = {
 export type TModule<PAnnotation> = {
     readonly "implementation": null | TImplementation<PAnnotation>
     readonly "interface": null | TInterface<PAnnotation>
+}
+
+export type Troot<PAnnotation> = {
+    readonly "imports": pt.Dictionary<TModule<PAnnotation>>
+    readonly "root": TModule<PAnnotation>
 }

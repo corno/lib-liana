@@ -1,6 +1,8 @@
 import * as pt from "pareto-core-types"
+
 import * as tostring from "res-pareto-tostring"
 import * as collation from "res-pareto-collation"
+import * as fs from "res-pareto-filesystem"
 
 import * as mpareto from "../modules/pareto"
 
@@ -28,26 +30,31 @@ function escapeTypescriptIdentifier($: string): string {
 }
 
 mpareto.serialize(
-    mapToPareto(pareto),
+    mapToPareto(pareto).root,
     createWriter(
+        ["..", "tmp"],
         {
             fp: {
                 joinNestedStrings: tostring.joinNestedStrings,
                 getArrayAsString: tostring.getArrayAsString,
+            },
+            fs: {
+                writeFile: fs.writeFile,
             }
-        }
+        },
+        () => { }
     ),
     {
 
-        escapeNamespace: ($) => `N${escapeTypescriptIdentifier($.key)}`,
-        escapeType: ($) => `T${escapeTypescriptIdentifier($.key)}`,
-        escapeImportedType: ($) => `m${escapeTypescriptIdentifier($.module)}.T${escapeTypescriptIdentifier($.type.key)}`,
-        escapeTypeParameter: ($) => `P${escapeTypescriptIdentifier($.key)}`,
-        escapeInterface: ($) => `I${escapeTypescriptIdentifier($.key)}`,
-        escapeImportedInterface: ($) => `m${escapeTypescriptIdentifier($.module)}.I${escapeTypescriptIdentifier($.interface.key)}`,
-        escapeDependencyDefinition: ($) => `D${escapeTypescriptIdentifier($.key)}`,
+        escapeNamespace: ($) => `${escapeTypescriptIdentifier($)}`,
+        escapeType: ($) => `T${escapeTypescriptIdentifier($)}`,
+        escapeImportedType: ($) => `m${escapeTypescriptIdentifier($.module)}.T${escapeTypescriptIdentifier($.type)}`,
+        escapeTypeParameter: ($) => `P${escapeTypescriptIdentifier($)}`,
+        escapeInterface: ($) => `I${escapeTypescriptIdentifier($)}`,
+        escapeImportedInterface: ($) => `m${escapeTypescriptIdentifier($.module)}.I${escapeTypescriptIdentifier($.interface)}`,
+        escapeDependencyDefinition: ($) => `D${escapeTypescriptIdentifier($)}`,
 
-        escapeImportedFunction: ($) => `m${escapeTypescriptIdentifier($.module)}.F${escapeTypescriptIdentifier($.function.key)}`,
+        escapeImportedFunction: ($) => `m${escapeTypescriptIdentifier($.module)}.F${escapeTypescriptIdentifier($.function)}`,
         enrichedForEach: ($, $i) => {
             let first = true
             let empty = true

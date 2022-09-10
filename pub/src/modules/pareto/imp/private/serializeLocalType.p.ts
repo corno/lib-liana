@@ -20,17 +20,45 @@ export function serializeLocalType<PAnnotation>(
             break
         case "dictionary":
             pl.cc($.type[1], ($) => {
-                $i.snippet(`xxx`)
+                $i.snippet(`pt.Dictionary<`)
+                serializeLocalType(
+                    $,
+                    $i,
+                    $d,
+                )
+                $i.snippet(`>`)
             })
             break
         case "group":
             pl.cc($.type[1], ($) => {
-                $i.snippet(`xxx`)
+                $i.snippet(`{`)
+                $i.indent(($i) => {
+                    $d.sortedForEach(
+                        $.properties,
+                        ($) => {
+                            $i.line(($i) => {
+                                $i.snippet(`readonly '${$.key}': `)
+                                serializeLocalType(
+                                    $.value,
+                                    $i,
+                                    $d,
+                                )
+                            })
+                        }
+                    )
+                })
+                $i.snippet(`}`)
             })
             break
         case "list":
             pl.cc($.type[1], ($) => {
-                $i.snippet(`list`)
+                $i.snippet(`pt.Array<`)
+                serializeLocalType(
+                    $,
+                    $i,
+                    $d,
+                )
+                $i.snippet(`>`)
             })
             break
         case "null":
@@ -40,7 +68,43 @@ export function serializeLocalType<PAnnotation>(
             break
         case "reference":
             pl.cc($.type[1], ($) => {
-                $i.snippet(`yyy`)
+                $i.snippet(`Reference<${$d.escapeType($.type)}>`)
+            })
+            break
+        case "component":
+            pl.cc($.type[1], ($) => {
+                switch ($[0]) {
+                    case "parameter":
+                        pl.cc($[1], ($) => {
+                            $i.snippet(`${$d.escapeTypeParameter($.parameter.name.name)}`)
+                        })
+                        break
+                    case "type":
+                        pl.cc($[1], ($) => {
+                            switch ($.type[0]) {
+                                case "import":
+                                    pl.cc($.type[1], ($) => {
+                                        $i.snippet(`${$d.escapeImportedType({
+                                            module: $.import.name.name,
+                                            type: $["global type"].name.name,
+                                        })}`)
+                                    })
+                                    break
+                                case "sibling":
+                                    pl.cc($.type[1], ($) => {
+                                        $["namespace steps"].forEach(($) => {
+                                            $i.snippet(`${$.name.name}.`)
+                                        })
+                                        $i.snippet(`${$d.escapeType($["global type"].name.name)}`)
+                                    })
+                                    break
+                                default: pl.au($.type[0])
+                            }
+
+                        })
+                        break
+                    default: pl.au($[0])
+                }
             })
             break
         case "string":
@@ -50,12 +114,22 @@ export function serializeLocalType<PAnnotation>(
             break
         case "tagged union":
             pl.cc($.type[1], ($) => {
-                $i.snippet(`TU`)
-            })
-            break
-        case "undefined":
-            pl.cc($.type[1], ($) => {
-                $i.snippet(`undefined`)
+                $i.indent(($i) => {
+                    $d.sortedForEach(
+                        $.options,
+                        ($) => {
+                            $i.line(($i) => {
+                                $i.snippet(`| [ "${$.key}", `)
+                                serializeLocalType(
+                                    $.value,
+                                    $i,
+                                    $d,
+                                    )
+                                $i.snippet(` ]`)
+                            })
+                        }
+                    )
+                })
             })
             break
         default: pl.au($.type[0])

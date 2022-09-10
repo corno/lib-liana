@@ -1,5 +1,6 @@
 import * as pw from "pareto-core-raw"
 import * as pl from "pareto-core-lib"
+import * as pm from "pareto-core-state"
 
 import * as pareto from "../../modules/pareto"
 
@@ -7,41 +8,54 @@ import * as api from "../../interface"
 
 export const mapToPareto: api.FMapToPareto = ($) => {
 
-    function foo<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
+    function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
 
         function createLocalType(
-            $: api.TLocalType<PAnnotation>
+            $: {
+                type: api.TLocalType<PAnnotation>,
+                namespaceStack: pm.ArrayBuilder<string>,
+            }
         ): pareto.TLocalType<null | PAnnotation> {
+            const namespaceStack = $.namespaceStack
             return {
-                'annotation': $.annotation,
-                'optional': $.optional,
+                'annotation': $.type.annotation,
+                'optional': $.type.optional,
                 'type': pl.cc($.type, ($): pareto.TTypeType<null | PAnnotation> => {
-                    switch ($[0]) {
+                    switch ($.type[0]) {
                         case 'boolean':
-                            return pl.cc($[1], ($) => {
+                            return pl.cc($.type[1], ($) => {
                                 return ['boolean', {}]
                             })
                         case 'dictionary':
-                            return pl.cc($[1], ($) => {
-                                return ['dictionary', createLocalType($)]
+                            return pl.cc($.type[1], ($) => {
+                                return ['dictionary', createLocalType({
+                                    type: $,
+                                    namespaceStack: namespaceStack
+                                })]
                             })
                         case 'group':
-                            return pl.cc($[1], ($) => {
+                            return pl.cc($.type[1], ($) => {
                                 return ['group', {
-                                    'properties': $.properties.map(($) => createLocalType($))
+                                    'properties': $.properties.map(($) => createLocalType({
+                                        type: $,
+                                        namespaceStack: namespaceStack
+                                    }))
                                 }]
                             })
                         case 'list':
-                            return pl.cc($[1], ($) => {
-                                return ['list', createLocalType($)]
+                            return pl.cc($.type[1], ($) => {
+                                return ['list', createLocalType({
+                                    type: $,
+                                    namespaceStack: namespaceStack
+                                })]
                             })
                         case 'null':
-                            return pl.cc($[1], ($) => {
+                            return pl.cc($.type[1], ($) => {
                                 return ['null', {}]
                             })
-                        case 'reference':
-                            return pl.cc($[1], ($) => {
-                                return ['reference', pl.cc($, ($): pareto.TReferenceType<null | PAnnotation> => {
+                        case 'component':
+                            return pl.cc($.type[1], ($) => {
+                                return ['component', pl.cc($, ($): pareto.TReferenceType<null | PAnnotation> => {
                                     switch ($.type[0]) {
                                         case "parameter":
                                             return pl.cc($.type[1], ($) => {
@@ -56,6 +70,14 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                 return ["type", {
                                                     'type': pl.cc($, ($) => {
                                                         return ['sibling', {
+                                                            'namespace steps': namespaceStack.getArray().map(($) => {
+                                                                return {
+                                                                    'name': {
+                                                                        'name': `${$}`,
+                                                                        'annotation': null,
+                                                                    }
+                                                                }
+                                                            }),
                                                             'global type': {
                                                                 name: $["global type"]
                                                             },
@@ -69,16 +91,25 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                 })]
                             })
                         case 'string':
-                            return pl.cc($[1], ($) => {
-                                return ['string', {}]
+                            return pl.cc($.type[1], ($) => {
+                                if ($.reference === undefined) {
+                                    return ['string', {}]
+                                } else {
+                                    return ['reference', {
+                                        'type': $.reference,
+                                    }]
+                                }
                             })
                         case 'tagged union':
-                            return pl.cc($[1], ($) => {
+                            return pl.cc($.type[1], ($) => {
                                 return ['tagged union', {
-                                    'options': $.options.map(($) => createLocalType($))
+                                    'options': $.options.map(($) => createLocalType({
+                                        type: $,
+                                        namespaceStack: namespaceStack,
+                                    }))
                                 }]
                             })
-                        default: return pl.au($[0])
+                        default: return pl.au($.type[0])
                     }
                 })
             }
@@ -93,12 +124,26 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                             'parameters': pw.wrapRawDictionary({}),
                             'namespaces': pw.wrapRawDictionary({}),
                             'types': $["global types"].map(($) => {
-                                return createLocalType($)
+                                return createLocalType({
+                                    type: $,
+                                    namespaceStack: pl.cc($, ($) => {
+                                        const x = pm.createArrayBuilder<string>()
+                                        x.push("globalTypes")
+                                        return x
+                                    }),
+                                })
                             }),
                         }
                     }),
                     'types': pw.wrapRawDictionary<pareto.TGlobalType<PAnnotation | null>>({
-                        "root": createLocalType($.root),
+                        "root": createLocalType({
+                            type: $.root,
+                            namespaceStack: pl.cc($, ($) => {
+                                const x = pm.createArrayBuilder<string>()
+                                x.push("globalTypes")
+                                return x
+                            }),
+                        }),
                     }),
                 },
                 'interfaces': pw.wrapRawDictionary({}),
@@ -159,5 +204,8 @@ export const mapToPareto: api.FMapToPareto = ($) => {
         }
 
     }
-    return foo($)
+    return {
+        'imports': pw.wrapRawDictionary({}),
+        'root': mapModule($)
+    }
 }

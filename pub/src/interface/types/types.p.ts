@@ -1,6 +1,5 @@
 import * as pt from "pareto-core-types"
 
-
 export type Reference<PAnnotation, PType> = {
     readonly "name": string
     readonly "annotation": PAnnotation
@@ -23,13 +22,15 @@ export type TLocalType<PAnnotation> = {
     readonly "type":
     | ["null", {}]
     | ["boolean", {}]
-    | ["string", {}]
+    | ["string", {
+        readonly "reference"?: string
+    }]
     | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
         readonly "properties": pt.Dictionary<TLocalType<PAnnotation>>
     }]
     | ["list", TLocalType<PAnnotation>]
-    | ["reference", {
+    | ["component", {
         readonly "type":
         | ["parameter", {
             readonly "parameter": Reference<PAnnotation, TTypeParameter<PAnnotation>>
