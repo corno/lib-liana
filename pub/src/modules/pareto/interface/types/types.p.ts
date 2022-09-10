@@ -41,14 +41,12 @@ export type TTypeType<PAnnotation> =
     | ["null", {}]
     | ["boolean", {}]
     | ["string", {}]
-    | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
         readonly "properties": pt.Dictionary<{
             readonly "optional": boolean,
             readonly "type": TLocalType<PAnnotation>
         }>
     }]
-    | ["list", TLocalType<PAnnotation>]
     | ["component", TReferenceType<PAnnotation>]
     | ["reference", {
         readonly "type": string
@@ -60,6 +58,10 @@ export type TTypeType<PAnnotation> =
 export type TLocalType<PAnnotation> = {
     readonly "annotation": PAnnotation
     readonly "optional": boolean
+    readonly "collections": pt.Array<
+    | ["dictionary", null]
+    | ["list", null]
+    >
     readonly "type": TTypeType<PAnnotation>
 }
 

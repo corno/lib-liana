@@ -21,20 +21,24 @@ export type TProperty<PAnnotation> = {
     readonly "type": TLocalType<PAnnotation>
 }
 
+export type TCollection =
+    | ["dictionary", null]
+    | ["list", null]
+
+
 export type TLocalType<PAnnotation> = {
     readonly "annotation": PAnnotation
     readonly "optional": boolean
+    readonly "collections": pt.Array<TCollection>
     readonly "type":
     | ["null", {}]
     | ["boolean", {}]
     | ["string", {
         readonly "reference"?: string
     }]
-    | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
         readonly "properties": pt.Dictionary<TProperty<PAnnotation>>
     }]
-    | ["list", TLocalType<PAnnotation>]
     | ["component", {
         readonly "type":
         | ["parameter", {

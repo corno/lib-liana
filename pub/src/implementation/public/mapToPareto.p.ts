@@ -24,19 +24,14 @@ export const mapToPareto: api.FMapToPareto = ($) => {
             return {
                 'annotation': $.type.annotation,
                 'optional': $.type.optional,
+                'collections': $.type.collections.map(($) => {
+                    return $
+                }),
                 'type': pl.cc($.type, ($): pareto.TTypeType<A> => {
                     switch ($.type[0]) {
                         case 'boolean':
                             return pl.cc($.type[1], ($) => {
                                 return ['boolean', {}]
-                            })
-                        case 'dictionary':
-                            return pl.cc($.type[1], ($) => {
-                                return ['dictionary', createLocalType({
-                                    type: $,
-                                    namespaceStack: namespaceStack,
-                                    resolved: resolved,
-                                })]
                             })
                         case 'group':
                             return pl.cc($.type[1], ($) => {
@@ -52,14 +47,6 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                         }
                                     })
                                 }]
-                            })
-                        case 'list':
-                            return pl.cc($.type[1], ($) => {
-                                return ['list', createLocalType({
-                                    type: $,
-                                    namespaceStack: namespaceStack,
-                                    resolved: resolved,
-                                })]
                             })
                         case 'null':
                             return pl.cc($.type[1], ($) => {
@@ -121,6 +108,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                     'type': {
                                                         'optional': false,
                                                         'annotation': null,
+                                                        'collections': pw.wrapRawArray([]),
                                                         'type': ['string', {}]
                                                     },
                                                 },
@@ -129,6 +117,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                     'type': {
                                                         'annotation': null,
                                                         'optional': false,
+                                                        'collections': pw.wrapRawArray([]),
                                                         'type': ['string', {}]
                                                     },
                                                 }
@@ -214,6 +203,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                         'type': {
                             'annotation': null,
                             'optional': false,
+                            'collections': pw.wrapRawArray([]),
                             'type': ["null", {}],
                         },
                         'interface': {
@@ -235,6 +225,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                 'type': {
                                     'annotation': null,
                                     'optional': false,
+                                    'collections': pw.wrapRawArray([]),
                                     'type': ["boolean", {}]
                                 }
                             }]
