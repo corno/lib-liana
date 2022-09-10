@@ -25,7 +25,7 @@ export function serializeInterface<PAnnotation>(
                                 $i.snippet(`import * as pt from "pareto-core-types"`)
                             })
                             $i.line(($i) => {
-                                $i.snippet(`type Reference<T> = {}`)
+                                $i.snippet(`type Reference<T> = { name: string }`)
                             })
                             function doNamespace(
                                 $: api.TNamespace<PAnnotation>,

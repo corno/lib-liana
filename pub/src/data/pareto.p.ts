@@ -64,31 +64,6 @@ function group(
     }
 }
 
-// function dictionary(
-//     optional: boolean,
-//     type: api.TLocalType<TP>,
-// ): api.TLocalType<TP> {
-//     return {
-//         'annotation': undefined,
-//         'optional': optional,   
-//              'collections': wa([]),
-
-//         'type': ['dictionary', type]
-//     }
-// }
-
-// function list(
-//     optional: boolean,
-//     type: api.TLocalType<TP>,
-// ): api.TLocalType<TP> {
-//     return {
-//         'annotation': undefined,
-//         'optional': optional,
-//         'type': ['list', type]
-//     }
-// }
-
-
 function null_(
     optional: boolean,
     collections: pt.Array<api.TCollection>,
@@ -98,6 +73,18 @@ function null_(
         'optional': optional,
         'collections': collections,
         'type': ['null', {}]
+    }
+}
+
+function boolean(
+    optional: boolean,
+    collections: pt.Array<api.TCollection>,
+): api.TLocalType<TP> {
+    return {
+        'annotation': undefined,
+        'optional': optional,
+        'collections': collections,
+        'type': ['boolean', {}]
     }
 }
 
@@ -166,25 +153,39 @@ export const pareto = schema(
         })),
         "Namespace": group(false, wa([]), wd({
             "parameters": prop(wd({}), null_(false, wa([["dictionary", null]]))),
-            "namespaces": prop(wd({}),  component(false, wa([["dictionary", null]]), "Namespace", wd({}))),
+            "namespaces": prop(wd({}), component(false, wa([["dictionary", null]]), "Namespace", wd({}))),
             "types": prop(wd({}), component(false, wa([["dictionary", null]]), "Type", wd({}))),
         })),
         "Type": group(false, wa([]), wd({
-            "collections": prop(wd({}),  taggedUnion(false, wa([["list", null]]), wd({
+            "optional": prop(wd({}), boolean(false, wa([]))),
+            "collections": prop(wd({}), taggedUnion(false, wa([["list", null]]), wd({
                 "dictionary": null_(false, wa([])),
                 "list": null_(false, wa([])),
             }))),
             "type": prop(wd({}), taggedUnion(false, wa([]), wd({
                 "null": null_(false, wa([])),
                 "boolean": null_(false, wa([])),
+                "reference": reference(false, wa([]), "Type", wd({})),
                 "string": null_(false, wa([])),
-                "undefined": null_(false, wa([])),
-                "group":  component(false, wa([["dictionary", null]]), "Type", wd({})),
-                "component": group(false, wa([]), wd({
+                "group": component(false, wa([["dictionary", null]]), "Type", wd({})),
+                "component": taggedUnion(false, wa([]), wd({
+                    "parameter": reference(false, wa([]), "TypeParameter", wd({})),
+                    "type": taggedUnion(false, wa([]), wd({
+                        "sibling": group(false, wa([]), wd({
+                            "namespace steps": prop(wd({}), reference(false, wa([["list", null]]), "Namespace", wd({}))),
+                            "type": prop(wd({}), reference(false, wa([]), "Type", wd({}))),
+
+                        })),
+                        "import":group(false, wa([]), wd({
+                            "module": prop(wd({}), reference(false, wa([]), "Module", wd({}))),
+                            "global type": prop(wd({}), reference(false, wa([]), "Type", wd({}))),
+                        })),
+                    })),
                 })),
-                "taggedUnion": component(false, wa([["dictionary", null]]), "Type", wd({})),
+                "tagged union": component(false, wa([["dictionary", null]]), "Type", wd({})),
             })))
-        }))
+        })),
+        "TypeParameter": null_(false, wa([])),
     }),
     group(false, wa([]), wd({
         "imports": prop(wd({}), component(false, wa([["dictionary", null]]), "Module", wd({}))),
