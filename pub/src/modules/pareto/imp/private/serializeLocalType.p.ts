@@ -37,9 +37,9 @@ export function serializeLocalType<PAnnotation>(
                         $.properties,
                         ($) => {
                             $i.line(($i) => {
-                                $i.snippet(`readonly '${$.key}': `)
+                                $i.snippet(`readonly '${$.key}'${$.value.optional?"?": ""}: `)
                                 serializeLocalType(
-                                    $.value,
+                                    $.value.type,
                                     $i,
                                     $d,
                                 )

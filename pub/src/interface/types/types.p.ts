@@ -16,6 +16,11 @@ export type TTypeParameter<PAnnotation> = null
 
 export type TImport<PAnnotation> = string
 
+export type TProperty<PAnnotation> = {
+    readonly "sibling dependencies": pt.Dictionary<null>
+    readonly "type": TLocalType<PAnnotation>
+}
+
 export type TLocalType<PAnnotation> = {
     readonly "annotation": PAnnotation
     readonly "optional": boolean
@@ -27,7 +32,7 @@ export type TLocalType<PAnnotation> = {
     }]
     | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
-        readonly "properties": pt.Dictionary<TLocalType<PAnnotation>>
+        readonly "properties": pt.Dictionary<TProperty<PAnnotation>>
     }]
     | ["list", TLocalType<PAnnotation>]
     | ["component", {

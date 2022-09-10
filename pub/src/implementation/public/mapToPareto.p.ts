@@ -10,17 +10,21 @@ export const mapToPareto: api.FMapToPareto = ($) => {
 
     function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
 
+        type A = null | PAnnotation
+
         function createLocalType(
             $: {
                 type: api.TLocalType<PAnnotation>,
+                resolved: boolean,
                 namespaceStack: pm.ArrayBuilder<string>,
             }
-        ): pareto.TLocalType<null | PAnnotation> {
+        ): pareto.TLocalType<A> {
             const namespaceStack = $.namespaceStack
+            const resolved = $.resolved
             return {
                 'annotation': $.type.annotation,
                 'optional': $.type.optional,
-                'type': pl.cc($.type, ($): pareto.TTypeType<null | PAnnotation> => {
+                'type': pl.cc($.type, ($): pareto.TTypeType<A> => {
                     switch ($.type[0]) {
                         case 'boolean':
                             return pl.cc($.type[1], ($) => {
@@ -30,23 +34,31 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                             return pl.cc($.type[1], ($) => {
                                 return ['dictionary', createLocalType({
                                     type: $,
-                                    namespaceStack: namespaceStack
+                                    namespaceStack: namespaceStack,
+                                    resolved: resolved,
                                 })]
                             })
                         case 'group':
                             return pl.cc($.type[1], ($) => {
                                 return ['group', {
-                                    'properties': $.properties.map(($) => createLocalType({
-                                        type: $,
-                                        namespaceStack: namespaceStack
-                                    }))
+                                    'properties': $.properties.map(($) => {
+                                        return {
+                                            'optional': !resolved,
+                                            'type': createLocalType({
+                                                type: $.type,
+                                                namespaceStack: namespaceStack,
+                                                resolved: resolved,
+                                            })
+                                        }
+                                    })
                                 }]
                             })
                         case 'list':
                             return pl.cc($.type[1], ($) => {
                                 return ['list', createLocalType({
                                     type: $,
-                                    namespaceStack: namespaceStack
+                                    namespaceStack: namespaceStack,
+                                    resolved: resolved,
                                 })]
                             })
                         case 'null':
@@ -55,7 +67,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                             })
                         case 'component':
                             return pl.cc($.type[1], ($) => {
-                                return ['component', pl.cc($, ($): pareto.TReferenceType<null | PAnnotation> => {
+                                return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
                                     switch ($.type[0]) {
                                         case "parameter":
                                             return pl.cc($.type[1], ($) => {
@@ -95,9 +107,34 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                 if ($.reference === undefined) {
                                     return ['string', {}]
                                 } else {
-                                    return ['reference', {
-                                        'type': $.reference,
-                                    }]
+                                    if (resolved) {
+
+                                        return ['reference', {
+                                            'type': $.reference,
+                                        }]
+                                    } else {
+
+                                        return ['group', {
+                                            'properties': pw.wrapRawDictionary({
+                                                "name": {
+                                                    'optional': false,
+                                                    'type': {
+                                                        'optional': false,
+                                                        'annotation': null,
+                                                        'type': ['string', {}]
+                                                    },
+                                                },
+                                                "annotation": {
+                                                    'optional': false,
+                                                    'type': {
+                                                        'annotation': null,
+                                                        'optional': false,
+                                                        'type': ['string', {}]
+                                                    },
+                                                }
+                                            }),
+                                        }]
+                                    }
                                 }
                             })
                         case 'tagged union':
@@ -106,6 +143,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                     'options': $.options.map(($) => createLocalType({
                                         type: $,
                                         namespaceStack: namespaceStack,
+                                        resolved: resolved,
                                     }))
                                 }]
                             })
@@ -114,41 +152,63 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                 })
             }
         }
+        function createTypes($: {
+            schema: api.TSchema<PAnnotation>,
+            resolved: boolean,
+        }): pareto.TNamespace<A> {
+            const resolved = $.resolved
+            return {
+                'parameters': pw.wrapRawDictionary({ "Annotation": null }),
+                'namespaces': pw.wrapRawDictionary({
+                    "globalTypes": {
+                        'parameters': pw.wrapRawDictionary({}),
+                        'namespaces': pw.wrapRawDictionary({}),
+                        'types': $.schema["global types"].map(($) => {
+                            return createLocalType({
+                                type: $,
+                                namespaceStack: pl.cc($, ($) => {
+                                    const x = pm.createArrayBuilder<string>()
+                                    x.push("globalTypes")
+                                    return x
+                                }),
+                                resolved: resolved,
+                            })
+                        }),
+                    }
+                }),
+                'types': pw.wrapRawDictionary<pareto.TGlobalType<A>>({
+                    "root": createLocalType({
+                        type: $.schema.root,
+                        namespaceStack: pl.cc($, ($) => {
+                            const x = pm.createArrayBuilder<string>()
+                            x.push("globalTypes")
+                            return x
+                        }),
+                        resolved: resolved,
+                    }),
+                }),
+            }
+        }
         return {
             'interface': {
                 'imports': pw.wrapRawDictionary({}),
                 'namespace': {
-                    'parameters': pw.wrapRawDictionary({ "Annotation": null }),
+                    'parameters': pw.wrapRawDictionary({}),
                     'namespaces': pw.wrapRawDictionary({
-                        "globalTypes": {
-                            'parameters': pw.wrapRawDictionary({}),
-                            'namespaces': pw.wrapRawDictionary({}),
-                            'types': $["global types"].map(($) => {
-                                return createLocalType({
-                                    type: $,
-                                    namespaceStack: pl.cc($, ($) => {
-                                        const x = pm.createArrayBuilder<string>()
-                                        x.push("globalTypes")
-                                        return x
-                                    }),
-                                })
-                            }),
-                        }
-                    }),
-                    'types': pw.wrapRawDictionary<pareto.TGlobalType<PAnnotation | null>>({
-                        "root": createLocalType({
-                            type: $.root,
-                            namespaceStack: pl.cc($, ($) => {
-                                const x = pm.createArrayBuilder<string>()
-                                x.push("globalTypes")
-                                return x
-                            }),
+                        "resolved": createTypes({
+                            schema: $,
+                            resolved: true
+                        }),
+                        "unresolved": createTypes({
+                            schema: $,
+                            resolved: false,
                         }),
                     }),
+                    'types': pw.wrapRawDictionary({}),
                 },
                 'interfaces': pw.wrapRawDictionary({}),
                 'dependencies': pw.wrapRawDictionary({}),
-                'functions': pw.wrapRawDictionary<pareto.TFunctionDefinition<PAnnotation | null>>({
+                'functions': pw.wrapRawDictionary<pareto.TFunctionDefinition<A>>({
                     "Resolve": {
                         'type parameters': pw.wrapRawDictionary({ "Annotation": null }),
                         'type': {
@@ -159,11 +219,11 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                         'interface': {
                             'annotation': null,
                             'type': ["group", {
-                                'properties': pw.wrapRawDictionary<pareto.TLocalInterface<PAnnotation | null>>({
+                                'properties': pw.wrapRawDictionary<pareto.TLocalInterface<A>>({
                                     "onError": {
                                         'annotation': null,
                                         'type': ["group", {
-                                            'properties': pw.wrapRawDictionary<pareto.TLocalInterface<PAnnotation | null>>({})
+                                            'properties': pw.wrapRawDictionary<pareto.TLocalInterface<A>>({})
                                         }]
                                     }
                                 })
@@ -182,25 +242,25 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                     }
                 }),
             },
-            'implementation': {
-                'public functions': pw.wrapRawDictionary<pareto.TPublicFunctionImplementation<PAnnotation | null>>({
-                    "resolve": {
-                        'definition': {
-                            'name': {
-                                'annotation': null,
-                                'name': "Resolve",
-                            },
+            // 'implementation': {
+            //     'public functions': pw.wrapRawDictionary<pareto.TPublicFunctionImplementation<A>>({
+            //         "resolve": {
+            //             'definition': {
+            //                 'name': {
+            //                     'annotation': null,
+            //                     'name': "Resolve",
+            //                 },
 
-                        },
-                        'implementation': {
-                            'statement': {
-                                'type': ["return", {}]
-                            }
-                        },
-                    },
-                }),
-                'private functions': pw.wrapRawDictionary({}),
-            },
+            //             },
+            //             'implementation': {
+            //                 'statement': {
+            //                     'type': ["return", {}]
+            //                 }
+            //             },
+            //         },
+            //     }),
+            //     'private functions': pw.wrapRawDictionary({}),
+            // },
         }
 
     }

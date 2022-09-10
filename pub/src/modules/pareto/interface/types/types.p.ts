@@ -43,7 +43,10 @@ export type TTypeType<PAnnotation> =
     | ["string", {}]
     | ["dictionary", TLocalType<PAnnotation>]
     | ["group", {
-        readonly "properties": pt.Dictionary<TLocalType<PAnnotation>>
+        readonly "properties": pt.Dictionary<{
+            readonly "optional": boolean,
+            readonly "type": TLocalType<PAnnotation>
+        }>
     }]
     | ["list", TLocalType<PAnnotation>]
     | ["component", TReferenceType<PAnnotation>]
@@ -146,52 +149,53 @@ export type TInterface<PAnnotation> = {
     readonly "functions": pt.Dictionary<TFunctionDefinition<PAnnotation>>
 }
 
-export type TExpression<PAnnotation> = {
-    readonly "type":
-    | ["foo", {}]
-}
+// export type TExpression<PAnnotation> = {
+//     readonly "type":
+//     | ["foo", {}]
+// }
 
-export type TStatement<PAnnotation> = {
-    readonly "type":
-    | ["return", {}]
-    | ["if", {
-        readonly "expression": TExpression<PAnnotation>
-        readonly "then": TStatement<PAnnotation>
-        readonly "else": TStatement<PAnnotation>
-    }]
-    | ["switch", {
-        readonly "type":
-        | ["exhaustive", {
+// export type TStatement<PAnnotation> = {
+//     readonly "type":
+//     | ["return", {}]
+//     | ["if", {
+//         readonly "expression": TExpression<PAnnotation>
+//         readonly "then": TStatement<PAnnotation>
+//         readonly "else": TStatement<PAnnotation>
+//     }]
+//     | ["switch", {
+//         readonly "type":
+//         | ["exhaustive", {
 
-            readonly "options": pt.Dictionary<TBlock<PAnnotation>>
-        }]
-        | ["partial", {
-            readonly "options": pt.Dictionary<TBlock<PAnnotation>>
-            readonly "leftover": TBlock<PAnnotation>
-        }]
-    }]
-}
+//             readonly "options": pt.Dictionary<TBlock<PAnnotation>>
+//         }]
+//         | ["partial", {
+//             readonly "options": pt.Dictionary<TBlock<PAnnotation>>
+//             readonly "leftover": TBlock<PAnnotation>
+//         }]
+//     }]
+// }
 
-export type TBlock<PAnnotation> = {
-    readonly "statement": TStatement<PAnnotation>
-}
+// export type TBlock<PAnnotation> = {
+//     readonly "statement": TStatement<PAnnotation>
+// }
 
-export type TPrivateFunctionImplementation<PAnnotation> = {
-    readonly "definition": TFunctionDefinition<PAnnotation>
-    readonly "implementation": TBlock<PAnnotation>
-}
-export type TPublicFunctionImplementation<PAnnotation> = {
-    readonly "definition": Reference<PAnnotation, TFunctionDefinition<PAnnotation>>
-    readonly "implementation": TBlock<PAnnotation>
-}
+// export type TPrivateFunctionImplementation<PAnnotation> = {
+//     readonly "definition": TFunctionDefinition<PAnnotation>
+//     readonly "implementation": TBlock<PAnnotation>
+// }
+// export type TPublicFunctionImplementation<PAnnotation> = {
+//     readonly "definition": Reference<PAnnotation, TFunctionDefinition<PAnnotation>>
+//     readonly "implementation": TBlock<PAnnotation>
+// }
 
-export type TImplementation<PAnnotation> = {
-    readonly "public functions": pt.Dictionary<TPublicFunctionImplementation<PAnnotation>>
-    readonly "private functions": pt.Dictionary<TPrivateFunctionImplementation<PAnnotation>>
-}
+// export type TImplementation<PAnnotation> = {
+//     readonly "public functions": pt.Dictionary<TPublicFunctionImplementation<PAnnotation>>
+//     readonly "private functions": pt.Dictionary<TPrivateFunctionImplementation<PAnnotation>>
+
+// }
 
 export type TModule<PAnnotation> = {
-    readonly "implementation": null | TImplementation<PAnnotation>
+    //readonly "implementation": null | TImplementation<PAnnotation>
     readonly "interface": null | TInterface<PAnnotation>
 }
 
