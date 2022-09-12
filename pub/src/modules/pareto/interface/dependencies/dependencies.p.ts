@@ -2,19 +2,29 @@ import * as pt from "pareto-core-types"
 
 import * as collation from "api-pareto-collation"
 
-import { TGlobalInterface, TGlobalType, TImport, TTypeParameter, TDependencyDefinition, TFunctionDefinition, TNamespace } from "../types/types.p"
+import {  TNamespace } from "../types/types.p"
 
 
-export type PEnrichedForEach = <T> (
+export type PEnrichedDictionaryForEach = <T> (
     $: pt.Dictionary<T>,
     $i: {
-        onBegin: () => void
-        onEnd: () => void
-        onEntry: ($: {
+        onEmpty: () => void
+        onNotEmpty: ($c: ($i: ($: {
             key: string
             value: T,
             isFirst: boolean
-        }) => void
+        }) => void) => void) => void
+    }
+) => void
+
+export type PEnrichedArrayForEach = <T> (
+    $: pt.Array<T>,
+    $i: {
+        onEmpty: () => void
+        onNotEmpty: ($c: ($i: ($: {
+            value: T,
+            isFirst: boolean
+        }) => void) => void) => void
     }
 ) => void
 
@@ -43,6 +53,13 @@ export type DDependencies<PAnnotation> = {
     //     function: TKeyValuePair<TFunctionDefinition<PAnnotation>>,
     // }) => string
 
+    // getTypeParameters: (
+    //     $: TNamespace<PAnnotation>,
+    // ) => pt.Array<string>
+
+    escapeQuotedString: ($: string) => string
+    escapePrivateFunction: ($: string) => string
+    escapePublicFunctionImplementation: ($: string) => string
 
     escapeType: ($: string) => string
     escapeNamespace: ($: string) => string
@@ -63,9 +80,14 @@ export type DDependencies<PAnnotation> = {
         function: string,
     }) => string
 
-
-
-
-    enrichedForEach: PEnrichedForEach,
+    enrichedArrayForEach: PEnrichedArrayForEach,
+    enrichedDictionaryForEach: PEnrichedDictionaryForEach,
     sortedForEach: collation.PSortedForEach
+}
+
+export type D2<PAnnotation> = {
+    getTypeParameters: (
+        $: TNamespace<PAnnotation>,
+    ) => pt.Array<string>
+    x: DDependencies<PAnnotation>
 }

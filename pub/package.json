@@ -21,12 +21,13 @@
     "lib-fountain-pen": "^0.5.0",
     "pareto-core-lib": "^0.12.0",
     "pareto-core-raw": "^0.3.0",
+    "pareto-core-state": "^0.9.0",
     "res-pareto-collation": "^0.6.0",
     "res-pareto-filesystem": "^0.24.0",
     "res-pareto-tostring": "^0.1.0"
   },
   "scripts": {},
   "version": "0.1.0",
-  "interface-fingerprint": "6ef6c1ce981205d17ff60fcd06fc96e35668a556",
-  "content-fingerprint": "988a631ffecba46de9afe46a798b2804e31877ca"
+  "interface-fingerprint": "aa4c0e469f5de3ca520fc665f7a2ceb0127e4e7b",
+  "content-fingerprint": "dd25c7384b7b5b3bf8f74b22221373709a9f89fd"
 }

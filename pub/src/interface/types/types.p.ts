@@ -54,7 +54,16 @@ export type TLocalType<PAnnotation> = {
     }]
 }
 
+export type TGlobalTypeParameter<PAnnotation> = {
+        
+}
+
+export type TGlobalType<PAnnotation> = {
+    parameters: pt.Dictionary<TGlobalTypeParameter<PAnnotation>>
+    type: TLocalType<PAnnotation>
+}
+
 export type TSchema<PAnnotation> = {
-    readonly "global types": pt.Dictionary<TLocalType<PAnnotation>>
+    readonly "global types": pt.Dictionary<TGlobalType<PAnnotation>>
     readonly "root": TLocalType<PAnnotation>
 }

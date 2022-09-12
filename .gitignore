@@ -6,6 +6,7 @@
 /pareto/package.json
 /pareto/package-lock.json
 /pareto/scripts/
+/test/data/dist
 /test/dist/
 /test/node_modules/
 /tmp

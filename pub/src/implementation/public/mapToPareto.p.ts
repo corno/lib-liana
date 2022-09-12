@@ -154,7 +154,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                         'namespaces': pw.wrapRawDictionary({}),
                         'types': $.schema["global types"].map(($) => {
                             return createLocalType({
-                                type: $,
+                                type: $.type,
                                 namespaceStack: pl.cc($, ($) => {
                                     const x = pm.createArrayBuilder<string>()
                                     x.push("globalTypes")
@@ -233,25 +233,71 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                     }
                 }),
             },
-            // 'implementation': {
-            //     'public functions': pw.wrapRawDictionary<pareto.TPublicFunctionImplementation<A>>({
-            //         "resolve": {
-            //             'definition': {
-            //                 'name': {
-            //                     'annotation': null,
-            //                     'name': "Resolve",
-            //                 },
+            'implementation': {
+                'public functions': pw.wrapRawDictionary<pareto.TPublicFunctionImplementation<A>>({
+                    "resolve": {
+                        'definition': {
+                            'name': {
+                                'annotation': null,
+                                'name': "Resolve",
+                            },
 
-            //             },
-            //             'implementation': {
-            //                 'statement': {
-            //                     'type': ["return", {}]
-            //                 }
-            //             },
-            //         },
-            //     }),
-            //     'private functions': pw.wrapRawDictionary({}),
-            // },
+                        },
+                        'implementation': {
+                            'statement': {
+                                'type': ["implement me", { 'message': "FOO" }]
+                            }
+                        },
+                    },
+                }),
+                'private functions': $["global types"].map(($): pareto.TPrivateFunction<A> => {
+                    return {
+                        'definition': {
+                            'type parameters': pl.createEmptyDictionary(),
+                            'type': {
+                                'annotation': $.type.annotation,
+                                'collections': $.type.collections.map(($) => {
+                                    switch ($[0]) {
+                                        case "dictionary":
+                                            return pl.cc($[1], ($) => {
+                                                return ["dictionary", null]
+                                            })
+                                        case "list":
+                                            return pl.cc($[1], ($) => {
+                                                return ["list", null]
+                                            })
+                                        default: return pl.au($[0])
+                                    }
+                                }),
+                                'optional': false,
+                                'type': ["boolean", {}],
+                            },
+                            'interface': {
+                                'annotation': null,
+                                'type': ["group", {
+                                    'properties': pl.createEmptyDictionary(),
+                                }]
+                            },
+                            'return type': ["unmanaged", {
+                                'type': ['type', {
+                                    'async': false,
+                                    'type': {
+                                        'annotation': null,
+                                        'collections': pl.createEmptyArray(),
+                                        'optional': false,
+                                        'type': ['boolean', {}]
+                                    }
+                                }]
+                            }],
+                        },
+                        'implementation': {
+                            'statement': {
+                                'type': ['implement me', { 'message': `PRIVATE FUNC` }]
+                            }
+                        }
+                    }
+                }),
+            },
         }
 
     }

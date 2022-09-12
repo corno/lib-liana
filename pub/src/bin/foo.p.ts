@@ -1,4 +1,5 @@
 import * as pt from "pareto-core-types"
+import * as pl from "pareto-core-lib"
 
 import * as tostring from "res-pareto-tostring"
 import * as collation from "res-pareto-collation"
@@ -12,19 +13,6 @@ import { createWriter } from "../implementation/public/createWriter.p";
 
 
 
-export type PEnrichedForEach = <T> (
-    $: pt.Array<T>,
-    $i: {
-        onBegin: () => void
-        onEnd: () => void
-        onEntry: ($: {
-            entry: T,
-            isFirst: boolean
-        }) => void
-    }
-) => void
-
-
 function escapeTypescriptIdentifier($: string): string {
     return $
 }
@@ -32,7 +20,7 @@ function escapeTypescriptIdentifier($: string): string {
 mpareto.serialize(
     mapToPareto(pareto).root,
     createWriter(
-        ["..", "tmp"],
+        ["..", "test", "data", "src"],
         {
             fp: {
                 joinNestedStrings: tostring.joinNestedStrings,
@@ -45,7 +33,9 @@ mpareto.serialize(
         () => { }
     ),
     {
-
+        escapeQuotedString: ($) => `"${$}"`,
+        escapePrivateFunction: ($) => `${$}`, //do spaces, reserved words etcetera
+        escapePublicFunctionImplementation: ($) => `${$}`, //do spaces, reserved words etcetera
         escapeNamespace: ($) => `${escapeTypescriptIdentifier($)}`,
         escapeType: ($) => `T${escapeTypescriptIdentifier($)}`,
         escapeImportedType: ($) => `m${escapeTypescriptIdentifier($.module)}.T${escapeTypescriptIdentifier($.type)}`,
@@ -55,23 +45,45 @@ mpareto.serialize(
         escapeDependencyDefinition: ($) => `D${escapeTypescriptIdentifier($)}`,
 
         escapeImportedFunction: ($) => `m${escapeTypescriptIdentifier($.module)}.F${escapeTypescriptIdentifier($.function)}`,
-        enrichedForEach: ($, $i) => {
-            let first = true
+        enrichedDictionaryForEach: ($, $i) => {
             let empty = true
-            $.map(($, key) => {
-                if (empty) {
-                    $i.onBegin()
-                }
+            $.map(($) => {
                 empty = false
-                $i.onEntry({
-                    isFirst: first,
-                    key: key,
-                    value: $,
-                })
-                first = false
             })
-            if (!empty) {
-                $i.onEnd()
+            if (empty) {
+                $i.onEmpty()
+            } else {
+                $i.onNotEmpty(($i) => {
+                    let first = true
+                    $.map(($, key) => {
+                        $i({
+                            isFirst: first,
+                            key: key,
+                            value: $,
+                        })
+                        first = false
+                    })
+                })
+            }
+        },
+        enrichedArrayForEach: ($, $i) => {
+            let empty = true
+            $.map(($) => {
+                empty = false
+            })
+            if (empty) {
+                $i.onEmpty()
+            } else {
+                $i.onNotEmpty(($i) => {
+                    let first = true
+                    $.map(($) => {
+                        $i({
+                            isFirst: first,
+                            value: $,
+                        })
+                        first = false
+                    })
+                })
             }
         },
         sortedForEach: collation.f_createSortedForEach({ isYinBeforeYang: collation.f_localeIsYinBeforeYang }),

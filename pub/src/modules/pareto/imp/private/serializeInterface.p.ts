@@ -1,3 +1,4 @@
+import * as pt from "pareto-core-types"
 import * as fp from "lib-fountain-pen"
 
 import * as api from "../../interface"
@@ -5,11 +6,12 @@ import * as api from "../../interface"
 
 import { serializeLocalInterface } from "./serializeLocalInterface.p"
 import { serializeLocalType } from "./serializeLocalType.p"
+import { D2 } from "../../interface"
 
 export function serializeInterface<PAnnotation>(
     $: api.TInterface<PAnnotation>,
     $i: api.IWriter,
-    $d: api.DDependencies<PAnnotation>
+    $d: D2<PAnnotation>
 ) {
 
     $i.createDirectory(
@@ -28,54 +30,69 @@ export function serializeInterface<PAnnotation>(
                                 $i.snippet(`type Reference<T> = { name: string }`)
                             })
                             function doNamespace(
-                                $: api.TNamespace<PAnnotation>,
+                                $: {
+                                    namespace: api.TNamespace<PAnnotation>
+                                    stack: pt.Nested<api.TNamespace<PAnnotation>>
+                                },
                                 $i: fp.IBlock,
                             ) {
-                                const namespaceParameters = $.parameters
+                                const config = $
+                                const namespace = $.namespace
 
-                                $d.sortedForEach($.namespaces, ($) => {
+                                $d.x.sortedForEach($.namespace.namespaces, ($) => {
                                     $i.line(($i) => { })
                                     $i.line(($i) => {
-                                        $i.snippet(`export namespace ${$d.escapeNamespace($.key)} {`)
+                                        $i.snippet(`export namespace ${$d.x.escapeNamespace($.key)} {`)
                                         $i.indent(($i) => {
-                                            doNamespace($.value, $i)
+                                            doNamespace(
+                                                {
+                                                    namespace: $.value,
+                                                    stack: [config.stack, $.value]
+                                                },
+                                                $i,
+                                            )
                                         })
                                         $i.snippet(`}`)
                                     })
                                 })
-                                $d.sortedForEach($.types, ($) => {
+                                $d.x.sortedForEach($.namespace.types, ($) => {
                                     $i.line(($i) => {
 
                                     })
                                     $i.line(($i) => {
-                                        $i.snippet(`export type ${$d.escapeType($.key)}`)
-                                        $d.enrichedForEach(
-                                            namespaceParameters,
+                                        $i.snippet(`export type ${$d.x.escapeType($.key)}`)
+                                        $d.x.enrichedArrayForEach(
+                                            $d.getTypeParameters(namespace),
                                             {
-                                                onBegin: () => {
+                                                onEmpty: () => {},
+                                                onNotEmpty: ($c) => {
                                                     $i.snippet(`<`)
-                                                },
-                                                onEnd: () => {
+                                                    $c(($) => {
+                                                        if (!$.isFirst) {
+                                                            $i.snippet(`, `)
+                                                        }
+                                                        $i.snippet($.value)
+                                                    })
                                                     $i.snippet(`>`)
                                                 },
-                                                onEntry: ($) => {
-                                                    if (!$.isFirst) {
-                                                        $i.snippet(`, `)
-                                                    }
-                                                    $i.snippet(`${$d.escapeTypeParameter($.key)}`)
-                                                }
                                             }
                                         )
                                         $i.snippet(` = `)
                                         serializeLocalType(
                                             $.value,
                                             $i,
-                                            $d,
+                                            $d.x,
                                         )
                                     })
                                 })
                             }
-                            doNamespace($.namespace, $i)
+                            doNamespace(
+                                {
+                                    namespace: $.namespace,
+                                    stack: [ $.namespace ]
+                                },
+                                $i
+                            )
                         }
                     )
                 }
@@ -89,34 +106,35 @@ export function serializeInterface<PAnnotation>(
                             $i.line(($i) => {
                                 $i.snippet(`import * as pt from "pareto-core-types"`)
                             })
-                            $d.sortedForEach($.interfaces, ($) => {
+                            $d.x.sortedForEach($.interfaces, ($) => {
                                 $i.line(($i) => {
 
                                 })
                                 $i.line(($i) => {
-                                    $i.snippet(`export type I${$d.escapeInterface($.key)}`)
-                                    $d.enrichedForEach(
+                                    $i.snippet(`export type I${$d.x.escapeInterface($.key)}`)
+                                    $d.x.enrichedDictionaryForEach(
                                         $.value.parameters,
                                         {
-                                            onBegin: () => {
-                                                $i.snippet(`<`)
+                                            onEmpty: () => {
+
                                             },
-                                            onEnd: () => {
+                                            onNotEmpty: ($c) => {
+                                                $i.snippet(`<`)
+                                                $c(($) => {
+                                                    if (!$.isFirst) {
+                                                        $i.snippet(`, `)
+                                                    }
+                                                    $i.snippet(`${$d.x.escapeTypeParameter($.key)}`)
+                                                })
                                                 $i.snippet(`>`)
                                             },
-                                            onEntry: ($) => {
-                                                if (!$.isFirst) {
-                                                    $i.snippet(`, `)
-                                                }
-                                                $i.snippet(`${$d.escapeTypeParameter($.key)}`)
-                                            }
                                         }
                                     )
                                     $i.snippet(` = `)
                                     serializeLocalInterface(
                                         $.value.details,
                                         $i,
-                                        $d,
+                                        $d.x,
                                     )
                                 })
                             })
@@ -135,18 +153,21 @@ export function serializeInterface<PAnnotation>(
                             $i.line(($i) => {
                                 $i.snippet(`import * as pt from "pareto-core-types"`)
                             })
-                            $d.sortedForEach($.dependencies, ($) => {
+                            $d.x.sortedForEach($.dependencies, ($) => {
                                 $i.line(($i) => {
 
                                 })
                                 $i.line(($i) => {
-                                    $i.snippet(`export type I${$d.escapeDependencyDefinition($.key)} = {`)
+                                    $i.snippet(`export type I${$d.x.escapeDependencyDefinition($.key)} = {`)
                                     $i.indent(($i) => {
-                                        $d.sortedForEach(
+                                        $d.x.sortedForEach(
                                             $.value.functions,
                                             ($) => {
                                                 $i.line(($i) => {
-                                                    $i.snippet(`readonly "${$.key}" = ${$d.escapeImportedFunction}`)
+                                                    $i.snippet(`readonly "${$.key}" = ${$d.x.escapeImportedFunction({
+                                                        module: $.value.import.name.name,
+                                                        function: $.value.function.name.name,
+                                                    })}`)
                                                 })
                                             }
                                         )
@@ -161,6 +182,37 @@ export function serializeInterface<PAnnotation>(
             $i.createDirectory(
                 "functions",
                 ($i) => {
+                    $i.createFile(
+                        "functions.p.ts",
+                        ($i) => {
+
+                            $i.line(($i) => {
+                                $i.snippet(`import * as pt from "pareto-core-types"`)
+                            })
+                            $d.x.sortedForEach($.functions, ($) => {
+                                $i.line(($i) => {
+
+                                })
+                                $i.line(($i) => {
+                                    $i.snippet(`export type F${$d.x.escapeDependencyDefinition($.key)} = () => {`)
+                                    $i.indent(($i) => {
+                                        // $d.x.sortedForEach(
+                                        //     $.value.functions,
+                                        //     ($) => {
+                                        //         $i.line(($i) => {
+                                        //             $i.snippet(`readonly "${$.key}" = ${$d.x.escapeImportedFunction({
+                                        //                 module: $.value.import.name.name,
+                                        //                 function: $.value.function.name.name,
+                                        //             })}`)
+                                        //         })
+                                        //     }
+                                        // )
+                                    })
+                                    $i.snippet(`}`)
+                                })
+                            })
+                        }
+                    )
 
                 }
             )
@@ -168,7 +220,16 @@ export function serializeInterface<PAnnotation>(
                 "index.ts",
                 ($i) => {
                     $i.line(($i) => {
-
+                        $i.snippet(`export * from "./types/types.p"`)
+                    })
+                    $i.line(($i) => {
+                        $i.snippet(`export * from "./dependencies/dependencies.p"`)
+                    })
+                    $i.line(($i) => {
+                        $i.snippet(`export * from "./interfaces/interfaces.p"`)
+                    })
+                    $i.line(($i) => {
+                        $i.snippet(`export * from "./functions/functions.p"`)
                     })
                 }
             )

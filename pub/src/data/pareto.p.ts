@@ -114,8 +114,18 @@ function prop(
     }
 }
 
+function global(
+    parameters: pt.Dictionary<api.TGlobalTypeParameter<TP>>,
+    type: api.TLocalType<TP>,
+): api.TGlobalType<TP> {
+    return {
+        "parameters": parameters,
+        "type": type
+    }
+}
+
 function schema(
-    globalTypes: pt.Dictionary<api.TLocalType<TP>>,
+    globalTypes: pt.Dictionary<api.TGlobalType<TP>>,
     root: api.TLocalType<TP>,
 ): api.TSchema<TP> {
     return {
@@ -126,7 +136,16 @@ function schema(
 
 export const pareto = schema(
     wd({
-        "Interface": group(false, wa([]), wd({
+        "API": global(wd({}), group(false, wa([]), wd({
+            "imports": prop(wd({}), reference(false, wa([["dictionary", null]]), "API", wd({}))),
+            "namespace": prop(wd({}), component(false, wa([]), "Namespace", wd({}))),
+            "interfaces": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
+            "dependencies": prop(wd({}), group(false, wa([["dictionary", null]]), wd({
+
+            }))),
+            "function declarations": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
+        }))),
+        "Interface": global(wd({}), group(false, wa([]), wd({
             "type": prop(wd({}), taggedUnion(false, wa([]), wd({
                 "group": group(false, wa([]), wd({
                     "properties": prop(wd({}), component(false, wa([["dictionary", null]]), "Interface", wd({}))),
@@ -135,28 +154,21 @@ export const pareto = schema(
                 })),
 
             })))
-        })),
-        "Module": group(false, wa([]), wd({
-            "interface": prop(wd({}), group(false, wa([]), wd({
-                "imports": prop(wd({}), reference(false, wa([["dictionary", null]]), "Module", wd({}))),
-                "namespace": prop(wd({}), component(false, wa([]), "Namespace", wd({}))),
-                "interfaces": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
-                "dependencies": prop(wd({}), group(false, wa([["dictionary", null]]), wd({
-
-                }))),
-                "function declarations": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
-            }))),
+        }))),
+        "Module": global(wd({}), group(false, wa([]), wd({
+            "interface": prop(wd({}), component(false, wa([]), "API", wd({}))),
             "implementation": prop(wd({ "interface": null }), group(false, wa([]), wd({
+                "imports": prop(wd({}), component(false, wa([["dictionary", null]]), "Interface", wd({}))),
                 "public functions": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
                 "private functions": prop(wd({}), group(false, wa([["dictionary", null]]), wd({}))),
             }))),
-        })),
-        "Namespace": group(false, wa([]), wd({
+        }))),
+        "Namespace": global(wd({}), group(false, wa([]), wd({
             "parameters": prop(wd({}), null_(false, wa([["dictionary", null]]))),
             "namespaces": prop(wd({}), component(false, wa([["dictionary", null]]), "Namespace", wd({}))),
             "types": prop(wd({}), component(false, wa([["dictionary", null]]), "Type", wd({}))),
-        })),
-        "Type": group(false, wa([]), wd({
+        }))),
+        "Type": global(wd({}), group(false, wa([]), wd({
             "optional": prop(wd({}), boolean(false, wa([]))),
             "collections": prop(wd({}), taggedUnion(false, wa([["list", null]]), wd({
                 "dictionary": null_(false, wa([])),
@@ -177,18 +189,17 @@ export const pareto = schema(
 
                         })),
                         "import":group(false, wa([]), wd({
-                            "module": prop(wd({}), reference(false, wa([]), "Module", wd({}))),
+                            "module": prop(wd({}), reference(false, wa([]), "Interface", wd({}))),
                             "global type": prop(wd({}), reference(false, wa([]), "Type", wd({}))),
                         })),
                     })),
                 })),
                 "tagged union": component(false, wa([["dictionary", null]]), "Type", wd({})),
             })))
-        })),
-        "TypeParameter": null_(false, wa([])),
+        }))),
+        "TypeParameter": global(wd({}), null_(false, wa([]))),
     }),
     group(false, wa([]), wd({
-        "imports": prop(wd({}), component(false, wa([["dictionary", null]]), "Module", wd({}))),
         "root": prop(wd({}), component(false, wa([]), "Module", wd({}))),
     }))
 )
