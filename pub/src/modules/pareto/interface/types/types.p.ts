@@ -87,7 +87,7 @@ export type TLocalInterface<PAnnotation> = {
         readonly "properties": pt.Dictionary<TLocalInterface<PAnnotation>>
     }]
     | ["method", {
-        readonly "type": TLocalType<PAnnotation>
+        readonly "type": null | TLocalType<PAnnotation>
         readonly "callback": null | {
             readonly "interface": TLocalInterface<PAnnotation>
             readonly "type":

@@ -6,6 +6,16 @@ import * as pareto from "../../modules/pareto"
 
 import * as api from "../../interface"
 
+function createReference<PAnnotation, PT>($: string, ann: PAnnotation): pareto.Reference<PAnnotation, PT> {
+    return {
+        'name': {
+            'annotation': ann,
+            'name': $,
+        },
+        // 'type': type,
+    }
+}
+
 export const mapToPareto: api.FMapToPareto = ($) => {
 
     function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
@@ -70,12 +80,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                     'type': pl.cc($, ($) => {
                                                         return ['sibling', {
                                                             'namespace steps': namespaceStack.getArray().map(($) => {
-                                                                return {
-                                                                    'name': {
-                                                                        'name': `${$}`,
-                                                                        'annotation': null,
-                                                                    }
-                                                                }
+                                                                return createReference($, null)
                                                             }),
                                                             'global type': {
                                                                 name: $["global type"]
@@ -236,13 +241,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
             'implementation': {
                 'public functions': pw.wrapRawDictionary<pareto.TPublicFunctionImplementation<A>>({
                     "resolve": {
-                        'definition': {
-                            'name': {
-                                'annotation': null,
-                                'name': "Resolve",
-                            },
-
-                        },
+                        'definition': createReference("Resolve", null),
                         'implementation': {
                             'statement': {
                                 'type': ["implement me", { 'message': "FOO" }]
@@ -250,7 +249,7 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                         },
                     },
                 }),
-                'private functions': $["global types"].map(($): pareto.TPrivateFunction<A> => {
+                'private functions': $["global types"].map(($, key): pareto.TPrivateFunction<A> => {
                     return {
                         'definition': {
                             'type parameters': pl.createEmptyDictionary(),
@@ -270,7 +269,13 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                     }
                                 }),
                                 'optional': false,
-                                'type': ["boolean", {}],
+                                'type': ["component", ["type", {
+                                    'type': ['sibling', {
+                                        'namespace steps': pw.wrapRawArray([createReference("unresolved", null), createReference("globalTypes", null)]),
+                                        'global type': createReference(key, null),
+                                    }],
+                                    'arguments': pw.wrapRawDictionary({}),
+                                }]],
                             },
                             'interface': {
                                 'annotation': null,
@@ -285,7 +290,13 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                         'annotation': null,
                                         'collections': pl.createEmptyArray(),
                                         'optional': false,
-                                        'type': ['boolean', {}]
+                                        'type': ["component", ["type", {
+                                            'type': ['sibling', {
+                                                'namespace steps': pw.wrapRawArray([createReference("resolved", null), createReference("globalTypes", null)]),
+                                                'global type': createReference(key, null),
+                                            }],
+                                            'arguments': pw.wrapRawDictionary({}),
+                                        }]]
                                     }
                                 }]
                             }],

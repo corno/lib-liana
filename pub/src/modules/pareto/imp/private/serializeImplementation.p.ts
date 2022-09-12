@@ -5,6 +5,7 @@ import * as fp from "lib-fountain-pen"
 import * as api from "../../interface"
 
 import { D2 } from "../../interface"
+import { serializeFunctionDefinition } from "./serializeFunctionDefinition.p"
 
 export function serializeImplementation<PAnnotation>(
     $: api.TImplementation<PAnnotation>,
@@ -32,7 +33,16 @@ export function serializeImplementation<PAnnotation>(
                                     })
                                     $i.line(($i) => { })
                                     $i.line(($i) => {
-                                        $i.snippet(`export function ${$.key}() {`)
+                                        $i.snippet(`export function ${$.key}`)
+                                        serializeFunctionDefinition(
+                                            {
+                                                definition: $.value.definition,
+                                                sign: ":",
+                                            },
+                                            $i,
+                                            $d,
+                                        )
+                                        $i.snippet(` {`)
                                         $i.indent(($i) => {
 
                                             function doExpression(

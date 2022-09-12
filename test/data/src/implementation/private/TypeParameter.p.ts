@@ -2,6 +2,9 @@ import * as pl from "pareto-core-lib"
 
 import * as api from "../../interface"
 
-export function TypeParameter() {
+export function TypeParameter(
+    $: api.unresolved.globalTypes.TTypeParameter,
+    $i: {},
+): api.resolved.globalTypes.TTypeParameter {
     pl.implementMe("PRIVATE FUNC")
 }

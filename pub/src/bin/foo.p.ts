@@ -43,6 +43,7 @@ mpareto.serialize(
         escapeInterface: ($) => `I${escapeTypescriptIdentifier($)}`,
         escapeImportedInterface: ($) => `m${escapeTypescriptIdentifier($.module)}.I${escapeTypescriptIdentifier($.interface)}`,
         escapeDependencyDefinition: ($) => `D${escapeTypescriptIdentifier($)}`,
+        escapeFunctionDefinition: ($) => `F${escapeTypescriptIdentifier($)}`,
 
         escapeImportedFunction: ($) => `m${escapeTypescriptIdentifier($.module)}.F${escapeTypescriptIdentifier($.function)}`,
         enrichedDictionaryForEach: ($, $i) => {

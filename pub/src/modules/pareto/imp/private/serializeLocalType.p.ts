@@ -95,6 +95,7 @@ export function serializeLocalType<PAnnotation>(
                                                 break
                                             case "sibling":
                                                 pl.cc($.type[1], ($) => {
+                                                    $i.snippet(`api.`)
                                                     $["namespace steps"].forEach(($) => {
                                                         $i.snippet(`${$.name.name}.`)
                                                     })

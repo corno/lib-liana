@@ -74,6 +74,7 @@ export type DDependencies<PAnnotation> = {
         interface: string,
     }) => string
     escapeDependencyDefinition: ($: string) => string
+    escapeFunctionDefinition: ($: string) => string
 
     escapeImportedFunction: ($: {
         module: string,

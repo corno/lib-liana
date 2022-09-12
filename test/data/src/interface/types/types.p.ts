@@ -1,4 +1,7 @@
 import * as pt from "pareto-core-types"
+
+import * as api from "../index"
+
 type Reference<T> = { name: string }
 
 export namespace resolved {
@@ -10,30 +13,30 @@ export namespace resolved {
             readonly 'function declarations': pt.Dictionary<{}>
             readonly 'imports': pt.Dictionary<Reference<TAPI>>
             readonly 'interfaces': pt.Dictionary<{}>
-            readonly 'namespace': globalTypes.TNamespace
+            readonly 'namespace': TNamespace
         }
         
         export type TInterface = {
             readonly 'type': 
                 | [ "component", {} ]
                 | [ "group", {
-                    readonly 'properties': pt.Dictionary<globalTypes.TInterface>
+                    readonly 'properties': pt.Dictionary<TInterface>
                 } ]
         }
         
         export type TModule = {
             readonly 'implementation': {
-                readonly 'imports': pt.Dictionary<globalTypes.TInterface>
+                readonly 'imports': pt.Dictionary<TInterface>
                 readonly 'private functions': pt.Dictionary<{}>
                 readonly 'public functions': pt.Dictionary<{}>
             }
-            readonly 'interface': globalTypes.TAPI
+            readonly 'interface': TAPI
         }
         
         export type TNamespace = {
-            readonly 'namespaces': pt.Dictionary<globalTypes.TNamespace>
+            readonly 'namespaces': pt.Dictionary<TNamespace>
             readonly 'parameters': pt.Dictionary<null>
-            readonly 'types': pt.Dictionary<globalTypes.TType>
+            readonly 'types': pt.Dictionary<TType>
         }
         
         export type TType = {
@@ -57,11 +60,11 @@ export namespace resolved {
                         } ]
                      ]
                  ]
-                | [ "group", pt.Dictionary<globalTypes.TType> ]
+                | [ "group", pt.Dictionary<TType> ]
                 | [ "null", null ]
                 | [ "reference", Reference<TType> ]
                 | [ "string", null ]
-                | [ "tagged union", pt.Dictionary<globalTypes.TType> ]
+                | [ "tagged union", pt.Dictionary<TType> ]
         }
         
         export type TTypeParameter = null
@@ -84,30 +87,30 @@ export namespace unresolved {
                 readonly 'name': string
             }>
             readonly 'interfaces'?: pt.Dictionary<{}>
-            readonly 'namespace'?: globalTypes.TNamespace
+            readonly 'namespace'?: TNamespace
         }
         
         export type TInterface = {
             readonly 'type'?: 
                 | [ "component", {} ]
                 | [ "group", {
-                    readonly 'properties'?: pt.Dictionary<globalTypes.TInterface>
+                    readonly 'properties'?: pt.Dictionary<TInterface>
                 } ]
         }
         
         export type TModule = {
             readonly 'implementation'?: {
-                readonly 'imports'?: pt.Dictionary<globalTypes.TInterface>
+                readonly 'imports'?: pt.Dictionary<TInterface>
                 readonly 'private functions'?: pt.Dictionary<{}>
                 readonly 'public functions'?: pt.Dictionary<{}>
             }
-            readonly 'interface'?: globalTypes.TAPI
+            readonly 'interface'?: TAPI
         }
         
         export type TNamespace = {
-            readonly 'namespaces'?: pt.Dictionary<globalTypes.TNamespace>
+            readonly 'namespaces'?: pt.Dictionary<TNamespace>
             readonly 'parameters'?: pt.Dictionary<null>
-            readonly 'types'?: pt.Dictionary<globalTypes.TType>
+            readonly 'types'?: pt.Dictionary<TType>
         }
         
         export type TType = {
@@ -146,14 +149,14 @@ export namespace unresolved {
                         } ]
                      ]
                  ]
-                | [ "group", pt.Dictionary<globalTypes.TType> ]
+                | [ "group", pt.Dictionary<TType> ]
                 | [ "null", null ]
                 | [ "reference", {
                     readonly 'annotation': string
                     readonly 'name': string
                 } ]
                 | [ "string", null ]
-                | [ "tagged union", pt.Dictionary<globalTypes.TType> ]
+                | [ "tagged union", pt.Dictionary<TType> ]
         }
         
         export type TTypeParameter = null
