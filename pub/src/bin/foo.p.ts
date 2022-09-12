@@ -14,7 +14,19 @@ import { createWriter } from "../implementation/public/createWriter.p"
 import * as res from "../../../tempRes"
 
 mpareto.serialize(
-    mapToPareto(pareto).root,
+    mapToPareto(
+        pareto,
+        {
+            joinDictionaries: res.joinDictionaries,
+            arrayIsEmpty: ($) => {
+                let found = false
+                $.forEach(($) => {
+                    found = true
+                })
+                return !found
+            }
+        },
+    ).root,
     createWriter(
         ["..", "test", "data", "src"],
         {

@@ -16,221 +16,72 @@ function createReference<PAnnotation, PT>($: string, ann: PAnnotation): pareto.R
     }
 }
 
-export const mapToPareto: api.FMapToPareto = ($) => {
+export const mapToPareto: api.FMapToPareto = ($, $d) => {
 
     function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
 
         type A = null | PAnnotation
 
-        function createLocalTypeNamespace(
+        function doType(
             $: {
-                type: api.TLocalType<PAnnotation>,
-                resolved: boolean,
-                namespaceStack: pm.ArrayBuilder<string>,
+                type: api.TLocalType<PAnnotation>
+                resolved: boolean
+                namespaceStack: pm.ArrayBuilder<string>
+                namespaceName: string,
             }
-        ): pareto.TNamespace<A> {
+        ): pareto.TLocalType<A> {
             const config = $
             return {
-                parameters: pw.wrapRawDictionary({}),
-                namespaces: pl.cc($.type, ($) => {
-                    switch ($.type[0]) {
-                        case "boolean":
-                            return pl.cc($.type[1], ($) => {
-                                return pl.createEmptyDictionary()
+                annotation: null,
+                optional: false,
+                collections: pw.wrapRawArray([]),
+                type: pl.cc($.type.type, ($): pareto.TTypeType<A> => {
+                    switch ($[0]) {
+                        case 'boolean':
+                            return pl.cc($[1], ($) => {
+                                return ['boolean', {}]
                             })
-                        case "component":
-                            return pl.cc($.type[1], ($) => {
-                                return pl.createEmptyDictionary()
-
-                            })
-                        case "group":
-                            return pl.cc($.type[1], ($) => {
-                                return $.properties.map(($) => {
-                                    return createLocalTypeNamespace({
-                                        type: $.type,
-                                        resolved: config.resolved,
-                                        namespaceStack: config.namespaceStack //FIXME!!!
-
-                                    })
-                                })
-
-
-                            })
-                        case "null":
-                            return pl.cc($.type[1], ($) => {
-                                return pl.createEmptyDictionary()
-
-                            })
-                        case "string":
-                            return pl.cc($.type[1], ($) => {
-                                return pl.createEmptyDictionary()
-
-                            })
-                        case "tagged union":
-                            return pl.cc($.type[1], ($) => {
-                                return $.options.map(($) => {
-                                    return createLocalTypeNamespace({
-                                        type: $,
-                                        resolved: config.resolved,
-                                        namespaceStack: config.namespaceStack //FIXME!!!
-
-                                    })
-                                })
-
-                            })
-                        default: return pl.au($.type[0])
-                    }
-                }),
-                types: pl.cc($.type, ($) => {
-                    return pw.wrapRawDictionary({
-                        "typeXXX": {
-                            'optional': false,
-                            'annotation': null,
-                            'collections': $.collections.map(($) => {
-                                switch ($[0]) {
-                                    case "dictionary":
-                                        return pl.cc($[1], ($) => {
-                                            return ["dictionary", null]
-                                        })
-                                    case "list":
-                                        return pl.cc($[1], ($) => {
-                                            return ["list", null]
-                                        })
-                                    default: return pl.au($[0])
-                                }
-                            }),
-                            'type': pl.cc($.type, ($): pareto.TTypeType<A> => {
-                                switch ($[0]) {
-                                    case 'boolean':
-                                        return pl.cc($[1], ($) => {
-                                            return ['boolean', {}]
-                                        })
-                                    case 'group':
-                                        return pl.cc($[1], ($) => {
-                                            return ['group', {
-                                                'properties': $.properties.map(($, key) => {
-                                                    return {
-                                                        'optional': !config.resolved,
-                                                        'type': {
-                                                            'optional': false,
-                                                            'annotation': null,
-                                                            'collections': pw.wrapRawArray([]),
-                                                            'type': ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
-                                                                return ["type", {
-                                                                    'type': pl.cc($, ($) => {
-                                                                        return ['sibling', {
-                                                                            'namespace steps': pw.wrapRawArray([createReference(key, null)]),
-                                                                            'global type': {
-                                                                                name: {
-                                                                                    annotation: null,
-                                                                                    name: "typeXXX"
-                                                                                }
-                                                                            },
-                                                                        }]
-                                                                    }),
-                                                                    'arguments': pw.wrapRawDictionary({}),
-                                                                }]
-                                                            })]
+                        case 'group':
+                            return pl.cc($[1], ($) => {
+                                return ['group', {
+                                    'properties': $.properties.map(($, key) => {
+                                        return {
+                                            optional: !config.resolved,
+                                            type: pl.cc($, ($) => {
+                                                return $d.arrayIsEmpty($.type.collections)
+                                                    ? doType(
+                                                        {
+                                                            type: $.type,
+                                                            resolved: config.resolved,
+                                                            namespaceStack: config.namespaceStack,
+                                                            namespaceName: key,
                                                         }
-                                                    }
-                                                })
-                                            }]
-                                            // return $.properties.map(($, key) => {
-                                            //     return
-
-
-                                            // })
-                                        })
-                                    case 'null':
-                                        return pl.cc($[1], ($) => {
-                                            return ['null', {}]
-                                        })
-                                    case 'component':
-                                        return pl.cc($[1], ($) => {
-                                            return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
-                                                switch ($.type[0]) {
-                                                    case "parameter":
-                                                        return pl.cc($.type[1], ($) => {
-                                                            return ["parameter", {
-                                                                'parameter': {
-                                                                    'name': $.parameter,
-                                                                }
-                                                            }]
-                                                        })
-                                                    case "type":
-                                                        return pl.cc($.type[1], ($) => {
-                                                            return ["type", {
-                                                                'type': pl.cc($, ($) => {
-                                                                    return ['sibling', {
-                                                                        'namespace steps': config.namespaceStack.getArray().map(($) => {
-                                                                            return createReference($, null)
-                                                                        }),
-                                                                        'global type': {
-                                                                            name: $["global type"]
-                                                                        },
-                                                                    }]
-                                                                }),
-                                                                'arguments': pw.wrapRawDictionary({}),
-                                                            }]
-                                                        })
-                                                    default: return pl.au($.type[0])
-                                                }
-                                            })]
-                                        })
-                                    case 'string':
-                                        return pl.cc($[1], ($) => {
-                                            if ($.reference === undefined) {
-                                                return ['string', {}]
-                                            } else {
-                                                if (config.resolved) {
-
-                                                    return ['reference', {
-                                                        'type': $.reference,
-                                                    }]
-                                                } else {
-
-                                                    return ['group', {
-                                                        'properties': pw.wrapRawDictionary({
-                                                            "name": {
-                                                                'optional': false,
-                                                                'type': {
-                                                                    'optional': false,
-                                                                    'annotation': null,
-                                                                    'collections': pw.wrapRawArray([]),
-                                                                    'type': ['string', {}]
-                                                                },
-                                                            },
-                                                            "annotation": {
-                                                                'optional': false,
-                                                                'type': {
-                                                                    'annotation': null,
-                                                                    'optional': false,
-                                                                    'collections': pw.wrapRawArray([]),
-                                                                    'type': ['string', {}]
-                                                                },
-                                                            }
-                                                        }),
-                                                    }]
-                                                }
-                                            }
-                                        })
-                                    case 'tagged union':
-                                        return pl.cc($[1], ($) => {
-                                            return ['tagged union', {
-                                                'options': $.options.map(($, key) => {
-                                                    return {
+                                                    )
+                                                    : {
                                                         'optional': false,
                                                         'annotation': null,
-                                                        'collections': pw.wrapRawArray([]),
+                                                        'collections': $.type.collections.map(($) => {
+                                                            switch ($[0]) {
+                                                                case "dictionary":
+                                                                    return pl.cc($[1], ($) => {
+                                                                        return ["dictionary", null]
+                                                                    })
+                                                                case "list":
+                                                                    return pl.cc($[1], ($) => {
+                                                                        return ["list", null]
+                                                                    })
+                                                                default: return pl.au($[0])
+                                                            }
+                                                        }),
                                                         'type': ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
                                                             return ["type", {
                                                                 'type': pl.cc($, ($) => {
                                                                     return ['sibling', {
-                                                                        'namespace steps': pw.wrapRawArray([createReference(key, null)]),
+                                                                        'namespace steps': pw.wrapRawArray([createReference(config.namespaceName, null)]),
                                                                         'global type': {
                                                                             name: {
                                                                                 annotation: null,
-                                                                                name: "typeXXX"
+                                                                                name: key
                                                                             }
                                                                         },
                                                                     }]
@@ -239,75 +90,442 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                             }]
                                                         })]
                                                     }
-                                                })
-                                            }]
-                                            // return $.options.map(($, key) => {
-                                            //     return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
-                                            //         return ["type", {
-                                            //             'type': pl.cc($, ($) => {
-                                            //                 return ['sibling', {
-                                            //                     'namespace steps': pw.wrapRawArray([createReference(key, null)]),
-                                            //                     'global type': {
-                                            //                         name: {
-                                            //                             annotation: null,
-                                            //                             name: "TypeXXX"
-                                            //                         }
-                                            //                     },
-                                            //                 }]
-                                            //             }),
-                                            //             'arguments': pw.wrapRawDictionary({}),
-                                            //         }]
-                                            //     })]
 
-                                            // })
-                                        })
-                                    default: return pl.au($[0])
+                                            })
+                                        }
+                                    })
+                                }]
+                                // return $.properties.map(($, key) => {
+                                //     return
+
+
+                                // })
+                            })
+                        case 'null':
+                            return pl.cc($[1], ($) => {
+                                return ['null', {}]
+                            })
+                        case 'component':
+                            return pl.cc($[1], ($) => {
+                                return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
+                                    switch ($.type[0]) {
+                                        case "parameter":
+                                            return pl.cc($.type[1], ($) => {
+                                                return ["parameter", {
+                                                    'parameter': {
+                                                        'name': $.parameter,
+                                                    }
+                                                }]
+                                            })
+                                        case "type":
+                                            return pl.cc($.type[1], ($) => {
+                                                return ["type", {
+                                                    'type': pl.cc($, ($) => {
+                                                        return ['sibling', {
+                                                            'namespace steps': config.namespaceStack.getArray().map(($) => {
+                                                                return createReference($, null)
+                                                            }),
+                                                            'global type': {
+                                                                name: $["global type"]
+                                                            },
+                                                        }]
+                                                    }),
+                                                    'arguments': pw.wrapRawDictionary({}),
+                                                }]
+                                            })
+                                        default: return pl.au($.type[0])
+                                    }
+                                })]
+                            })
+                        case 'string':
+                            return pl.cc($[1], ($) => {
+                                if ($.reference === undefined) {
+                                    return ['string', {}]
+                                } else {
+                                    if (config.resolved) {
+
+                                        return ['reference', {
+                                            'type': $.reference,
+                                        }]
+                                    } else {
+
+                                        return ['group', {
+                                            'properties': pw.wrapRawDictionary({
+                                                "name": {
+                                                    'optional': false,
+                                                    'type': {
+                                                        'optional': false,
+                                                        'annotation': null,
+                                                        'collections': pw.wrapRawArray([]),
+                                                        'type': ['string', {}]
+                                                    },
+                                                },
+                                                "annotation": {
+                                                    'optional': false,
+                                                    'type': {
+                                                        'annotation': null,
+                                                        'optional': false,
+                                                        'collections': pw.wrapRawArray([]),
+                                                        'type': ['string', {}]
+                                                    },
+                                                }
+                                            }),
+                                        }]
+                                    }
                                 }
+                            })
+                        case 'tagged union':
+                            return pl.cc($[1], ($) => {
+                                return ['tagged union', {
+                                    'options': $.options.map(($, key) => {
+                                        return $d.arrayIsEmpty($.collections)
+                                            ? doType(
+
+                                                {
+                                                    type: $,
+                                                    resolved: config.resolved,
+                                                    namespaceStack: config.namespaceStack,
+                                                    namespaceName: key,
+                                                }
+                                            )
+                                            : {
+                                                'optional': false,
+                                                'annotation': null,
+                                                'collections': $.collections.map(($) => {
+                                                    switch ($[0]) {
+                                                        case "dictionary":
+                                                            return pl.cc($[1], ($) => {
+                                                                return ["dictionary", null]
+                                                            })
+                                                        case "list":
+                                                            return pl.cc($[1], ($) => {
+                                                                return ["list", null]
+                                                            })
+                                                        default: return pl.au($[0])
+                                                    }
+                                                }),
+                                                'type': ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
+                                                    return ["type", {
+                                                        'type': pl.cc($, ($) => {
+                                                            return ['sibling', {
+                                                                'namespace steps': pw.wrapRawArray([createReference(config.namespaceName, null)]),
+                                                                'global type': {
+                                                                    name: {
+                                                                        annotation: null,
+                                                                        name: key
+                                                                    }
+                                                                },
+                                                            }]
+                                                        }),
+                                                        'arguments': pw.wrapRawDictionary({}),
+                                                    }]
+                                                })]
+                                            }
+                                    })
+                                }]
+                                // return $.options.map(($, key) => {
+                                //     return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
+                                //         return ["type", {
+                                //             'type': pl.cc($, ($) => {
+                                //                 return ['sibling', {
+                                //                     'namespace steps': pw.wrapRawArray([createReference(key, null)]),
+                                //                     'global type': {
+                                //                         name: {
+                                //                             annotation: null,
+                                //                             name: "TypeXXX"
+                                //                         }
+                                //                     },
+                                //                 }]
+                                //             }),
+                                //             'arguments': pw.wrapRawDictionary({}),
+                                //         }]
+                                //     })]
+
+                                // })
+                            })
+                        default: return pl.au($[0])
+                    }
+                })
+            }
+        }
+        function createLocalTypeNamespace(
+            $: {
+                type: api.TLocalType<PAnnotation>,
+                resolved: boolean,
+                namespaceStack: pm.ArrayBuilder<string>,
+            }
+        ): pareto.TNamespace<A> {
+            const config = $
+            function emptyNamespace(): pareto.TNamespace<A> {
+                return {
+                    'parameters': pl.createEmptyDictionary(),
+                    'namespaces': pl.createEmptyDictionary(),
+                    'types': pl.createEmptyDictionary(),
+                }
+
+            }
+            switch ($.type.type[0]) {
+                case "boolean":
+                    return emptyNamespace()
+                case "component":
+                    return emptyNamespace()
+                case "group":
+                    return pl.cc($.type.type[1], ($) => {
+                        return {
+                            'parameters': pl.createEmptyDictionary(),
+                            'namespaces': $.properties.map(($) => {
+                                return createLocalTypeNamespace(
+                                    {
+                                        type: $.type,
+                                        resolved: config.resolved,
+                                        namespaceStack: config.namespaceStack
+                                    }
+                                )
+                            }),
+                            'types': $.properties.filter(($, key) => {
+                                return $d.arrayIsEmpty($.type.collections)
+                                    ? undefined
+                                    : doType(
+                                        {
+                                            type: $.type,
+                                            resolved: config.resolved,
+                                            namespaceStack: config.namespaceStack,
+                                            namespaceName: key,
+                                        }
+                                        )
                             })
                         }
                     })
-                }),
+                case "null":
+                    return emptyNamespace()
+                case "string":
+                    return emptyNamespace()
+                case "tagged union":
+                    return pl.cc($.type.type[1], ($) => {
+                        return {
+                            'parameters': pl.createEmptyDictionary(),
+                            'namespaces': $.options.map(($) => {
+                                return createLocalTypeNamespace(
+                                    {
+                                        type: $,
+                                        resolved: config.resolved,
+                                        namespaceStack: config.namespaceStack
+                                    }
+                                )
+                            }),
+                            'types': $.options.filter(($, key) => {
+                                return $d.arrayIsEmpty($.collections)
+                                    ? undefined
+                                    : doType(
+
+                                        {
+                                            type: $,
+                                            resolved: config.resolved,
+                                            namespaceStack: config.namespaceStack,
+                                            namespaceName: key,
+                                        }
+                                    )
+                            })
+                        }
+                    })
+                default: return pl.au($.type.type[0])
             }
+            // return {
+            //     parameters: pw.wrapRawDictionary({}),
+            //     namespaces: pl.cc($.type, ($) => {
+            //         switch ($.type[0]) {
+            //             case "boolean":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+            //                 })
+            //             case "component":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "group":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pw.wrapRawDictionary({
+            //                         "properties": {
+            //                             parameters: pw.wrapRawDictionary({}),
+            //                             namespaces: $d.joinDictionaries(pw.wrapRawDictionary({
+            //                                 "_": $.properties.map(($) => {
+            //                                     pl.logDebugMessage("????")
+            //                                     return createLocalTypeNamespace({
+            //                                         type: $.type,
+            //                                         resolved: config.resolved,
+            //                                         namespaceStack: config.namespaceStack //FIXME!!!
+
+            //                                     })
+            //                                 })
+            //                             })),
+            //                             types: pw.wrapRawDictionary({}),
+            //                             // types: pl.cc($.type, ($) => {
+            //                             //     switch ($.type[0]) {
+            //                             //         case "boolean":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+            //                             //             })
+            //                             //         case "component":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "group":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return $.properties.filter(($, key) => {
+            //                             //                     return $d.arrayIsEmpty($.type.collections)
+            //                             //                         ? undefined
+            //                             //                         : doType($.type)
+            //                             //                 })
+            //                             //             })
+            //                             //         case "null":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "string":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "tagged union":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return $.options.filter(($, key) => {
+            //                             //                     return $d.arrayIsEmpty($.collections)
+            //                             //                         ? undefined
+            //                             //                         : doType($)
+            //                             //                 })
+
+            //                             //             })
+            //                             //         default: return pl.au($.type[0])
+            //                             //     }
+            //                             // }),
+            //                         }
+            //                     })
+            //                 })
+            //             case "null":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "string":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "tagged union":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pw.wrapRawDictionary({
+            //                         "options": {
+            //                             parameters: pw.wrapRawDictionary({}),
+            //                             namespaces: $d.joinDictionaries(pw.wrapRawDictionary({
+            //                                 "_": $.options.map(($) => {
+            //                                     return createLocalTypeNamespace({
+            //                                         type: $,
+            //                                         resolved: config.resolved,
+            //                                         namespaceStack: config.namespaceStack //FIXME!!!
+
+            //                                     })
+            //                                 })
+            //                             })),
+            //                             types: pw.wrapRawDictionary({}),
+            //                             // types: pl.cc($.type, ($) => {
+            //                             //     switch ($.type[0]) {
+            //                             //         case "boolean":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+            //                             //             })
+            //                             //         case "component":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "group":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return $.properties.filter(($, key) => {
+            //                             //                     return $d.arrayIsEmpty($.type.collections)
+            //                             //                         ? undefined
+            //                             //                         : doType($.type)
+            //                             //                 })
+            //                             //             })
+            //                             //         case "null":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "string":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return pl.createEmptyDictionary()
+
+            //                             //             })
+            //                             //         case "tagged union":
+            //                             //             return pl.cc($.type[1], ($) => {
+            //                             //                 return $.options.filter(($, key) => {
+            //                             //                     return $d.arrayIsEmpty($.collections)
+            //                             //                         ? undefined
+            //                             //                         : doType($)
+            //                             //                 })
+
+            //                             //             })
+            //                             //         default: return pl.au($.type[0])
+            //                             //     }
+            //                             // }),
+            //                         }
+            //                     })
+            //                 })
+            //             default: return pl.au($.type[0])
+            //         }
+            //     }),
+
+            //     types: pl.cc($.type, ($) => {
+            //         switch ($.type[0]) {
+            //             case "boolean":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+            //                 })
+            //             case "component":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "group":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return $.properties.filter(($, key) => {
+            //                         return $d.arrayIsEmpty($.type.collections)
+            //                             ? undefined
+            //                             : doType($.type)
+            //                     })
+            //                 })
+            //             case "null":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "string":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return pl.createEmptyDictionary()
+
+            //                 })
+            //             case "tagged union":
+            //                 return pl.cc($.type[1], ($) => {
+            //                     return $.options.filter(($, key) => {
+            //                         return $d.arrayIsEmpty($.collections)
+            //                             ? undefined
+            //                             : doType($)
+            //                     })
+
+            //                 })
+            //             default: return pl.au($.type[0])
+            //         }
+            //     }),
+            // }
         }
         function createTypes($: {
             schema: api.TSchema<PAnnotation>,
             resolved: boolean,
         }): pareto.TNamespace<A> {
             const config = $
-            function createLocalType(
-                $: {
-                    type: api.TLocalType<PAnnotation>,
-                    namespaceStack: pm.ArrayBuilder<string>,
-                    name: string,
-                }
-            ): pareto.TLocalType<A> {
-                const config = $
-                return {
-                    'annotation': $.type.annotation,
-                    'optional': $.type.optional,
-                    'collections': $.type.collections.map(($) => {
-                        return $
-                    }),
-                    'type': pl.cc($.type, ($): pareto.TTypeType<A> => {
-                        return ['component', pl.cc($, ($): pareto.TReferenceType<A> => {
-                            return ["type", {
-                                'type': pl.cc($, ($) => {
-                                    return ['sibling', {
-                                        'namespace steps': pw.wrapRawArray([createReference(config.name, null)]),
-                                        'global type': {
-                                            name: {
-                                                name: "typeXXX",
-                                                annotation: null,
-                                            }
-                                        },
-                                    }]
-                                }),
-                                'arguments': pw.wrapRawDictionary({}),
-                            }]
-                        })]
-                    })
-                }
-            }
             return {
                 'parameters': pw.wrapRawDictionary({ "Annotation": null }),
                 'namespaces': pw.wrapRawDictionary({
@@ -325,14 +543,15 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                             })
                         }),
                         'types': $.schema["global types"].map(($, key) => {
-                            return createLocalType({
+                            return doType({
                                 type: $.type,
                                 namespaceStack: pl.cc($, ($) => {
                                     const x = pm.createArrayBuilder<string>()
                                     x.push("globalTypes")
                                     return x
                                 }),
-                                name: key,
+                                resolved: config.resolved,
+                                namespaceName: key,
                             })
                         }),
                     },
@@ -347,14 +566,15 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                     })
                 }),
                 'types': pw.wrapRawDictionary<pareto.TGlobalType<A>>({
-                    "root": createLocalType({
+                    "root": doType({
                         type: $.schema.root,
                         namespaceStack: pl.cc($, ($) => {
                             const x = pm.createArrayBuilder<string>()
                             x.push("globalTypes")
                             return x
                         }),
-                        name: "root",
+                        resolved: config.resolved,
+                        namespaceName: "root",
                     }),
                 }),
             }
