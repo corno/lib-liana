@@ -25,7 +25,11 @@ export function serializeFunctionDefinition<PAnnotation>(
         $i.line(($i) => {
             $i.snippet(`$: `)
             serializeLocalType(
-                $.definition.type,
+                {
+                    type: $.definition.type,
+                    relative: false,
+                },
+                
                 $i,
                 $d.x,
             )
@@ -77,14 +81,20 @@ export function serializeFunctionDefinition<PAnnotation>(
                         if ($.async) {
                             $i.snippet(`pt.AsyncValue<`)
                             serializeLocalType(
-                                $.type,
+                                {
+                                    type: $.type,
+                                    relative: false,
+                                },
                                 $i,
                                 $d.x,
                             )
                             $i.snippet(`>`)
                         } else {
                             serializeLocalType(
-                                $.type,
+                                {
+                                    type: $.type,
+                                    relative: false,
+                                },
                                 $i,
                                 $d.x,
                             )

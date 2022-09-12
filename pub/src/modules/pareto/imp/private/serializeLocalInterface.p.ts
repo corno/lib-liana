@@ -41,7 +41,10 @@ export function serializeLocalInterface<PAnnotation>(
                             $i.line(($i) => {
                                 $i.snippet(`$: `)
                                 serializeLocalType(
-                                    $,
+                                    {
+                                        type: $,
+                                        relative: false,
+                                    },
                                     $i,
                                     $d,
                                 )

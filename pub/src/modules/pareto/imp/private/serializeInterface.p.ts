@@ -86,7 +86,10 @@ export function serializeInterface<PAnnotation>(
                                         )
                                         $i.snippet(` = `)
                                         serializeLocalType(
-                                            $.value,
+                                            {
+                                                type: $.value,
+                                                relative: true,
+                                            },
                                             $i,
                                             $d.x,
                                         )
