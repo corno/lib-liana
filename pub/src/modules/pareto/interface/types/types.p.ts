@@ -151,11 +151,50 @@ export type TInterface<PAnnotation> = {
     readonly "functions": pt.Dictionary<TFunctionDefinition<PAnnotation>>
 }
 
+export namespace Expression {
+    export type TType<PAnnotation> =
+        | ["property selection possibly undefined", {
+            readonly "name": string
+            readonly "undefined": TExpression<PAnnotation>
+            readonly "set": TExpression<PAnnotation>
+        }]
+        | ["call", {
+            readonly "function": string
+            readonly "data": TExpression<PAnnotation>
+            readonly "interfaces": null | TExpression<PAnnotation>
+        }]
+        | ["change context", {
+            'selection': pt.Array<string>
+            'expression': TExpression<PAnnotation>
+        }]
+        | ["group type instantiation", {
+            readonly "properties": pt.Dictionary<TExpression<PAnnotation>>
+        }]
+        | ["null", null]
+        | ["panic", {
+            readonly "message": string
+        }]
+        | ["context", {
+        }]
+        | ["variable", {
+            readonly "variable": string
+        }]
+        | ["switch", {
+            readonly "options": pt.Dictionary<TExpression<PAnnotation>>
+        }]
+        | ["tagged union instantiation", {
+            readonly "state": string
+            readonly 'data': TExpression<PAnnotation>
+        }]
+
+    export type TCollections<PAnnotation> =
+        | ["dictionary", null]
+        | ["array", null]
+}
+
 export type TExpression<PAnnotation> = {
-    readonly "type":
-    | ["group type instantiation", {
-        readonly "properties": pt.Dictionary<TExpression<PAnnotation>>
-    }]
+    readonly 'collections': pt.Array<Expression.TCollections<PAnnotation>>
+    readonly "type": Expression.TType<PAnnotation>
 }
 
 export type TStatement<PAnnotation> = {
@@ -192,6 +231,7 @@ export type TBlock<PAnnotation> = {
 }
 
 export type TPrivateFunction<PAnnotation> = {
+    readonly "sibling dependencies": pt.Dictionary<null>
     readonly "definition": TFunctionDefinition<PAnnotation>
     readonly "implementation": TBlock<PAnnotation>
 }

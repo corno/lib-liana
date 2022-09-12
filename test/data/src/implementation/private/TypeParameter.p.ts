@@ -6,5 +6,5 @@ export function TypeParameter(
     $: api.unresolved.globalTypes.TTypeParameter,
     $i: {},
 ): api.resolved.globalTypes.TTypeParameter {
-    pl.implementMe("PRIVATE FUNC")
+    return $
 }

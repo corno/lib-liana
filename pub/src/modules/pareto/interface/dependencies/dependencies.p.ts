@@ -57,6 +57,7 @@ export type DDependencies<PAnnotation> = {
     //     $: TNamespace<PAnnotation>,
     // ) => pt.Array<string>
 
+    escapeQuotedStringWithQuotes: ($: string) => string
     escapeQuotedString: ($: string) => string
     escapePrivateFunction: ($: string) => string
     escapePublicFunctionImplementation: ($: string) => string

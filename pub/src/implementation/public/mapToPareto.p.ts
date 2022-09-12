@@ -183,6 +183,121 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                 }),
             }
         }
+        function expression(
+            $: api.TLocalType<PAnnotation>
+        ): pareto.TExpression<A> {
+            return {
+                'collections': $.collections.map(($) => {
+                    switch ($[0]) {
+                        case "dictionary":
+                            return pl.cc($[1], ($) => {
+                                return ["dictionary", null]
+                            })
+                        case "list":
+                            return pl.cc($[1], ($) => {
+                                return ["array", null]
+                            })
+                        default: return pl.au($[0])
+                    }
+                }),
+                'type': pl.cc($, ($): pareto.Expression.TType<A> => {
+                    switch ($.type[0]) {
+                        case "boolean":
+                            return pl.cc($.type[1], ($) => {
+                                return ['context', {}]
+
+                            })
+                        case "component":
+                            return pl.cc($.type[1], ($) => {
+                                switch ($.type[0]) {
+                                    case "parameter":
+                                        return pl.cc($.type[1], ($) => {
+                                            return ['call', {
+                                                'function': "FIXME_COMPONENT_PARAMETER",
+                                                'data': {
+                                                    'collections': pw.wrapRawArray([]),
+                                                    'type': ['context', {}]
+                                                },
+                                                'interfaces': {
+                                                    'collections': pw.wrapRawArray([]),
+                                                    'type': ['variable', {
+                                                        'variable': "$i"
+                                                    }]
+                                                },
+                                            }]
+                                        })
+                                    case "type":
+                                        return pl.cc($.type[1], ($) => {
+                                            return ['call', {
+                                                'function': $["global type"].name,
+                                                'data': {
+                                                    'collections': pw.wrapRawArray([]),
+                                                    'type': ['context', {}]
+                                                },
+                                                'interfaces': {
+                                                    'collections': pw.wrapRawArray([]),
+                                                    'type': ['variable', {
+                                                        'variable': "$i"
+                                                    }]
+                                                },
+                                            }]
+                                        })
+                                    default: return pl.au($.type[0])
+                                }
+
+                            })
+                        case "group":
+                            return pl.cc($.type[1], ($) => {
+                                return ['group type instantiation', {
+                                    'properties': $.properties.map(($, key): pareto.TExpression<A> => {
+                                        return {
+                                            'collections': pw.wrapRawArray([]),
+                                            'type': ['property selection possibly undefined', {
+                                                'name': key,
+                                                'undefined': {
+                                                    'collections': pw.wrapRawArray([]),
+                                                    'type': ['panic', {
+                                                        'message': "UNDEFINED"
+                                                    }]
+                                                },
+                                                'set': expression($.type),
+                                            }]
+                                        }
+                                    }),
+                                }]
+
+                            })
+                        case "null":
+                            return pl.cc($.type[1], ($) => {
+                                return ['context', {}]
+
+                            })
+                        case "string":
+                            return pl.cc($.type[1], ($) => {
+                                return ['context', {}]
+
+                            })
+                        case "tagged union":
+                            return pl.cc($.type[1], ($) => {
+                                return ['switch', {
+                                    'options': $.options.map(($, key) => {
+                                        return {
+                                            'collections': pw.wrapRawArray([]),
+                                            'type': ['tagged union instantiation', {
+                                                'state': key,
+                                                'data': expression($),
+                                            }]
+
+                                        }
+                                    })
+                                }]
+
+                            })
+                        default: return pl.au($.type[0])
+                    }
+                })
+            }
+        }
         return {
             'interface': {
                 'imports': pw.wrapRawDictionary({}),
@@ -251,6 +366,9 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                 }),
                 'private functions': $["global types"].map(($, key): pareto.TPrivateFunction<A> => {
                     return {
+                        'sibling dependencies': $.siblingDependencies.map(($) => {
+                            return $
+                        }),
                         'definition': {
                             'type parameters': pl.createEmptyDictionary(),
                             'type': {
@@ -303,7 +421,11 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                         },
                         'implementation': {
                             'statement': {
-                                'type': ['implement me', { 'message': `PRIVATE FUNC` }]
+                                'type': ['return', {
+                                    'expression': expression(
+                                        $.type,
+                                    )
+                                }]
                             }
                         }
                     }

@@ -33,7 +33,8 @@ mpareto.serialize(
         () => { }
     ),
     {
-        escapeQuotedString: ($) => `"${$}"`,
+        escapeQuotedStringWithQuotes: ($) => `"${$}"`,
+        escapeQuotedString: ($) => `${$}`,
         escapePrivateFunction: ($) => `${$}`, //do spaces, reserved words etcetera
         escapePublicFunctionImplementation: ($) => `${$}`, //do spaces, reserved words etcetera
         escapeNamespace: ($) => `${escapeTypescriptIdentifier($)}`,

@@ -6,5 +6,36 @@ export function Interface(
     $: api.unresolved.globalTypes.TInterface,
     $i: {},
 ): api.resolved.globalTypes.TInterface {
-    pl.implementMe("PRIVATE FUNC")
+    return {
+        'type': $["type"] === undefined
+            ? pl.panic("UNDEFINED")
+            : pl.cc($["type"], ($) => {
+                return pl.cc($, ($): any => {
+                    switch ($[0]) {
+                        case "component": 
+                            return pl.cc($[1], ($) => {
+                                return ["component", {}]
+                            })
+                        case "group": 
+                            return pl.cc($[1], ($) => {
+                                return ["group", {
+                                    'properties': $["properties"] === undefined
+                                        ? pl.panic("UNDEFINED")
+                                        : pl.cc($["properties"], ($) => {
+                                            return $.map(($, key) => {
+                                                return Interface(
+                                                    $,
+                                                    $i,
+                                                )
+                                            })
+                                        })
+                                    ,
+                                }]
+                            })
+                        default: return pl.au($[0])
+                    }
+                })
+            })
+        ,
+    }
 }

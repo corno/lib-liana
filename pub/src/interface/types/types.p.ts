@@ -59,6 +59,7 @@ export type TGlobalTypeParameter<PAnnotation> = {
 }
 
 export type TGlobalType<PAnnotation> = {
+    siblingDependencies: pt.Dictionary<null>
     parameters: pt.Dictionary<TGlobalTypeParameter<PAnnotation>>
     type: TLocalType<PAnnotation>
 }
