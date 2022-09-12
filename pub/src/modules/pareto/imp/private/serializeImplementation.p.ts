@@ -223,6 +223,11 @@ export function serializeImplementation<PAnnotation>(
 
                                                                     })
                                                                     break
+                                                                case "key":
+                                                                    pl.cc($.type[1], ($) => {
+                                                                        $i.snippet(`key`)
+                                                                    })
+                                                                    break
                                                                 case "null":
                                                                     pl.cc($.type[1], ($) => {
                                                                         $i.snippet(`null`)
@@ -248,7 +253,7 @@ export function serializeImplementation<PAnnotation>(
                                                                     break
                                                                 case "switch":
                                                                     pl.cc($.type[1], ($) => {
-                                                                        $i.snippet(`pl.cc($, ($) => {`)
+                                                                        $i.snippet(`pl.cc($, ($): any => {`) //the any is the best I can do without resolved references
                                                                         $i.indent(($i) => {
 
                                                                             $i.line(($i) => {
@@ -287,7 +292,8 @@ export function serializeImplementation<PAnnotation>(
                                                                                     })
                                                                                 })
                                                                                 $i.snippet(`}`)
-                                                                            })                                                                        })
+                                                                            })
+                                                                        })
                                                                         $i.snippet(`})`)
                                                                     })
                                                                     break

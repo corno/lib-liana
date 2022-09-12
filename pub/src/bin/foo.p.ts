@@ -8,14 +8,10 @@ import * as fs from "res-pareto-filesystem"
 import * as mpareto from "../modules/pareto"
 
 import { pareto } from "../data/pareto.p";
-import { mapToPareto } from "../implementation/public/mapToPareto.p";
-import { createWriter } from "../implementation/public/createWriter.p";
+import { mapToPareto } from "../implementation/public/mapToPareto.p"
+import { createWriter } from "../implementation/public/createWriter.p"
 
-
-
-function escapeTypescriptIdentifier($: string): string {
-    return $
-}
+import * as res from "../../../tempRes"
 
 mpareto.serialize(
     mapToPareto(pareto).root,
@@ -33,20 +29,21 @@ mpareto.serialize(
         () => { }
     ),
     {
+        escapeTypescriptIdentifier: res.escapeTypescriptIdentifier,
         escapeQuotedStringWithQuotes: ($) => `"${$}"`,
         escapeQuotedString: ($) => `${$}`,
         escapePrivateFunction: ($) => `${$}`, //do spaces, reserved words etcetera
         escapePublicFunctionImplementation: ($) => `${$}`, //do spaces, reserved words etcetera
-        escapeNamespace: ($) => `${escapeTypescriptIdentifier($)}`,
-        escapeType: ($) => `T${escapeTypescriptIdentifier($)}`,
-        escapeImportedType: ($) => `m${escapeTypescriptIdentifier($.module)}.T${escapeTypescriptIdentifier($.type)}`,
-        escapeTypeParameter: ($) => `P${escapeTypescriptIdentifier($)}`,
-        escapeInterface: ($) => `I${escapeTypescriptIdentifier($)}`,
-        escapeImportedInterface: ($) => `m${escapeTypescriptIdentifier($.module)}.I${escapeTypescriptIdentifier($.interface)}`,
-        escapeDependencyDefinition: ($) => `D${escapeTypescriptIdentifier($)}`,
-        escapeFunctionDefinition: ($) => `F${escapeTypescriptIdentifier($)}`,
+        escapeNamespace: ($) => `${res.escapeTypescriptIdentifier($)}`,
+        escapeType: ($) => `T${res.escapeTypescriptIdentifier($)}`,
+        escapeImportedType: ($) => `m${res.escapeTypescriptIdentifier($.module)}.T${res.escapeTypescriptIdentifier($.type)}`,
+        escapeTypeParameter: ($) => `P${res.escapeTypescriptIdentifier($)}`,
+        escapeInterface: ($) => `I${res.escapeTypescriptIdentifier($)}`,
+        escapeImportedInterface: ($) => `m${res.escapeTypescriptIdentifier($.module)}.I${res.escapeTypescriptIdentifier($.interface)}`,
+        escapeDependencyDefinition: ($) => `D${res.escapeTypescriptIdentifier($)}`,
+        escapeFunctionDefinition: ($) => `F${res.escapeTypescriptIdentifier($)}`,
 
-        escapeImportedFunction: ($) => `m${escapeTypescriptIdentifier($.module)}.F${escapeTypescriptIdentifier($.function)}`,
+        escapeImportedFunction: ($) => `m${res.escapeTypescriptIdentifier($.module)}.F${res.escapeTypescriptIdentifier($.function)}`,
         enrichedDictionaryForEach: ($, $i) => {
             let empty = true
             $.map(($) => {

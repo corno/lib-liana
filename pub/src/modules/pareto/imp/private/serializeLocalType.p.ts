@@ -109,7 +109,7 @@ export function serializeLocalType<PAnnotation>(
                                                         $i.snippet(`api.`)
                                                         }
                                                         $["namespace steps"].forEach(($) => {
-                                                            $i.snippet(`${$.name.name}.`)
+                                                            $i.snippet(`${$d.escapeTypescriptIdentifier($.name.name)}.`)
                                                         })
                                                         $i.snippet(`${$d.escapeType($["global type"].name.name)}`)
                                                     })

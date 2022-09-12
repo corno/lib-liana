@@ -30,7 +30,7 @@ export function API(
             : pl.cc($["imports"], ($) => {
                 return $.map(($, key) => {
                     return {
-                        'name': $.name,
+                        'name': key,
                     }
                 })
             })

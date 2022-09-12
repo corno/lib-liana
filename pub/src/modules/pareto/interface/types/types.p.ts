@@ -170,6 +170,7 @@ export namespace Expression {
         | ["group type instantiation", {
             readonly "properties": pt.Dictionary<TExpression<PAnnotation>>
         }]
+        | ["key", null]
         | ["null", null]
         | ["panic", {
             readonly "message": string

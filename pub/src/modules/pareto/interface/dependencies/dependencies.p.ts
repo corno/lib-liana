@@ -56,7 +56,7 @@ export type DDependencies<PAnnotation> = {
     // getTypeParameters: (
     //     $: TNamespace<PAnnotation>,
     // ) => pt.Array<string>
-
+    escapeTypescriptIdentifier: ($: string) => string
     escapeQuotedStringWithQuotes: ($: string) => string
     escapeQuotedString: ($: string) => string
     escapePrivateFunction: ($: string) => string

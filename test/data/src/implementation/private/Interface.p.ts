@@ -11,7 +11,7 @@ export function Interface(
         'type': $["type"] === undefined
             ? pl.panic("UNDEFINED")
             : pl.cc($["type"], ($) => {
-                return pl.cc($, ($) => {
+                return pl.cc($, ($): any => {
                     switch ($[0]) {
                         case "component": 
                             return pl.cc($[1], ($) => {
