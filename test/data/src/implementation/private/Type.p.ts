@@ -2,6 +2,7 @@ import * as pl from "pareto-core-lib"
 
 import * as api from "../../interface"
 
+
 export function Type(
     $: api.unresolved.globalTypes.TType,
     $i: {},
@@ -11,13 +12,13 @@ export function Type(
             ? pl.panic("UNDEFINED")
             : pl.cc($["collections"], ($) => {
                 return $.map(($) => {
-                    return pl.cc($, ($): any => {
+                    return pl.cc($, ($) => {
                         switch ($[0]) {
-                            case "dictionary": 
+                            case "dictionary":
                                 return pl.cc($[1], ($) => {
                                     return ["dictionary", $]
                                 })
-                            case "list": 
+                            case "list":
                                 return pl.cc($[1], ($) => {
                                     return ["list", $]
                                 })
@@ -35,57 +36,67 @@ export function Type(
         ,
         'type': $["type"] === undefined
             ? pl.panic("UNDEFINED")
-            : pl.cc($["type"], ($) => {
-                return pl.cc($, ($): any => {
+            : pl.cc($["type"], ($): api.resolved.globalTypes.Foo => {
+                return pl.cc($, ($) => {
                     switch ($[0]) {
-                        case "boolean": 
+                        case "boolean":
                             return pl.cc($[1], ($) => {
                                 return ["boolean", $]
                             })
-                        case "component": 
+                        case "component":
                             return pl.cc($[1], ($) => {
-                                return ["component", pl.cc($, ($): any => {
+                                return ["component", pl.cc($, ($): api.resolved.globalTypes.Bar => {
                                     switch ($[0]) {
-                                        case "parameter": 
+                                        case "parameter":
                                             return pl.cc($[1], ($) => {
-                                                return ["parameter", $]
+                                                return ["parameter", {
+                                                    'name': $.name,
+                                                }]
                                             })
-                                        case "type": 
+                                        case "type":
                                             return pl.cc($[1], ($) => {
-                                                return ["type", pl.cc($, ($): any => {
+                                                return ["type", pl.cc($, ($): api.resolved.globalTypes.TypeX => {
                                                     switch ($[0]) {
-                                                        case "import": 
+                                                        case "import":
                                                             return pl.cc($[1], ($) => {
                                                                 return ["import", {
                                                                     'global type': $["global type"] === undefined
                                                                         ? pl.panic("UNDEFINED")
                                                                         : pl.cc($["global type"], ($) => {
-                                                                            return $
+                                                                            return {
+                                                                                'name': $.name,
+                                                                            }
                                                                         })
                                                                     ,
                                                                     'module': $["module"] === undefined
                                                                         ? pl.panic("UNDEFINED")
                                                                         : pl.cc($["module"], ($) => {
-                                                                            return $
+                                                                            return {
+                                                                                'name': $.name,
+                                                                            }
                                                                         })
                                                                     ,
                                                                 }]
                                                             })
-                                                        case "sibling": 
-                                                            return pl.cc($[1], ($) => {
+                                                        case "sibling":
+                                                            return pl.cc($[1], ($): api.resolved.globalTypes.TypeX => {
                                                                 return ["sibling", {
                                                                     'namespace steps': $["namespace steps"] === undefined
                                                                         ? pl.panic("UNDEFINED")
                                                                         : pl.cc($["namespace steps"], ($) => {
                                                                             return $.map(($) => {
-                                                                                return $
+                                                                                return {
+                                                                                    'name': $.name,
+                                                                                }
                                                                             })
                                                                         })
                                                                     ,
                                                                     'type': $["type"] === undefined
                                                                         ? pl.panic("UNDEFINED")
                                                                         : pl.cc($["type"], ($) => {
-                                                                            return $
+                                                                            return {
+                                                                                'name': $.name,
+                                                                            }
                                                                         })
                                                                     ,
                                                                 }]
@@ -98,7 +109,7 @@ export function Type(
                                     }
                                 })]
                             })
-                        case "group": 
+                        case "group":
                             return pl.cc($[1], ($) => {
                                 return ["group", $.map(($, key) => {
                                     return Type(
@@ -107,19 +118,21 @@ export function Type(
                                     )
                                 })]
                             })
-                        case "null": 
+                        case "null":
                             return pl.cc($[1], ($) => {
                                 return ["null", $]
                             })
-                        case "reference": 
+                        case "reference":
                             return pl.cc($[1], ($) => {
-                                return ["reference", $]
+                                return ["reference", {
+                                    'name': $.name,
+                                }]
                             })
-                        case "string": 
+                        case "string":
                             return pl.cc($[1], ($) => {
                                 return ["string", $]
                             })
-                        case "tagged union": 
+                        case "tagged union":
                             return pl.cc($[1], ($) => {
                                 return ["tagged union", $.map(($, key) => {
                                     return Type(

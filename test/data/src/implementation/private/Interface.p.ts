@@ -2,6 +2,7 @@ import * as pl from "pareto-core-lib"
 
 import * as api from "../../interface"
 
+
 export function Interface(
     $: api.unresolved.globalTypes.TInterface,
     $i: {},
@@ -10,7 +11,7 @@ export function Interface(
         'type': $["type"] === undefined
             ? pl.panic("UNDEFINED")
             : pl.cc($["type"], ($) => {
-                return pl.cc($, ($): any => {
+                return pl.cc($, ($) => {
                     switch ($[0]) {
                         case "component": 
                             return pl.cc($[1], ($) => {

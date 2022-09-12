@@ -64,6 +64,7 @@ export function serializeImplementation<PAnnotation>(
                                         }
 
                                     )
+                                    $i.line(($i) => { })
                                     $i.line(($i) => {
                                         $i.snippet(`export function ${$.key}`)
                                         serializeFunctionDefinition(
@@ -235,6 +236,9 @@ export function serializeImplementation<PAnnotation>(
                                                                 case "context":
                                                                     pl.cc($.type[1], ($) => {
                                                                         $i.snippet(`$`)
+                                                                        $.tail.forEach(($) => {
+                                                                            $i.snippet(`[${$d.x.escapeQuotedStringWithQuotes($)}]`)
+                                                                        })
                                                                     })
                                                                     break
                                                                 case "variable":
@@ -244,7 +248,7 @@ export function serializeImplementation<PAnnotation>(
                                                                     break
                                                                 case "switch":
                                                                     pl.cc($.type[1], ($) => {
-                                                                        $i.snippet(`pl.cc($, ($): any => {`) //can't do any better if the type is not resolved
+                                                                        $i.snippet(`pl.cc($, ($) => {`)
                                                                         $i.indent(($i) => {
 
                                                                             $i.line(($i) => {

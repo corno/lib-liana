@@ -3,6 +3,7 @@ import * as pl from "pareto-core-lib"
 import * as api from "../../interface"
 
 import { Namespace } from "./Namespace.p"
+
 export function API(
     $: api.unresolved.globalTypes.TAPI,
     $i: {},
@@ -28,7 +29,9 @@ export function API(
             ? pl.panic("UNDEFINED")
             : pl.cc($["imports"], ($) => {
                 return $.map(($, key) => {
-                    return $
+                    return {
+                        'name': $.name,
+                    }
                 })
             })
         ,

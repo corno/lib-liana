@@ -4,6 +4,7 @@ import * as api from "../../interface"
 
 import { API } from "./API.p"
 import { Interface } from "./Interface.p"
+
 export function Module(
     $: api.unresolved.globalTypes.TModule,
     $i: {},

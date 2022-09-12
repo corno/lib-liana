@@ -175,6 +175,7 @@ export namespace Expression {
             readonly "message": string
         }]
         | ["context", {
+            tail: pt.Array<string>
         }]
         | ["variable", {
             readonly "variable": string

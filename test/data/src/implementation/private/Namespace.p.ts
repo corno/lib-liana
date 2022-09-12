@@ -3,6 +3,7 @@ import * as pl from "pareto-core-lib"
 import * as api from "../../interface"
 
 import { Type } from "./Type.p"
+
 export function Namespace(
     $: api.unresolved.globalTypes.TNamespace,
     $i: {},

@@ -204,7 +204,11 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                     switch ($.type[0]) {
                         case "boolean":
                             return pl.cc($.type[1], ($) => {
-                                return ['context', {}]
+                                return ['context', {
+
+                                    'tail': pw.wrapRawArray([])
+
+                                }]
 
                             })
                         case "component":
@@ -216,7 +220,11 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                 'function': "FIXME_COMPONENT_PARAMETER",
                                                 'data': {
                                                     'collections': pw.wrapRawArray([]),
-                                                    'type': ['context', {}]
+                                                    'type': ['context', {
+
+                                                        'tail': pw.wrapRawArray([])
+
+                                                    }]
                                                 },
                                                 'interfaces': {
                                                     'collections': pw.wrapRawArray([]),
@@ -232,7 +240,11 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                                                 'function': $["global type"].name,
                                                 'data': {
                                                     'collections': pw.wrapRawArray([]),
-                                                    'type': ['context', {}]
+                                                    'type': ['context', {
+
+                                                        'tail': pw.wrapRawArray([])
+
+                                                    }]
                                                 },
                                                 'interfaces': {
                                                     'collections': pw.wrapRawArray([]),
@@ -269,12 +281,30 @@ export const mapToPareto: api.FMapToPareto = ($) => {
                             })
                         case "null":
                             return pl.cc($.type[1], ($) => {
-                                return ['context', {}]
+                                return ['context', {
+
+                                    'tail': pw.wrapRawArray([])
+                                }]
 
                             })
                         case "string":
                             return pl.cc($.type[1], ($) => {
-                                return ['context', {}]
+                                if ($.reference !== null) {
+                                    return ['group type instantiation', {
+                                        'properties': pw.wrapRawDictionary({
+                                            'name': {
+                                                'collections': pw.wrapRawArray([]),
+                                                'type': ['null', null]
+                                            }
+                                        })
+                                    }]
+
+                                } else {
+                                    return ['context', {
+                                        'tail': pw.wrapRawArray(['name'])
+                                    }]
+
+                                }
 
                             })
                         case "tagged union":
