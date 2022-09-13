@@ -6,6 +6,10 @@ import * as pareto from "../../modules/pareto"
 export type FMapToPareto = <PAnnotation>(
     $: TSchema<PAnnotation>,
     $d: {
+        concat: <T>($:{
+            array: pt.Array<T>
+            element: T,
+        }) => pt.Array<T>
         arrayIsEmpty: <T>($: pt.Array<T>) => boolean
         joinDictionaries: <T>($: pt.Dictionary<pt.Dictionary<T>>) => pt.Dictionary<T>
     }

@@ -17,6 +17,7 @@ mpareto.serialize(
     mapToPareto(
         pareto,
         {
+            concat: res.concat,
             joinDictionaries: res.joinDictionaries,
             arrayIsEmpty: ($) => {
                 let found = false

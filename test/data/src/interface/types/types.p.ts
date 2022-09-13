@@ -141,10 +141,10 @@ export namespace resolved {
         export namespace TypeParameter {}
         
         export type TAPI = {
-            readonly 'dependencies': pt.Dictionary<API.Tdependencies>
-            readonly 'function declarations': pt.Dictionary<API.Tfunction_declarations>
-            readonly 'imports': pt.Dictionary<API.Timports>
-            readonly 'interfaces': pt.Dictionary<API.Tinterfaces>
+            readonly 'dependencies': pt.Dictionary<globalTypes.API.Tdependencies>
+            readonly 'function declarations': pt.Dictionary<globalTypes.API.Tfunction_declarations>
+            readonly 'imports': pt.Dictionary<globalTypes.API.Timports>
+            readonly 'interfaces': pt.Dictionary<globalTypes.API.Tinterfaces>
             readonly 'namespace': globalTypes.TNamespace
         }
         
@@ -152,27 +152,27 @@ export namespace resolved {
             readonly 'type': 
                 | [ "component", {} ]
                 | [ "group", {
-                    readonly 'properties': pt.Dictionary<Interface.type.group.Tproperties>
+                    readonly 'properties': pt.Dictionary<globalTypes.Interface.type.group.Tproperties>
                 } ]
         }
         
         export type TModule = {
             readonly 'implementation': {
-                readonly 'imports': pt.Dictionary<Module.implementation.Timports>
-                readonly 'private functions': pt.Dictionary<Module.implementation.Tprivate_functions>
-                readonly 'public functions': pt.Dictionary<Module.implementation.Tpublic_functions>
+                readonly 'imports': pt.Dictionary<globalTypes.Module.implementation.Timports>
+                readonly 'private functions': pt.Dictionary<globalTypes.Module.implementation.Tprivate_functions>
+                readonly 'public functions': pt.Dictionary<globalTypes.Module.implementation.Tpublic_functions>
             }
             readonly 'interface': globalTypes.TAPI
         }
         
         export type TNamespace = {
-            readonly 'namespaces': pt.Dictionary<Namespace.Tnamespaces>
-            readonly 'parameters': pt.Dictionary<Namespace.Tparameters>
-            readonly 'types': pt.Dictionary<Namespace.Ttypes>
+            readonly 'namespaces': pt.Dictionary<globalTypes.Namespace.Tnamespaces>
+            readonly 'parameters': pt.Dictionary<globalTypes.Namespace.Tparameters>
+            readonly 'types': pt.Dictionary<globalTypes.Namespace.Ttypes>
         }
         
         export type TType = {
-            readonly 'collections': pt.Array<Type.Tcollections>
+            readonly 'collections': pt.Array<globalTypes.Type.Tcollections>
             readonly 'optional': boolean
             readonly 'type': 
                 | [ "boolean", null ]
@@ -184,16 +184,16 @@ export namespace resolved {
                             readonly 'module': Reference<TInterface>
                         } ]
                         | [ "sibling", {
-                            readonly 'namespace steps': pt.Array<Type.type.component.type.sibling.Tnamespace_steps>
+                            readonly 'namespace steps': pt.Array<globalTypes.Type.type.component.type.sibling.Tnamespace_steps>
                             readonly 'type': Reference<TType>
                         } ]
                      ]
                  ]
-                | [ "group", pt.Dictionary<Type.type.Tgroup> ]
+                | [ "group", pt.Dictionary<globalTypes.Type.type.Tgroup> ]
                 | [ "null", null ]
                 | [ "reference", Reference<TType> ]
                 | [ "string", null ]
-                | [ "tagged union", pt.Dictionary<Type.type.Ttagged_union> ]
+                | [ "tagged union", pt.Dictionary<globalTypes.Type.type.Ttagged_union> ]
         }
         
         export type TTypeParameter = null
@@ -352,10 +352,10 @@ export namespace unresolved {
         export namespace TypeParameter {}
         
         export type TAPI = {
-            readonly 'dependencies'?: pt.Dictionary<API.Tdependencies>
-            readonly 'function declarations'?: pt.Dictionary<API.Tfunction_declarations>
-            readonly 'imports'?: pt.Dictionary<API.Timports>
-            readonly 'interfaces'?: pt.Dictionary<API.Tinterfaces>
+            readonly 'dependencies'?: pt.Dictionary<globalTypes.API.Tdependencies>
+            readonly 'function declarations'?: pt.Dictionary<globalTypes.API.Tfunction_declarations>
+            readonly 'imports'?: pt.Dictionary<globalTypes.API.Timports>
+            readonly 'interfaces'?: pt.Dictionary<globalTypes.API.Tinterfaces>
             readonly 'namespace'?: globalTypes.TNamespace
         }
         
@@ -363,27 +363,27 @@ export namespace unresolved {
             readonly 'type'?: 
                 | [ "component", {} ]
                 | [ "group", {
-                    readonly 'properties'?: pt.Dictionary<Interface.type.group.Tproperties>
+                    readonly 'properties'?: pt.Dictionary<globalTypes.Interface.type.group.Tproperties>
                 } ]
         }
         
         export type TModule = {
             readonly 'implementation'?: {
-                readonly 'imports'?: pt.Dictionary<Module.implementation.Timports>
-                readonly 'private functions'?: pt.Dictionary<Module.implementation.Tprivate_functions>
-                readonly 'public functions'?: pt.Dictionary<Module.implementation.Tpublic_functions>
+                readonly 'imports'?: pt.Dictionary<globalTypes.Module.implementation.Timports>
+                readonly 'private functions'?: pt.Dictionary<globalTypes.Module.implementation.Tprivate_functions>
+                readonly 'public functions'?: pt.Dictionary<globalTypes.Module.implementation.Tpublic_functions>
             }
             readonly 'interface'?: globalTypes.TAPI
         }
         
         export type TNamespace = {
-            readonly 'namespaces'?: pt.Dictionary<Namespace.Tnamespaces>
-            readonly 'parameters'?: pt.Dictionary<Namespace.Tparameters>
-            readonly 'types'?: pt.Dictionary<Namespace.Ttypes>
+            readonly 'namespaces'?: pt.Dictionary<globalTypes.Namespace.Tnamespaces>
+            readonly 'parameters'?: pt.Dictionary<globalTypes.Namespace.Tparameters>
+            readonly 'types'?: pt.Dictionary<globalTypes.Namespace.Ttypes>
         }
         
         export type TType = {
-            readonly 'collections'?: pt.Array<Type.Tcollections>
+            readonly 'collections'?: pt.Array<globalTypes.Type.Tcollections>
             readonly 'optional'?: boolean
             readonly 'type'?: 
                 | [ "boolean", null ]
@@ -404,7 +404,7 @@ export namespace unresolved {
                             }
                         } ]
                         | [ "sibling", {
-                            readonly 'namespace steps'?: pt.Array<Type.type.component.type.sibling.Tnamespace_steps>
+                            readonly 'namespace steps'?: pt.Array<globalTypes.Type.type.component.type.sibling.Tnamespace_steps>
                             readonly 'type'?: {
                                 readonly 'annotation': string
                                 readonly 'name': string
@@ -412,14 +412,14 @@ export namespace unresolved {
                         } ]
                      ]
                  ]
-                | [ "group", pt.Dictionary<Type.type.Tgroup> ]
+                | [ "group", pt.Dictionary<globalTypes.Type.type.Tgroup> ]
                 | [ "null", null ]
                 | [ "reference", {
                     readonly 'annotation': string
                     readonly 'name': string
                 } ]
                 | [ "string", null ]
-                | [ "tagged union", pt.Dictionary<Type.type.Ttagged_union> ]
+                | [ "tagged union", pt.Dictionary<globalTypes.Type.type.Ttagged_union> ]
         }
         
         export type TTypeParameter = null
