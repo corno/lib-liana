@@ -236,7 +236,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                     type: api.TLocalType<PAnnotation>,
                     resolved: boolean,
                 }
-            ): pareto.TNamespace<A> {
+            ): null | pareto.TNamespace<A> {
                 const config = $
                 function emptyNamespace(): pareto.TNamespace<A> {
                     return {
@@ -248,18 +248,27 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                 }
                 switch ($.type.type[0]) {
                     case "boolean":
-                        return emptyNamespace()
+                        return null
                     case "component":
-                        return emptyNamespace()
+                        return null
                     case "group":
                         return pl.cc($.type.type[1], ($) => {
                             return {
                                 'parameters': pl.createEmptyDictionary(),
-                                'namespaces': $.properties.map(($, key) => {
-                                    return createLocalTypeNamespace(
-                                        {
-                                            type: $.type,
-                                            resolved: config.resolved,
+                                'namespaces': $.properties.filter(($, key) => {
+                                    return pl.cc(
+                                        createLocalTypeNamespace(
+                                            {
+                                                type: $.type,
+                                                resolved: config.resolved,
+                                            }
+                                        ),
+                                        ($) => {
+                                            if ($ === null) {
+                                                return undefined
+                                            } else {
+                                                return $
+                                            }
                                         }
                                     )
                                 }),
@@ -277,18 +286,27 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                             }
                         })
                     case "null":
-                        return emptyNamespace()
+                        return null
                     case "string":
-                        return emptyNamespace()
+                        return null
                     case "tagged union":
                         return pl.cc($.type.type[1], ($) => {
                             return {
                                 'parameters': pl.createEmptyDictionary(),
-                                'namespaces': $.options.map(($, key) => {
-                                    return createLocalTypeNamespace(
-                                        {
-                                            type: $,
-                                            resolved: config.resolved,
+                                'namespaces': $.options.filter(($, key) => {
+                                    return pl.cc(
+                                        createLocalTypeNamespace(
+                                            {
+                                                type: $,
+                                                resolved: config.resolved,
+                                            }
+                                        ),
+                                        ($) => {
+                                            if ($ === null) {
+                                                return undefined
+                                            } else {
+                                                return $
+                                            }
                                         }
                                     )
                                 }),
@@ -314,11 +332,22 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                 'namespaces': pw.wrapRawDictionary({
                     "globalTypes": {
                         'parameters': pw.wrapRawDictionary({}),
-                        'namespaces': $.schema["global types"].map(($) => {
-                            return createLocalTypeNamespace({
-                                type: $.type,
-                                resolved: config.resolved,
-                            })
+                        'namespaces': $.schema["global types"].filter(($) => {
+                            return pl.cc(
+                                createLocalTypeNamespace(
+                                    {
+                                        type: $.type,
+                                        resolved: config.resolved,
+                                    }
+                                ),
+                                ($) => {
+                                    if ($ === null) {
+                                        return undefined
+                                    } else {
+                                        return $
+                                    }
+                                }
+                            )
                         }),
                         'types': $.schema["global types"].map(($, key) => {
                             return doType({
@@ -328,10 +357,22 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                             })
                         }),
                     },
-                    "root": createLocalTypeNamespace({
-                        type: $.schema.root,
-                        resolved: config.resolved,
-                    })
+                    //FIX MUST BE ENABLED
+                    // "root": pl.cc(
+                    //     createLocalTypeNamespace(
+                    //         {
+                    //             type: $.schema.root,
+                    //             resolved: config.resolved,
+                    //         }
+                    //     ),
+                    //     ($) => {
+                    //         if ($ === null) {
+                    //             return undefined
+                    //         } else {
+                    //             return $
+                    //         }
+                    //     }
+                    // )
                 }),
                 'types': pw.wrapRawDictionary<pareto.TGlobalType<A>>({
                     "root": doType({

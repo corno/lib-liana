@@ -14,11 +14,7 @@ export namespace resolved {
             
             export namespace function_declarations {}
             
-            export namespace imports {}
-            
             export namespace interfaces {}
-            
-            export namespace namespace {}
             
             export type Tdependencies = {}
             
@@ -37,8 +33,6 @@ export namespace resolved {
                 
                 export namespace group {
                     
-                    export namespace properties {}
-                    
                     export type Tproperties = globalTypes.TInterface
                 }
             }
@@ -47,8 +41,6 @@ export namespace resolved {
         export namespace Module {
             
             export namespace implementation {
-                
-                export namespace imports {}
                 
                 export namespace private_functions {}
                 
@@ -60,17 +52,9 @@ export namespace resolved {
                 
                 export type Tpublic_functions = {}
             }
-            
-            export namespace _interface {}
         }
         
         export namespace Namespace {
-            
-            export namespace namespaces {}
-            
-            export namespace parameters {}
-            
-            export namespace types {}
             
             export type Tnamespaces = globalTypes.TNamespace
             
@@ -81,52 +65,22 @@ export namespace resolved {
         
         export namespace Type {
             
-            export namespace collections {
-                
-                export namespace dictionary {}
-                
-                export namespace list {}
-            }
-            
-            export namespace optional {}
+            export namespace collections {}
             
             export namespace type {
                 
-                export namespace boolean {}
-                
                 export namespace component {
-                    
-                    export namespace parameter {}
                     
                     export namespace type {
                         
-                        export namespace _import {
-                            
-                            export namespace global_type {}
-                            
-                            export namespace module {}
-                        }
+                        export namespace _import {}
                         
                         export namespace sibling {
-                            
-                            export namespace namespace_steps {}
-                            
-                            export namespace type {}
                             
                             export type Tnamespace_steps = Reference<TNamespace>
                         }
                     }
                 }
-                
-                export namespace group {}
-                
-                export namespace _null {}
-                
-                export namespace reference {}
-                
-                export namespace string {}
-                
-                export namespace tagged_union {}
                 
                 export type Tgroup = globalTypes.TType
                 
@@ -137,8 +91,6 @@ export namespace resolved {
                 | [ "dictionary", null ]
                 | [ "list", null ]
         }
-        
-        export namespace TypeParameter {}
         
         export type TAPI = {
             readonly 'dependencies': pt.Dictionary<globalTypes.API.Tdependencies>
@@ -199,11 +151,6 @@ export namespace resolved {
         export type TTypeParameter = null
     }
     
-    export namespace root {
-        
-        export namespace root {}
-    }
-    
     export type Troot = {
         readonly 'root': globalTypes.TModule
     }
@@ -219,11 +166,7 @@ export namespace unresolved {
             
             export namespace function_declarations {}
             
-            export namespace imports {}
-            
             export namespace interfaces {}
-            
-            export namespace namespace {}
             
             export type Tdependencies = {}
             
@@ -245,8 +188,6 @@ export namespace unresolved {
                 
                 export namespace group {
                     
-                    export namespace properties {}
-                    
                     export type Tproperties = globalTypes.TInterface
                 }
             }
@@ -255,8 +196,6 @@ export namespace unresolved {
         export namespace Module {
             
             export namespace implementation {
-                
-                export namespace imports {}
                 
                 export namespace private_functions {}
                 
@@ -268,17 +207,9 @@ export namespace unresolved {
                 
                 export type Tpublic_functions = {}
             }
-            
-            export namespace _interface {}
         }
         
         export namespace Namespace {
-            
-            export namespace namespaces {}
-            
-            export namespace parameters {}
-            
-            export namespace types {}
             
             export type Tnamespaces = globalTypes.TNamespace
             
@@ -289,37 +220,17 @@ export namespace unresolved {
         
         export namespace Type {
             
-            export namespace collections {
-                
-                export namespace dictionary {}
-                
-                export namespace list {}
-            }
-            
-            export namespace optional {}
+            export namespace collections {}
             
             export namespace type {
                 
-                export namespace boolean {}
-                
                 export namespace component {
-                    
-                    export namespace parameter {}
                     
                     export namespace type {
                         
-                        export namespace _import {
-                            
-                            export namespace global_type {}
-                            
-                            export namespace module {}
-                        }
+                        export namespace _import {}
                         
                         export namespace sibling {
-                            
-                            export namespace namespace_steps {}
-                            
-                            export namespace type {}
                             
                             export type Tnamespace_steps = {
                                 readonly 'annotation': string
@@ -328,16 +239,6 @@ export namespace unresolved {
                         }
                     }
                 }
-                
-                export namespace group {}
-                
-                export namespace _null {}
-                
-                export namespace reference {}
-                
-                export namespace string {}
-                
-                export namespace tagged_union {}
                 
                 export type Tgroup = globalTypes.TType
                 
@@ -348,8 +249,6 @@ export namespace unresolved {
                 | [ "dictionary", null ]
                 | [ "list", null ]
         }
-        
-        export namespace TypeParameter {}
         
         export type TAPI = {
             readonly 'dependencies'?: pt.Dictionary<globalTypes.API.Tdependencies>
@@ -423,11 +322,6 @@ export namespace unresolved {
         }
         
         export type TTypeParameter = null
-    }
-    
-    export namespace root {
-        
-        export namespace root {}
     }
     
     export type Troot = {
