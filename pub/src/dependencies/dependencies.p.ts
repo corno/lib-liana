@@ -4,10 +4,15 @@ import * as pareto from "../modules/pareto"
 import * as collation from "res-pareto-collation"
 
 
+import * as tostring from "res-pareto-tostring"
+import * as fs from "res-pareto-filesystem"
+
+
 import * as res from "../../../tempRes"
+import { DCreateWriter, DMapToPareto } from "../interface/dependencies/dependencies.p"
 
 
-export const ddeps: pareto.DDependencies = {
+export const dparetodeps: pareto.DDependencies = {
     escapeTypescriptIdentifier: res.escapeTypescriptIdentifier,
     escapeQuotedStringWithQuotes: ($) => `"${$}"`,
     escapeQuotedString: ($) => `${$}`,
@@ -65,4 +70,24 @@ export const ddeps: pareto.DDependencies = {
         }
     },
     sortedForEach: collation.fCreateSortedForEach({ isYinBeforeYang: collation.fLocaleIsYinBeforeYang }),
+}
+
+export const dmapToPareto: DMapToPareto = {
+    concat: res.concat,
+    joinDictionaries: res.joinDictionaries,
+    arrayIsEmpty: ($) => {
+        let found = false
+        $.forEach(($) => {
+            found = true
+        })
+        return !found
+    }
+}
+
+export const dcreateWriter: DCreateWriter = {
+    fp: {
+        joinNestedStrings: tostring.joinNestedStrings,
+        getArrayAsString: tostring.f_getArrayAsString,
+    },
+    createWriteStream: fs.f_createWriteStream,
 }

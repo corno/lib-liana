@@ -1,7 +1,7 @@
 import * as pt from "pareto-core-types"
 import * as pw from "pareto-core-raw"
 
-import * as api from "../interface"
+import * as api from "../../../pub"
 
 export type TP = undefined | string
 

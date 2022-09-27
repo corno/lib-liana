@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "lib-fountain-pen": "^0.6.1",
-    "pareto-core-exe": "^0.13.0",
     "pareto-core-lib": "^0.13.0",
     "pareto-core-raw": "^0.4.0",
     "pareto-core-state": "^0.10.0",
@@ -30,5 +29,5 @@
   "scripts": {},
   "version": "0.1.0",
   "interface-fingerprint": "247813bc9b1be2fff626d0c9ac7cd9287de39994",
-  "content-fingerprint": "09e6cf0093a2ae22e938ce0739ecf27d0cd44c89"
+  "content-fingerprint": "228cfa3c9333efb8d0182eaa412c9563c5c408e0"
 }
