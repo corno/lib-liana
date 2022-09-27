@@ -10,12 +10,6 @@ export namespace resolved {
         
         export namespace API {
             
-            export namespace dependencies {}
-            
-            export namespace function_declarations {}
-            
-            export namespace interfaces {}
-            
             export type Tdependencies = {}
             
             export type Tfunction_declarations = {}
@@ -29,8 +23,6 @@ export namespace resolved {
             
             export namespace type {
                 
-                export namespace component {}
-                
                 export namespace group {
                     
                     export type Tproperties = globalTypes.TInterface
@@ -41,10 +33,6 @@ export namespace resolved {
         export namespace Module {
             
             export namespace implementation {
-                
-                export namespace private_functions {}
-                
-                export namespace public_functions {}
                 
                 export type Timports = globalTypes.TInterface
                 
@@ -65,15 +53,11 @@ export namespace resolved {
         
         export namespace Type {
             
-            export namespace collections {}
-            
             export namespace type {
                 
                 export namespace component {
                     
                     export namespace type {
-                        
-                        export namespace _import {}
                         
                         export namespace sibling {
                             
@@ -162,12 +146,6 @@ export namespace unresolved {
         
         export namespace API {
             
-            export namespace dependencies {}
-            
-            export namespace function_declarations {}
-            
-            export namespace interfaces {}
-            
             export type Tdependencies = {}
             
             export type Tfunction_declarations = {}
@@ -184,8 +162,6 @@ export namespace unresolved {
             
             export namespace type {
                 
-                export namespace component {}
-                
                 export namespace group {
                     
                     export type Tproperties = globalTypes.TInterface
@@ -196,10 +172,6 @@ export namespace unresolved {
         export namespace Module {
             
             export namespace implementation {
-                
-                export namespace private_functions {}
-                
-                export namespace public_functions {}
                 
                 export type Timports = globalTypes.TInterface
                 
@@ -220,15 +192,11 @@ export namespace unresolved {
         
         export namespace Type {
             
-            export namespace collections {}
-            
             export namespace type {
                 
                 export namespace component {
                     
                     export namespace type {
-                        
-                        export namespace _import {}
                         
                         export namespace sibling {
                             

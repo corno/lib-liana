@@ -14,7 +14,7 @@ import { serializeFunctionDefinition } from "./serializeFunctionDefinition.p"
 export function serializeImplementation<PAnnotation>(
     $: api.TImplementation<PAnnotation>,
     $i: api.IWriter,
-    $d: D2<PAnnotation>,
+    $d: D2,
 ) {
 
     function changeContextExpression(

@@ -8,7 +8,7 @@ import { serializeLocalType } from "./serializeLocalType.p"
 export function serializeLocalInterface<PAnnotation>(
     $: api.TLocalInterface<PAnnotation>,
     $i: fp.ILine,
-    $d: DDependencies<PAnnotation>,
+    $d: DDependencies,
 ) {
     switch ($.type[0]) {
         case "group":

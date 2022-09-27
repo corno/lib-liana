@@ -13,7 +13,7 @@ import { serializeFunctionDefinition } from "./serializeFunctionDefinition.p"
 export function serializeInterface<PAnnotation>(
     $: api.TInterface<PAnnotation>,
     $i: api.IWriter,
-    $d: D2<PAnnotation>
+    $d: D2
 ) {
 
     $i.createDirectory(

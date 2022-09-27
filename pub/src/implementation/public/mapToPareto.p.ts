@@ -7,18 +7,18 @@ import * as pareto from "../../modules/pareto"
 
 import * as api from "../../interface"
 
-function createReference<PAnnotation, PT>($: string, ann: PAnnotation): pareto.Reference<PAnnotation, PT> {
-    return {
-        'name': {
-            'annotation': ann,
-            'name': $,
-        },
-        // 'type': type,
-    }
-}
-
 export const mapToPareto: api.FMapToPareto = ($, $d) => {
 
+    function createReference<PAnnotation, PT>($: string, ann: PAnnotation): pareto.Reference<PAnnotation, PT> {
+        return {
+            'name': {
+                'annotation': ann,
+                'name': $,
+            },
+            // 'type': type,
+        }
+    }
+    
     function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
 
         type A = null | PAnnotation
@@ -238,14 +238,58 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                 }
             ): null | pareto.TNamespace<A> {
                 const config = $
-                function emptyNamespace(): pareto.TNamespace<A> {
-                    return {
-                        'parameters': pl.createEmptyDictionary(),
-                        'namespaces': pl.createEmptyDictionary(),
-                        'types': pl.createEmptyDictionary(),
+
+
+                function hasNestedCollections(
+                    $: api.TLocalType<PAnnotation>
+                ): boolean {
+                    function hasCollections(
+                        $: api.TLocalType<PAnnotation>
+                    ): boolean {
+                        if (!$d.arrayIsEmpty($.collections)) {
+                            return true
+                        } else {
+                            return hasNestedCollections($)
+                        }
+                    }
+                    switch ($.type[0]) {
+                        case "boolean":
+                            return pl.cc($.type[1], ($) => {
+                                return false
+                            })
+                        case "component":
+                            return pl.cc($.type[1], ($) => {
+                                return false
+                            })
+                        case "group":
+                            return pl.cc($.type[1], ($) => {
+                                return $.properties.reduce<boolean>(false, (current, $) => {
+                                    return current || hasCollections($.type)
+                                })
+                            })
+                        case "null":
+                            return pl.cc($.type[1], ($) => {
+                                return false
+                            })
+                        case "string":
+                            return pl.cc($.type[1], ($) => {
+                                return false
+                            })
+                        case "tagged union":
+                            return pl.cc($.type[1], ($) => {
+                                return $.options.reduce<boolean>(false, (current, $) => {
+                                    return current || hasCollections($)
+                                })
+                            })
+                        default: return pl.au($.type[0])
                     }
 
                 }
+
+
+
+
+
                 switch ($.type.type[0]) {
                     case "boolean":
                         return null
@@ -256,21 +300,23 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                             return {
                                 'parameters': pl.createEmptyDictionary(),
                                 'namespaces': $.properties.filter(($, key) => {
-                                    return pl.cc(
-                                        createLocalTypeNamespace(
-                                            {
-                                                type: $.type,
-                                                resolved: config.resolved,
+                                    return !hasNestedCollections($.type)
+                                        ? undefined
+                                        : pl.cc(
+                                            createLocalTypeNamespace(
+                                                {
+                                                    type: $.type,
+                                                    resolved: config.resolved,
+                                                }
+                                            ),
+                                            ($) => {
+                                                if ($ === null) {
+                                                    return undefined
+                                                } else {
+                                                    return $
+                                                }
                                             }
-                                        ),
-                                        ($) => {
-                                            if ($ === null) {
-                                                return undefined
-                                            } else {
-                                                return $
-                                            }
-                                        }
-                                    )
+                                        )
                                 }),
                                 'types': $.properties.filter(($, key) => {
                                     return $d.arrayIsEmpty($.type.collections)
@@ -294,21 +340,23 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                             return {
                                 'parameters': pl.createEmptyDictionary(),
                                 'namespaces': $.options.filter(($, key) => {
-                                    return pl.cc(
-                                        createLocalTypeNamespace(
-                                            {
-                                                type: $,
-                                                resolved: config.resolved,
+                                    return !hasNestedCollections($)
+                                        ? undefined
+                                        : pl.cc(
+                                            createLocalTypeNamespace(
+                                                {
+                                                    type: $,
+                                                    resolved: config.resolved,
+                                                }
+                                            ),
+                                            ($) => {
+                                                if ($ === null) {
+                                                    return undefined
+                                                } else {
+                                                    return $
+                                                }
                                             }
-                                        ),
-                                        ($) => {
-                                            if ($ === null) {
-                                                return undefined
-                                            } else {
-                                                return $
-                                            }
-                                        }
-                                    )
+                                        )
                                 }),
                                 'types': $.options.filter(($, key) => {
                                     return $d.arrayIsEmpty($.collections)

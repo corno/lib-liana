@@ -10,7 +10,7 @@ import { DDependencies } from "../../interface"
 export function serializeLocalType<PAnnotation>(
     $: api.resolved.globalTypes.TType,
     $i: fp.ILine,
-    $d: DDependencies<PAnnotation>,
+    $d: DDependencies,
 ) {
     if ($.optional) {
         $i.snippet(`null | `)

@@ -17,7 +17,7 @@ export function serializeFunctionDefinition<PAnnotation>(
         sign: string,
     },
     $i: fp.ILine,
-    $d: D2<PAnnotation>
+    $d: D2
 ) {
 
     $i.snippet(`(`)

@@ -18,16 +18,17 @@
     "url": "git+https://github.com/corno/lib-liana.git"
   },
   "dependencies": {
-    "lib-fountain-pen": "^0.5.0",
-    "pareto-core-lib": "^0.12.0",
-    "pareto-core-raw": "^0.3.0",
-    "pareto-core-state": "^0.9.0",
-    "res-pareto-collation": "^0.6.0",
-    "res-pareto-filesystem": "^0.24.0",
-    "res-pareto-tostring": "^0.1.0"
+    "lib-fountain-pen": "^0.6.1",
+    "pareto-core-exe": "^0.13.0",
+    "pareto-core-lib": "^0.13.0",
+    "pareto-core-raw": "^0.4.0",
+    "pareto-core-state": "^0.10.0",
+    "res-pareto-collation": "^0.8.0",
+    "res-pareto-filesystem": "^0.26.0",
+    "res-pareto-tostring": "^0.4.0"
   },
   "scripts": {},
   "version": "0.1.0",
-  "interface-fingerprint": "aa4c0e469f5de3ca520fc665f7a2ceb0127e4e7b",
-  "content-fingerprint": "dd25c7384b7b5b3bf8f74b22221373709a9f89fd"
+  "interface-fingerprint": "247813bc9b1be2fff626d0c9ac7cd9287de39994",
+  "content-fingerprint": "09e6cf0093a2ae22e938ce0739ecf27d0cd44c89"
 }

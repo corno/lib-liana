@@ -13,7 +13,7 @@ export function serializeLocalType<PAnnotation>(
         relative: boolean,
     },
     $i: fp.ILine,
-    $d: DDependencies<PAnnotation>,
+    $d: DDependencies,
 ) {
     const relative = $.relative
 

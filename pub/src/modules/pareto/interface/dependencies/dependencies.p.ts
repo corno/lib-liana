@@ -5,6 +5,7 @@ import * as collation from "api-pareto-collation"
 import {  TNamespace } from "../types/types.p"
 
 
+
 export type PEnrichedDictionaryForEach = <T> (
     $: pt.Dictionary<T>,
     $i: {
@@ -33,7 +34,7 @@ export type TKeyValuePair<T> = {
     value: T
 }
 
-export type DDependencies<PAnnotation> = {
+export type DDependencies = {
     // escapeType: ($: TKeyValuePair<TGlobalType<PAnnotation>>) => string
     // escapeNamespace: ($: TKeyValuePair<TNamespace<PAnnotation>>) => string
     // escapeImportedType: ($: {
@@ -84,12 +85,12 @@ export type DDependencies<PAnnotation> = {
 
     enrichedArrayForEach: PEnrichedArrayForEach,
     enrichedDictionaryForEach: PEnrichedDictionaryForEach,
-    sortedForEach: collation.PSortedForEach
+    sortedForEach: collation.FSortedForEach
 }
 
-export type D2<PAnnotation> = {
-    getTypeParameters: (
+export type D2 = {
+    getTypeParameters: <PAnnotation>(
         $: TNamespace<PAnnotation>,
     ) => pt.Array<string>
-    x: DDependencies<PAnnotation>
+    x: DDependencies
 }
