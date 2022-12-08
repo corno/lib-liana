@@ -19,13 +19,15 @@
   },
   "dependencies": {
     "lib-fountain-pen": "^0.6.1",
-    "pareto-core": "^0.0.4",
-    "res-pareto-collation": "^0.8.0",
-    "res-pareto-filesystem": "^0.26.0",
-    "res-pareto-tostring": "^0.4.0"
+    "pareto-core-lib": "^0.17.0",
+    "pareto-core-raw": "^0.7.0",
+    "pareto-core-state": "^0.12.0",
+    "res-pareto-collation": "^0.9.0",
+    "res-pareto-filesystem": "^0.26.1",
+    "res-pareto-tostring": "^0.4.1",
+    "res-typescript": "^0.1.0"
   },
-  "scripts": {},
   "version": "0.1.0",
-  "interface-fingerprint": "c5b1b535a11a5881b8c4b2c66f695b49c239fe51",
-  "content-fingerprint": "691c3aa7842ba69be3e81cf10db986b2f260367f"
+  "interface-fingerprint": "c0f85c22ae1ee455175329aee7310509675f2779",
+  "content-fingerprint": "94de6ba9e317a0160cbc3ab7e42751edac4ec271"
 }

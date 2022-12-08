@@ -1,6 +1,6 @@
 import * as pt from "pareto-core-types"
 
-import * as fs from "api-pareto-filesystem"
+import * as fs from "res-pareto-filesystem"
 
 import { TSchema } from "../types/types.p"
 import * as pareto from "../../modules/pareto"
@@ -18,6 +18,5 @@ export type FCreateWriter = (
     $i: {
         onError: fs.IOnWriteFileError
     },
-    $d: DCreateWriter,
-    $a: pt.ProcessAsyncValue
+    $d: DCreateWriter
 ) => pareto.IWriter

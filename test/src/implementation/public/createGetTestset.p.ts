@@ -14,14 +14,14 @@ import * as mpareto from "../../../../pub/dist/modules/pareto"
 
 export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
     const config = $
-    return ($, $a) => {
+    return ($) => {
 
         mpareto.serialize(
-           pub. mapToPareto(
+            pub.mapToPareto(
                 config,
                 pub.dmapToPareto,
             ).root,
-          pub.  createWriter(
+            pub.createWriter(
                 [$.testDirectory, "src"],
                 {
                     onError: () => {
@@ -29,7 +29,6 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
                     },
                 },
                 pub.dcreateWriter,
-                $a,
             ),
             pub.dparetodeps
         )

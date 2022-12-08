@@ -18,7 +18,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
             // 'type': type,
         }
     }
-    
+
     function mapModule<PAnnotation>($: api.TSchema<PAnnotation>): pareto.TModule<null | PAnnotation> {
 
         type A = null | PAnnotation
@@ -32,7 +32,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                 $: {
                     type: api.TLocalType<PAnnotation>
                     resolved: boolean
-                    stack: pt.Array<string>
+                    stack: pt.Nested<string>
                 }
             ): pareto.TLocalType<A> {
                 const config = $
@@ -58,10 +58,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                                                             {
                                                                 type: $.type,
                                                                 resolved: config.resolved,
-                                                                stack: $d.concat({
-                                                                    array: config.stack,
-                                                                    element: key
-                                                                }),
+                                                                stack: [config.stack, key],
                                                             }
                                                         )
                                                         : {
@@ -84,7 +81,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                                                                 return ["type", {
                                                                     'type': pl.cc($, ($) => {
                                                                         return ['sibling', {
-                                                                            'namespace steps': config.stack.map(($) => createReference($, null)),
+                                                                            'namespace steps': pl.nested2Array(config.stack).map(($) => createReference($, null)),
                                                                             'global type': {
                                                                                 name: {
                                                                                     annotation: null,
@@ -184,10 +181,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                                                     {
                                                         type: $,
                                                         resolved: config.resolved,
-                                                        stack: $d.concat({
-                                                            array: config.stack,
-                                                            element: key
-                                                        }),
+                                                        stack: [config.stack, key],
                                                     }
                                                 )
                                                 : {
@@ -210,7 +204,7 @@ export const mapToPareto: api.FMapToPareto = ($, $d) => {
                                                         return ["type", {
                                                             'type': pl.cc($, ($) => {
                                                                 return ['sibling', {
-                                                                    'namespace steps': config.stack.map(($) => createReference($, null)),
+                                                                    'namespace steps': pl.nested2Array(config.stack).map(($) => createReference($, null)),
                                                                     'global type': {
                                                                         name: {
                                                                             annotation: null,

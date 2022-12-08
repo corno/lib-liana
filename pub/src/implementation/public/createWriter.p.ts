@@ -4,7 +4,7 @@ import * as fp from "lib-fountain-pen"
 import * as api from "../../interface"
 
 
-export const createWriter: api.FCreateWriter = ($, $i, $d, $a) => {
+export const createWriter: api.FCreateWriter = ($, $i, $d) => {
     const path = $
     return {
         createDirectory: ($, $c) => {
@@ -12,7 +12,6 @@ export const createWriter: api.FCreateWriter = ($, $i, $d, $a) => {
                 [path, $],
                 $i,
                 $d,
-                $a,
             ))
         },
         createFile: ($, $c) => {
@@ -39,7 +38,7 @@ export const createWriter: api.FCreateWriter = ($, $i, $d, $a) => {
                 {
                     onError: $i.onError
                 },
-                $a,
+                ($, $i) => $._execute($i)
             )
         }
     }

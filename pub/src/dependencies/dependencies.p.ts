@@ -8,7 +8,7 @@ import * as tostring from "res-pareto-tostring"
 import * as fs from "res-pareto-filesystem"
 
 
-import * as res from "../../../tempRes"
+import * as res from "res-typescript"
 import { DCreateWriter, DMapToPareto } from "../interface/dependencies/dependencies.p"
 
 
@@ -73,8 +73,8 @@ export const dparetodeps: pareto.DDependencies = {
 }
 
 export const dmapToPareto: DMapToPareto = {
-    concat: res.concat,
-    joinDictionaries: res.joinDictionaries,
+    // concat: res.concat,
+    // joinDictionaries: res.joinDictionaries,
     arrayIsEmpty: ($) => {
         let found = false
         $.forEach(($) => {
