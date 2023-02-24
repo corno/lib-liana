@@ -80,7 +80,6 @@ export const $$: CgetTestSet = ($) => {
         },
 
     })
-
     gliana2pareto.$a.generateModule({
         'path': [`${$XXX.testDirectory}/liana/glossary`],
         'data': {
