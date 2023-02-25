@@ -143,7 +143,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                             })
                                                             break
-                                                        case 'taggedUnion':
+                                                        case 'tagged union':
                                                             pl.cc($[1], ($) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                                 $i.line(`operation_${pathID}: ${type},`)
@@ -288,7 +288,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                                             }
                                                                         })
                                                                         break
-                                                                    case 'taggedUnion':
+                                                                    case 'tagged union':
                                                                         pl.cc($[1], ($) => {
                                                                             $i.snippet(`pl.cc(prop_${$d.createIdentifier(currentName)}, ($) => {`)
                                                                             $i.indent(($i) => {
@@ -368,7 +368,7 @@ export const $$: CcreateSerializer = ($d) => {
 
                         })
                         break
-                    case 'taggedUnion':
+                    case 'tagged union':
                         pl.cc($[1], ($) => {
                             $d.dictionaryForEach($.options.dictionary, ($) => {
                                 doDictionaries({
@@ -384,7 +384,7 @@ export const $$: CcreateSerializer = ($d) => {
                 }
             })
         }
-        $d.dictionaryForEach($.model.globalTypes.dictionary, ($) => {
+        $d.dictionaryForEach($.model['global types'].dictionary, ($) => {
             doDictionaries({
                 $: $.value.type,
                 path: [$.key],

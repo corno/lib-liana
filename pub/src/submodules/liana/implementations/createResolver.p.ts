@@ -179,7 +179,7 @@ export const $$:CcreateResolver = ($d) => {
                                             break
                                         case 'tagged union':
                                             pl.cc($[1], ($) => {
-                                                // if (current[0] !== 'taggedUnion') {
+                                                // if (current[0] !== 'tagged union') {
                                                 //     pl.panic(`not a tagged union @${reference.annotation}`)
                                                 // } else {
 
@@ -380,7 +380,7 @@ export const $$:CcreateResolver = ($d) => {
                             }
 
                         })
-                    case 'taggedUnion':
+                    case 'tagged union':
                         return pl.cc($[1], ($) => {
                             const r_options = buildDictionary<gapi.T.LocalType<Annotation>, gresolved.T.XOption<Annotation>>($.options, ($, $i) => {
 
@@ -404,7 +404,7 @@ export const $$:CcreateResolver = ($d) => {
                             if (true
                                 && r_default[0] === true
                             ) {
-                                return [true, ['taggedUnion', {
+                                return [true, ['tagged union', {
                                     'options': filter(r_options),
                                     'default': r_default[1],
                                 }]]
@@ -418,10 +418,10 @@ export const $$:CcreateResolver = ($d) => {
                 }
             })
         }
-        const r_stringTypes = buildDictionary<null, {}>($.stringTypes, ($, $i) => {
+        const r_stringTypes = buildDictionary<null, {}>($['string types'], ($, $i) => {
             return {}
         })
-        const r_globalTypes = buildDictionary<gapi.T.GlobalType<Annotation>, gresolved.T.XGlobalType<Annotation>>($.globalTypes, ($, $i) => {
+        const r_globalTypes = buildDictionary<gapi.T.GlobalType<Annotation>, gresolved.T.XGlobalType<Annotation>>($['global types'], ($, $i) => {
             const r_parameters = buildDictionary<gapi.T.Parameter<Annotation>, gresolved.T.XParameter<Annotation>>($.parameters, ($, $i) => {
                 return {}
             })
@@ -450,8 +450,8 @@ export const $$:CcreateResolver = ($d) => {
             && r_root[0] === true
         ) {
             const x: gresolved.T.XModel<Annotation> = {
-                'stringTypes': filter(r_stringTypes),
-                'globalTypes': filter(r_globalTypes),
+                'string types': filter(r_stringTypes),
+                'global types': filter(r_globalTypes),
                 'root': r_root[1],
             }
             return [true, {

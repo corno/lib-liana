@@ -130,14 +130,14 @@ export namespace T {
         
         export type _lstring<GPAnnotation> = T.XString<GPAnnotation>
         
-        export namespace taggedUnion {
+        export namespace tagged__union {
             
             export type _ldefault<GPAnnotation> = T._$Reference<GPAnnotation, T.XOption<GPAnnotation>>
             
             export type options<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XOption<GPAnnotation>>
         }
         
-        export type taggedUnion<GPAnnotation> = {
+        export type tagged__union<GPAnnotation> = {
             readonly 'default': T._$Reference<GPAnnotation, T.XOption<GPAnnotation>>
             readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XOption<GPAnnotation>>
         }
@@ -160,24 +160,24 @@ export namespace T {
             readonly 'properties': T.XProperties<GPAnnotation>
         }]
         | ['string', T.XString<GPAnnotation>]
-        | ['taggedUnion', {
+        | ['tagged union', {
             readonly 'default': T._$Reference<GPAnnotation, T.XOption<GPAnnotation>>
             readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XOption<GPAnnotation>>
         }]
     
     export namespace XModel {
         
-        export type globalTypes<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XGlobalType<GPAnnotation>>
+        export type global__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XGlobalType<GPAnnotation>>
         
         export type root<GPAnnotation> = T._$Reference<GPAnnotation, T.XGlobalType<GPAnnotation>>
         
-        export type stringTypes<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XStringType<GPAnnotation>>
+        export type string__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XStringType<GPAnnotation>>
     }
     
     export type XModel<GPAnnotation> = {
-        readonly 'globalTypes': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XGlobalType<GPAnnotation>>
+        readonly 'global types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XGlobalType<GPAnnotation>>
         readonly 'root': T._$Reference<GPAnnotation, T.XGlobalType<GPAnnotation>>
-        readonly 'stringTypes': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XStringType<GPAnnotation>>
+        readonly 'string types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.XStringType<GPAnnotation>>
     }
     
     export namespace XOption {

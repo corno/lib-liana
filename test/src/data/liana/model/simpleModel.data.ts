@@ -13,27 +13,28 @@ import {
     reference,
     string,
     taggedUnion,
+    prop,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: gliana.T.Model<pd.SourceLocation> = {
-    'stringTypes': d({
+    'string types': d({
         "text": null,
         "identifier": null,
     }),
-    'globalTypes': d({
+    'global types': d({
         "Root": globalType({ "parameterA": "Sub"}, group({
-            "a": [[], string("text")],
-            "b": [[], string("text")],
-            "c": [[], dictionary(group({}))],
-            "d": [[], reference(['sibling', "c"], [])],
-            "e": [[], group({
-                //"a": [[], reference(['parent', null], [])],
-            })],
-            "f": [[], reference(['parameter', "parameterA"], [])],
-            //"g": [[], taggedUnion({})],
-            "h": [[], taggedUnion({
+            "a": prop(string("text")),
+            "b": prop(string("text")),
+            "c": prop(dictionary(group({}))),
+            "d": prop(reference(['sibling', "c"], [])),
+            "e": prop(group({
+                //"a": prop(reference(['parent', null], [])],
+            })),
+            "f": prop(reference(['parameter', "parameterA"], [])),
+            //"g": prop(taggedUnion({})],
+            "h": prop(taggedUnion({
                 "a": group({})
-            })],
+            })),
 
 
         })),

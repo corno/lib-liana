@@ -9,13 +9,13 @@ export namespace T {
     
     export namespace GlobalType {
         
-        export type parameters<GPAnnotation> = T.Parameters<GPAnnotation>
+        export type parameters<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Parameter<GPAnnotation>>
         
         export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
     }
     
     export type GlobalType<GPAnnotation> = {
-        readonly 'parameters': T.Parameters<GPAnnotation>
+        readonly 'parameters': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Parameter<GPAnnotation>>
         readonly 'type': T.LocalType<GPAnnotation>
     }
     
@@ -78,14 +78,14 @@ export namespace T {
         
         export type _lstring<GPAnnotation> = T.String<GPAnnotation>
         
-        export namespace taggedUnion {
+        export namespace tagged__union {
             
             export type _ldefault<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
             
             export type options<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
         }
         
-        export type taggedUnion<GPAnnotation> = {
+        export type tagged__union<GPAnnotation> = {
             readonly 'default': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
             readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
         }
@@ -111,29 +111,27 @@ export namespace T {
             readonly 'type': T.LocalType<GPAnnotation>
         }]
         | ['string', T.String<GPAnnotation>]
-        | ['taggedUnion', {
+        | ['tagged union', {
             readonly 'default': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
             readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
         }]
     
     export namespace Model {
         
-        export type globalTypes<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
+        export type global__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
         
         export type root<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
         
-        export type stringTypes<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
+        export type string__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
     }
     
     export type Model<GPAnnotation> = {
-        readonly 'globalTypes': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
+        readonly 'global types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
         readonly 'root': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-        readonly 'stringTypes': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
+        readonly 'string types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
     }
     
     export type Parameter<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-    
-    export type Parameters<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Parameter<GPAnnotation>>
     
     export type Properties<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Property<GPAnnotation>>
     

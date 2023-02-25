@@ -13,7 +13,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
         'imports': d({
             "fp": "lib-fountain-pen",
             "liana": "../../../liana",
-            "liana2pareto": "lib-pareto-typescript-project/dist/submodules/liana2pareto",
+            "liana2pareto": "../../../liana2pareto",
         }),
         'parameters': d({
             "Annotation": {},

@@ -75,7 +75,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
         //             return pl.cc($[1], ($) => {
         //                 return ['implementMe', "liana2pareto"]
         //             })
-        //         case 'taggedUnion':
+        //         case 'tagged union':
         //             return pl.cc($[1], ($) => {
         //                 return ['switch', {
         //                     'cases': $.options.dictionary.map(($) => {
@@ -91,7 +91,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             model: gliana.T.Model<Annotation>
         }): gglossary.T.Glossary.types<Annotation> {
             const configuration = $.configuration
-            return model.globalTypes.dictionary.map(($) => {
+            return model['global types'].dictionary.map(($) => {
                 function mapType($: gliana.T.LocalType<Annotation>): gglossary.T.Type<Annotation> {
                     switch ($[0]) {
                         case 'array':
@@ -176,7 +176,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                     default: return pl.au($.constrained[0])
                                 }
                             })
-                        case 'taggedUnion':
+                        case 'tagged union':
                             return pl.cc($[1], ($) => {
                                 return ['taggedUnion', $.options.dictionary.map(($) => {
                                     return mapType($)
@@ -364,7 +364,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
 
                     //                             })
                     //                             break
-                    //                         case 'taggedUnion':
+                    //                         case 'tagged union':
                     //                             pl.cc($[1], ($) => {
                     //                                 snippet("TAGGEDUNION")
 

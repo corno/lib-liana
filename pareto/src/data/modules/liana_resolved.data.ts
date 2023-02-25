@@ -49,7 +49,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                 "array": group({
                     "type": member(reference("XLocalType")),
                 }),
-                "taggedUnion": group({
+                "tagged union": group({
                     "options": member(['reference', parametrizedTypeReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("XOption") })]),
                     "default": member(['reference', parametrizedTypeReference("_Reference", { "ReferencedType": typeReference("XOption") })]),
                 }),
@@ -66,8 +66,8 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                 }),
             })),
             "XModel": type(group({
-                "stringTypes": member(['reference', parametrizedTypeReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("XStringType") })]),
-                "globalTypes": member(['reference', parametrizedTypeReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("XGlobalType") })]),
+                "string types": member(['reference', parametrizedTypeReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("XStringType") })]),
+                "global types": member(['reference', parametrizedTypeReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("XGlobalType") })]),
                 "root": member(['reference', parametrizedTypeReference("_Reference", { "ReferencedType": typeReference("XGlobalType") })]),
             })),
             "XOption": type(group({

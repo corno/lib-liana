@@ -38,19 +38,19 @@ export function r(name: string): gcommon.T.AnnotatedKey<pd.SourceLocation> {
     return r_imp(name, li)
 }
 
-export function array(type:gglo.T.LocalType<pd.SourceLocation>):gglo.T.LocalType<pd.SourceLocation> {
+export function array(type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.LocalType<pd.SourceLocation> {
     return ['array', {
         'type': type
     }]
 }
 
-function constrainedString($: ReferenceType, steps: Step[], annotation: pd.SourceLocation):gglo.T.String<pd.SourceLocation> {
+function constrainedString($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.String<pd.SourceLocation> {
     return {
         'constrained': ['yes', referenceX($, steps, annotation)],
     }
 }
 
-export function constrainedDictionary($: ReferenceType, steps: Step[], type:gglo.T.LocalType<pd.SourceLocation>):gglo.T.LocalType<pd.SourceLocation> {
+export function constrainedDictionary($: ReferenceType, steps: Step[], type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['dictionary', {
         // 'annotation': li,
@@ -59,7 +59,7 @@ export function constrainedDictionary($: ReferenceType, steps: Step[], type:gglo
     }]
 }
 
-export function dictionary(type:gglo.T.LocalType<pd.SourceLocation>):gglo.T.LocalType<pd.SourceLocation> {
+export function dictionary(type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
 
     return ['dictionary', {
@@ -73,7 +73,7 @@ export function dictionary(type:gglo.T.LocalType<pd.SourceLocation>):gglo.T.Loca
     }]
 }
 
-export function globalType(parameters: RawDictionary<string>, type:gglo.T.LocalType<pd.SourceLocation>):gglo.T.GlobalType<pd.SourceLocation> {
+export function globalType(parameters: RawDictionary<string>, type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.GlobalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return {
         'type': type,
@@ -83,23 +83,25 @@ export function globalType(parameters: RawDictionary<string>, type:gglo.T.LocalT
     }
 }
 
-export function group(properties: RawDictionary<[string[],gglo.T.LocalType<pd.SourceLocation>]>):gglo.T.LocalType<pd.SourceLocation> {
+export function prop(type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.Property<pd.SourceLocation> {
+    const li = pd.getLocationInfo(1)
+    return {
+        'sibling dependencies': d_imp({}, li),
+        'type': type,
+    }
+}
+
+export function group(properties: RawDictionary<gglo.T.Property<pd.SourceLocation>>): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['group', {
-        'properties': d_mappedimp(properties, li, ($) => {
-            const temp: RawDictionary<null> = {}
-            pd.a($[0]).__forEach(($) => {
-                temp[$] = null
-            })
-            return {
-                'sibling dependencies': d_imp(temp, li),
-                'type': $[1],
-            }
-        })
+        'properties': {
+            'dictionary': pd.d(properties),
+            'annotation': li
+        }
     }]
 }
 
-export function taggedUnion(options: RawDictionary<gglo.T.LocalType<pd.SourceLocation>>):gglo.T.LocalType<pd.SourceLocation> {
+export function taggedUnion(options: RawDictionary<gglo.T.LocalType<pd.SourceLocation>>): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
@@ -112,7 +114,7 @@ export function taggedUnion(options: RawDictionary<gglo.T.LocalType<pd.SourceLoc
     }
     return pl.cc(firstKey, ($) => {
 
-        return ['taggedUnion', {
+        return ['tagged union', {
             'options': d_mappedimp(options, li, ($) => {
                 return $
             }),
@@ -124,7 +126,7 @@ export function taggedUnion(options: RawDictionary<gglo.T.LocalType<pd.SourceLoc
     })
 }
 
-export function string(type: string):gglo.T.LocalType<pd.SourceLocation> {
+export function string(type: string): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['string', {
         'constrained': ['no', {
@@ -133,7 +135,7 @@ export function string(type: string):gglo.T.LocalType<pd.SourceLocation> {
     }]
 }
 
-export function boolean():gglo.T.LocalType<pd.SourceLocation> {
+export function boolean(): gglo.T.LocalType<pd.SourceLocation> {
     return ['boolean', {}]
 }
 
@@ -149,7 +151,7 @@ export type Step =
     | ['reference', null]
     | ['array', null]
 
-function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocation):gglo.T.Reference<pd.SourceLocation> {
+function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.Reference<pd.SourceLocation> {
     return {
         'type': pl.cc($, ($) => {
             switch ($[0]) {
@@ -200,14 +202,14 @@ function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocati
 export function reference(
     type: ReferenceType,
     steps: Step[],
-):gglo.T.LocalType<pd.SourceLocation> {
+): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['string', {
         'constrained': ['yes', referenceX(type, steps, li)],
     }]
 }
 
-export function component(type: string, args: RawDictionary<null>):gglo.T.LocalType<pd.SourceLocation> {
+export function component(type: string, args: RawDictionary<null>): gglo.T.LocalType<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['component', {
         'type': {
