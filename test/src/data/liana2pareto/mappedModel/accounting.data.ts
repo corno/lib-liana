@@ -15,6 +15,10 @@ import {
     string,
     taggedUnion,
     prop,
+    parent,
+    self,
+    sibling,
+    parameter,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 
@@ -61,13 +65,13 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                                 "Passiva": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference(['parent', null], [])),
-                                "Subcategorie fiscus": prop(reference(['sibling', "Hoofdcategorie fiscus"], [])),
+                                "Hoofdcategorie fiscus": prop(reference(parent(), [])),
+                                "Subcategorie fiscus": prop(reference(sibling("Hoofdcategorie fiscus"), [])),
                             }))),
                         }))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference(['parent', null], [])),
-                            "Subcategorie": prop(reference(['sibling', "Hoofdcategorie"], [])),
+                            "Hoofdcategorie": prop(reference(parent(), [])),
+                            "Subcategorie": prop(reference(sibling("Hoofdcategorie"), [])),
                             "Zijde": prop(taggedUnion({
                                 "Activa": group({}),
                                 "Passiva": group({}),
@@ -88,21 +92,21 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                                 "Opbrengsten": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference(['parent', null], [])),
-                                "Subcategorie fiscus": prop(reference(['sibling', "Hoofdcategorie fiscus"], [])),
+                                "Hoofdcategorie fiscus": prop(reference(parent(), [])),
+                                "Subcategorie fiscus": prop(reference(sibling("Hoofdcategorie fiscus"), [])),
                             }))),
                         }))),
                         "Correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference(['parent', null], [])),
-                            "Subcategorie": prop(reference(['sibling', "Hoofdcategorie"], [])),
+                            "Hoofdcategorie": prop(reference(parent(), [])),
+                            "Subcategorie": prop(reference(sibling("Hoofdcategorie"), [])),
                             "Zijde": prop(taggedUnion({
                                 "Opbrengsten": group({}),
                                 "Kosten": group({
                                     "Correctie op vennootschapsbelasting": prop(taggedUnion({
                                         "Nee": group({}),
                                         "Ja": group({
-                                            "Correctietype": prop(reference(['parent', null], []))
+                                            "Correctietype": prop(reference(parent(), []))
                                         })
                                     }))
                                 }),
@@ -150,14 +154,14 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                     // "Informele rekeningen",
                 component("Jaren", {})),
             })),
-            "Informele Rekeningen": globalType({}, constrainedDictionary(['self', null], [], group({
-                "Grootboekrekening": prop(reference(['parent', null], [])),
+            "Informele Rekeningen": globalType({}, constrainedDictionary(self(), [], group({
+                "Grootboekrekening": prop(reference(parent(), [])),
                 "Beginsaldo": prop(string("bedrag")),
 
                 "Nieuw": prop(taggedUnion({
                     "Nee": group({
-                        "Jaar": prop(reference(['self', null], [])),
-                        "Rekening": prop(reference(['sibling', "Jaar"], [])),
+                        "Jaar": prop(reference(self(), [])),
+                        "Rekening": prop(reference(sibling("Jaar"), [])),
                     }),
                     "Ja": group({}),
                 })),
@@ -166,7 +170,7 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                 "Startdatum boekjaar": prop(string("datum")),
                 "Eerste boekjaar": prop(taggedUnion({
                     "Nee": group({
-                        "Vorig boekjaar": prop(reference(['self', null], []))
+                        "Vorig boekjaar": prop(reference(self(), []))
                     }),
                     "Ja": group({}),
                 })),
@@ -176,33 +180,33 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                     }),
                     "Ja": group({}),
                 })),
-                "Grootboekrekening voor resultaat dit jaar": prop(reference(['parent', null], [])),
-                "Grootboekrekening voor winstreserve": prop(reference(['parent', null], [])),
-                "Grootboekrekening voor BTW afrondingen": prop(reference(['parent', null], [])),
+                "Grootboekrekening voor resultaat dit jaar": prop(reference(parent(), [])),
+                "Grootboekrekening voor winstreserve": prop(reference(parent(), [])),
+                "Grootboekrekening voor BTW afrondingen": prop(reference(parent(), [])),
                 "Beginsaldo nog aan te geven BTW": prop(string("bedrag")),
-                "Grootboekrekening voor nog aan te geven BTW": prop(reference(['parent', null], [])),
-                "Grootboek inkoop saldo": prop(reference(['parent', null], [])),
-                "Grootboek verkoop saldo": prop(reference(['parent', null], [])),
-                "Grootboek BTW periode": prop(reference(['parent', null], [])),
-                "Balans grootboekrekeningen": prop(constrainedDictionary(['self', null], [], group({
+                "Grootboekrekening voor nog aan te geven BTW": prop(reference(parent(), [])),
+                "Grootboek inkoop saldo": prop(reference(parent(), [])),
+                "Grootboek verkoop saldo": prop(reference(parent(), [])),
+                "Grootboek BTW periode": prop(reference(parent(), [])),
+                "Balans grootboekrekeningen": prop(constrainedDictionary(self(), [], group({
                     "Type": prop(taggedUnion({
                         "Bankrekening": group({}),
                         "Informele rekening": group({}),
                         "Overig": group({}),
                     })),
                 }))),
-                "Resultaat grootboekrekeningen": prop(constrainedDictionary(['self', null], [], group({
+                "Resultaat grootboekrekeningen": prop(constrainedDictionary(self(), [], group({
                 }))),
 
                 "Informele rekeningen": prop(component("Informele Rekeningen", {})),
                 "Overige balans items": prop(dictionary(group({
                     "Beginsaldo": prop(string("bedrag")),
-                    "Grootboekrekening": prop(reference(['parent', null], [])),
+                    "Grootboekrekening": prop(reference(parent(), [])),
 
                     "Nieuw": prop(taggedUnion({
                         "Nee": group({
-                            "Jaar": prop(reference(['self', null], [])),
-                            "Balans item": prop(reference(['sibling', "Jaar"], [])),
+                            "Jaar": prop(reference(self(), [])),
+                            "Balans item": prop(reference(sibling("Jaar"), [])),
                         }),
                         "Ja": group({}),
                     })),
@@ -210,7 +214,7 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                     "Memoriaal boekingen": prop(dictionary(group({
                         "Bedrag": prop(string("bedrag")),
                         "Datum": prop(string("datum")),
-                        "Grootboekrekening": prop(reference(['parent', null], [])),
+                        "Grootboekrekening": prop(reference(parent(), [])),
                         "Omschrijving": prop(string("multiline text")),
                     }))),
                 }))),
@@ -225,7 +229,7 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         "Openstaand": group({}),
                     })),
 
-                    "1. BTW-categorieen": prop(constrainedDictionary(['self', null], [], group({
+                    "1. BTW-categorieen": prop(constrainedDictionary(self(), [], group({
                     }))),
                     "Documenten": prop(dictionary(group({
                         "Bestand": prop(string("bestand"))
@@ -248,41 +252,41 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         }),
                         "Inkoop (met crediteur)": group({
                             "Factuurnummer": prop(string("identifier")),
-                            "Crediteur": prop(reference(['parent', null], [])),
+                            "Crediteur": prop(reference(parent(), [])),
                         }),
                         "Salaris": group({
-                            "Ronde": prop(reference(['parent', null], [])),
-                            "Medewerker": prop(reference(['parent', null], [])),
+                            "Ronde": prop(reference(parent(), [])),
+                            "Medewerker": prop(reference(parent(), [])),
                         }),
                         "Loonheffing": group({
-                            "Ronde": prop(reference(['parent', null], [])),
+                            "Ronde": prop(reference(parent(), [])),
                         }),
                         "WBSO": group({
-                            "Ronde": prop(reference(['parent', null], [])),
+                            "Ronde": prop(reference(parent(), [])),
                         }),
                     })),
                     "BTW-regime": prop(taggedUnion({
                         "Standaard": group({
-                            "BTW-periode": prop(reference(['parent', null], [])),
+                            "BTW-periode": prop(reference(parent(), [])),
                         }),
                         "Geen BTW van toepassing": group({
-                            "BTW-periode": prop(reference(['parent', null], [])),
+                            "BTW-periode": prop(reference(parent(), [])),
                         }),
                         "Binnenland heffing verlegd": group({
-                            "BTW-periode": prop(reference(['parent', null], [])),
+                            "BTW-periode": prop(reference(parent(), [])),
                         }),
                         "Intracommunautair": group({
-                            "BTW-periode": prop(reference(['parent', null], [])),
+                            "BTW-periode": prop(reference(parent(), [])),
                         }),
                         "Import van buiten de EU": group({
-                            "BTW-periode": prop(reference(['parent', null], [])),
+                            "BTW-periode": prop(reference(parent(), [])),
                         }),
                     })),
                     "Afhandeling": prop(taggedUnion({
                         "Mutaties": group({
                         }),
                         "Rekening courant": group({
-                            "Rekening courant": prop(reference(['parent', null], [])),
+                            "Rekening courant": prop(reference(parent(), [])),
                         }),
                         "Nog te betalen": group({
                             "Betalingstermijn": prop(string("dagen")),
@@ -301,10 +305,10 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         })),
                         "Type": prop(taggedUnion({
                             "Kosten": group({
-                                "Grootboekrekening": prop(reference(['parent', null], [])),
+                                "Grootboekrekening": prop(reference(parent(), [])),
                             }),
                             "Balans": group({
-                                "Balans item": prop(reference(['parent', null], [])),
+                                "Balans item": prop(reference(parent(), [])),
                             }),
                         })),
                     }))),
@@ -318,16 +322,16 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         }),
                     })),
                     "Betalingstermijn": prop(string("dagen")),
-                    "Debiteur": prop(reference(['parent', null], [])),
-                    "BTW-periode": prop(reference(['parent', null], [])),
+                    "Debiteur": prop(reference(parent(), [])),
+                    "BTW-periode": prop(reference(parent(), [])),
 
                     "Contracttype": prop(taggedUnion({
                         "Licentieovereenkomst": group({
-                            "Overeenkomst": prop(reference(['parent', null], [])),
+                            "Overeenkomst": prop(reference(parent(), [])),
                         }),
                         "Project": group({
-                            "Project": prop(reference(['parent', null], [])),
-                            "Offerte": prop(reference(['sibling', "Project"], [])),
+                            "Project": prop(reference(parent(), [])),
+                            "Offerte": prop(reference(sibling("Project"), [])),
                         }),
                     })),
 
@@ -335,7 +339,7 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         "Mutaties": group({
                         }),
                         "Rekening courant": group({
-                            "Rekening courant": prop(reference(['parent', null], [])),
+                            "Rekening courant": prop(reference(parent(), [])),
                         }),
                     })),
                     "Regels": prop(dictionary(group({
@@ -343,15 +347,15 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                         "Bedrag exclusief BTW": prop(string("bedrag")),
                         "Type": prop(taggedUnion({
                             "Opbrengsten": group({
-                                "Grootboekrekening": prop(reference(['parent', null], [])),
+                                "Grootboekrekening": prop(reference(parent(), [])),
                             }),
                             "Balans": group({
-                                "Balans item": prop(reference(['parent', null], [])),
+                                "Balans item": prop(reference(parent(), [])),
                             }),
                         })),
                         "BTW-regime": prop(taggedUnion({
                             "Standaard": group({
-                                "BTW-cateogrie": prop(reference(['parent', null], [])),
+                                "BTW-cateogrie": prop(reference(parent(), [])),
                             }),
                             "Binnenland heffing verlegd": group({
                             }),
@@ -366,10 +370,10 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                             "Los": group({
                             }),
                             "Licentieovereenkomst": group({
-                                "Periode": prop(reference(['parent', null], [])),
+                                "Periode": prop(reference(parent(), [])),
                             }),
                             "Project": group({
-                                "Opbrengst": prop(reference(['parent', null], [])),
+                                "Opbrengst": prop(reference(parent(), [])),
                             }),
                         })),
                     }))),
@@ -384,12 +388,12 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
                     "Beginsaldo": prop(string("bedrag")),
                     "Nieuw": prop(taggedUnion({
                         "Nee": group({
-                            "Jaar": prop(reference(['parent', null], [])),
-                            "Rekening": prop(reference(['parent', null], [])),
+                            "Jaar": prop(reference(parent(), [])),
+                            "Rekening": prop(reference(parent(), [])),
                         }),
                         "Ja": group({}),
                     })),
-                    "Grootboekrekening": prop(reference(['parent', null], [])),
+                    "Grootboekrekening": prop(reference(parent(), [])),
                     "Mutaties": prop(dictionary(group({
                         "Omschrijving": prop(string("multiline text")),
                         "Bedrag": prop(string("bedrag")),
@@ -406,22 +410,22 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
             //"Afhandeling": globalType(["Informele Rekeningen", "Jaren", "Verrekenposten"), taggedUnion({
             "Afhandeling": globalType({}, taggedUnion({
                 "Inkoop": group({
-                    "Jaar": prop(reference(['parameter', "Jaren"], [])),
-                    "Inkoop": prop(reference(['sibling', "Jaar"], [])),
+                    "Jaar": prop(reference(parameter("Jaren"), [])),
+                    "Inkoop": prop(reference(sibling("Jaar"), [])),
                 }),
                 "Verkoop": group({
-                    "Jaar": prop(reference(['parameter', "Jaren"], [])),
-                    "Inkoop": prop(reference(['sibling', "Jaar"], [])),
+                    "Jaar": prop(reference(parameter("Jaren"), [])),
+                    "Inkoop": prop(reference(sibling("Jaar"), [])),
                 }),
                 "BTW-periode": group({
-                    "Jaar": prop(reference(['parameter', "Jaren"], [])),
-                    "BTW-periode": prop(reference(['sibling', "Jaar"], [])),
+                    "Jaar": prop(reference(parameter("Jaren"), [])),
+                    "BTW-periode": prop(reference(sibling("Jaar"), [])),
                 }),
                 "Verrekenpost": group({
-                    "Verrekenpost": prop(reference(['parameter', "Verrekenposten"], [])),
+                    "Verrekenpost": prop(reference(parameter("Verrekenposten"), [])),
                 }),
                 "Informele rekening": group({
-                    "Informele rekening": prop(reference(['parameter', "Informele Rekeningen"], [])),
+                    "Informele rekening": prop(reference(parameter("Informele Rekeningen"), [])),
                 }),
             }))
         }),

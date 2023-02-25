@@ -151,6 +151,19 @@ export type Step =
     | ['reference', null]
     | ['array', null]
 
+export function self(): ReferenceType {
+    return ['self', null]
+}
+export function parent(): ReferenceType {
+    return ['parent', null]
+}
+export function sibling(name: string): ReferenceType {
+    return ['sibling', name]
+}
+export function parameter(name: string): ReferenceType {
+    return ['parameter', name]
+}
+
 function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.Reference<pd.SourceLocation> {
     return {
         'type': pl.cc($, ($) => {
