@@ -3,8 +3,8 @@ import * as pd from 'pareto-core-data'
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as api } from "./api.data"
-import { $ as liana } from "./modules/liana.data"
-import { $ as liana_resolved } from "./modules/liana_resolved.data"
+import { $ as liana } from "./modules/liana.deprecated"
+import { $ as liana_resolved } from "./modules/liana_resolved.deprecated"
 import { $ as liana_flat } from "./modules/liana_flat.data"
 import { $ as liana2pareto } from "./modules/liana2pareto.data"
 
