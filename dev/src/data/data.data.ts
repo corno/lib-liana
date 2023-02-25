@@ -3,11 +3,11 @@ import * as pt from 'pareto-core-types'
 
 import * as gliana2pareto from "lib-liana/dist/submodules/liana2pareto"
 
-import { $ as glossary } from "./glossary.data"
+import { $ as liana } from "./models/liana.data"
 
 export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> = pd.a([
     {
-        'path': `../../pareto/src/data/glossary`,
+        'path': `../../pareto/src/data/liana`,
         'data': {
             'configuration': {
                 'datamodel': [true, {
@@ -18,7 +18,7 @@ export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> 
                 'algorithms': {},
             },
             'mappedModel': {
-                'model': glossary,
+                'model': liana,
 
                 'stringmapping': pd.d({
                     "identifier": ['string', null]
