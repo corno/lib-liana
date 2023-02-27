@@ -22,17 +22,6 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
         //         },
         //     }]
         // }
-        function typeReference(type: string): gglossary.T.TypeReference<Annotation> {
-            return {
-                'context': ['local', {}],
-                'type': type,
-                // 'type': {
-                //     'annotation': "SSDF",
-                //     'name': type
-                // },
-                'arguments': pm.wrapRawDictionary({}),
-            }
-        }
 
         // function generateBlock($: gliana.T.LocalType): galgorithm.TFunctionBlock {
         //     return {
@@ -109,7 +98,28 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                         case 'component':
                             return pl.cc($[1], ($) => {
                                 return ['reference', {
-                                    'context': ['local', {}],
+                                    'context': pl.cc($, ($) => {
+                                        switch ($.context[0]) {
+                                            case 'import':
+                                                return pl.cc($.context[1], ($) => {
+                                                    return ['import', {
+                                                        'glossary': $.library.key,
+                                                        'arguments': pm.wrapRawDictionary({
+                                                            "Annotation": {
+                                                                'context': ['local', {}],
+                                                                'type': "FOOOOOOO",
+                                                                'arguments': pm.wrapRawDictionary({}),
+                                                            }
+                                                        }),
+                                                    }]
+                                                })
+                                            case 'local':
+                                                return pl.cc($.context[1], ($) => {
+                                                    return ['local', {}]
+                                                })
+                                            default: return pl.au($.context[0])
+                                        }
+                                    }),
                                     'type': $.type.key,
                                     'arguments': pm.wrapRawDictionary({}),
                                     // 'type': {
@@ -165,6 +175,9 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                             return ['group', pm.wrapRawDictionary<gglossary.T.Type.group.D<Annotation>>({
                                                 "key": {
                                                     'type': ['string', {}]
+                                                },
+                                                "annotation": {
+                                                    'type': ['glossary parameter', "Annotation"]
                                                 },
                                                 //ANNOTATION
                                             })]
@@ -242,6 +255,17 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     }),
                     'functions': $d.buildDictionary(null, (add) => {
                         if ($.configuration.algorithms.serialize[0] === true) {
+                            function typeReference(type: string): gglossary.T.TypeReference<Annotation> {
+                                return {
+                                    'context': ['local', {}],
+                                    'type': type,
+                                    // 'type': {
+                                    //     'annotation': "SSDF",
+                                    //     'name': type
+                                    // },
+                                    'arguments': pm.wrapRawDictionary({}),
+                                }
+                            }
                             add({
                                 'key': "Serialize",
                                 'value': {
