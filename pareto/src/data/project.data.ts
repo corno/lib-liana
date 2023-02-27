@@ -4,6 +4,7 @@ import * as gproject from "lib-pareto-typescript-project/dist/submodules/project
 
 import { $ as api } from "./api.data"
 import { $ as liana } from "./modules/liana.deprecated"
+import { $ as liana_new } from "./liana/module.generated"
 import { $ as liana_flat } from "./modules/liana_flat.data"
 import { $ as liana2pareto } from "./modules/liana2pareto.data"
 
@@ -26,6 +27,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
             "liana": {
                 'definition': liana,
             },
+            "liana_new": liana_new,
             "liana_flat": {
                 'definition': liana_flat,
             },

@@ -22,9 +22,6 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
         "text": null,
     }),
     'global types': d({
-        "Glossary": globalType({}, group({
-        })),
-
         // "GlobalType": type(group({
         //     "parameters": member(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("Parameter") })),
         //     "type": member(reference("LocalType")),
@@ -57,17 +54,59 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
         //         "arguments": member(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("common", "Null") })),
         //     }),
         // })),
-        // "Model": type(group({
-        //     "string types": member(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("common", "Null") })),
-        //     "global types": member(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("GlobalType") })),
-        //     "root": member(parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey")),
-        // })),
-        // "Parameter": type(parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey")),
-        // "Property": type(group({
-        //     "sibling dependencies": member(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("common", "Null") })),
-        //     "type": member(reference("LocalType")),
-        // })),
-        // "Properties": type(parametrizedReference("common", {}, "AnnotatedDictionary", { "Annotation": typeReference("Annotation"), "Type": typeReference("Property") })),
+        "Type": globalType({}, taggedUnion({
+            "string": component("String", {}),
+            "boolean": group({}),
+            "dictionary": group({
+                "key": prop(component("String", {})),
+                "type": prop(component("Type", {})),
+            }),
+            "array": group({
+                "type": prop(component("Type", {})),
+            }),
+            "optional": group({
+                "type": prop(component("Type", {})),
+            }),
+            "tagged union": group({
+                "options": prop(group({
+                    "type": prop(component("Type", {})),
+                })),
+            }),
+            "group": group({
+                "properties": prop(dictionary(group({
+                    //"sibling dependencies": prop(dictionary(string()))
+                    "type": prop(component("Type", {})),
+                }))),
+            }),
+            "component": group({
+                "type": prop(string("identifier")),
+                "arguments": prop(dictionary(group({}))),
+            })
+        })),
+        "Type Library": globalType({}, group({
+            "string types": prop(dictionary(string("identifier"))),
+            "global types": prop(dictionary(group({
+                "parameters": prop(dictionary(group({}))),
+                "type": prop(component("Type", {}))
+            }))),
+        })),
+        "Model": globalType({}, group({
+            "type library": prop(component("Type Library", {})),
+            "root": prop(string("identifier")),
+        })),
+        "String": globalType({}, group({
+            "constrained": prop(taggedUnion({
+                "no": group({
+                    "type": prop(string("identifier"))
+                }),
+                "yes": component("Reference", {}),
+            }))
+        })),
+        "Reference": globalType({}, group({
+            // "type": prop(taggedUnion({
+            //     "parameter": 
+            // }))
+        }))
         // "Reference": type(group({
         //     "type": member(taggedUnion({
         //         "parameter": parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey"),
@@ -90,5 +129,5 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
         //     })),
         // })),
     }),
-    'root': r("Glossary"),
+    'root': r("Model"),
 }

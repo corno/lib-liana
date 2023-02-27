@@ -156,7 +156,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                                     }
                                                 },
                                                 () => {
-                                                    pl.panic(`MISSING STRING MAPPING: ${$.type}`)
+                                                    pl.panic(`MISSING STRING MAPPING: ${$.type.key}`)
                                                 }
                                             )
                                         })
