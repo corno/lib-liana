@@ -1,7 +1,6 @@
 import * as pt from 'pareto-core-types'
 
 import * as gcommon from "glo-pareto-common"
-import * as gresolved from "../../../liana_resolved"
 
 export namespace T {
     
@@ -132,6 +131,26 @@ export namespace T {
     }
     
     export type Parameter<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+    
+    export namespace PossibleModel {
+        
+        export namespace O {
+            
+            export type has__errors<GPAnnotation> = boolean
+            
+            export type model<GPAnnotation> = T.Model<GPAnnotation>
+        }
+        
+        export type O<GPAnnotation> = {
+            readonly 'has errors': boolean
+            readonly 'model': T.Model<GPAnnotation>
+        }
+    }
+    
+    export type PossibleModel<GPAnnotation> = [ false ] | [ true, {
+        readonly 'has errors': boolean
+        readonly 'model': T.Model<GPAnnotation>
+    }]
     
     export type Properties<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Property<GPAnnotation>>
     

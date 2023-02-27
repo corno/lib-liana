@@ -44,6 +44,12 @@ export function array(type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.LocalTy
     }]
 }
 
+export function optional(type: gglo.T.LocalType<pd.SourceLocation>): gglo.T.LocalType<pd.SourceLocation> {
+    return ['optional', {
+        'type': type
+    }]
+}
+
 function constrainedString($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.String<pd.SourceLocation> {
     return {
         'constrained': ['yes', referenceX($, steps, annotation)],

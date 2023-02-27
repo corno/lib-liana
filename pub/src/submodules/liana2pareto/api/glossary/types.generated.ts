@@ -75,6 +75,22 @@ export namespace T {
                 | ['reference and string', {}]
                 | ['string', {}]
         }]
+        
+        export namespace visitor__interface {
+            
+            export namespace O {
+                
+                export type datamodel__location<GPAnnotation> = string
+            }
+            
+            export type O<GPAnnotation> = {
+                readonly 'datamodel location': string
+            }
+        }
+        
+        export type visitor__interface<GPAnnotation> = [ false ] | [ true, {
+            readonly 'datamodel location': string
+        }]
     }
     
     export type GenerationConfiguration<GPAnnotation> = {
@@ -86,6 +102,9 @@ export namespace T {
                 | ['reference', {}]
                 | ['reference and string', {}]
                 | ['string', {}]
+        }]
+        readonly 'visitor interface': [ false ] | [ true, {
+            readonly 'datamodel location': string
         }]
     }
     

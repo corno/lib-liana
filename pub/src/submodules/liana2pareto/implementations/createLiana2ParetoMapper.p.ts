@@ -205,28 +205,39 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     'parameters': pm.wrapRawDictionary({
                         "Annotation": {},
                     }),
-                    'templates': pm.wrapRawDictionary({
-                        "Reference": {
-                            'parameters': pm.wrapRawDictionary({
-                                "ReferencedType": {},
-                            }),
-                            'type': <gglossary.T.Type<Annotation>>['group', pm.wrapRawDictionary({
-                                "annotation": {
-                                    'type': ['string', {}],
-                                },
-                                "name": {
-                                    'type': ['string', {}],
-                                },
-                            })],
-                        }
-                    }),
+                    // 'templates': pm.wrapRawDictionary({
+                    //     "Reference": {
+                    //         'parameters': pm.wrapRawDictionary({
+                    //             "ReferencedType": {},
+                    //         }),
+                    //         'type': <gglossary.T.Type<Annotation>>['group', pm.wrapRawDictionary({
+                    //             "annotation": {
+                    //                 'type': ['string', {}],
+                    //             },
+                    //             "name": {
+                    //                 'type': ['string', {}],
+                    //             },
+                    //         })],
+                    //     }
+                    // }),
                     'types': $.configuration.datamodel[0] === true
                         ? createTypes({
                             'model': $.mappedModel.model,
                             'configuration': $.configuration.datamodel[1],
                         })
                         : pm.wrapRawDictionary({}),
-                    'interfaces': pm.wrapRawDictionary({}),
+                    'interfaces': $.configuration['visitor interface'][0] === true
+                    ? pm.wrapRawDictionary<gglossary.T.Interface<Annotation>>({
+                        // "Visitor": ['group', {
+                        //     'members': $.mappedModel.model['global types'].dictionary.map<gglossary.T.Interface<Annotation>>(($) => {
+                        //         return ['method', {
+                        //             'data': x,
+                        //             'interface': ['not set', {}]
+                        //         }]
+                        //     })
+                        // }]
+                    })
+                    : pm.wrapRawDictionary({}),
                     'functions': pm.wrapRawDictionary({
                         // "Serialize": {
                         //     'return type': ['nothing', {}],

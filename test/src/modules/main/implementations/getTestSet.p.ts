@@ -22,11 +22,11 @@ import { CgetTestSet } from "../api"
 export const $$: CgetTestSet = ($) => {
     const $XXX = $
 
-    const resolve = gliana.$a.createResolver({
-        'onError': ($) => {
-            pv.logDebugMessage($)
-        }
-    })
+    // const resolve = gliana.$a.createResolver({
+    //     'onError': ($) => {
+    //         pv.logDebugMessage($)
+    //     }
+    // })
 
     const writer = gfp.$a.createWriter({
         onError: ($) => {
@@ -41,20 +41,20 @@ export const $$: CgetTestSet = ($) => {
     })
 
     function x<Annotation>($: gliana.T.Model<Annotation>) {
-        const res = resolve($)
-        switch (res[0]) {
-            case false:
-                //pv.logDebugMessage(`NOT SET`)
-                break
-            case true:
-                pl.cc(res[1], ($) => {
-                    //pv.logDebugMessage(`SET`)
+        // const res = resolve($)
+        // switch (res[0]) {
+        //     case false:
+        //         //pv.logDebugMessage(`NOT SET`)
+        //         break
+        //     case true:
+        //         pl.cc(res[1], ($) => {
+        //             //pv.logDebugMessage(`SET`)
 
-                    //pv.logDebugMessage(`has errors? ${$['has errors']}`)
-                })
-                break
-            default: pl.au(res[0])
-        }
+        //             //pv.logDebugMessage(`has errors? ${$['has errors']}`)
+        //         })
+        //         break
+        //     default: pl.au(res[0])
+        // }
     }
     // x(lianaModel)
     x(accountingModel.model)
@@ -76,6 +76,9 @@ export const $$: CgetTestSet = ($) => {
                 'properties optional': false,
                 'reference mapping': ['string', {}],
             }],
+            'visitor interface': [true, {
+                'datamodel location': "FSSDF",
+            }],
             'algorithms': {},
         },
 
@@ -88,6 +91,9 @@ export const $$: CgetTestSet = ($) => {
                     'annotations': true,
                     'properties optional': false,
                     'reference mapping': ['string', {}],
+                }],
+                'visitor interface': [true, {
+                    'datamodel location': "FSSDF",
                 }],
                 'algorithms': {},
             },
@@ -108,6 +114,9 @@ export const $$: CgetTestSet = ($) => {
                     'annotations': true,
                     'properties optional': false,
                     'reference mapping': ['string', {}],
+                }],
+                'visitor interface': [true, {
+                    'datamodel location': "FSSDF",
                 }],
                 'algorithms': {},
             },

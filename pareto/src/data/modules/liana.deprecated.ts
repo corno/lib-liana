@@ -17,7 +17,6 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
     'glossary': {
         'imports': d({
             "common": "glo-pareto-common",
-            "resolved": "../../../liana_resolved",
         }),
         'parameters': d({
             "Annotation": {},
@@ -89,11 +88,15 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                     "yes": reference("Reference"),
                 })),
             })),
+            "PossibleModel": type(optional(group({
+                "model": member(reference("Model")),//should be a resolved model
+                "has errors": member(boolean()),
+            }))),
         }),
         'interfaces': d({
         }),
         'functions': d({
-            "Resolve": func(typeReference("Model"), null, null, data(parametrizedTypeReference("resolved", { "Annotation": typeReference("Annotation") }, "PossibleModel"), false)),
+            "Resolve": func(typeReference("Model"), null, null, data(typeReference("PossibleModel"), false)),
         }),
     },
     'api': {

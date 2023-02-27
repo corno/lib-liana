@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import { boolean, data, dictionary, func, glossaryParameter, group, member, null_, optional, parametrizedReference, parametrizedType, parametrizedTypeReference, reference, taggedUnion, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import { boolean, data, dictionary, func, glossaryParameter, group, member, null_, optional, parametrizedReference, parametrizedType, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
 
@@ -35,6 +35,9 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                         "reference": group({}),
                         "reference and string": group({}),
                     }))
+                }))),
+                "visitor interface": member(optional(group({
+                    "datamodel location": member(string()),
                 }))),
                 "algorithms": member(group({
                     //serialize
