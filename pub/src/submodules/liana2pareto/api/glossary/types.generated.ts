@@ -1,6 +1,7 @@
 import * as pt from 'pareto-core-types'
 
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
+import * as galgorithm_temp from "../../../algorithm_temp"
 import * as gcommon from "glo-pareto-common"
 import * as gliana from "../../../liana"
 import * as gmain from "res-pareto-main"
@@ -186,4 +187,15 @@ export namespace T {
     export type Modules<GPAnnotation> = {
         readonly 'modules': pt.Dictionary<gproject.T.Module<T.Annotation<GPAnnotation>>>
     }
+    
+    export namespace OutAnnotation {
+        
+        export type internal<GPAnnotation> = string
+        
+        export type source<GPAnnotation> = GPAnnotation
+    }
+    
+    export type OutAnnotation<GPAnnotation> = 
+        | ['internal', string]
+        | ['source', GPAnnotation]
 }

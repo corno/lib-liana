@@ -99,6 +99,39 @@ export namespace T {
             
             export type arguments<GPAnnotation> = pt.Dictionary<{}>
             
+            export namespace context {
+                
+                export namespace _limport {
+                    
+                    export namespace library {
+                        
+                        export type key<GPAnnotation> = string
+                    }
+                    
+                    export type library<GPAnnotation> = {
+                        readonly 'key': string
+                    }
+                }
+                
+                export type _limport<GPAnnotation> = {
+                    readonly 'library': {
+                        readonly 'key': string
+                    }
+                }
+                
+                export namespace local {}
+                
+                export type local<GPAnnotation> = {}
+            }
+            
+            export type context<GPAnnotation> = 
+                | ['import', {
+                    readonly 'library': {
+                        readonly 'key': string
+                    }
+                }]
+                | ['local', {}]
+            
             export namespace _ltype {
                 
                 export type key<GPAnnotation> = string
@@ -111,6 +144,13 @@ export namespace T {
         
         export type component<GPAnnotation> = {
             readonly 'arguments': pt.Dictionary<{}>
+            readonly 'context': 
+                | ['import', {
+                    readonly 'library': {
+                        readonly 'key': string
+                    }
+                }]
+                | ['local', {}]
             readonly 'type': {
                 readonly 'key': string
             }
@@ -198,6 +238,13 @@ export namespace T {
         | ['boolean', {}]
         | ['component', {
             readonly 'arguments': pt.Dictionary<{}>
+            readonly 'context': 
+                | ['import', {
+                    readonly 'library': {
+                        readonly 'key': string
+                    }
+                }]
+                | ['local', {}]
             readonly 'type': {
                 readonly 'key': string
             }
@@ -251,6 +298,15 @@ export namespace T {
             readonly 'type': T.Type<GPAnnotation>
         }>
         
+        export namespace imports {
+            
+            export namespace D {}
+            
+            export type D<GPAnnotation> = {}
+        }
+        
+        export type imports<GPAnnotation> = pt.Dictionary<{}>
+        
         export namespace string__types {
             
             export namespace D {}
@@ -266,6 +322,7 @@ export namespace T {
             readonly 'parameters': pt.Dictionary<{}>
             readonly 'type': T.Type<GPAnnotation>
         }>
+        readonly 'imports': pt.Dictionary<{}>
         readonly 'string types': pt.Dictionary<{}>
     }
 }

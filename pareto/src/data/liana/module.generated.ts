@@ -79,6 +79,20 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             "arguments": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                             },
+                            "context": {
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                                    "import": <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                        "library": {
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                                "key": {
+                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                },
+                                            })],
+                                        },
+                                    })],
+                                    "local": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
+                                })],
+                            },
                             "type": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "key": {
@@ -164,6 +178,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     }],
                                 },
                             })]],
+                        },
+                        "imports": {
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                         },
                         "string types": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],

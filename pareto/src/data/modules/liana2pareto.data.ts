@@ -12,6 +12,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
     'glossary': {
         'imports': d({
             "algorithm": "lib-pareto-typescript-project/dist/submodules/algorithm",
+            "algorithm_temp": "../../../algorithm_temp",
             "common": "glo-pareto-common",
             "liana": "../../../liana",
             "main": "res-pareto-main",
@@ -62,12 +63,18 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                 "modules": member(dictionary(parametrizedReference("project", { "Annotation": typeReference("Annotation") }, "Module")))
             }))),
             "Module": type(parametrizedReference("project", { "Annotation": typeReference("Annotation") }, "Module")),
+            
+            "OutAnnotation": type(taggedUnion({
+                "source": glossaryParameter("Annotation"),
+                "internal": string(),
+            })),
         }),
         'interfaces': d({}),
         'functions': d({
             "GenerateModule": func(typeReference("GenerateModuleData"), null, null, null),
             "MapLiana2Pareto": func(typeReference("MapLiana2ParetoData"), null, null, data(typeReference("Module"), false)),
             "MapLiana2States": func(typeReference("MappedModel"), null, null, data(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "States"), false)),
+            "MapLiana2Serializer": func(typeReference("MappedModel"), null, null, data(parametrizedTypeReference("algorithm_temp", { "Annotation": typeReference("OutAnnotation") }, "AlgorithmImplementation"), false)),
         }),
     },
     'api': {
@@ -93,6 +100,9 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
             "mapLiana2Pareto": algorithm(definitionReference("MapLiana2Pareto")),
             "createLiana2StatesMapper": algorithm(definitionReference("MapLiana2States"), constructor(null, {
                 "decorateDictionaryEntriesWithKey": definitionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+            })),
+            "createLiana2SerializerMapper": algorithm(definitionReference("MapLiana2Serializer"), constructor(null, {
+                //"decorateDictionaryEntriesWithKey": definitionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
             })),
         })
     },

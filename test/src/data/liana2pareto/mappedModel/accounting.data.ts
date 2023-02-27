@@ -36,6 +36,7 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
     }),
     'model': {
         'type library': {
+            'imports': pd.d({}),
             'string types': pd.d({
                 "bedrag": {},
                 "bestand": {},

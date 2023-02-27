@@ -8,8 +8,13 @@ import * as gtest from "lib-pareto-test"
 import * as gliana_flat from "../../../../../pub/dist/submodules/liana_flat"
 import * as gliana from "../../../../../pub/dist/submodules/liana"
 import * as gliana2pareto from "../../../../../pub/dist/submodules/liana2pareto"
+import * as gp2ts from "../../../../../pub/dist/submodules/p2ts_temp"
 import * as gfp from "lib-fountain-pen"
 import * as gpub from "../../../../../pub"
+import * as gcoll from "res-pareto-collation"
+import * as gforeach from "res-pareto-foreach"
+import * as gts from "res-typescript"
+// import * as gforeach from "res-pareto-foreach"
 
 const d = pm.wrapRawDictionary
 
@@ -28,7 +33,7 @@ export const $$: CgetTestSet = ($) => {
     //     }
     // })
 
-    const writer = gfp.$a.createWriter({
+    const writer = gfp.$a.createDirectory({
         onError: ($) => {
             pv.logDebugMessage($)
         },
@@ -129,6 +134,48 @@ export const $$: CgetTestSet = ($) => {
             'mappedModel': accountingModel,
         },
     })
+    const serializer = gliana2pareto.$a.createLiana2SerializerMapper({
+    })(accountingModel)
+    const a = gforeach.$a.arrayForEach
+    const d = gforeach.$a.createDictionaryForEach({
+        compare: gcoll.$a.localeIsABeforeB,
+    })
+    const ea = gforeach.$a.enrichedArrayForEach
+    const ed = gforeach.$a.createEnrichedDictionaryForEach({
+        compare: gcoll.$a.localeIsABeforeB,
+    })
+
+    gfp.$a.createDirectory({
+        'onError': ($) => {
+            pv.logDebugMessage($)
+        },
+        'reportSuperfluousNode': ($) => {
+            pv.logDebugMessage($.name)
+        },
+    })(
+        [$.testDirectory, "SERIALIZER.ts"],
+        ($i) => {
+            gp2ts.$a.createImplementationSerializer({
+                'arrayForEach': a,
+                'dictionaryForEach': d,
+                'enrichedArrayForEach': ea,
+                'enrichedDictionaryForEach': ed,
+                'createIdentifier': gts.$a.createIdentifier,
+                'createApostrophedString': gts.$a.createApostrophedString,
+                'createBacktickedString': gts.$a.createBacktickedString,
+                'createQuotedString': gts.$a.createQuotedString,
+            })(
+                {
+                    'implementations': pm.wrapRawDictionary({
+                        "serializer": serializer,
+                    })
+                },
+                $i
+            )
+        }
+    )
+
+
 
     // mserialize.$a.createModuleDefinitionSerializer({
 
@@ -146,13 +193,6 @@ export const $$: CgetTestSet = ($) => {
             }]
         })
     }
-
-    //test that a failing test indeed fails!!! now it will make the program exit with an error code
-    createTest(
-        "TODO: ACTUALLY TEST THE LIB",
-        "TODO: ACTUALLY TEST THE LIB",
-        "TODO: ACTUALLY TEST THE LIB",
-    )
 
     return pa.asyncValue({
         elements: builder.getDictionary()

@@ -12,6 +12,8 @@ export type CcreateLiana2ParetoMapper = ($d: {
     readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
 }) => gglo.FMapLiana2Pareto
 
+export type CcreateLiana2SerializerMapper = ($d: {}) => gglo.FMapLiana2Serializer
+
 export type CcreateLiana2StatesMapper = ($d: {
     readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
 }) => gglo.FMapLiana2States
@@ -30,6 +32,7 @@ export type CmapLiana2Pareto = gglo.FMapLiana2Pareto
 
 export type API = {
     createLiana2ParetoMapper: CcreateLiana2ParetoMapper
+    createLiana2SerializerMapper: CcreateLiana2SerializerMapper
     createLiana2StatesMapper: CcreateLiana2StatesMapper
     createModuleGenerator: CcreateModuleGenerator
     generateModule: CgenerateModule

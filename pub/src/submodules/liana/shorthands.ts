@@ -230,6 +230,22 @@ export function reference(
 export function component(type: string, args: RawDictionary<{}>): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['component', {
+        'context': ['local', {}],
+        'type': {
+            'key': type,
+            //'annotation': li
+        },
+        'arguments': pd.d(args)
+    }]
+}
+export function importedComponent(library: string, type: string, args: RawDictionary<{}>): gglo.T.Type<pd.SourceLocation> {
+    const li = pd.getLocationInfo(1)
+    return ['component', {
+        'context': ['import', {
+            'library': {
+                'key': library,
+            }
+        }],
         'type': {
             'key': type,
             //'annotation': li
