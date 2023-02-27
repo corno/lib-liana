@@ -203,6 +203,12 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             'definition': <gmoduleDefinition.T.ModuleDefinition<Annotation>>{
                 'glossary': <gglossary.T.Glossary<Annotation>>{
                     'imports': $d.buildDictionary(null, (add) => {
+                        if ($.configuration.algorithms.serialize[0] === true) {
+                            add({
+                                'key': "fp",
+                                'value': "lib-fountain-pen",
+                            })
+                        }
                         if ($.configuration.datamodel[0] === true) {
                             add({
                                 'key': "common",
@@ -264,8 +270,13 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     })
                 },
                 'api': {
-                    'imports': pm.wrapRawDictionary({
-                        "foreach": "res-pareto-foreach",
+                    'imports': $d.buildDictionary(null, (add) => {
+                        if ($.configuration.algorithms.serialize[0] === true) {
+                            add({
+                                'key': "foreach",
+                                'value': "res-pareto-foreach",
+                            })
+                        }
                     }),
                     'algorithms': $d.buildDictionary(null, (add) => {
                         if ($.configuration.algorithms.serialize[0] === true) {
