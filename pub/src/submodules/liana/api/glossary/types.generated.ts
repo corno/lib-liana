@@ -4,29 +4,84 @@ import * as gcommon from "glo-pareto-common"
 
 export namespace T {
     
-    export type Annotation<GPAnnotation> = GPAnnotation
-    
-    export namespace GlobalType {
+    export namespace Model {
         
-        export type parameters<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Parameter<GPAnnotation>>
+        export namespace root {
+            
+            export type key<GPAnnotation> = string
+        }
         
-        export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
+        export type root<GPAnnotation> = {
+            readonly 'key': string
+        }
+        
+        export type type__library<GPAnnotation> = T.Type__Library<GPAnnotation>
     }
     
-    export type GlobalType<GPAnnotation> = {
-        readonly 'parameters': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Parameter<GPAnnotation>>
-        readonly 'type': T.LocalType<GPAnnotation>
+    export type Model<GPAnnotation> = {
+        readonly 'root': {
+            readonly 'key': string
+        }
+        readonly 'type library': T.Type__Library<GPAnnotation>
     }
     
-    export namespace LocalType {
+    export namespace Reference {}
+    
+    export type Reference<GPAnnotation> = {}
+    
+    export namespace String {
+        
+        export namespace constrained {
+            
+            export namespace no {
+                
+                export namespace _ltype {
+                    
+                    export type key<GPAnnotation> = string
+                }
+                
+                export type _ltype<GPAnnotation> = {
+                    readonly 'key': string
+                }
+            }
+            
+            export type no<GPAnnotation> = {
+                readonly 'type': {
+                    readonly 'key': string
+                }
+            }
+            
+            export type yes<GPAnnotation> = T.Reference<GPAnnotation>
+        }
+        
+        export type constrained<GPAnnotation> = 
+            | ['no', {
+                readonly 'type': {
+                    readonly 'key': string
+                }
+            }]
+            | ['yes', T.Reference<GPAnnotation>]
+    }
+    
+    export type String<GPAnnotation> = {
+        readonly 'constrained': 
+            | ['no', {
+                readonly 'type': {
+                    readonly 'key': string
+                }
+            }]
+            | ['yes', T.Reference<GPAnnotation>]
+    }
+    
+    export namespace Type {
         
         export namespace array {
             
-            export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
+            export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
         }
         
         export type array<GPAnnotation> = {
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }
         
         export namespace _lboolean {}
@@ -35,228 +90,182 @@ export namespace T {
         
         export namespace component {
             
-            export type arguments<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
+            export namespace arguments {
+                
+                export namespace D {}
+                
+                export type D<GPAnnotation> = {}
+            }
             
-            export type _ltype<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+            export type arguments<GPAnnotation> = pt.Dictionary<{}>
+            
+            export namespace _ltype {
+                
+                export type key<GPAnnotation> = string
+            }
+            
+            export type _ltype<GPAnnotation> = {
+                readonly 'key': string
+            }
         }
         
         export type component<GPAnnotation> = {
-            readonly 'arguments': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-            readonly 'type': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+            readonly 'arguments': pt.Dictionary<{}>
+            readonly 'type': {
+                readonly 'key': string
+            }
         }
         
         export namespace dictionary {
             
             export type key<GPAnnotation> = T.String<GPAnnotation>
             
-            export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
+            export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
         }
         
         export type dictionary<GPAnnotation> = {
             readonly 'key': T.String<GPAnnotation>
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }
         
         export namespace group {
             
-            export type properties<GPAnnotation> = T.Properties<GPAnnotation>
+            export namespace properties {
+                
+                export namespace D {
+                    
+                    export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
+                }
+                
+                export type D<GPAnnotation> = {
+                    readonly 'type': T.Type<GPAnnotation>
+                }
+            }
+            
+            export type properties<GPAnnotation> = pt.Dictionary<{
+                readonly 'type': T.Type<GPAnnotation>
+            }>
         }
         
         export type group<GPAnnotation> = {
-            readonly 'properties': T.Properties<GPAnnotation>
+            readonly 'properties': pt.Dictionary<{
+                readonly 'type': T.Type<GPAnnotation>
+            }>
         }
         
         export namespace optional {
             
-            export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
+            export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
         }
         
         export type optional<GPAnnotation> = {
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }
         
         export type _lstring<GPAnnotation> = T.String<GPAnnotation>
         
         export namespace tagged__union {
             
-            export type _ldefault<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+            export namespace _ldefault {
+                
+                export type key<GPAnnotation> = string
+            }
             
-            export type options<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
+            export type _ldefault<GPAnnotation> = {
+                readonly 'key': string
+            }
+            
+            export namespace options {
+                
+                export type D<GPAnnotation> = T.Type<GPAnnotation>
+            }
+            
+            export type options<GPAnnotation> = pt.Dictionary<T.Type<GPAnnotation>>
         }
         
         export type tagged__union<GPAnnotation> = {
-            readonly 'default': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
+            readonly 'default': {
+                readonly 'key': string
+            }
+            readonly 'options': pt.Dictionary<T.Type<GPAnnotation>>
         }
     }
     
-    export type LocalType<GPAnnotation> = 
+    export type Type<GPAnnotation> = 
         | ['array', {
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }]
         | ['boolean', {}]
         | ['component', {
-            readonly 'arguments': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-            readonly 'type': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+            readonly 'arguments': pt.Dictionary<{}>
+            readonly 'type': {
+                readonly 'key': string
+            }
         }]
         | ['dictionary', {
             readonly 'key': T.String<GPAnnotation>
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }]
         | ['group', {
-            readonly 'properties': T.Properties<GPAnnotation>
+            readonly 'properties': pt.Dictionary<{
+                readonly 'type': T.Type<GPAnnotation>
+            }>
         }]
         | ['optional', {
-            readonly 'type': T.LocalType<GPAnnotation>
+            readonly 'type': T.Type<GPAnnotation>
         }]
         | ['string', T.String<GPAnnotation>]
         | ['tagged union', {
-            readonly 'default': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            readonly 'options': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.LocalType<GPAnnotation>>
+            readonly 'default': {
+                readonly 'key': string
+            }
+            readonly 'options': pt.Dictionary<T.Type<GPAnnotation>>
         }]
     
-    export namespace Model {
+    export namespace Type__Library {
         
-        export type global__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
-        
-        export type root<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-        
-        export type string__types<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-    }
-    
-    export type Model<GPAnnotation> = {
-        readonly 'global types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.GlobalType<GPAnnotation>>
-        readonly 'root': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-        readonly 'string types': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-    }
-    
-    export type Parameter<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-    
-    export namespace PossibleModel {
-        
-        export namespace O {
+        export namespace global__types {
             
-            export type has__errors<GPAnnotation> = boolean
-            
-            export type model<GPAnnotation> = T.Model<GPAnnotation>
-        }
-        
-        export type O<GPAnnotation> = {
-            readonly 'has errors': boolean
-            readonly 'model': T.Model<GPAnnotation>
-        }
-    }
-    
-    export type PossibleModel<GPAnnotation> = [ false ] | [ true, {
-        readonly 'has errors': boolean
-        readonly 'model': T.Model<GPAnnotation>
-    }]
-    
-    export type Properties<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, T.Property<GPAnnotation>>
-    
-    export namespace Property {
-        
-        export type sibling__dependencies<GPAnnotation> = gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-        
-        export type _ltype<GPAnnotation> = T.LocalType<GPAnnotation>
-    }
-    
-    export type Property<GPAnnotation> = {
-        readonly 'sibling dependencies': gcommon.T.AnnotatedDictionary<T.Annotation<GPAnnotation>, gcommon.T.Null>
-        readonly 'type': T.LocalType<GPAnnotation>
-    }
-    
-    export namespace Reference {
-        
-        export namespace steps {
-            
-            export namespace A {
+            export namespace D {
                 
-                export namespace array {}
+                export namespace parameters {
+                    
+                    export namespace D {}
+                    
+                    export type D<GPAnnotation> = {}
+                }
                 
-                export type array<GPAnnotation> = {}
+                export type parameters<GPAnnotation> = pt.Dictionary<{}>
                 
-                export type group<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-                
-                export namespace reference {}
-                
-                export type reference<GPAnnotation> = {}
-                
-                export type tagged__union<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+                export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
             }
             
-            export type A<GPAnnotation> = 
-                | ['array', {}]
-                | ['group', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-                | ['reference', {}]
-                | ['tagged union', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-        }
-        
-        export type steps<GPAnnotation> = pt.Array<
-            | ['array', {}]
-            | ['group', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-            | ['reference', {}]
-            | ['tagged union', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-        >
-        
-        export namespace _ltype {
-            
-            export namespace other {}
-            
-            export type other<GPAnnotation> = {}
-            
-            export type parameter<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            
-            export type sibling<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-        }
-        
-        export type _ltype<GPAnnotation> = 
-            | ['other', {}]
-            | ['parameter', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-            | ['sibling', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-    }
-    
-    export type Reference<GPAnnotation> = {
-        readonly 'steps': pt.Array<
-            | ['array', {}]
-            | ['group', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-            | ['reference', {}]
-            | ['tagged union', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-        >
-        readonly 'type': 
-            | ['other', {}]
-            | ['parameter', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-            | ['sibling', gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>]
-    }
-    
-    export namespace String {
-        
-        export namespace constrained {
-            
-            export namespace no {
-                
-                export type _ltype<GPAnnotation> = gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
+            export type D<GPAnnotation> = {
+                readonly 'parameters': pt.Dictionary<{}>
+                readonly 'type': T.Type<GPAnnotation>
             }
-            
-            export type no<GPAnnotation> = {
-                readonly 'type': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            }
-            
-            export type yes<GPAnnotation> = T.Reference<GPAnnotation>
         }
         
-        export type constrained<GPAnnotation> = 
-            | ['no', {
-                readonly 'type': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            }]
-            | ['yes', T.Reference<GPAnnotation>]
+        export type global__types<GPAnnotation> = pt.Dictionary<{
+            readonly 'parameters': pt.Dictionary<{}>
+            readonly 'type': T.Type<GPAnnotation>
+        }>
+        
+        export namespace string__types {
+            
+            export namespace D {}
+            
+            export type D<GPAnnotation> = {}
+        }
+        
+        export type string__types<GPAnnotation> = pt.Dictionary<{}>
     }
     
-    export type String<GPAnnotation> = {
-        readonly 'constrained': 
-            | ['no', {
-                readonly 'type': gcommon.T.AnnotatedKey<T.Annotation<GPAnnotation>>
-            }]
-            | ['yes', T.Reference<GPAnnotation>]
+    export type Type__Library<GPAnnotation> = {
+        readonly 'global types': pt.Dictionary<{
+            readonly 'parameters': pt.Dictionary<{}>
+            readonly 'type': T.Type<GPAnnotation>
+        }>
+        readonly 'string types': pt.Dictionary<{}>
     }
 }

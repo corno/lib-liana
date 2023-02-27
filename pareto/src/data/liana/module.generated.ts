@@ -9,7 +9,9 @@ const a = pd.a
 export const $: gproject.T.Module<pd.SourceLocation> = {
     'definition': {
         'glossary': {
-            'imports': d({}),
+            'imports': d({
+                "common": "glo-pareto-common",
+            }),
             'parameters': d({
                 "Annotation": {},
             }),
@@ -19,7 +21,12 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "root": {
                             'optional': false,
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                "key": {
+                                    'optional': false,
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                },
+                            })],
                         },
                         "type library": {
                             'optional': false,
@@ -44,7 +51,12 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                 "no": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "type": {
                                         'optional': false,
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                            "key": {
+                                                'optional': false,
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            },
+                                        })],
                                     },
                                 })],
                                 "yes": <gglossary.T.Type<pd.SourceLocation>>['reference', {
@@ -77,7 +89,12 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             },
                             "type": {
                                 'optional': false,
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                    "key": {
+                                        'optional': false,
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    },
+                                })],
                             },
                         })],
                         "dictionary": <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -129,18 +146,22 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             'arguments': d({}),
                         }],
                         "tagged union": <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                            "options": {
+                            "default": {
                                 'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                                    "type": {
+                                    "key": {
                                         'optional': false,
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                            'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
-                                            'type': "Type",
-                                            'arguments': d({}),
-                                        }],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                     },
                                 })],
+                            },
+                            "options": {
+                                'optional': false,
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                                    'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                                    'type': "Type",
+                                    'arguments': d({}),
+                                }]],
                             },
                         })],
                     })]
@@ -167,7 +188,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         },
                         "string types": {
                             'optional': false,
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['string', {}]],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                         },
                     })]
                 },

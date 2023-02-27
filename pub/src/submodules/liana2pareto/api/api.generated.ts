@@ -2,11 +2,13 @@ import * as pt from 'pareto-core-types'
 
 import * as gglo from "./glossary"
 
+import * as gbuild from "res-pareto-build"
 import * as gcommon from "glo-pareto-common"
 import * as gforeach from "res-pareto-foreach"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 export type CcreateLiana2ParetoMapper = ($d: {
+    readonly 'buildDictionary': gbuild.FBuildDictionary
     readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
 }) => gglo.FMapLiana2Pareto
 

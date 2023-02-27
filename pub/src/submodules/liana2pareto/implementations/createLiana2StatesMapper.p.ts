@@ -10,8 +10,8 @@ import { CcreateLiana2StatesMapper } from "../api"
 export const $$: CcreateLiana2StatesMapper = ($d) => {
     return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
         const stringMapping = $.stringmapping
-        return $.model['global types'].dictionary.map(($) => {
-            function mapType($: gliana.T.LocalType<Annotation>): galgorithm.T.Type<Annotation> {
+        return $.model['type library']['global types'].map(($) => {
+            function mapType($: gliana.T.Type<Annotation>): galgorithm.T.Type<Annotation> {
                 switch ($[0]) {
                     case 'array':
                         return pl.cc($[1], ($) => {
@@ -35,7 +35,7 @@ export const $$: CcreateLiana2StatesMapper = ($d) => {
                         })
                     case 'group':
                         return pl.cc($[1], ($) => {
-                            return ['group', $.properties.dictionary.map(($) => {
+                            return ['group', $.properties.map(($) => {
                                 return {
                                     'type': mapType($.type),
                                 }
@@ -87,7 +87,7 @@ export const $$: CcreateLiana2StatesMapper = ($d) => {
                         })
                     case 'tagged union':
                         return pl.cc($[1], ($) => {
-                            return ['taggedUnion', $.options.dictionary.map(($) => {
+                            return ['taggedUnion', $.options.map(($) => {
                                 return mapType($)
                             })]
                         })

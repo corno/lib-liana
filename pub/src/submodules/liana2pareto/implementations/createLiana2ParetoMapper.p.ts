@@ -91,8 +91,8 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             model: gliana.T.Model<Annotation>
         }): gglossary.T.Glossary.types<Annotation> {
             const configuration = $.configuration
-            return model['global types'].dictionary.map(($) => {
-                function mapType($: gliana.T.LocalType<Annotation>): gglossary.T.Type<Annotation> {
+            return model['type library']['global types'].map(($) => {
+                function mapType($: gliana.T.Type<Annotation>): gglossary.T.Type<Annotation> {
                     switch ($[0]) {
                         case 'array':
                             return pl.cc($[1], ($) => {
@@ -124,7 +124,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                             })
                         case 'group':
                             return pl.cc($[1], ($) => {
-                                return ['group', $.properties.dictionary.map(($) => {
+                                return ['group', $.properties.map(($) => {
                                     return {
                                         'type': mapType($.type),
                                         'optional': configuration['properties optional'],
@@ -162,23 +162,30 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                         })
                                     case 'yes':
                                         return pl.cc($.constrained[1], ($): gglossary.T.Type<Annotation> => {
-                                            return ['reference', {
-                                                'context': ['import', {
-                                                    'glossary': "common",
-                                                    'arguments': pm.wrapRawDictionary({}),
-                                                }],
-                                                'type': "Reference",
-                                                'arguments': pm.wrapRawDictionary({
-                                                    //"ReferencedType": <gglossary.GTypeReference>['null', {}], //FIXME
-                                                }),
-                                            }]
+                                            return ['group', pm.wrapRawDictionary<gglossary.T.Type.group.D<Annotation>>({
+                                                "key": {
+                                                    'optional': false,
+                                                    'type': ['string', {}]
+                                                },
+                                                //ANNOTATION
+                                            })]
+                                            // return ['reference', {
+                                            //     'context': ['import', {
+                                            //         'glossary': "common",
+                                            //         'arguments': pm.wrapRawDictionary({}),
+                                            //     }],
+                                            //     'type': "Reference",
+                                            //     'arguments': pm.wrapRawDictionary({
+                                            //         //"ReferencedType": <gglossary.GTypeReference>['null', {}], //FIXME
+                                            //     }),
+                                            // }]
                                         })
                                     default: return pl.au($.constrained[0])
                                 }
                             })
                         case 'tagged union':
                             return pl.cc($[1], ($) => {
-                                return ['taggedUnion', $.options.dictionary.map(($) => {
+                                return ['taggedUnion', $.options.map(($) => {
                                     return mapType($)
                                 })]
                             })
@@ -201,6 +208,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                         //     'annotation': "FFF",
                         // },
                         //"fp": "lib-fountain-pen",
+                        "common": "glo-pareto-common",
                     }),
                     'parameters': pm.wrapRawDictionary({
                         "Annotation": {},

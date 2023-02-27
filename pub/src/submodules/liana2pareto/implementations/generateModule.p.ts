@@ -7,6 +7,7 @@ import * as gmain from "res-pareto-main"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gglossary_temp from "lib-pareto-typescript-project/dist/submodules/glossary_temp"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
+import * as gbuild from "res-pareto-build"
 
 import { $a } from ".."
 
@@ -31,6 +32,7 @@ export const $$:CgenerateModule = ($) => {
             'logError': gmain.$a.logError,
             'mapLiana2Pareto': $a.createLiana2ParetoMapper({
                 'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
+                'buildDictionary': gbuild.$a.buildDictionary,
             }),
             'serializeProject': gproject.$a.createSerializerWithContext({
                 'serialize': gproject.$a.createSerializer({

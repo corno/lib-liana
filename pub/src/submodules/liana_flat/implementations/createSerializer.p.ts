@@ -19,7 +19,7 @@ export const $$: CcreateSerializer = ($d) => {
             return $d.createIdentifier($d.joinNestedStrings($))
         }
         function doDictionaries($: {
-            $: gliana.T.LocalType<Annotation>,
+            $: gliana.T.Type<Annotation>,
             path: gcommon.T.Path,
             idPath: gcommon.T.Path,
             currentName: string,
@@ -83,7 +83,7 @@ export const $$: CcreateSerializer = ($d) => {
                                             $i.line(`//////`)
                                             function doScalars(
                                                 $: {
-                                                    $: gliana.T.LocalType<Annotation>,
+                                                    $: gliana.T.Type<Annotation>,
                                                     isRoot: boolean,
                                                     path: gcommon.T.Path,
                                                 }
@@ -128,7 +128,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                             break
                                                         case 'group':
                                                             pl.cc($[1], ($) => {
-                                                                $d.dictionaryForEach($.properties.dictionary, ($) => {
+                                                                $d.dictionaryForEach($.properties, ($) => {
                                                                     doScalars({
                                                                         $: $.value.type,
                                                                         isRoot: false,
@@ -147,7 +147,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                             pl.cc($[1], ($) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                                 $i.line(`operation_${pathID}: ${type},`)
-                                                                $d.dictionaryForEach($.options.dictionary, ($) => {
+                                                                $d.dictionaryForEach($.options, ($) => {
                                                                     doScalars({
                                                                         $: $.value,
                                                                         isRoot: false,
@@ -187,7 +187,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                     $i.nestedLine(($i) => {
                                                         $i.snippet(`'data': `)
                                                         function writeUnflattener($: {
-                                                            $: gliana.T.LocalType<Annotation>,
+                                                            $: gliana.T.Type<Annotation>,
                                                             path: gcommon.T.Path,
                                                             currentName: string,
                                                         }, $i: gfp.ILine) {
@@ -226,7 +226,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                                         pl.cc($[1], ($) => {
                                                                             $i.snippet(`{`)
                                                                             $i.indent(($i) => {
-                                                                               $d.dictionaryForEach($.properties.dictionary, ($) => {
+                                                                               $d.dictionaryForEach($.properties, ($) => {
                                                                                     $i.nestedLine(($i) => {
                                                                                         $i.snippet(`'${$.key}': `)
                                                                                         writeUnflattener({
@@ -295,7 +295,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                                                 $i.nestedLine(($i) => {
                                                                                     $i.snippet(`switch ($) {`)
                                                                                     $i.indent(($i) => {
-                                                                                       $d.dictionaryForEach( $.options.dictionary, ($) => {
+                                                                                       $d.dictionaryForEach( $.options, ($) => {
                                                                                             $i.nestedLine(($i) => {
                                                                                                 $i.snippet(`case '${$.key}': {`)
                                                                                                 $i.indent(($i) => {
@@ -352,7 +352,7 @@ export const $$: CcreateSerializer = ($d) => {
                         break
                     case 'group':
                         pl.cc($[1], ($) => {
-                            $d.dictionaryForEach($.properties.dictionary, ($) => {
+                            $d.dictionaryForEach($.properties, ($) => {
                                 doDictionaries({
                                     $: $.value.type,
                                     path: [path, $.key],
@@ -370,7 +370,7 @@ export const $$: CcreateSerializer = ($d) => {
                         break
                     case 'tagged union':
                         pl.cc($[1], ($) => {
-                            $d.dictionaryForEach($.options.dictionary, ($) => {
+                            $d.dictionaryForEach($.options, ($) => {
                                 doDictionaries({
                                     $: $.value,
                                     path: [path, $.key],
@@ -384,7 +384,7 @@ export const $$: CcreateSerializer = ($d) => {
                 }
             })
         }
-        $d.dictionaryForEach($.model['global types'].dictionary, ($) => {
+        $d.dictionaryForEach($.model['type library']['global types'], ($) => {
             doDictionaries({
                 $: $.value.type,
                 path: [$.key],

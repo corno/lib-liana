@@ -70,6 +70,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
     },
     'api': {
         'imports': d({
+            "build": "res-pareto-build",
             "common": "glo-pareto-common",
             "foreach": "res-pareto-foreach",
             "project": "lib-pareto-typescript-project/dist/submodules/project",
@@ -85,6 +86,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
             })),
             "createLiana2ParetoMapper": algorithm(definitionReference("MapLiana2Pareto"), constructor(null, {
                 "decorateDictionaryEntriesWithKey": definitionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+                "buildDictionary": definitionReference("build", {}, "BuildDictionary"),
             })),
             "mapLiana2Pareto": algorithm(definitionReference("MapLiana2Pareto")),
             "createLiana2StatesMapper": algorithm(definitionReference("MapLiana2States"), constructor(null, {
