@@ -164,7 +164,6 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                         return pl.cc($.constrained[1], ($): gglossary.T.Type<Annotation> => {
                                             return ['group', pm.wrapRawDictionary<gglossary.T.Type.group.D<Annotation>>({
                                                 "key": {
-                                                    'optional': false,
                                                     'type': ['string', {}]
                                                 },
                                                 //ANNOTATION
@@ -233,8 +232,8 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                 'value': ['group', {
                                     'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
                                         return ['method', {
-                                            'data': ['not set', {}], //FIXME
-                                            'interface': ['not set', {}], //FIXME
+                                            'data': [false], //FIXME
+                                            'interface': [false], //FIXME
                                         }]
                                     })
                                 }],
@@ -248,8 +247,8 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                 'value': {
                                     'return type': ['nothing', {}],
                                     'data': typeReference($.mappedModel.model.root.key), //unresolved
-                                    'managed input interface': ['not set', {}],
-                                    'output interface': ['set', {
+                                    'managed input interface': [false],
+                                    'output interface': [true, {
                                         'context': ['import', {
                                             'glossary': "fp",
                                             'arguments': pm.wrapRawDictionary({}),
@@ -333,102 +332,104 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     // })
                 },
             },
-            'implementation': <galgorithm.T.Implementation<Annotation>>{
-                'implementations': pm.wrapRawDictionary<galgorithm.T.Implementation.implementations.D<Annotation>>({
-                    // "createSerializer": {
-                    //     'type': ['procedure', {
-                    //         'block': {
-                    //             'innerFunctions': $.model.globalTypes.dictionary.map(($) => {
-                    //                 function doType($: gliana.T.LocalType): galgorithm.GProcedureBlock.Pstatements {
-                    //                     const builder = ps.createArrayBuilderFIXME<galgorithm.GProcedureBlock.Pstatements.A>()
-                    //                     function snippet($: string) {
+            'implementation': ['manual', {}],
+            // 'implementation': ['generated', {
+            //     //     'implementations': pm.wrapRawDictionary<galgorithm.T.Implementation.implementations.D<Annotation>>({
+            //     //         // "createSerializer": {
+            //     //         //     'type': ['procedure', {
+            //     //         //         'block': {
+            //     //         //             'innerFunctions': $.model.globalTypes.dictionary.map(($) => {
+            //     //         //                 function doType($: gliana.T.LocalType): galgorithm.GProcedureBlock.Pstatements {
+            //     //         //                     const builder = ps.createArrayBuilderFIXME<galgorithm.GProcedureBlock.Pstatements.A>()
+            //     //         //                     function snippet($: string) {
 
-                    //                         builder.push(<galgorithm.GProcedureBlock.Pstatements.A>['interfaceCall', {
-                    //                             'child path': pr.wrapRawArray(["snippet"]),
-                    //                             //'property': pr.wrapRawArray([]),
-                    //                             'data': ['set',  ['string literal', $]],
-                    //                             'callback': ['not set', {}],
-                    //                         }])
-                    //                     }
-                    //                     function indent($i: () => galgorithm.GProcedureBlock) {
-                    //                         // builder.push(<galgorithm.GProcedureBlock.Pstatements.A>['interfaceCall', {
-                    //                         //     'child path': pr.wrapRawArray(["snippet"]),
-                    //                         //     //'property': pr.wrapRawArray([]),
-                    //                         //     'data': ['set',  ['string literal', $]],
-                    //                         //     'callback': ['not set', {}],
-                    //                         // }])
+            //     //         //                         builder.push(<galgorithm.GProcedureBlock.Pstatements.A>['interfaceCall', {
+            //     //         //                             'child path': pr.wrapRawArray(["snippet"]),
+            //     //         //                             //'property': pr.wrapRawArray([]),
+            //     //         //                             'data': ['set',  ['string literal', $]],
+            //     //         //                             'callback': ['not set', {}],
+            //     //         //                         }])
+            //     //         //                     }
+            //     //         //                     function indent($i: () => galgorithm.GProcedureBlock) {
+            //     //         //                         // builder.push(<galgorithm.GProcedureBlock.Pstatements.A>['interfaceCall', {
+            //     //         //                         //     'child path': pr.wrapRawArray(["snippet"]),
+            //     //         //                         //     //'property': pr.wrapRawArray([]),
+            //     //         //                         //     'data': ['set',  ['string literal', $]],
+            //     //         //                         //     'callback': ['not set', {}],
+            //     //         //                         // }])
 
-                    //                     }
-                    //                     switch ($[0]) {
-                    //                         case 'array':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("ARRAY")
-                    //                             })
-                    //                             break
-                    //                         case 'boolean':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("BOOLEAN")
+            //     //         //                     }
+            //     //         //                     switch ($[0]) {
+            //     //         //                         case 'array':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("ARRAY")
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'boolean':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("BOOLEAN")
 
-                    //                             })
-                    //                             break
-                    //                         case 'component':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("COMPONENT")
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'component':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("COMPONENT")
 
-                    //                             })
-                    //                             break
-                    //                         case 'dictionary':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("DICTIONARY")
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'dictionary':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("DICTIONARY")
 
-                    //                             })
-                    //                             break
-                    //                         case 'group':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 // snippet("{")
-                    //                                 // indent(($) => {
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'group':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 // snippet("{")
+            //     //         //                                 // indent(($) => {
 
-                    //                                 // })
-                    //                                 // snippet("}")
-                    //                                 // $.
+            //     //         //                                 // })
+            //     //         //                                 // snippet("}")
+            //     //         //                                 // $.
 
-                    //                             })
-                    //                             break
-                    //                         case 'string':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("STRING")
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'string':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("STRING")
 
-                    //                             })
-                    //                             break
-                    //                         case 'tagged union':
-                    //                             pl.cc($[1], ($) => {
-                    //                                 snippet("TAGGEDUNION")
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         case 'tagged union':
+            //     //         //                             pl.cc($[1], ($) => {
+            //     //         //                                 snippet("TAGGEDUNION")
 
-                    //                             })
-                    //                             break
-                    //                         default: pl.au($[0])
-                    //                     }
-                    //                     return builder.getArray()
-                    //                 }
+            //     //         //                             })
+            //     //         //                             break
+            //     //         //                         default: pl.au($[0])
+            //     //         //                     }
+            //     //         //                     return builder.getArray()
+            //     //         //                 }
 
-                    //                 return <galgorithm.GProcedureBlock.PinnerFunctions.D>{
-                    //                     'type': ['procedure', {
-                    //                         'block': {
-                    //                             'innerFunctions': pd.wrapRawDictionary({}),
-                    //                             'statements': doType($.type),
-                    //                         },
-                    //                     }]
-                    //                 }
-                    //             }),
-                    //             'statements': pr.wrapRawArray([
+            //     //         //                 return <galgorithm.GProcedureBlock.PinnerFunctions.D>{
+            //     //         //                     'type': ['procedure', {
+            //     //         //                         'block': {
+            //     //         //                             'innerFunctions': pd.wrapRawDictionary({}),
+            //     //         //                             'statements': doType($.type),
+            //     //         //                         },
+            //     //         //                     }]
+            //     //         //                 }
+            //     //         //             }),
+            //     //         //             'statements': pr.wrapRawArray([
 
-                    //             ])
-                    //         }
-                    //     }],
-                    //     'constructor': true,
-                    // }
-                })
-            },
+            //     //         //             ])
+            //     //         //         }
+            //     //         //     }],
+            //     //         //     'constructor': true,
+            //     //         // }
+            //     //     })
+            //     // },
+            // }]
         }
     }
 }

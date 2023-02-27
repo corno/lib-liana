@@ -197,24 +197,24 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                 "Visitor": ['group', {
                     'members': d({
                         "Model": ['method', {
-                            'data': ['not set', {}],
-                            'interface': ['not set', {}],
+                            'data': [false],
+                            'interface': [false],
                         }],
                         "Reference": ['method', {
-                            'data': ['not set', {}],
-                            'interface': ['not set', {}],
+                            'data': [false],
+                            'interface': [false],
                         }],
                         "String": ['method', {
-                            'data': ['not set', {}],
-                            'interface': ['not set', {}],
+                            'data': [false],
+                            'interface': [false],
                         }],
                         "Type": ['method', {
-                            'data': ['not set', {}],
-                            'interface': ['not set', {}],
+                            'data': [false],
+                            'interface': [false],
                         }],
                         "Type Library": ['method', {
-                            'data': ['not set', {}],
-                            'interface': ['not set', {}],
+                            'data': [false],
+                            'interface': [false],
                         }],
                     }),
                 }],
@@ -228,7 +228,8 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'algorithms': d({}),
         },
     },
-    'implementation': {
-        'implementations': d({}),
-    },
+    'implementation': ['manual', {}],
+    // 'implementation': ['generated', {
+    //     'implementations': d({}),
+    // }],
 }

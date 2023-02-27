@@ -23,14 +23,17 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
     'type': ['library', {
         'main': {
             'definition': api,
+            'implementation': ['manual', {}],
         },
         'submodules': d({
             "liana": liana_new,
             "liana_flat": {
                 'definition': liana_flat,
+                'implementation': ['manual', {}],
             },
             "liana2pareto": {
                 'definition': liana2pareto,
+                'implementation': ['manual', {}],
             },
         }),
         'executables': d({}),
