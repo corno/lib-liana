@@ -21,6 +21,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         "glo-pareto-common": {},
         "lib-pareto-typescript-project": {},
         "res-pareto-build": {},
+        "lib-fountain-pen": {},
     }),
     'type': ['library', {
         'main': {

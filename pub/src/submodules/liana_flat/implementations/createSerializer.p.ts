@@ -8,7 +8,7 @@ import * as gcommon from "glo-pareto-common"
 import { CcreateSerializer } from "../api"
 
 export const $$: CcreateSerializer = ($d) => {
-    return <Annotation>($: gliana2pareto.T.MappedModel<Annotation>, $i: gfp.IWriter) => {
+    return <Annotation>($: gliana2pareto.T.MappedModel<Annotation>, $i: gfp.IDirectory) => {
 
         $i.file(`states.generated.ts`, ($i) => {
             $d.serializeStates($d.mapLiana2States($), $i)

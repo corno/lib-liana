@@ -8,7 +8,7 @@ import { CcreateModuleGenerator } from "../api"
 
 export const $$: CcreateModuleGenerator = ($d) => {
     return ($) => {
-        gfp.$a.createWriter(
+        gfp.$a.createDirectory(
             {
                 onError: $d.logError,
                 reportSuperfluousNode: ($) => {

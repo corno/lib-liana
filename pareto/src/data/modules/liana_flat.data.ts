@@ -23,7 +23,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
         }),
         'interfaces': d({}),
         'functions': d({
-            "Serialize": func(parametrizedTypeReference("liana2pareto", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, interfaceReference("fp", "Writer"), null),
+            "Serialize": func(parametrizedTypeReference("liana2pareto", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, interfaceReference("fp", "Directory"), null),
         }),
     },
     'api': {
