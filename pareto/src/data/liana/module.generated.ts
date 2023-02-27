@@ -20,16 +20,13 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'parameters': d({}),
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "root": {
-                            'optional': false,
                             'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                 "key": {
-                                    'optional': false,
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                 },
                             })],
                         },
                         "type library": {
-                            'optional': false,
                             'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                 'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                 'type': "Type Library",
@@ -46,14 +43,11 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'parameters': d({}),
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "constrained": {
-                            'optional': false,
                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                 "no": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "type": {
-                                        'optional': false,
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                             "key": {
-                                                'optional': false,
                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                             },
                                         })],
@@ -73,7 +67,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                         "array": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "type": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                     'type': "Type",
@@ -84,14 +77,11 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "boolean": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                         "component": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "arguments": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                             },
                             "type": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "key": {
-                                        'optional': false,
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                     },
                                 })],
@@ -99,7 +89,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         })],
                         "dictionary": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "key": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                     'type': "String",
@@ -107,7 +96,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                 }],
                             },
                             "type": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                     'type': "Type",
@@ -117,10 +105,8 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         })],
                         "group": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "properties": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "type": {
-                                        'optional': false,
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                             'type': "Type",
@@ -132,7 +118,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         })],
                         "optional": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "type": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                     'type': "Type",
@@ -147,16 +132,13 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         }],
                         "tagged union": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "default": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "key": {
-                                        'optional': false,
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                     },
                                 })],
                             },
                             "options": {
-                                'optional': false,
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                     'type': "Type",
@@ -170,14 +152,11 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'parameters': d({}),
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "global types": {
-                            'optional': false,
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                 "parameters": {
-                                    'optional': false,
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                                 },
                                 "type": {
-                                    'optional': false,
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
                                         'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
                                         'type': "Type",
@@ -187,7 +166,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             })]],
                         },
                         "string types": {
-                            'optional': false,
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                         },
                     })]
@@ -222,14 +200,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'functions': d({}),
         },
         'api': {
-            'imports': d({
-                "foreach": "res-pareto-foreach",
-            }),
+            'imports': d({}),
             'algorithms': d({}),
         },
     },
     'implementation': ['manual', {}],
-    // 'implementation': ['generated', {
-    //     'implementations': d({}),
-    // }],
 }
