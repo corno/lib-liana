@@ -24,9 +24,21 @@ export namespace T {
     
     export namespace GenerationConfiguration {
         
-        export namespace algorithms {}
+        export namespace algorithms {
+            
+            export namespace serialize {
+                
+                export namespace O {}
+                
+                export type O<GPAnnotation> = {}
+            }
+            
+            export type serialize<GPAnnotation> = [ false ] | [ true, {}]
+        }
         
-        export type algorithms<GPAnnotation> = {}
+        export type algorithms<GPAnnotation> = {
+            readonly 'serialize': [ false ] | [ true, {}]
+        }
         
         export namespace datamodel {
             
@@ -94,7 +106,9 @@ export namespace T {
     }
     
     export type GenerationConfiguration<GPAnnotation> = {
-        readonly 'algorithms': {}
+        readonly 'algorithms': {
+            readonly 'serialize': [ false ] | [ true, {}]
+        }
         readonly 'datamodel': [ false ] | [ true, {
             readonly 'annotations': boolean
             readonly 'properties optional': boolean

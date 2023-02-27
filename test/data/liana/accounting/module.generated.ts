@@ -1201,14 +1201,92 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     })]]
                 },
             }),
-            'interfaces': d({}),
-            'functions': d({}),
+            'interfaces': d({
+                "Visitor": ['group', {
+                    'members': d({
+                        "Accounting": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Afhandeling": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Informele Rekeningen": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Jaren": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                    }),
+                }],
+            }),
+            'functions': d({
+                "Serialize": {
+                    'data': {
+                        'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                        'type': "Accounting",
+                        'arguments': d({}),
+                    },
+                    'managed input interface': ['not set', {}],
+                    'output interface': ['set', {
+                        'context': <gglossary.T.Context<pd.SourceLocation>>['import', {
+                            'glossary': "fp",
+                            'arguments': d({}),
+                        }],
+                        'interface': "Line",
+                    }],
+                    'return type': ['nothing', {}],
+                },
+            }),
         },
         'api': {
             'imports': d({
                 "foreach": "res-pareto-foreach",
             }),
-            'algorithms': d({}),
+            'algorithms': d({
+                "createSerializer": {
+                    'definition': {
+                        'context': ['local', {}],
+                        'function': "Serialize",
+                    },
+                    'type': ['constructor', {
+                        'configuration data': [false],
+                        'dependencies': d({
+                            "arrayForEach": {
+                                'context': ['import', {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                }],
+                                'function': "ArrayForEach",
+                            },
+                            "dictionaryForEach": {
+                                'context': ['import', {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                }],
+                                'function': "DictionaryForEach",
+                            },
+                            "enrichedArrayForEach": {
+                                'context': ['import', {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                }],
+                                'function': "EnrichedArrayForEach",
+                            },
+                            "enrichedDictionaryForEach": {
+                                'context': ['import', {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                }],
+                                'function': "EnrichedDictionaryForEach",
+                            },
+                        }),
+                    }],
+                },
+            }),
         },
     },
     'implementation': {

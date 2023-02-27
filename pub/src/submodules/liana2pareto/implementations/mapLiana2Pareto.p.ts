@@ -10,6 +10,6 @@ import { CmapLiana2Pareto } from "../api"
 export const $$:CmapLiana2Pareto = ($) => {
     return createMapper({
         'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
-        'buildDictionary': gbuild.$a.buildDictionary,
+        'buildDictionary': gbuild.$a.unsafeBuildDictionary,
     })($)
 }

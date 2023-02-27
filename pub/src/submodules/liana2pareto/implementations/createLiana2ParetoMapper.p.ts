@@ -202,118 +202,124 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
         return {
             'definition': <gmoduleDefinition.T.ModuleDefinition<Annotation>>{
                 'glossary': <gglossary.T.Glossary<Annotation>>{
-                    'imports': pm.wrapRawDictionary({
-                        // "fp": {
-                        //     'name': "lib-fountain-pen",
-                        //     'annotation': "FFF",
-                        // },
-                        //"fp": "lib-fountain-pen",
-                        "common": "glo-pareto-common",
+                    'imports': $d.buildDictionary(null, (add) => {
+                        if ($.configuration.datamodel[0] === true) {
+                            add({
+                                'key': "common",
+                                'value': "glo-pareto-common"
+                            })
+                        }
                     }),
                     'parameters': pm.wrapRawDictionary({
                         "Annotation": {},
                     }),
-                    // 'templates': pm.wrapRawDictionary({
-                    //     "Reference": {
-                    //         'parameters': pm.wrapRawDictionary({
-                    //             "ReferencedType": {},
-                    //         }),
-                    //         'type': <gglossary.T.Type<Annotation>>['group', pm.wrapRawDictionary({
-                    //             "annotation": {
-                    //                 'type': ['string', {}],
-                    //             },
-                    //             "name": {
-                    //                 'type': ['string', {}],
-                    //             },
-                    //         })],
-                    //     }
-                    // }),
                     'types': $.configuration.datamodel[0] === true
                         ? createTypes({
                             'model': $.mappedModel.model,
                             'configuration': $.configuration.datamodel[1],
                         })
                         : pm.wrapRawDictionary({}),
-                    'interfaces': $.configuration['visitor interface'][0] === true
-                    ? pm.wrapRawDictionary<gglossary.T.Interface<Annotation>>({
-                        // "Visitor": ['group', {
-                        //     'members': $.mappedModel.model['global types'].dictionary.map<gglossary.T.Interface<Annotation>>(($) => {
-                        //         return ['method', {
-                        //             'data': x,
-                        //             'interface': ['not set', {}]
-                        //         }]
-                        //     })
-                        // }]
-                    })
-                    : pm.wrapRawDictionary({}),
-                    'functions': pm.wrapRawDictionary({
-                        // "Serialize": {
-                        //     'return type': ['nothing', {}],
-                        //     'data': typeReference($.mappedModel.model.root.key), //unresolved
-                        //     'managed input interface': ['not set', {}],
-                        //     'output interface': ['set', {
-                        //         'context': ['import', {
-                        //             'glossary': "fp",
-                        //             'arguments': pm.wrapRawDictionary({}),
-                        //         }],
-                        //         'interface': "Line"
-                        //         // 'context': ['import', {
-                        //         //     'name': "fp",
-                        //         //     'annotation': "FFF",
-                        //         // }],
-                        //         // 'interface': {
-                        //         //     'name': "Line",
-                        //         //     'annotation': "FFF",
-                        //         // }
-                        //     }],
-                        // },
+                    'interfaces': $d.buildDictionary(null, (add) => {
+
+                        if ($.configuration['visitor interface'][0] === true) {
+                            add({
+                                'key': "Visitor",
+                                'value': ['group', {
+                                    'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
+                                        return ['method', {
+                                            'data': ['not set', {}], //FIXME
+                                            'interface': ['not set', {}], //FIXME
+                                        }]
+                                    })
+                                }],
+                            })
+                        }
                     }),
+                    'functions': $d.buildDictionary(null, (add) => {
+                        if ($.configuration.algorithms.serialize[0] === true) {
+                            add({
+                                'key': "Serialize",
+                                'value': {
+                                    'return type': ['nothing', {}],
+                                    'data': typeReference($.mappedModel.model.root.key), //unresolved
+                                    'managed input interface': ['not set', {}],
+                                    'output interface': ['set', {
+                                        'context': ['import', {
+                                            'glossary': "fp",
+                                            'arguments': pm.wrapRawDictionary({}),
+                                        }],
+                                        'interface': "Line"
+                                        // 'context': ['import', {
+                                        //     'name': "fp",
+                                        //     'annotation': "FFF",
+                                        // }],
+                                        // 'interface': {
+                                        //     'name': "Line",
+                                        //     'annotation': "FFF",
+                                        // }
+                                    }],
+                                },
+                            })
+                        }
+                    })
                 },
                 'api': {
                     'imports': pm.wrapRawDictionary({
                         "foreach": "res-pareto-foreach",
                     }),
-                    'algorithms': pm.wrapRawDictionary({
-                        // "createSerializer": {
-                        //     'definition': {
-                        //         'context': ['local', {}],
-                        //         'function': "Serialize"
-                        //     },
-                        //     'type': ['constructor', {
-                        //         'configuration data': [false],
-                        //         'dependencies': pm.wrapRawDictionary({
-                        //             "arrayForEach": {
-                        //                 'context': ['import', {
-                        //                     'glossary': "foreach",
-                        //                     'arguments': pm.wrapRawDictionary({}),
-                        //                 }],
-                        //                 'function': "ArrayForEach",
-                        //             },
-                        //             "dictionaryForEach": {
-                        //                 'context': ['import', {
-                        //                     'glossary': "foreach",
-                        //                     'arguments': pm.wrapRawDictionary({}),
-                        //                 }],
-                        //                 'function': "DictionaryForEach",
-                        //             },
-                        //             "enrichedArrayForEach": {
-                        //                 'context': ['import', {
-                        //                     'glossary': "foreach",
-                        //                     'arguments': pm.wrapRawDictionary({}),
-                        //                 }],
-                        //                 'function': "EnrichedArrayForEach",
-                        //             },
-                        //             "enrichedDictionaryForEach": {
-                        //                 'context': ['import', {
-                        //                     'glossary': "foreach",
-                        //                     'arguments': pm.wrapRawDictionary({}),
-                        //                 }],
-                        //                 'function': "EnrichedDictionaryForEach",
-                        //             },
-                        //         })
-                        //     }]
-                        // },
+                    'algorithms': $d.buildDictionary(null, (add) => {
+                        if ($.configuration.algorithms.serialize[0] === true) {
+                            add({
+                                'key': "createSerializer",
+                                'value': {
+                                    'definition': {
+                                        'context': ['local', {}],
+                                        'function': "Serialize"
+                                    },
+                                    'type': ['constructor', {
+                                        'configuration data': [false],
+                                        'dependencies': pm.wrapRawDictionary({
+                                            "arrayForEach": {
+                                                'context': ['import', {
+                                                    'glossary': "foreach",
+                                                    'arguments': pm.wrapRawDictionary({}),
+                                                }],
+                                                'function': "ArrayForEach",
+                                            },
+                                            "dictionaryForEach": {
+                                                'context': ['import', {
+                                                    'glossary': "foreach",
+                                                    'arguments': pm.wrapRawDictionary({}),
+                                                }],
+                                                'function': "DictionaryForEach",
+                                            },
+                                            "enrichedArrayForEach": {
+                                                'context': ['import', {
+                                                    'glossary': "foreach",
+                                                    'arguments': pm.wrapRawDictionary({}),
+                                                }],
+                                                'function': "EnrichedArrayForEach",
+                                            },
+                                            "enrichedDictionaryForEach": {
+                                                'context': ['import', {
+                                                    'glossary': "foreach",
+                                                    'arguments': pm.wrapRawDictionary({}),
+                                                }],
+                                                'function': "EnrichedDictionaryForEach",
+                                            },
+                                        })
+                                    }]
+                                },
+                            })
+                        }
                     })
+
+
+                    //pm.wrapRawDictionary({
+                    // "createSerializer": {
+
+                    // },
+                    // })
                 },
             },
             'implementation': <galgorithm.T.Implementation<Annotation>>{

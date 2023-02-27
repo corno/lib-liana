@@ -79,7 +79,9 @@ export const $$: CgetTestSet = ($) => {
             'visitor interface': [true, {
                 'datamodel location': "FSSDF",
             }],
-            'algorithms': {},
+            'algorithms': {
+                'serialize': [true, {}],
+            },
         },
 
     })
@@ -95,7 +97,9 @@ export const $$: CgetTestSet = ($) => {
                 'visitor interface': [true, {
                     'datamodel location': "FSSDF",
                 }],
-                'algorithms': {},
+                'algorithms': {
+                    'serialize': [true, {}],
+                },
             },
             'mappedModel': {
                 'model': glossary,
@@ -118,7 +122,9 @@ export const $$: CgetTestSet = ($) => {
                 'visitor interface': [true, {
                     'datamodel location': "FSSDF",
                 }],
-                'algorithms': {},
+                'algorithms': {
+                    'serialize': [true, {}],
+                },
             },
             'mappedModel': accountingModel,
         },

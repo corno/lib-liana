@@ -8,7 +8,7 @@ import * as gforeach from "res-pareto-foreach"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 export type CcreateLiana2ParetoMapper = ($d: {
-    readonly 'buildDictionary': gbuild.FBuildDictionary
+    readonly 'buildDictionary': gbuild.FUnsafeBuildDictionary
     readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
 }) => gglo.FMapLiana2Pareto
 

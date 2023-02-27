@@ -32,7 +32,7 @@ export const $$:CgenerateModule = ($) => {
             'logError': gmain.$a.logError,
             'mapLiana2Pareto': $a.createLiana2ParetoMapper({
                 'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
-                'buildDictionary': gbuild.$a.buildDictionary,
+                'buildDictionary': gbuild.$a.unsafeBuildDictionary,
             }),
             'serializeProject': gproject.$a.createSerializerWithContext({
                 'serialize': gproject.$a.createSerializer({

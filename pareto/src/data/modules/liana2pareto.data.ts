@@ -40,7 +40,9 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
                     "datamodel location": member(string()),
                 }))),
                 "algorithms": member(group({
-                    //serialize
+                    "serialize": member(optional(group({
+                        //data location,
+                    }))),
                     //resolve
                 })),
             })),
@@ -86,7 +88,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
             })),
             "createLiana2ParetoMapper": algorithm(definitionReference("MapLiana2Pareto"), constructor(null, {
                 "decorateDictionaryEntriesWithKey": definitionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-                "buildDictionary": definitionReference("build", {}, "BuildDictionary"),
+                "buildDictionary": definitionReference("build", {}, "UnsafeBuildDictionary"),
             })),
             "mapLiana2Pareto": algorithm(definitionReference("MapLiana2Pareto")),
             "createLiana2StatesMapper": algorithm(definitionReference("MapLiana2States"), constructor(null, {
