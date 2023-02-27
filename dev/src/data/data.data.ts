@@ -18,7 +18,9 @@ export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> 
                 'visitor interface': [true, {
                     'datamodel location': "FIXME"
                 }],
-                'algorithms': {},
+                'algorithms': {
+                    'serialize': [false],
+                },
             },
             'mappedModel': {
                 'model': liana,

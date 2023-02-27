@@ -193,7 +193,32 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     })]
                 },
             }),
-            'interfaces': d({}),
+            'interfaces': d({
+                "Visitor": ['group', {
+                    'members': d({
+                        "Model": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Reference": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "String": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Type": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                        "Type Library": ['method', {
+                            'data': ['not set', {}],
+                            'interface': ['not set', {}],
+                        }],
+                    }),
+                }],
+            }),
             'functions': d({}),
         },
         'api': {
