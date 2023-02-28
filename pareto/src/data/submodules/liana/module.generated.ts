@@ -236,5 +236,5 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'functions': d({}),
         },
     },
-    'implementation': ['manual', {}],
+    'implementation': ['typescript', {}],
 }
