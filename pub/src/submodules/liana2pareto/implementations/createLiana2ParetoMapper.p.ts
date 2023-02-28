@@ -358,7 +358,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     // })
                 },
             },
-            'implementation': ['manual', {}],
+            'implementation': ['typescript', {}],
             // 'implementation': ['generated', {
             //     //     'implementations': pm.wrapRawDictionary<galgorithm.T.Implementation.implementations.D<Annotation>>({
             //     //         // "createSerializer": {

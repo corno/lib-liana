@@ -56,7 +56,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     }],
                 },
             }),
-        ,
+        },
         'glossary': {
             'imports': d({
                 "common": "glo-pareto-common",
