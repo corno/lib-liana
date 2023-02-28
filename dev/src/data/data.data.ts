@@ -7,7 +7,7 @@ import { $ as liana } from "./models/liana.data"
 
 export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> = pd.a([
     {
-        'path': `../../pareto/src/data/liana`,
+        'path': `../../pareto/src/data/submodules/liana`,
         'data': {
             'configuration': {
                 'datamodel': [true, {

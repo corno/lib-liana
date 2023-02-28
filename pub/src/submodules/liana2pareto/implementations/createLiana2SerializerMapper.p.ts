@@ -12,7 +12,7 @@ import * as gliana from "../../liana"
 import { CcreateLiana2SerializerMapper } from "../api"
 
 export const $$: CcreateLiana2SerializerMapper = ($d) => {
-    return <Annotation>($: gapi.T.MappedModel<gapi.T.OutAnnotation<Annotation>>) => {
+    return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
         const stringMapping = $.stringmapping
         type OutAnnotation = gapi.T.OutAnnotation<Annotation>
         return {

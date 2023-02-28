@@ -179,7 +179,6 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                                 "annotation": {
                                                     'type': ['glossary parameter', "Annotation"]
                                                 },
-                                                //ANNOTATION
                                             })]
                                             // return ['reference', {
                                             //     'context': ['import', {

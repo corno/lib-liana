@@ -8,10 +8,13 @@ export namespace T {
         
         export namespace root {
             
+            export type annotation<GPAnnotation> = GPAnnotation
+            
             export type key<GPAnnotation> = string
         }
         
         export type root<GPAnnotation> = {
+            readonly 'annotation': GPAnnotation
             readonly 'key': string
         }
         
@@ -20,6 +23,7 @@ export namespace T {
     
     export type Model<GPAnnotation> = {
         readonly 'root': {
+            readonly 'annotation': GPAnnotation
             readonly 'key': string
         }
         readonly 'type library': T.Type__Library<GPAnnotation>
@@ -37,16 +41,20 @@ export namespace T {
                 
                 export namespace _ltype {
                     
+                    export type annotation<GPAnnotation> = GPAnnotation
+                    
                     export type key<GPAnnotation> = string
                 }
                 
                 export type _ltype<GPAnnotation> = {
+                    readonly 'annotation': GPAnnotation
                     readonly 'key': string
                 }
             }
             
             export type no<GPAnnotation> = {
                 readonly 'type': {
+                    readonly 'annotation': GPAnnotation
                     readonly 'key': string
                 }
             }
@@ -57,6 +65,7 @@ export namespace T {
         export type constrained<GPAnnotation> = 
             | ['no', {
                 readonly 'type': {
+                    readonly 'annotation': GPAnnotation
                     readonly 'key': string
                 }
             }]
@@ -67,6 +76,7 @@ export namespace T {
         readonly 'constrained': 
             | ['no', {
                 readonly 'type': {
+                    readonly 'annotation': GPAnnotation
                     readonly 'key': string
                 }
             }]
@@ -105,16 +115,20 @@ export namespace T {
                     
                     export namespace library {
                         
+                        export type annotation<GPAnnotation> = GPAnnotation
+                        
                         export type key<GPAnnotation> = string
                     }
                     
                     export type library<GPAnnotation> = {
+                        readonly 'annotation': GPAnnotation
                         readonly 'key': string
                     }
                 }
                 
                 export type _limport<GPAnnotation> = {
                     readonly 'library': {
+                        readonly 'annotation': GPAnnotation
                         readonly 'key': string
                     }
                 }
@@ -127,6 +141,7 @@ export namespace T {
             export type context<GPAnnotation> = 
                 | ['import', {
                     readonly 'library': {
+                        readonly 'annotation': GPAnnotation
                         readonly 'key': string
                     }
                 }]
@@ -134,10 +149,13 @@ export namespace T {
             
             export namespace _ltype {
                 
+                export type annotation<GPAnnotation> = GPAnnotation
+                
                 export type key<GPAnnotation> = string
             }
             
             export type _ltype<GPAnnotation> = {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }
@@ -147,11 +165,13 @@ export namespace T {
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
+                        readonly 'annotation': GPAnnotation
                         readonly 'key': string
                     }
                 }]
                 | ['local', {}]
             readonly 'type': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }
@@ -208,10 +228,13 @@ export namespace T {
             
             export namespace _ldefault {
                 
+                export type annotation<GPAnnotation> = GPAnnotation
+                
                 export type key<GPAnnotation> = string
             }
             
             export type _ldefault<GPAnnotation> = {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             
@@ -225,6 +248,7 @@ export namespace T {
         
         export type tagged__union<GPAnnotation> = {
             readonly 'default': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             readonly 'options': pt.Dictionary<T.Type<GPAnnotation>>
@@ -241,11 +265,13 @@ export namespace T {
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
+                        readonly 'annotation': GPAnnotation
                         readonly 'key': string
                     }
                 }]
                 | ['local', {}]
             readonly 'type': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }]
@@ -264,6 +290,7 @@ export namespace T {
         | ['string', T.String<GPAnnotation>]
         | ['tagged union', {
             readonly 'default': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             readonly 'options': pt.Dictionary<T.Type<GPAnnotation>>

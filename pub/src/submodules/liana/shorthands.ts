@@ -233,7 +233,7 @@ export function component(type: string, args: RawDictionary<{}>): gglo.T.Type<pd
         'context': ['local', {}],
         'type': {
             'key': type,
-            //'annotation': li
+            'annotation': li,
         },
         'arguments': pd.d(args)
     }]
@@ -244,11 +244,12 @@ export function importedComponent(library: string, type: string, args: RawDictio
         'context': ['import', {
             'library': {
                 'key': library,
+                'annotation': li,
             }
         }],
         'type': {
             'key': type,
-            //'annotation': li
+            'annotation': li,
         },
         'arguments': pd.d(args)
     }]
