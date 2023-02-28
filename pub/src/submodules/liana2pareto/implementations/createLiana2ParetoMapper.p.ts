@@ -4,7 +4,7 @@ import * as pm from 'pareto-core-map'
 import * as gapi from "../api"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
-import * as gmoduleDefinition from "lib-pareto-typescript-project/dist/submodules/moduleDefinition"
+import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../liana"
 
 import { CcreateLiana2ParetoMapper } from "../api"
@@ -211,7 +211,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             })
         }
         return {
-            'definition': <gmoduleDefinition.T.ModuleDefinition<Annotation>>{
+            'definition': <gproject.T.ModuleDefinition<Annotation>>{
                 'glossary': <gglossary.T.Glossary<Annotation>>{
                     'imports': $d.buildDictionary(null, (add) => {
                         if ($.configuration.algorithms.serialize[0] === true) {
@@ -306,38 +306,41 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                 'key': "createSerializer",
                                 'value': {
                                     'definition': {
-                                        'context': ['local', {}],
+                                        'context': {
+                                            'glossary': "XXXXXX",
+                                            'arguments': pm.wrapRawDictionary({}),
+                                        },
                                         'function': "Serialize"
                                     },
                                     'type': ['constructor', {
                                         'configuration data': [false],
                                         'dependencies': pm.wrapRawDictionary({
                                             "arrayForEach": {
-                                                'context': ['import', {
+                                                'context': {
                                                     'glossary': "foreach",
                                                     'arguments': pm.wrapRawDictionary({}),
-                                                }],
+                                                },
                                                 'function': "ArrayForEach",
                                             },
                                             "dictionaryForEach": {
-                                                'context': ['import', {
+                                                'context': {
                                                     'glossary': "foreach",
                                                     'arguments': pm.wrapRawDictionary({}),
-                                                }],
+                                                },
                                                 'function': "DictionaryForEach",
                                             },
                                             "enrichedArrayForEach": {
-                                                'context': ['import', {
+                                                'context':  {
                                                     'glossary': "foreach",
                                                     'arguments': pm.wrapRawDictionary({}),
-                                                }],
+                                                },
                                                 'function': "EnrichedArrayForEach",
                                             },
                                             "enrichedDictionaryForEach": {
-                                                'context': ['import', {
+                                                'context': {
                                                     'glossary': "foreach",
                                                     'arguments': pm.wrapRawDictionary({}),
-                                                }],
+                                                },
                                                 'function': "EnrichedDictionaryForEach",
                                             },
                                         })

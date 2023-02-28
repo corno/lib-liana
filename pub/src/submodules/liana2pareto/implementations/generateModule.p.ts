@@ -2,10 +2,10 @@
 
 import * as gforeach from "res-pareto-foreach"
 import * as gcoll from "res-pareto-collation"
-import * as gmoduleDefinition from "lib-pareto-typescript-project/dist/submodules/moduleDefinition"
+import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
 import * as gmain from "res-pareto-main"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
-import * as gglossary_temp from "lib-pareto-typescript-project/dist/submodules/glossary_temp"
+import * as gglossary_temp from "lib-pareto-typescript-project/dist/submodules/glossary_serialize_temp"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
 import * as gbuild from "res-pareto-build"
 
@@ -38,16 +38,16 @@ export const $$:CgenerateModule = ($) => {
                 'serialize': gproject.$a.createSerializer({
                     'dictionaryForEach': d,
                     'enrichedArrayForEach': ea,
-                    'serializeModuleDefinition': gmoduleDefinition.$a.createSerializer({
+                    'serializeAPI': gapi.$a.createSerializer({
 
                         'dictionaryForEach': d,
                         'enrichedArrayForEach': ea,
-                        'serializeGlossary': gglossary_temp.$a.createSerializer({
-                            'arrayForEach': a,
-                            'dictionaryForEach': d,
-                            'enrichedArrayForEach': ea,
-                            'enrichedDictionaryForEach': ed,
-                        })
+                    }),
+                    'serializeGlossary': gglossary_temp.$a.createSerializer({
+                        'arrayForEach': a,
+                        'dictionaryForEach': d,
+                        'enrichedArrayForEach': ea,
+                        'enrichedDictionaryForEach': ed,
                     }),
                     'serializeImplementation': galgorithm.$a.createImplementationSerializer({
                         'arrayForEach': a,

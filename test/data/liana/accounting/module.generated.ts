@@ -8,6 +8,55 @@ const a = pd.a
 
 export const $: gproject.T.Module<pd.SourceLocation> = {
     'definition': {
+        'api': {
+            'imports': d({
+                "foreach": "res-pareto-foreach",
+            }),
+            'algorithms': d({
+                "createSerializer": {
+                    'definition': {
+                        'context': {
+                            'glossary': "XXXXXX",
+                            'arguments': d({}),
+                        },
+                        'function': "Serialize",
+                    },
+                    'type': ['constructor', {
+                        'configuration data': [false],
+                        'dependencies': d({
+                            "arrayForEach": {
+                                'context': {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                },
+                                'function': "ArrayForEach",
+                            },
+                            "dictionaryForEach": {
+                                'context': {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                },
+                                'function': "DictionaryForEach",
+                            },
+                            "enrichedArrayForEach": {
+                                'context': {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                },
+                                'function': "EnrichedArrayForEach",
+                            },
+                            "enrichedDictionaryForEach": {
+                                'context': {
+                                    'glossary': "foreach",
+                                    'arguments': d({}),
+                                },
+                                'function': "EnrichedDictionaryForEach",
+                            },
+                        }),
+                    }],
+                },
+            }),
+        ,
         'glossary': {
             'imports': d({
                 "common": "glo-pareto-common",
@@ -1189,52 +1238,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         'interface': "Line",
                     }],
                     'return type': ['nothing', {}],
-                },
-            }),
-        },
-        'api': {
-            'imports': d({
-                "foreach": "res-pareto-foreach",
-            }),
-            'algorithms': d({
-                "createSerializer": {
-                    'definition': {
-                        'context': ['local', {}],
-                        'function': "Serialize",
-                    },
-                    'type': ['constructor', {
-                        'configuration data': [false],
-                        'dependencies': d({
-                            "arrayForEach": {
-                                'context': ['import', {
-                                    'glossary': "foreach",
-                                    'arguments': d({}),
-                                }],
-                                'function': "ArrayForEach",
-                            },
-                            "dictionaryForEach": {
-                                'context': ['import', {
-                                    'glossary': "foreach",
-                                    'arguments': d({}),
-                                }],
-                                'function': "DictionaryForEach",
-                            },
-                            "enrichedArrayForEach": {
-                                'context': ['import', {
-                                    'glossary': "foreach",
-                                    'arguments': d({}),
-                                }],
-                                'function': "EnrichedArrayForEach",
-                            },
-                            "enrichedDictionaryForEach": {
-                                'context': ['import', {
-                                    'glossary': "foreach",
-                                    'arguments': d({}),
-                                }],
-                                'function': "EnrichedDictionaryForEach",
-                            },
-                        }),
-                    }],
                 },
             }),
         },
