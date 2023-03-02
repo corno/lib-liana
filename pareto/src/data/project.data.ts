@@ -18,10 +18,10 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
 
 
     'dependencies': d({
-        "glo-pareto-common": {},
-        "lib-pareto-typescript-project": {},
-        "res-pareto-build": {},
-        "lib-fountain-pen": {},
+        "glo-pareto-common": null,
+        "lib-pareto-typescript-project": null,
+        "res-pareto-build": null,
+        "lib-fountain-pen": null,
     }),
     'type': ['library', {
         'main': main,
@@ -35,12 +35,12 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         'executables': d({}),
         'test': {
             'dependencies': d({
-                "lib-fountain-pen": {},
-                "lib-pareto-typescript-project": {},
+                "lib-fountain-pen": null,
+                "lib-pareto-typescript-project": null,
 
                 //temporary:
-                "res-pareto-foreach": {},
-                "res-typescript": {},
+                "res-pareto-foreach": null,
+                "res-typescript": null,
             }),
             'glossary': {
                 'functions': d({}),

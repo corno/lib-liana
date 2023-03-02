@@ -30,7 +30,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "liana2pareto": "../../../liana2pareto",
     }),
     'parameters': d({
-        "Annotation": {},
+        "Annotation": null,
     }),
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),

@@ -20,11 +20,11 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
         'string types': pd.d({
-            "text": {},
-            "identifier": {},
+            "text": null,
+            "identifier": null,
         }),
         'global types': pd.d({
-            "Root": globalType({ "parameterA": "Sub"}, group({
+            "Root": globalType({ "parameterA": null}, group({
                 "a": prop(string("text")),
                 "b": prop(string("text")),
                 "c": prop(dictionary(group({}))),

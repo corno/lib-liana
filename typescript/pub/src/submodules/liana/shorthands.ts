@@ -3,7 +3,7 @@ import * as pl from 'pareto-core-lib'
 
 import * as gcommon from 'glo-pareto-common'
 
-import * as gglo from "./definition/glossary"
+import * as gglo from "./definition/glossary";
 
 type RawDictionary<T> = { [key: string]: T }
 
@@ -79,7 +79,7 @@ export function dictionary(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd
     }]
 }
 
-export function globalType(parameters: RawDictionary<string>, type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type__Library.global__types.D<pd.SourceLocation> {
+export function globalType(parameters: RawDictionary<null>, type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type__Library.global__types.D<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return {
         'type': type,
@@ -141,7 +141,7 @@ export function string(type: string): gglo.T.Type<pd.SourceLocation> {
 }
 
 export function boolean(): gglo.T.Type<pd.SourceLocation> {
-    return ['boolean', {}]
+    return ['boolean', null]
 }
 
 export type ReferenceType =
@@ -170,50 +170,51 @@ export function parameter(name: string): ReferenceType {
 }
 
 function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.Reference<pd.SourceLocation> {
-    return {
-        'type': pl.cc($, ($) => {
-            switch ($[0]) {
-                case 'parameter':
-                    return pl.cc($[1], ($) => {
-                        return ['parameter', r_imp($, annotation)]
-                    })
-                case 'parent':
-                    return pl.cc($[1], ($) => {
-                        return ['other', {}]
-                    })
-                case 'self':
-                    return pl.cc($[1], ($) => {
-                        return ['other', {}]
-                    })
-                case 'sibling':
-                    return pl.cc($[1], ($) => {
-                        return ['sibling', r_imp($, annotation)]
-                    })
-                default: return pl.au($[0])
-            }
-        }),
-        'steps': pd.a(steps).map(($) => {
-            switch ($[0]) {
-                case 'array':
-                    return pl.cc($[1], ($) => {
-                        return ['array', {}]
-                    })
-                case 'group':
-                    return pl.cc($[1], ($) => {
-                        return ['group', r_imp($, annotation)]
-                    })
-                case 'reference':
-                    return pl.cc($[1], ($) => {
-                        return ['reference', {}]
-                    })
-                case 'tagged union':
-                    return pl.cc($[1], ($) => {
-                        return ['tagged union', r_imp($, annotation)]
-                    })
-                default: return pl.au($[0])
-            }
-        }),
-    }
+    return null
+    // return {
+    //     'type': pl.cc($, ($) => {
+    //         switch ($[0]) {
+    //             case 'parameter':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['parameter', r_imp($, annotation)]
+    //                 })
+    //             case 'parent':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['other', null]
+    //                 })
+    //             case 'self':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['other', null]
+    //                 })
+    //             case 'sibling':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['sibling', r_imp($, annotation)]
+    //                 })
+    //             default: return pl.au($[0])
+    //         }
+    //     }),
+    //     'steps': pd.a(steps).map(($) => {
+    //         switch ($[0]) {
+    //             case 'array':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['array', null]
+    //                 })
+    //             case 'group':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['group', r_imp($, annotation)]
+    //                 })
+    //             case 'reference':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['reference', null]
+    //                 })
+    //             case 'tagged union':
+    //                 return pl.cc($[1], ($) => {
+    //                     return ['tagged union', r_imp($, annotation)]
+    //                 })
+    //             default: return pl.au($[0])
+    //         }
+    //     }),
+    // }
 
 }
 
@@ -227,10 +228,10 @@ export function reference(
     }]
 }
 
-export function component(type: string, args: RawDictionary<{}>): gglo.T.Type<pd.SourceLocation> {
+export function component(type: string, args: RawDictionary<null>): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['component', {
-        'context': ['local', {}],
+        'context': ['local', null],
         'type': {
             'key': type,
             'annotation': li,
@@ -238,7 +239,7 @@ export function component(type: string, args: RawDictionary<{}>): gglo.T.Type<pd
         'arguments': pd.d(args)
     }]
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<{}>): gglo.T.Type<pd.SourceLocation> {
+export function importedComponent(library: string, type: string, args: RawDictionary<null>): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['component', {
         'context': ['import', {

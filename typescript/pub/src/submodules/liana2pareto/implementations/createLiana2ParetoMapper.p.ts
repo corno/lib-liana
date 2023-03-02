@@ -15,7 +15,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
         const stringMapping = $.mappedModel.stringmapping
         // function ref(type: string): gglossary.T.Type {
         //     return ['reference', {
-        //         'context': ['local', {}],
+        //         'context': ['local', null],
         //         'type': {
         //             'annotation': "SSDF",
         //             'name': type
@@ -93,7 +93,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                             })
                         case 'boolean':
                             return pl.cc($[1], ($) => {
-                                return ['boolean', {}]
+                                return ['boolean', null]
                             })
                         case 'component':
                             return pl.cc($[1], ($) => {
@@ -106,7 +106,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                                         'glossary': $.library.key,
                                                         'arguments': pm.wrapRawDictionary({
                                                             "Annotation": {
-                                                                'context': ['local', {}],
+                                                                'context': ['local', null],
                                                                 'type': "FOOOOOOO",
                                                                 'arguments': pm.wrapRawDictionary({}),
                                                             }
@@ -115,7 +115,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                                 })
                                             case 'local':
                                                 return pl.cc($.context[1], ($) => {
-                                                    return ['local', {}]
+                                                    return ['local', null]
                                                 })
                                             default: return pl.au($.context[0])
                                         }
@@ -152,15 +152,15 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                                     switch ($[0]) {
                                                         case 'boolean':
                                                             return pl.cc($[1], ($) => {
-                                                                return ['boolean', {}]
+                                                                return ['boolean', null]
                                                             })
                                                         case 'number':
                                                             return pl.cc($[1], ($) => {
-                                                                return ['number', {}]
+                                                                return ['number', null]
                                                             })
                                                         case 'string':
                                                             return pl.cc($[1], ($) => {
-                                                                return ['string', {}]
+                                                                return ['string', null]
                                                             })
                                                         default: return pl.au($[0])
                                                     }
@@ -174,7 +174,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                         return pl.cc($.constrained[1], ($): gglossary.T.Type<Annotation> => {
                                             return ['group', pm.wrapRawDictionary<gglossary.T.Type.group.D<Annotation>>({
                                                 "key": {
-                                                    'type': ['string', {}]
+                                                    'type': ['string', null]
                                                 },
                                                 "annotation": {
                                                     'type': ['glossary parameter', "Annotation"]
@@ -187,7 +187,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                                             //     }],
                                             //     'type': "Reference",
                                             //     'arguments': pm.wrapRawDictionary({
-                                            //         //"ReferencedType": <gglossary.GTypeReference>['null', {}], //FIXME
+                                            //         //"ReferencedType": <gglossary.GTypeReference>['null', null], //FIXME
                                             //     }),
                                             // }]
                                         })
@@ -228,7 +228,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                         }
                     }),
                     'parameters': pm.wrapRawDictionary({
-                        "Annotation": {},
+                        "Annotation": null,
                     }),
                     'types': $.configuration.datamodel[0] === true
                         ? createTypes({
@@ -256,7 +256,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                         if ($.configuration.algorithms.serialize[0] === true) {
                             function typeReference(type: string): gglossary.T.TypeReference<Annotation> {
                                 return {
-                                    'context': ['local', {}],
+                                    'context': ['local', null],
                                     'type': type,
                                     // 'type': {
                                     //     'annotation': "SSDF",
@@ -268,7 +268,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                             add({
                                 'key': "Serialize",
                                 'value': {
-                                    'return type': ['nothing', {}],
+                                    'return type': ['nothing', null],
                                     'data': typeReference($.mappedModel.model.root.key), //unresolved
                                     'managed input interface': [false],
                                     'output interface': [true, {
@@ -358,7 +358,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
                     // })
                 },
             },
-            'implementation': ['typescript', {}],
+            'implementation': ['typescript', null],
             // 'implementation': ['generated', {
             //     //     'implementations': pm.wrapRawDictionary<galgorithm.T.Implementation.implementations.D<Annotation>>({
             //     //         // "createSerializer": {
@@ -373,7 +373,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             //     //         //                             'child path': pr.wrapRawArray(["snippet"]),
             //     //         //                             //'property': pr.wrapRawArray([]),
             //     //         //                             'data': ['set',  ['string literal', $]],
-            //     //         //                             'callback': ['not set', {}],
+            //     //         //                             'callback': ['not set', null],
             //     //         //                         }])
             //     //         //                     }
             //     //         //                     function indent($i: () => galgorithm.GProcedureBlock) {
@@ -381,7 +381,7 @@ export const $$: CcreateLiana2ParetoMapper = ($d) => {
             //     //         //                         //     'child path': pr.wrapRawArray(["snippet"]),
             //     //         //                         //     //'property': pr.wrapRawArray([]),
             //     //         //                         //     'data': ['set',  ['string literal', $]],
-            //     //         //                         //     'callback': ['not set', {}],
+            //     //         //                         //     'callback': ['not set', null],
             //     //         //                         // }])
 
             //     //         //                     }

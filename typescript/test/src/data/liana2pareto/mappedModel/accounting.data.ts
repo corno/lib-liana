@@ -38,14 +38,14 @@ export const $: gliana2pareto.T.MappedModel<pd.SourceLocation> = {
         'type library': {
             'imports': pd.d({}),
             'string types': pd.d({
-                "bedrag": {},
-                "bestand": {},
-                "dagen": {},
-                "datum": {},
-                "multiline text": {},
-                "promillage": {},
-                "identifier": {},
-                "single line text": {},
+                "bedrag": null,
+                "bestand": null,
+                "dagen": null,
+                "datum": null,
+                "multiline text": null,
+                "promillage": null,
+                "identifier": null,
+                "single line text": null,
             }),
             'global types': pd.d({
                 "Accounting": globalType({}, group({

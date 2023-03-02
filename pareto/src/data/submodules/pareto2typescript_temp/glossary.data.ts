@@ -29,7 +29,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "fp": "lib-fountain-pen",
     }),
     'parameters': d({
-        "Annotation": {}
+        "Annotation": null,
     }),
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),

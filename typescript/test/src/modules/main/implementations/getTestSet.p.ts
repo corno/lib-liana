@@ -79,13 +79,13 @@ export const $$: CgetTestSet = ($) => {
             'datamodel': [true, {
                 'annotations': true,
                 'properties optional': false,
-                'reference mapping': ['string', {}],
+                'reference mapping': ['string', null],
             }],
             'visitor interface': [true, {
                 'datamodel location': "FSSDF",
             }],
             'algorithms': {
-                'serialize': [true, {}],
+                'serialize': [true, null],
             },
         },
 
@@ -97,13 +97,13 @@ export const $$: CgetTestSet = ($) => {
                 'datamodel': [true, {
                     'annotations': true,
                     'properties optional': false,
-                    'reference mapping': ['string', {}],
+                    'reference mapping': ['string', null],
                 }],
                 'visitor interface': [true, {
                     'datamodel location': "FSSDF",
                 }],
                 'algorithms': {
-                    'serialize': [true, {}],
+                    'serialize': [true, null],
                 },
             },
             'mappedModel': {
@@ -122,13 +122,13 @@ export const $$: CgetTestSet = ($) => {
                 'datamodel': [true, {
                     'annotations': true,
                     'properties optional': false,
-                    'reference mapping': ['string', {}],
+                    'reference mapping': ['string', null],
                 }],
                 'visitor interface': [true, {
                     'datamodel location': "FSSDF",
                 }],
                 'algorithms': {
-                    'serialize': [true, {}],
+                    'serialize': [true, null],
                 },
             },
             'mappedModel': accountingModel,

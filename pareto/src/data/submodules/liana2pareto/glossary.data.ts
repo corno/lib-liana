@@ -33,7 +33,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "project": "lib-pareto-typescript-project/dist/submodules/project",
     }),
     'parameters': d({
-        "Annotation": {},
+        "Annotation": null,
     }),
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),

@@ -31,7 +31,7 @@ export namespace T {
     
     export namespace Reference {}
     
-    export type Reference<GPAnnotation> = {}
+    export type Reference<GPAnnotation> = null
     
     export namespace String {
         
@@ -96,7 +96,7 @@ export namespace T {
         
         export namespace _lboolean {}
         
-        export type _lboolean<GPAnnotation> = {}
+        export type _lboolean<GPAnnotation> = null
         
         export namespace component {
             
@@ -104,10 +104,10 @@ export namespace T {
                 
                 export namespace D {}
                 
-                export type D<GPAnnotation> = {}
+                export type D<GPAnnotation> = null
             }
             
-            export type arguments<GPAnnotation> = pt.Dictionary<{}>
+            export type arguments<GPAnnotation> = pt.Dictionary<null>
             
             export namespace context {
                 
@@ -135,7 +135,7 @@ export namespace T {
                 
                 export namespace local {}
                 
-                export type local<GPAnnotation> = {}
+                export type local<GPAnnotation> = null
             }
             
             export type context<GPAnnotation> = 
@@ -145,7 +145,7 @@ export namespace T {
                         readonly 'key': string
                     }
                 }]
-                | ['local', {}]
+                | ['local', null]
             
             export namespace _ltype {
                 
@@ -161,7 +161,7 @@ export namespace T {
         }
         
         export type component<GPAnnotation> = {
-            readonly 'arguments': pt.Dictionary<{}>
+            readonly 'arguments': pt.Dictionary<null>
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
@@ -169,7 +169,7 @@ export namespace T {
                         readonly 'key': string
                     }
                 }]
-                | ['local', {}]
+                | ['local', null]
             readonly 'type': {
                 readonly 'annotation': GPAnnotation
                 readonly 'key': string
@@ -259,9 +259,9 @@ export namespace T {
         | ['array', {
             readonly 'type': T.Type<GPAnnotation>
         }]
-        | ['boolean', {}]
+        | ['boolean', null]
         | ['component', {
-            readonly 'arguments': pt.Dictionary<{}>
+            readonly 'arguments': pt.Dictionary<null>
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
@@ -269,7 +269,7 @@ export namespace T {
                         readonly 'key': string
                     }
                 }]
-                | ['local', {}]
+                | ['local', null]
             readonly 'type': {
                 readonly 'annotation': GPAnnotation
                 readonly 'key': string
@@ -306,22 +306,22 @@ export namespace T {
                     
                     export namespace D {}
                     
-                    export type D<GPAnnotation> = {}
+                    export type D<GPAnnotation> = null
                 }
                 
-                export type parameters<GPAnnotation> = pt.Dictionary<{}>
+                export type parameters<GPAnnotation> = pt.Dictionary<null>
                 
                 export type _ltype<GPAnnotation> = T.Type<GPAnnotation>
             }
             
             export type D<GPAnnotation> = {
-                readonly 'parameters': pt.Dictionary<{}>
+                readonly 'parameters': pt.Dictionary<null>
                 readonly 'type': T.Type<GPAnnotation>
             }
         }
         
         export type global__types<GPAnnotation> = pt.Dictionary<{
-            readonly 'parameters': pt.Dictionary<{}>
+            readonly 'parameters': pt.Dictionary<null>
             readonly 'type': T.Type<GPAnnotation>
         }>
         
@@ -329,27 +329,27 @@ export namespace T {
             
             export namespace D {}
             
-            export type D<GPAnnotation> = {}
+            export type D<GPAnnotation> = null
         }
         
-        export type imports<GPAnnotation> = pt.Dictionary<{}>
+        export type imports<GPAnnotation> = pt.Dictionary<null>
         
         export namespace string__types {
             
             export namespace D {}
             
-            export type D<GPAnnotation> = {}
+            export type D<GPAnnotation> = null
         }
         
-        export type string__types<GPAnnotation> = pt.Dictionary<{}>
+        export type string__types<GPAnnotation> = pt.Dictionary<null>
     }
     
     export type Type__Library<GPAnnotation> = {
         readonly 'global types': pt.Dictionary<{
-            readonly 'parameters': pt.Dictionary<{}>
+            readonly 'parameters': pt.Dictionary<null>
             readonly 'type': T.Type<GPAnnotation>
         }>
-        readonly 'imports': pt.Dictionary<{}>
-        readonly 'string types': pt.Dictionary<{}>
+        readonly 'imports': pt.Dictionary<null>
+        readonly 'string types': pt.Dictionary<null>
     }
 }

@@ -31,14 +31,14 @@ export namespace T {
                 
                 export namespace O {}
                 
-                export type O<GPAnnotation> = {}
+                export type O<GPAnnotation> = null
             }
             
-            export type serialize<GPAnnotation> = [ false ] | [ true, {}]
+            export type serialize<GPAnnotation> = [ false ] | [ true, null]
         }
         
         export type algorithms<GPAnnotation> = {
-            readonly 'serialize': [ false ] | [ true, {}]
+            readonly 'serialize': [ false ] | [ true, null]
         }
         
         export namespace datamodel {
@@ -53,30 +53,30 @@ export namespace T {
                     
                     export namespace reference {}
                     
-                    export type reference<GPAnnotation> = {}
+                    export type reference<GPAnnotation> = null
                     
                     export namespace reference__and__string {}
                     
-                    export type reference__and__string<GPAnnotation> = {}
+                    export type reference__and__string<GPAnnotation> = null
                     
                     export namespace _lstring {}
                     
-                    export type _lstring<GPAnnotation> = {}
+                    export type _lstring<GPAnnotation> = null
                 }
                 
                 export type reference__mapping<GPAnnotation> = 
-                    | ['reference', {}]
-                    | ['reference and string', {}]
-                    | ['string', {}]
+                    | ['reference', null]
+                    | ['reference and string', null]
+                    | ['string', null]
             }
             
             export type O<GPAnnotation> = {
                 readonly 'annotations': boolean
                 readonly 'properties optional': boolean
                 readonly 'reference mapping': 
-                    | ['reference', {}]
-                    | ['reference and string', {}]
-                    | ['string', {}]
+                    | ['reference', null]
+                    | ['reference and string', null]
+                    | ['string', null]
             }
         }
         
@@ -84,9 +84,9 @@ export namespace T {
             readonly 'annotations': boolean
             readonly 'properties optional': boolean
             readonly 'reference mapping': 
-                | ['reference', {}]
-                | ['reference and string', {}]
-                | ['string', {}]
+                | ['reference', null]
+                | ['reference and string', null]
+                | ['string', null]
         }]
         
         export namespace visitor__interface {
@@ -108,15 +108,15 @@ export namespace T {
     
     export type GenerationConfiguration<GPAnnotation> = {
         readonly 'algorithms': {
-            readonly 'serialize': [ false ] | [ true, {}]
+            readonly 'serialize': [ false ] | [ true, null]
         }
         readonly 'datamodel': [ false ] | [ true, {
             readonly 'annotations': boolean
             readonly 'properties optional': boolean
             readonly 'reference mapping': 
-                | ['reference', {}]
-                | ['reference and string', {}]
-                | ['string', {}]
+                | ['reference', null]
+                | ['reference and string', null]
+                | ['string', null]
         }]
         readonly 'visitor interface': [ false ] | [ true, {
             readonly 'datamodel location': string

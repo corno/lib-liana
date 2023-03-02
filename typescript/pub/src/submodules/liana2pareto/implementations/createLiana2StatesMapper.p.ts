@@ -23,7 +23,7 @@ export const $$: CcreateLiana2StatesMapper = ($d) => {
                         })
                     case 'boolean':
                         return pl.cc($[1], ($) => {
-                            return ['boolean', {}]
+                            return ['boolean', null]
                         })
                     case 'component':
                         return pl.cc($[1], ($) => {
@@ -52,15 +52,15 @@ export const $$: CcreateLiana2StatesMapper = ($d) => {
                                                 switch ($[0]) {
                                                     case 'boolean':
                                                         return pl.cc($[1], ($) => {
-                                                            return ['boolean', {}]
+                                                            return ['boolean', null]
                                                         })
                                                     case 'number':
                                                         return pl.cc($[1], ($) => {
-                                                            return ['number', {}]
+                                                            return ['number', null]
                                                         })
                                                     case 'string':
                                                         return pl.cc($[1], ($) => {
-                                                            return ['string', {}]
+                                                            return ['string', null]
                                                         })
                                                     default: return pl.au($[0])
                                                 }
@@ -72,7 +72,7 @@ export const $$: CcreateLiana2StatesMapper = ($d) => {
                                     })
                                 case 'yes':
                                     return pl.cc($.constrained[1], ($) => {
-                                        return ['string', {}]
+                                        return ['string', null]
 
                                         // return ['template', {
                                         //     'template': "Reference",

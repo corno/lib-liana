@@ -21,7 +21,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
         'string types': pd.d({
-            "text": {},
+            "text": null,
         }),
         'global types': pd.d({
             "Type": globalType({}, taggedUnion({

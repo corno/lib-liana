@@ -63,7 +63,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                 "fp": "lib-fountain-pen",
             }),
             'parameters': d({
-                "Annotation": {},
+                "Annotation": null,
             }),
             'types': d({
                 "Accounting": {
@@ -84,7 +84,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                         },
                                                         "key": {
-                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                         },
                                                     })],
                                                 },
@@ -94,7 +94,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                         },
                                                         "key": {
-                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                         },
                                                     })],
                                                 },
@@ -116,7 +116,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                                 },
                                                                 "key": {
-                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                                 },
                                                             })],
                                                         },
@@ -126,7 +126,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                                 },
                                                                 "key": {
-                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                                 },
                                                             })],
                                                         },
@@ -161,7 +161,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                                 "Ja": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                     "BTW-promillage": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                     },
                                                 })],
                                                 "Nee": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
@@ -172,7 +172,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                 "Gebruikers": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Volledige naam": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })]],
                                 },
@@ -189,7 +189,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                         },
                                                         "key": {
-                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                         },
                                                     })],
                                                 },
@@ -199,7 +199,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                         },
                                                         "key": {
-                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                         },
                                                     })],
                                                 },
@@ -215,7 +215,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                                                 },
                                                                                 "key": {
-                                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                                                 },
                                                                             })],
                                                                         },
@@ -239,7 +239,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                                 },
                                                                 "key": {
-                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                                 },
                                                             })],
                                                         },
@@ -249,7 +249,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                                 },
                                                                 "key": {
-                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                                 },
                                                             })],
                                                         },
@@ -285,7 +285,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         },
                         "Jaren": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                 'type': "Jaren",
                                 'arguments': d({}),
                             }],
@@ -297,7 +297,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         "Periodes": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                 "Bedrag": {
-                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                 },
                                             })]],
                                         },
@@ -313,10 +313,10 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                                                 "Project": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                                     "Bedrag": {
-                                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                                     },
                                                                     "Betaaldatum": {
-                                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                                     },
                                                                 })],
                                                             })],
@@ -347,7 +347,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -357,7 +357,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -369,7 +369,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -381,7 +381,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -391,7 +391,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -403,7 +403,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -413,7 +413,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -425,7 +425,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                     },
                                     "key": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                     },
                                 })],
                             },
@@ -436,7 +436,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'parameters': d({}),
                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "Beginsaldo": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                         },
                         "Grootboekrekening": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -444,7 +444,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -458,7 +458,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                             },
                                             "key": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                     },
@@ -468,7 +468,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                             },
                                             "key": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                     },
@@ -500,7 +500,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "Bankrekeningen": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                 "Beginsaldo": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                 },
                                 "Grootboekrekening": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -508,20 +508,20 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                         },
                                         "key": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })],
                                 },
                                 "Mutaties": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Bedrag": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                         "Datum": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                         "Omschrijving": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                         "Status": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -529,7 +529,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                 "Verwerkt": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                     "Afhandeling": {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                                            'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                                                            'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                                             'type': "Afhandeling",
                                                             'arguments': d({}),
                                                         }],
@@ -549,7 +549,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -559,7 +559,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -569,10 +569,10 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             })]],
                         },
                         "Beginsaldo nog aan te geven BTW": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                         },
                         "Beginsaldo Winstreserve": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                         },
                         "BTW periodes": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -582,24 +582,24 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                 "Documenten": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Bestand": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })]],
                                 },
                                 "Omschrijving": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                                 "Status": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                         "Aangegeven": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                             "Afronding": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                             },
                                             "Bedrag": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                             },
                                             "Datum": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                             },
                                         })],
                                         "Openstaand": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
@@ -617,7 +617,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                             },
                                             "key": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                     },
@@ -630,7 +630,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -640,7 +640,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -650,7 +650,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -660,7 +660,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -670,7 +670,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -680,7 +680,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
@@ -690,13 +690,13 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                 },
                                 "key": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                 },
                             })],
                         },
                         "Informele rekeningen": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                 'type': "Informele Rekeningen",
                                 'arguments': d({}),
                             }],
@@ -708,7 +708,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         "Mutaties": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                                         "Nog te betalen": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                             "Betalingstermijn": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                             },
                                         })],
                                         "Rekening courant": <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -718,7 +718,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -732,7 +732,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                         "Ontbreekt": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                                         "Toegevoegd": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                             "Document": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                     })],
@@ -746,7 +746,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -758,7 +758,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -770,7 +770,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -782,7 +782,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -794,7 +794,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -802,7 +802,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     })],
                                 },
                                 "Datum": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                 },
                                 "Regels": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -810,21 +810,21 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                                 "Bekend": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                     "Bedrag inclusief BTW": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                     },
                                                     "BTW": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                                     },
                                                 })],
                                                 "Nog niet bekend": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                                     "Aantekeningen": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             })],
                                         },
                                         "Omschrijving": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                         "Type": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -835,7 +835,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -847,7 +847,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -866,12 +866,12 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
                                             "Factuurnummer": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                         "Loonheffing": <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -881,7 +881,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -893,7 +893,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -903,7 +903,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -915,7 +915,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -927,7 +927,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "Overige balans items": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                 "Beginsaldo": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                 },
                                 "Grootboekrekening": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -935,17 +935,17 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                         },
                                         "key": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })],
                                 },
                                 "Memoriaal boekingen": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Bedrag": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                         "Datum": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                         "Grootboekrekening": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -953,12 +953,12 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                     'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                 },
                                                 "key": {
-                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                 },
                                             })],
                                         },
                                         "Omschrijving": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })]],
                                 },
@@ -972,7 +972,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -982,7 +982,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -998,7 +998,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({})]],
                         },
                         "Startdatum boekjaar": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                         },
                         "Verkopen": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -1012,7 +1012,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -1020,14 +1020,14 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     })],
                                 },
                                 "Betalingstermijn": {
-                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                 },
                                 "Brondocument": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                                         "Nog toevoegen": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                                         "Toegevoegd": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                             "Document": {
-                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                             },
                                         })],
                                     })],
@@ -1038,7 +1038,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                         },
                                         "key": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })],
                                 },
@@ -1051,7 +1051,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -1063,7 +1063,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -1073,7 +1073,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                         'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                     },
                                                     "key": {
-                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                     },
                                                 })],
                                             },
@@ -1086,14 +1086,14 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                         },
                                         "key": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                     })],
                                 },
                                 "Regels": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Bedrag exclusief BTW": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                         "BTW-regime": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -1108,7 +1108,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -1124,7 +1124,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -1137,7 +1137,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -1145,7 +1145,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                             })],
                                         },
                                         "Omschrijving": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                         },
                                         "Type": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -1156,7 +1156,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -1168,7 +1168,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                                                 'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
                                                             },
                                                             "key": {
-                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
+                                                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
                                                             },
                                                         })],
                                                     },
@@ -1185,13 +1185,13 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "Afhandeling": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                                 'type': "Afhandeling",
                                                 'arguments': d({}),
                                             }],
                                         },
                                         "Bedrag": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', {}],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['number', null],
                                         },
                                     })]],
                                 },
@@ -1225,7 +1225,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'functions': d({
                 "Serialize": {
                     'data': {
-                        'context': <gglossary.T.Context<pd.SourceLocation>>['local', {}],
+                        'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                         'type': "Accounting",
                         'arguments': d({}),
                     },
@@ -1237,10 +1237,10 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         }],
                         'interface': "Line",
                     }],
-                    'return type': ['nothing', {}],
+                    'return type': ['nothing', null],
                 },
             }),
         },
     },
-    'implementation': ['typescript', {}],
+    'implementation': ['typescript', null],
 }

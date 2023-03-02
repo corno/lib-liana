@@ -468,7 +468,7 @@ export namespace T {
         
         export namespace _lboolean {}
         
-        export type _lboolean<GPAnnotation> = {}
+        export type _lboolean<GPAnnotation> = null
         
         export type dictionary<GPAnnotation> = T.Type<GPAnnotation>
         
@@ -490,11 +490,11 @@ export namespace T {
         
         export namespace _lnull {}
         
-        export type _lnull<GPAnnotation> = {}
+        export type _lnull<GPAnnotation> = null
         
         export namespace _lnumber {}
         
-        export type _lnumber<GPAnnotation> = {}
+        export type _lnumber<GPAnnotation> = null
         
         export type optional<GPAnnotation> = T.Type<GPAnnotation>
         
@@ -504,7 +504,7 @@ export namespace T {
         
         export namespace _lstring {}
         
-        export type _lstring<GPAnnotation> = {}
+        export type _lstring<GPAnnotation> = null
         
         export namespace taggedUnion {
             
@@ -516,16 +516,16 @@ export namespace T {
     
     export type Type<GPAnnotation> = 
         | ['array', T.Type<GPAnnotation>]
-        | ['boolean', {}]
+        | ['boolean', null]
         | ['dictionary', T.Type<GPAnnotation>]
         | ['group', pt.Dictionary<{
             readonly 'type': T.Type<GPAnnotation>
         }>]
-        | ['null', {}]
-        | ['number', {}]
+        | ['null', null]
+        | ['number', null]
         | ['optional', T.Type<GPAnnotation>]
         | ['parameter', string]
         | ['reference', string]
-        | ['string', {}]
+        | ['string', null]
         | ['taggedUnion', pt.Dictionary<T.Type<GPAnnotation>>]
 }
