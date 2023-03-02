@@ -3,7 +3,7 @@ import * as pl from 'pareto-core-lib'
 import * as galgorithm from "../../algorithm_temp"
 import * as gfp from "lib-fountain-pen"
 
-import { CcreateImplementationSerializer } from "../api"
+import { CcreateImplementationSerializer } from "../definition/api.generated"
 
 export const $$: CcreateImplementationSerializer = ($d) => {
 

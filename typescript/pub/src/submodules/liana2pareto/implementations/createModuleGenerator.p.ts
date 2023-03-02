@@ -4,7 +4,7 @@ import * as pl from 'pareto-core-lib'
 import * as gfp from "lib-fountain-pen"
 import * as gmain from "../../../main"
 
-import { CcreateModuleGenerator } from "../api"
+import { CcreateModuleGenerator } from "../definition/api.generated"
 
 export const $$: CcreateModuleGenerator = ($d) => {
     return ($) => {

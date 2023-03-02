@@ -5,7 +5,7 @@ import * as gliana2pareto from "../../liana2pareto"
 import * as gfp from "lib-fountain-pen"
 import * as gcommon from "glo-pareto-common"
 
-import { CcreateSerializer } from "../api"
+import { CcreateSerializer } from "../definition/api.generated"
 
 export const $$: CcreateSerializer = ($d) => {
     return <Annotation>($: gliana2pareto.T.MappedModel<Annotation>, $i: gfp.IDirectory) => {

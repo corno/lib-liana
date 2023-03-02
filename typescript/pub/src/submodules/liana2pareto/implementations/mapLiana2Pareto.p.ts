@@ -5,7 +5,7 @@ import * as gbuild from "res-pareto-build"
 
 import { $$ as createMapper } from "./createLiana2ParetoMapper.p"
 
-import { CmapLiana2Pareto } from "../api"
+import { CmapLiana2Pareto } from "../definition/api.generated"
 
 export const $$:CmapLiana2Pareto = ($) => {
     return createMapper({

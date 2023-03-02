@@ -3,10 +3,10 @@ import * as pt from 'pareto-core-types'
 // import * as pl from 'pareto-core-lib'
 // import * as ps from 'pareto-core-state'
 
-// import * as gapi from "../api"
+// import * as gapi from "../definition/glossary"
 // import * as gcommon from "glo-pareto-common"
 
-// import { CcreateResolver } from "../api"
+// import { CcreateResolver } from "../definition/api.generated"
 
 // export const $$:CcreateResolver = ($d) => {
 //     pd.implementMe("RESOLVE")

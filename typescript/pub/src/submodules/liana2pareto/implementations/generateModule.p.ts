@@ -11,7 +11,7 @@ import * as gbuild from "res-pareto-build"
 
 import { $a } from ".."
 
-import { CgenerateModule } from "../api"
+import { CgenerateModule } from "../definition/api.generated"
 
 export const $$:CgenerateModule = ($) => {
     const a = gforeach.$a.arrayForEach

@@ -8,7 +8,7 @@ import * as gforeach from "res-pareto-foreach"
 
 import { $$ as createSerializer } from "./createSerializer.p"
 
-import { Cserialize } from "../api"
+import { Cserialize } from "../definition/api.generated"
 
 export const $$:Cserialize = ($, $i) => {
     createSerializer({

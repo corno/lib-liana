@@ -1,13 +1,13 @@
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-map'
 
-import * as gapi from "../api"
+import * as gapi from "../definition/glossary"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../liana"
 
-import { CcreateLiana2ParetoMapper } from "../api"
+import { CcreateLiana2ParetoMapper } from "../definition/api.generated"
 
 export const $$: CcreateLiana2ParetoMapper = ($d) => {
     return <Annotation>($: gapi.T.MapLiana2ParetoData<Annotation>) => {

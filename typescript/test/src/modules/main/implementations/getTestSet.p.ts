@@ -22,7 +22,7 @@ import { $ as simpleModel } from "../../../data/liana/model/simpleModel.data"
 import { $ as glossary } from "../../../data/liana/model/glossary.data"
 import { $ as accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
-import { CgetTestSet } from "../api"
+import { CgetTestSet } from "../definition/api.generated"
 
 export const $$: CgetTestSet = ($) => {
     const $XXX = $

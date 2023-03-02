@@ -4,12 +4,12 @@ import * as pm from 'pareto-core-map'
 import * as pd from 'pareto-core-dev'
 import * as ps from 'pareto-core-state'
 
-import * as gapi from "../api"
+import * as gapi from "../definition/glossary"
 import * as galgorithm from "../../algorithm_temp"
 import * as gliana from "../../liana"
 
 
-import { CcreateLiana2SerializerMapper } from "../api"
+import { CcreateLiana2SerializerMapper } from "../definition/api.generated"
 
 export const $$: CcreateLiana2SerializerMapper = ($d) => {
     return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
