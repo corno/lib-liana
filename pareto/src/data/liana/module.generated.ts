@@ -9,9 +9,6 @@ const a = pd.a
 export const $: gproject.T.Module<pd.SourceLocation> = {
     'definition': {
         'glossary': {
-            'imports': d({
-                "common": "glo-pareto-common",
-            }),
             'parameters': d({
                 "Annotation": null,
             }),
@@ -231,6 +228,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             }),
             'functions': d({}),
         },
+        'imports': d({
+            "common": "glo-pareto-common",
+        }),
         'api': {
             'imports': d({}),
             'algorithms': d({}),

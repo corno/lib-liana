@@ -13,9 +13,6 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'algorithms': d({}),
         },
         'glossary': {
-            'imports': d({
-                "common": "glo-pareto-common",
-            }),
             'parameters': d({
                 "Annotation": null,
             }),
@@ -235,6 +232,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             }),
             'functions': d({}),
         },
+        'imports': d({
+            "common": "glo-pareto-common",
+        }),
     },
     'implementation': ['typescript', null],
 }

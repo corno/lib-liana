@@ -23,11 +23,6 @@ import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossa
 const d = pd.d
 
 export const $: gglossary.T.Glossary<pd.SourceLocation> = {
-    'imports': d({
-        "algorithm": "../../../algorithm_temp",
-        "common": "glo-pareto-common",
-        "fp": "lib-fountain-pen",
-    }),
     'parameters': d({
         "Annotation": null,
     }),

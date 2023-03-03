@@ -24,14 +24,6 @@ import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossa
 const d = pd.d
 
 export const $: gglossary.T.Glossary<pd.SourceLocation> = {
-    'imports': d({
-        "algorithm": "lib-pareto-typescript-project/dist/submodules/algorithm",
-        "algorithm_temp": "../../../algorithm_temp",
-        "common": "glo-pareto-common",
-        "liana": "../../../liana",
-        "main": "res-pareto-main",
-        "project": "lib-pareto-typescript-project/dist/submodules/project",
-    }),
     'parameters': d({
         "Annotation": null,
     }),

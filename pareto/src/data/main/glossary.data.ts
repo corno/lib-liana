@@ -23,8 +23,6 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
-    'imports': d({
-    }),
     'types': d({
     }),
     'interfaces': d({

@@ -24,11 +24,6 @@ import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossa
 const d = pd.d
 
 export const $: gglossary.T.Glossary<pd.SourceLocation> = {
-    'imports': d({
-        "fp": "lib-fountain-pen",
-        "liana": "../../../liana",
-        "liana2pareto": "../../../liana2pareto",
-    }),
     'parameters': d({
         "Annotation": null,
     }),
