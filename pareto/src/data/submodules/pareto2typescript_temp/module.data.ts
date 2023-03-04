@@ -4,18 +4,30 @@ import * as gproject from "lib-pareto-typescript-project/dist/submodules/project
 
 import { $ as api } from "./api.data"
 import { $ as glossary } from "./glossary.data"
+import { external, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 const d = pd.d
 
-export const $: gproject.T.Module<pd.SourceLocation> = {
+export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation> = {
     'definition': {
-        'glossary': glossary,
-        'imports': d({
-            "algorithm": "../../../algorithm_temp",
-            "common": "glo-pareto-common",
-            "fp": "lib-fountain-pen",
-        }),
-        'api': api,
+        'glossary': {
+            'root': glossary,
+            'imports': d({
+                "algorithm": sibling("algorithm_temp"),
+                "common": external("glo-pareto-common"),
+                "fp": external("lib-fountain-pen"),
+            }),
+        },
+        'api': {
+            'root': api,
+            'imports': d({
+                "collation": external("res-pareto-collation"),
+                "foreach": external("res-pareto-foreach"),
+                "ts": external("res-typescript"),
+                "this": this_(),
+            }),
+
+        },
     },
     'implementation': ['typescript', null],
 }

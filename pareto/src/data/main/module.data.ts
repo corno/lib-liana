@@ -7,12 +7,17 @@ import { $ as glossary } from "./glossary.data"
 
 const d = pd.d
 
-export const $: gproject.T.Module<pd.SourceLocation> = {
+export const $: gproject.T.Project._ltype.library.main<pd.SourceLocation> = {
     'definition': {
-        'glossary': glossary,
-        'imports': d({
-        }),
-        'api': api,
+        'glossary': {
+            'root': glossary,
+            'imports': d({
+            }),
+        },
+        'api': {
+            'root': api,
+            'imports': d({}),
+        },
     },
     'implementation': ['typescript', null],
 }

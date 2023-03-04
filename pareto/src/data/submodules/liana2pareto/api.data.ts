@@ -6,13 +6,6 @@ import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
 const d = pd.d
 
 export const $: gapi.T.API<pd.SourceLocation> = {
-    'imports': d({
-        "build": "res-pareto-build",
-        "common": "glo-pareto-common",
-        "foreach": "res-pareto-foreach",
-        "project": "lib-pareto-typescript-project/dist/submodules/project",
-        "this": "./glossary",
-    }),
     'algorithms': d({
         "generateModule": algorithm(functionReference("this", {}, "GenerateModule")),
         "createModuleGenerator": algorithm(functionReference("this", {}, "GenerateModule"), constructor(null, {
