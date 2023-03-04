@@ -1,42 +1,42 @@
 import * as pt from 'pareto-core-types'
 
-import * as gfp from "lib-fountain-pen"
-import * as gliana from "../../../liana"
+import * as g_fp from "lib-fountain-pen"
+import * as g_liana from "../../../liana"
 
 export namespace T {
     
-    export type Annotation<GPAnnotation> = GPAnnotation
+    export type Annotation<GAnnotation> = GAnnotation
     
     export namespace MappedModel {
         
-        export type model<GPAnnotation> = gliana.T.Model<T.Annotation<GPAnnotation>>
+        export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
         
         export namespace stringmapping {
             
             export namespace D {
                 
-                export type _lboolean<GPAnnotation> = null
+                export type _lboolean<GAnnotation> = null
                 
-                export type _lnumber<GPAnnotation> = null
+                export type _lnumber<GAnnotation> = null
                 
-                export type _lstring<GPAnnotation> = null
+                export type _lstring<GAnnotation> = null
             }
             
-            export type D<GPAnnotation> = 
+            export type D<GAnnotation> = 
                 | ['boolean', null]
                 | ['number', null]
                 | ['string', null]
         }
         
-        export type stringmapping<GPAnnotation> = pt.Dictionary<
+        export type stringmapping<GAnnotation> = pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]
         >
     }
     
-    export type MappedModel<GPAnnotation> = {
-        readonly 'model': gliana.T.Model<T.Annotation<GPAnnotation>>
+    export type MappedModel<GAnnotation> = {
+        readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
         readonly 'stringmapping': pt.Dictionary<
             | ['boolean', null]
             | ['number', null]

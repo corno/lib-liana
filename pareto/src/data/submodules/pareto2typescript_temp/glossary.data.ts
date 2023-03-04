@@ -15,7 +15,7 @@ import {
     reference,
     number,
     glossaryParameter,
-    interfaceReference,
+    builderReference,
     parametrizedTypeReference,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
@@ -29,9 +29,10 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),
     }),
+    'builders': d({}),
     'interfaces': d({
     }),
     'functions': d({
-        "SerializeImplementation": func(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "Implementation"), null, interfaceReference("fp", "Directory"), null),
+        "SerializeImplementation": func(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "Implementation"), null, builderReference("fp", "Directory"), null),
     }),
 }

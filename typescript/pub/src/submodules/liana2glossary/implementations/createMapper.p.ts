@@ -6,9 +6,9 @@ import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossa
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../liana"
 
-import { CcreateMapper } from "../definition/api.generated"
+import {createMapper } from "../definition/api.generated"
 
-export const $$: CcreateMapper = ($d) => {
+export const $$: createMapper = ($d) => {
     return <Annotation>($: gapi.T.MapData<Annotation>) => {
         const model = $.mappedModel.model
         const stringMapping = $.mappedModel.stringmapping
@@ -219,6 +219,7 @@ export const $$: CcreateMapper = ($d) => {
                     'configuration': $.settings.datamodel[1],
                 })
                 : pm.wrapRawDictionary({}),
+            'builders': pm.wrapRawDictionary({}),
             'interfaces': $d.buildDictionary(null, (add) => {
 
                 if ($.settings['visitor interface'][0] === true) {
@@ -253,13 +254,13 @@ export const $$: CcreateMapper = ($d) => {
                         'value': {
                             'return type': ['nothing', null],
                             'data': typeReference($.mappedModel.model.root.key), //unresolved
-                            'managed input interface': [false],
-                            'output interface': [true, {
+                            'input builder': [false],
+                            'output builder': [true, {
                                 'context': ['import', {
                                     'glossary': "fp",
                                     'arguments': pm.wrapRawDictionary({}),
                                 }],
-                                'interface': "Line"
+                                'builder': "Line"
                                 // 'context': ['import', {
                                 //     'name': "fp",
                                 //     'annotation': "FFF",

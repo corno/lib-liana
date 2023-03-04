@@ -2,9 +2,9 @@ import * as pl from 'pareto-core-lib'
 
 import * as gfp from "lib-fountain-pen"
 
-import { CcreateGenerator } from "../definition/api.generated"
+import {createGenerator } from "../definition/api.generated"
 
-export const $$: CcreateGenerator = ($d) => {
+export const $$: createGenerator = ($d) => {
     return ($) => {
         gfp.$a.createFile(
             {

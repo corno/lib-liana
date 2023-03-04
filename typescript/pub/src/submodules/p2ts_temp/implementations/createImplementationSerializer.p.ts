@@ -3,11 +3,11 @@ import * as pl from 'pareto-core-lib'
 import * as galgorithm from "../../algorithm_temp"
 import * as gfp from "lib-fountain-pen"
 
-import { CcreateImplementationSerializer } from "../definition/api.generated"
+import {createImplementationSerializer } from "../definition/api.generated"
 
-export const $$: CcreateImplementationSerializer = ($d) => {
+export const $$: createImplementationSerializer = ($d) => {
 
-    return <Annotation>($: galgorithm.T.Implementation<Annotation>, $i: gfp.IDirectory) => {
+    return <Annotation>($: galgorithm.T.Implementation<Annotation>, $i: gfp.B.Directory) => {
         $d.dictionaryForEach($.implementations, ($) => {
             $i.file(`XXXXXXXXXXXXXXXX${$.key}`, ($i) => {
                 $i.line(``)
@@ -15,13 +15,13 @@ export const $$: CcreateImplementationSerializer = ($d) => {
                 $i.line(``)
                 $i.line(`import * as gapi from "XXX"`)
                 $i.line(``)
-                $i.line(`import { C${$.key} } from "XXX"`)
+                $i.line(`import {${$.key} } from "XXX"`)
                 $i.line(``)
                 $i.nestedLine(($i) => {
-                    $i.snippet(`export const $$:C${$.key} = `)
-                    function x($i: gfp.ILine) {
+                    $i.snippet(`export const $$: ${$.key} = `)
+                    function x($i: gfp.B.Line) {
 
-                        function doSynchronousExpression($: galgorithm.T.SynchronousExpression<Annotation>, $i: gfp.ILine) {
+                        function doSynchronousExpression($: galgorithm.T.SynchronousExpression<Annotation>, $i: gfp.B.Line) {
                             switch ($[0]) {
                                 case 'call':
                                     pl.cc($[1], ($) => {
@@ -71,7 +71,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
                                 default: pl.au($[0])
                             }
                         }
-                        function doImplementationType($: galgorithm.T.ImplementationType<Annotation>, $i: gfp.ILine) {
+                        function doImplementationType($: galgorithm.T.ImplementationType<Annotation>, $i: gfp.B.Line) {
 
                             switch ($[0]) {
                                 case 'asynchronous function':
@@ -88,7 +88,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
                                     pl.cc($[1], ($) => {
                                         function doBlock(
                                             $: galgorithm.T.ProcedureBlock<Annotation>,
-                                            $i: gfp.ILine,
+                                            $i: gfp.B.Line,
                                         ) {
 
                                             $i.snippet(`{`)
@@ -96,7 +96,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
                                                 if ($.innerFunctions !== undefined) {
                                                     $d.dictionaryForEach($.innerFunctions, ($) => {
                                                         $i.nestedLine(($i) => {
-                                                            $i.snippet(`function ${$d.createIdentifier($.key)}($: gapi.T.${$d.createIdentifier($.key)}, $i: gfp.ILine) `)
+                                                            $i.snippet(`function ${$d.createIdentifier($.key)}($: gapi.T.${$d.createIdentifier($.key)}, $i: gfp.B.Line) `)
                                                             doImplementationType($.value.type, $i)
                                                         })
                                                     })
@@ -189,7 +189,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
                 })
             })
         })
-        // function serializeExpression($: galgorithm.TExpression, $i: gfp.ILine) {
+        // function serializeExpression($: galgorithm.TExpression, $i: gfp.B.Line) {
         //     switch ($[0]) {
         //         case 'call':
         //             pl.cc($[1], ($) => {
@@ -266,7 +266,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
         //         default: pl.au($[0])
         //     }
         // }
-        // function serializeCallbackBlock($: galgorithm.TCallbackBlock, $i: gfp.ILine) {
+        // function serializeCallbackBlock($: galgorithm.TCallbackBlock, $i: gfp.B.Line) {
         //     $i.snippet(`{`)
         //     $i.indent(($i) => {
         //         if ($.innerCallbacks !== undefined) {
@@ -284,7 +284,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
         //     })
         //     $i.snippet(`}`)
         // }
-        // function serializeFunctionBlock($: galgorithm.TFunctionBlock, $i: gfp.ILine) {
+        // function serializeFunctionBlock($: galgorithm.TFunctionBlock, $i: gfp.B.Line) {
         //     $i.snippet(`{`)
         //     $i.indent(($i) => {
         //         if ($.innerFunctions !== undefined) {
@@ -305,7 +305,7 @@ export const $$: CcreateImplementationSerializer = ($d) => {
         //     $i.snippet(`}`)
         // }
         // $d.dictionaryForEach($.implementations, ($) => {
-        //     function body($i: gfp.ILine) {
+        //     function body($i: gfp.B.Line) {
         //         switch ($.value.type[0]) {
         //             case 'callback':
         //                 pl.cc($.value.type[1], ($) => {

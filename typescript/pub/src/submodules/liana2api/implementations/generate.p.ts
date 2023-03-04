@@ -9,30 +9,30 @@ import * as gfs from "lib-pareto-filesystem"
 
 import { $a } from ".."
 
-import { Cgenerate } from "../definition/api.generated"
+import {generate } from "../definition/api.generated"
 
-export const $$:Cgenerate = ($) => {
-    const a = gforeach.$a.arrayForEach
-    const d = gforeach.$a.createDictionaryForEach({
-        compare: gcoll.$a.localeIsABeforeB,
+export const $$: generate = ($) => {
+    const a = gforeach.$r.arrayForEach
+    const d = gforeach.$r.createDictionaryForEach({
+        compare: gcoll.$r.localeIsABeforeB,
     })
-    const ea = gforeach.$a.enrichedArrayForEach
-    const ed = gforeach.$a.createEnrichedDictionaryForEach({
-        compare: gcoll.$a.localeIsABeforeB,
+    const ea = gforeach.$r.enrichedArrayForEach
+    const ed = gforeach.$r.createEnrichedDictionaryForEach({
+        compare: gcoll.$r.localeIsABeforeB,
     })
 
     $a.createGenerator(
         {
-            'dictionaryForEach': gforeach.$a.createDictionaryForEach({
-                'compare': gcoll.$a.localeIsABeforeB,
+            'dictionaryForEach': gforeach.$r.createDictionaryForEach({
+                'compare': gcoll.$r.localeIsABeforeB,
             }),
-            'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
+            'decorateDictionaryEntriesWithKey': gforeach.$r.decorateDictionaryEntriesWithKey,
             'logError': ($) => {
-                gmain.$a.logError(gfs.$a.createWriteFileErrorMessage($.error))
+                gmain.$r.logError(gfs.$a.createWriteFileErrorMessage($.error))
             },
             'map': $a.createMapper({
-                'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
-                'buildDictionary': gbuild.$a.unsafeBuildDictionary,
+                'decorateDictionaryEntriesWithKey': gforeach.$r.decorateDictionaryEntriesWithKey,
+                'buildDictionary': gbuild.$r.unsafeBuildDictionary,
             }),
             'serialize': gapi.$a.createSerializer({
                 'dictionaryForEach': d,

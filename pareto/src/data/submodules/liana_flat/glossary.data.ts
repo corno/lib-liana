@@ -15,7 +15,7 @@ import {
     reference,
     number,
     glossaryParameter,
-    interfaceReference,
+    builderReference,
     parametrizedTypeReference,
     parametrizedReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
@@ -38,8 +38,9 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             }))),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({
-        "Serialize": func(typeReference("MappedModel"), null, interfaceReference("fp", "Directory"), null),
+        "Serialize": func(typeReference("MappedModel"), null, builderReference("fp", "Directory"), null),
     }),
 }

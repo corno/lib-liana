@@ -1,28 +1,28 @@
 import * as pt from 'pareto-core-types'
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
-import * as gbuild from "res-pareto-build"
-import * as gforeach from "res-pareto-foreach"
-import * as gfs from "res-pareto-filesystem"
-import * as gthis from "./glossary"
+import * as g_api from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_build from "res-pareto-build"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_fs from "res-pareto-filesystem"
+import * as g_this from "./glossary"
 
-export type CcreateGenerator = ($d: {
-    readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
-    readonly 'dictionaryForEach': gforeach.FDictionaryForEach
-    readonly 'logError': gfs.FHandleWriteFileError
-    readonly 'map': gthis.FMap
-    readonly 'serialize': gapi.FSerialize
-}) => gthis.FGenerate
+export type createGenerator = ($d: {
+    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
+    readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
+    readonly 'logError': g_fs.F.HandleWriteFileError
+    readonly 'map': g_this.F.Map
+    readonly 'serialize': g_api.F.Serialize
+}) => g_this.F.Generate
 
-export type CcreateMapper = ($d: {
-    readonly 'buildDictionary': gbuild.FUnsafeBuildDictionary
-    readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
-}) => gthis.FMap
+export type createMapper = ($d: {
+    readonly 'buildDictionary': g_build.F.UnsafeBuildDictionary
+    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
+}) => g_this.F.Map
 
-export type Cgenerate = gthis.FGenerate
+export type generate = g_this.F.Generate
 
 export type API = {
-    createGenerator: CcreateGenerator
-    createMapper: CcreateMapper
-    generate: Cgenerate
+    createGenerator: createGenerator
+    createMapper: createMapper
+    generate: generate
 }

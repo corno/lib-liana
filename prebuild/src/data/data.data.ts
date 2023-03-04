@@ -7,29 +7,29 @@ import * as gliana2pareto from "lib-liana/dist/submodules/liana2glossary"
 import { $ as liana } from "./models/liana.data"
 
 export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a([
-    {
-        'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
-        'data': {
-            'settings': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'properties optional': false,
-                    'reference mapping': ['string', null],
-                }],
-                'visitor interface': [true, {
-                    'datamodel': ['internal', null],
-                }],
-                'algorithms': {
-                    'serialize': [false],
-                },
-            },
-            'mappedModel': {
-                'model': liana,
+    // {
+    //     'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
+    //     'data': {
+    //         'settings': {
+    //             'datamodel': [true, {
+    //                 'annotations': true,
+    //                 'properties optional': false,
+    //                 'reference mapping': ['string', null],
+    //             }],
+    //             'visitor interface': [true, {
+    //                 'datamodel': ['internal', null],
+    //             }],
+    //             'algorithms': {
+    //                 'serialize': [false],
+    //             },
+    //         },
+    //         'mappedModel': {
+    //             'model': liana,
 
-                'stringmapping': pd.d({
-                    "identifier": ['string', null]
-                }),
-            },
-        }
-    }
+    //             'stringmapping': pd.d({
+    //                 "identifier": ['string', null]
+    //             }),
+    //         },
+    //     }
+    // }
 ])

@@ -14,7 +14,7 @@ import {
     glossaryParameter,
     optional,
     reference,
-    interfaceReference,
+    builderReference,
     number,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
@@ -139,8 +139,9 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "taggedUnion": dictionary(reference("Type")),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({
-        "SerializeImplementation": func(typeReference("Implementation"), null, interfaceReference("fp", "Line"), null),
+        "SerializeImplementation": func(typeReference("Implementation"), null, builderReference("fp", "Line"), null),
     }),
 }

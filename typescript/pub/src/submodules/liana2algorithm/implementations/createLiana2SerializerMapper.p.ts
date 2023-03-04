@@ -9,9 +9,9 @@ import * as galgorithm from "../../algorithm_temp"
 import * as gliana from "../../liana"
 
 
-import { CcreateLiana2SerializerMapper } from "../definition/api.generated"
+import {createLiana2SerializerMapper } from "../definition/api.generated"
 
-export const $$: CcreateLiana2SerializerMapper = ($d) => {
+export const $$: createLiana2SerializerMapper = ($d) => {
     return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
         const stringMapping = $.stringmapping
         type OutAnnotation = gapi.T.OutAnnotation<Annotation>

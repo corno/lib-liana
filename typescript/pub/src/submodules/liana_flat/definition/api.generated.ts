@@ -1,21 +1,21 @@
 import * as pt from 'pareto-core-types'
 
-import * as gforeach from "res-pareto-foreach"
-import * as gpareto2typescript from "lib-pareto-typescript-project/dist/submodules/pareto2typescript"
-import * as gthis from "./glossary"
-import * as gtostring from "res-pareto-tostring"
-import * as gts from "res-typescript"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_pareto2typescript from "lib-pareto-typescript-project/dist/submodules/pareto2typescript"
+import * as g_this from "./glossary"
+import * as g_tostring from "res-pareto-tostring"
+import * as g_ts from "res-typescript"
 
-export type CcreateSerializer = ($d: {
-    readonly 'createIdentifier': gts.FCreateIdentifier
-    readonly 'dictionaryForEach': gforeach.FDictionaryForEach
-    readonly 'joinNestedStrings': gtostring.FJoinNestedStrings
-    readonly 'serializeStates': gpareto2typescript.FSerializeStates
-}) => gthis.FSerialize
+export type createSerializer = ($d: {
+    readonly 'createIdentifier': g_ts.F.CreateIdentifier
+    readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
+    readonly 'joinNestedStrings': g_tostring.F.JoinNestedStrings
+    readonly 'serializeStates': g_pareto2typescript.F.SerializeStates
+}) => g_this.F.Serialize
 
-export type Cserialize = gthis.FSerialize
+export type serialize = g_this.F.Serialize
 
 export type API = {
-    createSerializer: CcreateSerializer
-    serialize: Cserialize
+    createSerializer: createSerializer
+    serialize: serialize
 }

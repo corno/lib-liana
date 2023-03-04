@@ -25,7 +25,7 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
                 "build": external("res-pareto-build"),
                 "foreach": external("res-pareto-foreach"),
                 "fs": external("res-pareto-filesystem"),
-                "serializeGlossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize_temp"),
+                "serializeGlossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
                 "this": this_(),
             }),
         },

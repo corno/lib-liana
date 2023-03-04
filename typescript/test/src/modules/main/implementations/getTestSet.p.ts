@@ -23,9 +23,9 @@ import { $ as simpleModel } from "../../../data/liana/model/simpleModel.data"
 import { $ as glossary } from "../../../data/liana/model/glossary.data"
 import { $ as accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
-import { CgetTestSet } from "../definition/api.generated"
+import {getTestSet } from "../definition/api.generated"
 
-export const $$: CgetTestSet = ($) => {
+export const $$: getTestSet = ($) => {
     const $XXX = $
 
     // const resolve = gliana.$a.createResolver({
@@ -152,13 +152,13 @@ export const $$: CgetTestSet = ($) => {
     // })
     // const serializer = gliana2pareto.$a.createLiana2SerializerMapper({
     // })(accountingModel)
-    const a = gforeach.$a.arrayForEach
-    const d = gforeach.$a.createDictionaryForEach({
-        compare: gcoll.$a.localeIsABeforeB,
+    const a = gforeach.$r.arrayForEach
+    const d = gforeach.$r.createDictionaryForEach({
+        compare: gcoll.$r.localeIsABeforeB,
     })
-    const ea = gforeach.$a.enrichedArrayForEach
-    const ed = gforeach.$a.createEnrichedDictionaryForEach({
-        compare: gcoll.$a.localeIsABeforeB,
+    const ea = gforeach.$r.enrichedArrayForEach
+    const ed = gforeach.$r.createEnrichedDictionaryForEach({
+        compare: gcoll.$r.localeIsABeforeB,
     })
 
     // gfp.$a.createDirectory({

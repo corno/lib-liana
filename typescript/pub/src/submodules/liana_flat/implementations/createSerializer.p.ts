@@ -6,10 +6,10 @@ import * as gliana from "../../liana"
 import * as gfp from "lib-fountain-pen"
 import * as gcommon from "glo-pareto-common"
 
-import { CcreateSerializer } from "../definition/api.generated"
+import {createSerializer } from "../definition/api.generated"
 
-export const $$: CcreateSerializer = ($d) => {
-    return <Annotation>($: gthis.T.MappedModel<Annotation>, $i: gfp.IDirectory) => {
+export const $$: createSerializer = ($d) => {
+    return <Annotation>($: gthis.T.MappedModel<Annotation>, $i: gfp.B.Directory) => {
 
         // $i.file(`states.generated.ts`, ($i) => {
         //     $d.serializeStates($d.mapLiana2States($), $i)
@@ -191,7 +191,7 @@ export const $$: CcreateSerializer = ($d) => {
                                                             $: gliana.T.Type<Annotation>,
                                                             path: gcommon.T.Path,
                                                             currentName: string,
-                                                        }, $i: gfp.ILine) {
+                                                        }, $i: gfp.B.Line) {
                                                             const path = $.path
                                                             const pathID = `prop_${getPathID(path)}`
                                                             const currentName = $.currentName

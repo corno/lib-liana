@@ -1,18 +1,18 @@
 import * as pt from 'pareto-core-types'
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
-import * as gbuild from "res-pareto-build"
-import * as gcommon from "glo-pareto-common"
-import * as gforeach from "res-pareto-foreach"
-import * as gthis from "./glossary"
+import * as g_api from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_build from "res-pareto-build"
+import * as g_common from "glo-pareto-common"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_this from "./glossary"
 
-export type CcreateLiana2SerializerMapper = ($d: {}) => gthis.FMapLiana2Serializer
+export type createLiana2SerializerMapper = ($d: {}) => g_this.F.MapLiana2Serializer
 
-export type CcreateLiana2StatesMapper = ($d: {
-    readonly 'decorateDictionaryEntriesWithKey': gforeach.FDecorateDictionaryEntriesWithKey
-}) => gthis.FMapLiana2States
+export type createLiana2StatesMapper = ($d: {
+    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
+}) => g_this.F.MapLiana2States
 
 export type API = {
-    createLiana2SerializerMapper: CcreateLiana2SerializerMapper
-    createLiana2StatesMapper: CcreateLiana2StatesMapper
+    createLiana2SerializerMapper: createLiana2SerializerMapper
+    createLiana2StatesMapper: createLiana2StatesMapper
 }

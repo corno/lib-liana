@@ -6,9 +6,9 @@ import * as pt from 'pareto-core-types'
 // import * as gapi from "../definition/glossary"
 // import * as gcommon from "glo-pareto-common"
 
-// import { CcreateResolver } from "../definition/api.generated"
+// import {createResolver } from "../definition/api.generated"
 
-// export const $$:CcreateResolver = ($d) => {
+// export const $$: createResolver = ($d) => {
 //     pd.implementMe("RESOLVE")
 
 //     // return <Annotation>($: gapi.T.Model<Annotation>) => {

@@ -3,10 +3,10 @@ import * as gfp from "lib-fountain-pen"
 
 import * as gapi from "XXX"
 
-import { Cserializer } from "XXX"
+import {serializer } from "XXX"
 
-export const $$:Cserializer = ($, $i) => {
-    function Accounting($: gapi.T.Accounting, $i: gfp.ILine) {
+export const $$: serializer = ($, $i) => {
+    function Accounting($: gapi.T.Accounting, $i: gfp.B.Line) {
         $i['group'](($i) => {
             $i['property']("Beheer", ($i) => {
                 $i['group'](($i) => {
@@ -71,13 +71,13 @@ export const $$:Cserializer = ($, $i) => {
             $i['end']()
         })
     }
-    function Afhandeling($: gapi.T.Afhandeling, $i: gfp.ILine) {
+    function Afhandeling($: gapi.T.Afhandeling, $i: gfp.B.Line) {
         $i['tagged union']()
     }
-    function Informele__Rekeningen($: gapi.T.Informele__Rekeningen, $i: gfp.ILine) {
+    function Informele__Rekeningen($: gapi.T.Informele__Rekeningen, $i: gfp.B.Line) {
         $i['dictionary']()
     }
-    function Jaren($: gapi.T.Jaren, $i: gfp.ILine) {
+    function Jaren($: gapi.T.Jaren, $i: gfp.B.Line) {
         $i['dictionary']()
     }
 }

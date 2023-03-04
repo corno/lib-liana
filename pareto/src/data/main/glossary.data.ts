@@ -10,6 +10,8 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     }),
     'types': d({
     }),
+    'builders': d({
+    }),
     'interfaces': d({
     }),
     'functions': d({}),

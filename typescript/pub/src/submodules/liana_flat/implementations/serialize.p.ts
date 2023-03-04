@@ -7,31 +7,31 @@ import * as gforeach from "res-pareto-foreach"
 
 import { $$ as createSerializer } from "./createSerializer.p"
 
-import { Cserialize } from "../definition/api.generated"
+import {serialize } from "../definition/api.generated"
 
-export const $$:Cserialize = ($, $i) => {
+export const $$: serialize = ($, $i) => {
     createSerializer({
-        'createIdentifier': gts.$a.createIdentifier,
+        'createIdentifier': gts.$r.createIdentifier,
         // 'mapLiana2States': gliana2pareto.$a.createLiana2StatesMapper({
         //     'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
         // }),
         'serializeStates': gpareto2typescript.$a.createStatesSerializer({
-            'arrayForEach': gforeach.$a.arrayForEach,
-            'dictionaryForEach': gforeach.$a.createDictionaryForEach({
-                'compare': gcoll.$a.localeIsABeforeB,
+            'arrayForEach': gforeach.$r.arrayForEach,
+            'dictionaryForEach': gforeach.$r.createDictionaryForEach({
+                'compare': gcoll.$r.localeIsABeforeB,
             }),
-            'enrichedArrayForEach': gforeach.$a.enrichedArrayForEach,
-            'enrichedDictionaryForEach': gforeach.$a.createEnrichedDictionaryForEach({
-                'compare': gcoll.$a.localeIsABeforeB,
+            'enrichedArrayForEach': gforeach.$r.enrichedArrayForEach,
+            'enrichedDictionaryForEach': gforeach.$r.createEnrichedDictionaryForEach({
+                'compare': gcoll.$r.localeIsABeforeB,
             }),
-            'createIdentifier': gts.$a.createIdentifier,
-            'createApostrophedString': gts.$a.createApostrophedString,
+            'createIdentifier': gts.$r.createIdentifier,
+            'createApostrophedString': gts.$r.createApostrophedString,
         }),
-        'joinNestedStrings': gtostring.$a.joinNestedStrings({
+        'joinNestedStrings': gtostring.$r.joinNestedStrings({
             'maximum': [false],
             'separator': "_",
         }, {}),
-        'dictionaryForEach': gforeach.$a.createDictionaryForEach({
+        'dictionaryForEach': gforeach.$r.createDictionaryForEach({
             'compare': () => false,//HACK: serialize in the order they have been added
         }),
     })($, $i)

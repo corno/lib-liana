@@ -48,6 +48,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "internal": string(),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({
         "MapLiana2States": func(typeReference("MappedModel"), null, null, data(parametrizedTypeReference("algorithm", { "Annotation": typeReference("OutAnnotation") }, "States"), false)),

@@ -1,29 +1,29 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
-import * as gliana from "../../../liana"
-import * as gmain from "res-pareto-main"
+import * as g_common from "glo-pareto-common"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_liana from "../../../liana"
+import * as g_main from "res-pareto-main"
 
 export namespace T {
     
-    export type Annotation<GPAnnotation> = GPAnnotation
+    export type Annotation<GAnnotation> = GAnnotation
     
     export namespace GenerateData {
         
-        export type data<GPAnnotation> = T.MapData<GPAnnotation>
+        export type data<GAnnotation> = T.MapData<GAnnotation>
         
-        export type path<GPAnnotation> = gcommon.T.Path
+        export type path<GAnnotation> = g_common.T.Path
     }
     
-    export type GenerateData<GPAnnotation> = {
-        readonly 'data': T.MapData<GPAnnotation>
-        readonly 'path': gcommon.T.Path
+    export type GenerateData<GAnnotation> = {
+        readonly 'data': T.MapData<GAnnotation>
+        readonly 'path': g_common.T.Path
     }
     
     export namespace MapData {
         
-        export type mappedModel<GPAnnotation> = T.MappedModel<GPAnnotation>
+        export type mappedModel<GAnnotation> = T.MappedModel<GAnnotation>
         
         export namespace settings {
             
@@ -33,13 +33,13 @@ export namespace T {
                     
                     export namespace O {}
                     
-                    export type O<GPAnnotation> = null
+                    export type O<GAnnotation> = null
                 }
                 
-                export type serialize<GPAnnotation> = [ false ] | [ true, null]
+                export type serialize<GAnnotation> = [ false ] | [ true, null]
             }
             
-            export type algorithms<GPAnnotation> = {
+            export type algorithms<GAnnotation> = {
                 readonly 'serialize': [ false ] | [ true, null]
             }
             
@@ -47,32 +47,32 @@ export namespace T {
                 
                 export namespace O {
                     
-                    export type annotations<GPAnnotation> = boolean
+                    export type annotations<GAnnotation> = boolean
                     
-                    export type properties__optional<GPAnnotation> = boolean
+                    export type properties__optional<GAnnotation> = boolean
                     
                     export namespace reference__mapping {
                         
                         export namespace reference {}
                         
-                        export type reference<GPAnnotation> = null
+                        export type reference<GAnnotation> = null
                         
                         export namespace reference__and__string {}
                         
-                        export type reference__and__string<GPAnnotation> = null
+                        export type reference__and__string<GAnnotation> = null
                         
                         export namespace _lstring {}
                         
-                        export type _lstring<GPAnnotation> = null
+                        export type _lstring<GAnnotation> = null
                     }
                     
-                    export type reference__mapping<GPAnnotation> = 
+                    export type reference__mapping<GAnnotation> = 
                         | ['reference', null]
                         | ['reference and string', null]
                         | ['string', null]
                 }
                 
-                export type O<GPAnnotation> = {
+                export type O<GAnnotation> = {
                     readonly 'annotations': boolean
                     readonly 'properties optional': boolean
                     readonly 'reference mapping': 
@@ -82,7 +82,7 @@ export namespace T {
                 }
             }
             
-            export type datamodel<GPAnnotation> = [ false ] | [ true, {
+            export type datamodel<GAnnotation> = [ false ] | [ true, {
                 readonly 'annotations': boolean
                 readonly 'properties optional': boolean
                 readonly 'reference mapping': 
@@ -99,26 +99,26 @@ export namespace T {
                         
                         export namespace exernal {
                             
-                            export type location<GPAnnotation> = string
+                            export type location<GAnnotation> = string
                         }
                         
-                        export type exernal<GPAnnotation> = {
+                        export type exernal<GAnnotation> = {
                             readonly 'location': string
                         }
                         
                         export namespace internal {}
                         
-                        export type internal<GPAnnotation> = null
+                        export type internal<GAnnotation> = null
                     }
                     
-                    export type datamodel<GPAnnotation> = 
+                    export type datamodel<GAnnotation> = 
                         | ['exernal', {
                             readonly 'location': string
                         }]
                         | ['internal', null]
                 }
                 
-                export type O<GPAnnotation> = {
+                export type O<GAnnotation> = {
                     readonly 'datamodel': 
                         | ['exernal', {
                             readonly 'location': string
@@ -127,7 +127,7 @@ export namespace T {
                 }
             }
             
-            export type visitor__interface<GPAnnotation> = [ false ] | [ true, {
+            export type visitor__interface<GAnnotation> = [ false ] | [ true, {
                 readonly 'datamodel': 
                     | ['exernal', {
                         readonly 'location': string
@@ -136,7 +136,7 @@ export namespace T {
             }]
         }
         
-        export type settings<GPAnnotation> = {
+        export type settings<GAnnotation> = {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
             }
@@ -158,8 +158,8 @@ export namespace T {
         }
     }
     
-    export type MapData<GPAnnotation> = {
-        readonly 'mappedModel': T.MappedModel<GPAnnotation>
+    export type MapData<GAnnotation> = {
+        readonly 'mappedModel': T.MappedModel<GAnnotation>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
@@ -184,34 +184,34 @@ export namespace T {
     
     export namespace MappedModel {
         
-        export type model<GPAnnotation> = gliana.T.Model<T.Annotation<GPAnnotation>>
+        export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
         
         export namespace stringmapping {
             
             export namespace D {
                 
-                export type _lboolean<GPAnnotation> = null
+                export type _lboolean<GAnnotation> = null
                 
-                export type _lnumber<GPAnnotation> = null
+                export type _lnumber<GAnnotation> = null
                 
-                export type _lstring<GPAnnotation> = null
+                export type _lstring<GAnnotation> = null
             }
             
-            export type D<GPAnnotation> = 
+            export type D<GAnnotation> = 
                 | ['boolean', null]
                 | ['number', null]
                 | ['string', null]
         }
         
-        export type stringmapping<GPAnnotation> = pt.Dictionary<
+        export type stringmapping<GAnnotation> = pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]
         >
     }
     
-    export type MappedModel<GPAnnotation> = {
-        readonly 'model': gliana.T.Model<T.Annotation<GPAnnotation>>
+    export type MappedModel<GAnnotation> = {
+        readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
         readonly 'stringmapping': pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
@@ -221,12 +221,12 @@ export namespace T {
     
     export namespace OutAnnotation {
         
-        export type internal<GPAnnotation> = string
+        export type internal<GAnnotation> = string
         
-        export type source<GPAnnotation> = GPAnnotation
+        export type source<GAnnotation> = GAnnotation
     }
     
-    export type OutAnnotation<GPAnnotation> = 
+    export type OutAnnotation<GAnnotation> = 
         | ['internal', string]
-        | ['source', GPAnnotation]
+        | ['source', GAnnotation]
 }

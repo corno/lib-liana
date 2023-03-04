@@ -6,9 +6,9 @@ import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../liana"
 
-import { CcreateMapper } from "../definition/api.generated"
+import {createMapper } from "../definition/api.generated"
 
-export const $$: CcreateMapper = ($d) => {
+export const $$: createMapper = ($d) => {
     return <Annotation>($: gthis.T.MapData<Annotation>) => {
         const model = $.model.model
         const stringMapping = $.model.stringmapping

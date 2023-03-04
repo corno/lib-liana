@@ -74,6 +74,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "internal": string(),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({
         "Generate": func(typeReference("GenerateData"), null, null, null),
