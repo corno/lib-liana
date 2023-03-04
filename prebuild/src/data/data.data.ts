@@ -6,8 +6,6 @@ import * as gliana2pareto from "lib-liana/dist/submodules/liana2glossary"
 
 import { $ as liana } from "./models/liana.data"
 
-pv.logDebugMessage(`REENABLE LIANA GENERATION`)
-
 export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a([
     {
         'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
