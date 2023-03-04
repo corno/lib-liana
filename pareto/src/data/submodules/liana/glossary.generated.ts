@@ -197,8 +197,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             })]
         },
     }),
-    'builders': d({
-    }),
+    'builders': d({}),
     'interfaces': d({
         "Visitor": ['group', {
             'members': d({
