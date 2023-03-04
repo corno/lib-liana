@@ -154,11 +154,11 @@ export const $$: getTestSet = ($) => {
     // })(accountingModel)
     const a = gforeach.$r.arrayForEach
     const d = gforeach.$r.createDictionaryForEach({
-        compare: gcoll.$r.localeIsABeforeB,
+        'compare': gcoll.$r.localeIsABeforeB,
     })
     const ea = gforeach.$r.enrichedArrayForEach
     const ed = gforeach.$r.createEnrichedDictionaryForEach({
-        compare: gcoll.$r.localeIsABeforeB,
+        'compare': gcoll.$r.localeIsABeforeB,
     })
 
     // gfp.$a.createDirectory({
