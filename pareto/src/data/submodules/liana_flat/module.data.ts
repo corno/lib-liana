@@ -15,13 +15,13 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             'imports': d({
                 "fp": external("lib-fountain-pen"),
                 "liana": sibling("liana"),
-                "liana2pareto": sibling("liana2pareto"),
+                //"liana2pareto": sibling("liana2pareto"),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                "liana2pareto": sibling("liana2pareto"),
+                //"liana2pareto": sibling("liana2pareto"),
                 "pareto2typescript": external("lib-pareto-typescript-project/dist/submodules/pareto2typescript"),
                 "tostring": external("res-pareto-tostring"),
                 "foreach": external("res-pareto-foreach"),

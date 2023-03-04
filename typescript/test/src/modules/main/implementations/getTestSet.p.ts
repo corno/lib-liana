@@ -7,9 +7,10 @@ import * as pa from 'pareto-core-async'
 import * as gtest from "lib-pareto-test"
 import * as gliana_flat from "../../../../../pub/dist/submodules/liana_flat"
 import * as gliana from "../../../../../pub/dist/submodules/liana"
-import * as gliana2pareto from "../../../../../pub/dist/submodules/liana2pareto"
+import * as gliana2glossary from "../../../../../pub/dist/submodules/liana2glossary"
 import * as gp2ts from "../../../../../pub/dist/submodules/p2ts_temp"
 import * as gfp from "lib-fountain-pen"
+import * as gfs from "lib-pareto-filesystem"
 import * as gpub from "../../../../../pub"
 import * as gcoll from "res-pareto-collation"
 import * as gforeach from "res-pareto-foreach"
@@ -35,14 +36,29 @@ export const $$: CgetTestSet = ($) => {
 
     const writer = gfp.$a.createDirectory({
         onError: ($) => {
-            pv.logDebugMessage($)
+            pv.logDebugMessage(gfs.$a.createWriteFileErrorMessage($.error))
         },
         reportSuperfluousNode: ($) => {
             pv.logDebugMessage(gfp.$a.createSuperfluousNodeMessage($))
         },
     })
     writer([$XXX.testDirectory, 'flat'], ($i) => {
-        gliana_flat.$a.serialize(accountingModel, $i)
+        gliana_flat.$a.serialize(
+            {
+                'stringmapping': pm.wrapRawDictionary({
+                    "bedrag": ['number', null],
+                    "bestand": ['string', null],
+                    "dagen": ['number', null],
+                    "datum": ['number', null],
+                    "multiline text": ['string', null],
+                    "promillage": ['number', null],
+                    "identifier": ['string', null],
+                    "single line text": ['string', null],
+                }),
+                'model': accountingModel,
+            },
+            $i
+        )
     })
 
     function x<Annotation>($: gliana.T.Model<Annotation>) {
@@ -62,80 +78,80 @@ export const $$: CgetTestSet = ($) => {
         // }
     }
     // x(lianaModel)
-    x(accountingModel.model)
+    x(accountingModel)
     x(simpleModel)
 
-    const mappedGlossary = gliana2pareto.$a.mapLiana2Pareto({
-        'mappedModel': {
+    // const mappedGlossary = gliana2glossary.$a.({
+    //     'mappedModel': {
 
-            'model': glossary,
+    //         'model': glossary,
 
-            'stringmapping': pm.wrapRawDictionary({
-                "identifier": ['string', null]
-            }),
-        },
-        'configuration': {
+    //         'stringmapping': pm.wrapRawDictionary({
+    //             "identifier": ['string', null]
+    //         }),
+    //     },
+    //     'configuration': {
 
-            'datamodel': [true, {
-                'annotations': true,
-                'properties optional': false,
-                'reference mapping': ['string', null],
-            }],
-            'visitor interface': [true, {
-                'datamodel location': "FSSDF",
-            }],
-            'algorithms': {
-                'serialize': [true, null],
-            },
-        },
+    //         'datamodel': [true, {
+    //             'annotations': true,
+    //             'properties optional': false,
+    //             'reference mapping': ['string', null],
+    //         }],
+    //         'visitor interface': [true, {
+    //             'datamodel location': "FSSDF",
+    //         }],
+    //         'algorithms': {
+    //             'serialize': [true, null],
+    //         },
+    //     },
 
-    })
-    gliana2pareto.$a.generateModule({
-        'path': [`${$XXX.testDirectory}/liana/glossary`],
-        'data': {
-            'configuration': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'properties optional': false,
-                    'reference mapping': ['string', null],
-                }],
-                'visitor interface': [true, {
-                    'datamodel location': "FSSDF",
-                }],
-                'algorithms': {
-                    'serialize': [true, null],
-                },
-            },
-            'mappedModel': {
-                'model': glossary,
+    // })
+    // gliana2pareto.$a.generateModule({
+    //     'path': [`${$XXX.testDirectory}/liana/glossary`],
+    //     'data': {
+    //         'configuration': {
+    //             'datamodel': [true, {
+    //                 'annotations': true,
+    //                 'properties optional': false,
+    //                 'reference mapping': ['string', null],
+    //             }],
+    //             'visitor interface': [true, {
+    //                 'datamodel location': "FSSDF",
+    //             }],
+    //             'algorithms': {
+    //                 'serialize': [true, null],
+    //             },
+    //         },
+    //         'mappedModel': {
+    //             'model': glossary,
 
-                'stringmapping': pm.wrapRawDictionary({
-                    "identifier": ['string', null]
-                }),
-            },
-        },
-    })
-    gliana2pareto.$a.generateModule({
-        'path': [`${$XXX.testDirectory}/liana/accounting`],
-        'data': {
-            'configuration': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'properties optional': false,
-                    'reference mapping': ['string', null],
-                }],
-                'visitor interface': [true, {
-                    'datamodel location': "FSSDF",
-                }],
-                'algorithms': {
-                    'serialize': [true, null],
-                },
-            },
-            'mappedModel': accountingModel,
-        },
-    })
-    const serializer = gliana2pareto.$a.createLiana2SerializerMapper({
-    })(accountingModel)
+    //             'stringmapping': pm.wrapRawDictionary({
+    //                 "identifier": ['string', null]
+    //             }),
+    //         },
+    //     },
+    // })
+    // gliana2pareto.$a.generateModule({
+    //     'path': [`${$XXX.testDirectory}/liana/accounting`],
+    //     'data': {
+    //         'configuration': {
+    //             'datamodel': [true, {
+    //                 'annotations': true,
+    //                 'properties optional': false,
+    //                 'reference mapping': ['string', null],
+    //             }],
+    //             'visitor interface': [true, {
+    //                 'datamodel location': "FSSDF",
+    //             }],
+    //             'algorithms': {
+    //                 'serialize': [true, null],
+    //             },
+    //         },
+    //         'mappedModel': accountingModel,
+    //     },
+    // })
+    // const serializer = gliana2pareto.$a.createLiana2SerializerMapper({
+    // })(accountingModel)
     const a = gforeach.$a.arrayForEach
     const d = gforeach.$a.createDictionaryForEach({
         compare: gcoll.$a.localeIsABeforeB,
@@ -145,35 +161,35 @@ export const $$: CgetTestSet = ($) => {
         compare: gcoll.$a.localeIsABeforeB,
     })
 
-    gfp.$a.createDirectory({
-        'onError': ($) => {
-            pv.logDebugMessage($)
-        },
-        'reportSuperfluousNode': ($) => {
-            pv.logDebugMessage($.name)
-        },
-    })(
-        [$.testDirectory, "SERIALIZER.ts"],
-        ($i) => {
-            gp2ts.$a.createImplementationSerializer({
-                'arrayForEach': a,
-                'dictionaryForEach': d,
-                'enrichedArrayForEach': ea,
-                'enrichedDictionaryForEach': ed,
-                'createIdentifier': gts.$a.createIdentifier,
-                'createApostrophedString': gts.$a.createApostrophedString,
-                'createBacktickedString': gts.$a.createBacktickedString,
-                'createQuotedString': gts.$a.createQuotedString,
-            })(
-                {
-                    'implementations': pm.wrapRawDictionary({
-                        "serializer": serializer,
-                    })
-                },
-                $i
-            )
-        }
-    )
+    // gfp.$a.createDirectory({
+    //     'onError': ($) => {
+    //         pv.logDebugMessage($)
+    //     },
+    //     'reportSuperfluousNode': ($) => {
+    //         pv.logDebugMessage($.name)
+    //     },
+    // })(
+    //     [$.testDirectory, "SERIALIZER.ts"],
+    //     ($i) => {
+    //         gp2ts.$a.createImplementationSerializer({
+    //             'arrayForEach': a,
+    //             'dictionaryForEach': d,
+    //             'enrichedArrayForEach': ea,
+    //             'enrichedDictionaryForEach': ed,
+    //             'createIdentifier': gts.$a.createIdentifier,
+    //             'createApostrophedString': gts.$a.createApostrophedString,
+    //             'createBacktickedString': gts.$a.createBacktickedString,
+    //             'createQuotedString': gts.$a.createQuotedString,
+    //         })(
+    //             {
+    //                 'implementations': pm.wrapRawDictionary({
+    //                     "serializer": serializer,
+    //                 })
+    //             },
+    //             $i
+    //         )
+    //     }
+    // )
 
 
 

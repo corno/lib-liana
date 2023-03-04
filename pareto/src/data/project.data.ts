@@ -3,9 +3,11 @@ import * as pd from 'pareto-core-data'
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as main } from "./main/module.data"
-import { $ as liana_new } from "./liana/module.generated"
+import { $ as liana_new } from "./submodules/liana/module.generated"
 import { $ as liana_flat } from "./submodules/liana_flat/module.data"
-import { $ as liana2pareto } from "./submodules/liana2pareto/module.data"
+import { $ as liana2glossary } from "./submodules/liana2glossary/module.data"
+import { $ as liana2api } from "./submodules/liana2api/module.data"
+import { $ as liana2algorithm} from "./submodules/liana2algorithm/module.data"
 import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
 
@@ -22,6 +24,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         "lib-pareto-typescript-project": null,
         "res-pareto-build": null,
         "lib-fountain-pen": null,
+        "lib-pareto-filesystem": null,
     }),
     'type': ['library', {
         'main': main,
@@ -30,7 +33,9 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
             "p2ts_temp":p2ts_temp,
             "liana": liana_new,
             "liana_flat": liana_flat,
-            "liana2pareto": liana2pareto,
+            "liana2glossary": liana2glossary,
+            "liana2api": liana2api,
+            "liana2algorithm": liana2algorithm,
         }),
         'executables': d({}),
         'test': {

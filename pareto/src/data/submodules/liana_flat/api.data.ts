@@ -10,7 +10,7 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         "createSerializer": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
             "createIdentifier": functionReference("ts", {}, "CreateIdentifier"),
             "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
-            "mapLiana2States": functionReference("liana2pareto", {}, "MapLiana2States"),
+            //"mapLiana2States": functionReference("liana2pareto", {}, "MapLiana2States"),
             "serializeStates": functionReference("pareto2typescript", {}, "SerializeStates"),
             "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach")
         })),

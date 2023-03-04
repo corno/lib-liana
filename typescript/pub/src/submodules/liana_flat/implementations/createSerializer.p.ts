@@ -1,19 +1,20 @@
 import * as pl from 'pareto-core-lib'
 
+import * as gthis from "../definition/glossary"
 import * as gliana from "../../liana"
-import * as gliana2pareto from "../../liana2pareto"
+// import * as gliana2pareto from "../../liana2pareto"
 import * as gfp from "lib-fountain-pen"
 import * as gcommon from "glo-pareto-common"
 
 import { CcreateSerializer } from "../definition/api.generated"
 
 export const $$: CcreateSerializer = ($d) => {
-    return <Annotation>($: gliana2pareto.T.MappedModel<Annotation>, $i: gfp.IDirectory) => {
+    return <Annotation>($: gthis.T.MappedModel<Annotation>, $i: gfp.IDirectory) => {
 
-        $i.file(`states.generated.ts`, ($i) => {
-            $d.serializeStates($d.mapLiana2States($), $i)
+        // $i.file(`states.generated.ts`, ($i) => {
+        //     $d.serializeStates($d.mapLiana2States($), $i)
 
-        })
+        // })
         function getPathID($: gcommon.T.Path) {
 
             return $d.createIdentifier($d.joinNestedStrings($))

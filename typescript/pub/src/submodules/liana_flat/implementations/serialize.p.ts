@@ -1,5 +1,4 @@
 
-import * as gliana2pareto from "../../liana2pareto"
 import * as gpareto2typescript from "lib-pareto-typescript-project/dist/submodules/pareto2typescript"
 import * as gtostring from "res-pareto-tostring"
 import * as gcoll from "res-pareto-collation"
@@ -13,9 +12,9 @@ import { Cserialize } from "../definition/api.generated"
 export const $$:Cserialize = ($, $i) => {
     createSerializer({
         'createIdentifier': gts.$a.createIdentifier,
-        'mapLiana2States': gliana2pareto.$a.createLiana2StatesMapper({
-            'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
-        }),
+        // 'mapLiana2States': gliana2pareto.$a.createLiana2StatesMapper({
+        //     'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
+        // }),
         'serializeStates': gpareto2typescript.$a.createStatesSerializer({
             'arrayForEach': gforeach.$a.arrayForEach,
             'dictionaryForEach': gforeach.$a.createDictionaryForEach({

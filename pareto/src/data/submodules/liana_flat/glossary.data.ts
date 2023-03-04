@@ -29,9 +29,17 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     }),
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),
+        "MappedModel": type(group({
+            "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
+            "stringmapping": member(dictionary(taggedUnion({
+                "boolean": null_(),
+                "number": null_(),
+                "string": null_(),
+            }))),
+        })),
     }),
     'interfaces': d({}),
     'functions': d({
-        "Serialize": func(parametrizedTypeReference("liana2pareto", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, interfaceReference("fp", "Directory"), null),
+        "Serialize": func(typeReference("MappedModel"), null, interfaceReference("fp", "Directory"), null),
     }),
 }
