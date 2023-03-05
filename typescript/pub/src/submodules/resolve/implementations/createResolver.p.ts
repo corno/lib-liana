@@ -1,3 +1,4 @@
+import * as pt from 'pareto-core-types'
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-map'
 
@@ -7,6 +8,14 @@ import * as gliana from "../../liana"
 import * as gliana_resolved from "../../liana_resolved"
 
 import { createResolver } from "../definition/api.generated"
+
+function keys<T>($: pt.Dictionary<T>): string {
+    let out = ""
+    $.__mapWithKey(($, key) => {
+        out += `${key}, `
+    })
+    return out
+}
 
 function mapReferenceX<Annotation, Type>($: gcommon.T.AnnotatedKey<Annotation>, $2: Type): gcommon.T.AnnotatedKeyReferencePair<Annotation, Type> {
     return {
@@ -36,9 +45,10 @@ export const $$: createResolver = ($d) => {
                             return $.type
                         },
                         () => {
+                            
                             $i({
                                 'annotation': ann,
-                                'message': `no such global type: ${$['global type'].key}`,
+                                'message': `no such global type: ${$['global type'].key}, (${keys(tl['global types'])})`,
                             })
                             return null
                         }
@@ -55,6 +65,7 @@ export const $$: createResolver = ($d) => {
                                                     'annotation': ann,
                                                     'message': `not an array`,
                                                 })
+                                                current = null
                                             } else {
                                                 current = current[1].type
                                             }
@@ -69,6 +80,7 @@ export const $$: createResolver = ($d) => {
                                                     'annotation': ann,
                                                     'message': `not a dictionary`,
                                                 })
+                                                current = null
                                             } else {
                                                 current = current[1].type
                                             }
@@ -83,7 +95,9 @@ export const $$: createResolver = ($d) => {
                                                     'annotation': ann,
                                                     'message': `not a group`,
                                                 })
+                                                current = null
                                             } else {
+                                                const props = current[1].properties
                                                 current = current[1].properties.__getEntry(
                                                     $.property.key,
                                                         ($) => {
@@ -92,7 +106,7 @@ export const $$: createResolver = ($d) => {
                                                         () => {
                                                             $i({
                                                                 'annotation': $.property.annotation,
-                                                                'message': `no such property: ${$.property.key}`,
+                                                                'message': `no such property: ${$.property.key}, (${keys(props)})`,
                                                             })
                                                             return null
                                                         }
@@ -111,6 +125,7 @@ export const $$: createResolver = ($d) => {
                                                     'annotation': ann,
                                                     'message': `not optional`,
                                                 })
+                                                current = null
                                             } else {
                                                 current = current[1].type
                                             }
@@ -125,7 +140,9 @@ export const $$: createResolver = ($d) => {
                                                     'annotation': ann,
                                                     'message': `not a tagged union`,
                                                 })
+                                                current = null
                                             } else {
+                                                const opts = current[1].options
                                                 current = current[1].options.__getEntry(
                                                     $.option.key,
                                                         ($) => {
@@ -134,7 +151,7 @@ export const $$: createResolver = ($d) => {
                                                         () => {
                                                             $i({
                                                                 'annotation': $.option.annotation,
-                                                                'message': `no such property: ${$.option.key}`,
+                                                                'message': `no such property: ${$.option.key}, (${keys(opts)})`,
                                                             })
                                                             return null
                                                         }
@@ -154,8 +171,9 @@ export const $$: createResolver = ($d) => {
                         if (current[0] !== 'dictionary') {
                             $i({
                                 'annotation': ann,
-                                'message': `not a dictionary`,
+                                'message': `not a dictionary but a ${current[0]}`,
                             })
+                            current = null
                         } else {
                             current = current[1].type
                         }

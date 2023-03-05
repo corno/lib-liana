@@ -12,7 +12,13 @@ export const $$: main = ($) => {
     data.__forEach(($) => {
         gliana2pareto.$a.generate($)
         gresolve.$a.createResolver({})($.data['mapped model'].model, ($) => {
-            pv.logDebugMessage(`${$.message} @ ${$.annotation.file}:${$.annotation.line}:${$.annotation.column}`)
+            const reset = "\x1b[0m"
+            const red = "\x1b[31m"
+            const green = "\x1b[32m"
+            const yellow = "\x1b[33m"
+            const magenta = "\x1b[35m"
+
+            pv.logDebugMessage(`${magenta}${$.annotation.file}${reset}:${yellow}${$.annotation.line}:${$.annotation.column}${reset} - ${red}error${reset} ${$.message}`)
         })
 
     })

@@ -64,7 +64,13 @@ export const $$: getTestSet = ($) => {
     let count = 0
     gresolve.$a.createResolver({})(accountingModel, ($) => {
         count += 1
-        pv.logDebugMessage(`${$.message} @ ${$.annotation.file}:${$.annotation.line}:${$.annotation.column}`)
+        const reset = "\x1b[0m"
+        const lightRed = "\x1b[91m"
+        const green = "\x1b[32m"
+        const yellow = "\x1b[33m"
+        const lightBlue = "\x1b[94m"
+
+        pv.logDebugMessage(`${lightBlue}${$.annotation.file}${reset}:${yellow}${$.annotation.line}:${$.annotation.column}${reset} - ${lightRed}error${reset} ${$.message}`)
     })
 
     pv.logDebugMessage(`${count} errors`)
