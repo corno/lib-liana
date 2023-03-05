@@ -7,6 +7,7 @@ import * as pa from 'pareto-core-async'
 import * as gtest from "lib-pareto-test"
 import * as gliana_flat from "../../../../../pub/dist/submodules/liana_flat"
 import * as gliana from "../../../../../pub/dist/submodules/liana"
+import * as gresolve from "../../../../../pub/dist/submodules/resolve"
 import * as gliana2glossary from "../../../../../pub/dist/submodules/liana2glossary"
 import * as gp2ts from "../../../../../pub/dist/submodules/p2ts_temp"
 import * as gfp from "lib-fountain-pen"
@@ -60,6 +61,13 @@ export const $$: getTestSet = ($) => {
             $i
         )
     })
+    let count = 0
+    gresolve.$a.createResolver({})(accountingModel, ($) => {
+        count += 1
+        pv.logDebugMessage(`${$.message} @ ${$.annotation.file}:${$.annotation.line}:${$.annotation.column}`)
+    })
+
+    pv.logDebugMessage(`${count} errors`)
 
     function x<Annotation>($: gliana.T.Model<Annotation>) {
         // const res = resolve($)

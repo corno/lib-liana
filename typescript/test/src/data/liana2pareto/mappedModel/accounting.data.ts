@@ -14,6 +14,8 @@ import {
     terminal,
     taggedUnion,
     prop,
+    grp,
+    dict,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 
@@ -51,13 +53,13 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "Passiva": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("Accounting", [  ]/*parent*/)),
-                                "Subcategorie fiscus": prop(reference("X", []/*Hoofdcategorie fiscus*/)),
+                                "Hoofdcategorie fiscus": prop(reference("Accounting", [ grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus") ])),
+                                "Subcategorie fiscus": prop(reference("Accounting", [ grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen") ])),
                             }))),
                         }))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference("X", []/*parent*/)),
-                            "Subcategorie": prop(reference("X", []/*Hoofdcategorie*/)),
+                            "Hoofdcategorie":prop(reference("Accounting", [ grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen") ])),
+                            "Subcategorie": prop(reference("Accounting", [ grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen") ])),
                             "Zijde": prop(taggedUnion({
                                 "Activa": group({}),
                                 "Passiva": group({}),
@@ -78,14 +80,14 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "Opbrengsten": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("X", []/*parent*/)),
-                                "Subcategorie fiscus": prop(reference("X", []/*Hoofdcategorie fiscus*/)),
+                                "Hoofdcategorie fiscus": prop(reference("Accounting", [ grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus") ])),
+                                "Subcategorie fiscus": prop(reference("Accounting", [ grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen") ])),
                             }))),
                         }))),
                         "Correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference("X", []/*parent*/)),
-                            "Subcategorie": prop(reference("X", []/*Hoofdcategorie*/)),
+                            "Hoofdcategorie":prop(reference("Accounting", [ grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen") ])),
+                            "Subcategorie": prop(reference("Accounting", [ grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen") ])),
                             "Zijde": prop(taggedUnion({
                                 "Opbrengsten": group({}),
                                 "Kosten": group({
@@ -146,8 +148,8 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
 
                 "Nieuw": prop(taggedUnion({
                     "Nee": group({
-                        "Jaar": prop(reference("X", []/*self*/)),
-                        "Rekening": prop(reference("X", []/*Jaar*/)),
+                        "Jaar": prop(reference("Accounting", [ grp("Jaren")])),
+                        "Rekening": prop(reference("Accounting", [ grp("Jaren"), dict(), grp("Informele Rekeningen")])),
                     }),
                     "Ja": group({}),
                 })),
@@ -156,7 +158,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Startdatum boekjaar": prop(terminal("datum")),
                 "Eerste boekjaar": prop(taggedUnion({
                     "Nee": group({
-                        "Vorig boekjaar": prop(reference("X", []/*self*/)),
+                        "Vorig boekjaar": prop(reference("Accounting", [ grp("Jaren")])),
                     }),
                     "Ja": group({}),
                 })),
