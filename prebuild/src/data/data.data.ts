@@ -13,7 +13,6 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
             'settings': {
                 'datamodel': [true, {
                     'annotations': true,
-                    'properties optional': false,
                     'reference mapping': ['string', null],
                 }],
                 // 'visitor interface': [true, {
@@ -24,9 +23,9 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
                     'serialize': [false],
                 },
             },
-            'mappedModel': {
+            'mapped model': {
                 'model': liana,
-                'stringmapping': pd.d({
+                'terminal mapping': pd.d({
                     "identifier": ['string', null]
                 }),
             },
@@ -38,7 +37,6 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
             'settings': {
                 'datamodel': [true, {
                     'annotations': true,
-                    'properties optional': false,
                     'reference mapping': ['reference and string', null],
                 }],
                 // 'visitor interface': [true, {
@@ -49,10 +47,10 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
                     'serialize': [false],
                 },
             },
-            'mappedModel': {
+            'mapped model': {
                 'model': liana,
 
-                'stringmapping': pd.d({
+                'terminal mapping': pd.d({
                     "identifier": ['string', null]
                 }),
             },

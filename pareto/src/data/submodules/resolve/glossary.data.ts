@@ -17,7 +17,9 @@ import {
     glossaryParameter,
     interfaceReference,
     parametrizedTypeReference,
-    parametrizedReference
+    parametrizedReference,
+    builderReference,
+    builderMethod
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -28,11 +30,17 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'types': d({
-        "Annotation": type(glossaryParameter("Annotation"))
+        "Annotation": type(glossaryParameter("Annotation")),
+        "Error": type(group({
+            "message": member(reference("common", "String")),
+            "annotation": member(glossaryParameter("Annotation")),
+        }))
     }),
-    'builders': d({}),
+    'builders': d({
+        "OnError": builderMethod(typeReference("Error"))
+    }),
     'interfaces': d({}),
     'functions': d({
-        "Resolve": func(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, null, data(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
+        "Resolve": func(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, builderReference("OnError"), data(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
     }),
 }

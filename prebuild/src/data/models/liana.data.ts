@@ -4,7 +4,6 @@ import * as gliana from "lib-liana/dist/submodules/liana"
 import {
     d,
     array,
-    boolean,
     component,
     dictionary,
     globalType,
@@ -13,14 +12,13 @@ import {
     reference,
     taggedUnion,
     prop,
-    parent,
-    string,
+    terminal,
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
-        'string types': pd.d({
+        'terminal types': pd.d({
             "text": null,
         }),
         'global types': pd.d({
@@ -38,11 +36,11 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 }),
                 "tagged union": group({
                     "options": prop(dictionary(component("Type", {}))),
-                    "default": prop(reference(parent(), [])),
+                    "default": prop(reference("XXXX", [])),
                 }),
                 "group": group({
                     "properties": prop(dictionary(group({
-                        //"sibling dependencies": prop(dictionary(string())),
+                        //"sibling dependencies": prop(dictionary(terminal())),
                         "type": prop(component("Type", {})),
                     }))),
                 }),
@@ -50,10 +48,10 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "context": prop(taggedUnion({
                         "local": group({}),
                         "import": group({
-                            "library": prop(reference(parent(), [])),
+                            "library": prop(reference("XXXX", [])),
                         }),
                     })),
-                    "type": prop(reference(parent(), [])),
+                    "type": prop(reference("XXXX", [])),
                     "arguments": prop(dictionary(group({}))),
                 }),
             })),
@@ -67,27 +65,27 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             })),
             "Model": globalType({}, group({
                 "type library": prop(component("Type Library", {})),
-                "root": prop(reference(parent(), [])),
+                "root": prop(reference("Type Library", [])),
             })),
             "Terminal": globalType({}, group({
                 "constrained": prop(taggedUnion({
                     "no": group({
-                        "type": prop(reference(parent(), [])),
+                        "type": prop(reference("XXXX", [])),
                     }),
                     "yes": component("Reference", {}),
                 })),
             })),
             "Reference": globalType({}, group({
-                "global type": prop(string("identifier")), //FIXME
+                "global type": prop(reference("Type Library", [])), 
                 "path": prop(array(taggedUnion({
                     "dictionary": group({}),
                     "optional": group({}),
                     "array": group({}),
                     "group": group({
-                        "property": prop(string("identifier"))//FIXME
+                        "property": prop(reference("Type", []))
                     }),
                     "tagged union": group({
-                        "option": prop(string("identifier")),
+                        "option": prop(reference("Type", [])),
                     }),
                 })))
                 // "type": prop(taggedUnion({

@@ -36,7 +36,14 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             'parameters': d({}),
             'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                 "global type": {
-                    'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                    'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                        "annotation": {
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                        },
+                        "key": {
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                        },
+                    })],
                 },
                 "path": {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['array', <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -44,13 +51,27 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                         "dictionary": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                         "group": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "property": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                    "annotation": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                    },
+                                    "key": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                                    },
+                                })],
                             },
                         })],
                         "optional": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
                         "tagged union": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "option": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                    "annotation": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                    },
+                                    "key": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
+                                    },
+                                })],
                             },
                         })],
                     })]],

@@ -51,7 +51,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "Passiva": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("Accounting", [ ['group', {'property': "Beheer"}] ]/*parent*/)),
+                                "Hoofdcategorie fiscus": prop(reference("Accounting", [  ]/*parent*/)),
                                 "Subcategorie fiscus": prop(reference("X", []/*Hoofdcategorie fiscus*/)),
                             }))),
                         }))),

@@ -1,7 +1,7 @@
 import * as pl from 'pareto-core-lib'
-import * as pd from 'pareto-core-dev'
 import * as pm from 'pareto-core-map'
 
+import * as gthis from "../definition/glossary"
 import * as gcommon from "glo-pareto-common"
 import * as gliana from "../../liana"
 import * as gliana_resolved from "../../liana_resolved"
@@ -23,34 +23,124 @@ function mapReference<Annotation>($: gcommon.T.AnnotatedKey<Annotation>): gcommo
 }
 
 export const $$: createResolver = ($d) => {
-    return <Annotation>($: gliana.T.Model<Annotation>): gliana_resolved.T.Model<Annotation> => {
+    return <Annotation>($: gliana.T.Model<Annotation>, $i: gthis.B.OnError<Annotation>): gliana_resolved.T.Model<Annotation> => {
+
+        const tl = $['type library']
         return {
             'type library': pl.cc($['type library'], ($) => {
                 function mapRef($: gliana.T.Reference<Annotation>): gliana_resolved.T.Reference<Annotation> {
-                    return {
+                    const ann = $['global type'].annotation
+                    let current: gliana.T.Type<Annotation> | null = tl['global types'].__getEntry(
+                        $['global type'].key,
+                        ($) => {
+                            return $.type
+                        },
+                        () => {
+                            $i({
+                                'annotation': ann,
+                                'message': `no such global type: ${$['global type'].key}`,
+                            })
+                            return null
+                        }
+                    )
+                    const out: gliana_resolved.T.Reference<Annotation> = {
                         'global type': $['global type'],
                         'path': $.path.map(($) => {
                             switch ($[0]) {
                                 case 'array':
                                     return pl.cc($[1], ($) => {
+                                        if (current !== null) {
+                                            if (current[0] !== 'array') {
+                                                $i({
+                                                    'annotation': ann,
+                                                    'message': `not an array`,
+                                                })
+                                            } else {
+                                                current = current[1].type
+                                            }
+                                        }
                                         return ['array', null]
                                     })
                                 case 'dictionary':
                                     return pl.cc($[1], ($) => {
+                                        if (current !== null) {
+                                            if (current[0] !== 'dictionary') {
+                                                $i({
+                                                    'annotation': ann,
+                                                    'message': `not a dictionary`,
+                                                })
+                                            } else {
+                                                current = current[1].type
+                                            }
+                                        }
                                         return ['dictionary', null]
                                     })
                                 case 'group':
                                     return pl.cc($[1], ($) => {
+                                        if (current !== null) {
+                                            if (current[0] !== 'group') {
+                                                $i({
+                                                    'annotation': ann,
+                                                    'message': `not a group`,
+                                                })
+                                            } else {
+                                                current = current[1].properties.__getEntry(
+                                                    $.property.key,
+                                                        ($) => {
+                                                            return $.type
+                                                        },
+                                                        () => {
+                                                            $i({
+                                                                'annotation': $.property.annotation,
+                                                                'message': `no such property: ${$.property.key}`,
+                                                            })
+                                                            return null
+                                                        }
+                                                    )
+                                            }
+                                        }
                                         return ['group', {
                                             'property': $.property
                                         }]
                                     })
                                 case 'optional':
                                     return pl.cc($[1], ($) => {
+                                        if (current !== null) {
+                                            if (current[0] !== 'optional') {
+                                                $i({
+                                                    'annotation': ann,
+                                                    'message': `not optional`,
+                                                })
+                                            } else {
+                                                current = current[1].type
+                                            }
+                                        }
                                         return ['optional', null]
                                     })
                                 case 'tagged union':
                                     return pl.cc($[1], ($) => {
+                                        if (current !== null) {
+                                            if (current[0] !== 'tagged union') {
+                                                $i({
+                                                    'annotation': ann,
+                                                    'message': `not a tagged union`,
+                                                })
+                                            } else {
+                                                current = current[1].options.__getEntry(
+                                                    $.option.key,
+                                                        ($) => {
+                                                            return $
+                                                        },
+                                                        () => {
+                                                            $i({
+                                                                'annotation': $.option.annotation,
+                                                                'message': `no such property: ${$.option.key}`,
+                                                            })
+                                                            return null
+                                                        }
+                                                    )
+                                            }
+                                        }
                                         return ['tagged union', {
                                             'option': $.option
                                         }]
@@ -59,6 +149,18 @@ export const $$: createResolver = ($d) => {
                             }
                         })
                     }
+                    
+                    if (current !== null) {
+                        if (current[0] !== 'dictionary') {
+                            $i({
+                                'annotation': ann,
+                                'message': `not a dictionary`,
+                            })
+                        } else {
+                            current = current[1].type
+                        }
+                    }
+                    return out
                 }
                 function mapTerminal($: gliana.T.Terminal<Annotation>): gliana_resolved.T.Terminal<Annotation> {
                     return {

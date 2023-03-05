@@ -13,6 +13,7 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         'glossary': {
             'root': glossary,
             'imports': d({
+                "common": external("glo-pareto-common"),
                 "liana": sibling("liana"),
                 "liana_resolved": sibling("liana_resolved"),
             }),

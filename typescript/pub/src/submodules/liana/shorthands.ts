@@ -176,8 +176,12 @@ export function terminal(type: string): gglo.T.Type<pd.SourceLocation> {
 // }
 
 function grp(prop: string): gglo.T.Reference.path.A<pd.SourceLocation> {
+    const li = pd.getLocationInfo(1)
     return ['group', {
-        'property': prop
+        'property': {
+            'key': prop,
+            'annotation': li,
+        },
     }]
 }
 
@@ -190,19 +194,26 @@ function arr(): gglo.T.Reference.path.A<pd.SourceLocation> {
 }
 
 function tu(opt: string): gglo.T.Reference.path.A<pd.SourceLocation> {
+    const li = pd.getLocationInfo(1)
     return ['tagged union', {
-        'option': opt
+        'option': {
+            'key': opt,
+            'annotation': li,
+        },
     }]
 }
-
 
 function referenceX(
     globalType: string,
     path: gglo.T.Reference.path.A<pd.SourceLocation>[],
     annotation: pd.SourceLocation,
 ): gglo.T.Reference<pd.SourceLocation> {
+    const li = pd.getLocationInfo(1)
     return {
-        'global type': globalType,
+        'global type': {
+            'key': globalType,
+            'annotation': li,
+        },
         'path': a(path),
     }
     // return {
