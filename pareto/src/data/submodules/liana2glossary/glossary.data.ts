@@ -50,7 +50,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                         "internal": group({}),
                         "exernal": group({
                             "location": member(string()),
-                        })
+                        }),
                     })),
                 }))),
                 "algorithms": member(group({

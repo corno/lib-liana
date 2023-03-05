@@ -67,7 +67,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "Activa": group({}),
                                 "Passiva": group({}),
                             })),
-                        })))
+                        }))),
                     })),
                     "Resultaat": prop(group({
                         "Hoofdcategorieen fiscus": prop(dictionary(group({
@@ -97,9 +97,9 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                     "Correctie op vennootschapsbelasting": prop(taggedUnion({
                                         "Nee": group({}),
                                         "Ja": group({
-                                            "Correctietype": prop(reference(parent(), []))
-                                        })
-                                    }))
+                                            "Correctietype": prop(reference(parent(), [])),
+                                        }),
+                                    })),
                                 }),
                             })),
                         }))),
@@ -108,10 +108,10 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                         "BTW-heffing": prop(taggedUnion({
                             "Nee": group({}),
                             "Ja": group({
-                                "BTW-promillage": prop(string("promillage"))
+                                "BTW-promillage": prop(string("promillage")),
                             }),
-                        }))
-                    })))
+                        })),
+                    }))),
                 })),
                 "Klanten": prop(dictionary(group({
                     "Projecten": prop(dictionary(group({
@@ -121,10 +121,10 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                     "Project": group({
                                         "Betaaldatum": prop(string("datum")),
                                         "Bedrag": prop(string("bedrag")),
-                                    })
+                                    }),
                                 })),
-                            })))
-                        })))
+                            }))),
+                        }))),
                     }))),
                     "Licentieovereenkomsten": prop(dictionary(group({
                         "Periodes": prop(dictionary(group({
@@ -161,7 +161,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Startdatum boekjaar": prop(string("datum")),
                 "Eerste boekjaar": prop(taggedUnion({
                     "Nee": group({
-                        "Vorig boekjaar": prop(reference(self(), []))
+                        "Vorig boekjaar": prop(reference(self(), [])),
                     }),
                     "Ja": group({}),
                 })),
@@ -223,7 +223,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "1. BTW-categorieen": prop(constrainedDictionary(self(), [], group({
                     }))),
                     "Documenten": prop(dictionary(group({
-                        "Bestand": prop(string("bestand"))
+                        "Bestand": prop(string("bestand")),
                     }))),
                 }))),
                 "Salarisrondes": prop(dictionary(group({
@@ -291,7 +291,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "BTW": prop(string("bedrag")),
                             }),
                             "Nog niet bekend": group({
-                                "Aantekeningen": prop(string("multiline text"))
+                                "Aantekeningen": prop(string("multiline text")),
                             }),
                         })),
                         "Type": prop(taggedUnion({
@@ -309,7 +309,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                         "Nog toevoegen": group({
                         }),
                         "Toegevoegd": group({
-                            "Document": prop(string("bestand"))
+                            "Document": prop(string("bestand")),
                         }),
                     })),
                     "Betalingstermijn": prop(string("dagen")),
@@ -372,7 +372,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Verrekenposten": prop(dictionary(group({
                     "Mutaties": prop(dictionary(group({
                         "Bedrag": prop(string("bedrag")),
-                        "Afhandeling": prop(component("Afhandeling", {}))
+                        "Afhandeling": prop(component("Afhandeling", {})),
                     }))),
                 }))),
                 "Bankrekeningen": prop(dictionary(group({
@@ -392,9 +392,9 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                         "Status": prop(taggedUnion({
                             "Nog te verwerken": group({}),
                             "Verwerkt": group({
-                                "Afhandeling": prop(component("Afhandeling", {}))
-                            })
-                        }))
+                                "Afhandeling": prop(component("Afhandeling", {})),
+                            }),
+                        })),
                     }))),
                 }))),
             }))),
@@ -418,7 +418,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Informele rekening": group({
                     "Informele rekening": prop(reference(parameter("Informele Rekeningen"), [])),
                 }),
-            }))
+            })),
         }),
     },
     'root': r("Accounting"),

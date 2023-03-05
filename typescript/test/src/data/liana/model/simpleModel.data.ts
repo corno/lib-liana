@@ -35,14 +35,14 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "f": prop(reference(['parameter', "parameterA"], [])),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
-                    "a": group({})
+                    "a": group({}),
                 })),
     
     
             })),
             "Sub": globalType({}, group({
     
-            }))
+            })),
         }),
 
     },

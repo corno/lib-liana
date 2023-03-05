@@ -16,9 +16,10 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
                     'properties optional': false,
                     'reference mapping': ['string', null],
                 }],
-                'visitor interface': [true, {
-                    'datamodel': ['internal', null],
-                }],
+                // 'visitor interface': [true, {
+                //     'datamodel': ['internal', null],
+                // }],       
+                'visitor interface': [false],
                 'algorithms': {
                     'serialize': [false],
                 },

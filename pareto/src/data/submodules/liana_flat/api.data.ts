@@ -12,8 +12,8 @@ export const $: gapi.T.API<pd.SourceLocation> = {
             "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
             //"mapLiana2States": functionReference("liana2pareto", {}, "MapLiana2States"),
             "serializeStates": functionReference("pareto2typescript", {}, "SerializeStates"),
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach")
+            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
         })),
         "serialize": algorithm(functionReference("this", {}, "Serialize")),
-    })
+    }),
 }

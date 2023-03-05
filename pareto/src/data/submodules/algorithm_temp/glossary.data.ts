@@ -29,28 +29,28 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": type(glossaryParameter("Annotation")),
         "AlgorithmImplementation": type(group({
             "constructor": member(boolean()),
-            "type": member(reference("ImplementationType"))
+            "type": member(reference("ImplementationType")),
         })),
         "SynchronousFunctionBlock": type(group({
             "innerFunctions": member(dictionary(group({
-                "block": member(reference("SynchronousFunctionBlock"))
+                "block": member(reference("SynchronousFunctionBlock")),
             }))),
-            "returnExpression": member(reference("SynchronousExpression"))
+            "returnExpression": member(reference("SynchronousExpression")),
         })),
         "AsynchronousFunctionBlock": type(group({
             "innerFunctions": member(dictionary(group({
-                "block": member(reference("AsynchronousFunctionBlock"))
+                "block": member(reference("AsynchronousFunctionBlock")),
             }))),
-            "returnExpression": member(reference("AsynchronousExpression"))
+            "returnExpression": member(reference("AsynchronousExpression")),
         })),
         "ProcedureBlock": type(group({
             "innerFunctions": member(dictionary(group({
-                "type": member(reference("ImplementationType"))
+                "type": member(reference("ImplementationType")),
             }))),
             "statements": member(array(taggedUnion({
                 "dependencyCall": group({
                     "data": member(string()),
-                    "callback": member(reference("ProcedureBlock"))
+                    "callback": member(reference("ProcedureBlock")),
                 }),
                 "innerCallbackCall": group({
                     "innerCallback": member(string()),
@@ -61,13 +61,13 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                     "child path": member(array(string())),
                     //"property": member(array(string())),
                     "data": member(optional(reference("SynchronousExpression"))),
-                    "callback": member(optional(reference("ProcedureBlock"),))
+                    "callback": member(optional(reference("ProcedureBlock"),)),
                 }),
                 "switch": group({
                     "path": member(array(string())),
-                    "cases": member(dictionary(reference("ProcedureBlock")))
-                })
-            })))
+                    "cases": member(dictionary(reference("ProcedureBlock"))),
+                }),
+            }))),
         })),
         "AsynchronousExpression": type(taggedUnion({
             "call": group({
@@ -88,14 +88,14 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                 "properties": member(dictionary(reference("SynchronousExpression"))),
             }),
             "switch": group({
-                "cases": member(dictionary(reference("SynchronousFunctionBlock")))
+                "cases": member(dictionary(reference("SynchronousFunctionBlock"))),
             }),
             "propertySelection": group({
                 "name": member(string()),
             }),
             "contextChange": group({
                 "property": member(string()),
-                "block": member(reference("SynchronousFunctionBlock"))
+                "block": member(reference("SynchronousFunctionBlock")),
             }),
             "string literal": string(),
             "mapDictionary": group({
@@ -110,16 +110,16 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         })),
         "ImplementationType": type(taggedUnion({
             "synchronous function": group({
-                "block": member(reference("SynchronousFunctionBlock"))
+                "block": member(reference("SynchronousFunctionBlock")),
             }),
             "asynchronous function": group({
-                "block": member(reference("AsynchronousFunctionBlock"))
+                "block": member(reference("AsynchronousFunctionBlock")),
             }),
             "procedure": group({
-                "block": member(reference("ProcedureBlock"))
+                "block": member(reference("ProcedureBlock")),
             }),
             "interface initializer": group({
-                "block": member(reference("InterfaceInitializerBlock"))
+                "block": member(reference("InterfaceInitializerBlock")),
             }),
         })),
         "States": type(dictionary(reference("Type"))),

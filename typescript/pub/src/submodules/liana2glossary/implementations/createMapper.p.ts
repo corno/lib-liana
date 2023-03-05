@@ -223,17 +223,17 @@ export const $$: createMapper = ($d) => {
             'interfaces': $d.buildDictionary(null, (add) => {
 
                 if ($.settings['visitor interface'][0] === true) {
-                    add({
-                        'key': "Visitor",
-                        'value': ['group', {
-                            'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
-                                return ['method', {
-                                    'data': [false], //FIXME
-                                    'interface': [false], //FIXME
-                                }]
-                            })
-                        }],
-                    })
+                    // add({
+                    //     'key': "Visitor",
+                    //     'value': ['group', {
+                    //         'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
+                    //             return ['method', {
+                    //                 'data': [false], //FIXME
+                    //                 'interface': [false], //FIXME
+                    //             }]
+                    //         })
+                    //     }],
+                    // })
                 }
             }),
             'functions': $d.buildDictionary(null, (add) => {

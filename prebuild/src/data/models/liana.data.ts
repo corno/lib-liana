@@ -43,7 +43,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 }),
                 "group": group({
                     "properties": prop(dictionary(group({
-                        //"sibling dependencies": prop(dictionary(string()))
+                        //"sibling dependencies": prop(dictionary(string())),
                         "type": prop(component("Type", {})),
                     }))),
                 }),
@@ -56,14 +56,14 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     })),
                     "type": prop(reference(parent(), [])),
                     "arguments": prop(dictionary(group({}))),
-                })
+                }),
             })),
             "Type Library": globalType({}, group({
                 "imports": prop(dictionary(group({}))),
                 "string types": prop(dictionary(group({}))),
                 "global types": prop(dictionary(group({
                     "parameters": prop(dictionary(group({}))),
-                    "type": prop(component("Type", {}))
+                    "type": prop(component("Type", {})),
                 }))),
             })),
             "Model": globalType({}, group({
@@ -73,16 +73,16 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             "String": globalType({}, group({
                 "constrained": prop(taggedUnion({
                     "no": group({
-                        "type": prop(reference(parent(), []))
+                        "type": prop(reference(parent(), [])),
                     }),
                     "yes": component("Reference", {}),
-                }))
+                })),
             })),
             "Reference": globalType({}, group({
                 // "type": prop(taggedUnion({
                 //     "parameter": 
-                // }))
-            }))
+                // })),
+            })),
             // "Reference": type(group({
             //     "type": member(taggedUnion({
             //         "parameter": parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey"),

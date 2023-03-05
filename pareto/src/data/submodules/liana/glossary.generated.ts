@@ -198,31 +198,6 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         },
     }),
     'builders': d({}),
-    'interfaces': d({
-        "Visitor": ['group', {
-            'members': d({
-                "Model": ['method', {
-                    'data': [false],
-                    'interface': [false],
-                }],
-                "Reference": ['method', {
-                    'data': [false],
-                    'interface': [false],
-                }],
-                "String": ['method', {
-                    'data': [false],
-                    'interface': [false],
-                }],
-                "Type": ['method', {
-                    'data': [false],
-                    'interface': [false],
-                }],
-                "Type Library": ['method', {
-                    'data': [false],
-                    'interface': [false],
-                }],
-            }),
-        }],
-    }),
+    'interfaces': d({}),
     'functions': d({}),
 }

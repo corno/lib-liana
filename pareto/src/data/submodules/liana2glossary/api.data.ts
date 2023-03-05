@@ -19,5 +19,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
             "decorateDictionaryEntriesWithKey": functionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
             "buildDictionary": functionReference("build", {}, "UnsafeBuildDictionary"),
         })),
-    })
+    }),
 }

@@ -17,5 +17,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
             "createQuotedString": functionReference("ts", {}, "CreateQuotedString"),
             "createBacktickedString": functionReference("ts", {}, "CreateBacktickedString"),
         })),
-    })
+    }),
 }

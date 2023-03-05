@@ -13,5 +13,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         "createLiana2SerializerMapper": algorithm(functionReference("this", {}, "MapLiana2Serializer"), constructor(null, {
             //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
         })),
-    })
+    }),
 }

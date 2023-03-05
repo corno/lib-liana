@@ -41,10 +41,10 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "return type": prop(taggedUnion({
                         "data": group({
                             "asynchronous": prop(boolean()),
-                            "type": prop(component("TypeReference", {}))
+                            "type": prop(component("TypeReference", {})),
                         }),
                         "interface": component("InterfaceReference", {}),
-                        "nothing": group({})
+                        "nothing": group({}),
                     })),
                     "data": prop(component("TypeReference", {})),
                     "managed input interface": prop(taggedUnion({
@@ -59,7 +59,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             })),
             "Interface": globalType({}, taggedUnion({
                 "group": group({
-                    "members": prop(dictionary(component("Interface", {})))
+                    "members": prop(dictionary(component("Interface", {}))),
                 }),
                 "method": group({
                     "data": prop(taggedUnion({
@@ -96,7 +96,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "template": group({
                     "context": prop(component("Context", {})),
                     "template": prop(string("identifier")),
-                    "arguments": prop(dictionary(component("Type", {})))
+                    "arguments": prop(dictionary(component("Type", {}))),
                 }),
                 "taggedUnion": dictionary(component("Type", {})),
             })),
@@ -104,7 +104,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "context": prop(component("Context", {})),
                 //"type": [["namespace"), reference(['sibling', "namespaces"), [))),
                 "type": prop(string("identifier")),
-            }))
+            })),
         }),
 
     },
