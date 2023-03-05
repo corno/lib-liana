@@ -150,30 +150,51 @@ export function terminal(type: string): gglo.T.Type<pd.SourceLocation> {
     }]
 }
 
-export type ReferenceType =
-    | ['sibling', string]
-    | ['parent', null]
-    | ['parameter', string]
-    | ['self', null]
+// export type ReferenceType =
+//     | ['sibling', string]
+//     | ['parent', null]
+//     | ['parameter', string]
+//     | ['self', null]
 
-export type Step =
-    | ['group', string]
-    | ['tagged union', string]
-    | ['reference', null]
-    | ['array', null]
+// export type Step =
+//     | ['group', string]
+//     | ['tagged union', string]
+//     | ['reference', null]
+//     | ['array', null]
 
-export function self(): ReferenceType {
-    return ['self', null]
+// export function self(): ReferenceType {
+//     return ['self', null]
+// }
+// export function parent(): ReferenceType {
+//     return ['parent', null]
+// }
+// export function sibling(name: string): ReferenceType {
+//     return ['sibling', name]
+// }
+// export function parameter(name: string): ReferenceType {
+//     return ['parameter', name]
+// }
+
+function grp(prop: string): gglo.T.Reference.path.A<pd.SourceLocation> {
+    return ['group', {
+        'property': prop
+    }]
 }
-export function parent(): ReferenceType {
-    return ['parent', null]
+
+function dict(): gglo.T.Reference.path.A<pd.SourceLocation> {
+    return ['dictionary', null]
 }
-export function sibling(name: string): ReferenceType {
-    return ['sibling', name]
+
+function arr(): gglo.T.Reference.path.A<pd.SourceLocation> {
+    return ['array', null]
 }
-export function parameter(name: string): ReferenceType {
-    return ['parameter', name]
+
+function tu(opt: string): gglo.T.Reference.path.A<pd.SourceLocation> {
+    return ['tagged union', {
+        'option': opt
+    }]
 }
+
 
 function referenceX(
     globalType: string,

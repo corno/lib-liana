@@ -14,10 +14,6 @@ import {
     terminal,
     taggedUnion,
     prop,
-    parent,
-    self,
-    sibling,
-    parameter,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 
@@ -55,7 +51,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                                 "Passiva": group({}),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("X", []/*parent*/)),
+                                "Hoofdcategorie fiscus": prop(reference("Accounting", [ ['group', {'property': "Beheer"}] ]/*parent*/)),
                                 "Subcategorie fiscus": prop(reference("X", []/*Hoofdcategorie fiscus*/)),
                             }))),
                         }))),

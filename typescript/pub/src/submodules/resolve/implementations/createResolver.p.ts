@@ -26,6 +26,40 @@ export const $$: createResolver = ($d) => {
     return <Annotation>($: gliana.T.Model<Annotation>): gliana_resolved.T.Model<Annotation> => {
         return {
             'type library': pl.cc($['type library'], ($) => {
+                function mapRef($: gliana.T.Reference<Annotation>): gliana_resolved.T.Reference<Annotation> {
+                    return {
+                        'global type': $['global type'],
+                        'path': $.path.map(($) => {
+                            switch ($[0]) {
+                                case 'array':
+                                    return pl.cc($[1], ($) => {
+                                        return ['array', null]
+                                    })
+                                case 'dictionary':
+                                    return pl.cc($[1], ($) => {
+                                        return ['dictionary', null]
+                                    })
+                                case 'group':
+                                    return pl.cc($[1], ($) => {
+                                        return ['group', {
+                                            'property': $.property
+                                        }]
+                                    })
+                                case 'optional':
+                                    return pl.cc($[1], ($) => {
+                                        return ['optional', null]
+                                    })
+                                case 'tagged union':
+                                    return pl.cc($[1], ($) => {
+                                        return ['tagged union', {
+                                            'option': $.option
+                                        }]
+                                    })
+                                default: return pl.au($[0])
+                            }
+                        })
+                    }
+                }
                 function mapTerminal($: gliana.T.Terminal<Annotation>): gliana_resolved.T.Terminal<Annotation> {
                     return {
                         'constrained': pl.cc($.constrained, ($) => {
@@ -38,38 +72,7 @@ export const $$: createResolver = ($d) => {
                                     })
                                 case 'yes':
                                     return pl.cc($[1], ($) => {
-                                        return ['yes', {
-                                            'global type': $['global type'],
-                                            'path': $.path.map(($) => {
-                                                switch ($[0]) {
-                                                    case 'array':
-                                                        return pl.cc($[1], ($) => {
-                                                            return ['array', null]
-                                                        })
-                                                    case 'dictionary':
-                                                        return pl.cc($[1], ($) => {
-                                                            return ['dictionary', null]
-                                                        })
-                                                    case 'group':
-                                                        return pl.cc($[1], ($) => {
-                                                            return ['group', {
-                                                                'property': $.property
-                                                            }]
-                                                        })
-                                                    case 'optional':
-                                                        return pl.cc($[1], ($) => {
-                                                            return ['optional', null]
-                                                        })
-                                                    case 'tagged union':
-                                                        return pl.cc($[1], ($) => {
-                                                            return ['tagged union', {
-                                                                'option': $.option
-                                                            }]
-                                                        })
-                                                    default: return pl.au($[0])
-                                                }
-                                            })
-                                        }]
+                                        return ['yes', mapRef($)]
                                     })
                                 default: return pl.au($[0])
                             }

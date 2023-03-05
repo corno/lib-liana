@@ -173,6 +173,35 @@ export const $$: createMapper = ($d) => {
                                                 "annotation": {
                                                     'type': ['glossary parameter', "Annotation"]
                                                 },
+                                                // "referencedType": $.path.map(($) => {
+                                                //     switch ($[0]) {
+                                                //         case 'array':
+                                                //             return pl.cc($[1], ($) => {
+                                                //                 return ['array', null]
+                                                //             })
+                                                //         case 'dictionary':
+                                                //             return pl.cc($[1], ($) => {
+                                                //                 return ['dictionary', null]
+                                                //             })
+                                                //         case 'group':
+                                                //             return pl.cc($[1], ($) => {
+                                                //                 return ['group', {
+                                                //                     'property': $.property
+                                                //                 }]
+                                                //             })
+                                                //         case 'optional':
+                                                //             return pl.cc($[1], ($) => {
+                                                //                 return ['optional', null]
+                                                //             })
+                                                //         case 'tagged union':
+                                                //             return pl.cc($[1], ($) => {
+                                                //                 return ['tagged union', {
+                                                //                     'option': $.option
+                                                //                 }]
+                                                //             })
+                                                //         default: return pl.au($[0])
+                                                //     }
+                                                // })
                                             })]
                                             // return ['reference', {
                                             //     'context': ['import', {
