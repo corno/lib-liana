@@ -23,7 +23,7 @@ export namespace T {
     
     export namespace MapData {
         
-        export type mappedModel<GAnnotation> = T.MappedModel<GAnnotation>
+        export type mapped__model<GAnnotation> = T.MappedModel<GAnnotation>
         
         export namespace settings {
             
@@ -49,8 +49,6 @@ export namespace T {
                     
                     export type annotations<GAnnotation> = boolean
                     
-                    export type properties__optional<GAnnotation> = boolean
-                    
                     export namespace reference__mapping {
                         
                         export namespace reference {}
@@ -74,7 +72,6 @@ export namespace T {
                 
                 export type O<GAnnotation> = {
                     readonly 'annotations': boolean
-                    readonly 'properties optional': boolean
                     readonly 'reference mapping': 
                         | ['reference', null]
                         | ['reference and string', null]
@@ -84,7 +81,6 @@ export namespace T {
             
             export type datamodel<GAnnotation> = [ false ] | [ true, {
                 readonly 'annotations': boolean
-                readonly 'properties optional': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -142,7 +138,6 @@ export namespace T {
             }
             readonly 'datamodel': [ false ] | [ true, {
                 readonly 'annotations': boolean
-                readonly 'properties optional': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -159,14 +154,13 @@ export namespace T {
     }
     
     export type MapData<GAnnotation> = {
-        readonly 'mappedModel': T.MappedModel<GAnnotation>
+        readonly 'mapped model': T.MappedModel<GAnnotation>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
             }
             readonly 'datamodel': [ false ] | [ true, {
                 readonly 'annotations': boolean
-                readonly 'properties optional': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -186,7 +180,7 @@ export namespace T {
         
         export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
         
-        export namespace stringmapping {
+        export namespace terminal__mapping {
             
             export namespace D {
                 
@@ -203,7 +197,7 @@ export namespace T {
                 | ['string', null]
         }
         
-        export type stringmapping<GAnnotation> = pt.Dictionary<
+        export type terminal__mapping<GAnnotation> = pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]
@@ -212,7 +206,7 @@ export namespace T {
     
     export type MappedModel<GAnnotation> = {
         readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
-        readonly 'stringmapping': pt.Dictionary<
+        readonly 'terminal mapping': pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]

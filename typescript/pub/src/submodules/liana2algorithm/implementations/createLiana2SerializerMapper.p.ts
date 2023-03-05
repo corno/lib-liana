@@ -13,7 +13,7 @@ import {createLiana2SerializerMapper } from "../definition/api.generated"
 
 export const $$: createLiana2SerializerMapper = ($d) => {
     return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
-        const stringMapping = $.stringmapping
+        const terminalMapping = $['terminal mapping']
         type OutAnnotation = gapi.T.OutAnnotation<Annotation>
         return {
             'constructor': false,
@@ -31,14 +31,6 @@ export const $$: createLiana2SerializerMapper = ($d) => {
                                                 return pl.cc($[1], ($): galgorithm.T.ProcedureBlock.statements.A<OutAnnotation> => {
                                                     return ['interfaceCall', {
                                                         'child path': pm.wrapRawArray(["array"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            case 'boolean':
-                                                return pl.cc($[1], ($) => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["boolean"]),
                                                         'data': [false],
                                                         'callback': [false],
                                                     }]
@@ -91,12 +83,12 @@ export const $$: createLiana2SerializerMapper = ($d) => {
                                                         'callback': [false],
                                                     }]
                                                 })
-                                            case 'string':
+                                            case 'terminal':
                                                 return pl.cc($[1], ($) => {
                                                     switch ($.constrained[0]) {
                                                         case 'no':
                                                             return pl.cc($.constrained[1], ($) => {
-                                                                return pl.cc(stringMapping.__unsafeGetEntry($.type.key), ($) => {
+                                                                return pl.cc(terminalMapping.__unsafeGetEntry($.type.key), ($) => {
                                                                     switch ($[0]) {
                                                                         case 'boolean':
                                                                             return pl.cc($[1], ($) => {

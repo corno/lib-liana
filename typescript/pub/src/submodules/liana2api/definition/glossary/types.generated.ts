@@ -53,7 +53,7 @@ export namespace T {
         
         export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
         
-        export namespace stringmapping {
+        export namespace terminal__mapping {
             
             export namespace D {
                 
@@ -70,7 +70,7 @@ export namespace T {
                 | ['string', null]
         }
         
-        export type stringmapping<GAnnotation> = pt.Dictionary<
+        export type terminal__mapping<GAnnotation> = pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]
@@ -79,7 +79,7 @@ export namespace T {
     
     export type MappedModel<GAnnotation> = {
         readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
-        readonly 'stringmapping': pt.Dictionary<
+        readonly 'terminal mapping': pt.Dictionary<
             | ['boolean', null]
             | ['number', null]
             | ['string', null]

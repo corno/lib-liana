@@ -4,14 +4,13 @@ import * as gliana from "../../../../../pub/dist/submodules/liana"
 import {
     d,
     array,
-    boolean,
     component,
     dictionary,
     globalType,
     group,
     r,
     reference,
-    string,
+    terminal,
     taggedUnion,
     prop,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
@@ -19,20 +18,20 @@ import {
 export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
-        'string types': pd.d({
+        'terminal types': pd.d({
             "text": null,
             "identifier": null,
         }),
         'global types': pd.d({
             "Root": globalType({ "parameterA": null}, group({
-                "a": prop(string("text")),
-                "b": prop(string("text")),
+                "a": prop(terminal("text")),
+                "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(reference(['sibling', "c"], [])),
+                "d": prop(reference("FOO", [])),
                 "e": prop(group({
                     //"a": prop(reference(['parent', null], [])],
                 })),
-                "f": prop(reference(['parameter', "parameterA"], [])),
+                "f": prop(reference("FOO", [])),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
                     "a": group({}),

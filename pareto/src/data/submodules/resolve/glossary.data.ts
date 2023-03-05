@@ -15,7 +15,7 @@ import {
     reference,
     number,
     glossaryParameter,
-    builderReference,
+    interfaceReference,
     parametrizedTypeReference,
     parametrizedReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
@@ -28,19 +28,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
-        "MappedModel": type(group({
-            "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
-            "terminal mapping": member(dictionary(taggedUnion({
-                "boolean": null_(),
-                "number": null_(),
-                "string": null_(),
-            }))),
-        })),
+        "Annotation": type(glossaryParameter("Annotation"))
     }),
     'builders': d({}),
     'interfaces': d({}),
     'functions': d({
-        "Serialize": func(typeReference("MappedModel"), null, builderReference("fp", "Directory"), null),
+        "Resolve": func(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, null, data(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
     }),
 }

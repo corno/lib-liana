@@ -45,7 +45,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         })),
         "MappedModel": type(group({
             "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
-            "stringmapping": member(dictionary(taggedUnion({
+            "terminal mapping": member(dictionary(taggedUnion({
                 "boolean": null_(),
                 "number": null_(),
                 "string": null_(),

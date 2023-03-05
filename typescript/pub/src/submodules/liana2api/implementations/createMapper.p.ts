@@ -11,7 +11,6 @@ import {createMapper } from "../definition/api.generated"
 export const $$: createMapper = ($d) => {
     return <Annotation>($: gthis.T.MapData<Annotation>) => {
         const model = $.model.model
-        const stringMapping = $.model.stringmapping
         return {
             'imports': $d.buildDictionary(null, (add) => {
                 if ($.algorithms.serialize[0] === true) {

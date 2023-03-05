@@ -26,11 +26,36 @@ export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a
             },
             'mappedModel': {
                 'model': liana,
+                'stringmapping': pd.d({
+                    "identifier": ['string', null]
+                }),
+            },
+        },
+    },
+    {
+        'path': `../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`,
+        'data': {
+            'settings': {
+                'datamodel': [true, {
+                    'annotations': true,
+                    'properties optional': false,
+                    'reference mapping': ['reference and string', null],
+                }],
+                // 'visitor interface': [true, {
+                //     'datamodel': ['internal', null],
+                // }],       
+                'visitor interface': [false],
+                'algorithms': {
+                    'serialize': [false],
+                },
+            },
+            'mappedModel': {
+                'model': liana,
 
                 'stringmapping': pd.d({
                     "identifier": ['string', null]
                 }),
             },
-        }
+        },
     }
 ])

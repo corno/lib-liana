@@ -45,7 +45,7 @@ export const $$: getTestSet = ($) => {
     writer([$XXX.testDirectory, 'flat'], ($i) => {
         gliana_flat.$a.serialize(
             {
-                'stringmapping': pm.wrapRawDictionary({
+                'terminal mapping': pm.wrapRawDictionary({
                     "bedrag": ['number', null],
                     "bestand": ['string', null],
                     "dagen": ['number', null],

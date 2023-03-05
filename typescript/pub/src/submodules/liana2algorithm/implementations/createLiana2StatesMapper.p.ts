@@ -9,7 +9,7 @@ import {createLiana2StatesMapper } from "../definition/api.generated"
 
 export const $$: createLiana2StatesMapper = ($d) => {
     return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
-        const stringMapping = $.stringmapping
+        const terminalMapping = $['terminal mapping']
         return $.model['type library']['global types'].map(($) => {
             function mapType($: gliana.T.Type<Annotation>): galgorithm.T.Type<Annotation> {
                 switch ($[0]) {
@@ -20,10 +20,6 @@ export const $$: createLiana2StatesMapper = ($d) => {
                     case 'optional':
                         return pl.cc($[1], ($) => {
                             return ['optional', mapType($.type)]
-                        })
-                    case 'boolean':
-                        return pl.cc($[1], ($) => {
-                            return ['boolean', null]
                         })
                     case 'component':
                         return pl.cc($[1], ($) => {
@@ -41,12 +37,12 @@ export const $$: createLiana2StatesMapper = ($d) => {
                                 }
                             })]
                         })
-                    case 'string':
+                    case 'terminal':
                         return pl.cc($[1], ($) => {
                             switch ($.constrained[0]) {
                                 case 'no':
                                     return pl.cc($.constrained[1], ($) => {
-                                        return stringMapping.__getEntry(
+                                        return terminalMapping.__getEntry(
                                             $.type.key,
                                             ($) => {
                                                 switch ($[0]) {

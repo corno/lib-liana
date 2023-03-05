@@ -4,14 +4,13 @@ import * as gliana from "../../../../../pub/dist/submodules/liana"
 import {
     d,
     array,
-    boolean,
     component,
     dictionary,
     globalType,
     group,
     r,
     reference,
-    string,
+    terminal,
     taggedUnion,
     prop,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
@@ -19,14 +18,14 @@ import {
 export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
-        'string types': pd.d({
+        'terminal types': pd.d({
             "text": null,
         }),
         'global types': pd.d({
             "Context": globalType({}, taggedUnion({
                 "local": group({}),
                 //"import": reference(['parent', null), [)),
-                "import": string("identifier"),
+                "import": terminal("identifier"),
             })),
             "Model": globalType({}, group({
                 "imports": prop(dictionary(group({}))),
@@ -40,7 +39,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "functions": prop(dictionary(group({
                     "return type": prop(taggedUnion({
                         "data": group({
-                            "asynchronous": prop(boolean()),
+                            "asynchronous": prop(terminal("boolean")),
                             "type": prop(component("TypeReference", {})),
                         }),
                         "interface": component("InterfaceReference", {}),
@@ -76,7 +75,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             "InterfaceReference": globalType({}, group({
                 "context": prop(component("Context", {})),
                 //"interface": [["context"), reference(['sibling', "context"), [))),
-                "interface": prop(string("identifier")),
+                "interface": prop(terminal("identifier")),
             })),
             "Type": globalType({}, taggedUnion({
                 "array": component("Type", {}),
@@ -90,12 +89,12 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "reference": component("TypeReference", {}),
                 "group": dictionary(group({
                     "type": prop(component("Type", {})),
-                    "optional": prop(boolean()),
+                    "optional": prop(terminal("boolean")),
                 })),
-                "parameter": string("identifier"),
+                "parameter": terminal("identifier"),
                 "template": group({
                     "context": prop(component("Context", {})),
-                    "template": prop(string("identifier")),
+                    "template": prop(terminal("identifier")),
                     "arguments": prop(dictionary(component("Type", {}))),
                 }),
                 "taggedUnion": dictionary(component("Type", {})),
@@ -103,7 +102,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             "TypeReference": globalType({}, group({
                 "context": prop(component("Context", {})),
                 //"type": [["namespace"), reference(['sibling', "namespaces"), [))),
-                "type": prop(string("identifier")),
+                "type": prop(terminal("identifier")),
             })),
         }),
 

@@ -10,8 +10,8 @@ import {createMapper } from "../definition/api.generated"
 
 export const $$: createMapper = ($d) => {
     return <Annotation>($: gapi.T.MapData<Annotation>) => {
-        const model = $.mappedModel.model
-        const stringMapping = $.mappedModel.stringmapping
+        const model = $['mapped model'].model
+        const terminalMapping = $['mapped model']['terminal mapping']
         // function ref(type: string): gglossary.T.Type {
         //     return ['reference', {
         //         'context': ['local', null],
@@ -90,10 +90,6 @@ export const $$: createMapper = ($d) => {
                             return pl.cc($[1], ($) => {
                                 return ['optional', mapType($.type)]
                             })
-                        case 'boolean':
-                            return pl.cc($[1], ($) => {
-                                return ['boolean', null]
-                            })
                         case 'component':
                             return pl.cc($[1], ($) => {
                                 return ['reference', {
@@ -136,16 +132,15 @@ export const $$: createMapper = ($d) => {
                                 return ['group', $.properties.map(($) => {
                                     return {
                                         'type': mapType($.type),
-                                        'optional': configuration['properties optional'],
                                     }
                                 })]
                             })
-                        case 'string':
+                        case 'terminal':
                             return pl.cc($[1], ($) => {
                                 switch ($.constrained[0]) {
                                     case 'no':
                                         return pl.cc($.constrained[1], ($) => {
-                                            return stringMapping.__getEntry(
+                                            return terminalMapping.__getEntry(
                                                 $.type.key,
                                                 ($) => {
                                                     switch ($[0]) {
@@ -215,7 +210,7 @@ export const $$: createMapper = ($d) => {
             }),
             'types': $.settings.datamodel[0] === true
                 ? createTypes({
-                    'model': $.mappedModel.model,
+                    'model': $['mapped model'].model,
                     'configuration': $.settings.datamodel[1],
                 })
                 : pm.wrapRawDictionary({}),
@@ -253,7 +248,7 @@ export const $$: createMapper = ($d) => {
                         'key': "Serialize",
                         'value': {
                             'return type': ['nothing', null],
-                            'data': typeReference($.mappedModel.model.root.key), //unresolved
+                            'data': typeReference($['mapped model'].model.root.key), //unresolved
                             'input builder': [false],
                             'output builder': [true, {
                                 'context': ['import', {

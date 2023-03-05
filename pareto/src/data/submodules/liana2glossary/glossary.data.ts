@@ -34,11 +34,10 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "path": member(reference("common", "Path")),
         })),
         "MapData": type(group({
-            "mappedModel": member(reference("MappedModel")),
+            "mapped model": member(reference("MappedModel")),
             "settings": member(group({
                 "datamodel": member(optional(group({
                     "annotations": member(boolean()),
-                    "properties optional": member(boolean()),
                     "reference mapping": member(taggedUnion({
                         "string": group({}),
                         "reference": group({}),
@@ -63,7 +62,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         })),
         "MappedModel": type(group({
             "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
-            "stringmapping": member(dictionary(taggedUnion({
+            "terminal mapping": member(dictionary(taggedUnion({
                 "boolean": null_(),
                 "number": null_(),
                 "string": null_(),

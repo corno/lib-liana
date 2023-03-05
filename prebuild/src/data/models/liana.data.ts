@@ -25,10 +25,9 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
         }),
         'global types': pd.d({
             "Type": globalType({}, taggedUnion({
-                "string": component("String", {}),
-                "boolean": group({}),
+                "terminal": component("Terminal", {}),
                 "dictionary": group({
-                    "key": prop(component("String", {})),
+                    "key": prop(component("Terminal", {})),
                     "type": prop(component("Type", {})),
                 }),
                 "array": group({
@@ -60,7 +59,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             })),
             "Type Library": globalType({}, group({
                 "imports": prop(dictionary(group({}))),
-                "string types": prop(dictionary(group({}))),
+                "terminal types": prop(dictionary(group({}))),
                 "global types": prop(dictionary(group({
                     "parameters": prop(dictionary(group({}))),
                     "type": prop(component("Type", {})),
@@ -70,7 +69,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "type library": prop(component("Type Library", {})),
                 "root": prop(reference(parent(), [])),
             })),
-            "String": globalType({}, group({
+            "Terminal": globalType({}, group({
                 "constrained": prop(taggedUnion({
                     "no": group({
                         "type": prop(reference(parent(), [])),
@@ -79,6 +78,18 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 })),
             })),
             "Reference": globalType({}, group({
+                "global type": prop(string("identifier")), //FIXME
+                "path": prop(array(taggedUnion({
+                    "dictionary": group({}),
+                    "optional": group({}),
+                    "array": group({}),
+                    "group": group({
+                        "property": prop(string("identifier"))//FIXME
+                    }),
+                    "tagged union": group({
+                        "option": prop(string("identifier")),
+                    }),
+                })))
                 // "type": prop(taggedUnion({
                 //     "parameter": 
                 // })),

@@ -5,6 +5,8 @@ import * as gcommon from 'glo-pareto-common'
 
 import * as gglo from "./definition/glossary";
 
+const a = pd.a
+
 type RawDictionary<T> = { [key: string]: T }
 
 function r_imp(name: string, annotation: pd.SourceLocation): gcommon.T.AnnotatedKey<pd.SourceLocation> {
@@ -50,17 +52,25 @@ export function optional(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd.S
     }]
 }
 
-export function constrainedString($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.String<pd.SourceLocation> {
+export function constrainedTerminal(
+    globalType: string,
+    path: gglo.T.Reference.path.A<pd.SourceLocation>[],
+    annotation: pd.SourceLocation
+): gglo.T.Terminal<pd.SourceLocation> {
     return {
-        'constrained': ['yes', referenceX($, steps, annotation)],
+        'constrained': ['yes', referenceX(globalType, path, annotation)],
     }
 }
 
-export function constrainedDictionary($: ReferenceType, steps: Step[], type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd.SourceLocation> {
+export function constrainedDictionary(
+    globalType: string,
+    path: gglo.T.Reference.path.A<pd.SourceLocation>[],
+    type: gglo.T.Type<pd.SourceLocation>
+): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
     return ['dictionary', {
         // 'annotation': li,
-        'key': constrainedString($, steps, li),
+        'key': constrainedTerminal(globalType, path, li),
         'type': type
     }]
 }
@@ -131,17 +141,13 @@ export function taggedUnion(options: RawDictionary<gglo.T.Type<pd.SourceLocation
     })
 }
 
-export function string(type: string): gglo.T.Type<pd.SourceLocation> {
+export function terminal(type: string): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
-    return ['string', {
+    return ['terminal', {
         'constrained': ['no', {
             'type': r_imp(type, li),
         }],
     }]
-}
-
-export function boolean(): gglo.T.Type<pd.SourceLocation> {
-    return ['boolean', null]
 }
 
 export type ReferenceType =
@@ -169,8 +175,15 @@ export function parameter(name: string): ReferenceType {
     return ['parameter', name]
 }
 
-function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocation): gglo.T.Reference<pd.SourceLocation> {
-    return null
+function referenceX(
+    globalType: string,
+    path: gglo.T.Reference.path.A<pd.SourceLocation>[],
+    annotation: pd.SourceLocation,
+): gglo.T.Reference<pd.SourceLocation> {
+    return {
+        'global type': globalType,
+        'path': a(path),
+    }
     // return {
     //     'type': pl.cc($, ($) => {
     //         switch ($[0]) {
@@ -219,12 +232,12 @@ function referenceX($: ReferenceType, steps: Step[], annotation: pd.SourceLocati
 }
 
 export function reference(
-    type: ReferenceType,
-    steps: Step[],
+    globalType: string,
+    path: gglo.T.Reference.path.A<pd.SourceLocation>[],
 ): gglo.T.Type<pd.SourceLocation> {
     const li = pd.getLocationInfo(1)
-    return ['string', {
-        'constrained': ['yes', referenceX(type, steps, li)],
+    return ['terminal', {
+        'constrained': ['yes', referenceX(globalType, path, li)],
     }]
 }
 

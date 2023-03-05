@@ -51,11 +51,6 @@ export const $$: createSerializer = ($d) => {
                             })
                         })
                         break
-                    case 'boolean':
-                        pl.cc($[1], ($) => {
-
-                        })
-                        break
                     case 'component':
                         pl.cc($[1], ($) => {
 
@@ -113,11 +108,6 @@ export const $$: createSerializer = ($d) => {
                                                                 })
                                                             })
                                                             break
-                                                        case 'boolean':
-                                                            pl.cc($[1], ($) => {
-
-                                                            })
-                                                            break
                                                         case 'component':
                                                             pl.cc($[1], ($) => {
 
@@ -139,7 +129,7 @@ export const $$: createSerializer = ($d) => {
 
                                                             })
                                                             break
-                                                        case 'string':
+                                                        case 'terminal':
                                                             pl.cc($[1], ($) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                             })
@@ -208,11 +198,6 @@ export const $$: createSerializer = ($d) => {
                                                                             $i.snippet(`[false]`)
                                                                         })
                                                                         break
-                                                                    case 'boolean':
-                                                                        pl.cc($[1], ($) => {
-                                                                            $i.snippet(`FIXBOOLEAN`)
-                                                                        })
-                                                                        break
                                                                     case 'component':
                                                                         pl.cc($[1], ($) => {
                                                                             $i.snippet(`FIXCOMPONENT`)
@@ -243,7 +228,7 @@ export const $$: createSerializer = ($d) => {
                                                                             $i.snippet(`}`)
                                                                         })
                                                                         break
-                                                                    case 'string':
+                                                                    case 'terminal':
                                                                         pl.cc($[1], ($) => {
                                                                             switch ($.constrained[0]) {
                                                                                 case 'no':
@@ -364,7 +349,7 @@ export const $$: createSerializer = ($d) => {
 
                         })
                         break
-                    case 'string':
+                    case 'terminal':
                         pl.cc($[1], ($) => {
 
                         })
