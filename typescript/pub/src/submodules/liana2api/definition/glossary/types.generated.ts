@@ -3,7 +3,7 @@ import * as pt from 'pareto-core-types'
 import * as g_api from "lib-pareto-typescript-project/dist/submodules/api"
 import * as g_common from "glo-pareto-common"
 import * as g_liana from "../../../liana"
-import * as g_main from "res-pareto-main"
+import * as g_main from "../../../../main"
 
 export namespace T {
     
@@ -39,51 +39,14 @@ export namespace T {
             readonly 'serialize': [ false ] | [ true, null]
         }
         
-        export type model<GAnnotation> = T.MappedModel<GAnnotation>
+        export type model<GAnnotation> = g_main.T.MappedModel<T.Annotation<GAnnotation>>
     }
     
     export type MapData<GAnnotation> = {
         readonly 'algorithms': {
             readonly 'serialize': [ false ] | [ true, null]
         }
-        readonly 'model': T.MappedModel<GAnnotation>
-    }
-    
-    export namespace MappedModel {
-        
-        export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
-        
-        export namespace terminal__mapping {
-            
-            export namespace D {
-                
-                export type _lboolean<GAnnotation> = null
-                
-                export type _lnumber<GAnnotation> = null
-                
-                export type _lstring<GAnnotation> = null
-            }
-            
-            export type D<GAnnotation> = 
-                | ['boolean', null]
-                | ['number', null]
-                | ['string', null]
-        }
-        
-        export type terminal__mapping<GAnnotation> = pt.Dictionary<
-            | ['boolean', null]
-            | ['number', null]
-            | ['string', null]
-        >
-    }
-    
-    export type MappedModel<GAnnotation> = {
-        readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
-        readonly 'terminal mapping': pt.Dictionary<
-            | ['boolean', null]
-            | ['number', null]
-            | ['string', null]
-        >
+        readonly 'model': g_main.T.MappedModel<T.Annotation<GAnnotation>>
     }
     
     export namespace OutAnnotation {

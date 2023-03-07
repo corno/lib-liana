@@ -16,6 +16,9 @@ import {
     prop,
     grp,
     dict,
+    typePath,
+    option,
+    tbd,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 
@@ -42,71 +45,71 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "Balans": prop(group({
                         "Hoofdcategorieen fiscus": prop(dictionary(group({
                             "Zijde": prop(taggedUnion({
-                                "Activa": group({}),
-                                "Passiva": group({}),
+                                "Activa": option(group({})),
+                                "Passiva": option(group({})),
                             })),
                             "Subcategorieen": prop(dictionary(group({}))),
                         }))),
                         "Hoofdcategorieen": prop(dictionary(group({
                             "Zijde": prop(taggedUnion({
-                                "Activa": group({}),
-                                "Passiva": group({}),
+                                "Activa": option(group({})),
+                                "Passiva": option(group({})),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus")])),
-                                "Subcategorie fiscus": prop(reference("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen")])),
+                                "Hoofdcategorie fiscus": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus")]), tbd())),
+                                "Subcategorie fiscus": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen")]), tbd())),
                             }))),
                         }))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen")])),
-                            "Subcategorie": prop(reference("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen")])),
+                            "Hoofdcategorie": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen")]), tbd())),
+                            "Subcategorie": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Balans"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen")]), tbd())),
                             "Zijde": prop(taggedUnion({
-                                "Activa": group({}),
-                                "Passiva": group({}),
+                                "Activa": option(group({})),
+                                "Passiva": option(group({})),
                             })),
                         }))),
                     })),
                     "Resultaat": prop(group({
                         "Hoofdcategorieen fiscus": prop(dictionary(group({
                             "Zijde": prop(taggedUnion({
-                                "Kosten": group({}),
-                                "Opbrengsten": group({}),
+                                "Kosten": option(group({})),
+                                "Opbrengsten": option(group({})),
                             })),
                             "Subcategorieen": prop(dictionary(group({}))),
                         }))),
                         "Hoofdcategorieen": prop(dictionary(group({
                             "Zijde": prop(taggedUnion({
-                                "Kosten": group({}),
-                                "Opbrengsten": group({}),
+                                "Kosten": option(group({})),
+                                "Opbrengsten": option(group({})),
                             })),
                             "Subcategorieen": prop(dictionary(group({
-                                "Hoofdcategorie fiscus": prop(reference("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus")])),
-                                "Subcategorie fiscus": prop(reference("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen")])),
+                                "Hoofdcategorie fiscus": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus")]), tbd())),
+                                "Subcategorie fiscus": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen fiscus"), dict(), grp("Subcategorieen")]), tbd())),
                             }))),
                         }))),
                         "Correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
                         "Grootboekrekeningen": prop(dictionary(group({
-                            "Hoofdcategorie": prop(reference("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen")])),
-                            "Subcategorie": prop(reference("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen")])),
+                            "Hoofdcategorie": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen")]), tbd())),
+                            "Subcategorie": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Hoofdcategorieen"), dict(), grp("Subcategorieen")]), tbd())),
                             "Zijde": prop(taggedUnion({
-                                "Opbrengsten": group({}),
-                                "Kosten": group({
+                                "Opbrengsten": option(group({})),
+                                "Kosten": option(group({
                                     "Correctie op vennootschapsbelasting": prop(taggedUnion({
-                                        "Nee": group({}),
-                                        "Ja": group({
-                                            "Correctietype": prop(reference("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Correctietypes vennootschapsbelasting")]/*parent*/)),
-                                        }),
+                                        "Nee": option(group({})),
+                                        "Ja": option(group({
+                                            "Correctietype": prop(reference(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Correctietypes vennootschapsbelasting")]), tbd())),
+                                        })),
                                     })),
-                                }),
+                                })),
                             })),
                         }))),
                     })),
                     "BTW-categorieen": prop(dictionary(group({
                         "BTW-heffing": prop(taggedUnion({
-                            "Nee": group({}),
-                            "Ja": group({
+                            "Nee": option(group({})),
+                            "Ja": option(group({
                                 "BTW-promillage": prop(terminal("promillage")),
-                            }),
+                            })),
                         })),
                     }))),
                 })),
@@ -115,10 +118,10 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                         "Offertes": prop(dictionary(group({
                             "Opbrengsten": prop(dictionary(group({
                                 "Type": prop(taggedUnion({
-                                    "Project": group({
+                                    "Project": option(group({
                                         "Betaaldatum": prop(terminal("datum")),
                                         "Bedrag": prop(terminal("bedrag")),
-                                    }),
+                                    })),
                                 })),
                             }))),
                         }))),
@@ -142,83 +145,83 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     // "Informele rekeningen",
                     component("Jaren", {})),
             })),
-            "Informele Rekeningen": globalType({}, constrainedDictionary("Accounting", [grp("Informele rekeningen")], group({
-                "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
+            "Informele Rekeningen": globalType({}, constrainedDictionary(typePath("Accounting", [grp("Informele rekeningen")]), tbd(), group({
+                "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
                 "Beginsaldo": prop(terminal("bedrag")),
 
                 "Nieuw": prop(taggedUnion({
-                    "Nee": group({
-                        "Jaar": prop(reference("Jaren", [])),
-                        "Rekening": prop(reference("Informele Rekeningen", [])),
-                    }),
-                    "Ja": group({}),
+                    "Nee": option(group({
+                        "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                        "Rekening": prop(reference(typePath("Informele Rekeningen", []), tbd())),
+                    })),
+                    "Ja": option(group({})),
                 })),
             }))),
             "Jaren": globalType({}, dictionary(group({
                 "Startdatum boekjaar": prop(terminal("datum")),
                 "Eerste boekjaar": prop(taggedUnion({
-                    "Nee": group({
-                        "Vorig boekjaar": prop(reference("Jaren", [])),
-                    }),
-                    "Ja": group({}),
+                    "Nee": option(group({
+                        "Vorig boekjaar": prop(reference(typePath("Jaren", []), tbd())),
+                    })),
+                    "Ja": option(group({})),
                 })),
                 "Beginsaldo Winstreserve": prop(terminal("bedrag")),
                 "Afgesloten": prop(taggedUnion({
-                    "Nee": group({
-                    }),
-                    "Ja": group({}),
+                    "Nee": option(group({
+                    })),
+                    "Ja": option(group({})),
                 })),
-                "Balans grootboekrekeningen": prop(constrainedDictionary("Accounting", [grp("Beheer"), grp("Balans"), grp("Grootboekrekeningen")], group({
+                "Balans grootboekrekeningen": prop(constrainedDictionary(typePath("Accounting", [grp("Beheer"), grp("Balans"), grp("Grootboekrekeningen")]), tbd(), group({
                     "Type": prop(taggedUnion({
-                        "Bankrekening": group({}),
-                        "Informele rekening": group({}),
-                        "Overig": group({}),
+                        "Bankrekening": option(group({})),
+                        "Informele rekening": option(group({})),
+                        "Overig": option(group({})),
                     })),
                 }))),
-                "Resultaat grootboekrekeningen": prop(constrainedDictionary("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Grootboekrekeningen")], group({
+                "Resultaat grootboekrekeningen": prop(constrainedDictionary(typePath("Accounting", [grp("Beheer"), grp("Resultaat"), grp("Grootboekrekeningen")]), tbd(), group({
                 }))),
-                "Grootboekrekening voor resultaat dit jaar": prop(reference("Jaren", [dict(), grp("Resultaat grootboekrekeningen")])),
-                "Grootboekrekening voor winstreserve": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
-                "Grootboekrekening voor BTW afrondingen": prop(reference("Jaren", [dict(), grp("Resultaat grootboekrekeningen")])),
-                "Beginsaldo nog aan te geven BTW": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
-                "Grootboekrekening voor nog aan te geven BTW": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
-                "Grootboek inkoop saldo": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
-                "Grootboek verkoop saldo": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
-                "Grootboek BTW periode": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
+                "Grootboekrekening voor resultaat dit jaar": prop(reference(typePath("Jaren", [dict(), grp("Resultaat grootboekrekeningen")]), tbd())),
+                "Grootboekrekening voor winstreserve": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
+                "Grootboekrekening voor BTW afrondingen": prop(reference(typePath("Jaren", [dict(), grp("Resultaat grootboekrekeningen")]), tbd())),
+                "Beginsaldo nog aan te geven BTW": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
+                "Grootboekrekening voor nog aan te geven BTW": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
+                "Grootboek inkoop saldo": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
+                "Grootboek verkoop saldo": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
+                "Grootboek BTW periode": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
 
 
                 "Informele rekeningen": prop(component("Informele Rekeningen", {})),
                 "Overige balans items": prop(dictionary(group({
                     "Beginsaldo": prop(terminal("bedrag")),
-                    "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
+                    "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
 
                     "Nieuw": prop(taggedUnion({
-                        "Nee": group({
-                            "Jaar": prop(reference("Jaren", [])),
-                            "Balans item": prop(reference("Jaren", [dict(), grp("Overige balans items")])),
-                        }),
-                        "Ja": group({}),
+                        "Nee": option(group({
+                            "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                            "Balans item": prop(reference(typePath("Jaren", [dict(), grp("Overige balans items")]), tbd())),
+                        })),
+                        "Ja": option(group({})),
                     })),
 
                     "Memoriaal boekingen": prop(dictionary(group({
                         "Bedrag": prop(terminal("bedrag")),
                         "Datum": prop(terminal("datum")),
-                        "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")]/*parent*/)),
+                        "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
                         "Omschrijving": prop(terminal("multiline text")),
                     }))),
                 }))),
                 "BTW periodes": prop(dictionary(group({
                     "Omschrijving": prop(terminal("multiline text")),
                     "Status": prop(taggedUnion({
-                        "Aangegeven": group({
+                        "Aangegeven": option(group({
                             "Bedrag": prop(terminal("bedrag")),
                             "Afronding": prop(terminal("bedrag")),
                             "Datum": prop(terminal("datum")),
-                        }),
-                        "Openstaand": group({}),
+                        })),
+                        "Openstaand": option(group({})),
                     })),
 
-                    "1. BTW-categorieen": prop(constrainedDictionary("Accounting", [grp("Beheer"), grp("BTW-categorieen")], group({
+                    "1. BTW-categorieen": prop(constrainedDictionary(typePath("Accounting", [grp("Beheer"), grp("BTW-categorieen")]), tbd(), group({
                     }))),
                     "Documenten": prop(dictionary(group({
                         "Bestand": prop(terminal("bestand")),
@@ -229,141 +232,141 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Inkopen": prop(dictionary(group({
                     "Datum": prop(terminal("datum")),
                     "Brondocument": prop(taggedUnion({
-                        "Toegevoegd": group({
+                        "Toegevoegd": option(group({
                             "Document": prop(terminal("bestand")),
-                        }),
-                        "Nog toevoegen": group({}),
-                        "Niet van toepassing": group({}),
-                        "Ontbreekt": group({}),
+                        })),
+                        "Nog toevoegen": option(group({})),
+                        "Niet van toepassing": option(group({})),
+                        "Ontbreekt": option(group({})),
                     })),
                     "Type": prop(taggedUnion({
-                        "Bonnetje": group({
-                        }),
-                        "Inkoop (met crediteur)": group({
+                        "Bonnetje": option(group({
+                        })),
+                        "Inkoop (met crediteur)": option(group({
                             "Factuurnummer": prop(terminal("identifier")),
-                            "Crediteur": prop(reference("Accounting", [grp("Leveranciers")])),
-                        }),
-                        "Salaris": group({
-                            "Ronde": prop(reference("Jaren", [dict(), grp("Salarisrondes")])),
-                            "Medewerker": prop(reference("Accounting", [grp("Medewerkers")])),
-                        }),
-                        "Loonheffing": group({
-                            "Ronde": prop(reference("Jaren", [dict(), grp("Salarisrondes")])),
-                        }),
-                        "WBSO": group({
-                            "Ronde": prop(reference("Jaren", [dict(), grp("Salarisrondes")])),
-                        }),
+                            "Crediteur": prop(reference(typePath("Accounting", [grp("Leveranciers")]), tbd())),
+                        })),
+                        "Salaris": option(group({
+                            "Ronde": prop(reference(typePath("Jaren", [dict(), grp("Salarisrondes")]), tbd())),
+                            "Medewerker": prop(reference(typePath("Accounting", [grp("Medewerkers")]), tbd())),
+                        })),
+                        "Loonheffing": option(group({
+                            "Ronde": prop(reference(typePath("Jaren", [dict(), grp("Salarisrondes")]), tbd())),
+                        })),
+                        "WBSO": option(group({
+                            "Ronde": prop(reference(typePath("Jaren", [dict(), grp("Salarisrondes")]), tbd())),
+                        })),
                     })),
                     "BTW-regime": prop(taggedUnion({
-                        "Standaard": group({
-                            "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                        }),
-                        "Geen BTW van toepassing": group({
-                            "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                        }),
-                        "Binnenland heffing verlegd": group({
-                            "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                        }),
-                        "Intracommunautair": group({
-                            "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                        }),
-                        "Import van buiten de EU": group({
-                            "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                        }),
+                        "Standaard": option(group({
+                            "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                        })),
+                        "Geen BTW van toepassing": option(group({
+                            "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                        })),
+                        "Binnenland heffing verlegd": option(group({
+                            "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                        })),
+                        "Intracommunautair": option(group({
+                            "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                        })),
+                        "Import van buiten de EU": option(group({
+                            "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                        })),
                     })),
                     "Afhandeling": prop(taggedUnion({
-                        "Mutaties": group({
-                        }),
-                        "Rekening courant": group({
-                            "Rekening courant": prop(reference("Informele Rekeningen", [])),
-                        }),
-                        "Nog te betalen": group({
+                        "Mutaties": option(group({
+                        })),
+                        "Rekening courant": option(group({
+                            "Rekening courant": prop(reference(typePath("Informele Rekeningen", []), tbd())),
+                        })),
+                        "Nog te betalen": option(group({
                             "Betalingstermijn": prop(terminal("dagen")),
-                        }),
+                        })),
                     })),
                     "Regels": prop(dictionary(group({
                         "Omschrijving": prop(terminal("multiline text")),
                         "Bedrag": prop(taggedUnion({
-                            "Bekend": group({
+                            "Bekend": option(group({
                                 "Bedrag inclusief BTW": prop(terminal("bedrag")),
                                 "BTW": prop(terminal("bedrag")),
-                            }),
-                            "Nog niet bekend": group({
+                            })),
+                            "Nog niet bekend": option(group({
                                 "Aantekeningen": prop(terminal("multiline text")),
-                            }),
+                            })),
                         })),
                         "Type": prop(taggedUnion({
-                            "Kosten": group({
-                                "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Resultaat grootboekrekeningen")])),
-                            }),
-                            "Balans": group({
-                                "Balans item": prop(reference("Jaren", [dict(), grp("Overige balans items")])),
-                            }),
+                            "Kosten": option(group({
+                                "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Resultaat grootboekrekeningen")]), tbd())),
+                            })),
+                            "Balans": option(group({
+                                "Balans item": prop(reference(typePath("Jaren", [dict(), grp("Overige balans items")]), tbd())),
+                            })),
                         })),
                     }))),
                 }))),
                 "Verkopen": prop(dictionary(group({
                     "Brondocument": prop(taggedUnion({
-                        "Nog toevoegen": group({
-                        }),
-                        "Toegevoegd": group({
+                        "Nog toevoegen": option(group({
+                        })),
+                        "Toegevoegd": option(group({
                             "Document": prop(terminal("bestand")),
-                        }),
+                        })),
                     })),
                     "Betalingstermijn": prop(terminal("dagen")),
-                    "Debiteur": prop(reference("Accounting", [grp("Klanten")])),
-                    "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
+                    "Debiteur": prop(reference(typePath("Accounting", [grp("Klanten")]), tbd())),
+                    "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
 
                     "Contracttype": prop(taggedUnion({
-                        "Licentieovereenkomst": group({
-                            "Overeenkomst": prop(reference("Accounting", [grp("Klanten"), dict(), grp("Licentieovereenkomsten")])),
-                        }),
-                        "Project": group({
-                            "Project": prop(reference("Accounting", [grp("Klanten"), dict(), grp("Projecten")])),
-                            "Offerte": prop(reference("Accounting", [grp("Klanten"), dict(), grp("Projecten"), dict(), grp("Offertes")])),
-                        }),
+                        "Licentieovereenkomst": option(group({
+                            "Overeenkomst": prop(reference(typePath("Accounting", [grp("Klanten"), dict(), grp("Licentieovereenkomsten")]), tbd())),
+                        })),
+                        "Project": option(group({
+                            "Project": prop(reference(typePath("Accounting", [grp("Klanten"), dict(), grp("Projecten")]), tbd())),
+                            "Offerte": prop(reference(typePath("Accounting", [grp("Klanten"), dict(), grp("Projecten"), dict(), grp("Offertes")]), tbd())),
+                        })),
                     })),
 
                     "Afhandeling": prop(taggedUnion({
-                        "Mutaties": group({
-                        }),
-                        "Rekening courant": group({
-                            "Rekening courant": prop(reference("Informele Rekeningen", [])),
-                        }),
+                        "Mutaties": option(group({
+                        })),
+                        "Rekening courant": option(group({
+                            "Rekening courant": prop(reference(typePath("Informele Rekeningen", []), tbd())),
+                        })),
                     })),
                     "Regels": prop(dictionary(group({
                         "Omschrijving": prop(terminal("multiline text")),
                         "Bedrag exclusief BTW": prop(terminal("bedrag")),
                         "Type": prop(taggedUnion({
-                            "Opbrengsten": group({
-                                "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Resultaat grootboekrekeningen")])),
-                            }),
-                            "Balans": group({
-                                "Balans item": prop(reference("Jaren", [dict(), grp("Overige balans items")])),
-                            }),
+                            "Opbrengsten": option(group({
+                                "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Resultaat grootboekrekeningen")]), tbd())),
+                            })),
+                            "Balans": option(group({
+                                "Balans item": prop(reference(typePath("Jaren", [dict(), grp("Overige balans items")]), tbd())),
+                            })),
                         })),
                         "BTW-regime": prop(taggedUnion({
-                            "Standaard": group({
-                                "BTW-cateogrie": prop(reference("Jaren", [dict(), grp("BTW periodes"), dict(), grp("1. BTW-categorieen")])),
-                            }),
-                            "Binnenland heffing verlegd": group({
-                            }),
-                            "Intracommunautair": group({
-                            }),
-                            "Export buiten de EU": group({
-                            }),
-                            "Installatie of afstandsverkopen binnen de EU": group({
-                            }),
+                            "Standaard": option(group({
+                                "BTW-cateogrie": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes"), dict(), grp("1. BTW-categorieen")]), tbd())),
+                            })),
+                            "Binnenland heffing verlegd": option(group({
+                            })),
+                            "Intracommunautair": option(group({
+                            })),
+                            "Export buiten de EU": option(group({
+                            })),
+                            "Installatie of afstandsverkopen binnen de EU": option(group({
+                            })),
                         })),
                         "Contracttype": prop(taggedUnion({
-                            "Los": group({
-                            }),
-                            "Licentieovereenkomst": group({
-                                "Periode": prop(reference("Accounting", [grp("Klanten"), dict(), grp("Licentieovereenkomsten"), dict(), grp("Periodes")])),
-                            }),
-                            "Project": group({
-                                "Opbrengst": prop(reference("Accounting", [grp("Klanten"), dict(), grp("Projecten"), dict(), grp("Offertes"), dict(), grp("Opbrengsten")])),
-                            }),
+                            "Los": option(group({
+                            })),
+                            "Licentieovereenkomst": option(group({
+                                "Periode": prop(reference(typePath("Accounting", [grp("Klanten"), dict(), grp("Licentieovereenkomsten"), dict(), grp("Periodes")]), tbd())),
+                            })),
+                            "Project": option(group({
+                                "Opbrengst": prop(reference(typePath("Accounting", [grp("Klanten"), dict(), grp("Projecten"), dict(), grp("Offertes"), dict(), grp("Opbrengsten")]), tbd())),
+                            })),
                         })),
                     }))),
                 }))),
@@ -376,46 +379,46 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "Bankrekeningen": prop(dictionary(group({
                     "Beginsaldo": prop(terminal("bedrag")),
                     "Nieuw": prop(taggedUnion({
-                        "Nee": group({
-                            "Jaar": prop(reference("Jaren", [])),
-                            "Rekening": prop(reference("Jaren", [dict(), grp("Bankrekeningen")])),
-                        }),
-                        "Ja": group({}),
+                        "Nee": option(group({
+                            "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                            "Rekening": prop(reference(typePath("Jaren", [dict(), grp("Bankrekeningen")]), tbd())),
+                        })),
+                        "Ja": option(group({})),
                     })),
-                    "Grootboekrekening": prop(reference("Jaren", [dict(), grp("Balans grootboekrekeningen")])),
+                    "Grootboekrekening": prop(reference(typePath("Jaren", [dict(), grp("Balans grootboekrekeningen")]), tbd())),
                     "Mutaties": prop(dictionary(group({
                         "Omschrijving": prop(terminal("multiline text")),
                         "Bedrag": prop(terminal("bedrag")),
                         "Datum": prop(terminal("datum")),
                         "Status": prop(taggedUnion({
-                            "Nog te verwerken": group({}),
-                            "Verwerkt": group({
+                            "Nog te verwerken": option(group({})),
+                            "Verwerkt": option(group({
                                 "Afhandeling": prop(component("Afhandeling", {})),
-                            }),
+                            })),
                         })),
                     }))),
                 }))),
             }))),
             //"Afhandeling": globalType(["Informele Rekeningen", "Jaren", "Verrekenposten"), taggedUnion({
             "Afhandeling": globalType({}, taggedUnion({
-                "Inkoop": group({
-                    "Jaar": prop(reference("Jaren", [])),
-                    "Inkoop": prop(reference("Jaren", [dict(), grp("Inkopen")])),
-                }),
-                "Verkoop": group({
-                    "Jaar": prop(reference("Jaren", [])),
-                    "Inkoop": prop(reference("Jaren", [dict(), grp("Verkopen")])),
-                }),
-                "BTW-periode": group({
-                    "Jaar": prop(reference("Jaren", [])),
-                    "BTW-periode": prop(reference("Jaren", [dict(), grp("BTW periodes")])),
-                }),
-                "Verrekenpost": group({
-                    "Verrekenpost": prop(reference("Jaren", [dict(), grp("Verrekenposten")])),
-                }),
-                "Informele rekening": group({
-                    "Informele rekening": prop(reference("Informele Rekeningen", [])),
-                }),
+                "Inkoop": option(group({
+                    "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                    "Inkoop": prop(reference(typePath("Jaren", [dict(), grp("Inkopen")]), tbd())),
+                })),
+                "Verkoop": option(group({
+                    "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                    "Inkoop": prop(reference(typePath("Jaren", [dict(), grp("Verkopen")]), tbd())),
+                })),
+                "BTW-periode": option(group({
+                    "Jaar": prop(reference(typePath("Jaren", []), tbd())),
+                    "BTW-periode": prop(reference(typePath("Jaren", [dict(), grp("BTW periodes")]), tbd())),
+                })),
+                "Verrekenpost": option(group({
+                    "Verrekenpost": prop(reference(typePath("Jaren", [dict(), grp("Verrekenposten")]), tbd())),
+                })),
+                "Informele rekening": option(group({
+                    "Informele rekening": prop(reference(typePath("Informele Rekeningen", []), tbd())),
+                })),
             })),
         }),
     },

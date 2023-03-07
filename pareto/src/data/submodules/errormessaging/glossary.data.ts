@@ -28,15 +28,18 @@ const d = pd.d
 
 export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
-        "Annotation": null,
     }),
     'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
+        "Typescript Location": type(group({
+            "file": member(string()),
+            "line": member(string()),
+            "column": member(string()),
+        })),
     }),
     'builders': d({
     }),
     'interfaces': d({}),
     'functions': d({
-        "Resolve": func(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), data(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
+        "CreateErrorMessage": func(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, data(typeReference("common", "String"), false)),
     }),
 }

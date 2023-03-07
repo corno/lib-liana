@@ -5,11 +5,12 @@ import * as gliana from "../../liana"
 // import * as gliana2pareto from "../../liana2pareto"
 import * as gfp from "lib-fountain-pen"
 import * as gcommon from "glo-pareto-common"
+import * as gmain from "../../../main"
 
 import {createSerializer } from "../definition/api.generated"
 
 export const $$: createSerializer = ($d) => {
-    return <Annotation>($: gthis.T.MappedModel<Annotation>, $i: gfp.B.Directory) => {
+    return <Annotation>($: gmain.T.MappedModel<Annotation>, $i: gfp.B.Directory) => {
 
         // $i.file(`states.generated.ts`, ($i) => {
         //     $d.serializeStates($d.mapLiana2States($), $i)
@@ -140,7 +141,7 @@ export const $$: createSerializer = ($d) => {
                                                                 $i.line(`operation_${pathID}: ${type},`)
                                                                 $d.dictionaryForEach($.options, ($) => {
                                                                     doScalars({
-                                                                        $: $.value,
+                                                                        $: $.value.type,
                                                                         isRoot: false,
                                                                         path: [path, $.key],
                                                                     })
@@ -288,7 +289,7 @@ export const $$: createSerializer = ($d) => {
                                                                                                     $i.nestedLine(($i) => {
                                                                                                         $i.snippet(`return ['${$.key}', `)
                                                                                                         writeUnflattener({
-                                                                                                            $: $.value,
+                                                                                                            $: $.value.type,
                                                                                                             path: [path, $.key],
                                                                                                             currentName: currentName
                                                                                                         }, $i)
@@ -358,7 +359,7 @@ export const $$: createSerializer = ($d) => {
                         pl.cc($[1], ($) => {
                             $d.dictionaryForEach($.options, ($) => {
                                 doDictionaries({
-                                    $: $.value,
+                                    $: $.value.type,
                                     path: [path, $.key],
                                     idPath: idPath,
                                     currentName: currentName,

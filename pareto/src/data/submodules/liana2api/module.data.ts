@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import { external, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { external, main, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as api } from "./api.data"
@@ -15,7 +15,7 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             'imports': d({
                 "common": external("glo-pareto-common"),
                 "liana": sibling("liana"),
-                "main": external("res-pareto-main"),
+                "main": main(),
                 "api": external("lib-pareto-typescript-project/dist/submodules/api"),
             }),
         },

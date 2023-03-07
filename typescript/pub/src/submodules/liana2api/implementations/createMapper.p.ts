@@ -6,6 +6,8 @@ import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../liana"
 
+import * as gmain from "../../../main"
+
 import {createMapper } from "../definition/api.generated"
 
 export const $$: createMapper = ($d) => {

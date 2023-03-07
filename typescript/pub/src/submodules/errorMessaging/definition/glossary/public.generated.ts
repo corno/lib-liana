@@ -13,5 +13,5 @@ export namespace B {}
 
 export namespace F {
     
-    export type Resolve = <GAnnotation>($: g_liana.T.Model<T.Annotation<GAnnotation>>, $b: g_main.B.OnError<T.Annotation<GAnnotation>>,) => g_liana_resolved.T.Model<T.Annotation<GAnnotation>>
+    export type CreateErrorMessage = ($: g_main.T.Error<T.Typescript__Location>,) => g_common.T.String
 }

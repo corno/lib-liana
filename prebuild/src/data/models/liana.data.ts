@@ -14,6 +14,8 @@ import {
     prop,
     tu,
     grp,
+    optional,
+    dict,
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: gliana.T.Model<pd.SourceLocation> = {
@@ -36,7 +38,12 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "type": prop(component("Type", {})),
                 }),
                 "tagged union": group({
-                    "options": prop(dictionary(component("Type", {}))),
+                    "options": prop(dictionary(group({
+                        "type": prop(component("Type", {})),
+                        "constrained": prop(optional(group({
+                            "type path": prop(component("Type Path", {})),
+                        }))),
+                    }))),
                     "default": prop(reference("Type", [tu("tagged union"), grp("options")])),
                 }),
                 "group": group({
@@ -60,7 +67,9 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "imports": prop(dictionary(group({}))),
                 "terminal types": prop(dictionary(group({}))),
                 "global types": prop(dictionary(group({
-                    "parameters": prop(dictionary(group({}))),
+                    "parameters": prop(dictionary(group({
+                        "global type": prop(reference("Type Library", [grp("global types")])),
+                    }))),
                     "type": prop(component("Type", {})),
                 }))),
             })),
@@ -76,8 +85,8 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "yes": component("Reference", {}),
                 })),
             })),
-            "Reference": globalType({}, group({
-                "global type": prop(reference("Type Library", [grp("global types")])), 
+            "Type Path": globalType({}, group({
+                "global type": prop(reference("Type Library", [grp("global types")])),
                 "path": prop(array(taggedUnion({
                     "dictionary": group({}),
                     "optional": group({}),
@@ -93,7 +102,19 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 //     "parameter": 
                 // })),
             })),
-            // "Reference": type(group({
+            "Reference": globalType({}, group({
+                "type path": prop(component("Type Path", {})),
+                "type": prop(taggedUnion({
+                    "parameter": group({
+                        "parameter": prop(reference("Type Library", [grp("global types"), dict(), grp("parameters")]))
+                    }),
+                    "relative": group({
+                        //"parameter": prop(reference("Type Library", [grp("global types"), dict(), grp("parameters")]))
+                    }),
+                    "tbd": group({}),
+                }))
+            })),
+            // "Reference": type(group({s
             //     "type": member(taggedUnion({
             //         "parameter": parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey"),
             //         "sibling": parametrizedReference("common", { "Annotation": typeReference("Annotation") }, "AnnotatedKey"),

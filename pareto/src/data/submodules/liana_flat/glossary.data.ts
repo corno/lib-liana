@@ -29,18 +29,10 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     }),
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),
-        "MappedModel": type(group({
-            "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
-            "terminal mapping": member(dictionary(taggedUnion({
-                "boolean": null_(),
-                "number": null_(),
-                "string": null_(),
-            }))),
-        })),
     }),
     'builders': d({}),
     'interfaces': d({}),
     'functions': d({
-        "Serialize": func(typeReference("MappedModel"), null, builderReference("fp", "Directory"), null),
+        "Serialize": func(parametrizedTypeReference("main",{ "Annotation": typeReference("Annotation")}, "MappedModel"), null, builderReference("fp", "Directory"), null),
     }),
 }

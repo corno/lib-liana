@@ -3,7 +3,7 @@ import * as pt from 'pareto-core-types'
 import * as g_common from "glo-pareto-common"
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import * as g_liana from "../../../liana"
-import * as g_main from "res-pareto-main"
+import * as g_main from "../../../../main"
 
 export namespace T {
     
@@ -23,7 +23,7 @@ export namespace T {
     
     export namespace MapData {
         
-        export type mapped__model<GAnnotation> = T.MappedModel<GAnnotation>
+        export type mapped__model<GAnnotation> = g_main.T.MappedModel<T.Annotation<GAnnotation>>
         
         export namespace settings {
             
@@ -154,7 +154,7 @@ export namespace T {
     }
     
     export type MapData<GAnnotation> = {
-        readonly 'mapped model': T.MappedModel<GAnnotation>
+        readonly 'mapped model': g_main.T.MappedModel<T.Annotation<GAnnotation>>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
@@ -174,43 +174,6 @@ export namespace T {
                     | ['internal', null]
             }]
         }
-    }
-    
-    export namespace MappedModel {
-        
-        export type model<GAnnotation> = g_liana.T.Model<T.Annotation<GAnnotation>>
-        
-        export namespace terminal__mapping {
-            
-            export namespace D {
-                
-                export type _lboolean<GAnnotation> = null
-                
-                export type _lnumber<GAnnotation> = null
-                
-                export type _lstring<GAnnotation> = null
-            }
-            
-            export type D<GAnnotation> = 
-                | ['boolean', null]
-                | ['number', null]
-                | ['string', null]
-        }
-        
-        export type terminal__mapping<GAnnotation> = pt.Dictionary<
-            | ['boolean', null]
-            | ['number', null]
-            | ['string', null]
-        >
-    }
-    
-    export type MappedModel<GAnnotation> = {
-        readonly 'model': g_liana.T.Model<T.Annotation<GAnnotation>>
-        readonly 'terminal mapping': pt.Dictionary<
-            | ['boolean', null]
-            | ['number', null]
-            | ['string', null]
-        >
     }
     
     export namespace OutAnnotation {

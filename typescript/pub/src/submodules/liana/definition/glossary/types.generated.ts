@@ -30,138 +30,63 @@ export namespace T {
     
     export namespace Reference {
         
-        export namespace global__type {
+        export namespace _ltype {
             
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export type key<GAnnotation> = string
-        }
-        
-        export type global__type<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'key': string
-        }
-        
-        export namespace path {
-            
-            export namespace A {
+            export namespace parameter {
                 
-                export namespace array {}
-                
-                export type array<GAnnotation> = null
-                
-                export namespace dictionary {}
-                
-                export type dictionary<GAnnotation> = null
-                
-                export namespace group {
+                export namespace parameter {
                     
-                    export namespace property {
-                        
-                        export type annotation<GAnnotation> = GAnnotation
-                        
-                        export type key<GAnnotation> = string
-                    }
+                    export type annotation<GAnnotation> = GAnnotation
                     
-                    export type property<GAnnotation> = {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
+                    export type key<GAnnotation> = string
                 }
                 
-                export type group<GAnnotation> = {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
-                }
-                
-                export namespace optional {}
-                
-                export type optional<GAnnotation> = null
-                
-                export namespace tagged__union {
-                    
-                    export namespace option {
-                        
-                        export type annotation<GAnnotation> = GAnnotation
-                        
-                        export type key<GAnnotation> = string
-                    }
-                    
-                    export type option<GAnnotation> = {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
-                }
-                
-                export type tagged__union<GAnnotation> = {
-                    readonly 'option': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
+                export type parameter<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
                 }
             }
             
-            export type A<GAnnotation> = 
-                | ['array', null]
-                | ['dictionary', null]
-                | ['group', {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
-                }]
-                | ['optional', null]
-                | ['tagged union', {
-                    readonly 'option': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
-                }]
+            export type parameter<GAnnotation> = {
+                readonly 'parameter': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }
+            
+            export namespace relative {}
+            
+            export type relative<GAnnotation> = null
+            
+            export namespace tbd {}
+            
+            export type tbd<GAnnotation> = null
         }
         
-        export type path<GAnnotation> = pt.Array<
-            | ['array', null]
-            | ['dictionary', null]
-            | ['group', {
-                readonly 'property': {
+        export type _ltype<GAnnotation> = 
+            | ['parameter', {
+                readonly 'parameter': {
                     readonly 'annotation': GAnnotation
                     readonly 'key': string
                 }
             }]
-            | ['optional', null]
-            | ['tagged union', {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-            }]
-        >
+            | ['relative', null]
+            | ['tbd', null]
+        
+        export type type__path<GAnnotation> = T.Type__Path<GAnnotation>
     }
     
     export type Reference<GAnnotation> = {
-        readonly 'global type': {
-            readonly 'annotation': GAnnotation
-            readonly 'key': string
-        }
-        readonly 'path': pt.Array<
-            | ['array', null]
-            | ['dictionary', null]
-            | ['group', {
-                readonly 'property': {
+        readonly 'type': 
+            | ['parameter', {
+                readonly 'parameter': {
                     readonly 'annotation': GAnnotation
                     readonly 'key': string
                 }
             }]
-            | ['optional', null]
-            | ['tagged union', {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-            }]
-        >
+            | ['relative', null]
+            | ['tbd', null]
+        readonly 'type path': T.Type__Path<GAnnotation>
     }
     
     export namespace Terminal {
@@ -365,10 +290,41 @@ export namespace T {
             
             export namespace options {
                 
-                export type D<GAnnotation> = T.Type<GAnnotation>
+                export namespace D {
+                    
+                    export namespace constrained {
+                        
+                        export namespace O {
+                            
+                            export type type__path<GAnnotation> = T.Type__Path<GAnnotation>
+                        }
+                        
+                        export type O<GAnnotation> = {
+                            readonly 'type path': T.Type__Path<GAnnotation>
+                        }
+                    }
+                    
+                    export type constrained<GAnnotation> = [ false ] | [ true, {
+                        readonly 'type path': T.Type__Path<GAnnotation>
+                    }]
+                    
+                    export type _ltype<GAnnotation> = T.Type<GAnnotation>
+                }
+                
+                export type D<GAnnotation> = {
+                    readonly 'constrained': [ false ] | [ true, {
+                        readonly 'type path': T.Type__Path<GAnnotation>
+                    }]
+                    readonly 'type': T.Type<GAnnotation>
+                }
             }
             
-            export type options<GAnnotation> = pt.Dictionary<T.Type<GAnnotation>>
+            export type options<GAnnotation> = pt.Dictionary<{
+                readonly 'constrained': [ false ] | [ true, {
+                    readonly 'type path': T.Type__Path<GAnnotation>
+                }]
+                readonly 'type': T.Type<GAnnotation>
+            }>
         }
         
         export type tagged__union<GAnnotation> = {
@@ -376,7 +332,12 @@ export namespace T {
                 readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
-            readonly 'options': pt.Dictionary<T.Type<GAnnotation>>
+            readonly 'options': pt.Dictionary<{
+                readonly 'constrained': [ false ] | [ true, {
+                    readonly 'type path': T.Type__Path<GAnnotation>
+                }]
+                readonly 'type': T.Type<GAnnotation>
+            }>
         }
         
         export type terminal<GAnnotation> = T.Terminal<GAnnotation>
@@ -418,7 +379,12 @@ export namespace T {
                 readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
-            readonly 'options': pt.Dictionary<T.Type<GAnnotation>>
+            readonly 'options': pt.Dictionary<{
+                readonly 'constrained': [ false ] | [ true, {
+                    readonly 'type path': T.Type__Path<GAnnotation>
+                }]
+                readonly 'type': T.Type<GAnnotation>
+            }>
         }]
         | ['terminal', T.Terminal<GAnnotation>]
     
@@ -430,24 +396,57 @@ export namespace T {
                 
                 export namespace parameters {
                     
-                    export namespace D {}
+                    export namespace D {
+                        
+                        export namespace global__type {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type global__type<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
                     
-                    export type D<GAnnotation> = null
+                    export type D<GAnnotation> = {
+                        readonly 'global type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
                 }
                 
-                export type parameters<GAnnotation> = pt.Dictionary<null>
+                export type parameters<GAnnotation> = pt.Dictionary<{
+                    readonly 'global type': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }>
                 
                 export type _ltype<GAnnotation> = T.Type<GAnnotation>
             }
             
             export type D<GAnnotation> = {
-                readonly 'parameters': pt.Dictionary<null>
+                readonly 'parameters': pt.Dictionary<{
+                    readonly 'global type': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }>
                 readonly 'type': T.Type<GAnnotation>
             }
         }
         
         export type global__types<GAnnotation> = pt.Dictionary<{
-            readonly 'parameters': pt.Dictionary<null>
+            readonly 'parameters': pt.Dictionary<{
+                readonly 'global type': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }>
             readonly 'type': T.Type<GAnnotation>
         }>
         
@@ -472,10 +471,151 @@ export namespace T {
     
     export type Type__Library<GAnnotation> = {
         readonly 'global types': pt.Dictionary<{
-            readonly 'parameters': pt.Dictionary<null>
+            readonly 'parameters': pt.Dictionary<{
+                readonly 'global type': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }>
             readonly 'type': T.Type<GAnnotation>
         }>
         readonly 'imports': pt.Dictionary<null>
         readonly 'terminal types': pt.Dictionary<null>
+    }
+    
+    export namespace Type__Path {
+        
+        export namespace global__type {
+            
+            export type annotation<GAnnotation> = GAnnotation
+            
+            export type key<GAnnotation> = string
+        }
+        
+        export type global__type<GAnnotation> = {
+            readonly 'annotation': GAnnotation
+            readonly 'key': string
+        }
+        
+        export namespace path {
+            
+            export namespace A {
+                
+                export namespace array {}
+                
+                export type array<GAnnotation> = null
+                
+                export namespace dictionary {}
+                
+                export type dictionary<GAnnotation> = null
+                
+                export namespace group {
+                    
+                    export namespace property {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export type key<GAnnotation> = string
+                    }
+                    
+                    export type property<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+                
+                export type group<GAnnotation> = {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+                
+                export namespace optional {}
+                
+                export type optional<GAnnotation> = null
+                
+                export namespace tagged__union {
+                    
+                    export namespace option {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export type key<GAnnotation> = string
+                    }
+                    
+                    export type option<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+                
+                export type tagged__union<GAnnotation> = {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+            }
+            
+            export type A<GAnnotation> = 
+                | ['array', null]
+                | ['dictionary', null]
+                | ['group', {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }]
+                | ['optional', null]
+                | ['tagged union', {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }]
+        }
+        
+        export type path<GAnnotation> = pt.Array<
+            | ['array', null]
+            | ['dictionary', null]
+            | ['group', {
+                readonly 'property': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+            | ['optional', null]
+            | ['tagged union', {
+                readonly 'option': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+        >
+    }
+    
+    export type Type__Path<GAnnotation> = {
+        readonly 'global type': {
+            readonly 'annotation': GAnnotation
+            readonly 'key': string
+        }
+        readonly 'path': pt.Array<
+            | ['array', null]
+            | ['dictionary', null]
+            | ['group', {
+                readonly 'property': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+            | ['optional', null]
+            | ['tagged union', {
+                readonly 'option': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+        >
     }
 }

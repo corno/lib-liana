@@ -13,9 +13,6 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         'glossary': {
             'root': glossary,
             'imports': d({
-                // "fp": external("lib-fountain-pen"),
-                // "liana": sibling("liana"),
-                //"liana2pareto": sibling("liana2pareto"),
             }),
         },
         'api': {

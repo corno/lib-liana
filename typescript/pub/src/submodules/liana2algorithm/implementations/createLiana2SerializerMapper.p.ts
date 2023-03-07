@@ -7,12 +7,13 @@ import * as ps from 'pareto-core-state'
 import * as gapi from "../definition/glossary"
 import * as galgorithm from "../../algorithm_temp"
 import * as gliana from "../../liana"
+import * as gmain from "../../../main"
 
 
 import {createLiana2SerializerMapper } from "../definition/api.generated"
 
 export const $$: createLiana2SerializerMapper = ($d) => {
-    return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
+    return <Annotation>($: gmain.T.MappedModel<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         type OutAnnotation = gapi.T.OutAnnotation<Annotation>
         return {

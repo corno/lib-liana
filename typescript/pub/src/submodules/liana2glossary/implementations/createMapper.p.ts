@@ -220,7 +220,7 @@ export const $$: createMapper = ($d) => {
                         case 'tagged union':
                             return pl.cc($[1], ($) => {
                                 return ['taggedUnion', $.options.map(($) => {
-                                    return mapType($)
+                                    return mapType($.type)
                                 })]
                             })
                         default: return pl.au($[0])

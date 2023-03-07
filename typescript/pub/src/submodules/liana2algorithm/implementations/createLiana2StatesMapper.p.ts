@@ -1,14 +1,14 @@
 import * as pt from 'pareto-core-types'
 import * as pl from 'pareto-core-lib'
 
-import * as gapi from "../definition/glossary"
+import * as gmain from "../../../main"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
 import * as gliana from "../../liana"
 
 import {createLiana2StatesMapper } from "../definition/api.generated"
 
 export const $$: createLiana2StatesMapper = ($d) => {
-    return <Annotation>($: gapi.T.MappedModel<Annotation>) => {
+    return <Annotation>($: gmain.T.MappedModel<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         return $.model['type library']['global types'].map(($) => {
             function mapType($: gliana.T.Type<Annotation>): galgorithm.T.Type<Annotation> {
@@ -84,7 +84,7 @@ export const $$: createLiana2StatesMapper = ($d) => {
                     case 'tagged union':
                         return pl.cc($[1], ($) => {
                             return ['taggedUnion', $.options.map(($) => {
-                                return mapType($)
+                                return mapType($.type)
                             })]
                         })
                     default: return pl.au($[0])

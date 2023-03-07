@@ -3,6 +3,7 @@ import * as pd from 'pareto-core-data'
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as main } from "./main/module.data"
+import { $ as errorMessaging } from "./submodules/errormessaging/module.data"
 import { $ as liana } from "./submodules/liana/module.data"
 import { $ as liana_resolved } from "./submodules/liana_resolved/module.data"
 import { $ as resolve } from "./submodules/resolve/module.data"
@@ -32,6 +33,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         'main': main,
         'submodules': d({
             "algorithm_temp": algorithm_temp,
+            "errorMessaging":errorMessaging,
             "p2ts_temp":p2ts_temp,
             "liana": liana,
             "liana_resolved": liana_resolved,

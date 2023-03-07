@@ -5,7 +5,7 @@ import { T } from './types.generated'
 import * as g_common from "glo-pareto-common"
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import * as g_liana from "../../../liana"
-import * as g_main from "res-pareto-main"
+import * as g_main from "../../../../main"
 
 export namespace I {}
 

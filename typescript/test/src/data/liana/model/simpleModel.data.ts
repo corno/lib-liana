@@ -13,6 +13,9 @@ import {
     terminal,
     taggedUnion,
     prop,
+    typePath,
+    option,
+    tbd,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: gliana.T.Model<pd.SourceLocation> = {
@@ -23,18 +26,18 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             "identifier": null,
         }),
         'global types': pd.d({
-            "Root": globalType({ "parameterA": null}, group({
+            "Root": globalType({ "parameterA": typePath("Root", [])}, group({
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(reference("FOO", [])),
+                "d": prop(reference(typePath("FOO", []), tbd())),
                 "e": prop(group({
                     //"a": prop(reference(['parent', null], [])],
                 })),
-                "f": prop(reference("FOO", [])),
+                "f": prop(reference(typePath("FOO", []), tbd())),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
-                    "a": group({}),
+                    "a": option(group({})),
                 })),
     
     

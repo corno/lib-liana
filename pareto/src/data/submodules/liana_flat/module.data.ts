@@ -4,7 +4,7 @@ import * as gproject from "lib-pareto-typescript-project/dist/submodules/project
 
 import { $ as api } from "./api.data"
 import { $ as glossary } from "./glossary.data"
-import { external, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { external, main, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 const d = pd.d
 
@@ -15,13 +15,12 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             'imports': d({
                 "fp": external("lib-fountain-pen"),
                 "liana": sibling("liana"),
-                //"liana2pareto": sibling("liana2pareto"),
+                "main": main(),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                //"liana2pareto": sibling("liana2pareto"),
                 "pareto2typescript": external("lib-pareto-typescript-project/dist/submodules/pareto2typescript"),
                 "tostring": external("res-pareto-tostring"),
                 "foreach": external("res-pareto-foreach"),

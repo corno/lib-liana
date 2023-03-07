@@ -34,7 +34,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "path": member(reference("common", "Path")),
         })),
         "MapData": type(group({
-            "model": member(reference("MappedModel")),
+            "model": member(parametrizedReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel")),
 
             "algorithms": member(group({
                 "serialize": member(optional(group({
@@ -42,14 +42,6 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                 }))),
                 //resolve
             })),
-        })),
-        "MappedModel": type(group({
-            "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
-            "terminal mapping": member(dictionary(taggedUnion({
-                "boolean": null_(),
-                "number": null_(),
-                "string": null_(),
-            }))),
         })),
         "OutAnnotation": type(taggedUnion({
             "source": glossaryParameter("Annotation"),
