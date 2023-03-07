@@ -1,59 +1,59 @@
 import * as pd from 'pareto-core-data'
-import * as pv from 'pareto-core-dev'
-import * as pt from 'pareto-core-types'
 
-import * as gliana2pareto from "lib-liana/dist/submodules/liana2glossary"
+import * as gliana from "lib-liana/dist/main"
 
 import { $ as liana } from "./models/liana.data"
 
-export const $: pt.Array<gliana2pareto.T.GenerateData<pd.SourceLocation>> = pd.a([
-    {
-        'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
-        'data': {
-            'settings': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'reference mapping': ['string', null],
-                }],
-                // 'visitor interface': [true, {
-                //     'datamodel': ['internal', null],
-                // }],       
-                'visitor interface': [false],
-                'algorithms': {
-                    'serialize': [false],
+export const $: gliana.T.CompileParameters <pd.SourceLocation> = {
+    'outputs': pd.a([
+        {
+            'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
+            'data': {
+                'settings': {
+                    'datamodel': [true, {
+                        'annotations': true,
+                        'reference mapping': ['string', null],
+                    }],
+                    // 'visitor interface': [true, {
+                    //     'datamodel': ['internal', null],
+                    // }],       
+                    'visitor interface': [false],
+                    'algorithms': {
+                        'serialize': [false],
+                    },
                 },
-            },
-            'mapped model': {
-                'model': liana,
-                'terminal mapping': pd.d({
-                    "identifier": ['string', null]
-                }),
+                'mapped model': {
+                    'model': liana,
+                    'terminal mapping': pd.d({
+                        "identifier": ['string', null]
+                    }),
+                },
             },
         },
-    },
-    {
-        'path': `../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`,
-        'data': {
-            'settings': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'reference mapping': ['reference and string', null],
-                }],
-                // 'visitor interface': [true, {
-                //     'datamodel': ['internal', null],
-                // }],       
-                'visitor interface': [false],
-                'algorithms': {
-                    'serialize': [false],
+        {
+            'path': `../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`,
+            'data': {
+                'settings': {
+                    'datamodel': [true, {
+                        'annotations': true,
+                        'reference mapping': ['reference and string', null],
+                    }],
+                    // 'visitor interface': [true, {
+                    //     'datamodel': ['internal', null],
+                    // }],       
+                    'visitor interface': [false],
+                    'algorithms': {
+                        'serialize': [false],
+                    },
                 },
-            },
-            'mapped model': {
-                'model': liana,
+                'mapped model': {
+                    'model': liana,
 
-                'terminal mapping': pd.d({
-                    "identifier": ['string', null]
-                }),
+                    'terminal mapping': pd.d({
+                        "identifier": ['string', null]
+                    }),
+                },
             },
-        },
-    }
-])
+        }
+    ])
+}
