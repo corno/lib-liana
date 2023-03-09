@@ -6,7 +6,7 @@ import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossa
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 import * as gliana from "../../../liana"
 
-import {createMapper } from "../api.generated"
+import { createMapper } from "../api.generated"
 
 export const $$: createMapper = ($d) => {
     return <Annotation>($: gthis.T.MapData<Annotation>) => {

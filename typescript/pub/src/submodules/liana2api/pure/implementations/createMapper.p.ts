@@ -3,7 +3,7 @@ import * as pm from 'pareto-core-map'
 import * as gthis from "../../glossary"
 
 
-import {createMapper } from "../api.generated"
+import { createMapper } from "../api.generated"
 
 export const $$: createMapper = ($d) => {
     return <Annotation>($: gthis.T.MapData<Annotation>) => {

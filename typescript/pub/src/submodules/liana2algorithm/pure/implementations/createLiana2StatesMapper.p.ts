@@ -5,7 +5,7 @@ import * as gmain from "../../../../main"
 import * as galgorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
 import * as gliana from "../../../liana"
 
-import {createLiana2StatesMapper } from "../api.generated"
+import { createLiana2StatesMapper } from "../api.generated"
 
 export const $$: createLiana2StatesMapper = ($d) => {
     return <Annotation>($: gmain.T.MappedModel<Annotation>) => {

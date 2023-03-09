@@ -10,7 +10,7 @@ import * as gliana from "../../../liana"
 import * as gmain from "../../../../main"
 
 
-import {createLiana2SerializerMapper } from "../api.generated"
+import { createLiana2SerializerMapper } from "../api.generated"
 
 export const $$: createLiana2SerializerMapper = ($d) => {
     return <Annotation>($: gmain.T.MappedModel<Annotation>) => {

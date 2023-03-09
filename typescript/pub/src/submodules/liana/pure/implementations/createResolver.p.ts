@@ -6,7 +6,7 @@ import * as pt from 'pareto-core-types'
 // import * as gapi from "../glossary"
 // import * as gcommon from "glo-pareto-common"
 
-// import {createResolver } from "../api.generated"
+// import { createResolver } from "../api.generated"
 
 // export const $$: createResolver = ($d) => {
 //     pd.implementMe("RESOLVE")

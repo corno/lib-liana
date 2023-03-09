@@ -7,7 +7,7 @@ import * as gfp from "lib-fountain-pen"
 import * as gcommon from "glo-pareto-common"
 import * as gmain from "../../../../main"
 
-import {createSerializer } from "../api.generated"
+import { createSerializer } from "../api.generated"
 
 export const $$: createSerializer = ($d) => {
     return <Annotation>($: gmain.T.MappedModel<Annotation>, $i: gfp.B.Directory) => {

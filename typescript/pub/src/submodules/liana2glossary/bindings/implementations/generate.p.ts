@@ -9,7 +9,7 @@ import * as gfs from "lib-pareto-filesystem"
 
 import { $api as $a } from "../../pure/implementation.generated"
 
-import {generate } from "../api.generated"
+import { generate } from "../api.generated"
 
 export const $$: generate = ($) => {
     const a = gforeach.$r.arrayForEach
