@@ -11,7 +11,8 @@ import { $ as data } from "../../../data/data.data"
 import { main } from "../api"
 
 export const $$: main = ($) => {
+    const err = gerror.$a.createErrorMessageCreator({})
     gmain.$a.compile(data, ($) => {
-        pv.logDebugMessage(gerror($))
+        pv.logDebugMessage(err($))
     })
 }

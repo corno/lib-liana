@@ -8,23 +8,17 @@ import * as gtest from "lib-pareto-test"
 import * as gliana_flat from "../../../../../pub/dist/submodules/liana_flat"
 import * as gliana from "../../../../../pub/dist/submodules/liana"
 import * as gresolve from "../../../../../pub/dist/submodules/resolve"
-import * as gliana2glossary from "../../../../../pub/dist/submodules/liana2glossary"
-import * as gp2ts from "../../../../../pub/dist/submodules/p2ts_temp"
 import * as gfp from "lib-fountain-pen"
 import * as gfs from "lib-pareto-filesystem"
-import * as gpub from "../../../../../pub"
 import * as gcoll from "res-pareto-collation"
 import * as gforeach from "res-pareto-foreach"
-import * as gts from "res-typescript"
-// import * as gforeach from "res-pareto-foreach"
 
 const d = pm.wrapRawDictionary
 
 import { $ as simpleModel } from "../../../data/liana/model/simpleModel.data"
-import { $ as glossary } from "../../../data/liana/model/glossary.data"
 import { $ as accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
-import {getTestSet } from "../definition/api.generated"
+import { getTestSet } from "../api.generated"
 
 export const $$: getTestSet = ($) => {
     const $XXX = $
@@ -39,28 +33,37 @@ export const $$: getTestSet = ($) => {
         onError: ($) => {
             pv.logDebugMessage(gfs.$a.createWriteFileErrorMessage($.error))
         },
-        reportSuperfluousNode: ($) => {
-            pv.logDebugMessage(gfp.$a.createSuperfluousNodeMessage($))
+    })
+    writer(
+        [$XXX.testDirectory, 'flat'],
+        ($i) => {
+            gliana_flat.$b.serialize(
+                {
+                    'terminal mapping': pm.wrapRawDictionary({
+                        "bedrag": ['number', null],
+                        "bestand": ['string', null],
+                        "dagen": ['number', null],
+                        "datum": ['number', null],
+                        "multiline text": ['string', null],
+                        "promillage": ['number', null],
+                        "identifier": ['string', null],
+                        "single line text": ['string', null],
+                    }),
+                    'model': accountingModel,
+                },
+                $i
+            )
         },
-    })
-    writer([$XXX.testDirectory, 'flat'], ($i) => {
-        gliana_flat.$a.serialize(
-            {
-                'terminal mapping': pm.wrapRawDictionary({
-                    "bedrag": ['number', null],
-                    "bestand": ['string', null],
-                    "dagen": ['number', null],
-                    "datum": ['number', null],
-                    "multiline text": ['string', null],
-                    "promillage": ['number', null],
-                    "identifier": ['string', null],
-                    "single line text": ['string', null],
-                }),
-                'model': accountingModel,
+        {
+            'manualNode': ()=> {
+
             },
-            $i
-        )
-    })
+            'superfluousNode': ($) => {
+                pv.logDebugMessage(gfp.$a.createSuperfluousNodeMessage($))
+
+            }
+        }
+    )
     let count = 0
     gresolve.$a.createResolver({})(accountingModel, ($) => {
         count += 1

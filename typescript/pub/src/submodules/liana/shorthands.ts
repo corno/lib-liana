@@ -3,7 +3,7 @@ import * as pl from 'pareto-core-lib'
 
 import * as gcommon from 'glo-pareto-common'
 
-import * as gglo from "./definition/glossary";
+import * as gglo from "./glossary";
 
 const a = pd.a
 

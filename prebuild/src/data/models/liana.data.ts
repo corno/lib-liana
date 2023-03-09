@@ -91,15 +91,15 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             "Type Path": globalType({}, group({
                 "global type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
                 "path": prop(array(taggedUnion({
-                    "dictionary": option(group({})),
-                    "optional": option(group({})),
-                    "array": option(group({})),
+                    "dictionary": option(group({}), typePath("Type", [tu("dictionary")])),
+                    "optional": option(group({}), typePath("Type", [tu("optional")])),
+                    "array": option(group({}), typePath("Type", [tu("array")])),
                     "group": option(group({
                         "property": prop(reference(typePath("Type", [tu("group"), grp("properties")]), tbd()))
-                    })),
+                    }), typePath("Type", [tu("group")])),
                     "tagged union": option(group({
                         "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
-                    })),
+                    }), typePath("Type", [tu("tagged union")])),
                 })))
                 // "type": prop(taggedUnion({
                 //     "parameter": 
