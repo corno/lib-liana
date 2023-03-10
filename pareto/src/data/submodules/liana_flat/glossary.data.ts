@@ -7,9 +7,9 @@ import {
     dictionary, member, taggedUnion, types, group,
     array,
     typeReference,
-    data,
+    sdata,
     boolean,
-    func,
+    sfunc,
     type,
     optional,
     reference,
@@ -30,9 +30,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),
     }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        "Serialize": func(parametrizedTypeReference("main",{ "Annotation": typeReference("Annotation")}, "MappedModel"), null, builderReference("fp", "Directory"), null),
-    }),
+    'type': ['synchronous', {
+        'builders': d({}),
+        'functions': d({
+            "Serialize": sfunc(parametrizedTypeReference("main",{ "Annotation": typeReference("Annotation")}, "MappedModel"), null, builderReference("fp", "Directory"), null),
+        }),
+
+    }],
 }

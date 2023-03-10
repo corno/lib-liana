@@ -7,9 +7,9 @@ import {
     dictionary, member, taggedUnion, types, group,
     array,
     typeReference,
-    data,
+    sdata,
     boolean,
-    func,
+    sfunc,
     type,
     optional,
     reference,
@@ -40,10 +40,12 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "internal": string(),
         })),
     }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        "MapLiana2States": func(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, data(parametrizedTypeReference("algorithm", { "Annotation": typeReference("OutAnnotation") }, "States"), false)),
-        "MapLiana2Serializer": func(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, data(parametrizedTypeReference("algorithm_temp", { "Annotation": typeReference("OutAnnotation") }, "AlgorithmImplementation"), false)),
-    }),
+    'type': ['synchronous', {
+        'builders': d({}),
+        'functions': d({
+            "MapLiana2States": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm", { "Annotation": typeReference("OutAnnotation") }, "States"), false)),
+            "MapLiana2Serializer": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm_temp", { "Annotation": typeReference("OutAnnotation") }, "AlgorithmImplementation"), false)),
+        }),
+
+    }],
 }

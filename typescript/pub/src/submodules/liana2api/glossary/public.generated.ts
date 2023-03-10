@@ -7,8 +7,6 @@ import * as g_common from "glo-pareto-common"
 import * as g_liana from "../../liana"
 import * as g_main from "../../../main"
 
-export namespace I {}
-
 export namespace B {}
 
 export namespace F {

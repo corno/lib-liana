@@ -1,25 +1,12 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    string,
-    null_,
-    nested,
-    dictionary, member, taggedUnion, types, group,
-    array,
     typeReference,
-    data,
-    boolean,
-    func,
+    sdata,
+    sfunc,
     type,
-    optional,
-    reference,
-    number,
     glossaryParameter,
-    interfaceReference,
     parametrizedTypeReference,
-    parametrizedReference,
-    builderReference,
-    builderMethod,
     parametrizedBuilderReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
@@ -33,10 +20,12 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'types': d({
         "Annotation": type(glossaryParameter("Annotation")),
     }),
-    'builders': d({
-    }),
-    'interfaces': d({}),
-    'functions': d({
-        "Resolve": func(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), data(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
-    }),
+    'type': ['synchronous', {
+        'builders': d({
+        }),
+        'functions': d({
+            "Resolve": sfunc(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), sdata(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
+        }),
+
+    }]
 }

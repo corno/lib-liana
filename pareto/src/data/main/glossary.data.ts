@@ -3,7 +3,7 @@ import * as pd from 'pareto-core-data'
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import {
     typeReference,
-    func,
+    sfunc,
     type,
     group,
     member,
@@ -82,12 +82,13 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             }))),
         })),
     }),
-    'builders': d({
-        "OnError": builderMethod(typeReference("Error"))
-    }),
-    'interfaces': d({
-    }),
-    'functions': d({
-        "Compile": func(typeReference("CompileParameters"), null, builderReference("OnError"), null)
-    }),
+    'type': ['synchronous', {
+        'builders': d({
+            "OnError": builderMethod(typeReference("Error"))
+        }),
+        'functions': d({
+            "Compile": sfunc(typeReference("CompileParameters"), null, builderReference("OnError"), null)
+        }),
+
+    }],
 }

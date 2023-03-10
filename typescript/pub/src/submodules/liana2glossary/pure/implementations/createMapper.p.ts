@@ -243,61 +243,63 @@ export const $$: createMapper = ($d) => {
                     'configuration': $.settings.datamodel[1],
                 })
                 : pm.wrapRawDictionary({}),
-            'builders': pm.wrapRawDictionary({}),
-            'interfaces': $d.buildDictionary(null, (add) => {
-
-                if ($.settings['visitor interface'][0] === true) {
-                    // add({
-                    //     'key': "Visitor",
-                    //     'value': ['group', {
-                    //         'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
-                    //             return ['method', {
-                    //                 'data': [false], //FIXME
-                    //                 'interface': [false], //FIXME
-                    //             }]
-                    //         })
-                    //     }],
-                    // })
-                }
-            }),
-            'functions': $d.buildDictionary(null, (add) => {
-                if ($.settings.algorithms.serialize[0] === true) {
-                    function typeReference(type: string): gglossary.T.TypeReference<Annotation> {
-                        return {
-                            'context': ['local', null],
-                            'type': type,
-                            // 'type': {
-                            //     'annotation': "SSDF",
-                            //     'name': type
-                            // },
-                            'arguments': pm.wrapRawDictionary({}),
-                        }
+            'type': ['synchronous', {
+                'builders': $d.buildDictionary(null, (add) => {
+    
+                    if ($.settings['visitor interface'][0] === true) {
+                        // add({
+                        //     'key': "Visitor",
+                        //     'value': ['group', {
+                        //         'members': $.mappedModel.model['type library']['global types'].map<gglossary.T.Interface<Annotation>>(($) => {
+                        //             return ['method', {
+                        //                 'data': [false], //FIXME
+                        //                 'interface': [false], //FIXME
+                        //             }]
+                        //         })
+                        //     }],
+                        // })
                     }
-                    add({
-                        'key': "Serialize",
-                        'value': {
-                            'return type': ['nothing', null],
-                            'data': typeReference($['mapped model'].model.root.key), //unresolved
-                            'input builder': [false],
-                            'output builder': [true, {
-                                'context': ['import', {
-                                    'glossary': "fp",
-                                    'arguments': pm.wrapRawDictionary({}),
+                }),
+                'functions': $d.buildDictionary<gglossary.T.Glossary._ltype.synchronous.functions.D<Annotation>>(null, (add) => {
+                    if ($.settings.algorithms.serialize[0] === true) {
+                        function typeReference(type: string): gglossary.T.TypeReference<Annotation> {
+                            return {
+                                'context': ['local', null],
+                                'type': type,
+                                // 'type': {
+                                //     'annotation': "SSDF",
+                                //     'name': type
+                                // },
+                                'arguments': pm.wrapRawDictionary({}),
+                            }
+                        }
+                        add({
+                            'key': "Serialize",
+                            'value': {
+                                'return type': ['nothing', null],
+                                'data': typeReference($['mapped model'].model.root.key), //unresolved
+                                'input builder': [false],
+                                'output builder': [true, {
+                                    'context': ['import', {
+                                        'glossary': "fp",
+                                        'arguments': pm.wrapRawDictionary({}),
+                                    }],
+                                    'builder': "Line"
+                                    // 'context': ['import', {
+                                    //     'name': "fp",
+                                    //     'annotation': "FFF",
+                                    // }],
+                                    // 'interface': {
+                                    //     'name': "Line",
+                                    //     'annotation': "FFF",
+                                    // }
                                 }],
-                                'builder': "Line"
-                                // 'context': ['import', {
-                                //     'name': "fp",
-                                //     'annotation': "FFF",
-                                // }],
-                                // 'interface': {
-                                //     'name': "Line",
-                                //     'annotation': "FFF",
-                                // }
-                            }],
-                        },
-                    })
-                }
-            })
+                            },
+                        })
+                    }
+                })
+
+            }]
         }
     }
 }

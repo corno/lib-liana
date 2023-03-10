@@ -7,9 +7,8 @@ import {
     dictionary, member, taggedUnion, types, group,
     array,
     typeReference,
-    data,
     boolean,
-    func,
+    sfunc,
     type,
     glossaryParameter,
     optional,
@@ -139,9 +138,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "taggedUnion": dictionary(reference("Type")),
         })),
     }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        "SerializeImplementation": func(typeReference("Implementation"), null, builderReference("fp", "Line"), null),
-    }),
+    'type': ['synchronous', {
+        'builders': d({}),
+        'functions': d({
+            "SerializeImplementation": sfunc(typeReference("Implementation"), null, builderReference("fp", "Line"), null),
+        }),
+
+    }],
 }

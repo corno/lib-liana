@@ -7,8 +7,6 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 import * as g_liana from "../../liana"
 import * as g_main from "../../../main"
 
-export namespace I {}
-
 export namespace B {}
 
 export namespace F {

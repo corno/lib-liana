@@ -7,9 +7,9 @@ import {
     dictionary, member, taggedUnion, types, group,
     array,
     typeReference,
-    data,
+    sdata,
     boolean,
-    func,
+    sfunc,
     type,
     optional,
     reference,
@@ -38,7 +38,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
 
             "algorithms": member(group({
                 "serialize": member(optional(group({
-                    //data location,
+                    //sdata location,
                 }))),
                 //resolve
             })),
@@ -48,10 +48,12 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "internal": string(),
         })),
     }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        "Generate": func(typeReference("GenerateData"), null, null, null),
-        "Map": func(typeReference("MapData"), null, null, data(parametrizedTypeReference("api", { "Annotation": typeReference("OutAnnotation") }, "API"), false)),
-    }),
+    'type': ['synchronous', {
+        'builders': d({}),
+        'functions': d({
+            "Generate": sfunc(typeReference("GenerateData"), null, null, null),
+            "Map": sfunc(typeReference("MapData"), null, null, sdata(parametrizedTypeReference("api", { "Annotation": typeReference("OutAnnotation") }, "API"), false)),
+        }),
+
+    }],
 }

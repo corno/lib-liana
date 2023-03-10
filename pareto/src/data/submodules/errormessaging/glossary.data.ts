@@ -7,9 +7,9 @@ import {
     dictionary, member, taggedUnion, types, group,
     array,
     typeReference,
-    data,
+    sdata,
     boolean,
-    func,
+    sfunc,
     type,
     optional,
     reference,
@@ -36,10 +36,12 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "column": member(string()),
         })),
     }),
-    'builders': d({
-    }),
-    'interfaces': d({}),
-    'functions': d({
-        "CreateErrorMessage": func(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, data(typeReference("common", "String"), false)),
-    }),
+    "type": ['synchronous', {
+        'builders': d({
+        }),
+        'functions': d({
+            "CreateErrorMessage": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, sdata(typeReference("common", "String"), false)),
+        }),
+
+    }],
 }
