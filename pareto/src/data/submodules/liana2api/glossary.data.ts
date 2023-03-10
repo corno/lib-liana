@@ -17,7 +17,9 @@ import {
     glossaryParameter,
     interfaceReference,
     parametrizedTypeReference,
-    parametrizedReference
+    parametrizedReference,
+    builderReference,
+    builderMethod
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -49,9 +51,12 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         })),
     }),
     'type': ['synchronous', {
-        'builders': d({}),
+        'builders': d({
+            "OnWriteFileError": builderMethod(typeReference("fs", "AnnotatedWriteFileError"))
+        }),
         'functions': d({
-            "Generate": sfunc(typeReference("GenerateData"), null, null, null),
+            "Generate": sfunc(typeReference("GenerateData"), null, builderReference("common", "StringBuilder"), null),
+            "GenerateAndReport": sfunc(typeReference("GenerateData"), null, builderReference("OnWriteFileError"), null),
             "Map": sfunc(typeReference("MapData"), null, null, sdata(parametrizedTypeReference("api", { "Annotation": typeReference("OutAnnotation") }, "API"))),
         }),
 

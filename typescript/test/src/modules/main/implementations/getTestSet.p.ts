@@ -29,13 +29,10 @@ export const $$: getTestSet = ($) => {
     //     }
     // })
 
-    const writer = gfp.$a.createDirectory({
-        onError: ($) => {
-            pv.logDebugMessage(gfs.$a.createWriteFileErrorMessage($.error))
-        },
-    })
-    writer(
+    const writer = gfp.$b.createDirectory(
+
         [$XXX.testDirectory, 'flat'],
+
         ($i) => {
             gliana_flat.$b.serialize(
                 {
@@ -55,14 +52,28 @@ export const $$: getTestSet = ($) => {
             )
         },
         {
-            'manualNode': ()=> {
+            'nodes': {
+                'manualNode': () => {
+                    pv.logDebugMessage("FIXME")
+
+                },
+                'superfluousNode': ($) => {
+                    pv.logDebugMessage(gfp.$a.createSuperfluousNodeMessage($))
+
+                }
+            },
+            'readDirError': () => {
+                pv.logDebugMessage("FIXME")
 
             },
-            'superfluousNode': ($) => {
-                pv.logDebugMessage(gfp.$a.createSuperfluousNodeMessage($))
-
+            'writeFileError': () => {
+                pv.logDebugMessage("FIXME")
             }
         }
+        // {
+        // onError: ($) => {
+        //     pv.logDebugMessage(gfs.$a.createWriteFileErrorMessage($.error))
+        // },
     )
     let count = 0
     gresolve.$a.createResolver({})(accountingModel, ($) => {

@@ -19,6 +19,7 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             "liana": sibling("liana"),
             "main": main(),
             "api": external("lib-pareto-typescript-project/dist/submodules/api"),
+            "fs": external("res-pareto-filesystem"),
         }),
     },
     'bindings': {

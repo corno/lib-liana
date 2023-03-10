@@ -20,6 +20,7 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             "liana": sibling("liana"),
             "main": main(),
             "glossary": external("lib-pareto-typescript-project/dist/submodules/glossary"),
+            "fs": external("res-pareto-filesystem"),
         }),
     },
     'bindings': {

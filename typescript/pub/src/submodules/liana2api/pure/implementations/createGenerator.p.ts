@@ -5,19 +5,16 @@ import * as gfp from "lib-fountain-pen"
 import { createGenerator } from "../api.generated"
 
 export const $$: createGenerator = ($d) => {
-    return ($) => {
-        gfp.$a.createFile(
-            {
-                onError: $d.logError,
-            },
-        )(
+    return ($, $i) => {
+        gfp.$b.createFile(
             $.path,
             ($i) => {
                 $d.serialize(
                     $d.map($.data),
                     $i,
                 )
-            }
+            },
+            $i,
         )
     }
 }

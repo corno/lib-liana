@@ -5,13 +5,13 @@ import * as gcoll from "res-pareto-collation"
 import * as gglossary_serialize from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
 import * as gbuild from "res-pareto-build"
 import * as gmain from "res-pareto-main"
-import * as gfs from "lib-pareto-filesystem"
+import * as gfs from "lib-pareto-filesystem/dist/submodules/errorhandlers"
 
 import { $api as $a } from "../../pure/implementation.generated"
 
 import { generate } from "../api.generated"
 
-export const $$: generate = ($) => {
+export const $$: generate = ($, $i) => {
     const a = gforeach.$r.arrayForEach
     const d = gforeach.$r.createDictionaryForEach({
         compare: gcoll.$r.localeIsABeforeB,
@@ -27,9 +27,6 @@ export const $$: generate = ($) => {
                 'compare': gcoll.$r.localeIsABeforeB,
             }),
             'decorateDictionaryEntriesWithKey': gforeach.$r.decorateDictionaryEntriesWithKey,
-            'logError': ($) => {
-                gmain.$r.logError(gfs.$a.createWriteFileErrorMessage($.error))
-            },
             'map': $a.createMapper({
                 'decorateDictionaryEntriesWithKey': gforeach.$r.decorateDictionaryEntriesWithKey,
                 'buildDictionary': gbuild.$r.unsafeBuildDictionary,
@@ -41,5 +38,10 @@ export const $$: generate = ($) => {
                 'enrichedDictionaryForEach': ed,
             })
         }
-    )($)
+    )(
+        $,
+        ($) => {
+            gfs.$a.writeFile($, $i)
+        },
+    )
 }

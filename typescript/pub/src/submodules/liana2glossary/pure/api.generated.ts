@@ -9,10 +9,9 @@ import * as g_this from "../glossary"
 export type createGenerator = ($d: {
     readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
     readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
-    readonly 'logError': g_fs.F.HandleWriteFileError
     readonly 'map': g_this.F.Map
     readonly 'serialize': g_serializeGlossary.F.Serialize
-}) => g_this.F.Generate
+}) => g_this.F.GenerateAndReport
 
 export type createMapper = ($d: {
     readonly 'buildDictionary': g_build.F.UnsafeBuildDictionary

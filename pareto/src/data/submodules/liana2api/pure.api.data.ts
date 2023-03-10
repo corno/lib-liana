@@ -7,9 +7,8 @@ const d = pd.d
 
 export const $: gapi.T.API<pd.SourceLocation> = {
     'algorithms': d({
-        "createGenerator": algorithm(functionReference("this", {}, "Generate"), constructor(null, {
+        "createGenerator": algorithm(functionReference("this", {}, "GenerateAndReport"), constructor(null, {
             "decorateDictionaryEntriesWithKey": functionReference("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-            "logError": functionReference("fs", {}, "HandleWriteFileError"),
             "map": functionReference("this", {}, "Map"),
             "serialize": functionReference("api", {}, "Serialize"),
             "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
