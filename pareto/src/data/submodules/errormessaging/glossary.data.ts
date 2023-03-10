@@ -40,7 +40,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         'builders': d({
         }),
         'functions': d({
-            "CreateErrorMessage": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, sdata(typeReference("common", "String"), false)),
+            "CreateErrorMessage": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, sdata(typeReference("common", "String"))),
         }),
 
     }],

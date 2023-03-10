@@ -52,7 +52,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         'builders': d({}),
         'functions': d({
             "Generate": sfunc(typeReference("GenerateData"), null, null, null),
-            "Map": sfunc(typeReference("MapData"), null, null, sdata(parametrizedTypeReference("api", { "Annotation": typeReference("OutAnnotation") }, "API"), false)),
+            "Map": sfunc(typeReference("MapData"), null, null, sdata(parametrizedTypeReference("api", { "Annotation": typeReference("OutAnnotation") }, "API"))),
         }),
 
     }],

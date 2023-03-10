@@ -43,8 +43,8 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'type': ['synchronous', {
         'builders': d({}),
         'functions': d({
-            "MapLiana2States": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm", { "Annotation": typeReference("OutAnnotation") }, "States"), false)),
-            "MapLiana2Serializer": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm_temp", { "Annotation": typeReference("OutAnnotation") }, "AlgorithmImplementation"), false)),
+            "MapLiana2States": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm", { "Annotation": typeReference("OutAnnotation") }, "States"))),
+            "MapLiana2Serializer": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Annotation") }, "MappedModel"), null, null, sdata(parametrizedTypeReference("algorithm_temp", { "Annotation": typeReference("OutAnnotation") }, "AlgorithmImplementation"))),
         }),
 
     }],

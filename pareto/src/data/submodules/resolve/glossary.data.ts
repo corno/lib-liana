@@ -24,7 +24,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         'builders': d({
         }),
         'functions': d({
-            "Resolve": sfunc(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), sdata(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"), false)),
+            "Resolve": sfunc(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), sdata(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"))),
         }),
 
     }]
