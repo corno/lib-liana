@@ -298,8 +298,4 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         'builders': d({}),
         'functions': d<gglossary.T.Glossary._ltype.synchronous.functions.D<pd.SourceLocation>>({}),
     }],
-
-
-
-
 }

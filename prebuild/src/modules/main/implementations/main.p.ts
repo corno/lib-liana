@@ -10,8 +10,7 @@ import { main } from "../api"
 
 export const $$: main = ($) => {
     const err = gerror.$a.createErrorMessageCreator({}) 
-    pv.logDebugMessage("REENABLE")
-    // gmain.$a.compile(data, ($) => {
-    //     pv.logDebugMessage(err($))
-    // })
+    gmain.$a.compile(data, ($) => {
+        pv.logDebugMessage(err($))
+    })
 }
