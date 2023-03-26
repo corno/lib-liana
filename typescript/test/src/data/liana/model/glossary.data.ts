@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as gliana from "../../../../../pub/dist/submodules/liana"
+import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import {
     d,
     array,
@@ -16,7 +16,7 @@ import {
     option,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
-export const $: gliana.T.Model<pd.SourceLocation> = {
+export const $: g_liana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
         'terminal types': pd.d({
@@ -25,7 +25,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
         'global types': pd.d({
             "Context": globalType({}, taggedUnion({
                 "local": option(group({})),
-                //"import": reference(['parent', null), [)),
+                //"import": ref(typeReference(['parent', null), [)),
                 "import": option(terminal("identifier")),
             })),
             //     "Model": globalType({}, group({
@@ -75,7 +75,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             //     })),
             //     "InterfaceReference": globalType({}, group({
             //         "context": prop(component("Context", {})),
-            //         //"interface": [["context"), reference(['sibling', "context"), [))),
+            //         //"interface": [["context"), ref(typeReference(['sibling', "context"), [))),
             //         "interface": prop(terminal("identifier")),
             //     })),
             //     "Type": globalType({}, taggedUnion({
@@ -102,7 +102,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
             //     })),
             //     "TypeReference": globalType({}, group({
             //         "context": prop(component("Context", {})),
-            //         //"type": [["namespace"), reference(['sibling', "namespaces"), [))),
+            //         //"type": [["namespace"), ref(typeReference(['sibling', "namespaces"), [))),
             //         "type": prop(terminal("identifier")),
             //     })),
         }),

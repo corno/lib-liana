@@ -1,12 +1,16 @@
 import * as pt from 'pareto-core-types'
 
-import * as gmain from "res-pareto-main"
-import * as gtest from "lib-pareto-test"
+import * as g_main from "res-pareto-main"
+import * as g_test from "lib-pareto-test"
 
-export type getTestSet = gtest.F.GetTestSet
-export type main = ($: gmain.T.MainData) => void
+export namespace A {
+
+    export type getTestSet = g_test.ASYNC.A.F.GetTestSet
+    export type main = ($: g_main.T.MainData) => void
+
+}
 
 export type API = {
-    'getTestSet': getTestSet
-    'main': main
+    'getTestSet': g_test.ASYNC.A.F.GetTestSet
+    'main': A.main
 }

@@ -1,8 +1,8 @@
 import { API } from "./api.generated"
-import { $$ as icreateLiana2SerializerMapper } from "./implementations/createLiana2SerializerMapper.p"
-import { $$ as icreateLiana2StatesMapper } from "./implementations/createLiana2StatesMapper.p"
+import { $$ as imapLiana2Serializer } from "./implementations/mapLiana2Serializer.s.f"
+import { $$ as imapLiana2States } from "./implementations/mapLiana2States.s.f"
 
 export const $api: API = {
-    'createLiana2SerializerMapper': icreateLiana2SerializerMapper,
-    'createLiana2StatesMapper': icreateLiana2StatesMapper,
+    'mapLiana2Serializer': imapLiana2Serializer,
+    'mapLiana2States': imapLiana2States,
 }

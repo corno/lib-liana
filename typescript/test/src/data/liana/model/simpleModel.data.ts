@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as gliana from "../../../../../pub/dist/submodules/liana"
+import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import {
     d,
     array,
@@ -18,7 +18,7 @@ import {
     tbd,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
-export const $: gliana.T.Model<pd.SourceLocation> = {
+export const $: g_liana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
         'terminal types': pd.d({
@@ -32,7 +32,7 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                 "c": prop(dictionary(group({}))),
                 "d": prop(reference(typePath("FOO", []), tbd())),
                 "e": prop(group({
-                    //"a": prop(reference(['parent', null], [])],
+                    //"a": prop(ref(typeReference(['parent', null], [])],
                 })),
                 "f": prop(reference(typePath("FOO", []), tbd())),
                 //"g": prop(taggedUnion({})],

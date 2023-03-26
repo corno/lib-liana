@@ -6,19 +6,14 @@ import * as g_fs from "res-pareto-filesystem"
 import * as g_serializeGlossary from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
 import * as g_this from "./glossary"
 
-export type createGenerator = ($d: {
-    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
-    readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
-    readonly 'map': g_this.F.Map
-    readonly 'serialize': g_serializeGlossary.F.Serialize
-}) => g_this.F.GenerateAndReport
-
-export type createMapper = ($d: {
-    readonly 'buildDictionary': g_build.F.UnsafeBuildDictionary
-    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
-}) => g_this.F.Map
+export namespace A {
+    
+    export type map = <GAnnotation>($d: {
+        readonly 'buildDictionary': g_build.SYNC.A.F.BuildUnsafeDictionary
+        readonly 'decorateDictionaryEntriesWithKey': g_foreach.SYNC.A.F.DecorateDictionaryEntriesWithKey
+    }, ) => g_this.SYNC.A.F.Map<GAnnotation>
+}
 
 export type API = {
-    createGenerator: createGenerator
-    createMapper: createMapper
+    readonly 'map': A.map
 }

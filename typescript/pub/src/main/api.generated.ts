@@ -2,8 +2,6 @@ import * as pt from 'pareto-core-types'
 
 import * as g_this from "./glossary"
 
-export type compile = g_this.F.Compile
+export namespace A {}
 
-export type API = {
-    compile: compile
-}
+export type API = null

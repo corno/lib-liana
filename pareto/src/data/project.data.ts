@@ -1,9 +1,8 @@
 import * as pd from 'pareto-core-data'
 
-import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
-import { $ as main } from "./main/module.data"
+import { $ as main_ } from "./main/module.data"
 import { $ as errorMessaging } from "./submodules/errormessaging/module.data"
 import { $ as liana } from "./submodules/liana/module.data"
 import { $ as liana_resolved } from "./submodules/liana_resolved/module.data"
@@ -14,26 +13,28 @@ import { $ as liana2api } from "./submodules/liana2api/module.data"
 import { $ as liana2algorithm } from "./submodules/liana2algorithm/module.data"
 import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
-import { $ as bindings } from "./bindings.api.data"
-import { submodule } from 'lib-pareto-typescript-project/dist/submodules/project/shorthands'
+import { $ as bindings } from "./bindings/api.data"
+
+import { main, submodule } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 const d = pd.d
 
-export const $: gproject.T.Project<pd.SourceLocation> = {
+export const $: g_project.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "Liana",
     'license': "TBD",
 
-
     'dependencies': d({
         "glo-pareto-common": null,
         "lib-pareto-typescript-project": null,
-        "res-pareto-build": null,
         "lib-fountain-pen": null,
         "lib-pareto-filesystem": null,
+        "res-pareto-build": null,
+        "res-pareto-foreach": null,
+        "res-typescript": null,
     }),
     'type': ['library', {
-        'main': main,
+        'main': main_,
         'submodules': d({
             "algorithm_temp": algorithm_temp,
             "errorMessaging": errorMessaging,
@@ -48,11 +49,32 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         }),
 
         'bindings': [true, {
-            'api': {
-                'root': bindings,
-                'imports': d({
-                    "flat": submodule("liana_flat")
-                }),
+            'definition': {
+                'glossary': {
+                    'root': {
+                        'parameters': d({}),
+                        'imports': d({}),
+                        'types': d({}),
+                        'asynchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                        'synchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                    },
+                    'imports': d({}),
+                },
+                'api': {
+                    'root': bindings,
+                    'imports': d({
+                        "main": main(),
+                        "flat": submodule("liana_flat"),
+                        "liana2glossary": submodule("liana2glossary"),
+                        "liana2api": submodule("liana2api"),
+                    }),
+                },
             },
             'implementation': ['typescript', null],
 
@@ -60,23 +82,32 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         'executables': d({}),
         'test': {
             'dependencies': d({
-                "lib-fountain-pen": null,
-                "lib-pareto-typescript-project": null,
-
-                //temporary:
-                "res-pareto-foreach": null,
-                "res-typescript": null,
             }),
-            'glossary': {
-                'parameters': d({}),
-                'types': d({}),
-                'type': ['synchronous', {
-                    'builders': d({}),
-                    'functions': d<gglossary.T.Glossary._ltype.synchronous.functions.D<pd.SourceLocation>>({}),
-                }],
+            'definition': {
+                'glossary': {
+                    'root': {
+                        'parameters': d({}),
+                        'imports': d({}),
+                        'types': d({}),
+                        'asynchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                        'synchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                    },
+                    'imports': d({}),
+                },
+                'api': {
+                    'root': {
+                        'algorithms': d({}),
+                    },
+                    'imports': d({}),
+                },
             },
             'imports': d({}),
         },
-
     }],
 }

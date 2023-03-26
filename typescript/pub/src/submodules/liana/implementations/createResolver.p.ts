@@ -3,21 +3,21 @@ import * as pt from 'pareto-core-types'
 // import * as pl from 'pareto-core-lib'
 // import * as ps from 'pareto-core-state'
 
-// import * as gapi from "../glossary"
-// import * as gcommon from "glo-pareto-common"
+// import * as g_this from "../glossary"
+// import * as g_common from "glo-pareto-common"
 
 // import { createResolver } from "../api.generated"
 
 // export const $$: createResolver = ($d) => {
 //     pd.implementMe("RESOLVE")
 
-//     // return <Annotation>($: gapi.T.Model<Annotation>) => {
+//     // return <Annotation>($: g_this.T.Model<Annotation>) => {
 //     //     let hasErrors = false
 //     //     function onError($: string) {
 //     //         $d.onError($)
 //     //         hasErrors = true
 //     //     }
-//     //     function filter<T>($: AnnotatedUnsafeDictionary<T>): gcommon.T.AnnotatedDictionary<Annotation, T> {
+//     //     function filter<T>($: AnnotatedUnsafeDictionary<T>): g_common.T.AnnotatedDictionary<Annotation, T> {
 //     //         const db = ps.createUnsafeDictionaryBuilder<T>()
 //     //         $.dictionary.__forEach(() => false, ($, key) => {
 //     //             if ($[0] === true) {
@@ -30,7 +30,7 @@ import * as pt from 'pareto-core-types'
 //     //         }
 //     //     }
 
-//     //     type ComputedReference<T> = (ref: gcommon.T.AnnotatedKey<Annotation>) => () => T
+//     //     type ComputedReference<T> = (ref: g_common.T.AnnotatedKey<Annotation>) => () => T
 
 //     //     type UnsafeDictionary<T> = pt.Dictionary<pt.OptionalValue<T>>
 //     //     type AnnotatedUnsafeDictionary<T> = {
@@ -77,15 +77,15 @@ import * as pt from 'pareto-core-types'
 //     //     function resolve<T>(
 //     //         target: string,
 //     //         dict: OptionalAnnotatedUnsafeDictionary<T>,
-//     //         key: gcommon.T.AnnotatedKey<Annotation>,
-//     //     ): pt.OptionalValue<gapi.T._$Reference<Annotation, T>> {
+//     //         key: g_common.T.AnnotatedKey<Annotation>,
+//     //     ): pt.OptionalValue<g_this.T._$Reference<Annotation, T>> {
 //     //         if (dict === null) {
 //     //             onError(`${key.annotation}: no dictionary`)
 //     //             return [false]
 //     //         } else {
 //     //             return dict.dictionary.__getEntry(
 //     //                 key.key,
-//     //                 ($): pt.OptionalValue<gapi.T._$Reference<Annotation, T>> => {
+//     //                 ($): pt.OptionalValue<g_this.T._$Reference<Annotation, T>> => {
 //     //                     if ($[0] === false) {
 //     //                         return [false]
 //     //                     } else {
@@ -104,12 +104,12 @@ import * as pt from 'pareto-core-types'
 //     //         }
 //     //     }
 //     //     function resolveString($: {
-//     //         $: gapi.T.String<Annotation>,
+//     //         $: g_this.T.String<Annotation>,
 //     //         support: {
-//     //             stringTypes: OptionalAnnotatedUnsafeDictionary<gapi.T.XStringType<Annotation>>
-//     //             siblings: OptionalAnnotatedUnsafeDictionary<gapi.T.XProperty<Annotation>>
+//     //             stringTypes: OptionalAnnotatedUnsafeDictionary<g_this.T.XStringType<Annotation>>
+//     //             siblings: OptionalAnnotatedUnsafeDictionary<g_this.T.XProperty<Annotation>>
 //     //         }
-//     //     }): pt.OptionalValue<gapi.T.XString<Annotation>> {
+//     //     }): pt.OptionalValue<g_this.T.XString<Annotation>> {
 //     //         const support = $.support
 //     //         return pl.cc($.$, ($) => {
 //     //             switch ($.constrained[0]) {
@@ -230,15 +230,15 @@ import * as pt from 'pareto-core-types'
 //     //         })
 //     //     }
 //     //     function resolveType($: {
-//     //         $: gapi.T.LocalType<Annotation>,
+//     //         $: g_this.T.LocalType<Annotation>,
 //     //         support: {
 //     //             stringTypes: OptionalAnnotatedUnsafeDictionary<{}>
-//     //             globalTypes: ComputedReference<gapi.T.XGlobalType<Annotation>>
-//     //             siblings: OptionalAnnotatedUnsafeDictionary<gapi.T.XProperty<Annotation>>
+//     //             globalTypes: ComputedReference<g_this.T.XGlobalType<Annotation>>
+//     //             siblings: OptionalAnnotatedUnsafeDictionary<g_this.T.XProperty<Annotation>>
 //     //         }
-//     //     }): pt.OptionalValue<gapi.T.XLocalType<Annotation>> {
+//     //     }): pt.OptionalValue<g_this.T.XLocalType<Annotation>> {
 //     //         const support = $.support
-//     //         return pl.cc($.$, ($): pt.OptionalValue<gapi.T.XLocalType<Annotation>> => {
+//     //         return pl.cc($.$, ($): pt.OptionalValue<g_this.T.XLocalType<Annotation>> => {
 
 //     //             switch ($[0]) {
 //     //                 case 'array':
@@ -288,7 +288,7 @@ import * as pt from 'pareto-core-types'
 //     //                         return [true, ['boolean', {}]]
 //     //                     })
 //     //                 case 'component':
-//     //                     return pl.cc($[1], ($): pt.OptionalValue<gapi.T.XLocalType<Annotation>> => {
+//     //                     return pl.cc($[1], ($): pt.OptionalValue<g_this.T.XLocalType<Annotation>> => {
 //     //                         // const r_arguments = buildDictionary<null, api.MConstrainedDictionaryEntry<TXGlobalType, null>>($.arguments, ($, $i) => {
 //     //                         //     resolve("global types", support.globalTypes)
 //     //                         //     return {
@@ -334,7 +334,7 @@ import * as pt from 'pareto-core-types'
 //     //                     })
 //     //                 case 'group':
 //     //                     return pl.cc($[1], ($) => {
-//     //                         const r_properties = buildDictionary<gapi.T.Property<Annotation>, gapi.T.XProperty<Annotation>>($.properties, ($, $i) => {
+//     //                         const r_properties = buildDictionary<g_this.T.Property<Annotation>, g_this.T.XProperty<Annotation>>($.properties, ($, $i) => {
 
 //     //                             const r_type = resolveType({
 //     //                                 $: $.type,
@@ -375,7 +375,7 @@ import * as pt from 'pareto-core-types'
 //     //                     })
 //     //                 case 'tagged union':
 //     //                     return pl.cc($[1], ($) => {
-//     //                         const r_options = buildDictionary<gapi.T.LocalType<Annotation>, gapi.T.XOption<Annotation>>($.options, ($, $i) => {
+//     //                         const r_options = buildDictionary<g_this.T.LocalType<Annotation>, g_this.T.XOption<Annotation>>($.options, ($, $i) => {
 
 //     //                             const r_type = resolveType({
 //     //                                 $: $,
@@ -393,7 +393,7 @@ import * as pt from 'pareto-core-types'
 //     //                                 }
 //     //                             }
 //     //                         })
-//     //                         let r_default: pt.OptionalValue<gapi.T._$Reference<Annotation, gapi.T.XOption<Annotation>>> = resolve("option", r_options, $.default)
+//     //                         let r_default: pt.OptionalValue<g_this.T._$Reference<Annotation, g_this.T.XOption<Annotation>>> = resolve("option", r_options, $.default)
 //     //                         if (true
 //     //                             && r_default[0] === true
 //     //                         ) {
@@ -414,11 +414,11 @@ import * as pt from 'pareto-core-types'
 //     //     const r_stringTypes = buildDictionary<null, {}>($['string types'], ($, $i) => {
 //     //         return {}
 //     //     })
-//     //     const r_globalTypes = buildDictionary<gapi.T.GlobalType<Annotation>, gapi.T.XGlobalType<Annotation>>($['global types'], ($, $i) => {
-//     //         const r_parameters = buildDictionary<gapi.T.Parameter<Annotation>, gapi.T.XParameter<Annotation>>($.parameters, ($, $i) => {
+//     //     const r_globalTypes = buildDictionary<g_this.T.GlobalType<Annotation>, g_this.T.XGlobalType<Annotation>>($['global types'], ($, $i) => {
+//     //         const r_parameters = buildDictionary<g_this.T.Parameter<Annotation>, g_this.T.XParameter<Annotation>>($.parameters, ($, $i) => {
 //     //             return {}
 //     //         })
-//     //         let r_type: pt.OptionalValue<gapi.T.XLocalType<Annotation>> = resolveType({
+//     //         let r_type: pt.OptionalValue<g_this.T.XLocalType<Annotation>> = resolveType({
 //     //             $: $.type,
 //     //             support: {
 //     //                 siblings: null,
@@ -438,11 +438,11 @@ import * as pt from 'pareto-core-types'
 //     //         }
 //     //     })
 
-//     //     let r_root: pt.OptionalValue<gapi.T._$Reference<Annotation, gapi.T.XGlobalType<Annotation>>> = resolve("global type", r_globalTypes, $.root)
+//     //     let r_root: pt.OptionalValue<g_this.T._$Reference<Annotation, g_this.T.XGlobalType<Annotation>>> = resolve("global type", r_globalTypes, $.root)
 //     //     if (true
 //     //         && r_root[0] === true
 //     //     ) {
-//     //         const x: gapi.T.XModel<Annotation> = {
+//     //         const x: g_this.T.XModel<Annotation> = {
 //     //             'string types': filter(r_stringTypes),
 //     //             'global types': filter(r_globalTypes),
 //     //             'root': r_root[1],

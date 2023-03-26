@@ -9,6 +9,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
+    'imports': d({}),
     'types': d({
         "Model": {
             'parameters': d({}),
@@ -16,7 +17,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                 "root": {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "annotation": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                         },
                         "key": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -24,11 +25,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                     })],
                 },
                 "type library": {
-                    'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                    'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                         'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                         'type': "Type Library",
                         'arguments': d({}),
-                    }],
+                    }]],
                 },
             })]
         },
@@ -41,7 +42,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             "parameter": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "annotation": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                     },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -54,11 +55,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                     })],
                 },
                 "type path": {
-                    'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                    'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                         'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                         'type': "Type Path",
                         'arguments': d({}),
-                    }],
+                    }]],
                 },
             })]
         },
@@ -71,7 +72,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             "type": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "annotation": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                     },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -79,11 +80,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                                 })],
                             },
                         })],
-                        "yes": <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                        "yes": <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Reference",
                             'arguments': d({}),
-                        }],
+                        }]],
                     })],
                 },
             })]
@@ -93,11 +94,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                 "array": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                     "type": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Type",
                             'arguments': d({}),
-                        }],
+                        }]],
                     },
                 })],
                 "component": <gglossary.T.Type<pd.SourceLocation>>['group', d({
@@ -110,7 +111,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                                 "library": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "annotation": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                         },
                                         "key": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -124,7 +125,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                     "type": {
                         'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "annotation": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                             },
                             "key": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -134,47 +135,47 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                 })],
                 "dictionary": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                     "key": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Terminal",
                             'arguments': d({}),
-                        }],
+                        }]],
                     },
                     "type": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Type",
                             'arguments': d({}),
-                        }],
+                        }]],
                     },
                 })],
                 "group": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                     "properties": {
                         'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "type": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                     'type': "Type",
                                     'arguments': d({}),
-                                }],
+                                }]],
                             },
                         })]],
                     },
                 })],
                 "optional": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                     "type": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Type",
                             'arguments': d({}),
-                        }],
+                        }]],
                     },
                 })],
                 "tagged union": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                     "default": {
                         'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "annotation": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                             },
                             "key": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -186,29 +187,29 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             "constrained": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['optional', <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "type path": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                             'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                             'type': "Type Path",
                                             'arguments': d({}),
-                                        }],
+                                        }]],
                                     },
                                 })]],
                             },
                             "type": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                     'type': "Type",
                                     'arguments': d({}),
-                                }],
+                                }]],
                             },
                         })]],
                     },
                 })],
-                "terminal": <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                "terminal": <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                     'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                     'type': "Terminal",
                     'arguments': d({}),
-                }],
+                }]],
             })]
         },
         "Type Library": {
@@ -221,7 +222,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                                 "global type": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                         "annotation": {
-                                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                         },
                                         "key": {
                                             'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -231,11 +232,11 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             })]],
                         },
                         "type": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                 'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
                                 'type': "Type",
                                 'arguments': d({}),
-                            }],
+                            }]],
                         },
                     })]],
                 },
@@ -253,7 +254,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                 "global type": {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "annotation": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                            'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                         },
                         "key": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -268,7 +269,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             "property": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "annotation": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                     },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -281,7 +282,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
                             "option": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                                     "annotation": {
-                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
                                     },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
@@ -294,8 +295,13 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             })]
         },
     }),
-    'type': ['synchronous', {
-        'builders': d({}),
-        'functions': d<gglossary.T.Glossary._ltype.synchronous.functions.D<pd.SourceLocation>>({}),
-    }],
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+
 }

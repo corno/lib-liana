@@ -1,4 +1,6 @@
 import * as pt from 'pareto-core-types'
 
 
-export type API = {}
+export namespace A {}
+
+export type API = null

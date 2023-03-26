@@ -1,15 +1,13 @@
 import * as pd from 'pareto-core-data'
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import {
     typeReference,
-    sfunc,
     type,
     group,
     member,
     array,
-    reference,
-    parametrizedReference,
+    data,
     dictionary,
     taggedUnion,
     null_,
@@ -17,27 +15,35 @@ import {
     glossaryParameter,
     boolean,
     string,
-    builderReference,
-    builderMethod,
+    imp,
+    ref,
+    externalTypeReference,
+    sInterfaceMethod,
+    sInterfaceReference,
+    procedure,
+    sInterface,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 const d = pd.d
 
-export const $: gglossary.T.Glossary<pd.SourceLocation> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
+    'imports': d({
+        "common": imp({}),
+        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
+    }),
     'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
         "CompileParameters": type(group({
             "outputs": member(array(group({
-                "path": member(reference("common", "Path")),
-                "data": member(reference("MapData")),
+                "path": member(ref(externalTypeReference("common", "Path"))),
+                "data": member(ref(typeReference("MapData"))),
             })))
         })),
         "Error": type(group({
-            "message": member(reference("common", "String")),
-            "annotation": member(glossaryParameter("Annotation")),
+            "message": member(ref(externalTypeReference("common", "String"))),
+            "annotation": member(ref(glossaryParameter("Annotation"))),
         })),
         // "Error": type(group({
         //     "type": member(taggedUnion({
@@ -47,7 +53,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
         // })),
 
         "MapData": type(group({
-            "mapped model": member(reference("MappedModel")),
+            "mapped model": member(ref(typeReference("MappedModel"))),
             "settings": member(group({
                 "datamodel": member(optional(group({
                     "annotations": member(boolean()),
@@ -74,7 +80,7 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             })),
         })),
         "MappedModel": type(group({
-            "model": member(parametrizedReference("liana", { "Annotation": typeReference("Annotation") }, "Model")),
+            "model": member(ref(externalTypeReference("liana", "Model"))),
             "terminal mapping": member(dictionary(taggedUnion({
                 "boolean": null_(),
                 "number": null_(),
@@ -82,13 +88,17 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             }))),
         })),
     }),
-    'type': ['synchronous', {
-        'builders': d({
-            "OnError": builderMethod(typeReference("Error"))
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({
+            "OnError": sInterface(sInterfaceMethod(typeReference("Error"))),
         }),
-        'functions': d({
-            "Compile": sfunc(typeReference("CompileParameters"), null, builderReference("OnError"), null)
+        'algorithms': d({
+            "Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError"))
         }),
+    },
 
-    }],
 }

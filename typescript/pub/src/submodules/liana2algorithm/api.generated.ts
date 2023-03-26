@@ -6,13 +6,16 @@ import * as g_common from "glo-pareto-common"
 import * as g_foreach from "res-pareto-foreach"
 import * as g_this from "./glossary"
 
-export type createLiana2SerializerMapper = ($d: {}) => g_this.F.MapLiana2Serializer
-
-export type createLiana2StatesMapper = ($d: {
-    readonly 'decorateDictionaryEntriesWithKey': g_foreach.F.DecorateDictionaryEntriesWithKey
-}) => g_this.F.MapLiana2States
+export namespace A {
+    
+    export type mapLiana2Serializer = <GAnnotation>() => g_this.SYNC.A.F.MapLiana2Serializer<GAnnotation>
+    
+    export type mapLiana2States = <GAnnotation>($d: {
+        readonly 'decorateDictionaryEntriesWithKey': g_foreach.SYNC.A.F.DecorateDictionaryEntriesWithKey
+    }, ) => g_this.SYNC.A.F.MapLiana2States<GAnnotation>
+}
 
 export type API = {
-    createLiana2SerializerMapper: createLiana2SerializerMapper
-    createLiana2StatesMapper: createLiana2StatesMapper
+    readonly 'mapLiana2Serializer': A.mapLiana2Serializer
+    readonly 'mapLiana2States': A.mapLiana2States
 }

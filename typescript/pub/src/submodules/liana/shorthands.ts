@@ -1,29 +1,29 @@
 import * as pd from 'pareto-core-data'
 import * as pl from 'pareto-core-lib'
 
-import * as gcommon from 'glo-pareto-common'
+import * as g_common from 'glo-pareto-common'
 
-import * as gglo from "./glossary";
+import * as g_this from "./glossary";
 
 const a = pd.a
 
 type RawDictionary<T> = { [key: string]: T }
 
-function r_imp(name: string, depth: number): gcommon.T.AnnotatedKey<pd.SourceLocation> {
+function r_imp(name: string, depth: number): g_common.T.AnnotatedKey<pd.SourceLocation> {
     return {
         key: name,
         annotation: pd.getLocationInfo(depth + 1),
     }
 }
 
-function d_imp<T>($: RawDictionary<T>, annotation: pd.SourceLocation): gcommon.T.AnnotatedDictionary<pd.SourceLocation, T> {
+function d_imp<T>($: RawDictionary<T>, annotation: pd.SourceLocation): g_common.T.AnnotatedDictionary<pd.SourceLocation, T> {
     return {
         'annotation': annotation,
         'dictionary': pd.d($),
     }
 }
 
-function d_mappedimp<T, RT>($: RawDictionary<T>, annotation: pd.SourceLocation, cb: ($: T) => RT): gcommon.T.AnnotatedDictionary<pd.SourceLocation, RT> {
+function d_mappedimp<T, RT>($: RawDictionary<T>, annotation: pd.SourceLocation, cb: ($: T) => RT): g_common.T.AnnotatedDictionary<pd.SourceLocation, RT> {
     return {
         'annotation': annotation,
         'dictionary': pd.d($).map(cb),
@@ -35,43 +35,43 @@ export function d<T>($: RawDictionary<T>) {
     return d_imp($, li)
 }
 
-export function r(name: string): gcommon.T.AnnotatedKey<pd.SourceLocation> {
+export function r(name: string): g_common.T.AnnotatedKey<pd.SourceLocation> {
     return r_imp(name, 1)
 }
 
-export function array(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd.SourceLocation> {
+export function array(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return ['array', {
         'type': type
     }]
 }
 
-export function optional(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd.SourceLocation> {
+export function optional(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return ['optional', {
         'type': type
     }]
 }
 
 export function constrainedTerminal(
-    typePath: gglo.T.Type__Path<pd.SourceLocation>,
-    type: gglo.T.Reference._ltype<pd.SourceLocation>,
-): gglo.T.Terminal<pd.SourceLocation> {
+    typePath: g_this.T.Type__Path<pd.SourceLocation>,
+    type: g_this.T.Reference._ltype<pd.SourceLocation>,
+): g_this.T.Terminal<pd.SourceLocation> {
     return {
         'constrained': ['yes', referenceX(typePath, type)],
     }
 }
 
 export function constrainedDictionary(
-    typePath: gglo.T.Type__Path<pd.SourceLocation>,
-    refType: gglo.T.Reference._ltype<pd.SourceLocation>,
-    type: gglo.T.Type<pd.SourceLocation>
-): gglo.T.Type<pd.SourceLocation> {
+    typePath: g_this.T.Type__Path<pd.SourceLocation>,
+    refType: g_this.T.Reference._ltype<pd.SourceLocation>,
+    type: g_this.T.Type<pd.SourceLocation>
+): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
         'key': constrainedTerminal(typePath, refType),
         'type': type
     }]
 }
 
-export function dictionary(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd.SourceLocation> {
+export function dictionary(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
         // 'annotation': li,
         'key': {
@@ -83,7 +83,7 @@ export function dictionary(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type<pd
     }]
 }
 
-export function globalType(parameters: RawDictionary<gglo.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation>>, type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type__Library.global__types.D<pd.SourceLocation> {
+export function globalType(parameters: RawDictionary<g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
     return {
         'type': type,
         'parameters': pd.d(parameters)
@@ -93,20 +93,20 @@ export function globalType(parameters: RawDictionary<gglo.T.Type__Library.global
     }
 }
 
-export function prop(type: gglo.T.Type<pd.SourceLocation>): gglo.T.Type.group.properties.D<pd.SourceLocation> {
+export function prop(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.group.properties.D<pd.SourceLocation> {
     return {
         //'sibling dependencies': d_imp({}, li),
         'type': type,
     }
 }
 
-export function group(properties: RawDictionary<gglo.T.Type.group.properties.D<pd.SourceLocation>>): gglo.T.Type<pd.SourceLocation> {
+export function group(properties: RawDictionary<g_this.T.Type.group.properties.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['group', {
         'properties': pd.d(properties)
     }]
 }
 
-export function option(type: gglo.T.Type<pd.SourceLocation>, constrained?: gglo.T.Type__Path<pd.SourceLocation>): gglo.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function option(type: g_this.T.Type<pd.SourceLocation>, constrained?: g_this.T.Type__Path<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constrained': constrained === undefined
             ? [false]
@@ -117,7 +117,7 @@ export function option(type: gglo.T.Type<pd.SourceLocation>, constrained?: gglo.
     }
 }
 
-export function taggedUnion(options: RawDictionary<gglo.T.Type.tagged__union.options.D<pd.SourceLocation>>): gglo.T.Type<pd.SourceLocation> {
+export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
         if (firstKey === null) {
@@ -139,7 +139,7 @@ export function taggedUnion(options: RawDictionary<gglo.T.Type.tagged__union.opt
     })
 }
 
-export function terminal(type: string): gglo.T.Type<pd.SourceLocation> {
+export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
     return ['terminal', {
         'constrained': ['no', {
             'type': r_imp(type, 1),
@@ -172,21 +172,21 @@ export function terminal(type: string): gglo.T.Type<pd.SourceLocation> {
 //     return ['parameter', name]
 // }
 
-export function grp(prop: string): gglo.T.Type__Path.path.A<pd.SourceLocation> {
+export function grp(prop: string): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['group', {
         'property': r_imp(prop, 1),
     }]
 }
 
-export function dict(): gglo.T.Type__Path.path.A<pd.SourceLocation> {
+export function dict(): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['dictionary', null]
 }
 
-export function arr(): gglo.T.Type__Path.path.A<pd.SourceLocation> {
+export function arr(): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['array', null]
 }
 
-export function tu(opt: string): gglo.T.Type__Path.path.A<pd.SourceLocation> {
+export function tu(opt: string): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['tagged union', {
         'option': r_imp(opt, 1),
     }]
@@ -194,32 +194,32 @@ export function tu(opt: string): gglo.T.Type__Path.path.A<pd.SourceLocation> {
 
 export function typePath(
     globalType: string,
-    path: gglo.T.Type__Path.path.A<pd.SourceLocation>[],
-): gglo.T.Type__Path<pd.SourceLocation> {
+    path: g_this.T.Type__Path.path.A<pd.SourceLocation>[],
+): g_this.T.Type__Path<pd.SourceLocation> {
     return {
         'global type': r_imp(globalType, 1),
         'path': a(path),
     }
 }
 
-export function parameter(param: string): gglo.T.Reference._ltype<pd.SourceLocation> {
+export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLocation> {
     return ['parameter', {
         'parameter': r_imp(param, 1),
     }]
 }
 
-export function relative(): gglo.T.Reference._ltype<pd.SourceLocation> {
+export function relative(): g_this.T.Reference._ltype<pd.SourceLocation> {
     return ['relative', null]
 }
 
-export function tbd(): gglo.T.Reference._ltype<pd.SourceLocation> {
+export function tbd(): g_this.T.Reference._ltype<pd.SourceLocation> {
     return ['tbd', null]
 }
 
 function referenceX(
-    tp: gglo.T.Type__Path<pd.SourceLocation>,
-    type: gglo.T.Reference._ltype<pd.SourceLocation>,
-): gglo.T.Reference<pd.SourceLocation> {
+    tp: g_this.T.Type__Path<pd.SourceLocation>,
+    type: g_this.T.Reference._ltype<pd.SourceLocation>,
+): g_this.T.Reference<pd.SourceLocation> {
     return {
         'type path': tp,
         'type': type,
@@ -227,22 +227,22 @@ function referenceX(
 }
 
 export function reference(
-    typePath: gglo.T.Type__Path<pd.SourceLocation>,
-    type: gglo.T.Reference._ltype<pd.SourceLocation>,
-): gglo.T.Type<pd.SourceLocation> {
+    typePath: g_this.T.Type__Path<pd.SourceLocation>,
+    type: g_this.T.Reference._ltype<pd.SourceLocation>,
+): g_this.T.Type<pd.SourceLocation> {
     return ['terminal', {
         'constrained': ['yes', referenceX(typePath, type)],
     }]
 }
 
-export function component(type: string, args: RawDictionary<null>): gglo.T.Type<pd.SourceLocation> {
+export function component(type: string, args: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['local', null],
         'type': r_imp(type, 1),
         'arguments': pd.d(args)
     }]
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<null>): gglo.T.Type<pd.SourceLocation> {
+export function importedComponent(library: string, type: string, args: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['import', {
             'library': r_imp(library, 1)

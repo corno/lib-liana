@@ -1,6 +1,6 @@
 import { API } from "./api.generated"
-import { $$ as icreateErrorMessageCreator } from "./implementations/createErrorMessageCreator.p"
+import { $$ as icreateErrorMessage } from "./implementations/createErrorMessage.s.f"
 
 export const $api: API = {
-    'createErrorMessageCreator': icreateErrorMessageCreator,
+    'createErrorMessage': icreateErrorMessage,
 }

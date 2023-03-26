@@ -1,33 +1,24 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    string,
-    null_,
-    nested,
-    dictionary, member, taggedUnion, types, group,
-    array,
+    string, member, group,
     typeReference,
-    sdata,
-    boolean,
-    sfunc,
     type,
-    optional,
-    reference,
-    number,
-    glossaryParameter,
-    interfaceReference,
-    parametrizedTypeReference,
-    parametrizedReference,
-    builderReference,
-    builderMethod,
-    parametrizedBuilderReference
+    externalTypeReference,
+    imp,
+    sfunction,
+    data,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 const d = pd.d
 
-export const $: gglossary.T.Glossary<pd.SourceLocation> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
+    }),
+    'imports': d({
+        "common": imp({}),
+        "main": imp({ "Annotation": typeReference("Typescript Location") }),
     }),
     'types': d({
         "Typescript Location": type(group({
@@ -36,12 +27,15 @@ export const $: gglossary.T.Glossary<pd.SourceLocation> = {
             "column": member(string()),
         })),
     }),
-    "type": ['synchronous', {
-        'builders': d({
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "CreateErrorMessage": sfunction(externalTypeReference("common", "String"), data(externalTypeReference("main", "Error"))),
         }),
-        'functions': d({
-            "CreateErrorMessage": sfunc(parametrizedTypeReference("main", { "Annotation": typeReference("Typescript Location") }, "Error"), null, null, sdata(typeReference("common", "String"))),
-        }),
+    },
 
-    }],
 }

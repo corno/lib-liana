@@ -2,8 +2,11 @@ import * as pt from 'pareto-core-types'
 
 import * as g_this from "./glossary"
 
-export type createErrorMessageCreator = ($d: {}) => g_this.F.CreateErrorMessage
+export namespace A {
+    
+    export type createErrorMessage = () => g_this.SYNC.A.F.CreateErrorMessage
+}
 
 export type API = {
-    createErrorMessageCreator: createErrorMessageCreator
+    readonly 'createErrorMessage': A.createErrorMessage
 }

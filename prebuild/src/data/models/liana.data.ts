@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as gliana from "lib-liana/dist/submodules/liana"
+import * as g_liana from "lib-liana/dist/submodules/liana"
 import {
     d,
     array,
@@ -21,7 +21,7 @@ import {
     tbd,
 } from "lib-liana/dist/submodules/liana/shorthands"
 
-export const $: gliana.T.Model<pd.SourceLocation> = {
+export const $: g_liana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
         'terminal types': pd.d({

@@ -1,35 +1,36 @@
 import * as pd from 'pareto-core-data'
 
 import { external, main, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
-import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
 
-import { $ as pure } from "./pure.api.data"
+import { $ as api } from "./api.data"
 
 import { $ as glossary } from "./glossary.data"
 
 const d = pd.d
 
-export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation> = {
-    'glossary': {
-        'root': glossary,
-        'imports': d({
-            "common": external("glo-pareto-common"),
-            "liana": sibling("liana"),
-            "main": main(),
-            "api": external("lib-pareto-typescript-project/dist/submodules/project"),
-            "fs": external("res-pareto-filesystem"),
-        }),
-    },
-    'api': {
-        'root': pure,
-        'imports': d({
-            "api": external("lib-pareto-typescript-project/dist/submodules/project"),
-            "build": external("res-pareto-build"),
-            "foreach": external("res-pareto-foreach"),
-            "fs": external("res-pareto-filesystem"),
-            "this": this_(),
-        }),
+export const $: g_project.T.Module<pd.SourceLocation> = {
+    'definition': {
+        'glossary': {
+            'root': glossary,
+            'imports': d({
+                "common": external("glo-pareto-common"),
+                "liana": sibling("liana"),
+                "main": main(),
+                "pareto": external("lib-pareto-typescript-project"),
+                "fs": external("res-pareto-filesystem"),
+            }),
+        },
+        'api': {
+            'root': api,
+            'imports': d({
+                //"pareto": external("lib-pareto-typescript-project"),
+                "build": external("res-pareto-build"),
+                "foreach": external("res-pareto-foreach"),
+                "this": this_(),
+            }),
+        },
     },
     'implementation': ['typescript', null],
 

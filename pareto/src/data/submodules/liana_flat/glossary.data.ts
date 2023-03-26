@@ -1,40 +1,33 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    string,
-    null_,
-    nested,
-    dictionary, member, taggedUnion, types, group,
-    array,
-    typeReference,
-    sdata,
-    boolean,
-    sfunc,
-    type,
-    optional,
-    reference,
-    number,
-    glossaryParameter,
-    builderReference,
-    parametrizedTypeReference,
-    parametrizedReference
+    data,
+    externalTypeReference, glossaryParameter, imp, procedure, sExternalInterfaceReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+
 const d = pd.d
 
-export const $: gglossary.T.Glossary<pd.SourceLocation> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
-    'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
+    'imports': d({
+        "fp": imp({}),
+        "main": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'type': ['synchronous', {
-        'builders': d({}),
-        'functions': d({
-            "Serialize": sfunc(parametrizedTypeReference("main",{ "Annotation": typeReference("Annotation")}, "MappedModel"), null, builderReference("fp", "Directory"), null),
+    'types': d({
+    }),
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "Serialize": procedure(data(externalTypeReference("main", "MappedModel")), sExternalInterfaceReference("fp", "Directory")),
         }),
+    },
 
-    }],
 }

@@ -1,31 +1,33 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    typeReference,
-    sdata,
-    sfunc,
-    type,
-    glossaryParameter,
-    parametrizedTypeReference,
-    parametrizedBuilderReference
+    data, externalTypeReference, glossaryParameter,
+    imp, sfunction,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+
 const d = pd.d
 
-export const $: gglossary.T.Glossary<pd.SourceLocation> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
-    'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
+    'imports': d({
+        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana_resolved": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'type': ['synchronous', {
-        'builders': d({
+    'types': d({
+    }),
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "Resolve": sfunction(externalTypeReference("liana_resolved", "Model"), data(externalTypeReference("liana", "Model"))),
         }),
-        'functions': d({
-            "Resolve": sfunc(parametrizedTypeReference("liana", { "Annotation": typeReference("Annotation") }, "Model"), null, parametrizedBuilderReference("main", { "Annotation": typeReference("Annotation") }, "OnError"), sdata(parametrizedTypeReference("liana_resolved", { "Annotation": typeReference("Annotation") }, "Model"))),
-        }),
+    },
 
-    }]
 }
