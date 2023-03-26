@@ -7,8 +7,9 @@ const d = pd.d
 
 export const $: g_project.T.Module.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "createResolver": algorithm(functionReference("this", {}, "Resolve"), constructor(null, {
-            //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        })),
+        "serialize_flat": algorithm(functionReference("flat", {}, "Serialize")),
+        "generateAPI": algorithm(functionReference("liana2api", {}, "Generate")),
+        "generateGlossary": algorithm(functionReference("liana2glossary", {}, "Generate")),
+
     }),
 }

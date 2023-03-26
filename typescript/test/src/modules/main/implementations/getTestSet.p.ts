@@ -5,6 +5,7 @@ import * as pv from 'pareto-core-dev'
 import * as pa from 'pareto-core-async'
 
 import * as gtest from "lib-pareto-test"
+import * as g_pub from "../../../../../pub"
 import * as gliana_flat from "../../../../../pub/dist/submodules/liana_flat"
 import * as gliana from "../../../../../pub/dist/submodules/liana"
 import * as gresolve from "../../../../../pub/dist/submodules/resolve"
@@ -34,7 +35,7 @@ export const $$: getTestSet = ($) => {
         [$XXX.testDirectory, 'flat'],
 
         ($i) => {
-            gliana_flat.$b.serialize(
+            g_pub.$b.serialize_flat(
                 {
                     'terminal mapping': pm.wrapRawDictionary({
                         "bedrag": ['number', null],

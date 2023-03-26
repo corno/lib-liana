@@ -4,7 +4,6 @@ import * as gproject from "lib-pareto-typescript-project/dist/submodules/project
 
 
 
-import { $ as bindings } from "./bindings.api.data"
 import { $ as pure } from "./pure.api.data"
 
 import { $ as glossary } from "./glossary.generated"
@@ -17,16 +16,6 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         'imports': d({
         }),
     },
-    'bindings': {
-        'api': {
-            'root': bindings,
-            'imports': d({
-            }),
-        },
-        'implementation': ['typescript', null],
-    
-    },
-    'pure algorithms': {
         'api': {
             'root': pure,
             'imports': d({
@@ -34,6 +23,5 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         },
         'implementation': ['typescript', null],
     
-    },
     
 }

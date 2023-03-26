@@ -23,29 +23,16 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             "fs": external("res-pareto-filesystem"),
         }),
     },
-    'bindings': {
-        'api': {
-            'root': bindings,
-            'imports': d({
-                "this": this_(),
-            }),
-        },
-        'implementation': ['typescript', null],
-    
+    'api': {
+        'root': pure,
+        'imports': d({
+            "build": external("res-pareto-build"),
+            "foreach": external("res-pareto-foreach"),
+            "fs": external("res-pareto-filesystem"),
+            "serializeGlossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
+            "this": this_(),
+        }),
     },
-    'pure algorithms': {
-        'api': {
-            'root': pure,
-            'imports': d({
-                "build": external("res-pareto-build"),
-                "foreach": external("res-pareto-foreach"),
-                "fs": external("res-pareto-filesystem"),
-                "serializeGlossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
-                "this": this_(),
-            }),
-        },
-        'implementation': ['typescript', null],
-    
-    },
-    
+    'implementation': ['typescript', null],
+
 }

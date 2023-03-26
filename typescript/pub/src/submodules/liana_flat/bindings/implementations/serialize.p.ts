@@ -15,7 +15,8 @@ export const $$: serialize = ($, $i) => {
         // 'mapLiana2States': gliana2pareto.$a.createLiana2StatesMapper({
         //     'decorateDictionaryEntriesWithKey': gforeach.$a.decorateDictionaryEntriesWithKey,
         // }),
-        'serializeStates': gpareto2typescript.$a.createStatesSerializer({
+        'serializeStates': gpareto2typescript.$a.createStatesSerializer(
+            {
             'arrayForEach': gforeach.$r.arrayForEach,
             'dictionaryForEach': gforeach.$r.createDictionaryForEach({
                 'compare': gcoll.$r.localeIsABeforeB,

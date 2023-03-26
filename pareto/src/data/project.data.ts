@@ -11,9 +11,11 @@ import { $ as resolve } from "./submodules/resolve/module.data"
 import { $ as liana_flat } from "./submodules/liana_flat/module.data"
 import { $ as liana2glossary } from "./submodules/liana2glossary/module.data"
 import { $ as liana2api } from "./submodules/liana2api/module.data"
-import { $ as liana2algorithm} from "./submodules/liana2algorithm/module.data"
+import { $ as liana2algorithm } from "./submodules/liana2algorithm/module.data"
 import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
+import { $ as bindings } from "./bindings.api.data"
+import { submodule } from 'lib-pareto-typescript-project/dist/submodules/project/shorthands'
 
 const d = pd.d
 
@@ -34,8 +36,8 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         'main': main,
         'submodules': d({
             "algorithm_temp": algorithm_temp,
-            "errorMessaging":errorMessaging,
-            "p2ts_temp":p2ts_temp,
+            "errorMessaging": errorMessaging,
+            "p2ts_temp": p2ts_temp,
             "liana": liana,
             "liana_resolved": liana_resolved,
             "resolve": resolve,
@@ -44,6 +46,17 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
             "liana2api": liana2api,
             "liana2algorithm": liana2algorithm,
         }),
+
+        'bindings': [true, {
+            'api': {
+                'root': bindings,
+                'imports': d({
+                    "flat": submodule("liana_flat")
+                }),
+            },
+            'implementation': ['typescript', null],
+
+        }],
         'executables': d({}),
         'test': {
             'dependencies': d({

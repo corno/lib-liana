@@ -2,9 +2,6 @@ import * as pd from 'pareto-core-data'
 
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
-
-
-import { $ as bindings } from "./bindings.api.data"
 import { $ as pure } from "./pure.api.data"
 
 import { $ as glossary } from "./glossary.data"
@@ -21,29 +18,16 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             "fp": external("lib-fountain-pen"),
         }),
     },
-    'bindings': {
-        'api': {
-            'root': bindings,
-            'imports': d({
-            }),
-    
-        },
-        'implementation': ['typescript', null],
-    
+    'api': {
+        'root': pure,
+        'imports': d({
+            "collation": external("res-pareto-collation"),
+            "foreach": external("res-pareto-foreach"),
+            "ts": external("res-typescript"),
+            "this": this_(),
+        }),
+
     },
-    'pure algorithms': {
-        'api': {
-            'root': pure,
-            'imports': d({
-                "collation": external("res-pareto-collation"),
-                "foreach": external("res-pareto-foreach"),
-                "ts": external("res-typescript"),
-                "this": this_(),
-            }),
-    
-        },
-        'implementation': ['typescript', null],
-    
-    },
-    
+    'implementation': ['typescript', null],
+
 }

@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-types'
 
-import * as g_api from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_api from "lib-pareto-typescript-project/dist/submodules/project"
 import * as g_common from "glo-pareto-common"
 import * as g_fs from "res-pareto-filesystem"
 import * as g_liana from "../../liana"

@@ -4,7 +4,6 @@ import { external, main, sibling, this_ } from "lib-pareto-typescript-project/di
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 
-import { $ as bindings } from "./bindings.api.data"
 import { $ as pure } from "./pure.api.data"
 
 import { $ as glossary } from "./glossary.data"
@@ -18,33 +17,20 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             "common": external("glo-pareto-common"),
             "liana": sibling("liana"),
             "main": main(),
-            "api": external("lib-pareto-typescript-project/dist/submodules/api"),
+            "api": external("lib-pareto-typescript-project/dist/submodules/project"),
             "fs": external("res-pareto-filesystem"),
         }),
     },
-    'bindings': {
-        'api': {
-            'root': bindings,
-            'imports': d({
-                "this": this_(),
-            }),
-        },
-        'implementation': ['typescript', null],
-
+    'api': {
+        'root': pure,
+        'imports': d({
+            "api": external("lib-pareto-typescript-project/dist/submodules/project"),
+            "build": external("res-pareto-build"),
+            "foreach": external("res-pareto-foreach"),
+            "fs": external("res-pareto-filesystem"),
+            "this": this_(),
+        }),
     },
-    'pure algorithms': {
-        'api': {
-            'root': pure,
-            'imports': d({
-                "api": external("lib-pareto-typescript-project/dist/submodules/api"),
-                "build": external("res-pareto-build"),
-                "foreach": external("res-pareto-foreach"),
-                "fs": external("res-pareto-filesystem"),
-                "this": this_(),
-            }),
-        },
-        'implementation': ['typescript', null],
-
-    },
+    'implementation': ['typescript', null],
 
 }
