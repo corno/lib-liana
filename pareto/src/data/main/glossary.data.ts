@@ -43,6 +43,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         })),
         "Error": type(group({
             "message": member(ref(externalTypeReference("common", "String"))),
+            // `no such global type: ${$['global type'].key}, (${_keys(tl['global types'])})`,
+            // `no such property: ${$.option.key}, (${_keys(opts)})`,
+            // `no such property: ${$.property.key}, (${_keys(props)})`,
+            // `not a dictionary`,
+            // `not a group`,
+            // `not a tagged union`,
+            // `not an array`,
+            // `not optional`,
+ 
             "annotation": member(ref(glossaryParameter("Annotation"))),
         })),
         // "Error": type(group({
