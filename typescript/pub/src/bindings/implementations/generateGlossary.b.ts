@@ -60,7 +60,7 @@ export const $$: A.generateGlossary = () => {
         //     }
         // }
 
-        $.data["mapped model"]
+        //$.data["mapped model"]
 
         $.path
 

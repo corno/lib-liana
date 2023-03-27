@@ -22,7 +22,7 @@ export namespace T {
     
     export namespace MapData {
         
-        export type mapped__model<GAnnotation> = g_main.T.MappedModel<GAnnotation>
+        export type mapped__library<GAnnotation> = g_main.T.Mapped__Library<GAnnotation>
         
         export namespace settings {
             
@@ -153,7 +153,7 @@ export namespace T {
     }
     
     export type MapData<GAnnotation> = {
-        readonly 'mapped model': g_main.T.MappedModel<GAnnotation>
+        readonly 'mapped library': g_main.T.Mapped__Library<GAnnotation>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]

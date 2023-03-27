@@ -38,14 +38,14 @@ export namespace T {
             readonly 'serialize': [ false ] | [ true, null]
         }
         
-        export type model<GAnnotation> = g_main.T.MappedModel<GAnnotation>
+        export type model<GAnnotation> = g_main.T.Mapped__Library<GAnnotation>
     }
     
     export type MapData<GAnnotation> = {
         readonly 'algorithms': {
             readonly 'serialize': [ false ] | [ true, null]
         }
-        readonly 'model': g_main.T.MappedModel<GAnnotation>
+        readonly 'model': g_main.T.Mapped__Library<GAnnotation>
     }
     
     export namespace OutAnnotation {

@@ -22,12 +22,12 @@ export namespace SYNC {
         
         
         export namespace F {
-            export type MapLiana2Serializer<GAnnotation> = ($: g_main.T.MappedModel<GAnnotation>) => g_algorithm_temp.T.AlgorithmImplementation<T.OutAnnotation<GAnnotation>>
+            export type MapLiana2Serializer<GAnnotation> = ($: g_main.T.Mapped__Library<GAnnotation>) => g_algorithm_temp.T.AlgorithmImplementation<T.OutAnnotation<GAnnotation>>
         }
         
         
         export namespace F {
-            export type MapLiana2States<GAnnotation> = ($: g_main.T.MappedModel<GAnnotation>) => g_algorithm.T.States<T.OutAnnotation<GAnnotation>>
+            export type MapLiana2States<GAnnotation> = ($: g_main.T.Mapped__Library<GAnnotation>) => g_algorithm.T.States<T.OutAnnotation<GAnnotation>>
         }
     }
 }

@@ -10,8 +10,8 @@ import { A } from "../api.generated"
 
 export const $$: A.map = ($d) => {
     return <Annotation>($: g_this.T.MapData<Annotation>) => {
-        const model = $['mapped model'].model
-        const terminalMapping = $['mapped model']['terminal mapping']
+        const library = $['mapped library']
+        const terminalMapping = $['mapped library']['terminal mapping']
         // function ref(type: string): g_glossary.T.Type {
         //     return ['reference', {
         //         'context': ['local', null],
@@ -76,10 +76,10 @@ export const $$: A.map = ($d) => {
         // }
         function createTypes($: {
             configuration: g_this.T.MapData.settings.datamodel.O<Annotation>,
-            model: g_liana.T.Model<Annotation>
+            library: g_liana.T.Type__Library<Annotation>
         }): g_glossary.T.Glossary.types<Annotation> {
             const configuration = $.configuration
-            return model['type library']['global types'].map(($) => {
+            return library.library['global types'].map(($) => {
                 function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<Annotation> {
                     switch ($[0]) {
                         case 'array':
@@ -240,7 +240,7 @@ export const $$: A.map = ($d) => {
             'imports': pm.wrapRawDictionary({}),
             'types': $.settings.datamodel[0] === true
                 ? createTypes({
-                    'model': $['mapped model'].model,
+                    'library': $['mapped library'].library,
                     'configuration': $.settings.datamodel[1],
                 })
                 : pm.wrapRawDictionary({}),

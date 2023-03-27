@@ -9,7 +9,7 @@ import * as g_main from "../../../main"
 import { A } from "../api.generated"
 
 export const $$: A.serialize = ($d) => {
-    return <Annotation>($: g_main.T.MappedModel<Annotation>, $i: g_fp.SYNC.I.Directory) => {
+    return <Annotation>($: g_main.T.Mapped__Library<Annotation>, $i: g_fp.SYNC.I.Directory) => {
 
         // $i.file(`states.generated.ts`, ($i) => {
         //     $d.serializeStates($d.mapLiana2States($), $i)
@@ -370,7 +370,7 @@ export const $$: A.serialize = ($d) => {
                 }
             })
         }
-        $d.dictionaryForEach($.model['type library']['global types'], ($) => {
+        $d.dictionaryForEach($.library['global types'], ($) => {
             doDictionaries({
                 $: $.value.type,
                 path: [$.key],

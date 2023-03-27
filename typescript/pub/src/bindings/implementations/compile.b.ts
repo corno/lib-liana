@@ -17,7 +17,7 @@ export const $$: A.compile = () => {
                 'onError': ($) => {
                     le.data($.message)
                 }
-            })($.data['mapped model'].model)
+            })($.data['mapped library'].library)
 
             a_2glossary.$api.generateGlossary()(
                 $,
@@ -27,7 +27,7 @@ export const $$: A.compile = () => {
                 }
             )
         })
-        le()
+        le.end()
 
         
     }

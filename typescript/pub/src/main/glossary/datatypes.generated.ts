@@ -49,7 +49,7 @@ export namespace T {
     
     export namespace MapData {
         
-        export type mapped__model<GAnnotation> = T.MappedModel<GAnnotation>
+        export type mapped__library<GAnnotation> = T.Mapped__Library<GAnnotation>
         
         export namespace settings {
             
@@ -180,7 +180,7 @@ export namespace T {
     }
     
     export type MapData<GAnnotation> = {
-        readonly 'mapped model': T.MappedModel<GAnnotation>
+        readonly 'mapped library': T.Mapped__Library<GAnnotation>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
@@ -202,9 +202,9 @@ export namespace T {
         }
     }
     
-    export namespace MappedModel {
+    export namespace Mapped__Library {
         
-        export type model<GAnnotation> = g_liana.T.Model<GAnnotation>
+        export type library<GAnnotation> = g_liana.T.Type__Library<GAnnotation>
         
         export namespace terminal__mapping {
             
@@ -230,8 +230,8 @@ export namespace T {
         >
     }
     
-    export type MappedModel<GAnnotation> = {
-        readonly 'model': g_liana.T.Model<GAnnotation>
+    export type Mapped__Library<GAnnotation> = {
+        readonly 'library': g_liana.T.Type__Library<GAnnotation>
         readonly 'terminal mapping': pt.Dictionary<
             | ['boolean', null]
             | ['number', null]

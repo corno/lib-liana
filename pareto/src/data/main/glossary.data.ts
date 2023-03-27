@@ -62,7 +62,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         // })),
 
         "MapData": type(group({
-            "mapped model": member(ref(typeReference("MappedModel"))),
+            "mapped library": member(ref(typeReference("Mapped Library"))),
             "settings": member(group({
                 "datamodel": member(optional(group({
                     "annotations": member(boolean()),
@@ -88,8 +88,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 })),
             })),
         })),
-        "MappedModel": type(group({
-            "model": member(ref(externalTypeReference("liana", "Model"))),
+        "Mapped Library": type(group({
+            "library": member(ref(externalTypeReference("liana", "Type Library"))),
             "terminal mapping": member(dictionary(taggedUnion({
                 "boolean": null_(),
                 "number": null_(),

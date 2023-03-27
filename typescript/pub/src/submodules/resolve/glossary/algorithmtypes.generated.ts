@@ -19,7 +19,7 @@ export namespace SYNC {
         
         
         export namespace F {
-            export type Resolve<GAnnotation> = ($: g_liana.T.Model<GAnnotation>) => g_liana_resolved.T.Model<GAnnotation>
+            export type Resolve<GAnnotation> = ($: g_liana.T.Type__Library<GAnnotation>) => g_liana_resolved.T.Type__Library<GAnnotation>
         }
     }
 }

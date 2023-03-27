@@ -24,7 +24,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "path": member(ref(externalTypeReference("common", "Path"))),
         })),
         "MapData": type(group({
-            "model": member(ref(externalTypeReference("main", "MappedModel"))),
+            "model": member(ref(externalTypeReference("main", "Mapped Library"))),
 
             "algorithms": member(group({
                 "serialize": member(optional(group({

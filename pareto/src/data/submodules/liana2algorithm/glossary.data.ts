@@ -36,8 +36,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "MapLiana2States": sfunction(externalTypeReference("algorithm", "States"), data(externalTypeReference("main", "MappedModel"))),
-            "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation"), data(externalTypeReference("main", "MappedModel"))),
+            "MapLiana2States": sfunction(externalTypeReference("algorithm", "States"), data(externalTypeReference("main", "Mapped Library"))),
+            "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation"), data(externalTypeReference("main", "Mapped Library"))),
         }),
     },
 

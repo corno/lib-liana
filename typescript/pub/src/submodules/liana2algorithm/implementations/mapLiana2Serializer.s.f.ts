@@ -11,7 +11,7 @@ import * as g_main from "../../../main"
 import { A } from "../api.generated"
 
 export const $$: A.mapLiana2Serializer = () => {
-    return <Annotation>($: g_main.T.MappedModel<Annotation>) => {
+    return <Annotation>($: g_main.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         type OutAnnotation = g_this.T.OutAnnotation<Annotation>
         return {
@@ -19,7 +19,7 @@ export const $$: A.mapLiana2Serializer = () => {
             'type': ['procedure', {
                 'block': {
                     //'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
-                    'innerFunctions': $.model['type library']['global types'].map<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>(($) => {
+                    'innerFunctions': $.library['global types'].map<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>(($) => {
                         function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.ProcedureBlock<OutAnnotation> {
                             return {
                                 'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),

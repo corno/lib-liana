@@ -7,9 +7,9 @@ import * as g_liana from "../../liana"
 import { A } from "../api.generated"
 
 export const $$: A.mapLiana2States = ($d) => {
-    return <Annotation>($: g_main.T.MappedModel<Annotation>) => {
+    return <Annotation>($: g_main.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
-        return $.model['type library']['global types'].map(($) => {
+        return $.library['global types'].map(($) => {
             function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.Type<Annotation> {
                 switch ($[0]) {
                     case 'array':

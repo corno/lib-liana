@@ -26,7 +26,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "Resolve": sfunction(externalTypeReference("liana_resolved", "Model"), data(externalTypeReference("liana", "Model"))),
+            "Resolve": sfunction(externalTypeReference("liana_resolved", "Type Library"), data(externalTypeReference("liana", "Type Library"))),
         }),
     },
 

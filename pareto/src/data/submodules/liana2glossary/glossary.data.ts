@@ -24,7 +24,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "path": member(ref(externalTypeReference("common", "Path"))),
         })),
         "MapData": type(group({
-            "mapped model": member(ref(externalTypeReference("main", "MappedModel"))),
+            "mapped library": member(ref(externalTypeReference("main", "Mapped Library"))),
             "settings": member(group({
                 "datamodel": member(optional(group({
                     "annotations": member(boolean()),

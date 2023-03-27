@@ -19,7 +19,7 @@ export namespace SYNC {
         
         
         export namespace P {
-            export type Serialize<GAnnotation> = ($: g_main.T.MappedModel<GAnnotation>, $i: g_fp.SYNC.I.Directory) => void
+            export type Serialize<GAnnotation> = ($: g_main.T.Mapped__Library<GAnnotation>, $i: g_fp.SYNC.I.Directory) => void
         }
     }
 }
