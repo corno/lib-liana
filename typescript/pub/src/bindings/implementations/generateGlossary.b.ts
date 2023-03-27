@@ -39,8 +39,8 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
                                         return pl.cc($[1], ($) => {
                                             return {
                                                 'file': "INTERNAL",
-                                                'line': "LINE",
-                                                'column': "COLUMN",
+                                                'line': 0,
+                                                'column': 0,
                                             }
                                         })
                                     case 'source':
