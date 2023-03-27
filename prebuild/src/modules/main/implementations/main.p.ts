@@ -17,7 +17,7 @@ export const $$: main = ($) => {
         'getSourceLocation': ($) => $,
     })(data, ($) => {
         pv.logDebugMessage("FKSLF:JFKSDF")
-        //pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
+        pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
     })
     el.end()
 }
