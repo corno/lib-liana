@@ -8,6 +8,7 @@ import {
     imp,
     sfunction,
     data,
+    number,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -23,8 +24,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'types': d({
         "Typescript Location": type(group({
             "file": member(string()),
-            "line": member(string()),
-            "column": member(string()),
+            "line": member(number()),
+            "column": member(number()),
         })),
     }),
     'asynchronous': {

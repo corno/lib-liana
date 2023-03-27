@@ -9,16 +9,16 @@ export namespace T {
     
     export namespace Typescript__Location {
         
-        export type column = string
+        export type column = number
         
         export type file = string
         
-        export type line = string
+        export type line = number
     }
     
     export type Typescript__Location = {
-        readonly 'column': string
+        readonly 'column': number
         readonly 'file': string
-        readonly 'line': string
+        readonly 'line': number
     }
 }
