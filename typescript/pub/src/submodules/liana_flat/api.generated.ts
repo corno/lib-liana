@@ -6,13 +6,18 @@ import * as g_this from "./glossary"
 import * as g_tostring from "res-pareto-tostring"
 import * as g_ts from "res-typescript"
 
-export namespace A {
+export namespace D {
     
-    export type serialize = <GAnnotation>($d: {
+    export type serialize<GAnnotation> = {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
         readonly 'dictionaryForEach': g_foreach.SYNC.A.P.DictionaryForEach
         readonly 'joinNestedStrings': g_tostring.SYNC.A.F.JoinNestedStrings
-    }, ) => g_this.SYNC.A.P.Serialize<GAnnotation>
+    }
+}
+
+export namespace A {
+    
+    export type serialize = <GAnnotation>($d: D.serialize<GAnnotation>, ) => g_this.SYNC.A.P.Serialize<GAnnotation>
 }
 
 export type API = {

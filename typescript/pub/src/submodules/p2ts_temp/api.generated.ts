@@ -5,9 +5,9 @@ import * as g_foreach from "res-pareto-foreach"
 import * as g_this from "./glossary"
 import * as g_ts from "res-typescript"
 
-export namespace A {
+export namespace D {
     
-    export type serializeImplementation = <GAnnotation>($d: {
+    export type serializeImplementation<GAnnotation> = {
         readonly 'arrayForEach': g_foreach.SYNC.A.P.ArrayForEach
         readonly 'createApostrophedString': g_ts.SYNC.A.F.CreateApostrophedString
         readonly 'createBacktickedString': g_ts.SYNC.A.F.CreateBacktickedString
@@ -16,7 +16,12 @@ export namespace A {
         readonly 'dictionaryForEach': g_foreach.SYNC.A.P.DictionaryForEach
         readonly 'enrichedArrayForEach': g_foreach.SYNC.A.P.EnrichedArrayForEach
         readonly 'enrichedDictionaryForEach': g_foreach.SYNC.A.P.EnrichedDictionaryForEach
-    }, ) => g_this.SYNC.A.P.SerializeImplementation<GAnnotation>
+    }
+}
+
+export namespace A {
+    
+    export type serializeImplementation = <GAnnotation>($d: D.serializeImplementation<GAnnotation>, ) => g_this.SYNC.A.P.SerializeImplementation<GAnnotation>
 }
 
 export type API = {

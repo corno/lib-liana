@@ -22,8 +22,8 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
                         'serialize': [false],
                     },
                 },
-                'mapped model': {
-                    'model': liana,
+                'mapped library': {
+                    'library': liana,
                     'terminal mapping': pd.d({
                         "identifier": ['string', null]
                     }),
@@ -46,8 +46,8 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
                         'serialize': [false],
                     },
                 },
-                'mapped model': {
-                    'model': liana,
+                'mapped library': {
+                    'library': liana,
 
                     'terminal mapping': pd.d({
                         "identifier": ['string', null]

@@ -15,7 +15,7 @@ import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprecta
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
 import { $ as bindings } from "./bindings/api.data"
 
-import { main, submodule } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { external, main, submodule } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 const d = pd.d
 
@@ -69,10 +69,11 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
                 'api': {
                     'root': bindings,
                     'imports': d({
-                        "main": main(),
                         "flat": submodule("liana_flat"),
                         "liana2glossary": submodule("liana2glossary"),
                         "liana2api": submodule("liana2api"),
+                        "glossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
+                        "main": main(),
                     }),
                 },
             },

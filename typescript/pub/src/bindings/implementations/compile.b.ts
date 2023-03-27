@@ -6,10 +6,10 @@ import * as a_resolve from "../../submodules/resolve"
 import * as a_2glossary from "../implementation.generated"
 import * as a_main from "res-pareto-main"
 
-import { A } from "../api.generated"
+import { A, D } from "../api.generated"
 
-export const $$: A.compile = () => {
-    return <GAnnotation>($: g_main.T.CompileParameters<GAnnotation>) => {
+export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
+    return ($: g_main.T.CompileParameters<GAnnotation>) => {
         const le = a_main.$r.createErrorLogger()()
         $.outputs.__forEach(($) => {
 
@@ -19,7 +19,9 @@ export const $$: A.compile = () => {
                 }
             })($.data['mapped library'].library)
 
-            a_2glossary.$api.generateGlossary()(
+            a_2glossary.$api.generateGlossary<GAnnotation>({
+                'getSourceLocation': $d.getSourceLocation,
+            })(
                 $,
                 ($) => {
                     pd.implementMe(`SKDF:SFSKDFL:SDFJ`)
@@ -29,6 +31,6 @@ export const $$: A.compile = () => {
         })
         le.end()
 
-        
+
     }
 }
