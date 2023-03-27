@@ -102,13 +102,6 @@ export const $$: A.map = ($d) => {
                                                             'annotation': $.library.annotation,
                                                             'key': $.library.key,
                                                         },
-                                                        'arguments': pm.wrapRawDictionary({
-                                                            "Annotation": {
-                                                                'context': ['local', null],
-                                                                'type': "FOOOOOOO",
-                                                                'arguments': pm.wrapRawDictionary({}),
-                                                            }
-                                                        }),
                                                     }]
                                                 })
                                             case 'local':
@@ -119,7 +112,11 @@ export const $$: A.map = ($d) => {
                                         }
                                     }),
                                     'type': $.type.key,
-                                    'arguments': pm.wrapRawDictionary({}),
+                                    'arguments': pm.wrapRawDictionary <g_glossary.T.DataSpecifier<Annotation>>({
+
+                                        "Annotation": ['glossary parameter', "Annotation"]
+                                        
+                                    }),
                                     // 'type': {
                                     //     'annotation': "XXX",
                                     //     'name': $.type.name,
