@@ -98,7 +98,10 @@ export const $$: A.map = ($d) => {
                                             case 'import':
                                                 return pl.cc($.context[1], ($) => {
                                                     return ['import', {
-                                                        'glossary': $.library.key,
+                                                        'glossary': {
+                                                            'annotation': $.library.annotation,
+                                                            'key': $.library.key,
+                                                        },
                                                         'arguments': pm.wrapRawDictionary({
                                                             "Annotation": {
                                                                 'context': ['local', null],
