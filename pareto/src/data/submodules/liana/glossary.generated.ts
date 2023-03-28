@@ -11,7 +11,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     }),
     'imports': d({}),
     'root': {
-        'namespaces': d({}),
         'types': d({
             "Model": {
                 'parameters': d({}),
@@ -297,6 +296,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 })]
             },
         }),
+        'namespaces': d({}),
     },
     'asynchronous': {
         'interfaces': d({}),
