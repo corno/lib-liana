@@ -77,10 +77,10 @@ export const $$: A.map = ($d) => {
         function createTypes($: {
             configuration: g_this.T.MapData.settings.datamodel.O<Annotation>,
             library: g_liana.T.Type__Library<Annotation>
-        }): g_glossary.T.Namespace.types<Annotation> {
+        }): g_glossary.T.Namespace.types<g_this.T.OutAnnotation<Annotation>> {
             const configuration = $.configuration
             return library.library['global types'].map(($) => {
-                function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<Annotation> {
+                function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
                     switch ($[0]) {
                         case 'array':
                             return pl.cc($[1], ($) => {
@@ -92,14 +92,14 @@ export const $$: A.map = ($d) => {
                             })
                         case 'component':
                             return pl.cc($[1], ($) => {
-                                return ['reference', <g_glossary.T.DataSpecifier<Annotation>>['type', {
+                                return ['reference', ['type', {
                                     'context': pl.cc($, ($) => {
                                         switch ($.context[0]) {
                                             case 'import':
-                                                return pl.cc($.context[1], ($) => {
+                                                return pl.cc($.context[1], ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => {
                                                     return ['import', {
                                                         'glossary': {
-                                                            'annotation': $.library.annotation,
+                                                            'annotation': ['source', $.library.annotation],
                                                             'key': $.library.key,
                                                         },
                                                     }]
@@ -112,7 +112,7 @@ export const $$: A.map = ($d) => {
                                         }
                                     }),
                                     'type': $.type.key,
-                                    'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<Annotation>>({
+                                    'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({
 
 
                                     }),
@@ -160,8 +160,8 @@ export const $$: A.map = ($d) => {
                                             )
                                         })
                                     case 'yes':
-                                        return pl.cc($.constrained[1], ($): g_glossary.T.Type<Annotation> => {
-                                            return ['group', pm.wrapRawDictionary<g_glossary.T.Type.group.D<Annotation>>({
+                                        return pl.cc($.constrained[1], ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
+                                            return ['group', pm.wrapRawDictionary<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>({
                                                 "key": {
                                                     'type': ['string', null]
                                                 },
