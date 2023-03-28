@@ -296,7 +296,32 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 })]
             },
         }),
-        'namespaces': d({}),
+        'namespaces': d({
+            "Model": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+            "Reference": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+            "Terminal": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+            "Type": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+            "Type Library": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+            "Type Path": {
+                'types': d({}),
+                'namespaces': d({}),
+            },
+        }),
     },
     'asynchronous': {
         'interfaces': d({}),

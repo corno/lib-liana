@@ -1,7 +1,50 @@
 import * as pt from 'pareto-core-types'
 
 
-export namespace N {}
+export namespace N {
+    
+    export namespace Model {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+    
+    export namespace Reference {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+    
+    export namespace Terminal {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+    
+    export namespace Type {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+    
+    export namespace Type_$_$Library {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+    
+    export namespace Type_$_$Path {
+        
+        export namespace N {}
+        
+        export namespace T {}
+    }
+}
 
 export namespace T {
     
