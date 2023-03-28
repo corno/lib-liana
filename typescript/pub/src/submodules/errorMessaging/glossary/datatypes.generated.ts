@@ -5,6 +5,8 @@ import * as g_liana from "../../liana"
 import * as g_liana_resolved from "../../liana_resolved"
 import * as g_main from "../../../main"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace Typescript__Location {

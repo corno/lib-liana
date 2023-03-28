@@ -21,13 +21,16 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "common": imp({}),
         "main": imp({ "Annotation": typeReference("Typescript Location") }),
     }),
-    'types': d({
-        "Typescript Location": type(group({
-            "file": member(string()),
-            "line": member(number()),
-            "column": member(number()),
-        })),
-    }),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "Typescript Location": type(group({
+                "file": member(string()),
+                "line": member(number()),
+                "column": member(number()),
+            })),
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

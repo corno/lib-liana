@@ -10,14 +10,14 @@ import { $ as data } from "../../../data/data.data"
 import { main } from "../api"
 
 export const $$: main = ($) => {
-    //pv.logDebugMessage("REENABLE")
+    pv.logDebugMessage("REENABLE")
     const el = a_main.$r.createErrorLogger()()
 
-    a_liana.$b.compile<pd.SourceLocation>({
-        'getSourceLocation': ($) => $,
-    })(data, ($) => {
-        pv.logDebugMessage("FKSLF:JFKSDF")
-        pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
-    })
+    // a_liana.$b.compile<pd.SourceLocation>({
+    //     'getSourceLocation': ($) => $,
+    // })(data, ($) => {
+    //     pv.logDebugMessage("FKSLF:JFKSDF")
+    //     pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
+    // })
     el.end()
 }

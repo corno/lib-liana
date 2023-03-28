@@ -17,18 +17,21 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "algorithm_temp": imp({ "Annotation": typeReference("OutAnnotation") }),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'types': d({
-        "AlgorithmSettings": type(group({
-            "serialize": member(optional(group({
-                //data location,
-            }))),
-        })),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "AlgorithmSettings": type(group({
+                "serialize": member(optional(group({
+                    //data location,
+                }))),
+            })),
 
-        "OutAnnotation": type(taggedUnion({
-            "source": ref(glossaryParameter("Annotation")),
-            "internal": string(),
-        })),
-    }),
+            "OutAnnotation": type(taggedUnion({
+                "source": ref(glossaryParameter("Annotation")),
+                "internal": string(),
+            })),
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

@@ -6,6 +6,8 @@ import * as g_liana from "../../liana"
 import * as g_main from "../../../main"
 import * as g_pareto from "lib-pareto-typescript-project"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace GenerateData {

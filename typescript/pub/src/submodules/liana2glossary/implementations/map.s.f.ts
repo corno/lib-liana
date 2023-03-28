@@ -77,7 +77,7 @@ export const $$: A.map = ($d) => {
         function createTypes($: {
             configuration: g_this.T.MapData.settings.datamodel.O<Annotation>,
             library: g_liana.T.Type__Library<Annotation>
-        }): g_glossary.T.Glossary.types<Annotation> {
+        }): g_glossary.T.Namespace.types<Annotation> {
             const configuration = $.configuration
             return library.library['global types'].map(($) => {
                 function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<Annotation> {
@@ -112,15 +112,10 @@ export const $$: A.map = ($d) => {
                                         }
                                     }),
                                     'type': $.type.key,
-                                    'arguments': pm.wrapRawDictionary <g_glossary.T.DataSpecifier<Annotation>>({
+                                    'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<Annotation>>({
 
-                                        "Annotation": ['glossary parameter', "Annotation"]
-                                        
+
                                     }),
-                                    // 'type': {
-                                    //     'annotation': "XXX",
-                                    //     'name': $.type.name,
-                                    // },
                                 }]]
                             })
                         case 'dictionary':
@@ -237,13 +232,22 @@ export const $$: A.map = ($d) => {
             'parameters': pm.wrapRawDictionary({
                 "Annotation": null,
             }),
-            'imports': pm.wrapRawDictionary({}),
-            'types': $.settings.datamodel[0] === true
-                ? createTypes({
-                    'library': $['mapped library'].library,
-                    'configuration': $.settings.datamodel[1],
-                })
-                : pm.wrapRawDictionary({}),
+            'imports': $['mapped library'].library.imports.map(($) => {
+                return {
+                    'arguments': pm.wrapRawDictionary({
+                        "Annotation": ['glossary parameter', "Annotation"]
+                    })
+                }
+            }),
+            'root': {
+                'namespaces': pm.wrapRawDictionary({}),
+                'types': $.settings.datamodel[0] === true
+                    ? createTypes({
+                        'library': $['mapped library'].library,
+                        'configuration': $.settings.datamodel[1],
+                    })
+                    : pm.wrapRawDictionary({}),
+            },
             'asynchronous': {
                 'interfaces': pm.wrapRawDictionary({}),
                 'algorithms': pm.wrapRawDictionary({}),

@@ -18,43 +18,46 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "glossary": imp({ "Annotation": typeReference("OutAnnotation") }),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'types': d({
-        "GenerateData": type(group({
-            "data": member(ref(typeReference("MapData"))),
-            "path": member(ref(externalTypeReference("common", "Path"))),
-        })),
-        "MapData": type(group({
-            "mapped library": member(ref(externalTypeReference("main", "Mapped Library"))),
-            "settings": member(group({
-                "datamodel": member(optional(group({
-                    "annotations": member(boolean()),
-                    "reference mapping": member(taggedUnion({
-                        "string": group({}),
-                        "reference": group({}),
-                        "reference and string": group({}),
-                    })),
-                }))),
-                "visitor interface": member(optional(group({
-                    "datamodel": member(taggedUnion({
-                        "internal": group({}),
-                        "exernal": group({
-                            "location": member(string()),
-                        }),
-                    })),
-                }))),
-                "algorithms": member(group({
-                    "serialize": member(optional(group({
-                        //data location,
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "GenerateData": type(group({
+                "data": member(ref(typeReference("MapData"))),
+                "path": member(ref(externalTypeReference("common", "Path"))),
+            })),
+            "MapData": type(group({
+                "mapped library": member(ref(externalTypeReference("main", "Mapped Library"))),
+                "settings": member(group({
+                    "datamodel": member(optional(group({
+                        "annotations": member(boolean()),
+                        "reference mapping": member(taggedUnion({
+                            "string": group({}),
+                            "reference": group({}),
+                            "reference and string": group({}),
+                        })),
                     }))),
-                    //resolve
+                    "visitor interface": member(optional(group({
+                        "datamodel": member(taggedUnion({
+                            "internal": group({}),
+                            "exernal": group({
+                                "location": member(string()),
+                            }),
+                        })),
+                    }))),
+                    "algorithms": member(group({
+                        "serialize": member(optional(group({
+                            //data location,
+                        }))),
+                        //resolve
+                    })),
                 })),
             })),
-        })),
-        "OutAnnotation": type(taggedUnion({
-            "source": ref(glossaryParameter("Annotation")),
-            "internal": string(),
-        })),
-    }),
+            "OutAnnotation": type(taggedUnion({
+                "source": ref(glossaryParameter("Annotation")),
+                "internal": string(),
+            })),
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

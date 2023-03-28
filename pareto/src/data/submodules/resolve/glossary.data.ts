@@ -17,8 +17,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
         "liana_resolved": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'types': d({
-    }),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

@@ -18,8 +18,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "fp": imp({}),
         "algorithm": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'types': d({
-    }),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

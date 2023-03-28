@@ -16,28 +16,31 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "common": imp({}),
         "fs": imp({}),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "api": imp( { "Annotation": typeReference("OutAnnotation") }),
+        "api": imp({ "Annotation": typeReference("OutAnnotation") }),
     }),
-    'types': d({
-        "GenerateData": type(group({
-            "data": member(ref(typeReference("MapData"))),
-            "path": member(ref(externalTypeReference("common", "Path"))),
-        })),
-        "MapData": type(group({
-            "model": member(ref(externalTypeReference("main", "Mapped Library"))),
-
-            "algorithms": member(group({
-                "serialize": member(optional(group({
-                    //sdata location,
-                }))),
-                //resolve
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "GenerateData": type(group({
+                "data": member(ref(typeReference("MapData"))),
+                "path": member(ref(externalTypeReference("common", "Path"))),
             })),
-        })),
-        "OutAnnotation": type(taggedUnion({
-            "source": ref(glossaryParameter("Annotation")),
-            "internal": string(),
-        })),
-    }),
+            "MapData": type(group({
+                "model": member(ref(externalTypeReference("main", "Mapped Library"))),
+
+                "algorithms": member(group({
+                    "serialize": member(optional(group({
+                        //sdata location,
+                    }))),
+                    //resolve
+                })),
+            })),
+            "OutAnnotation": type(taggedUnion({
+                "source": ref(glossaryParameter("Annotation")),
+                "internal": string(),
+            })),
+        }),
+    },
     'asynchronous': {
         'interfaces': d({}),
         'algorithms': d({}),

@@ -6,6 +6,8 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 import * as g_liana from "../../liana"
 import * as g_main from "../../../main"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace GenerateData {
