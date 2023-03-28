@@ -89,8 +89,8 @@ export const $$: A.getTestSet = ($) => {
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         const res = g_resolve.$a.resolve<Annotation>({
-            'onError': () => {
-                pv.implementMe("$$$$$$$")
+            'onError': ($) => {
+                pv.logDebugMessage($.message)
             }
         })($['type library'])
         // pl.optional(
