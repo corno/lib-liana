@@ -88,7 +88,20 @@ export const $$: A.getTestSet = ($) => {
     //pv.logDebugMessage(`${count} errors`)
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
-        // const res = resolve($)
+        const res = g_resolve.$a.resolve<Annotation>({
+            'onError': () => {
+                pv.implementMe("$$$$$$$")
+            }
+        })($['type library'])
+        // pl.optional(
+        //     res,
+        //     () => {
+
+        //     },
+        //     () => {
+
+        //     }
+        // )
         // switch (res[0]) {
         //     case false:
         //         //pv.logDebugMessage(`NOT SET`)
