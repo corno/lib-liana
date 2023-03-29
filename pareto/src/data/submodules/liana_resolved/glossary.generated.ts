@@ -299,27 +299,477 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         'namespaces': d({
             "Model": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "root": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
+                            "type library": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
+                        }),
+                    },
+                }),
             },
             "Reference": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "type": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "TU": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "parameter": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "parameter": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                            "relative": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                            "tbd": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "type path": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
+                        }),
+                    },
+                }),
             },
             "Terminal": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "constrained": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "TU": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "no": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "type": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                            "yes": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                        }),
+                    },
+                }),
             },
             "Type": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "TU": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "array": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "type": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "component": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "arguments": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "D": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                            "context": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "TU": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "import": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "G": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({
+                                                                            "library": {
+                                                                                'types': d({}),
+                                                                                'namespaces': d({}),
+                                                                            },
+                                                                        }),
+                                                                    },
+                                                                }),
+                                                            },
+                                                            "local": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "G": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                            "type": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "dictionary": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "key": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                            "type": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "group": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "properties": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "D": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "type": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "optional": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "type": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "tagged union": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "G": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "default": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                            "options": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "D": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "constrained": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({
+                                                                            "O": {
+                                                                                'types': d({}),
+                                                                                'namespaces': d({
+                                                                                    "G": {
+                                                                                        'types': d({}),
+                                                                                        'namespaces': d({
+                                                                                            "type path": {
+                                                                                                'types': d({}),
+                                                                                                'namespaces': d({}),
+                                                                                            },
+                                                                                        }),
+                                                                                    },
+                                                                                }),
+                                                                            },
+                                                                        }),
+                                                                    },
+                                                                    "type": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "terminal": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
+                        }),
+                    },
+                }),
             },
             "Type Library": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "global types": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "D": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "G": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "parameters": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "D": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "G": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({
+                                                                            "global type": {
+                                                                                'types': d({}),
+                                                                                'namespaces': d({}),
+                                                                            },
+                                                                        }),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                    "type": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "imports": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "D": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "G": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                            "terminal types": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "D": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "G": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                        }),
+                    },
+                }),
             },
             "Type Path": {
                 'types': d({}),
-                'namespaces': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "global type": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
+                            "path": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "A": {
+                                        'types': d({}),
+                                        'namespaces': d({
+                                            "TU": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "array": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                    "dictionary": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                    "group": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "property": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                    "optional": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({}),
+                                                            },
+                                                        }),
+                                                    },
+                                                    "tagged union": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "option": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                        }),
+                                    },
+                                }),
+                            },
+                        }),
+                    },
+                }),
             },
         }),
     },

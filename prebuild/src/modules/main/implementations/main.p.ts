@@ -7,9 +7,9 @@ import * as a_main from "res-pareto-main"
 
 import { $ as data } from "../../../data/data.data"
 
-import { main } from "../api"
+import { A } from "../api.generated"
 
-export const $$: main = ($) => {
+export const $$: A.main = ($) => {
     //pv.logDebugMessage("REENABLE")
     const el = a_main.$r.createErrorLogger()()
 
