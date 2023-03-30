@@ -13,7 +13,7 @@ import { $ as liana2api } from "./submodules/liana2api/module.data"
 import { $ as liana2algorithm } from "./submodules/liana2algorithm/module.data"
 import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
-import { $ as bindings } from "./bindings/api.data"
+import { $ as bindings } from "./bindings/moduledefinition.data"
 
 import { external, main, submodule } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
@@ -49,37 +49,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
         }),
 
         'bindings': [true, {
-            'definition': {
-                'glossary': {
-                    'root': {
-                        'parameters': d({}),
-                        'imports': d({}),
-                        'root': {
-                            'namespaces': d({}),
-                            'types': d({}),
-                        },
-                        'asynchronous': {
-                            'interfaces': d({}),
-                            'algorithms': d({}),
-                        },
-                        'synchronous': {
-                            'interfaces': d({}),
-                            'algorithms': d({}),
-                        },
-                    },
-                    'imports': d({}),
-                },
-                'api': {
-                    'root': bindings,
-                    'imports': d({
-                        "flat": submodule("liana_flat"),
-                        "liana2glossary": submodule("liana2glossary"),
-                        "liana2api": submodule("liana2api"),
-                        "glossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
-                        "main": main(),
-                    }),
-                },
-            },
+            'definition': bindings,
             'implementation': ['typescript', null],
 
         }],
