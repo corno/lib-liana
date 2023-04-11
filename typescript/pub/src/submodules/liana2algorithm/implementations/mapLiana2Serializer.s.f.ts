@@ -14,160 +14,128 @@ export const $$: A.mapLiana2Serializer = () => {
     return <Annotation>($: g_main.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         type OutAnnotation = g_this.T.OutAnnotation<Annotation>
+        function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.ProcedureBlock<OutAnnotation> {
+            return {
+                'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
+                'statements': pm.wrapRawArray([
+                    pl.cc($, ($): g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation> => {
+                        switch ($[0]) {
+                            case 'array': return pl.ss($, ($): g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation> => ['interfaceCall', {
+                                'child path': pm.wrapRawArray(["array"]),
+                                'data': [false],
+                                'callback': [false],
+                            }])
+                            case 'component': return pl.ss($, ($) => ['interfaceCall', {
+                                'child path': pm.wrapRawArray(["component"]),
+                                'data': [false],
+                                'callback': [false],
+                            }])
+                            case 'dictionary': return pl.ss($, ($) => ['interfaceCall', {
+                                'child path': pm.wrapRawArray(["dictionary"]),
+                                'data': [false],
+                                'callback': [false],
+                            }])
+                            case 'group': return pl.ss($, ($) => {
+                                xxx
+                                const sb = ps.createArrayBuilder<g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation>>()
+                                $.properties.__forEach(() => false, ($, key) => {
+                                    sb.push(['interfaceCall', {
+                                        'child path': pm.wrapRawArray(["property"]),
+                                        'data': [true, ['string literal', key]],
+                                        'callback': [true, mapType($.type)],
+                                    }])
+                                })
+                                sb.push(['interfaceCall', {
+                                    'child path': pm.wrapRawArray(["end"]),
+                                    'data': [false],
+                                    'callback': [false],
+                                }])
+                                return ['interfaceCall', {
+                                    'child path': pm.wrapRawArray(["group"]),
+                                    'data': [false],
+                                    'callback': [true, {
+                                        'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
+                                        'statements': sb.getArray()
+                                    }],
+                                }]
+                            })
+                            case 'optional': return pl.ss($, ($) => ['interfaceCall', {
+                                'child path': pm.wrapRawArray(["optional"]),
+                                'data': [false],
+                                'callback': [false],
+                            }])
+                            case 'terminal': return pl.ss($, ($) => {
+                                switch ($.constrained[0]) {
+                                    case 'no': return pl.ss($.constrained, ($) => pl.cc(terminalMapping.__unsafeGetEntry($.type.key), ($) => {
+                                        switch ($[0]) {
+                                            case 'boolean': return pl.ss($, ($) => ['interfaceCall', {
+                                                'child path': pm.wrapRawArray(["boolean"]),
+                                                'data': [false],
+                                                'callback': [false],
+                                            }])
+                                            case 'number': return pl.ss($, ($) => ['interfaceCall', {
+                                                'child path': pm.wrapRawArray(["number"]),
+                                                'data': [false],
+                                                'callback': [false],
+                                            }])
+                                            case 'string': return pl.ss($, ($) => ['interfaceCall', {
+                                                'child path': pm.wrapRawArray(["string"]),
+                                                'data': [false],
+                                                'callback': [false],
+                                            }])
+                                            default: return pl.au($[0])
+                                        }
+                                    })
+                                        // return stringMapping.__unsafeGetEntry(
+                                        //     $.type.key,
+                                        //     () => {
+                                        //         return ['interfaceCall', {
+                                        //             'child path': pm.wrapRawArray(["string"]),
+                                        //             'data': [false],
+                                        //             'callback': [false],
+                                        //         }]
+
+                                        //     },
+                                        //     () => {
+                                        //         return ['interfaceCall', {
+                                        //             'child path': pm.wrapRawArray(["string"]),
+                                        //             'data': [false],
+                                        //             'callback': [false],
+                                        //         }]
+
+                                        //     }
+                                        // )
+                                    )
+                                    case 'yes': return pl.ss($.constrained, ($) => ['interfaceCall', {
+                                        'child path': pm.wrapRawArray(["string"]),
+                                        'data': [false],
+                                        'callback': [false],
+                                    }])
+                                    default: return pl.au($.constrained[0])
+                                }
+                            })
+                            case 'tagged union': return pl.ss($, ($) => ['interfaceCall', {
+                                'child path': pm.wrapRawArray(["tagged union"]),
+                                'data': [false],
+                                'callback': [false],
+                            }]
+                            )
+                            default: return pl.au($[0])
+                        }
+                    })
+                ]),
+            }
+        }
         return {
             'constructor': false,
             'type': ['procedure', {
                 'block': {
                     //'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
-                    'innerFunctions': $.library['global types'].map<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>(($) => {
-                        function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.ProcedureBlock<OutAnnotation> {
-                            return {
-                                'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
-                                'statements': pm.wrapRawArray([
-                                    pl.cc($, ($): g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation> => {
-                                        switch ($[0]) {
-                                            case 'array':
-                                                return pl.cc($[1], ($): g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation> => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["array"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            case 'component':
-                                                return pl.cc($[1], ($) => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["component"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            case 'dictionary':
-                                                return pl.cc($[1], ($) => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["dictionary"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            case 'group':
-                                                return pl.cc($[1], ($) => {
-                                                    const sb = ps.createArrayBuilder<g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation>>()
-                                                    $.properties.__forEach(() => false, ($, key) => {
-                                                        sb.push(['interfaceCall', {
-                                                            'child path': pm.wrapRawArray(["property"]),
-                                                            'data': [true, ['string literal', key]],
-                                                            'callback': [true, mapType($.type)],
-                                                        }])
-                                                    })
-                                                    sb.push(['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["end"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }])
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["group"]),
-                                                        'data': [false],
-                                                        'callback': [true, {
-                                                            'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
-                                                            'statements': sb.getArray()
-                                                        }],
-                                                    }]
-                                                })
-                                            case 'optional':
-                                                return pl.cc($[1], ($) => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["optional"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            case 'terminal':
-                                                return pl.cc($[1], ($) => {
-                                                    switch ($.constrained[0]) {
-                                                        case 'no':
-                                                            return pl.cc($.constrained[1], ($) => {
-                                                                return pl.cc(terminalMapping.__unsafeGetEntry($.type.key), ($) => {
-                                                                    switch ($[0]) {
-                                                                        case 'boolean':
-                                                                            return pl.cc($[1], ($) => {
-                                                                                return ['interfaceCall', {
-                                                                                    'child path': pm.wrapRawArray(["boolean"]),
-                                                                                    'data': [false],
-                                                                                    'callback': [false],
-                                                                                }]
-                                                                            })
-                                                                        case 'number':
-                                                                            return pl.cc($[1], ($) => {
-                                                                                return ['interfaceCall', {
-                                                                                    'child path': pm.wrapRawArray(["number"]),
-                                                                                    'data': [false],
-                                                                                    'callback': [false],
-                                                                                }]
-                                                                            })
-                                                                        case 'string':
-                                                                            return pl.cc($[1], ($) => {
-                                                                                return ['interfaceCall', {
-                                                                                    'child path': pm.wrapRawArray(["string"]),
-                                                                                    'data': [false],
-                                                                                    'callback': [false],
-                                                                                }]
-                                                                            })
-                                                                        default: return pl.au($[0])
-                                                                    }
-                                                                })
-                                                                // return stringMapping.__unsafeGetEntry(
-                                                                //     $.type.key,
-                                                                //     () => {
-                                                                //         return ['interfaceCall', {
-                                                                //             'child path': pm.wrapRawArray(["string"]),
-                                                                //             'data': [false],
-                                                                //             'callback': [false],
-                                                                //         }]
-
-                                                                //     },
-                                                                //     () => {
-                                                                //         return ['interfaceCall', {
-                                                                //             'child path': pm.wrapRawArray(["string"]),
-                                                                //             'data': [false],
-                                                                //             'callback': [false],
-                                                                //         }]
-
-                                                                //     }
-                                                                // )
-                                                            })
-                                                        case 'yes':
-                                                            return pl.cc($.constrained[1], ($) => {
-                                                                return ['interfaceCall', {
-                                                                    'child path': pm.wrapRawArray(["string"]),
-                                                                    'data': [false],
-                                                                    'callback': [false],
-                                                                }]
-                                                            })
-                                                        default: return pl.au($.constrained[0])
-                                                    }
-                                                })
-                                            case 'tagged union':
-                                                return pl.cc($[1], ($) => {
-                                                    return ['interfaceCall', {
-                                                        'child path': pm.wrapRawArray(["tagged union"]),
-                                                        'data': [false],
-                                                        'callback': [false],
-                                                    }]
-                                                })
-                                            default: return pl.au($[0])
-                                        }
-                                    })
-                                ]),
-                            }
-                        }
-                        return {
-                            'type': ['procedure', {
-                                'block': mapType($.type)
-
-                            }]
-                        }
-                    }),
+                    'innerFunctions': $.library['global types'].map<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>(($) => ({
+                        'type': ['procedure', {
+                            'block': mapType($.type)
+                        }]
+                    })),
                     'statements': pm.wrapRawArray([]),
                 }
             }]

@@ -107,7 +107,7 @@ export const $$: A.getTestSet = ($) => {
         //         //pv.logDebugMessage(`NOT SET`)
         //         break
         //     case true:
-        //         pl.cc(res[1], ($) => {
+        //         pl.ss(res, ($) => {
         //             //pv.logDebugMessage(`SET`)
 
         //             //pv.logDebugMessage(`has errors? ${$['has errors']}`)

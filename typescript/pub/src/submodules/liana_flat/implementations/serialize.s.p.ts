@@ -16,7 +16,6 @@ export const $$: A.serialize = ($d) => {
 
         // })
         function getPathID($: g_common.T.Path) {
-
             return $d.createIdentifier($d.joinNestedStrings($))
         }
         function doDictionaries($: {
@@ -30,9 +29,10 @@ export const $$: A.serialize = ($d) => {
             const currentName = $.currentName
             pl.cc($.$, ($) => {
 
+
                 switch ($[0]) {
                     case 'array':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
                             doDictionaries({
                                 $: $.type,
                                 path: path,
@@ -42,7 +42,7 @@ export const $$: A.serialize = ($d) => {
                         })
                         break
                     case 'optional':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
                             doDictionaries({
                                 $: $.type,
                                 path: path,
@@ -52,12 +52,12 @@ export const $$: A.serialize = ($d) => {
                         })
                         break
                     case 'component':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
 
                         })
                         break
                     case 'dictionary':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
                             //const parentPathAsArray = pr.wrapRawArray(pi.flatten(idPath))
                             $i.file(
                                 `${$d.joinNestedStrings(path)}.generated.ts`,
@@ -91,7 +91,7 @@ export const $$: A.serialize = ($d) => {
                                                 pl.cc($.$, ($) => {
                                                     switch ($[0]) {
                                                         case 'array':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                                 doScalars({
                                                                     $: $.type,
                                                                     isRoot: false,
@@ -100,7 +100,7 @@ export const $$: A.serialize = ($d) => {
                                                             })
                                                             break
                                                         case 'optional':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                                 doScalars({
                                                                     $: $.type,
                                                                     isRoot: false,
@@ -109,16 +109,16 @@ export const $$: A.serialize = ($d) => {
                                                             })
                                                             break
                                                         case 'component':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
 
                                                             })
                                                             break
                                                         case 'dictionary':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                             })
                                                             break
                                                         case 'group':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                                 $d.dictionaryForEach($.properties, ($) => {
                                                                     doScalars({
                                                                         $: $.value.type,
@@ -130,12 +130,12 @@ export const $$: A.serialize = ($d) => {
                                                             })
                                                             break
                                                         case 'terminal':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                             })
                                                             break
                                                         case 'tagged union':
-                                                            pl.cc($[1], ($) => {
+                                                            pl.ss($, ($) => {
                                                                 $i.line(`prop_${pathID}: ${type},`)
                                                                 $i.line(`operation_${pathID}: ${type},`)
                                                                 $d.dictionaryForEach($.options, ($) => {
@@ -189,30 +189,30 @@ export const $$: A.serialize = ($d) => {
 
                                                                 switch ($[0]) {
                                                                     case 'array':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`[]`)
                                                                         })
                                                                         break
                                                                     case 'optional':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`[false]`)
                                                                         })
                                                                         break
                                                                     case 'component':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`FIXCOMPONENT`)
                                                                         })
                                                                         break
                                                                     case 'dictionary':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`{}`)
                                                                         })
                                                                         break
                                                                     case 'group':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`{`)
                                                                             $i.indent(($i) => {
-                                                                               $d.dictionaryForEach($.properties, ($) => {
+                                                                                $d.dictionaryForEach($.properties, ($) => {
                                                                                     $i.nestedLine(($i) => {
                                                                                         $i.snippet(`'${$.key}': `)
                                                                                         writeUnflattener({
@@ -229,36 +229,20 @@ export const $$: A.serialize = ($d) => {
                                                                         })
                                                                         break
                                                                     case 'terminal':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             switch ($.constrained[0]) {
                                                                                 case 'no':
-                                                                                    pl.cc($.constrained[1], ($) => {
+                                                                                    pl.ss($.constrained, ($) => {
                                                                                         const type = pl.cc($, ($): string => {
                                                                                             switch ($.type.key) {
-                                                                                                case 'bedrag': {
-                                                                                                    return "number"
-                                                                                                }
-                                                                                                case 'bestand': {
-                                                                                                    return "undefined"
-                                                                                                }
-                                                                                                case 'dagen': {
-                                                                                                    return "number"
-                                                                                                }
-                                                                                                case 'datum': {
-                                                                                                    return "number"
-                                                                                                }
-                                                                                                case 'identifier': {
-                                                                                                    return "string"
-                                                                                                }
-                                                                                                case 'multiline text': {
-                                                                                                    return "string"
-                                                                                                }
-                                                                                                case 'promillage': {
-                                                                                                    return "number"
-                                                                                                }
-                                                                                                case 'single line text': {
-                                                                                                    return "string"
-                                                                                                }
+                                                                                                case 'bedrag': return "number"
+                                                                                                case 'bestand': "undefined"
+                                                                                                case 'dagen': return "number"
+                                                                                                case 'datum': "number"
+                                                                                                case 'identifier': return "string"
+                                                                                                case 'multiline text': return "string"
+                                                                                                case 'promillage': return "number"
+                                                                                                case 'single line text': return "string"
                                                                                                 default: pl.panic(`Unknown string type: ${$.type.key}`)
                                                                                             }
                                                                                         })
@@ -266,7 +250,7 @@ export const $$: A.serialize = ($d) => {
                                                                                     })
                                                                                     break
                                                                                 case 'yes':
-                                                                                    pl.cc($.constrained[1], ($) => {
+                                                                                    pl.ss($.constrained, ($) => {
                                                                                         $i.snippet(pathID)
                                                                                     })
                                                                                     break
@@ -275,13 +259,13 @@ export const $$: A.serialize = ($d) => {
                                                                         })
                                                                         break
                                                                     case 'tagged union':
-                                                                        pl.cc($[1], ($) => {
+                                                                        pl.ss($, ($) => {
                                                                             $i.snippet(`pl.cc(prop_${$d.createIdentifier(currentName)}, ($) => {`)
                                                                             $i.indent(($i) => {
                                                                                 $i.nestedLine(($i) => {
                                                                                     $i.snippet(`switch ($) {`)
                                                                                     $i.indent(($i) => {
-                                                                                       $d.dictionaryForEach( $.options, ($) => {
+                                                                                        $d.dictionaryForEach($.options, ($) => {
                                                                                             $i.nestedLine(($i) => {
                                                                                                 $i.snippet(`case '${$.key}': {`)
                                                                                                 $i.indent(($i) => {
@@ -337,7 +321,7 @@ export const $$: A.serialize = ($d) => {
                         })
                         break
                     case 'group':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
                             $d.dictionaryForEach($.properties, ($) => {
                                 doDictionaries({
                                     $: $.value.type,
@@ -350,12 +334,12 @@ export const $$: A.serialize = ($d) => {
                         })
                         break
                     case 'terminal':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
 
                         })
                         break
                     case 'tagged union':
-                        pl.cc($[1], ($) => {
+                        pl.ss($, ($) => {
                             $d.dictionaryForEach($.options, ($) => {
                                 doDictionaries({
                                     $: $.value.type,

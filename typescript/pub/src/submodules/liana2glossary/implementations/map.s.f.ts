@@ -9,10 +9,61 @@ import * as g_liana from "../../liana"
 
 import { A } from "../api.generated"
 
+
+function filter<T, NT>($: pt.Dictionary<T>, $i: ($: T) => pt.OptionalValue<NT>): pt.Dictionary<NT> {
+    const temp: { [key: string]: NT } = {}
+    $.__forEach(() => false, ($, key) => {
+        const res = $i($)
+        pl.optional(
+            res,
+            ($) => {
+                temp[key] = $
+            },
+            () => {
+
+            }
+        )
+    })
+    return pm.wrapRawDictionary(temp)
+}
+
 export const $$: A.map = ($d) => {
     return <Annotation>($: g_this.T.MapData<Annotation>): g_glossary.T.Glossary<g_this.T.OutAnnotation<Annotation>> => {
         const library = $['mapped library']
         const terminalMapping = $['mapped library']['terminal mapping']
+        function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
+            return {
+                'namespaces': pl.cc($, ($) => {
+                    switch ($[0]) {
+                        case 'array': return pl.ss($, ($) => pm.wrapRawDictionary({
+                            "A": mapType($.type)
+                        }))
+                        case 'optional': return pl.ss($, ($) => pm.wrapRawDictionary({
+                            "O": mapType($.type)
+                        }))
+                        case 'component': return pl.ss($, ($) => pm.wrapRawDictionary({}))
+                        case 'dictionary': return pl.ss($, ($) => pm.wrapRawDictionary({
+                            "D": mapType($.type)
+                        }))
+                        case 'group': return pl.ss($, ($) => pm.wrapRawDictionary({
+                            "G": {
+                                'namespaces': $.properties.map(($) => mapType($.type)),
+                                'types': pm.wrapRawDictionary({}),
+                            }
+                        }))
+                        case 'terminal': return pl.ss($, ($) => pm.wrapRawDictionary({}))
+                        case 'tagged union': return pl.ss($, ($) => pm.wrapRawDictionary({
+                            "TU": {
+                                'namespaces': $.options.map(($) => mapType($.type)),
+                                'types': pm.wrapRawDictionary({}),
+                            }
+                        }))
+                        default: return pl.au($[0])
+                    }
+                }),
+                'types': pl.cc($, ($) => pm.wrapRawDictionary({})),
+            }
+        }
         // function ref(type: string): g_glossary.T.Type {
         //     return ['reference', {
         //         'context': ['local', null],
@@ -31,29 +82,29 @@ export const $$: A.map = ($d) => {
         // function generateExpression($: g_liana.T.LocalType): g_algorithm.TExpression {
         //     switch ($[0]) {
         //         case 'array':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['mapArray', {
         //                     'block': generateBlock($.type),
         //                 }]
         //             })
         //         case 'boolean':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['implementMe', "liana2pareto"]
         //             })
         //         case 'component':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['call', {
         //                     'function': $.type.name
         //                 }]
         //             })
         //         case 'dictionary':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['mapDictionary', {
         //                     'block': generateBlock($.type),
         //                 }]
         //             })
         //         case 'group':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['groupInitializer', {
         //                     'properties': $.properties.dictionary.map(($) => {
         //                         return generateExpression($.type)
@@ -61,11 +112,11 @@ export const $$: A.map = ($d) => {
         //                 }]
         //             })
         //         case 'string':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['implementMe', "liana2pareto"]
         //             })
         //         case 'tagged union':
-        //             return pl.cc($[1], ($) => {
+        //             return pl.ss($, ($) => {
         //                 return ['switch', {
         //                     'cases': $.options.dictionary.map(($) => {
         //                         return generateBlock($.type)
@@ -75,311 +126,121 @@ export const $$: A.map = ($d) => {
         //         default: return pl.au($[0])
         //     }
         // }
+        function mapType2($: g_liana.T.Type<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+            switch ($[0]) {
+                case 'array': return pl.ss($, ($) => ['array', mapType2($.type)])
+                case 'optional': return pl.ss($, ($) => ['optional', mapType2($.type)])
+                case 'component': return pl.ss($, ($) => ['reference', ['type', {
+                    'context': pl.cc($, ($) => {
+                        switch ($.context[0]) {
+                            case 'import': return pl.ss($.context, ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
+                                'glossary': {
+                                    'annotation': ['source', $.library.annotation],
+                                    'key': $.library.key,
+                                },
+                            }])
+                            case 'local': return pl.ss($.context, ($) => ['local', null])
+                            default: return pl.au($.context[0])
+                        }
+                    }),
+                    'type': $.type.key,
+                    'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({}),
+                }]])
+                case 'dictionary': return pl.ss($, ($) => ['dictionary', mapType2($.type)])
+                case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
+                    'type': mapType2($.type),
+                }))])
+                case 'terminal': return pl.ss($, ($) => {
+                    switch ($.constrained[0]) {
+                        case 'no': return pl.ss($.constrained, ($) => terminalMapping.__getEntry(
+                            $.type.key,
+                            ($) => {
+                                switch ($[0]) {
+                                    case 'boolean': return pl.ss($, ($) => ['boolean', null])
+                                    case 'number': return pl.ss($, ($) => ['number', null])
+                                    case 'string': return pl.ss($, ($) => ['string', null])
+                                    default: return pl.au($[0])
+                                }
+                            },
+                            () => pl.panic(`MISSING TERMINAL MAPPING: ${$.type.key}`)
+                        ))
+                        case 'yes': return pl.ss($.constrained, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['group', pm.wrapRawDictionary<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>({
+                            "key": {
+                                'type': ['string', null]
+                            },
+                            "annotation": {
+                                'type': ['reference', ['glossary parameter', "Annotation"]],
+                            },
+                            // "referencedType": $.path.map(($) => {
+                            //     switch ($[0]) {
+                            //         case 'array':
+                            //             return pl.ss($, ($) => {
+                            //                 return ['array', null]
+                            //             })
+                            //         case 'dictionary':
+                            //             return pl.ss($, ($) => {
+                            //                 return ['dictionary', null]
+                            //             })
+                            //         case 'group':
+                            //             return pl.ss($, ($) => {
+                            //                 return ['group', {
+                            //                     'property': $.property
+                            //                 }]
+                            //             })
+                            //         case 'optional':
+                            //             return pl.ss($, ($) => {
+                            //                 return ['optional', null]
+                            //             })
+                            //         case 'tagged union':
+                            //             return pl.ss($, ($) => {
+                            //                 return ['tagged union', {
+                            //                     'option': $.option
+                            //                 }]
+                            //             })
+                            //         default: return pl.au($[0])
+                            //     }
+                            // })
+                        })]
+                            // return ['reference', {
+                            //     'context': ['import', {
+                            //         'glossary': "common",
+                            //         'arguments': pm.wrapRawDictionary({}),
+                            //     }],
+                            //     'type': "Reference",
+                            //     'arguments': pm.wrapRawDictionary({
+                            //         //"ReferencedType": <g_glossary.GTypeReference>['null', null], //FIXME
+                            //     }),
+                            // }]
+                        )
+                        default: return pl.au($.constrained[0])
+                    }
+                })
+                case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($) => mapType2($.type))])
+                default: return pl.au($[0])
+            }
+        }
         return {
             'parameters': pm.wrapRawDictionary({
                 "Annotation": null,
             }),
-            'imports': $['mapped library'].library.imports.map(($) => {
-                return {
-                    'arguments': pm.wrapRawDictionary({
-                        "Annotation": ['glossary parameter', "Annotation"]
-                    })
-                }
-            }),
+            'imports': $['mapped library'].library.imports.map(($) => ({
+                'arguments': pm.wrapRawDictionary({
+                    "Annotation": ['glossary parameter', "Annotation"]
+                })
+            })),
             'root': {
                 'namespaces': pl.optional(
                     $.settings.datamodel,
-                    ($) => {
-                        function filter<T, NT>($: pt.Dictionary<T>, $i: ($: T) => pt.OptionalValue<NT>): pt.Dictionary<NT> {
-                            const temp: { [key: string]: NT } = {}
-                            $.__forEach(() => false, ($, key) => {
-                                const res = $i($)
-                                pl.optional(
-                                    res,
-                                    ($) => {
-                                        temp[key] = $
-                                    },
-                                    () => {
-
-                                    }
-                                )
-                            })
-                            return pm.wrapRawDictionary(temp)
-                        }
-                        return library.library['global types'].map(($) => {
-                            function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
-                                return {
-                                    'namespaces': pl.cc($, ($) => {
-                                        switch ($[0]) {
-                                            case 'array':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                        "A": mapType($.type)
-                                                    })
-                                                })
-                                            case 'optional':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                        "O": mapType($.type)
-                                                    })
-                                                })
-                                            case 'component':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                    })
-                                                })
-                                            case 'dictionary':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                        "D": mapType($.type)
-                                                    })
-                                                })
-                                            case 'group':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                        "G": {
-                                                            'namespaces': $.properties.map(($) => {
-                                                                return mapType($.type)
-                                                            }),
-                                                            'types': pm.wrapRawDictionary({}),
-                                                        }
-                                                    })
-                                                })
-                                            case 'terminal':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                    })
-                                                })
-                                            case 'tagged union':
-                                                return pl.cc($[1], ($) => {
-                                                    return pm.wrapRawDictionary({
-                                                        "TU": {
-                                                            'namespaces': $.options.map(($) => {
-                                                                return mapType($.type)
-                                                            }),
-                                                            'types': pm.wrapRawDictionary({}),
-                                                        }
-                                                    })
-                                                })
-                                            default: return pl.au($[0])
-                                        }
-                                    }),
-                                    'types': pl.cc($, ($) => {
-                                        // function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
-                                        //     switch ($[0]) {
-                                        //         case 'array':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         case 'optional':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         case 'component':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         case 'dictionary':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         case 'group':
-                                        //             return pl.cc($[1], ($):g_glossary.T.Namespace.types<g_this.T.OutAnnotation<Annotation>> => {
-                                        //                 return $.properties.map<g_glossary.T.Namespace.types.D<g_this.T.OutAnnotation<Annotation>>>(($) => {
-                                        //                     return {
-                                        //                         'parameters': pm.wrapRawDictionary({}),
-                                        //                         'type': ['null', null ]
-                                        //                     }
-                                        //                 })
-                                        //             })
-                                        //         case 'terminal':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         case 'tagged union':
-                                        //             return pl.cc($[1], ($) => {
-                                        //                 return pm.wrapRawDictionary({
-                                        //                 })
-                                        //             })
-                                        //         default: return pl.au($[0])
-                                        //     }
-                                        
-                                        // }
-                                        // return {
-                                        //     'parameters': pm.wrapRawDictionary({}),
-                                        //     'type': mapType($)
-                                        // }
-                                        return pm.wrapRawDictionary({})
-                                    }),
-                                }
-                            }
-                            return mapType($.type)
-                        })
-                    },
-                    () => {
-                        return pm.wrapRawDictionary({})
-                    }
+                    ($) => library.library['global types'].map(($) => mapType($.type)),
+                    () => pm.wrapRawDictionary({}),
                 ),
                 'types': pl.optional(
                     $.settings.datamodel,
-                    ($) => {
-                        return library.library['global types'].map(($) => {
-                            function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
-                                switch ($[0]) {
-                                    case 'array':
-                                        return pl.cc($[1], ($) => {
-                                            return ['array', mapType($.type)]
-                                        })
-                                    case 'optional':
-                                        return pl.cc($[1], ($) => {
-                                            return ['optional', mapType($.type)]
-                                        })
-                                    case 'component':
-                                        return pl.cc($[1], ($) => {
-                                            return ['reference', ['type', {
-                                                'context': pl.cc($, ($) => {
-                                                    switch ($.context[0]) {
-                                                        case 'import':
-                                                            return pl.cc($.context[1], ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => {
-                                                                return ['import', {
-                                                                    'glossary': {
-                                                                        'annotation': ['source', $.library.annotation],
-                                                                        'key': $.library.key,
-                                                                    },
-                                                                }]
-                                                            })
-                                                        case 'local':
-                                                            return pl.cc($.context[1], ($) => {
-                                                                return ['local', null]
-                                                            })
-                                                        default: return pl.au($.context[0])
-                                                    }
-                                                }),
-                                                'type': $.type.key,
-                                                'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({
-
-
-                                                }),
-                                            }]]
-                                        })
-                                    case 'dictionary':
-                                        return pl.cc($[1], ($) => {
-                                            return ['dictionary', mapType($.type)]
-                                        })
-                                    case 'group':
-                                        return pl.cc($[1], ($) => {
-                                            return ['group', $.properties.map(($) => {
-                                                return {
-                                                    'type': mapType($.type),
-                                                }
-                                            })]
-                                        })
-                                    case 'terminal':
-                                        return pl.cc($[1], ($) => {
-                                            switch ($.constrained[0]) {
-                                                case 'no':
-                                                    return pl.cc($.constrained[1], ($) => {
-                                                        return terminalMapping.__getEntry(
-                                                            $.type.key,
-                                                            ($) => {
-                                                                switch ($[0]) {
-                                                                    case 'boolean':
-                                                                        return pl.cc($[1], ($) => {
-                                                                            return ['boolean', null]
-                                                                        })
-                                                                    case 'number':
-                                                                        return pl.cc($[1], ($) => {
-                                                                            return ['number', null]
-                                                                        })
-                                                                    case 'string':
-                                                                        return pl.cc($[1], ($) => {
-                                                                            return ['string', null]
-                                                                        })
-                                                                    default: return pl.au($[0])
-                                                                }
-                                                            },
-                                                            () => {
-                                                                pl.panic(`MISSING STRING MAPPING: ${$.type.key}`)
-                                                            }
-                                                        )
-                                                    })
-                                                case 'yes':
-                                                    return pl.cc($.constrained[1], ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
-                                                        return ['group', pm.wrapRawDictionary<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>({
-                                                            "key": {
-                                                                'type': ['string', null]
-                                                            },
-                                                            "annotation": {
-                                                                'type': ['reference', ['glossary parameter', "Annotation"]],
-                                                            },
-                                                            // "referencedType": $.path.map(($) => {
-                                                            //     switch ($[0]) {
-                                                            //         case 'array':
-                                                            //             return pl.cc($[1], ($) => {
-                                                            //                 return ['array', null]
-                                                            //             })
-                                                            //         case 'dictionary':
-                                                            //             return pl.cc($[1], ($) => {
-                                                            //                 return ['dictionary', null]
-                                                            //             })
-                                                            //         case 'group':
-                                                            //             return pl.cc($[1], ($) => {
-                                                            //                 return ['group', {
-                                                            //                     'property': $.property
-                                                            //                 }]
-                                                            //             })
-                                                            //         case 'optional':
-                                                            //             return pl.cc($[1], ($) => {
-                                                            //                 return ['optional', null]
-                                                            //             })
-                                                            //         case 'tagged union':
-                                                            //             return pl.cc($[1], ($) => {
-                                                            //                 return ['tagged union', {
-                                                            //                     'option': $.option
-                                                            //                 }]
-                                                            //             })
-                                                            //         default: return pl.au($[0])
-                                                            //     }
-                                                            // })
-                                                        })]
-                                                        // return ['reference', {
-                                                        //     'context': ['import', {
-                                                        //         'glossary': "common",
-                                                        //         'arguments': pm.wrapRawDictionary({}),
-                                                        //     }],
-                                                        //     'type': "Reference",
-                                                        //     'arguments': pm.wrapRawDictionary({
-                                                        //         //"ReferencedType": <g_glossary.GTypeReference>['null', null], //FIXME
-                                                        //     }),
-                                                        // }]
-                                                    })
-                                                default: return pl.au($.constrained[0])
-                                            }
-                                        })
-                                    case 'tagged union':
-                                        return pl.cc($[1], ($) => {
-                                            return ['taggedUnion', $.options.map(($) => {
-                                                return mapType($.type)
-                                            })]
-                                        })
-                                    default: return pl.au($[0])
-                                }
-
-                            }
-                            return {
-                                'parameters': pm.wrapRawDictionary({}),
-                                'type': mapType($.type),
-                            }
-                        })
-                    },
-                    () => {
-                        return pm.wrapRawDictionary({})
-                    }
+                    ($) => library.library['global types'].map(($) => ({
+                        'parameters': pm.wrapRawDictionary({}),
+                        'type': mapType2($.type),
+                    })),
+                    () => pm.wrapRawDictionary({}),
                 )
             },
             'asynchronous': {

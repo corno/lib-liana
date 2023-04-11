@@ -44,20 +44,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 'type path': mapTypePath($['type path']),
                 'type': pl.cc($.type, ($) => {
                     switch ($[0]) {
-                        case 'parameter':
-                            return pl.cc($[1], ($) => {
-                                return ['parameter', {
-                                    'parameter': _mapReference($.parameter),
-                                }]
-                            })
-                        case 'relative':
-                            return pl.cc($[1], ($) => {
-                                return ['relative', null]
-                            })
-                        case 'tbd':
-                            return pl.cc($[1], ($) => {
-                                return ['tbd', null]
-                            })
+                        case 'parameter': return pl.ss($, ($) => ['parameter', {
+                            'parameter': _mapReference($.parameter),
+                        }])
+                        case 'relative': return pl.ss($, ($) => ['relative', null])
+                        case 'tbd': return pl.ss($, ($) => ['tbd', null])
                         default: return pl.au($[0])
                     }
                 })
@@ -65,129 +56,139 @@ export const $$: A.resolve = <GAnnotation>($se: {
         }
         function mapTypePath($: g_liana.T.Type__Path<GAnnotation>): g_liana_resolved.T.Type__Path<GAnnotation> {
             const ann = $['global type'].annotation
-            let current: g_liana.T.Type<GAnnotation> | null = tl['global types'].__getEntry(
+            let current: pt.OptionalValue<g_liana.T.Type<GAnnotation>> = tl['global types'].__getEntry(
                 $['global type'].key,
-                ($) => {
-                    return $.type
-                },
+                ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
                 () => {
-
                     $se.onError({
                         'annotation': ann,
                         'message': `no such global type: ${$['global type'].key}, (${_keys(tl['global types'])})`,
                     })
-                    return null
+                    return [false]
                 }
             )
             const out: g_liana_resolved.T.Type__Path<GAnnotation> = {
                 'global type': $['global type'],
                 'path': $.path.map(($) => {
                     switch ($[0]) {
-                        case 'array':
-                            return pl.cc($[1], ($) => {
-                                if (current !== null) {
-                                    if (current[0] !== 'array') {
+                        case 'array': return pl.ss($, ($) => {
+                            pl.optional(
+                                current,
+                                ($) => {
+                                    if ($[0] !== 'array') {
                                         $se.onError({
                                             'annotation': ann,
                                             'message': `not an array`,
                                         })
-                                        current = null
+                                        current = [false]
                                     } else {
-                                        current = current[1].type
+                                        current = [true, $[1].type]
                                     }
-                                }
-                                return ['array', null]
-                            })
-                        case 'dictionary':
-                            return pl.cc($[1], ($) => {
-                                if (current !== null) {
-                                    if (current[0] !== 'dictionary') {
+                                },
+                                () => { }
+                            )
+                            return ['array', null]
+                        })
+                        case 'dictionary': return pl.ss($, ($) => {
+                            pl.optional(
+                                current,
+                                ($) => {
+                                    if ($[0] !== 'dictionary') {
                                         $se.onError({
                                             'annotation': ann,
                                             'message': `not a dictionary`,
                                         })
-                                        current = null
+                                        current = [false]
                                     } else {
-                                        current = current[1].type
+                                        current = [true, $[1].type]
                                     }
-                                }
-                                return ['dictionary', null]
-                            })
-                        case 'group':
-                            return pl.cc($[1], ($) => {
-                                if (current !== null) {
-                                    if (current[0] !== 'group') {
+                                },
+                                () => { }
+                            )
+                            return ['dictionary', null]
+                        })
+                        case 'group': return pl.ss($, ($) => {
+                            const grp = $
+                            pl.optional(
+                                current,
+                                ($) => {
+                                    if ($[0] !== 'group') {
                                         $se.onError({
                                             'annotation': ann,
                                             'message': `not a group`,
                                         })
-                                        current = null
+                                        current = [false]
                                     } else {
-                                        const props = current[1].properties
-                                        current = current[1].properties.__getEntry(
-                                            $.property.key,
-                                            ($) => {
-                                                return $.type
-                                            },
+                                        const props = $[1].properties
+                                        current = $[1].properties.__getEntry(
+                                            grp.property.key,
+                                            ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
-                                                    'annotation': $.property.annotation,
-                                                    'message': `no such property: ${$.property.key}, (${_keys(props)})`,
+                                                    'annotation': grp.property.annotation,
+                                                    'message': `no such property: ${grp.property.key}, (${_keys(props)})`,
                                                 })
-                                                return null
+                                                return [false]
                                             }
                                         )
                                     }
-                                }
-                                return ['group', {
-                                    'property': $.property
-                                }]
-                            })
-                        case 'optional':
-                            return pl.cc($[1], ($) => {
-                                if (current !== null) {
-                                    if (current[0] !== 'optional') {
+                                },
+                                () => { }
+                            )
+                            return ['group', {
+                                'property': $.property
+                            }]
+                        })
+                        case 'optional': return pl.ss($, ($) => {
+                            pl.optional(
+                                current,
+                                ($) => {
+                                    if ($[0] !== 'optional') {
                                         $se.onError({
                                             'annotation': ann,
                                             'message': `not optional`,
                                         })
-                                        current = null
+                                        current = [false]
                                     } else {
-                                        current = current[1].type
+                                        current = [true, $[1].type]
                                     }
-                                }
-                                return ['optional', null]
-                            })
-                        case 'tagged union':
-                            return pl.cc($[1], ($) => {
-                                if (current !== null) {
-                                    if (current[0] !== 'tagged union') {
+                                },
+                                () => { }
+                            )
+                            return ['optional', null]
+                        })
+                        case 'tagged union': return pl.ss($, ($) => {
+                            const tu = $
+                            pl.optional(
+                                current,
+                                ($) => {
+                                    if ($[0] !== 'tagged union') {
                                         $se.onError({
                                             'annotation': ann,
                                             'message': `not a tagged union`,
                                         })
-                                        current = null
+                                        current = [false]
                                     } else {
-                                        const opts = current[1].options
-                                        current = current[1].options.__getEntry(
-                                            $.option.key,
-                                            ($) => {
-                                                return $.type
-                                            },
+                                        const opts = $[1].options
+                                        current = $[1].options.__getEntry(
+                                            tu.option.key,
+                                            ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
-                                                    'annotation': $.option.annotation,
-                                                    'message': `no such property: ${$.option.key}, (${_keys(opts)})`,
+                                                    'annotation': tu.option.annotation,
+                                                    'message': `no such property: ${tu.option.key}, (${_keys(opts)})`,
                                                 })
-                                                return null
+                                                return [false]
                                             }
                                         )
                                     }
-                                }
-                                return ['tagged union', {
-                                    'option': $.option
-                                }]
-                            })
+                                },
+                                () => { }
+                            )
+                            return ['tagged union', {
+                                'option': $.option
+                            }]
+                        })
                         default: return pl.au($[0])
                     }
                 })
@@ -213,16 +214,10 @@ export const $$: A.resolve = <GAnnotation>($se: {
             return {
                 'constrained': pl.cc($.constrained, ($) => {
                     switch ($[0]) {
-                        case 'no':
-                            return pl.cc($[1], ($) => {
-                                return ['no', {
-                                    'type': _mapReference($.type)
-                                }]
-                            })
-                        case 'yes':
-                            return pl.cc($[1], ($) => {
-                                return ['yes', mapRef($)]
-                            })
+                        case 'no': return pl.ss($, ($) => ['no', {
+                            'type': _mapReference($.type)
+                        }])
+                        case 'yes': return pl.ss($, ($) => ['yes', mapRef($)])
                         default: return pl.au($[0])
                     }
                 })
@@ -230,99 +225,56 @@ export const $$: A.resolve = <GAnnotation>($se: {
         }
         function mapType($: g_liana.T.Type<GAnnotation>): g_liana_resolved.T.Type<GAnnotation> {
             switch ($[0]) {
-                case 'array':
-                    return pl.cc($[1], ($) => {
-                        return ['array', {
-                            'type': mapType($.type)
-                        }]
-                    })
-                case 'component':
-                    return pl.cc($[1], ($) => {
-                        return ['component', {
-                            'type': _mapReference($.type),
-                            'context': pl.cc($.context, ($) => {
-                                switch ($[0]) {
-                                    case 'import':
-                                        return pl.cc($[1], ($) => {
-                                            return ['import', {
-                                                'library': $.library,
-                                            }]
-                                        })
-                                    case 'local':
-                                        return pl.cc($[1], ($) => {
-                                            return ['local', null]
-                                        })
-                                    default: return pl.au($[0])
-                                }
-                            }),
-                            'arguments': $.arguments.map(($) => {
-                                return $
-                            })
-                        }]
-                    })
-                case 'dictionary':
-                    return pl.cc($[1], ($) => {
-                        return ['dictionary', {
-                            'key': mapTerminal($.key),
-                            'type': mapType($.type),
-                        }]
-                    })
-                case 'group':
-                    return pl.cc($[1], ($) => {
-                        return ['group', {
-                            'properties': $.properties.map(($) => {
-                                return {
-                                    'type': mapType($.type)
-                                }
-                            })
-                        }]
-                    })
-                case 'optional':
-                    return pl.cc($[1], ($) => {
-                        return ['optional', {
-                            'type': mapType($.type)
-                        }]
-                    })
-                case 'tagged union':
-                    return pl.cc($[1], ($) => {
-                        return ['tagged union', {
-                            'options': $.options.map(($) => {
-                                return {
-                                    'type': mapType($.type),
-                                    'constrained': ($.constrained[0] === false)
-                                        ? [false]
-                                        : pl.cc($.constrained[1], ($) => {
-                                            return [true, {
-                                                'type path': mapTypePath($['type path'])
-                                            }]
-                                        })
-                                }
-                            }),
-                            'default': _mapReference($.default)
-                        }]
-                    })
-                case 'terminal':
-                    return pl.cc($[1], ($) => {
-                        return ['terminal', mapTerminal($)]
-                    })
+                case 'array': return pl.ss($, ($) => ['array', {
+                    'type': mapType($.type)
+                }])
+                case 'component': return pl.ss($, ($) => ['component', {
+                    'type': _mapReference($.type),
+                    'context': pl.cc($.context, ($) => {
+                        switch ($[0]) {
+                            case 'import': return pl.ss($, ($) => ['import', {
+                                'library': $.library,
+                            }])
+                            case 'local': return pl.ss($, ($) => ['local', null])
+                            default: return pl.au($[0])
+                        }
+                    }),
+                    'arguments': $.arguments.map(($) => $)
+                }])
+                case 'dictionary': return pl.ss($, ($) => ['dictionary', {
+                    'key': mapTerminal($.key),
+                    'type': mapType($.type),
+                }])
+                case 'group': return pl.ss($, ($) => ['group', {
+                    'properties': $.properties.map(($) => ({
+                        'type': mapType($.type)
+                    }))
+                }])
+                case 'optional': return pl.ss($, ($) => ['optional', {
+                    'type': mapType($.type)
+                }])
+                case 'tagged union': return pl.ss($, ($) => ['tagged union', {
+                    'options': $.options.map(($) => ({
+                        'type': mapType($.type),
+                        'constrained': ($.constrained[0] === true)
+                            ? pl.cc($.constrained[1], ($) => [true, {
+                                'type path': mapTypePath($['type path'])
+                            }])
+                            : [false]
+                    })),
+                    'default': _mapReference($.default)
+                }])
+                case 'terminal': return pl.ss($, ($) => ['terminal', mapTerminal($)])
                 default: return pl.au($[0])
             }
         }
         return {
-            'imports': $.imports.map(($) => {
-                return $
-            }),
-            'terminal types': $['terminal types'].map(($) => {
-                return $
-            }),
-            'global types': $['global types'].map(($) => {
-                return {
-                    'parameters': $.parameters.map(($) => {
-                        return $
-                    }),
-                    'type': mapType($.type)
-                }
-            }),
+            'imports': $.imports.map(($) => $),
+            'terminal types': $['terminal types'].map(($) => $),
+            'global types': $['global types'].map(($) => ({
+                'parameters': $.parameters.map(($) => $),
+                'type': mapType($.type)
+            })),
         }
         // return {
         //     'type library': pl.cc($['type library'], ($) => {

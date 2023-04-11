@@ -32,25 +32,17 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
                 $c($.path, ($i) => {
                     a_glossary_serialize.$a.serialize<a_2glossary.T.OutAnnotation<GAnnotation>>({
                         'dictionaryForEach': d,
-                        'getSourceLocation': ($) => {
-                            return pl.cc($, ($) => {
-                                switch ($[0]) {
-                                    case 'internal':
-                                        return pl.cc($[1], ($) => {
-                                            return {
-                                                'file': "INTERNAL",
-                                                'line': 0,
-                                                'column': 0,
-                                            }
-                                        })
-                                    case 'source':
-                                        return pl.cc($[1], ($) => {
-                                            return $d.getSourceLocation($)
-                                        })
-                                    default: return pl.au($[0])
-                                }
-                            })
-                        },
+                        'getSourceLocation': ($) => pl.cc($, ($) => {
+                            switch ($[0]) {
+                                case 'internal': return pl.ss($, ($) => ({
+                                    'file': "INTERNAL",
+                                    'line': 0,
+                                    'column': 0,
+                                }))
+                                case 'source': return pl.ss($, ($) => $d.getSourceLocation($))
+                                default: return pl.au($[0])
+                            }
+                        }),
                     })(
                         x,
                         $i,

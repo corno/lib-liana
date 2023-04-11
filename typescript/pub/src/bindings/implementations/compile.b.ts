@@ -30,7 +30,5 @@ export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
             )
         })
         le.end()
-
-
     }
 }

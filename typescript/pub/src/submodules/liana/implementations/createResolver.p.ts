@@ -114,7 +114,7 @@ import * as pt from 'pareto-core-types'
 //     //         return pl.cc($.$, ($) => {
 //     //             switch ($.constrained[0]) {
 //     //                 case 'no':
-//     //                     return pl.cc($.constrained[1], ($) => {
+//     //                     return pl.ss($.constrained, ($) => {
 //     //                         const r_type = resolve("string type", support.stringTypes, $.type)
 //     //                         if (r_type[0] === false) {
 //     //                             return [false]
@@ -128,13 +128,13 @@ import * as pt from 'pareto-core-types'
 
 //     //                     })
 //     //                 case 'yes':
-//     //                     return pl.cc($.constrained[1], ($) => {
+//     //                     return pl.ss($.constrained, ($) => {
 //     //                         //const annotation = $.annotation
 //     //                         function doTail() {
 //     //                             $.steps.__forEach(($) => {
 //     //                                 switch ($[0]) {
 //     //                                     case 'array':
-//     //                                         pl.cc($[1], ($) => {
+//     //                                         pl.ss($, ($) => {
 //     //                                             // if (current[0] !== 'array') {
 //     //                                             //     pl.panic(`not an array @${reference.annotation}`)
 //     //                                             // } else {
@@ -143,7 +143,7 @@ import * as pt from 'pareto-core-types'
 //     //                                         })
 //     //                                         break
 //     //                                     case 'group':
-//     //                                         pl.cc($[1], ($) => {
+//     //                                         pl.ss($, ($) => {
 //     //                                             // if (current[0] !== 'group') {
 //     //                                             //     pl.panic(`not a group @${reference.annotation}`)
 //     //                                             // } else {
@@ -153,14 +153,14 @@ import * as pt from 'pareto-core-types'
 //     //                                         })
 //     //                                         break
 //     //                                     case 'reference':
-//     //                                         pl.cc($[1], ($) => {
+//     //                                         pl.ss($, ($) => {
 //     //                                             // if (!resolved) {
 //     //                                             //     pl.panic(`not resolved @${reference.annotation}`)
 //     //                                             // }
 //     //                                             // if (current[0] !== 'string') {
 //     //                                             //     pl.panic(`not a reference @${reference.annotation}`)
 //     //                                             // } else {
-//     //                                             //     pl.cc(current[1], ($) => {
+//     //                                             //     pl.ss(current, ($) => {
 //     //                                             //         if ($.constrained[0] !== 'yes') {
 //     //                                             //             pl.panic(`not a reference @${reference.annotation}`)
 //     //                                             //         } else {
@@ -171,7 +171,7 @@ import * as pt from 'pareto-core-types'
 //     //                                         })
 //     //                                         break
 //     //                                     case 'tagged union':
-//     //                                         pl.cc($[1], ($) => {
+//     //                                         pl.ss($, ($) => {
 //     //                                             // if (current[0] !== 'tagged union') {
 //     //                                             //     pl.panic(`not a tagged union @${reference.annotation}`)
 //     //                                             // } else {
@@ -188,16 +188,16 @@ import * as pt from 'pareto-core-types'
 //     //                         const current = pl.cc($.type, ($) => {
 //     //                             switch ($[0]) {
 //     //                                 case 'other':
-//     //                                     return pl.cc($[1], ($) => {
+//     //                                     return pl.ss($, ($) => {
 //     //                                         //onError(`IMPLEMENT OTHER`)
 //     //                                         //pd.implementMe(`case`)
 //     //                                     })
 //     //                                 case 'parameter':
-//     //                                     return pl.cc($[1], ($) => {
+//     //                                     return pl.ss($, ($) => {
 //     //                                         //pd.implementMe(`case`)
 //     //                                     })
 //     //                                 case 'sibling':
-//     //                                     return pl.cc($[1], ($) => {
+//     //                                     return pl.ss($, ($) => {
 //     //                                         if (support.siblings === null) {
 //     //                                             pd.implementMe(`NO SIBLINGS`)
 //     //                                         } else {
@@ -208,7 +208,7 @@ import * as pt from 'pareto-core-types'
 //     //                                                     //what to do
 //     //                                                     break
 //     //                                                 case true:
-//     //                                                     pl.cc(current[1], ($) => {
+//     //                                                     pl.ss(current, ($) => {
 //     //                                                         if ($['referenced value'].type[0] !== 'dictionary') {
 //     //                                                             onError(`${annotation} not a dictionary`)
 //     //                                                         }
@@ -242,7 +242,7 @@ import * as pt from 'pareto-core-types'
 
 //     //             switch ($[0]) {
 //     //                 case 'array':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_type = resolveType({
 //     //                             $: $.type,
 //     //                             support: {
@@ -263,7 +263,7 @@ import * as pt from 'pareto-core-types'
 //     //                         }
 //     //                     })
 //     //                 case 'optional':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_type = resolveType({
 //     //                             $: $.type,
 //     //                             support: {
@@ -284,11 +284,11 @@ import * as pt from 'pareto-core-types'
 //     //                         }
 //     //                     })
 //     //                 case 'boolean':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         return [true, ['boolean', {}]]
 //     //                     })
 //     //                 case 'component':
-//     //                     return pl.cc($[1], ($): pt.OptionalValue<g_this.T.XLocalType<Annotation>> => {
+//     //                     return pl.ss($, ($): pt.OptionalValue<g_this.T.XLocalType<Annotation>> => {
 //     //                         // const r_arguments = buildDictionary<null, api.MConstrainedDictionaryEntry<TXGlobalType, null>>($.arguments, ($, $i) => {
 //     //                         //     resolve("global types", support.globalTypes)
 //     //                         //     return {
@@ -303,7 +303,7 @@ import * as pt from 'pareto-core-types'
 //     //                         return [false]
 //     //                     })
 //     //                 case 'dictionary':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_key = resolveString({
 //     //                             $: $.key,
 //     //                             support: {
@@ -333,7 +333,7 @@ import * as pt from 'pareto-core-types'
 //     //                         }
 //     //                     })
 //     //                 case 'group':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_properties = buildDictionary<g_this.T.Property<Annotation>, g_this.T.XProperty<Annotation>>($.properties, ($, $i) => {
 
 //     //                             const r_type = resolveType({
@@ -357,7 +357,7 @@ import * as pt from 'pareto-core-types'
 //     //                         }]]
 //     //                     })
 //     //                 case 'string':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_ = resolveString({
 //     //                             $: $,
 //     //                             support: {
@@ -374,7 +374,7 @@ import * as pt from 'pareto-core-types'
 
 //     //                     })
 //     //                 case 'tagged union':
-//     //                     return pl.cc($[1], ($) => {
+//     //                     return pl.ss($, ($) => {
 //     //                         const r_options = buildDictionary<g_this.T.LocalType<Annotation>, g_this.T.XOption<Annotation>>($.options, ($, $i) => {
 
 //     //                             const r_type = resolveType({
