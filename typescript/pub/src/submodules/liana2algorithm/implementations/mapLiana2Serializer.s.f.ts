@@ -36,7 +36,6 @@ export const $$: A.mapLiana2Serializer = () => {
                                 'callback': [false],
                             }])
                             case 'group': return pl.ss($, ($) => {
-                                xxx
                                 const sb = ps.createArrayBuilder<g_algorithm.T.ProcedureBlock.statements.A<OutAnnotation>>()
                                 $.properties.__forEach(() => false, ($, key) => {
                                     sb.push(['interfaceCall', {

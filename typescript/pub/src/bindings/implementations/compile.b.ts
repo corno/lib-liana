@@ -10,7 +10,7 @@ import { A, D } from "../api.generated"
 
 export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
     return ($: g_main.T.CompileParameters<GAnnotation>) => {
-        const le = a_main.$r.createErrorLogger()()
+        const le = a_main.$r.createErrorLogger().construct()
         $.outputs.__forEach(($) => {
 
             a_resolve.$a.resolve<GAnnotation>({

@@ -30,9 +30,7 @@ export const $$: A.mapLiana2States = ($d) => {
                                     default: return pl.au($[0])
                                 }
                             },
-                            () => {
-                                pl.panic(`MISSING TERMINAL MAPPING: ${$.type}`)
-                            }
+                            () => pl.panic(`MISSING TERMINAL MAPPING: ${$.type}`)
                         ))
                         case 'yes': return pl.ss($.constrained, ($) => (['string', null]))
                         default: return pl.au($.constrained[0])

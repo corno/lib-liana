@@ -243,7 +243,7 @@ export const $$: A.serialize = ($d) => {
                                                                                                 case 'multiline text': return "string"
                                                                                                 case 'promillage': return "number"
                                                                                                 case 'single line text': return "string"
-                                                                                                default: pl.panic(`Unknown string type: ${$.type.key}`)
+                                                                                                default: return pl.panic(`Unknown string type: ${$.type.key}`)
                                                                                             }
                                                                                         })
                                                                                         $i.snippet(type === "number" ? `parseInt(assertNotNull(${pathID}))` : `assertNotNull(${pathID})`)
