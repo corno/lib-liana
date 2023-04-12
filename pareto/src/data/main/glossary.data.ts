@@ -33,6 +33,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({
         "common": imp({}),
         "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
@@ -40,7 +41,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "CompileParameters": type(group({
                 "outputs": member(array(group({
                     "path": member(ref(externalTypeReference("common", "Path"))),
-                    "data": member(ref(typeReference("MapData"))),
+                    "data": member(ref(externalTypeReference("liana2glossary", "MapData"))),
                 })))
             })),
             "Error": type(group({
@@ -63,41 +64,34 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             //     "annotation": member(glossaryParameter("Annotation")),
             // })),
 
-            "MapData": type(group({
-                "mapped library": member(ref(typeReference("Mapped Library"))),
-                "settings": member(group({
-                    "datamodel": member(optional(group({
-                        "annotations": member(boolean()),
-                        "reference mapping": member(taggedUnion({
-                            "string": group({}),
-                            "reference": group({}),
-                            "reference and string": group({}),
-                        })),
-                    }))),
-                    "visitor interface": member(optional(group({
-                        "datamodel": member(taggedUnion({
-                            "internal": group({}),
-                            "exernal": group({
-                                "location": member(string()),
-                            }),
-                        })),
-                    }))),
-                    "algorithms": member(group({
-                        "serialize": member(optional(group({
-                            //data location,
-                        }))),
-                        //resolve
-                    })),
-                })),
-            })),
-            "Mapped Library": type(group({
-                "library": member(ref(externalTypeReference("liana", "Type Library"))),
-                "terminal mapping": member(dictionary(taggedUnion({
-                    "boolean": null_(),
-                    "number": null_(),
-                    "string": null_(),
-                }))),
-            })),
+            // "MapData": type(group({
+            //     "mapped library": member(ref(typeReference("Mapped Library"))),
+            //     "settings": member(group({
+            //         "datamodel": member(optional(group({
+            //             "annotations": member(boolean()),
+            //             "reference mapping": member(taggedUnion({
+            //                 "string": group({}),
+            //                 "reference": group({}),
+            //                 "reference and string": group({}),
+            //             })),
+            //         }))),
+            //         "visitor interface": member(optional(group({
+            //             "datamodel": member(taggedUnion({
+            //                 "internal": group({}),
+            //                 "exernal": group({
+            //                     "location": member(string()),
+            //                 }),
+            //             })),
+            //         }))),
+            //         "algorithms": member(group({
+            //             "serialize": member(optional(group({
+            //                 //data location,
+            //             }))),
+            //             //resolve
+            //         })),
+            //     })),
+            // })),
+
         }),
     },
     'asynchronous': {

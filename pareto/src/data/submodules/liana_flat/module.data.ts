@@ -16,6 +16,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "fp": external("lib-fountain-pen"),
                 "liana": sibling("liana"),
+                "liana2glossary": sibling("liana2glossary"),
                 "main": main(),
             }),
         },

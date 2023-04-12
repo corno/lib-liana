@@ -1,5 +1,7 @@
 import * as pl from 'pareto-core-lib'
 
+import * as g_liana2glossary from "../../liana2glossary"
+
 import * as g_liana from "../../liana"
 // import * as g_liana2pareto from "../../liana2pareto"
 import * as g_fp from "lib-fountain-pen"
@@ -9,7 +11,7 @@ import * as g_main from "../../../main"
 import { A } from "../api.generated"
 
 export const $$: A.serialize = ($d) => {
-    return <Annotation>($: g_main.T.Mapped__Library<Annotation>, $i: g_fp.SYNC.I.Directory) => {
+    return <Annotation>($: g_liana2glossary.T.Mapped__Library<Annotation>, $i: g_fp.SYNC.I.Directory) => {
 
         // $i.file(`states.generated.ts`, ($i) => {
         //     $d.serializeStates($d.mapLiana2States($), $i)

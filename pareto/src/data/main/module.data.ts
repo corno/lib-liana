@@ -15,6 +15,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "common": external("glo-pareto-common"),
                 "liana": tempSubmodule("liana"),
+                "liana2glossary": tempSubmodule("liana2glossary"),
             }),
         },
         'api': {

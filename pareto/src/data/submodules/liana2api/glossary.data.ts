@@ -1,8 +1,10 @@
 import * as pd from 'pareto-core-data'
 
 import {
+    boolean,
     data,
-    externalTypeReference, glossaryParameter, group, imp, member, optional, procedure, ref, sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
+    dictionary,
+    externalTypeReference, glossaryParameter, group, imp, member, null_, optional, procedure, ref, sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -17,23 +19,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "fs": imp({}),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
         "api": imp({ "Annotation": typeReference("OutAnnotation") }),
+        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
             "GenerateData": type(group({
-                "data": member(ref(typeReference("MapData"))),
+                "data": member(ref(externalTypeReference("liana2glossary", "MapData"))),
                 "path": member(ref(externalTypeReference("common", "Path"))),
-            })),
-            "MapData": type(group({
-                "model": member(ref(externalTypeReference("main", "Mapped Library"))),
-
-                "algorithms": member(group({
-                    "serialize": member(optional(group({
-                        //sdata location,
-                    }))),
-                    //resolve
-                })),
             })),
             "OutAnnotation": type(taggedUnion({
                 "source": ref(glossaryParameter("Annotation")),

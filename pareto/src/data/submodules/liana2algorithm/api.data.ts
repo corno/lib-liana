@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import { algorithm, dependent, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { algorithm, dependent, procedure, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
@@ -13,5 +13,8 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         "mapLiana2Serializer": algorithm(sfunction("this", {}, "MapLiana2Serializer"), { "Annotation": "Annotation" }, dependent(null, {
             //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
         }, {})),
+        "create121Mapper": algorithm(procedure("this", {}, "Create121Mapper"), { "Annotation": "Annotation" }, dependent(null, {
+            "createIdentifier": sfunction("ts", {}, "CreateIdentifier")
+        }, {}))
     }),
 }

@@ -5,13 +5,14 @@ import * as ps from 'pareto-core-state'
 import * as g_this from "../glossary"
 import * as g_algorithm from "../../algorithm_temp"
 import * as g_liana from "../../liana"
+import * as g_liana2glossary from "../../liana2glossary"
 import * as g_main from "../../../main"
 
 
 import { A } from "../api.generated"
 
 export const $$: A.mapLiana2Serializer = () => {
-    return <Annotation>($: g_main.T.Mapped__Library<Annotation>) => {
+    return <Annotation>($: g_liana2glossary.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         type OutAnnotation = g_this.T.OutAnnotation<Annotation>
         function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.ProcedureBlock<OutAnnotation> {

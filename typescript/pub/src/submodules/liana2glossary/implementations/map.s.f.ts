@@ -220,9 +220,13 @@ export const $$: A.map = ($d) => {
             }
         }
         return {
-            'parameters': pm.wrapRawDictionary({
-                "Annotation": null,
-            }),
+            'parameters': $.settings.annotations
+                ? pm.wrapRawDictionary({
+                    "Annotation": null,
+                })
+                : pm.wrapRawDictionary({}),
+
+
             'imports': $['mapped library'].library.imports.map(($) => ({
                 'arguments': pm.wrapRawDictionary({
                     "Annotation": ['glossary parameter', "Annotation"]

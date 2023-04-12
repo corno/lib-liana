@@ -17,6 +17,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "common": external("glo-pareto-common"),
                 "liana": sibling("liana"),
+                "liana2glossary": sibling("liana2glossary"),
                 "main": main(),
                 "pareto": external("lib-pareto-typescript-project"),
                 "fs": external("res-pareto-filesystem"),

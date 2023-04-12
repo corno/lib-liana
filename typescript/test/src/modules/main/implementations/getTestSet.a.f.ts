@@ -8,11 +8,16 @@ import * as g_test from "lib-pareto-test"
 import * as g_pub from "../../../../../pub/dist"
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
+import * as g_2algorithm from "../../../../../pub/dist/submodules/liana2algorithm"
 import * as g_coll from "res-pareto-collation"
 import * as g_foreach from "res-pareto-foreach"
 
+import * as a_fp from "lib-fountain-pen"
+import * as a_ts from "res-typescript"
+
 const d = pm.wrapRawDictionary
 
+import { $ as html } from "../../../data/html.data"
 import { $ as simpleModel } from "../../../data/liana/model/simpleModel.data"
 import { $ as accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
@@ -86,6 +91,21 @@ export const $$: A.getTestSet = ($) => {
     // })
 
     //pv.logDebugMessage(`${count} errors`)
+
+    a_fp.$b.createFile()(
+        ($i) => {
+            $i([$.testDirectory, "html visitor.ts"], ($i) => {
+                g_2algorithm.$a.create121Mapper({
+                    'createIdentifier': a_ts.$r.createIdentifier(),
+                })(html, $i)
+            })
+        },
+        {
+            'logError': () => {
+
+            }
+        }
+    )
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         const res = g_resolve.$a.resolve<Annotation>({

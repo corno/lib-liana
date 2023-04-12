@@ -16,6 +16,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({
         "fp": imp({}),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
@@ -29,7 +30,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "Serialize": procedure(data(externalTypeReference("main", "Mapped Library")), sExternalInterfaceReference("fp", "Directory")),
+            "Serialize": procedure(data(externalTypeReference("liana2glossary", "Mapped Library")), sExternalInterfaceReference("fp", "Directory")),
         }),
     },
 

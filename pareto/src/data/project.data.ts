@@ -56,6 +56,8 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
         'executables': d({}),
         'test': {
             'dependencies': d({
+                "res-typescript": null,
+                "lib-fountain-pen": null,
             }),
             'definition': {
                 'glossary': {

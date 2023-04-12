@@ -4,6 +4,7 @@ import { T } from "./datatypes.generated"
 
 import * as g_common from "glo-pareto-common"
 import * as g_liana from "../../submodules/liana"
+import * as g_liana2glossary from "../../submodules/liana2glossary"
 
 export namespace ASYNC {
     

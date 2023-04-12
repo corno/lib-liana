@@ -4,6 +4,7 @@ import * as g_common from "glo-pareto-common"
 import * as g_fs from "res-pareto-filesystem"
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 import * as g_liana from "../../liana"
+import * as g_liana2api from "../../liana2api"
 import * as g_main from "../../../main"
 
 export namespace N {}
@@ -24,7 +25,7 @@ export namespace T {
     
     export namespace MapData {
         
-        export type mapped__library<GAnnotation> = g_main.T.Mapped__Library<GAnnotation>
+        export type mapped__library<GAnnotation> = T.Mapped__Library<GAnnotation>
         
         export namespace settings {
             
@@ -44,11 +45,11 @@ export namespace T {
                 readonly 'serialize': [ false ] | [ true, null]
             }
             
+            export type annotations<GAnnotation> = boolean
+            
             export namespace datamodel {
                 
                 export namespace O {
-                    
-                    export type annotations<GAnnotation> = boolean
                     
                     export namespace reference__mapping {
                         
@@ -72,7 +73,6 @@ export namespace T {
                 }
                 
                 export type O<GAnnotation> = {
-                    readonly 'annotations': boolean
                     readonly 'reference mapping': 
                         | ['reference', null]
                         | ['reference and string', null]
@@ -81,7 +81,6 @@ export namespace T {
             }
             
             export type datamodel<GAnnotation> = [ false ] | [ true, {
-                readonly 'annotations': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -137,8 +136,8 @@ export namespace T {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
             }
+            readonly 'annotations': boolean
             readonly 'datamodel': [ false ] | [ true, {
-                readonly 'annotations': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -155,13 +154,13 @@ export namespace T {
     }
     
     export type MapData<GAnnotation> = {
-        readonly 'mapped library': g_main.T.Mapped__Library<GAnnotation>
+        readonly 'mapped library': T.Mapped__Library<GAnnotation>
         readonly 'settings': {
             readonly 'algorithms': {
                 readonly 'serialize': [ false ] | [ true, null]
             }
+            readonly 'annotations': boolean
             readonly 'datamodel': [ false ] | [ true, {
-                readonly 'annotations': boolean
                 readonly 'reference mapping': 
                     | ['reference', null]
                     | ['reference and string', null]
@@ -175,6 +174,43 @@ export namespace T {
                     | ['internal', null]
             }]
         }
+    }
+    
+    export namespace Mapped__Library {
+        
+        export type library<GAnnotation> = g_liana.T.Type__Library<GAnnotation>
+        
+        export namespace terminal__mapping {
+            
+            export namespace D {
+                
+                export type _lboolean<GAnnotation> = null
+                
+                export type _lnumber<GAnnotation> = null
+                
+                export type _lstring<GAnnotation> = null
+            }
+            
+            export type D<GAnnotation> = 
+                | ['boolean', null]
+                | ['number', null]
+                | ['string', null]
+        }
+        
+        export type terminal__mapping<GAnnotation> = pt.Dictionary<
+            | ['boolean', null]
+            | ['number', null]
+            | ['string', null]
+        >
+    }
+    
+    export type Mapped__Library<GAnnotation> = {
+        readonly 'library': g_liana.T.Type__Library<GAnnotation>
+        readonly 'terminal mapping': pt.Dictionary<
+            | ['boolean', null]
+            | ['number', null]
+            | ['string', null]
+        >
     }
     
     export namespace OutAnnotation {

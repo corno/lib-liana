@@ -1,7 +1,7 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    boolean, data, externalTypeReference, glossaryParameter, group, imp, member, optional, procedure, ref,
+    boolean, data, dictionary, externalTypeReference, glossaryParameter, group, imp, member, null_, optional, procedure, ref,
     sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
@@ -17,6 +17,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "fs": imp({}),
         "glossary": imp({ "Annotation": typeReference("OutAnnotation") }),
         "main": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
@@ -26,10 +27,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "path": member(ref(externalTypeReference("common", "Path"))),
             })),
             "MapData": type(group({
-                "mapped library": member(ref(externalTypeReference("main", "Mapped Library"))),
+                "mapped library": member(ref(typeReference("Mapped Library"))),
                 "settings": member(group({
+                    "annotations": member(boolean()),
                     "datamodel": member(optional(group({
-                        "annotations": member(boolean()),
                         "reference mapping": member(taggedUnion({
                             "string": group({}),
                             "reference": group({}),
@@ -51,6 +52,14 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         //resolve
                     })),
                 })),
+            })),
+            "Mapped Library": type(group({
+                "library": member(ref(externalTypeReference("liana", "Type Library"))),
+                "terminal mapping": member(dictionary(taggedUnion({
+                    "boolean": null_(),
+                    "number": null_(),
+                    "string": null_(),
+                }))),
             })),
             "OutAnnotation": type(taggedUnion({
                 "source": ref(glossaryParameter("Annotation")),
