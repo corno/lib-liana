@@ -60,7 +60,7 @@ export const $$: A.serialize = ($d) => {
                         break
                     case 'dictionary':
                         pl.ss($, ($) => {
-                            //const parentPathAsArray = pr.wrapRawArray(pi.flatten(idPath))
+                            //const parentPathAsArray = pr.wrapRawArray(pi.xflatten(idPath))
                             $i.file(
                                 `${$d.joinNestedStrings(path)}.generated.ts`,
                                 ($i) => {

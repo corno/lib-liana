@@ -80,9 +80,12 @@ export const $$: A.create121Mapper = ($d) => {
                                         // doType($.type, $i)
                                         // $i.snippet(`]`)
                                         
-                                        $i.snippet(`case '${key}': return createElement("${key}", pm.wrapRawDictionary({}), `)
+                                        $i.snippet(`case '${key}': return pl.ss($, ($) => nonTextElement("${key}", pm.wrapRawDictionary({}), pm.wrapRawArray([])))`)
+                                    })
+                                    $i.nestedLine(($i) => {
+                                        $i.snippet(`/*`)
                                         doType($.type, $i)
-                                        $i.snippet(`)`)
+                                        $i.snippet(`*/`)
                                     })
                                 })
                                 $i.nestedLine(($i) => {
@@ -106,6 +109,7 @@ export const $$: A.create121Mapper = ($d) => {
     }
     return <Annotation>($: g_liana.T.Type__Library<Annotation>, $i: g_fp.SYNC.I.Block) => {
         $i.line(`import * as pl from 'pareto-core-lib'`)
+        $i.line(`import * as pm from 'pareto-core-map'`)
         $i.line(``)
         $i.line(`import * as g_in from ".."`)
         $i.line(`import * as g_out from ".."`)
@@ -113,7 +117,7 @@ export const $$: A.create121Mapper = ($d) => {
 
         $['global types'].__forEach(() => false, ($, key) => {
             $i.nestedLine(($i) => {
-                $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.X): g_out.T.X {`)
+                $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.${$d.createIdentifier(key)}): g_out.T.Element {`)
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
                         $i.snippet(`return `)
