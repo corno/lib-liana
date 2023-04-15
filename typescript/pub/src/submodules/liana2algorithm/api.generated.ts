@@ -13,7 +13,7 @@ export namespace D {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
     }
     
-    export type createResolverkeleton<GAnnotation> = {
+    export type createResolverSkeleton<GAnnotation> = {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
     }
     
@@ -27,7 +27,7 @@ export namespace A {
     
     export type create121Mapper = <GAnnotation>($d: D.create121Mapper<GAnnotation>, ) => g_this.SYNC.A.P.Create121Mapper<GAnnotation>
     
-    export type createResolverkeleton = <GAnnotation>($d: D.createResolverkeleton<GAnnotation>, ) => g_this.SYNC.A.P.CreateResolverSkeleton<GAnnotation>
+    export type createResolverSkeleton = <GAnnotation>($d: D.createResolverSkeleton<GAnnotation>, ) => g_this.SYNC.A.P.CreateResolverSkeleton<GAnnotation>
     
     export type mapLiana2Serializer = <GAnnotation>() => g_this.SYNC.A.F.MapLiana2Serializer<GAnnotation>
     
@@ -36,7 +36,7 @@ export namespace A {
 
 export type API = {
     readonly 'create121Mapper': A.create121Mapper
-    readonly 'createResolverkeleton': A.createResolverkeleton
+    readonly 'createResolverSkeleton': A.createResolverSkeleton
     readonly 'mapLiana2Serializer': A.mapLiana2Serializer
     readonly 'mapLiana2States': A.mapLiana2States
 }

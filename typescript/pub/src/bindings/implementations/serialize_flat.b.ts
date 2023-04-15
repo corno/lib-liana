@@ -4,6 +4,7 @@ import * as a_tostring from "res-pareto-tostring"
 import * as a_coll from "res-pareto-collation"
 import * as a_ts from "res-typescript"
 import * as a_foreach from "res-pareto-foreach"
+import * as a_array from "res-pareto-array"
 
 import * as a_liana_flat from "../../submodules/liana_flat"
 
@@ -30,13 +31,14 @@ export const $$: A.serialize_$flat = () => {
             //         'createApostrophedString': a_ts.$r.createApostrophedString(),
             //     }
             // ),
-            'joinNestedStrings': a_tostring.$r.joinNestedStrings({
+            'getArrayAsString': a_tostring.$r.getArrayAsString({
                 'maximum': [false],
                 'separator': "_",
             }),
             'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
                 'compare': () => false,//HACK: serialize in the order they have been added
             }),
+            'push': a_array.$r.push(),
         })($, $i)
     }
 }

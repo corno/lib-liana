@@ -29,28 +29,18 @@ function map_Edit($: g_in.T.Edit): g_out.T.Element {
 function map_Embedded($: g_in.T.Embedded): g_out.T.Element {
     return pl.cc($, ($) => {
         switch ($[0]) {
-            case 'audio': return pl.ss($, ($) => nonTextElement("audio", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'embed': return pl.ss($, ($) => nonTextElement("embed", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'iframe': return pl.ss($, ($) => nonTextElement("iframe", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'img': return pl.ss($, ($) => nonTextElement("img", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'object': return pl.ss($, ($) => nonTextElement("object", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            case 'audio': return ['audio', ({})]
+            case 'embed': return ['embed', ({})]
+            case 'iframe': return ['iframe', ({})]
+            case 'img': return ['img', ({})]
+            case 'object': return ['object', ({
                 'content': pl.cc($, ($) => map_Embedded__content($)),
-            })*/
-            case 'video': return pl.ss($, ($) => nonTextElement("video", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'canvas': return pl.ss($, ($) => nonTextElement("canvas", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'math': return pl.ss($, ($) => nonTextElement("math", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'picture': return pl.ss($, ($) => nonTextElement("picture", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'svg': return pl.ss($, ($) => nonTextElement("svg", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
+            })]
+            case 'video': return ['video', ({})]
+            case 'canvas': return ['canvas', ({})]
+            case 'math': return ['math', ({})]
+            case 'picture': return ['picture', ({})]
+            case 'svg': return ['svg', ({})]
             default: return pl.au($[1])
         }
     })
@@ -61,89 +51,69 @@ function map_Embedded__content($: g_in.T.Embedded__content): g_out.T.Element {
 function map_Flow__content($: g_in.T.Flow__content): g_out.T.Element {
     return $.map(($) => pl.cc($, ($) => {
         switch ($[0]) {
-            case 'id': return pl.ss($, ($) => nonTextElement("id", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            case 'id': return ['id', ({
                 'id': pl.cc($, ($) => $),
                 'child': pl.cc($, ($) => map_Phrasing($)),
-            })*/
-            case 'class': return pl.ss($, ($) => nonTextElement("class", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'class': return ['class', ({
                 'class': pl.cc($, ($) => $),
                 'child': pl.cc($, ($) => map_Phrasing($)),
-            })*/
-            case 'phrase': return pl.ss($, ($) => nonTextElement("phrase", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Script__supporting__content($)*/
-            case 'embedded': return pl.ss($, ($) => nonTextElement("embedded", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Embedded($)*/
-            case 'details': return pl.ss($, ($) => nonTextElement("details", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'phrase': return ['phrase', map_Phrasing__content($)]
+            case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
+            case 'embedded': return ['embedded', map_Embedded($)]
+            case 'details': return ['details', ({
                 'summary': pl.cc($, ($) => $.map(($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'phrasing': return pl.ss($, ($) => nonTextElement("phrasing", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'heading': return pl.ss($, ($) => nonTextElement("heading", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Heading__content($)*/
+                        case 'phrasing': return ['phrasing', map_Phrasing__content($)]
+                        case 'heading': return ['heading', map_Heading__content($)]
                         default: return pl.au($[1])
                     }
                 }))),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'address': return pl.ss($, ($) => nonTextElement("address", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'blockquote': return pl.ss($, ($) => nonTextElement("blockquote", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'address': return ['address', ({})]
+            case 'blockquote': return ['blockquote', ({
                 'cite': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'del': return pl.ss($, ($) => nonTextElement("del", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'del': return ['del', ({
                 'edit': pl.cc($, ($) => map_Edit($)),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'dialog': return pl.ss($, ($) => nonTextElement("dialog", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'dialog': return ['dialog', ({
                 'open': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, $],
                     () => [false],
                 )),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'div': return pl.ss($, ($) => nonTextElement("div", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'dl': return pl.ss($, ($) => nonTextElement("dl", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*pl.cc($, ($) => {
+            })]
+            case 'div': return ['div', map_Flow__content($)]
+            case 'dl': return ['dl', pl.cc($, ($) => {
                 switch ($[0]) {
-                    case 'divs': return pl.ss($, ($) => nonTextElement("divs", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*({})*/
-                    case 'dts': return pl.ss($, ($) => nonTextElement("dts", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*({})*/
+                    case 'divs': return ['divs', ({})]
+                    case 'dts': return ['dts', ({})]
                     default: return pl.au($[1])
                 }
-            })*/
-            case 'fieldset': return pl.ss($, ($) => nonTextElement("fieldset", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'fieldset': return ['fieldset', ({
                 'legend': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, ({})],
                     () => [false],
                 )),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'figure': return pl.ss($, ($) => nonTextElement("figure", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'figure': return ['figure', ({
                 'caption': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, ({
                         'content': pl.cc($, ($) => map_Flow__content($)),
                         'position': pl.cc($, ($) => pl.cc($, ($) => {
                             switch ($[0]) {
-                                case 'top': return pl.ss($, ($) => nonTextElement("top", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                                /*({})*/
-                                case 'botom': return pl.ss($, ($) => nonTextElement("botom", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                                /*({})*/
+                                case 'top': return ['top', ({})]
+                                case 'botom': return ['botom', ({})]
                                 default: return pl.au($[1])
                             }
                         })),
@@ -151,43 +121,31 @@ function map_Flow__content($: g_in.T.Flow__content): g_out.T.Element {
                     () => [false],
                 )),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'footer': return pl.ss($, ($) => nonTextElement("footer", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'form': return pl.ss($, ($) => nonTextElement("form", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'header': return pl.ss($, ($) => nonTextElement("header", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'hr': return pl.ss($, ($) => nonTextElement("hr", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'ins': return pl.ss($, ($) => nonTextElement("ins", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'footer': return ['footer', ({})]
+            case 'form': return ['form', ({})]
+            case 'header': return ['header', ({})]
+            case 'hr': return ['hr', ({})]
+            case 'ins': return ['ins', ({
                 'edit': pl.cc($, ($) => map_Edit($)),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'main': return pl.ss($, ($) => nonTextElement("main", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'map': return pl.ss($, ($) => nonTextElement("map", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'main': return ['main', map_Flow__content($)]
+            case 'map': return ['map', ({
                 'name': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'menu': return pl.ss($, ($) => nonTextElement("menu", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*$.map(($) => pl.cc($, ($) => {
+            })]
+            case 'menu': return ['menu', $.map(($) => pl.cc($, ($) => {
                 switch ($[0]) {
-                    case 'li': return pl.ss($, ($) => nonTextElement("li", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*map_Flow__content($)*/
-                    case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*map_Script__supporting__content($)*/
+                    case 'li': return ['li', map_Flow__content($)]
+                    case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                     default: return pl.au($[1])
                 }
-            }))*/
-            case 'object': return pl.ss($, ($) => nonTextElement("object", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            }))]
+            case 'object': return ['object', ({
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'ol': return pl.ss($, ($) => nonTextElement("ol", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'ol': return ['ol', ({
                 'reversed': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, $],
@@ -202,16 +160,11 @@ function map_Flow__content($: g_in.T.Flow__content): g_out.T.Element {
                     $,
                     ($) => [true, pl.cc($, ($) => {
                         switch ($[0]) {
-                            case '1': return pl.ss($, ($) => nonTextElement("1", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
-                            case 'a': return pl.ss($, ($) => nonTextElement("a", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
-                            case 'A': return pl.ss($, ($) => nonTextElement("A", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
-                            case 'i': return pl.ss($, ($) => nonTextElement("i", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
-                            case 'I': return pl.ss($, ($) => nonTextElement("I", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
+                            case '1': return ['1', ({})]
+                            case 'a': return ['a', ({})]
+                            case 'A': return ['A', ({})]
+                            case 'i': return ['i', ({})]
+                            case 'I': return ['I', ({})]
                             default: return pl.au($[1])
                         }
                     })],
@@ -219,51 +172,39 @@ function map_Flow__content($: g_in.T.Flow__content): g_out.T.Element {
                 )),
                 'content': pl.cc($, ($) => $.map(($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'li': return pl.ss($, ($) => nonTextElement("li", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*({
+                        case 'li': return ['li', ({
                             'value': pl.cc($, ($) => $),
                             'content': pl.cc($, ($) => map_Flow__content($)),
-                        })*/
-                        case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Script__supporting__content($)*/
+                        })]
+                        case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                         default: return pl.au($[1])
                     }
                 }))),
-            })*/
-            case 'p': return pl.ss($, ($) => nonTextElement("p", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'pre': return pl.ss($, ($) => nonTextElement("pre", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'search': return pl.ss($, ($) => nonTextElement("search", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'slot': return pl.ss($, ($) => nonTextElement("slot", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'p': return ['p', map_Phrasing__content($)]
+            case 'pre': return ['pre', map_Phrasing__content($)]
+            case 'search': return ['search', map_Flow__content($)]
+            case 'slot': return ['slot', ({
                 'name': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Flow__content($)),
-            })*/
-            case 'table': return pl.ss($, ($) => nonTextElement("table", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'table': return ['table', ({
                 'caption': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, map_Flow__content($)],
                     () => [false],
                 )),
                 'colgroups': pl.cc($, ($) => $.map(($) => ({}))),
-            })*/
-            case 'ul': return pl.ss($, ($) => nonTextElement("ul", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*$.map(($) => pl.cc($, ($) => {
+            })]
+            case 'ul': return ['ul', $.map(($) => pl.cc($, ($) => {
                 switch ($[0]) {
-                    case 'li': return pl.ss($, ($) => nonTextElement("li", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*map_Flow__content($)*/
-                    case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*map_Script__supporting__content($)*/
+                    case 'li': return ['li', map_Flow__content($)]
+                    case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                     default: return pl.au($[1])
                 }
-            }))*/
-            case 'heading': return pl.ss($, ($) => nonTextElement("heading", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Heading__content($)*/
-            case 'sectioning': return pl.ss($, ($) => nonTextElement("sectioning", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Sectioning__content($)*/
+            }))]
+            case 'heading': return ['heading', map_Heading__content($)]
+            case 'sectioning': return ['sectioning', map_Sectioning__content($)]
             default: return pl.au($[1])
         }
     }))
@@ -271,56 +212,39 @@ function map_Flow__content($: g_in.T.Flow__content): g_out.T.Element {
 function map_Heading__content($: g_in.T.Heading__content): g_out.T.Element {
     return pl.cc($, ($) => {
         switch ($[0]) {
-            case 'h1': return pl.ss($, ($) => nonTextElement("h1", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'h2': return pl.ss($, ($) => nonTextElement("h2", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'h3': return pl.ss($, ($) => nonTextElement("h3", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'h4': return pl.ss($, ($) => nonTextElement("h4", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'h5': return pl.ss($, ($) => nonTextElement("h5", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'h6': return pl.ss($, ($) => nonTextElement("h6", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'hgroup': return pl.ss($, ($) => nonTextElement("hgroup", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            case 'h1': return ['h1', map_Phrasing__content($)]
+            case 'h2': return ['h2', map_Phrasing__content($)]
+            case 'h3': return ['h3', map_Phrasing__content($)]
+            case 'h4': return ['h4', map_Phrasing__content($)]
+            case 'h5': return ['h5', map_Phrasing__content($)]
+            case 'h6': return ['h6', map_Phrasing__content($)]
+            case 'hgroup': return ['hgroup', ({
                 'content before': pl.cc($, ($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'p': return pl.ss($, ($) => nonTextElement("p", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*({})*/
-                        case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Script__supporting__content($)*/
+                        case 'p': return ['p', ({})]
+                        case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                         default: return pl.au($[1])
                     }
                 })),
                 'heading': pl.cc($, ($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'h1 ': return pl.ss($, ($) => nonTextElement("h1 ", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'h2': return pl.ss($, ($) => nonTextElement("h2", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'h3': return pl.ss($, ($) => nonTextElement("h3", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'h4': return pl.ss($, ($) => nonTextElement("h4", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'h5': return pl.ss($, ($) => nonTextElement("h5", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
-                        case 'h6': return pl.ss($, ($) => nonTextElement("h6", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Phrasing__content($)*/
+                        case 'h1 ': return ['h1 ', map_Phrasing__content($)]
+                        case 'h2': return ['h2', map_Phrasing__content($)]
+                        case 'h3': return ['h3', map_Phrasing__content($)]
+                        case 'h4': return ['h4', map_Phrasing__content($)]
+                        case 'h5': return ['h5', map_Phrasing__content($)]
+                        case 'h6': return ['h6', map_Phrasing__content($)]
                         default: return pl.au($[1])
                     }
                 })),
                 'content after': pl.cc($, ($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'p': return pl.ss($, ($) => nonTextElement("p", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*({})*/
-                        case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Script__supporting__content($)*/
+                        case 'p': return ['p', ({})]
+                        case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                         default: return pl.au($[1])
                     }
                 })),
-            })*/
+            })]
             default: return pl.au($[1])
         }
     })
@@ -328,10 +252,8 @@ function map_Heading__content($: g_in.T.Heading__content): g_out.T.Element {
 function map_Script__supporting__content($: g_in.T.Script__supporting__content): g_out.T.Element {
     return pl.cc($, ($) => {
         switch ($[0]) {
-            case 'script': return pl.ss($, ($) => nonTextElement("script", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'template': return pl.ss($, ($) => nonTextElement("template", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Template($)*/
+            case 'script': return ['script', ({})]
+            case 'template': return ['template', map_Template($)]
             default: return pl.au($[1])
         }
     })
@@ -342,138 +264,97 @@ function map_Template($: g_in.T.Template): g_out.T.Element {
 function map_Phrasing($: g_in.T.Phrasing): g_out.T.Element {
     return pl.cc($, ($) => {
         switch ($[0]) {
-            case 'id': return pl.ss($, ($) => nonTextElement("id", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            case 'id': return ['id', ({
                 'id': pl.cc($, ($) => $),
                 'child': pl.cc($, ($) => map_Phrasing($)),
-            })*/
-            case 'class': return pl.ss($, ($) => nonTextElement("class", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'class': return ['class', ({
                 'class': pl.cc($, ($) => $),
                 'child': pl.cc($, ($) => map_Phrasing($)),
-            })*/
-            case 'text': return pl.ss($, ($) => nonTextElement("text", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*$*/
-            case 'link': return pl.ss($, ($) => nonTextElement("link", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'meta': return pl.ss($, ($) => nonTextElement("meta", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'noscript': return pl.ss($, ($) => nonTextElement("noscript", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'object': return pl.ss($, ($) => nonTextElement("object", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'text': return ['text', $]
+            case 'link': return ['link', ({})]
+            case 'meta': return ['meta', ({})]
+            case 'noscript': return ['noscript', ({})]
+            case 'object': return ['object', ({
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Script__supporting__content($)*/
-            case 'a': return pl.ss($, ($) => nonTextElement("a", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'button': return pl.ss($, ($) => nonTextElement("button", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'input': return pl.ss($, ($) => nonTextElement("input", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'label': return pl.ss($, ($) => nonTextElement("label", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'select': return pl.ss($, ($) => nonTextElement("select", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
+            case 'a': return ['a', ({})]
+            case 'button': return ['button', ({})]
+            case 'input': return ['input', ({})]
+            case 'label': return ['label', ({})]
+            case 'select': return ['select', ({
                 'content': pl.cc($, ($) => $.map(($) => pl.cc($, ($) => {
                     switch ($[0]) {
-                        case 'option': return pl.ss($, ($) => nonTextElement("option", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*({})*/
-                        case 'optgroup': return pl.ss($, ($) => nonTextElement("optgroup", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*({
+                        case 'option': return ['option', ({})]
+                        case 'optgroup': return ['optgroup', ({
                             'options': pl.cc($, ($) => $.map(($) => ({}))),
-                        })*/
-                        case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                        /*map_Script__supporting__content($)*/
+                        })]
+                        case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                         default: return pl.au($[1])
                     }
                 }))),
-            })*/
-            case 'textarea': return pl.ss($, ($) => nonTextElement("textarea", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'textarea': return ['textarea', ({
                 'content': pl.cc($, ($) => $),
-            })*/
-            case 'abbr': return pl.ss($, ($) => nonTextElement("abbr", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'abbr': return ['abbr', ({
                 'title': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'area': return pl.ss($, ($) => nonTextElement("area", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'b': return pl.ss($, ($) => nonTextElement("b", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'bdi': return pl.ss($, ($) => nonTextElement("bdi", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'area': return ['area', ({})]
+            case 'b': return ['b', map_Phrasing__content($)]
+            case 'bdi': return ['bdi', ({
                 'dir': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'bdo': return pl.ss($, ($) => nonTextElement("bdo", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'bdo': return ['bdo', ({
                 'dir': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'br': return pl.ss($, ($) => nonTextElement("br", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'cite': return pl.ss($, ($) => nonTextElement("cite", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'code': return pl.ss($, ($) => nonTextElement("code", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'data': return pl.ss($, ($) => nonTextElement("data", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'br': return ['br', ({})]
+            case 'cite': return ['cite', map_Phrasing__content($)]
+            case 'code': return ['code', map_Phrasing__content($)]
+            case 'data': return ['data', ({
                 'value': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'datalist': return pl.ss($, ($) => nonTextElement("datalist", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*pl.cc($, ($) => {
+            })]
+            case 'datalist': return ['datalist', pl.cc($, ($) => {
                 switch ($[0]) {
-                    case 'phrasing': return pl.ss($, ($) => nonTextElement("phrasing", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*map_Phrasing__content($)*/
-                    case 'options': return pl.ss($, ($) => nonTextElement("options", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*$.map(($) => pl.cc($, ($) => {
+                    case 'phrasing': return ['phrasing', map_Phrasing__content($)]
+                    case 'options': return ['options', $.map(($) => pl.cc($, ($) => {
                         switch ($[0]) {
-                            case 'option': return pl.ss($, ($) => nonTextElement("option", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*({})*/
-                            case 'script supporting': return pl.ss($, ($) => nonTextElement("script supporting", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                            /*map_Script__supporting__content($)*/
+                            case 'option': return ['option', ({})]
+                            case 'script supporting': return ['script supporting', map_Script__supporting__content($)]
                             default: return pl.au($[1])
                         }
-                    }))*/
+                    }))]
                     default: return pl.au($[1])
                 }
-            })*/
-            case 'del': return pl.ss($, ($) => nonTextElement("del", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'del': return ['del', ({
                 'edit': pl.cc($, ($) => map_Edit($)),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'dfn': return pl.ss($, ($) => nonTextElement("dfn", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'dfn': return ['dfn', ({
                 'title': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'em': return pl.ss($, ($) => nonTextElement("em", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'i': return pl.ss($, ($) => nonTextElement("i", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'ins': return pl.ss($, ($) => nonTextElement("ins", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'em': return ['em', map_Phrasing__content($)]
+            case 'i': return ['i', map_Phrasing__content($)]
+            case 'ins': return ['ins', ({
                 'edit': pl.cc($, ($) => map_Edit($)),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'kbd': return pl.ss($, ($) => nonTextElement("kbd", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'map': return pl.ss($, ($) => nonTextElement("map", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'kbd': return ['kbd', map_Phrasing__content($)]
+            case 'map': return ['map', ({
                 'name': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'mark': return pl.ss($, ($) => nonTextElement("mark", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'meter': return pl.ss($, ($) => nonTextElement("meter", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'output': return pl.ss($, ($) => nonTextElement("output", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'mark': return ['mark', map_Phrasing__content($)]
+            case 'meter': return ['meter', ({})]
+            case 'output': return ['output', ({
                 'for': pl.cc($, ($) => pl.optional(
                     $,
                     ($) => [true, $],
@@ -482,60 +363,42 @@ function map_Phrasing($: g_in.T.Phrasing): g_out.T.Element {
                 'form': pl.cc($, ($) => $),
                 'name': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'progress': return pl.ss($, ($) => nonTextElement("progress", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'progress': return ['progress', ({
                 'value': pl.cc($, ($) => $),
                 'max': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'q': return pl.ss($, ($) => nonTextElement("q", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'q': return ['q', ({
                 'cite': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'ruby': return pl.ss($, ($) => nonTextElement("ruby", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 's': return pl.ss($, ($) => nonTextElement("s", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'samp': return pl.ss($, ($) => nonTextElement("samp", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'slot': return pl.ss($, ($) => nonTextElement("slot", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({
+            })]
+            case 'ruby': return ['ruby', ({})]
+            case 's': return ['s', map_Phrasing__content($)]
+            case 'samp': return ['samp', map_Phrasing__content($)]
+            case 'slot': return ['slot', ({
                 'name': pl.cc($, ($) => $),
                 'content': pl.cc($, ($) => map_Phrasing__content($)),
-            })*/
-            case 'small': return pl.ss($, ($) => nonTextElement("small", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'span': return pl.ss($, ($) => nonTextElement("span", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'strong': return pl.ss($, ($) => nonTextElement("strong", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'sub': return pl.ss($, ($) => nonTextElement("sub", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'sup': return pl.ss($, ($) => nonTextElement("sup", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'time': return pl.ss($, ($) => nonTextElement("time", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*pl.cc($, ($) => {
+            })]
+            case 'small': return ['small', map_Phrasing__content($)]
+            case 'span': return ['span', map_Phrasing__content($)]
+            case 'strong': return ['strong', map_Phrasing__content($)]
+            case 'sub': return ['sub', map_Phrasing__content($)]
+            case 'sup': return ['sup', map_Phrasing__content($)]
+            case 'time': return ['time', pl.cc($, ($) => {
                 switch ($[0]) {
-                    case 'datetime': return pl.ss($, ($) => nonTextElement("datetime", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*({
+                    case 'datetime': return ['datetime', ({
                         'value': pl.cc($, ($) => $),
                         'content': pl.cc($, ($) => map_Phrasing__content($)),
-                    })*/
-                    case 'text': return pl.ss($, ($) => nonTextElement("text", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-                    /*$*/
+                    })]
+                    case 'text': return ['text', $]
                     default: return pl.au($[1])
                 }
-            })*/
-            case 'u': return pl.ss($, ($) => nonTextElement("u", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'var': return pl.ss($, ($) => nonTextElement("var", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Phrasing__content($)*/
-            case 'wbr': return pl.ss($, ($) => nonTextElement("wbr", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*({})*/
-            case 'embedded': return pl.ss($, ($) => nonTextElement("embedded", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Embedded($)*/
+            })]
+            case 'u': return ['u', map_Phrasing__content($)]
+            case 'var': return ['var', map_Phrasing__content($)]
+            case 'wbr': return ['wbr', ({})]
+            case 'embedded': return ['embedded', map_Embedded($)]
             default: return pl.au($[1])
         }
     })
@@ -546,14 +409,10 @@ function map_Phrasing__content($: g_in.T.Phrasing__content): g_out.T.Element {
 function map_Sectioning__content($: g_in.T.Sectioning__content): g_out.T.Element {
     return pl.cc($, ($) => {
         switch ($[0]) {
-            case 'article': return pl.ss($, ($) => nonTextElement("article", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'aside': return pl.ss($, ($) => nonTextElement("aside", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'nav': return pl.ss($, ($) => nonTextElement("nav", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
-            case 'section': return pl.ss($, ($) => nonTextElement("section", pm.wrapRawDictionary({}), pm.wrapRawArray([])))
-            /*map_Flow__content($)*/
+            case 'article': return ['article', map_Flow__content($)]
+            case 'aside': return ['aside', map_Flow__content($)]
+            case 'nav': return ['nav', map_Flow__content($)]
+            case 'section': return ['section', map_Flow__content($)]
             default: return pl.au($[1])
         }
     })

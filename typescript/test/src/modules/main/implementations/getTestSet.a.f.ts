@@ -94,7 +94,7 @@ export const $$: A.getTestSet = ($) => {
 
     a_fp.$b.createFile()(
         ($i) => {
-            $i([$.testDirectory, "html visitor.ts"], ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "html visitor.ts"]), ($i) => {
                 g_2algorithm.$a.create121Mapper({
                     'createIdentifier': a_ts.$r.createIdentifier(),
                 })(html, $i)

@@ -1,5 +1,6 @@
 import * as pt from 'pareto-core-types'
 
+import * as g_array from "res-pareto-array"
 import * as g_foreach from "res-pareto-foreach"
 import * as g_pareto2typescript from "lib-pareto-typescript-project/dist/submodules/pareto2typescript"
 import * as g_this from "./glossary"
@@ -11,7 +12,8 @@ export namespace D {
     export type serialize<GAnnotation> = {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
         readonly 'dictionaryForEach': g_foreach.SYNC.A.P.DictionaryForEach
-        readonly 'joinNestedStrings': g_tostring.SYNC.A.F.JoinNestedStrings
+        readonly 'getArrayAsString': g_tostring.SYNC.A.F.GetArrayAsString
+        readonly 'push': g_array.SYNC.A.F.Push
     }
 }
 

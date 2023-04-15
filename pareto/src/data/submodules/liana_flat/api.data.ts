@@ -9,9 +9,10 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
         "serialize": algorithm(procedure("this", {}, "Serialize"), { "Annotation": "Annotation" }, dependent(null, {
             "createIdentifier": sfunction("ts", {}, "CreateIdentifier"),
-            "joinNestedStrings": sfunction("tostring", {}, "JoinNestedStrings"),
+            "getArrayAsString": sfunction("tostring", {}, "GetArrayAsString"),
             //"serializeStates": procedure("pareto2typescript", {}, "SerializeStates"),
             "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "push": sfunction("array", {}, "Push"),
         }, {})),
     }),
 }

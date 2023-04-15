@@ -32,6 +32,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
         "res-pareto-build": null,
         "res-pareto-foreach": null,
         "res-typescript": null,
+        "res-pareto-array": null,
     }),
     'type': ['library', {
         'main': main_,

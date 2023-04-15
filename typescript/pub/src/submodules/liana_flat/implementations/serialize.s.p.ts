@@ -1,4 +1,5 @@
 import * as pl from 'pareto-core-lib'
+import * as pm from 'pareto-core-map'
 
 import * as g_liana2glossary from "../../liana2glossary"
 
@@ -18,7 +19,7 @@ export const $$: A.serialize = ($d) => {
 
         // })
         function getPathID($: g_common.T.Path) {
-            return $d.createIdentifier($d.joinNestedStrings($))
+            return $d.createIdentifier($d.getArrayAsString($))
         }
         function doDictionaries($: {
             $: g_liana.T.Type<Annotation>,
@@ -62,7 +63,7 @@ export const $$: A.serialize = ($d) => {
                         pl.ss($, ($) => {
                             //const parentPathAsArray = pr.wrapRawArray(pi.xflatten(idPath))
                             $i.file(
-                                `${$d.joinNestedStrings(path)}.generated.ts`,
+                                `${$d.getArrayAsString(path)}.generated.ts`,
                                 ($i) => {
                                     $i.line(`import * as pl from 'pareto-core-lib'`)
                                     $i.line(``)
@@ -125,7 +126,10 @@ export const $$: A.serialize = ($d) => {
                                                                     doScalars({
                                                                         $: $.value.type,
                                                                         isRoot: false,
-                                                                        path: [path, $.key],
+                                                                        path: $d.push({
+                                                                            'array': path,
+                                                                            'element': $.key,
+                                                                        }),
                                                                     })
                                                                 })
 
@@ -144,7 +148,10 @@ export const $$: A.serialize = ($d) => {
                                                                     doScalars({
                                                                         $: $.value.type,
                                                                         isRoot: false,
-                                                                        path: [path, $.key],
+                                                                        path: $d.push({
+                                                                            'array': path,
+                                                                            'element': $.key,
+                                                                        }),
                                                                     })
                                                                 })
                                                             })
@@ -156,7 +163,7 @@ export const $$: A.serialize = ($d) => {
                                             doScalars({
                                                 $: $.type,
                                                 isRoot: true,
-                                                path: [],
+                                                path: pm.wrapRawArray([]),
                                             })
 
                                         })
@@ -219,7 +226,10 @@ export const $$: A.serialize = ($d) => {
                                                                                         $i.snippet(`'${$.key}': `)
                                                                                         writeUnflattener({
                                                                                             $: $.value.type,
-                                                                                            path: [path, $.key],
+                                                                                            path: $d.push({
+                                                                                                'array': path,
+                                                                                                'element': $.key,
+                                                                                            }),
                                                                                             currentName: $.key,
                                                                                         }, $i)
                                                                                         $i.snippet(`,`)
@@ -275,7 +285,10 @@ export const $$: A.serialize = ($d) => {
                                                                                                         $i.snippet(`return ['${$.key}', `)
                                                                                                         writeUnflattener({
                                                                                                             $: $.value.type,
-                                                                                                            path: [path, $.key],
+                                                                                                            path: $d.push({
+                                                                                                                'array': path,
+                                                                                                                'element': $.key,
+                                                                                                            }),
                                                                                                             currentName: currentName
                                                                                                         }, $i)
                                                                                                         $i.snippet(`]`)
@@ -301,7 +314,7 @@ export const $$: A.serialize = ($d) => {
                                                         }
                                                         writeUnflattener({
                                                             $: $.type,
-                                                            path: [],
+                                                            path: pm.wrapRawArray([]),
                                                             currentName: currentName
                                                         }, $i)
 
@@ -317,7 +330,10 @@ export const $$: A.serialize = ($d) => {
                             doDictionaries({
                                 $: $.type,
                                 path: path,
-                                idPath: [idPath, currentName],
+                                idPath: $d.push({
+                                    'array': idPath,
+                                    'element': currentName,
+                                }),
                                 currentName: currentName,
                             })
                         })
@@ -327,7 +343,10 @@ export const $$: A.serialize = ($d) => {
                             $d.dictionaryForEach($.properties, ($) => {
                                 doDictionaries({
                                     $: $.value.type,
-                                    path: [path, $.key],
+                                    path: $d.push({
+                                        'array': path,
+                                        'element': $.key,
+                                    }),
                                     idPath: idPath,
                                     currentName: $.key,
                                 })
@@ -345,7 +364,10 @@ export const $$: A.serialize = ($d) => {
                             $d.dictionaryForEach($.options, ($) => {
                                 doDictionaries({
                                     $: $.value.type,
-                                    path: [path, $.key],
+                                    path: $d.push({
+                                        'array': path,
+                                        'element': $.key,
+                                    }),
                                     idPath: idPath,
                                     currentName: currentName,
                                 })
@@ -359,8 +381,8 @@ export const $$: A.serialize = ($d) => {
         $d.dictionaryForEach($.library['global types'], ($) => {
             doDictionaries({
                 $: $.value.type,
-                path: [$.key],
-                idPath: [],
+                path: pm.wrapRawArray([$.key]),
+                idPath: pm.wrapRawArray([]),
                 currentName: $.key,
             })
         })
