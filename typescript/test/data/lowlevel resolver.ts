@@ -110,7 +110,11 @@ function map_Block($: g_in.T.Block): g_out.T.Block {
 }
 function map_Data__Path($: g_in.T.Data__Path): g_out.T.Data__Path {
     return pl.cc($, ($) => {
-        const temp_variable = $
+        const temp_variable = {
+            'annotation': $.annotation,
+            'key': $.key,
+            'constraint': [FIXME],
+        }
         const temp_tail = $.map(($) => pl.cc($, ($) => {
             switch ($[0]) {
                 case 'call': return ['call', pl.cc($, ($) => {
@@ -123,7 +127,11 @@ function map_Data__Path($: g_in.T.Data__Path): g_out.T.Data__Path {
                         'arguments': temp_arguments,
                     }
                 })]
-                case 'property': return ['property', $]
+                case 'property': return ['property', {
+                    'annotation': $.annotation,
+                    'key': $.key,
+                    'constraint': [FIXME],
+                }]
                 default: return pl.au($[1])
             }
         }))
@@ -377,7 +385,11 @@ function map_Type($: g_in.T.Type): g_out.T.Type {
             })]
             case 'optional': return ['optional', map_Type($)]
             case 'reference': return ['reference', pl.cc($, ($) => {
-                const temp_path = $.map(($) => $)
+                const temp_path = $.map(($) => {
+                    'annotation': $.annotation,
+                    'key': $.key,
+                    'constraint': [FIXME],
+                })
                 return {
                     'path': temp_path,
                 }
@@ -392,8 +404,16 @@ function map_Type($: g_in.T.Type): g_out.T.Type {
 }
 function map_Type__Path($: g_in.T.Type__Path): g_out.T.Type__Path {
     return pl.cc($, ($) => {
-        const temp_namespaces = $.map(($) => $)
-        const temp__ltype = $
+        const temp_namespaces = $.map(($) => {
+            'annotation': $.annotation,
+            'key': $.key,
+            'constraint': [FIXME],
+        })
+        const temp__ltype = {
+            'annotation': $.annotation,
+            'key': $.key,
+            'constraint': [FIXME],
+        }
         const temp_parameters = $.map(($) => map_Type($))
         return {
             'namespaces': temp_namespaces,

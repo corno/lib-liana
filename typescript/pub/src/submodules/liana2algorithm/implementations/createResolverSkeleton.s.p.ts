@@ -87,7 +87,32 @@ export const $$: A.create121Mapper = ($d) => {
                                 $.options.__forEach(() => false, ($, key) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`case '${key}': return ['${key}', `)
-                                        doType($.type, $i)
+                                        const type = $.type
+                                        pl.optional(
+                                            $.constrained,
+                                            ($) => {
+                                                $i.snippet(`{`)
+                                                $i.indent(($i) => {
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`'annotation': $.annotation,`)
+                                                    })
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`'constraint': [FIXME],`)
+                                                    })
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`'type': `)
+                                                        doType(type, $i)
+                                                        $i.snippet(`,`)
+                                                    })
+                                                })
+                                                $i.snippet(`}`)
+
+                                            },
+                                            () => {
+                                                doType($.type, $i)
+
+                                            }
+                                        )
                                         $i.snippet(`]`)
 
                                     })
@@ -105,7 +130,33 @@ export const $$: A.create121Mapper = ($d) => {
                 break
             case 'terminal':
                 pl.ss($, ($) => {
-                    $i.snippet(`$`)
+                    pl.cc($.constrained, ($) => {
+                        switch ($[0]) {
+                            case 'no':
+                                pl.ss($, ($) => {
+                                    $i.snippet(`$`)
+                                })
+                                break
+                            case 'yes':
+                                pl.ss($, ($) => {
+                                    $i.snippet(`{`)
+                                    $i.indent(($i) => {
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'annotation': $.annotation,`)
+                                        })
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'key': $.key,`)
+                                        })
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'constraint': [FIXME],`)
+                                        })
+                                    })
+                                    $i.snippet(`}`)
+                                })
+                                break
+                            default: pl.au($[0])
+                        }
+                    })
                 })
                 break
             default: pl.au($[0])
