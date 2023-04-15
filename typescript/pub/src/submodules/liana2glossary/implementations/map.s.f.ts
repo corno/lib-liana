@@ -173,6 +173,7 @@ export const $$: A.map = ($d) => {
                         }
                     }),
                     'type': $.type.key,
+                    'tail': pm.wrapRawArray([]),
                     'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({}),
                 }]])
                 case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
@@ -186,6 +187,7 @@ export const $$: A.map = ($d) => {
                                     'context': ['local', null],
                                     'arguments': pm.wrapRawDictionary({}),
                                     'type': $['type path']['global type'].key,
+                                    'tail': pm.wrapRawArray([]),
                                 })),
                                 "type": [true, {
                                     'type': mapType2(type, $x),
@@ -222,6 +224,7 @@ export const $$: A.map = ($d) => {
                                 'context': ['local', null],
                                 'arguments': pm.wrapRawDictionary({}),
                                 'type': $['type path']['global type'].key,
+                                'tail': pm.wrapRawArray([]),
                             })),
                             "annotation": createOptionalAnnotation(),
                             // "referencedType": $.path.map(($) => {
@@ -278,6 +281,7 @@ export const $$: A.map = ($d) => {
                                 'context': ['local', null],
                                 'arguments': pm.wrapRawDictionary({}),
                                 'type': $['type path']['global type'].key,
+                                'tail': pm.wrapRawArray([]),
                             })),
                             "type": [true, {
                                 'type': mapType2(type, $x)
