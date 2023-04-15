@@ -13,6 +13,7 @@ export namespace D {
         readonly 'decorateDictionaryEntriesWithKey': g_foreach.SYNC.A.F.DecorateDictionaryEntriesWithKey
         readonly 'filter': g_dictionary.SYNC.A.F.Filter
         readonly 'merge': g_array.SYNC.A.F.Merge
+        readonly 'push': g_array.SYNC.A.F.Push
     }
 }
 

@@ -10,24 +10,6 @@ import * as g_liana2glossary from "../../liana2glossary"
 
 import { A } from "../api.generated"
 
-
-function filter<T, NT>($: pt.Dictionary<T>, $i: ($: T) => pt.OptionalValue<NT>): pt.Dictionary<NT> {
-    const temp: { [key: string]: NT } = {}
-    $.__forEach(() => false, ($, key) => {
-        const res = $i($)
-        pl.optional(
-            res,
-            ($) => {
-                temp[key] = $
-            },
-            () => {
-
-            }
-        )
-    })
-    return pm.wrapRawDictionary(temp)
-}
-
 export const $$: A.map = ($d) => {
     return <Annotation>($: g_this.T.MapData<Annotation>): g_glossary.T.Glossary<g_this.T.OutAnnotation<Annotation>> => {
         const library = $['mapped library']
@@ -68,7 +50,21 @@ export const $$: A.map = ($d) => {
                 'context': ['local', null],
                 'arguments': pm.wrapRawDictionary({}),
                 'type': $y['type path']['global type'].key,
-                'tail': pm.wrapRawArray([]),
+                'tail': $d.push({
+                    'array': $d.merge($y['type path'].path.map(($) => {
+                        return pl.cc($, ($) => {
+                            switch ($[0]) {
+                                case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
+                                case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))
+                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.type.property.key]))
+                                case 'optional': return pl.ss($, ($) => pm.wrapRawArray(["O"]))
+                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.type.option.key]))
+                                default: return pl.au($[0])
+                            }
+                        })
+                    })),
+                    'element': "D",
+                }),
             }))
         }
         function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {

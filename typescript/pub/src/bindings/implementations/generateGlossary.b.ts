@@ -28,6 +28,7 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
             'decorateDictionaryEntriesWithKey': a_foreach.$r.decorateDictionaryEntriesWithKey(),
             'filter': a_dictionary.$r.filter(),
             'merge': a_array.$r.merge(),
+            'push': a_array.$r.push(),
         })($.data)
 
         a_fp.$b.createFile()(

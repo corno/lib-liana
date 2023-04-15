@@ -18,6 +18,7 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
             "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
             "filter": sfunction("dictionary", {}, "Filter"),
             "merge": sfunction("array", {}, "Merge"),
+            "push": sfunction("array", {}, "Push"),
         }, {})),
     }),
 }
