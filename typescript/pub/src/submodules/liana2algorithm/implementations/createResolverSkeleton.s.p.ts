@@ -34,15 +34,25 @@ export const $$: A.create121Mapper = ($d) => {
                 break
             case 'group':
                 pl.ss($, ($) => {
-                    $i.snippet(`({`)
+                    $i.snippet(`pl.cc($, ($) => {`)
                     $i.indent(($i) => {
                         $.properties.__forEach(() => false, ($, key) => {
                             $i.nestedLine(($i) => {
-
-                                $i.snippet(`'${key}': pl.cc($, ($) => `)
+                                $i.snippet(`const temp_${$d.createIdentifier(`${key}`)} = `)
                                 doType($.type, $i)
-                                $i.snippet(`),`)
                             })
+                        })
+                        $i.nestedLine(($i) => {
+                            $i.snippet(`return {`)
+                            $i.indent(($i) => {
+                                $.properties.__forEach(() => false, ($, key) => {
+                                    $i.nestedLine(($i) => {
+
+                                        $i.snippet(`'${key}': temp_${$d.createIdentifier(`${key}`)},`)
+                                    })
+                                })
+                            })
+                            $i.snippet(`}`)
                         })
                     })
                     $i.snippet(`})`)
@@ -79,7 +89,7 @@ export const $$: A.create121Mapper = ($d) => {
                                         $i.snippet(`case '${key}': return ['${key}', `)
                                         doType($.type, $i)
                                         $i.snippet(`]`)
-                                        
+
                                     })
                                 })
                                 $i.nestedLine(($i) => {
@@ -111,7 +121,7 @@ export const $$: A.create121Mapper = ($d) => {
 
         $['global types'].__forEach(() => false, ($, key) => {
             $i.nestedLine(($i) => {
-                $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.${$d.createIdentifier(key)}): g_out.T.Element {`)
+                $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.${$d.createIdentifier(key)}): g_out.T.${$d.createIdentifier(key)} {`)
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
                         $i.snippet(`return `)

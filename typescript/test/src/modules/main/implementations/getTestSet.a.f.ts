@@ -106,6 +106,20 @@ export const $$: A.getTestSet = ($) => {
             }
         }
     )
+    a_fp.$b.createFile()(
+        ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "html resolver.ts"]), ($i) => {
+                g_2algorithm.$a.createResolverSkeleton({
+                    'createIdentifier': a_ts.$r.createIdentifier(),
+                })(html, $i)
+            })
+        },
+        {
+            'logError': () => {
+
+            }
+        }
+    )
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         const res = g_resolve.$a.resolve<Annotation>({

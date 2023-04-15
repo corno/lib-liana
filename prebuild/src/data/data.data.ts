@@ -7,7 +7,7 @@ import { $ as liana } from "./models/liana.data"
 export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
     'outputs': pd.a([
         {
-            'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
+            'path': pd.a([`../../pareto/src/data/submodules/liana/glossary.generated.ts`]),
             'data': {
                 'settings': {
                     'annotations': true,
@@ -31,7 +31,7 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
             },
         },
         {
-            'path': `../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`,
+            'path': pd.a([`../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`]),
             'data': {
                 'settings': {
                     'annotations': true,
