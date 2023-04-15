@@ -2,6 +2,7 @@ import * as pl from 'pareto-core-lib'
 
 
 import * as a_2glossary from "../../submodules/liana2glossary"
+import * as a_array from "res-pareto-array"
 import * as a_build from "res-pareto-build"
 import * as a_coll from "res-pareto-collation"
 import * as a_dictionary from "res-pareto-dictionary"
@@ -26,6 +27,7 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
             'buildDictionary': a_build.$r.buildUnsafeDictionary(),
             'decorateDictionaryEntriesWithKey': a_foreach.$r.decorateDictionaryEntriesWithKey(),
             'filter': a_dictionary.$r.filter(),
+            'merge': a_array.$r.merge(),
         })($.data)
 
         a_fp.$b.createFile()(

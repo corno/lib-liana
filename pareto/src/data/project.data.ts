@@ -26,14 +26,14 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
 
     'dependencies': d({
         "glo-pareto-common": null,
-        "lib-pareto-typescript-project": null,
         "lib-fountain-pen": null,
         "lib-pareto-filesystem": null,
+        "lib-pareto-typescript-project": null,
+        "res-pareto-array": null,
         "res-pareto-build": null,
         "res-pareto-dictionary": null,
         "res-pareto-foreach": null,
         "res-typescript": null,
-        "res-pareto-array": null,
     }),
     'type': ['library', {
         'main': main_,

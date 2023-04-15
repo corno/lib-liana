@@ -25,12 +25,12 @@ function _mapReferenceX<GAnnotation, Type>($: g_common.T.AnnotatedKey<GAnnotatio
         'referencedValue': $2,
     }
 }
-function _mapReference<GAnnotation>($: g_common.T.AnnotatedKey<GAnnotation>): g_common.T.AnnotatedKey<GAnnotation> {
-    return {
-        'annotation': $.annotation,
-        'key': $.key,
-    }
-}
+// function _mapReference<GAnnotation>($: g_common.T.AnnotatedKey<GAnnotation>): g_common.T.AnnotatedKey<GAnnotation> {
+//     return {
+//         'annotation': $.annotation,
+//         'key': $.key,
+//     }
+// }
 
 export const $$: A.resolve = <GAnnotation>($se: {
     readonly onError: g_main.SYNC.I.OnError<GAnnotation>;
@@ -45,7 +45,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 'type': pl.cc($.type, ($) => {
                     switch ($[0]) {
                         case 'parameter': return pl.ss($, ($) => ['parameter', {
-                            'parameter': _mapReference($.parameter),
+                            'parameter': {
+                                'annotation': $.parameter.annotation,
+                                'key': $.parameter.key,
+                                'constraint': [false],
+                            },
                         }])
                         case 'relative': return pl.ss($, ($) => ['relative', null])
                         case 'tbd': return pl.ss($, ($) => ['tbd', null])
@@ -68,7 +72,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 }
             )
             const out: g_liana_resolved.T.Type__Path<GAnnotation> = {
-                'global type': $['global type'],
+                'global type': {
+                    'annotation': $['global type'].annotation,
+                    'key': $['global type'].key,
+                    'constraint': [false],
+                },
                 'path': $.path.map(($) => {
                     switch ($[0]) {
                         case 'array': return pl.ss($, ($) => {
@@ -87,7 +95,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                 },
                                 () => { }
                             )
-                            return ['array', null]
+                            return ['array', {
+                                'annotation': $.annotation,
+                                'type': $.type,
+                                'constraint': [false],
+                            }]
                         })
                         case 'dictionary': return pl.ss($, ($) => {
                             pl.optional(
@@ -105,7 +117,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                 },
                                 () => { }
                             )
-                            return ['dictionary', null]
+                            return ['dictionary', {
+                                'annotation': $.annotation,
+                                'type': $.type,
+                                'constraint': [false],
+                            }]
                         })
                         case 'group': return pl.ss($, ($) => {
                             const grp = $
@@ -121,12 +137,12 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                     } else {
                                         const props = $[1].properties
                                         current = $[1].properties.__getEntry(
-                                            grp.property.key,
+                                            grp.type.property.key,
                                             ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
-                                                    'annotation': grp.property.annotation,
-                                                    'message': `no such property: ${grp.property.key}, (${_keys(props)})`,
+                                                    'annotation': grp.type.property.annotation,
+                                                    'message': `no such property: ${grp.type.property.key}, (${_keys(props)})`,
                                                 })
                                                 return [false]
                                             }
@@ -136,7 +152,15 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                 () => { }
                             )
                             return ['group', {
-                                'property': $.property
+                                'annotation': $.annotation,
+                                'type': {
+                                    'property': {
+                                        'annotation': $.type.property.annotation,
+                                        'key': $.type.property.key,
+                                        'constraint': [false],
+                                    },
+                                },
+                                'constraint': [false],
                             }]
                         })
                         case 'optional': return pl.ss($, ($) => {
@@ -155,7 +179,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                 },
                                 () => { }
                             )
-                            return ['optional', null]
+                            return ['optional', {
+                                'annotation': $.annotation,
+                                'type': $.type,
+                                'constraint': [false],
+                            }]
                         })
                         case 'tagged union': return pl.ss($, ($) => {
                             const tu = $
@@ -171,12 +199,12 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                     } else {
                                         const opts = $[1].options
                                         current = $[1].options.__getEntry(
-                                            tu.option.key,
+                                            tu.type.option.key,
                                             ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
-                                                    'annotation': tu.option.annotation,
-                                                    'message': `no such property: ${tu.option.key}, (${_keys(opts)})`,
+                                                    'annotation': tu.type.option.annotation,
+                                                    'message': `no such property: ${tu.type.option.key}, (${_keys(opts)})`,
                                                 })
                                                 return [false]
                                             }
@@ -186,7 +214,16 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                 () => { }
                             )
                             return ['tagged union', {
-                                'option': $.option
+                                'annotation': $.annotation,
+                                'type': {
+                                    'option': {
+                                        'annotation': $.type.option.annotation,
+                                        'key': $.type.option.key,
+                                        'constraint': [false],
+
+                                    },
+                                },
+                                'constraint': [false],
                             }]
                         })
                         default: return pl.au($[0])
@@ -215,7 +252,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 'constrained': pl.cc($.constrained, ($) => {
                     switch ($[0]) {
                         case 'no': return pl.ss($, ($) => ['no', {
-                            'type': _mapReference($.type)
+                            'type': {
+                                'annotation': $.type.annotation,
+                                'key': $.type.key,
+                                'constraint': [false],
+                            }
                         }])
                         case 'yes': return pl.ss($, ($) => ['yes', mapRef($)])
                         default: return pl.au($[0])
@@ -229,11 +270,20 @@ export const $$: A.resolve = <GAnnotation>($se: {
                     'type': mapType($.type)
                 }])
                 case 'component': return pl.ss($, ($) => ['component', {
-                    'type': _mapReference($.type),
+                    'type': {
+                        'annotation': $.type.annotation,
+                        'key': $.type.key,
+                        'constraint': [false],
+                    },
+                    //'tail': pm.wrapRawArray([]),
                     'context': pl.cc($.context, ($) => {
                         switch ($[0]) {
                             case 'import': return pl.ss($, ($) => ['import', {
-                                'library': $.library,
+                                'library': {
+                                    'annotation': $.library.annotation,
+                                    'key': $.library.key,
+                                    'constraint': [false]
+                                },
                             }])
                             case 'local': return pl.ss($, ($) => ['local', null])
                             default: return pl.au($[0])
@@ -262,7 +312,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                             }])
                             : [false]
                     })),
-                    'default': _mapReference($.default)
+                    'default': {
+                        'annotation': $.default.annotation,
+                        'key': $.default.key,
+                        'constraint': [false],
+                    }
                 }])
                 case 'terminal': return pl.ss($, ($) => ['terminal', mapTerminal($)])
                 default: return pl.au($[0])
@@ -272,7 +326,13 @@ export const $$: A.resolve = <GAnnotation>($se: {
             'imports': $.imports.map(($) => $),
             'terminal types': $['terminal types'].map(($) => $),
             'global types': $['global types'].map(($) => ({
-                'parameters': $.parameters.map(($) => $),
+                'parameters': $.parameters.map(($) => ({
+                    'global type': {
+                        'annotation': $['global type'].annotation,
+                        'key': $['global type'].key,
+                        'constraint': [false],
+                    }
+                })),
                 'type': mapType($.type)
             })),
         }

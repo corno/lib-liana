@@ -60,6 +60,17 @@ export const $$: A.map = ($d) => {
                 () => [false],
             )
         }
+        function createOptionalKeyConstraint(
+            $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>,
+            $y: g_liana.T.Reference<Annotation>
+        ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
+            return createOptionalConstraint($x, () => ({
+                'context': ['local', null],
+                'arguments': pm.wrapRawDictionary({}),
+                'type': $y['type path']['global type'].key,
+                'tail': pm.wrapRawArray([]),
+            }))
+        }
         function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
             return {
                 'namespaces': pl.cc($, ($) => {
@@ -183,12 +194,7 @@ export const $$: A.map = ($d) => {
                             case 'no': return pl.ss($, ($) => ['dictionary', mapType2(type, $x)])
                             case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
                                 "annotation": createOptionalAnnotation(),
-                                "constraint": createOptionalConstraint($x, () => ({
-                                    'context': ['local', null],
-                                    'arguments': pm.wrapRawDictionary({}),
-                                    'type': $['type path']['global type'].key,
-                                    'tail': pm.wrapRawArray([]),
-                                })),
+                                "constraint": createOptionalKeyConstraint($x, $),
                                 "type": [true, {
                                     'type': mapType2(type, $x),
                                 }]
@@ -220,12 +226,7 @@ export const $$: A.map = ($d) => {
                                     'type': ['string', null] //FIX: resolve the right type
                                 }]
                                 : [false],
-                            "constraint": createOptionalConstraint($x, () => ({
-                                'context': ['local', null],
-                                'arguments': pm.wrapRawDictionary({}),
-                                'type': $['type path']['global type'].key,
-                                'tail': pm.wrapRawArray([]),
-                            })),
+                            "constraint": createOptionalKeyConstraint($x, $),
                             "annotation": createOptionalAnnotation(),
                             // "referencedType": $.path.map(($) => {
                             //     switch ($[0]) {
@@ -262,7 +263,7 @@ export const $$: A.map = ($d) => {
                             //         'glossary': "common",
                             //         'arguments': pm.wrapRawDictionary({}),
                             //     }],
-                            //     'type': "Reference",
+                            //     'tail': a([]), 'type': "Reference",
                             //     'arguments': pm.wrapRawDictionary({
                             //         //"ReferencedType": <g_glossary.GTypeReference>['null', null], //FIXME
                             //     }),

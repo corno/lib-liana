@@ -12,7 +12,10 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
                 'settings': {
                     'annotations': true,
                     'datamodel': [true, {
-                        'reference mapping': ['string', null],
+                        'constraints mapping': {
+                            'terminal values': true,
+                            'constraints': [false]
+                        },
                     }],
                     // 'visitor interface': [true, {
                     //     'datamodel': ['internal', null],
@@ -36,7 +39,10 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
                 'settings': {
                     'annotations': true,
                     'datamodel': [true, {
-                        'reference mapping': ['reference and string', null],
+                        'constraints mapping': {
+                            'terminal values': true,
+                            'constraints': [true, ['optional', null]]
+                        },
                     }],
                     // 'visitor interface': [true, {
                     //     'datamodel': ['internal', null],

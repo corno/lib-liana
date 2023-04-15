@@ -174,21 +174,33 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 
 export function grp(prop: string): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['group', {
-        'property': r_imp(prop, 1),
+        'annotation': pd.getLocationInfo(1),
+        'type': {
+            'property': r_imp(prop, 1),
+        },
     }]
 }
 
 export function dict(): g_this.T.Type__Path.path.A<pd.SourceLocation> {
-    return ['dictionary', null]
+    return ['dictionary', {
+        'annotation': pd.getLocationInfo(1),
+        'type': null,
+    }]
 }
 
 export function arr(): g_this.T.Type__Path.path.A<pd.SourceLocation> {
-    return ['array', null]
+    return ['array', {
+        'annotation': pd.getLocationInfo(1),
+        'type': null,
+    }]
 }
 
 export function tu(opt: string): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['tagged union', {
-        'option': r_imp(opt, 1),
+        'annotation': pd.getLocationInfo(1),
+        'type': {
+            'option': r_imp(opt, 1),
+        },
     }]
 }
 
