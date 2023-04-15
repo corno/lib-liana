@@ -56,7 +56,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
                 "switch": option(group({
                     "condition": prop(component("Expression", {})),
-                    "cases": prop(constrainedDictionary(typePath("Type", []), tbd(), group({
+                    "cases": prop(constrainedDictionary(typePath("Type", [tu("tagged union")]), tbd(), group({
                         "block": prop(component("Block", {}))
                     }))),
                     "default": prop(optional(component("Block", {}))),
@@ -77,7 +77,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })))
         })),
         "Data Path": globalType({}, group({
-            "variable": prop(reference(typePath("Variable", []), tbd())),
+            "variable": prop(reference(typePath("Variable Aggregates", []), tbd())),
             "tail": prop(array(taggedUnion({
                 "call": option(group({
                     "function": prop(component("Data Path", {})),
@@ -93,85 +93,105 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "property": prop(component("Expression", {})),
             // })),
         })),
-        "Expression": globalType({}, taggedUnion({
-            //array
-            "array literal": option(array(component("Expression", {}))),
-
-            //object
-            "object literal": option(group({
-                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {}))),
+        "String Expression Or Selection": globalType({}, taggedUnion({
+            "expression": option(component("String Expression", {})),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("string"), ])),
+        })),
+        "String Expression": globalType({}, taggedUnion({
+            "string literal": option(terminal("string literal")),
+        })),
+        "Numerical Expression Or Selection": globalType({}, taggedUnion({
+            "expression": option(component("Numerical Expression", {})),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("number"), ])),
+        })),
+        "Numerical Expression": globalType({}, taggedUnion({
+            "minus": option(group({
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
-
-            //function
-            "function": option(group({
-                "arguments": prop(dictionary(group({}))), //no type info needed
-                //"signature": prop(component("FunctionSignature", {})),
-                "block": prop(component("Block", {})),
+            "plus": option(group({
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
-
-            //boolean
+            "predecrement": option(component("Numerical Expression Or Selection", {})),
+            "preincrement": option(component("Numerical Expression Or Selection", {})),
+            "postdecrement": option(component("Numerical Expression Or Selection", {})),
+            "postincrement": option(component("Numerical Expression Or Selection", {})),
+            "numeric literal": option(terminal("numeric literal")),
+        })),
+        "Boolean Expression Or Selection": globalType({}, taggedUnion({
+            "expression": option(component("Boolean Expression", {})),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("boolean"), ])),
+        })),
+        "Boolean Expression": globalType({}, taggedUnion({
             "and": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Boolean Expression Or Selection", {})),
+                "right hand side": prop(component("Boolean Expression Or Selection", {})),
             })),
             "or": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Boolean Expression Or Selection", {})),
+                "right hand side": prop(component("Boolean Expression Or Selection", {})),
             })),
             "false": option(group({})),
-            "not": option(component("Expression", {})),
+            "not": option(component("Boolean Expression Or Selection", {})),
             "true": option(group({})),
 
             //boolean/string
             "string equals": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("String Expression Or Selection", {})),
+                "right hand side": prop(component("String Expression Or Selection", {})),
             })),
             "string not equals": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("String Expression Or Selection", {})),
+                "right hand side": prop(component("String Expression Or Selection", {})),
             })),
 
             //boolean/number
             "number equals": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
             "number not equals": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
             "greater than": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
             "less than": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {})),
+                "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
+        })),
+        "Expression": globalType({}, taggedUnion({
+            //array
+            "array literal": option(array(component("Expression", {})), typePath("Type", [tu("array"), ])),
+
+            //object
+            "object literal": option(group({
+                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {}))),
+            }), typePath("Type", [tu("group"), ])),
+
+            //function (inline function)
+            "function": option(group({
+                "arguments": prop(dictionary(group({}))), //no type info needed
+                //"signature": prop(component("FunctionSignature", {})),
+                "block": prop(component("Block", {})),
+            }), typePath("Type", [tu("function"), ])),
+
+            //boolean
+            "boolean": option(component("Boolean Expression", {}), typePath("Type", [tu("boolean"), ])),
 
             //numerical
-            "minus": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
-            })),
-            "plus": option(group({
-                "left hand side": prop(component("Expression", {})),
-                "right hand side": prop(component("Expression", {})),
-            })),
-            "predecrement": option(component("Expression", {})),
-            "preincrement": option(component("Expression", {})),
-            "postdecrement": option(component("Expression", {})),
-            "postincrement": option(component("Expression", {})),
-            "numeric literal": option(terminal("numeric literal")),
+            "numerical": option(component("Numerical Expression", {}), typePath("Type", [tu("number"), ])),
 
             //string
-            "string literal": option(terminal("string literal")),
-
+            "string": option(component("String Expression", {}), typePath("Type", [tu("string"), ])),
 
             //any
             "conditional": option(group({
-                "test": prop(component("Expression", {})),
+                "test": prop(component("Boolean Expression Or Selection", {})),
                 "true": prop(component("Expression", {})),
                 "false": prop(component("Expression", {})),
             })),
@@ -181,7 +201,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "parameters": prop(dictionary(component("Expression", {}))),
             // })),
             // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
-            "null": option(group({})),
+            "null": option(group({}), typePath("Type", [tu("null"), ])),
             //"parenthesized": option(component("Expression", {})),
 
 
@@ -196,13 +216,6 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //         })),
             //     })))),
             // })),
-        })),
-        "FunctionSignature": globalType({}, group({
-            "type parameters": prop(component("Type Parameters", {})),
-            "paramerters": prop(dictionary(group({
-                "type": prop(component("Type", {})),
-            }))),
-            "return type": prop(optional(component("Type", {}))),
         })),
         "GlobalTypes": globalType({}, dictionary(group({
             "type": prop(taggedUnion({
@@ -265,11 +278,17 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "array": option(component("Type", {})),
             "boolean": option(group({})),
 
-            "function": option(component("FunctionSignature", {})),
+            "function": option(group({
+                "type parameters": prop(component("Type Parameters", {})),
+                "paramerters": prop(dictionary(group({
+                    "type": prop(component("Type", {})),
+                }))),
+                "return type": prop(optional(component("Type", {}))),
+            })),
             "group": option(group({
-                "properties": prop(group({
+                "properties": prop(dictionary(group({
                     "type": prop(component("Type", {}))
-                }))
+                })))
             })),
 
             // "never": empty("NeverKeyword"),
@@ -315,6 +334,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Variable": globalType({}, group({
             "type": prop(component("Type", {})),
         })),
+        "Variable Aggregates": globalType({}, dictionary(group({}))),
         "Variables": globalType({}, dictionary(group({
             "handle": prop(component("Variable", {})),
             "initializer": prop(component("Expression", {})),

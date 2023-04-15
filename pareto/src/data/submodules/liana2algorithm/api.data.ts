@@ -17,7 +17,8 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
             "createIdentifier": sfunction("ts", {}, "CreateIdentifier")
         }, {})),
         "createResolverSkeleton": algorithm(procedure("this", {}, "CreateResolverSkeleton"), { "Annotation": "Annotation" }, dependent(null, {
-            "createIdentifier": sfunction("ts", {}, "CreateIdentifier")
+            "createIdentifier": sfunction("ts", {}, "CreateIdentifier"),
+            "enrichedDictionaryForEach": procedure("foreach", {}, "EnrichedDictionaryForEach"),
         }, {}))
     }),
 }

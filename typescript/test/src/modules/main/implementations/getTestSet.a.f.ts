@@ -10,7 +10,9 @@ import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
 import * as g_2algorithm from "../../../../../pub/dist/submodules/liana2algorithm"
 import * as g_coll from "res-pareto-collation"
-import * as g_foreach from "res-pareto-foreach"
+
+import * as a_foreach from "res-pareto-foreach"
+import * as a_coll from "res-pareto-collation"
 
 import * as a_fp from "lib-fountain-pen"
 import * as a_ts from "res-typescript"
@@ -112,12 +114,15 @@ export const $$: A.getTestSet = ($) => {
             $i(pm.wrapRawArray([$.testDirectory, "lowlevel resolver.ts"]), ($i) => {
                 g_2algorithm.$a.createResolverSkeleton({
                     'createIdentifier': a_ts.$r.createIdentifier(),
+                    'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+                        'compare': a_coll.$r.localeIsABeforeB(),
+                    })
                 })(d_lowlevel, $i)
             })
         },
         {
             'logError': () => {
-
+                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
             }
         }
     )

@@ -6,29 +6,60 @@ import * as g_fp from "lib-fountain-pen"
 
 import { A } from "../api.generated"
 
-export const $$: A.create121Mapper = ($d) => {
+export const $$: A.createResolverSkeleton = ($d) => {
 
     function doType<Annotation>(
         $: g_liana.T.Type<Annotation>,
+        $x: string,
         $i: g_fp.SYNC.I.Line,
     ) {
         switch ($[0]) {
             case 'array':
                 pl.ss($, ($) => {
                     $i.snippet(`$.map(($) => `)
-                    doType($.type, $i)
+                    doType($.type, $x + ".A", $i)
                     $i.snippet(`)`)
                 })
                 break
             case 'component':
                 pl.ss($, ($) => {
-                    $i.snippet(`map_${$d.createIdentifier($.type.key)}($)`)
+                    $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>($)`)
                 })
                 break
             case 'dictionary':
                 pl.ss($, ($) => {
+                    const type = $.type
                     $i.snippet(`$.map(($) => `)
-                    doType($.type, $i)
+                    pl.cc($.key.constrained, ($) => {
+                        switch ($[0]) {
+                            case 'no':
+                                pl.ss($, ($) => {
+                                    doType(type, $x + `.D`, $i)
+                                })
+                                break
+                            case 'yes':
+                                pl.ss($, ($) => {
+                                    $i.snippet(`({`)
+                                    $i.indent(($i) => {
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'annotation': $.annotation,`)
+                                        })
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'constraint': [false],`)
+                                        })
+                                        $i.nestedLine(($i) => {
+                                            $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                            doType(type, $x + `.D._ltype`, $i)
+                                            $i.snippet(`),`)
+                                        })
+                                    })
+                                    $i.snippet(`})`)
+
+                                })
+                                break
+                            default: pl.au($[0])
+                        }
+                    })
                     $i.snippet(`)`)
                 })
                 break
@@ -38,21 +69,31 @@ export const $$: A.create121Mapper = ($d) => {
                     $i.indent(($i) => {
                         $.properties.__forEach(() => false, ($, key) => {
                             $i.nestedLine(($i) => {
-                                $i.snippet(`const temp_${$d.createIdentifier(`${key}`)} = `)
-                                doType($.type, $i)
+                                $i.snippet(`const temp_${$d.createIdentifier(`${key}`)}: g_out.T.${$x}.${$d.createIdentifier(key)}<Annotation> = pl.cc($['${key}'], ($) => `)
+                                doType($.type, $x + `.${$d.createIdentifier(key)}`, $i)
+                                $i.snippet(`)`)
                             })
                         })
                         $i.nestedLine(($i) => {
-                            $i.snippet(`return {`)
-                            $i.indent(($i) => {
-                                $.properties.__forEach(() => false, ($, key) => {
-                                    $i.nestedLine(($i) => {
+                            $i.snippet(`return `)
+                            $d.enrichedDictionaryForEach($.properties, {
+                                'onEmpty': () => {
+                                    $i.snippet(`null`)
+                                },
+                                'onNotEmpty': ($c) => {
+                                    $i.snippet(`{`)
+                                    $i.indent(($i) => {
+                                        $.properties.__forEach(() => false, ($, key) => {
+                                            $i.nestedLine(($i) => {
 
-                                        $i.snippet(`'${key}': temp_${$d.createIdentifier(`${key}`)},`)
+                                                $i.snippet(`'${key}': temp_${$d.createIdentifier(`${key}`)},`)
+                                            })
+                                        })
                                     })
-                                })
+                                    $i.snippet(`}`)
+
+                                }
                             })
-                            $i.snippet(`}`)
                         })
                     })
                     $i.snippet(`})`)
@@ -66,8 +107,8 @@ export const $$: A.create121Mapper = ($d) => {
                             $i.snippet(`$,`)
                         })
                         $i.nestedLine(($i) => {
-                            $i.snippet(`($) => [true, `)
-                            doType($.type, $i)
+                            $i.snippet(`($): g_out.T.${$x}<Annotation> => [true, `)
+                            doType($.type, $x + `.O`, $i)
                             $i.snippet(`],`)
                         })
                         $i.nestedLine(($i) => {
@@ -79,14 +120,14 @@ export const $$: A.create121Mapper = ($d) => {
                 break
             case 'tagged union':
                 pl.ss($, ($) => {
-                    $i.snippet(`pl.cc($, ($) => {`)
+                    $i.snippet(`pl.cc($, ($): g_out.T.${$x}<Annotation> => {`)
                     $i.indent(($i) => {
                         $i.nestedLine(($i) => {
                             $i.snippet(`switch ($[0]) {`)
                             $i.indent(($i) => {
                                 $.options.__forEach(() => false, ($, key) => {
                                     $i.nestedLine(($i) => {
-                                        $i.snippet(`case '${key}': return ['${key}', `)
+                                        $i.snippet(`case '${key}': return pl.ss($, ($) => ['${key}', `)
                                         const type = $.type
                                         pl.optional(
                                             $.constrained,
@@ -97,28 +138,29 @@ export const $$: A.create121Mapper = ($d) => {
                                                         $i.snippet(`'annotation': $.annotation,`)
                                                     })
                                                     $i.nestedLine(($i) => {
-                                                        $i.snippet(`'constraint': [FIXME],`)
+                                                        $i.snippet(`'constraint': [false],`)
                                                     })
                                                     $i.nestedLine(($i) => {
-                                                        $i.snippet(`'type': `)
-                                                        doType(type, $i)
-                                                        $i.snippet(`,`)
+                                                        $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                                        doType(type, $x + `.${$d.createIdentifier(key)}._ltype`, $i)
+                                                        $i.snippet(`),`)
                                                     })
                                                 })
                                                 $i.snippet(`}`)
 
                                             },
                                             () => {
-                                                doType($.type, $i)
+                                                doType($.type, $x + `.${$d.createIdentifier(key)}`, $i)
 
                                             }
                                         )
                                         $i.snippet(`]`)
+                                        $i.snippet(`)`)
 
                                     })
                                 })
                                 $i.nestedLine(($i) => {
-                                    $i.snippet(`default: return pl.au($[1])`)
+                                    $i.snippet(`default: return pl.au($[0])`)
 
                                 })
                             })
@@ -139,7 +181,7 @@ export const $$: A.create121Mapper = ($d) => {
                                 break
                             case 'yes':
                                 pl.ss($, ($) => {
-                                    $i.snippet(`{`)
+                                    $i.snippet(`({`)
                                     $i.indent(($i) => {
                                         $i.nestedLine(($i) => {
                                             $i.snippet(`'annotation': $.annotation,`)
@@ -148,10 +190,10 @@ export const $$: A.create121Mapper = ($d) => {
                                             $i.snippet(`'key': $.key,`)
                                         })
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'constraint': [FIXME],`)
+                                            $i.snippet(`'constraint': [false],`)
                                         })
                                     })
-                                    $i.snippet(`}`)
+                                    $i.snippet(`})`)
                                 })
                                 break
                             default: pl.au($[0])
@@ -172,11 +214,11 @@ export const $$: A.create121Mapper = ($d) => {
 
         $['global types'].__forEach(() => false, ($, key) => {
             $i.nestedLine(($i) => {
-                $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.${$d.createIdentifier(key)}): g_out.T.${$d.createIdentifier(key)} {`)
+                $i.snippet(`function map_${$d.createIdentifier(key)}<Annotation>($: g_in.T.${$d.createIdentifier(key)}<Annotation>): g_out.T.${$d.createIdentifier(key)}<Annotation> {`)
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
                         $i.snippet(`return `)
-                        doType($.type, $i)
+                        doType($.type, $d.createIdentifier(key), $i)
                     })
                 })
                 $i.snippet(`}`)

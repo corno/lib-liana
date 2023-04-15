@@ -15,6 +15,7 @@ export namespace D {
     
     export type createResolverSkeleton<GAnnotation> = {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
+        readonly 'enrichedDictionaryForEach': g_foreach.SYNC.A.P.EnrichedDictionaryForEach
     }
     
     
