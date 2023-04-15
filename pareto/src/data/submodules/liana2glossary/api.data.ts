@@ -16,6 +16,7 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         "map": algorithm(sfunction("this", {}, "Map"), { "Annotation": "Annotation" }, dependent(null, {
             "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
             "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
+            "filter": sfunction("dictionary", {}, "Filter"),
         }, {})),
     }),
 }

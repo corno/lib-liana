@@ -30,6 +30,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
         "lib-fountain-pen": null,
         "lib-pareto-filesystem": null,
         "res-pareto-build": null,
+        "res-pareto-dictionary": null,
         "res-pareto-foreach": null,
         "res-typescript": null,
         "res-pareto-array": null,

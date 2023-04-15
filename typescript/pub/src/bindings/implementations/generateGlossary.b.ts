@@ -1,13 +1,13 @@
 import * as pl from 'pareto-core-lib'
 
-import * as a_foreach from "res-pareto-foreach"
-import * as a_coll from "res-pareto-collation"
-import * as a_glossary_serialize from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
-import * as a_build from "res-pareto-build"
-import * as a_fp from "lib-fountain-pen"
 
 import * as a_2glossary from "../../submodules/liana2glossary"
-import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as a_build from "res-pareto-build"
+import * as a_coll from "res-pareto-collation"
+import * as a_dictionary from "res-pareto-dictionary"
+import * as a_foreach from "res-pareto-foreach"
+import * as a_fp from "lib-fountain-pen"
+import * as a_glossary_serialize from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
 
 import { A, D } from "../api.generated"
 
@@ -25,6 +25,7 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
         const x = a_2glossary.$a.map<GAnnotation>({
             'buildDictionary': a_build.$r.buildUnsafeDictionary(),
             'decorateDictionaryEntriesWithKey': a_foreach.$r.decorateDictionaryEntriesWithKey(),
+            'filter': a_dictionary.$r.filter(),
         })($.data)
 
         a_fp.$b.createFile()(

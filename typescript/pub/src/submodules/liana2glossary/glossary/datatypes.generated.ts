@@ -51,40 +51,62 @@ export namespace T {
                 
                 export namespace O {
                     
-                    export namespace reference__mapping {
+                    export namespace constraints__mapping {
                         
-                        export namespace reference {}
+                        export namespace constraints {
+                            
+                            export namespace O {
+                                
+                                export namespace optional {}
+                                
+                                export type optional<GAnnotation> = null
+                                
+                                export namespace required {}
+                                
+                                export type required<GAnnotation> = null
+                            }
+                            
+                            export type O<GAnnotation> = 
+                                | ['optional', null]
+                                | ['required', null]
+                        }
                         
-                        export type reference<GAnnotation> = null
+                        export type constraints<GAnnotation> = [ false ] | [ true, 
+                            | ['optional', null]
+                            | ['required', null]
+                        ]
                         
-                        export namespace reference__and__string {}
-                        
-                        export type reference__and__string<GAnnotation> = null
-                        
-                        export namespace _lstring {}
-                        
-                        export type _lstring<GAnnotation> = null
+                        export type terminal__values<GAnnotation> = boolean
                     }
                     
-                    export type reference__mapping<GAnnotation> = 
-                        | ['reference', null]
-                        | ['reference and string', null]
-                        | ['string', null]
+                    export type constraints__mapping<GAnnotation> = {
+                        readonly 'constraints': [ false ] | [ true, 
+                            | ['optional', null]
+                            | ['required', null]
+                        ]
+                        readonly 'terminal values': boolean
+                    }
                 }
                 
                 export type O<GAnnotation> = {
-                    readonly 'reference mapping': 
-                        | ['reference', null]
-                        | ['reference and string', null]
-                        | ['string', null]
+                    readonly 'constraints mapping': {
+                        readonly 'constraints': [ false ] | [ true, 
+                            | ['optional', null]
+                            | ['required', null]
+                        ]
+                        readonly 'terminal values': boolean
+                    }
                 }
             }
             
             export type datamodel<GAnnotation> = [ false ] | [ true, {
-                readonly 'reference mapping': 
-                    | ['reference', null]
-                    | ['reference and string', null]
-                    | ['string', null]
+                readonly 'constraints mapping': {
+                    readonly 'constraints': [ false ] | [ true, 
+                        | ['optional', null]
+                        | ['required', null]
+                    ]
+                    readonly 'terminal values': boolean
+                }
             }]
             
             export namespace visitor__interface {
@@ -138,10 +160,13 @@ export namespace T {
             }
             readonly 'annotations': boolean
             readonly 'datamodel': [ false ] | [ true, {
-                readonly 'reference mapping': 
-                    | ['reference', null]
-                    | ['reference and string', null]
-                    | ['string', null]
+                readonly 'constraints mapping': {
+                    readonly 'constraints': [ false ] | [ true, 
+                        | ['optional', null]
+                        | ['required', null]
+                    ]
+                    readonly 'terminal values': boolean
+                }
             }]
             readonly 'visitor interface': [ false ] | [ true, {
                 readonly 'datamodel': 
@@ -161,10 +186,13 @@ export namespace T {
             }
             readonly 'annotations': boolean
             readonly 'datamodel': [ false ] | [ true, {
-                readonly 'reference mapping': 
-                    | ['reference', null]
-                    | ['reference and string', null]
-                    | ['string', null]
+                readonly 'constraints mapping': {
+                    readonly 'constraints': [ false ] | [ true, 
+                        | ['optional', null]
+                        | ['required', null]
+                    ]
+                    readonly 'terminal values': boolean
+                }
             }]
             readonly 'visitor interface': [ false ] | [ true, {
                 readonly 'datamodel': 

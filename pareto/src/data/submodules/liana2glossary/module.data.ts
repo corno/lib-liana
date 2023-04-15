@@ -29,6 +29,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "build": external("res-pareto-build"),
                 "foreach": external("res-pareto-foreach"),
+                "dictionary": external("res-pareto-dictionary"),
                 "fs": external("res-pareto-filesystem"),
                 "serializeGlossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
                 "this": this_(),

@@ -17,9 +17,10 @@ import * as a_ts from "res-typescript"
 
 const d = pm.wrapRawDictionary
 
-import { $ as html } from "../../../data/html.data"
-import { $ as simpleModel } from "../../../data/liana/model/simpleModel.data"
-import { $ as accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
+import { $ as d_lowlevel } from "../../../data/lowlevel.data"
+import { $ as d_html } from "../../../data/html.data"
+import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
+import { $ as d_accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
 import { A } from "../api.generated"
 
@@ -97,7 +98,7 @@ export const $$: A.getTestSet = ($) => {
             $i(pm.wrapRawArray([$.testDirectory, "html visitor.ts"]), ($i) => {
                 g_2algorithm.$a.create121Mapper({
                     'createIdentifier': a_ts.$r.createIdentifier(),
-                })(html, $i)
+                })(d_html, $i)
             })
         },
         {
@@ -108,10 +109,10 @@ export const $$: A.getTestSet = ($) => {
     )
     a_fp.$b.createFile()(
         ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "html resolver.ts"]), ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "lowlevel resolver.ts"]), ($i) => {
                 g_2algorithm.$a.createResolverSkeleton({
                     'createIdentifier': a_ts.$r.createIdentifier(),
-                })(html, $i)
+                })(d_lowlevel, $i)
             })
         },
         {
@@ -151,8 +152,8 @@ export const $$: A.getTestSet = ($) => {
         // }
     }
     // x(lianaModel)
-    x(accountingModel)
-    x(simpleModel)
+    x(d_accountingModel)
+    x(d_simpleModel)
 
     // const mappedGlossary = gliana2glossary.$a.({
     //     'mappedModel': {

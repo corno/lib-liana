@@ -31,10 +31,13 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "settings": member(group({
                     "annotations": member(boolean()),
                     "datamodel": member(optional(group({
-                        "reference mapping": member(taggedUnion({
-                            "string": group({}),
-                            "reference": group({}),
-                            "reference and string": group({}),
+                        
+                        "constraints mapping": member(group({
+                            "terminal values": member(boolean()),
+                            "constraints": member(optional(taggedUnion({
+                                "optional": group({}),
+                                "required": group({}),
+                            }))),
                         })),
                     }))),
                     "visitor interface": member(optional(group({
