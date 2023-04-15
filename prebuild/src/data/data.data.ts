@@ -10,8 +10,8 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
             'path': `../../pareto/src/data/submodules/liana/glossary.generated.ts`,
             'data': {
                 'settings': {
+                    'annotations': true,
                     'datamodel': [true, {
-                        'annotations': true,
                         'reference mapping': ['string', null],
                     }],
                     // 'visitor interface': [true, {
@@ -34,8 +34,8 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
             'path': `../../pareto/src/data/submodules/liana_resolved/glossary.generated.ts`,
             'data': {
                 'settings': {
+                    'annotations': true,
                     'datamodel': [true, {
-                        'annotations': true,
                         'reference mapping': ['reference and string', null],
                     }],
                     // 'visitor interface': [true, {

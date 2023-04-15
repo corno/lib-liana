@@ -45,6 +45,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "MapLiana2States": sfunction(externalTypeReference("algorithm", "States"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
             "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
             "Create121Mapper": procedure(data(externalTypeReference("liana", "Type Library")), sExternalInterfaceReference("fp", "Block")),
+            "CreateResolverSkeleton": procedure(data(externalTypeReference("liana", "Type Library")), sExternalInterfaceReference("fp", "Block")),
         }),
     },
 
