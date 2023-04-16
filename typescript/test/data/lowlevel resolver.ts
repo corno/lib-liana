@@ -5,14 +5,18 @@ import * as pt from 'pareto-core-types'
 import * as g_in from ".."
 import * as g_out from ".."
 
-function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annotation> {
+function map_Block<Annotation>($: g_in.T.Block<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.Block<Annotation> {
     return pl.cc($, ($) => {
         const temp_variables: g_out.T.Block.variables<Annotation> = pl.cc($['variables'], ($) => map_Variables<Annotation>($))
         const temp_statements: g_out.T.Block.statements<Annotation> = pl.cc($['statements'], ($) => $.map(($) => pl.cc($, ($): g_out.T.Block.statements.A<Annotation> => {
             switch ($[0]) {
-                case 'block': return pl.ss($, ($) => ['block', map_Block<Annotation>($)])
+                case 'block': return pl.ss($, ($) => ['block', map_Block<Annotation>($, {
+                    'variables': [false],
+                })])
                 case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
-                    const temp__lfunction: g_out.T.Block.statements.A.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Expression<Annotation>($, {
+                    const temp__lfunction: g_out.T.Block.statements.A.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>($, {
                         'type': [false],
                     }))
                     const temp_type__arguments: g_out.T.Block.statements.A.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type<Annotation>($))
@@ -33,7 +37,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     const temp_incrementer: g_out.T.Block.statements.A._lfor.incrementer<Annotation> = pl.cc($['incrementer'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
                     }))
-                    const temp_block: g_out.T.Block.statements.A._lfor.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($))
+                    const temp_block: g_out.T.Block.statements.A._lfor.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($, {
+                        'variables': [false],
+                    }))
                     return {
                         'initializer': temp_initializer,
                         'condition': temp_condition,
@@ -45,10 +51,14 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     const temp_condition: g_out.T.Block.statements.A._lif.condition<Annotation> = pl.cc($['condition'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
                     }))
-                    const temp_then: g_out.T.Block.statements.A._lif.then<Annotation> = pl.cc($['then'], ($) => map_Block<Annotation>($))
+                    const temp_then: g_out.T.Block.statements.A._lif.then<Annotation> = pl.cc($['then'], ($) => map_Block<Annotation>($, {
+                        'variables': [false],
+                    }))
                     const temp__lelse: g_out.T.Block.statements.A._lif._lelse<Annotation> = pl.cc($['else'], ($) => pl.optional(
                         $,
-                        ($): g_out.T.Block.statements.A._lif._lelse<Annotation> => [true, map_Block<Annotation>($)],
+                        ($): g_out.T.Block.statements.A._lif._lelse<Annotation> => [true, map_Block<Annotation>($, {
+                            'variables': [false],
+                        })],
                         () => [false],
                     ))
                     return {
@@ -58,7 +68,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     }
                 })])
                 case 'minus assign': return pl.ss($, ($) => ['minus assign', pl.cc($, ($) => {
-                    const temp_variable: g_out.T.Block.statements.A.minus__assign.variable<Annotation> = pl.cc($['variable'], ($) => map_Data__Path<Annotation>($))
+                    const temp_variable: g_out.T.Block.statements.A.minus__assign.variable<Annotation> = pl.cc($['variable'], ($) => map_Data__Path<Annotation>($, {
+                        'variables': [false],
+                    }))
                     const temp_right__hand__side: g_out.T.Block.statements.A.minus__assign.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
                     }))
@@ -68,7 +80,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     }
                 })])
                 case 'plus assign': return pl.ss($, ($) => ['plus assign', pl.cc($, ($) => {
-                    const temp_variable: g_out.T.Block.statements.A.plus__assign.variable<Annotation> = pl.cc($['variable'], ($) => map_Data__Path<Annotation>($))
+                    const temp_variable: g_out.T.Block.statements.A.plus__assign.variable<Annotation> = pl.cc($['variable'], ($) => map_Data__Path<Annotation>($, {
+                        'variables': [false],
+                    }))
                     const temp_right__hand__side: g_out.T.Block.statements.A.plus__assign.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
                     }))
@@ -99,7 +113,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                             'annotation': $.annotation,
                             'constraint': constraint,
                             'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                                const temp_block: g_out.T.Block.statements.A._lswitch.cases.D._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($))
+                                const temp_block: g_out.T.Block.statements.A._lswitch.cases.D._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($, {
+                                    'variables': [false],
+                                }))
                                 return {
                                     'block': temp_block,
                                 }
@@ -108,7 +124,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     })))
                     const temp__ldefault: g_out.T.Block.statements.A._lswitch._ldefault<Annotation> = pl.cc($['default'], ($) => pl.optional(
                         $,
-                        ($): g_out.T.Block.statements.A._lswitch._ldefault<Annotation> => [true, map_Block<Annotation>($)],
+                        ($): g_out.T.Block.statements.A._lswitch._ldefault<Annotation> => [true, map_Block<Annotation>($, {
+                            'variables': [false],
+                        })],
                         () => [false],
                     ))
                     return {
@@ -121,7 +139,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
                     const temp_condition: g_out.T.Block.statements.A._lwhile.condition<Annotation> = pl.cc($['condition'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
                     }))
-                    const temp_block: g_out.T.Block.statements.A._lwhile.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($))
+                    const temp_block: g_out.T.Block.statements.A._lwhile.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($, {
+                        'variables': [false],
+                    }))
                     return {
                         'condition': temp_condition,
                         'block': temp_block,
@@ -136,7 +156,9 @@ function map_Block<Annotation>($: g_in.T.Block<Annotation>): g_out.T.Block<Annot
         }
     })
 }
-function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>): g_out.T.Data__Path<Annotation> {
+function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.Data__Path<Annotation> {
     return pl.cc($, ($) => {
         const temp_variable: g_out.T.Data__Path.variable<Annotation> = pl.cc($['variable'], ($) => pl.cc($, ($) => {
             const constraint: pt.OptionalValue<g_out.T.Variable__Aggregates.D<Annotation>> = [false]
@@ -149,7 +171,9 @@ function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>): g_out.T.D
         const temp_tail: g_out.T.Data__Path.tail<Annotation> = pl.cc($['tail'], ($) => $.map(($) => pl.cc($, ($): g_out.T.Data__Path.tail.A<Annotation> => {
             switch ($[0]) {
                 case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
-                    const temp__lfunction: g_out.T.Data__Path.tail.A.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>($))
+                    const temp__lfunction: g_out.T.Data__Path.tail.A.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>($, {
+                        'variables': [false],
+                    }))
                     const temp_type__arguments: g_out.T.Data__Path.tail.A.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type<Annotation>($))
                     const temp_arguments: g_out.T.Data__Path.tail.A.call.arguments<Annotation> = pl.cc($['arguments'], ($) => map_Expression<Annotation>($, {
                         'type': [false],
@@ -177,36 +201,22 @@ function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>): g_out.T.D
         }
     })
 }
-function select_Data__Path<Annotation>($: g_out.T.Data__Path<Annotation>): g_out.T.Type<Annotation> {
-    return pl.cc($['tail'], ($) => pl.optional(
-        $d.getLastElement($),
-        ($) => pl.cc($, ($) => {
-            switch ($[0]) {
-                case 'call': return pl.ss($, ($) => pl.cc($['function'], ($) => select_Data__Path($)))
-                case 'property': return pl.ss($, ($) => $.constraint)
-                default: return pl.au($[0])
-            }
-        }),
-        () => pl.cc($['variable'], ($) => $.constraint),
-    ))
-}
-function map_String__Expression__Or__Selection<Annotation>($: g_in.T.String__Expression__Or__Selection<Annotation>): g_out.T.String__Expression__Or__Selection<Annotation> {
+function map_String__Expression__Or__Selection<Annotation>($: g_in.T.String__Expression__Or__Selection<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.String__Expression__Or__Selection<Annotation> {
     return pl.cc($, ($): g_out.T.String__Expression__Or__Selection<Annotation> => {
         switch ($[0]) {
             case 'expression': return pl.ss($, ($) => ['expression', map_String__Expression<Annotation>($)])
-            case 'selection': return pl.ss($, ($) => ['selection', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lstring<Annotation>> = [false]
-                return {
-                    'annotation': $.annotation,
-                    'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_Data__Path<Annotation>($)),
-                }
+            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>($, {
+                'variables': [false],
             })])
             default: return pl.au($[0])
         }
     })
 }
-function map_String__Expression<Annotation>($: g_in.T.String__Expression<Annotation>): g_out.T.String__Expression<Annotation> {
+function map_String__Expression<Annotation>($: g_in.T.String__Expression<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.String__Expression<Annotation> {
     return pl.cc($, ($): g_out.T.String__Expression<Annotation> => {
         switch ($[0]) {
             case 'string literal': return pl.ss($, ($) => ['string literal', $])
@@ -214,80 +224,113 @@ function map_String__Expression<Annotation>($: g_in.T.String__Expression<Annotat
         }
     })
 }
-function map_Numerical__Expression__Or__Selection<Annotation>($: g_in.T.Numerical__Expression__Or__Selection<Annotation>): g_out.T.Numerical__Expression__Or__Selection<Annotation> {
+function map_Numerical__Expression__Or__Selection<Annotation>($: g_in.T.Numerical__Expression__Or__Selection<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.Numerical__Expression__Or__Selection<Annotation> {
     return pl.cc($, ($): g_out.T.Numerical__Expression__Or__Selection<Annotation> => {
         switch ($[0]) {
-            case 'expression': return pl.ss($, ($) => ['expression', map_Numerical__Expression<Annotation>($)])
-            case 'selection': return pl.ss($, ($) => ['selection', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lnumber<Annotation>> = [false]
-                return {
-                    'annotation': $.annotation,
-                    'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_Data__Path<Annotation>($)),
-                }
+            case 'expression': return pl.ss($, ($) => ['expression', map_Numerical__Expression<Annotation>($, {
+                'variables': [false],
+            })])
+            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>($, {
+                'variables': [false],
             })])
             default: return pl.au($[0])
         }
     })
 }
-function map_Numerical__Expression<Annotation>($: g_in.T.Numerical__Expression<Annotation>): g_out.T.Numerical__Expression<Annotation> {
+function map_Numerical__Expression<Annotation>($: g_in.T.Numerical__Expression<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.Numerical__Expression<Annotation> {
     return pl.cc($, ($): g_out.T.Numerical__Expression<Annotation> => {
         switch ($[0]) {
             case 'minus': return pl.ss($, ($) => ['minus', pl.cc($, ($) => {
-                const temp_left__hand__side: g_out.T.Numerical__Expression.minus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($))
-                const temp_right__hand__side: g_out.T.Numerical__Expression.minus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($))
+                const temp_left__hand__side: g_out.T.Numerical__Expression.minus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
+                const temp_right__hand__side: g_out.T.Numerical__Expression.minus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
                 return {
                     'left hand side': temp_left__hand__side,
                     'right hand side': temp_right__hand__side,
                 }
             })])
             case 'plus': return pl.ss($, ($) => ['plus', pl.cc($, ($) => {
-                const temp_left__hand__side: g_out.T.Numerical__Expression.plus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($))
-                const temp_right__hand__side: g_out.T.Numerical__Expression.plus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($))
+                const temp_left__hand__side: g_out.T.Numerical__Expression.plus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
+                const temp_right__hand__side: g_out.T.Numerical__Expression.plus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
                 return {
                     'left hand side': temp_left__hand__side,
                     'right hand side': temp_right__hand__side,
                 }
             })])
-            case 'predecrement': return pl.ss($, ($) => ['predecrement', map_Numerical__Expression__Or__Selection<Annotation>($)])
-            case 'preincrement': return pl.ss($, ($) => ['preincrement', map_Numerical__Expression__Or__Selection<Annotation>($)])
-            case 'postdecrement': return pl.ss($, ($) => ['postdecrement', map_Numerical__Expression__Or__Selection<Annotation>($)])
-            case 'postincrement': return pl.ss($, ($) => ['postincrement', map_Numerical__Expression__Or__Selection<Annotation>($)])
+            case 'predecrement': return pl.ss($, ($) => ['predecrement', map_Numerical__Expression__Or__Selection<Annotation>($, {
+                'variables': [false],
+            })])
+            case 'preincrement': return pl.ss($, ($) => ['preincrement', map_Numerical__Expression__Or__Selection<Annotation>($, {
+                'variables': [false],
+            })])
+            case 'postdecrement': return pl.ss($, ($) => ['postdecrement', map_Numerical__Expression__Or__Selection<Annotation>($, {
+                'variables': [false],
+            })])
+            case 'postincrement': return pl.ss($, ($) => ['postincrement', map_Numerical__Expression__Or__Selection<Annotation>($, {
+                'variables': [false],
+            })])
             case 'numeric literal': return pl.ss($, ($) => ['numeric literal', $])
             default: return pl.au($[0])
         }
     })
 }
-function map_Boolean__Expression__Or__Selection<Annotation>($: g_in.T.Boolean__Expression__Or__Selection<Annotation>): g_out.T.Boolean__Expression__Or__Selection<Annotation> {
+function map_Boolean__Expression__Or__Selection<Annotation>($: g_in.T.Boolean__Expression__Or__Selection<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Variable__Aggregates<Annotation>>
+}): g_out.T.Boolean__Expression__Or__Selection<Annotation> {
     return pl.cc($, ($): g_out.T.Boolean__Expression__Or__Selection<Annotation> => {
         switch ($[0]) {
-            case 'expression': return pl.ss($, ($) => ['expression', map_Boolean__Expression<Annotation>($)])
+            case 'expression': return pl.ss($, ($) => ['expression', map_Boolean__Expression<Annotation>($, {
+                'variables': [false],
+            })])
             case 'selection': return pl.ss($, ($) => ['selection', pl.cc($, ($) => {
                 const constraint: pt.OptionalValue<g_out.T.Type._lboolean<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_Data__Path<Annotation>($)),
+                    'type': pl.cc($.type, ($) => map_Data__Path<Annotation>($, {
+                        'variables': [false],
+                    })),
                 }
             })])
             default: return pl.au($[0])
         }
     })
 }
-function map_Boolean__Expression<Annotation>($: g_in.T.Boolean__Expression<Annotation>): g_out.T.Boolean__Expression<Annotation> {
+function map_Boolean__Expression<Annotation>($: g_in.T.Boolean__Expression<Annotation>, $x: {
+    'variables': () => pt.OptionalValue<g_out.T.Type<Annotation>>
+}): g_out.T.Boolean__Expression<Annotation> {
     return pl.cc($, ($): g_out.T.Boolean__Expression<Annotation> => {
         switch ($[0]) {
             case 'and': return pl.ss($, ($) => ['and', pl.cc($, ($) => {
-                const temp_left__hand__side: g_out.T.Boolean__Expression.and.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($))
-                const temp_right__hand__side: g_out.T.Boolean__Expression.and.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($))
+                const temp_left__hand__side: g_out.T.Boolean__Expression.and.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
+                const temp_right__hand__side: g_out.T.Boolean__Expression.and.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
                 return {
                     'left hand side': temp_left__hand__side,
                     'right hand side': temp_right__hand__side,
                 }
             })])
             case 'or': return pl.ss($, ($) => ['or', pl.cc($, ($) => {
-                const temp_left__hand__side: g_out.T.Boolean__Expression.or.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($))
-                const temp_right__hand__side: g_out.T.Boolean__Expression.or.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($))
+                const temp_left__hand__side: g_out.T.Boolean__Expression.or.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
+                const temp_right__hand__side: g_out.T.Boolean__Expression.or.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>($, {
+                    'variables': [false],
+                }))
                 return {
                     'left hand side': temp_left__hand__side,
                     'right hand side': temp_right__hand__side,
@@ -296,7 +339,9 @@ function map_Boolean__Expression<Annotation>($: g_in.T.Boolean__Expression<Annot
             case 'false': return pl.ss($, ($) => ['false', pl.cc($, ($) => {
                 return null
             })])
-            case 'not': return pl.ss($, ($) => ['not', map_Boolean__Expression__Or__Selection<Annotation>($)])
+            case 'not': return pl.ss($, ($) => ['not', map_Boolean__Expression__Or__Selection<Annotation>($, {
+                'variables': [false],
+            })])
             case 'true': return pl.ss($, ($) => ['true', pl.cc($, ($) => {
                 return null
             })])
@@ -353,7 +398,7 @@ function map_Boolean__Expression<Annotation>($: g_in.T.Boolean__Expression<Annot
     })
 }
 function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
-    'type': pt.OptionalValue<g_out.T.Type<Annotation>>
+    'type': () => pt.OptionalValue<g_out.T.Type<Annotation>>
 }): g_out.T.Expression<Annotation> {
     return pl.cc($, ($): g_out.T.Expression<Annotation> => {
         switch ($[0]) {
@@ -398,7 +443,9 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                         const temp_arguments: g_out.T.Expression._lfunction._ltype.arguments<Annotation> = pl.cc($['arguments'], ($) => $.map(($) => pl.cc($, ($) => {
                             return null
                         })))
-                        const temp_block: g_out.T.Expression._lfunction._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($))
+                        const temp_block: g_out.T.Expression._lfunction._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($, {
+                            'variables': [false],
+                        }))
                         return {
                             'arguments': temp_arguments,
                             'block': temp_block,
@@ -411,7 +458,9 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_Boolean__Expression<Annotation>($)),
+                    'type': pl.cc($.type, ($) => map_Boolean__Expression<Annotation>($, {
+                        'variables': [false],
+                    })),
                 }
             })])
             case 'numerical': return pl.ss($, ($) => ['numerical', pl.cc($, ($) => {
@@ -419,7 +468,9 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_Numerical__Expression<Annotation>($)),
+                    'type': pl.cc($.type, ($) => map_Numerical__Expression<Annotation>($, {
+                        'variables': [false],
+                    })),
                 }
             })])
             case 'string': return pl.ss($, ($) => ['string', pl.cc($, ($) => {
@@ -427,7 +478,9 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
-                    'type': pl.cc($.type, ($) => map_String__Expression<Annotation>($)),
+                    'type': pl.cc($.type, ($) => map_String__Expression<Annotation>($, {
+                        'variables': [false],
+                    })),
                 }
             })])
             case 'conditional': return pl.ss($, ($) => ['conditional', pl.cc($, ($) => {
@@ -454,7 +507,9 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                     })),
                 }
             })])
-            case 'symbol': return pl.ss($, ($) => ['symbol', map_Data__Path<Annotation>($)])
+            case 'symbol': return pl.ss($, ($) => ['symbol', map_Data__Path<Annotation>($, {
+                'variables': [false],
+            })])
             default: return pl.au($[0])
         }
     })
@@ -504,27 +559,19 @@ function map_Symbols<Annotation>($: g_in.T.Symbols<Annotation>): g_out.T.Symbols
                     'symbols': temp_symbols,
                 }
             })])
-            case 'variable': return pl.ss($, ($) => ['variable', pl.cc($, ($) => {
-                return null
-            })])
-            case 'function': return pl.ss($, ($) => ['function', pl.cc($, ($) => {
-                const temp_signature: g_out.T.Symbols.D._lfunction.signature<Annotation> = pl.cc($['signature'], ($) => pl.cc($, ($) => {
-                    const temp_type__path: g_out.T.Symbols.D._lfunction.signature.type__path<Annotation> = pl.cc($['type path'], ($) => map_Type__Path<Annotation>($))
-                    return {
-                        'type path': temp_type__path,
-                    }
-                }))
-                const temp_block: g_out.T.Symbols.D._lfunction.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>($))
+            case 'symbol': return pl.ss($, ($) => ['symbol', pl.cc($, ($) => {
+                const temp_type__path: g_out.T.Symbols.D._lsymbol.type__path<Annotation> = pl.cc($['type path'], ($) => map_Type__Path<Annotation>($))
                 return {
-                    'signature': temp_signature,
-                    'block': temp_block,
+                    'type path': temp_type__path,
                 }
             })])
             default: return pl.au($[0])
         }
     }))
 }
-function map_Type<Annotation>($: g_in.T.Type<Annotation>): g_out.T.Type<Annotation> {
+function map_Type<Annotation>($: g_in.T.Type<Annotation>, $x: {
+    'globalTypes': () => pt.OptionalValue<g_out.T.Global__Types<Annotation>>
+}): g_out.T.Type<Annotation> {
     return pl.cc($, ($): g_out.T.Type<Annotation> => {
         switch ($[0]) {
             case 'array': return pl.ss($, ($) => ['array', map_Type<Annotation>($)])
@@ -589,7 +636,9 @@ function map_Type<Annotation>($: g_in.T.Type<Annotation>): g_out.T.Type<Annotati
         }
     })
 }
-function map_Type__Path<Annotation>($: g_in.T.Type__Path<Annotation>): g_out.T.Type__Path<Annotation> {
+function map_Type__Path<Annotation>($: g_in.T.Type__Path<Annotation>, $x: {
+    'global types': () => pt.OptionalValue<g_out.T.Global__Types<Annotation>>
+}): g_out.T.Type__Path<Annotation> {
     return pl.cc($, ($) => {
         const temp_namespaces: g_out.T.Type__Path.namespaces<Annotation> = pl.cc($['namespaces'], ($) => $.map(($) => pl.cc($, ($) => {
             const constraint: pt.OptionalValue<g_out.T.GlobalTypes.D<Annotation>> = [false]
@@ -615,7 +664,9 @@ function map_Type__Path<Annotation>($: g_in.T.Type__Path<Annotation>): g_out.T.T
         }
     })
 }
-function map_Type__Parameters<Annotation>($: g_in.T.Type__Parameters<Annotation>): g_out.T.Type__Parameters<Annotation> {
+function map_Type__Parameters<Annotation>($: g_in.T.Type__Parameters<Annotation>, $x: {
+    'global types': () => pt.OptionalValue<g_out.T.Global__Types<Annotation>>
+}): g_out.T.Type__Parameters<Annotation> {
     return $.map(($) => map_Type<Annotation>($))
 }
 function map_Variable<Annotation>($: g_in.T.Variable<Annotation>): g_out.T.Variable<Annotation> {
@@ -628,7 +679,23 @@ function map_Variable<Annotation>($: g_in.T.Variable<Annotation>): g_out.T.Varia
 }
 function map_Variable__Aggregates<Annotation>($: g_in.T.Variable__Aggregates<Annotation>): g_out.T.Variable__Aggregates<Annotation> {
     return $.map(($) => pl.cc($, ($) => {
-        return null
+        const temp_source: g_out.T.Variable__Aggregates.D.source<Annotation> = pl.cc($['source'], ($) => pl.cc($, ($): g_out.T.Variable__Aggregates.D.source<Annotation> => {
+            switch ($[0]) {
+                case 'parameter': return pl.ss($, ($) => ['parameter', pl.cc($, ($) => {
+                    return null
+                })])
+                case 'variable': return pl.ss($, ($) => ['variable', pl.cc($, ($) => {
+                    return null
+                })])
+                case 'aggregate': return pl.ss($, ($) => ['aggregate', pl.cc($, ($) => {
+                    return null
+                })])
+                default: return pl.au($[0])
+            }
+        }))
+        return {
+            'source': temp_source,
+        }
     }))
 }
 function map_Variables<Annotation>($: g_in.T.Variables<Annotation>): g_out.T.Variables<Annotation> {

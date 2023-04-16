@@ -120,6 +120,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "global types": prop(dictionary(group({
                 "parameters": prop(dictionary(group({
                     "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
+                    "computed": prop(taggedUnion({
+                        "no": option(group({})),
+                        "yes": option(group({})),
+                    })),
                 }))),
                 "type": prop(component("Type", {})),
                 "result": prop(optional(group({

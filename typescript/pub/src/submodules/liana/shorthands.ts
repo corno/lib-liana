@@ -271,12 +271,15 @@ export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLoc
     }]
 }
 
-export function tparameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function tparameter(param: string, computed: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
         'type': {
             'key': param,
             'annotation': pd.getLocationInfo(1),
-        }
+        },
+        'computed': computed
+            ? ['yes', null]
+            : ['no', null]
     }
 }
 

@@ -318,7 +318,23 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.indent(($i) => {
                             $c(($) => {
                                 $i.nestedLine(($i) => {
-                                    $i.snippet(`'${$.key}': pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['type'].key)}<Annotation>>`)
+                                    $i.snippet(`'${$.key}': `)
+                                    pl.cc($.value.computed, ($) => {
+                                        switch ($[0]) {
+                                            case 'no':
+                                                pl.ss($, ($) => {
+
+                                                })
+                                                break
+                                            case 'yes':
+                                                pl.ss($, ($) => {
+                                                    $i.snippet(`() => `)
+                                                })
+                                                break
+                                            default: pl.au($[0])
+                                        }
+                                    })
+                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['type'].key)}<Annotation>>`)
                                 })
                             })
                         })
@@ -398,12 +414,12 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                     $i.snippet(`case '${key}': return pl.ss($, ($) => `)
                                                                     doSelection($, $i)
                                                                     $i.snippet(`)`)
-                            
+
                                                                 })
                                                             })
                                                             $i.nestedLine(($i) => {
                                                                 $i.snippet(`default: return pl.au($[0])`)
-                            
+
                                                             })
                                                         })
                                                         $i.snippet(`}`)

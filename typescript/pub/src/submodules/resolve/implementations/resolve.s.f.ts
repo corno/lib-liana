@@ -371,6 +371,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
             'terminal types': $['terminal types'].map(($) => $),
             'global types': $['global types'].map(($) => ({
                 'parameters': $.parameters.map(($) => ({
+                    'computed': $.computed,
                     'type': {
                         'annotation': $['type'].annotation,
                         'key': $['type'].key,
