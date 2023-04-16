@@ -70,7 +70,23 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             $i.indent(($i) => {
                                 $c(($) => {
                                     $i.nestedLine(($i) => {
-                                        $i.snippet(`'${$.key}': [false],`)
+                                        $i.snippet(`'${$.key}': `)
+                                        pl.cc($.value, ($) => {
+                                            switch ($[0]) {
+                                                case 'no':
+                                                    pl.ss($, ($) => {
+
+                                                    })
+                                                    break
+                                                case 'yes':
+                                                    pl.ss($, ($) => {
+                                                        $i.snippet(`() => `)
+                                                    })
+                                                    break
+                                                default: pl.au($[0])
+                                            }
+                                        })
+                                        $i.snippet(`[false],`)
                                     })
                                 })
                             })
