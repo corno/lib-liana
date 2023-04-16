@@ -137,7 +137,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": prop(component("Type", {})),
                 "result": prop(optional(group({
                     "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
-                    "selection": prop(component("Selection", { "type": null })),
+                    "selection": prop(component("Selection", { })),
                 })))
             }))),
         })),
