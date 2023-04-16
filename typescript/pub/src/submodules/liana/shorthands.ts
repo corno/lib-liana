@@ -310,14 +310,20 @@ export function reference(
     }]
 }
 
-export function component(type: string, args: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
+export function argument(computed: boolean): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return computed
+        ? ['yes', null]
+        : ['no', null]
+}
+
+export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['local', null],
         'type': r_imp(type, 1),
         'arguments': pd.d(args)
     }]
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
+export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['import', {
             'library': r_imp(library, 1)

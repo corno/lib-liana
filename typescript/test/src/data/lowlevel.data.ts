@@ -2,6 +2,7 @@ import * as pd from 'pareto-core-data'
 
 import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
+    argument,
     array,
     component, constrainedDictionary, dictionary, globalType, group,
     grp,
@@ -21,51 +22,51 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     }),
     'global types': d({
         "Block": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
 
         }, group({
             "variables": prop(component("Variables", {})),
             "statements": prop(array(taggedUnion({
-                "block": option(component("Block", { "variables": null })),
+                "block": option(component("Block", { "variables": argument(false) })),
                 // "break": composite("BreakStatement", optional(component("identifier"))),
                 "call": option(group({
-                    "function": prop(component("Data Path", { "type": null })),
-                    "type arguments": prop(component("Type", {})),
-                    "arguments": prop(component("Expression", { "type": null })),
+                    "function": prop(component("Data Path", { "type": argument(false) })),
+                    "type arguments": prop(component("Type", { "globalTypes": argument(false) })),
+                    "arguments": prop(component("Expression", { "type": argument(false) })),
                 })),
                 "for": option(group({
                     "initializer": prop(component("Variables", {})),
-                    "condition": prop(component("Expression", { "type": null })),
-                    "incrementer": prop(component("Expression", { "type": null })),
-                    "block": prop(component("Block", { "variables": null })),
+                    "condition": prop(component("Expression", { "type": argument(false) })),
+                    "incrementer": prop(component("Expression", { "type": argument(false) })),
+                    "block": prop(component("Block", { "variables": argument(false) })),
                 })),
                 "if": option(group({
-                    "condition": prop(component("Expression", { "type": null })),
-                    "then": prop(component("Block", { "variables": null })),
-                    "else": prop(optional(component("Block", { "variables": null }))),
+                    "condition": prop(component("Expression", { "type": argument(false) })),
+                    "then": prop(component("Block", { "variables": argument(false) })),
+                    "else": prop(optional(component("Block", { "variables": argument(false) }))),
                 })),
                 "minus assign": option(group({
-                    "variable": prop(component("Data Path", { "variables": null })),
-                    "right hand side": prop(component("Expression", { "type": null })),
+                    "variable": prop(component("Data Path", { "variables": argument(false) })),
+                    "right hand side": prop(component("Expression", { "type": argument(false) })),
                 })),
                 "plus assign": option(group({
-                    "variable": prop(component("Data Path", { "variables": null })),
-                    "right hand side": prop(component("Expression", { "type": null })),
+                    "variable": prop(component("Data Path", { "variables": argument(false) })),
+                    "right hand side": prop(component("Expression", { "type": argument(false) })),
                 })),
                 // "labeled": composite("LabeledStatement", group({
                 //     "label": member(component("identifier")),
                 //     "statement": member(component("statement")),
                 // })),
                 "return": option(group({
-                    "expression": prop(optional(component("Expression", { "type": null })))
+                    "expression": prop(optional(component("Expression", { "type": argument(false) })))
                 })),
 
                 "switch": option(group({
-                    "condition": prop(component("Expression", { "type": null })),
+                    "condition": prop(component("Expression", { "type": argument(false) })),
                     "cases": prop(constrainedDictionary(typePath("Type", [tu("tagged union")]), tbd(), group({
-                        "block": prop(component("Block", { "variables": null }))
+                        "block": prop(component("Block", { "variables": argument(false) }))
                     }))),
-                    "default": prop(optional(component("Block", { "variables": null }))),
+                    "default": prop(optional(component("Block", { "variables": argument(false) }))),
                 })),
                 // "throw": option(component("Expression", {})),
 
@@ -77,20 +78,20 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 //     }))),
                 // }))),
                 "while": option(group({
-                    "condition": prop(component("Expression", { "type": null })),
-                    "block": prop(component("Block", { "variables": null })),
+                    "condition": prop(component("Expression", { "type": argument(false) })),
+                    "block": prop(component("Block", { "variables": argument(false) })),
                 })),
             })))
         })),
         "Data Path": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
         }, group({
             "variable": prop(reference(typePath("Variable Aggregates", []), tbd())),
             "tail": prop(array(taggedUnion({
                 "call": option(group({
-                    "function": prop(component("Data Path", { "variables": null })),
-                    "type arguments": prop(component("Type", {})),
-                    "arguments": prop(component("Expression", { "type": null })),
+                    "function": prop(component("Data Path", { "variables": argument(false) })),
+                    "type arguments": prop(component("Type", { "globalTypes": argument(false) })),
+                    "arguments": prop(component("Expression", { "type": argument(false) })),
                 })),
                 "property": option(reference(typePath("Type", [tu("group"), grp("properties")]), tbd())),
             }))),
@@ -102,87 +103,87 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // })),
         })),
         "String Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
         }, taggedUnion({
             "expression": option(component("String Expression", {})),
-            "selection": option(component("Data Path", { "variables": null })/*, typePath("Type", [tu("string"), ])*/),
+            "selection": option(component("Data Path", { "variables": argument(false) })/*, typePath("Type", [tu("string"), ])*/),
         })),
         "String Expression": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
         }, taggedUnion({
             "string literal": option(terminal("string literal")),
         })),
         "Numerical Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
         }, taggedUnion({
             "expression": option(component("Numerical Expression", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "selection": option(component("Data Path", {
-                "variables": null
+                "variables": argument(false)
             })/*, typePath("Type", [tu("number"), ])*/),
         })),
-        "Numerical Expression": globalType({ "variables": tparameter("Variable Aggregates", true) }, taggedUnion({
+        "Numerical Expression": globalType({ "variables": tparameter("Variable Aggregates", false) }, taggedUnion({
             "minus": option(group({
                 "left hand side": prop(component("Numerical Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
                 "right hand side": prop(component("Numerical Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
             })),
             "plus": option(group({
                 "left hand side": prop(component("Numerical Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
                 "right hand side": prop(component("Numerical Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
             })),
             "predecrement": option(component("Numerical Expression Or Selection", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "preincrement": option(component("Numerical Expression Or Selection", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "postdecrement": option(component("Numerical Expression Or Selection", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "postincrement": option(component("Numerical Expression Or Selection", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "numeric literal": option(terminal("numeric literal")),
         })),
         "Boolean Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", true),
+            "variables": tparameter("Variable Aggregates", false),
         }, taggedUnion({
             "expression": option(component("Boolean Expression", {
-                "variables": null,
+                "variables": argument(false),
             })),
-            "selection": option(component("Data Path", { "variables": null }), typePath("Type", [tu("boolean"),])),
+            "selection": option(component("Data Path", { "variables": argument(false) }), typePath("Type", [tu("boolean"),])),
         })),
         "Boolean Expression": globalType({
-            "variables": tparameter("Type", true),
+            "variables": tparameter("Type", false),
         }, taggedUnion({
             "and": option(group({
                 "left hand side": prop(component("Boolean Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
                 "right hand side": prop(component("Boolean Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
             })),
             "or": option(group({
                 "left hand side": prop(component("Boolean Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
                 "right hand side": prop(component("Boolean Expression Or Selection", {
-                    "variables": null,
+                    "variables": argument(false),
                 })),
             })),
             "false": option(group({})),
             "not": option(component("Boolean Expression Or Selection", {
-                "variables": null,
+                "variables": argument(false),
             })),
             "true": option(group({})),
 
@@ -214,36 +215,36 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
         })),
-        "Expression": globalType({ "type": tparameter("Type", true) }, taggedUnion({
+        "Expression": globalType({ "type": tparameter("Type", false) }, taggedUnion({
             //array
-            "array literal": option(array(component("Expression", { "type": null })), typePath("Type", [tu("array"),])),
+            "array literal": option(array(component("Expression", { "type": argument(false) })), typePath("Type", [tu("array"),])),
 
             //object
             "object literal": option(group({
-                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", { "type": null }))),
+                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", { "type": argument(false) }))),
             }), typePath("Type", [tu("group"),])),
 
             //function (inline function)
             "function": option(group({
                 "arguments": prop(dictionary(group({}))), //no type info needed
                 //"signature": prop(component("FunctionSignature", {})),
-                "block": prop(component("Block", { "variables": null })),
+                "block": prop(component("Block", { "variables": argument(false) })),
             }), typePath("Type", [tu("function"),])),
 
             //boolean
-            "boolean": option(component("Boolean Expression", { "variables": null }), typePath("Type", [tu("boolean"),])),
+            "boolean": option(component("Boolean Expression", { "variables": argument(false) }), typePath("Type", [tu("boolean"),])),
 
             //numerical
-            "numerical": option(component("Numerical Expression", { "variables": null }), typePath("Type", [tu("number"),])),
+            "numerical": option(component("Numerical Expression", { "variables": argument(false) }), typePath("Type", [tu("number"),])),
 
             //string
-            "string": option(component("String Expression", {"variables": null}), typePath("Type", [tu("string"),])),
+            "string": option(component("String Expression", {"variables": argument(false)}), typePath("Type", [tu("string"),])),
 
             //any
             "conditional": option(group({
                 "test": prop(component("Boolean Expression Or Selection", {})),
-                "true": prop(component("Expression", { "type": null })),
-                "false": prop(component("Expression", { "type": null })),
+                "true": prop(component("Expression", { "type": argument(false) })),
+                "false": prop(component("Expression", { "type": argument(false) })),
             })),
             //"identifier": option(terminal("identifier")),
             // "new": option(group({
@@ -255,7 +256,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //"parenthesized": option(component("Expression", {})),
 
 
-            "symbol": option(component("Data Path", { "variables": null })),
+            "symbol": option(component("Data Path", { "variables": argument(false) })),
             // "template": composite("TemplateExpression", group({
             //     "head": member(empty("TemplateHead", { "text": terminal() })),
             //     "spans": member(array(composite("TemplateSpan", group({
@@ -274,7 +275,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })),
                 "type definition": option(group({
                     "parameters": prop(component("Type Parameters", {})),
-                    "type": prop(component("Type", {})),
+                    "type": prop(component("Type", { "globalTypes": argument(false) })),
                 })),
 
                 // "interface": composite("InterfaceDeclaration", group({
@@ -320,29 +321,29 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         }))),
         "Type": globalType({
-            "globalTypes": tparameter("Global Types", true),
+            "globalTypes": tparameter("GlobalTypes", true),
         }, taggedUnion({
             // "any": empty("AnyKeyword"),
-            "array": option(component("Type", {})),
+            "array": option(component("Type", { "globalTypes": argument(false) })),
             "boolean": option(group({})),
 
             "function": option(group({
                 "type parameters": prop(component("Type Parameters", {})),
                 "paramerters": prop(dictionary(group({
-                    "type": prop(component("Type", {})),
+                    "type": prop(component("Type", { "globalTypes": argument(false) })),
                 }))),
-                "return type": prop(optional(component("Type", {}))),
+                "return type": prop(optional(component("Type", { "globalTypes": argument(false) }))),
             })),
             "group": option(group({
                 "properties": prop(dictionary(group({
-                    "type": prop(component("Type", {}))
+                    "type": prop(component("Type", { "globalTypes": argument(false) }))
                 })))
             })),
 
             // "never": empty("NeverKeyword"),
-            "null": option(group({})),
+            "argument(false)": option(group({})),
             "number": option(group({})),
-            "optional": option(component("Type", {})),
+            "optional": option(component("Type", { "globalTypes": argument(false) })),
             // "optional": composite("OptionalType", component("type")),
             // "parenthesized": composite("ParenthesizedType", component("type")),
 
@@ -362,29 +363,29 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "string": option(group({})),
             //"string literal": option(terminal("string literal")),
-            // "tuple": option(array(component("Type", {}))),
+            // "tuple": option(array(component("Type", { "globalTypes": argument(false) }))),
             // "tuple": composite("TupleType", array(component("type"))),
             // "typeLiteral": composite("TypeLiteral", component("typeSignatures")),
             // "undefined": empty("UndefinedKeyword"),
-            "tagged union": option(dictionary(component("Type", {}))),
+            "tagged union": option(dictionary(component("Type", { "globalTypes": argument(false) }))),
             // "void": empty("VoidKeyword"),
         })),
         "Type Path": globalType({
-            "global types": tparameter("Global Types", true),
+            "global types": tparameter("GlobalTypes", false),
         }, group({
             "namespaces": prop(array(reference(typePath("GlobalTypes" /*constrain type to namespace*/, []), tbd()))),
             "type": prop(reference(typePath("GlobalTypes", []), /*constrain to type defintion*/ tbd())),
-            "parameters": prop(dictionary(component("Type", {}))),
+            "parameters": prop(dictionary(component("Type", { "globalTypes": argument(false) }))),
         })),
         "Type Parameters": globalType({
-            "global types": tparameter("Global Types", true),
-        }, dictionary(component("Type", {}))),
+            "global types": tparameter("GlobalTypes", true),
+        }, dictionary(component("Type", { "globalTypes": argument(false) }))),
         // "variable": composite("VariableStatement", group({
         //     "modifiers": member(component("modifiers")),
         //     "variableDeclarationList": member(component("variableDeclarationList")),
         // })),
         "Variable": globalType({}, group({
-            "type": prop(component("Type", {})),
+            "type": prop(component("Type", { "globalTypes": argument(false) })),
         })),
         "Variable Aggregates": globalType({}, dictionary(group({
             "source": prop(taggedUnion({
@@ -395,7 +396,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         }))),
         "Variables": globalType({}, dictionary(group({
             "handle": prop(component("Variable", {})),
-            "initializer": prop(component("Expression", { "type": null })),
+            "initializer": prop(component("Expression", { "type": argument(false) })),
         })))
     }),
 }

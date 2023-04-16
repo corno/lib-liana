@@ -238,7 +238,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                     })],
                     "component": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                         "arguments": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({})]],
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                                "no": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                                "yes": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                            })]],
                         },
                         "context": {
                             'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -921,9 +924,28 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                     "D": {
                                                         'types': d({}),
                                                         'namespaces': d({
-                                                            "G": {
+                                                            "TU": {
                                                                 'types': d({}),
-                                                                'namespaces': d({}),
+                                                                'namespaces': d({
+                                                                    "no": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({
+                                                                            "G": {
+                                                                                'types': d({}),
+                                                                                'namespaces': d({}),
+                                                                            },
+                                                                        }),
+                                                                    },
+                                                                    "yes": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({
+                                                                            "G": {
+                                                                                'types': d({}),
+                                                                                'namespaces': d({}),
+                                                                            },
+                                                                        }),
+                                                                    },
+                                                                }),
                                                             },
                                                         }),
                                                     },
