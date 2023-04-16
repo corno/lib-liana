@@ -220,6 +220,15 @@ export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLoc
     }]
 }
 
+export function tparameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+    return {
+        'global type': {
+            'key': param,
+            'annotation': pd.getLocationInfo(1),
+        }
+    }
+}
+
 export function relative(): g_this.T.Reference._ltype<pd.SourceLocation> {
     return ['relative', null]
 }

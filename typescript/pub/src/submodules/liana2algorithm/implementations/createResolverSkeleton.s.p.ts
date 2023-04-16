@@ -7,7 +7,44 @@ import * as g_fp from "lib-fountain-pen"
 import { A } from "../api.generated"
 
 export const $$: A.createResolverSkeleton = ($d) => {
+    function doTypePath<Annotation>($: g_liana.T.Type__Path<Annotation>, $i: g_fp.SYNC.I.Line) {
+        $i.snippet(`g_out.T.${$d.createIdentifier($['global type'].key)}`)
+        $.path.__forEach(($) => {
+            $i.snippet(`.`)
+            switch ($[0]) {
+                case 'array':
+                    pl.ss($, ($) => {
+                        $i.snippet(`A`)
+                    })
+                    break
+                case 'dictionary':
+                    pl.ss($, ($) => {
+                        $i.snippet(`D`)
 
+                    })
+                    break
+                case 'group':
+                    pl.ss($, ($) => {
+                        $i.snippet($d.createIdentifier($.type.property.key))
+
+                    })
+                    break
+                case 'optional':
+                    pl.ss($, ($) => {
+                        $i.snippet(`O`)
+
+                    })
+                    break
+                case 'tagged union':
+                    pl.ss($, ($) => {
+                        $i.snippet($d.createIdentifier($.type.option.key))
+
+                    })
+                    break
+                default: pl.au($[0])
+            }
+        })
+    }
     function doType<Annotation>(
         $: g_liana.T.Type<Annotation>,
         $x: string,
@@ -23,7 +60,24 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 break
             case 'component':
                 pl.ss($, ($) => {
-                    $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>($)`)
+                    $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>($`)
+                    $d.enrichedDictionaryForEach($.arguments, {
+                        'onEmpty': () => {
+
+                        },
+                        'onNotEmpty': ($c) => {
+                            $i.snippet(`, {`)
+                            $i.indent(($i) => {
+                                $c(($) => {
+                                    $i.nestedLine(($i) => {
+                                        $i.snippet(`'${$.key}': [false],`)
+                                    })
+                                })
+                            })
+                            $i.snippet(`}`)
+                        }
+                    })
+                    $i.snippet(`)`)
                 })
                 break
             case 'dictionary':
@@ -39,18 +93,30 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 break
                             case 'yes':
                                 pl.ss($, ($) => {
-                                    $i.snippet(`({`)
+                                    $i.snippet(`pl.cc($, ($) => {`)
                                     $i.indent(($i) => {
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'annotation': $.annotation,`)
+                                            $i.snippet(`const constraint: pt.OptionalValue<`)
+                                            doTypePath($['type path'], $i)
+                                            $i.snippet(`.D<Annotation>`)
+                                            $i.snippet(`> = [false]`)
                                         })
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'constraint': [false],`)
-                                        })
-                                        $i.nestedLine(($i) => {
-                                            $i.snippet(`'type': pl.cc($.type, ($) => `)
-                                            doType(type, $x + `.D._ltype`, $i)
-                                            $i.snippet(`),`)
+                                            $i.snippet(`return {`)
+                                            $i.indent(($i) => {
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'annotation': $.annotation,`)
+                                                })
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'constraint': constraint,`)
+                                                })
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                                    doType(type, $x + `.D._ltype`, $i)
+                                                    $i.snippet(`),`)
+                                                })
+                                            })
+                                            $i.snippet(`}`)
                                         })
                                     })
                                     $i.snippet(`})`)
@@ -132,21 +198,34 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         pl.optional(
                                             $.constrained,
                                             ($) => {
-                                                $i.snippet(`{`)
+                                                $i.snippet(`pl.cc($, ($) => {`)
                                                 $i.indent(($i) => {
                                                     $i.nestedLine(($i) => {
-                                                        $i.snippet(`'annotation': $.annotation,`)
+                                                        $i.snippet(`const constraint: pt.OptionalValue<`)
+                                                        doTypePath($['type path'], $i)
+                                                        $i.snippet(`<Annotation>`)
+                                                        $i.snippet(`> = [false]`)
                                                     })
                                                     $i.nestedLine(($i) => {
-                                                        $i.snippet(`'constraint': [false],`)
-                                                    })
-                                                    $i.nestedLine(($i) => {
-                                                        $i.snippet(`'type': pl.cc($.type, ($) => `)
-                                                        doType(type, $x + `.${$d.createIdentifier(key)}._ltype`, $i)
-                                                        $i.snippet(`),`)
+                                                        $i.snippet(`return {`)
+                                                        $i.indent(($i) => {
+                                                            $i.nestedLine(($i) => {
+                                                                $i.snippet(`'annotation': $.annotation,`)
+                                                            })
+                                                            $i.nestedLine(($i) => {
+                                                                $i.snippet(`'constraint': constraint,`)
+                                                            })
+                                                            $i.nestedLine(($i) => {
+                                                                $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                                                doType(type, $x + `.${$d.createIdentifier(key)}._ltype`, $i)
+                                                                $i.snippet(`),`)
+                                                            })
+                                                        })
+                                                        $i.snippet(`}`)
+
                                                     })
                                                 })
-                                                $i.snippet(`}`)
+                                                $i.snippet(`})`)
 
                                             },
                                             () => {
@@ -181,16 +260,30 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 break
                             case 'yes':
                                 pl.ss($, ($) => {
-                                    $i.snippet(`({`)
+                                    $i.snippet(`pl.cc($, ($) => {`)
                                     $i.indent(($i) => {
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'annotation': $.annotation,`)
+                                            $i.snippet(`const constraint: pt.OptionalValue<`)
+                                            doTypePath($['type path'], $i)
+                                            $i.snippet(`.D`)
+                                            $i.snippet(`<Annotation>`)
+                                            $i.snippet(`> = [false]`)
                                         })
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'key': $.key,`)
-                                        })
-                                        $i.nestedLine(($i) => {
-                                            $i.snippet(`'constraint': [false],`)
+                                            $i.snippet(`return {`)
+                                            $i.indent(($i) => {
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'annotation': $.annotation,`)
+                                                })
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'constraint': constraint,`)
+                                                })
+                                                $i.nestedLine(($i) => {
+                                                    $i.snippet(`'key': $.key,`)
+                                                })
+                                            })
+                                            $i.snippet(`}`)
+
                                         })
                                     })
                                     $i.snippet(`})`)
@@ -207,6 +300,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
     return <Annotation>($: g_liana.T.Type__Library<Annotation>, $i: g_fp.SYNC.I.Block) => {
         $i.line(`import * as pl from 'pareto-core-lib'`)
         $i.line(`import * as pm from 'pareto-core-map'`)
+        $i.line(`import * as pt from 'pareto-core-types'`)
         $i.line(``)
         $i.line(`import * as g_in from ".."`)
         $i.line(`import * as g_out from ".."`)
@@ -214,9 +308,27 @@ export const $$: A.createResolverSkeleton = ($d) => {
 
         $['global types'].__forEach(() => false, ($, key) => {
             $i.nestedLine(($i) => {
-                $i.snippet(`function map_${$d.createIdentifier(key)}<Annotation>($: g_in.T.${$d.createIdentifier(key)}<Annotation>): g_out.T.${$d.createIdentifier(key)}<Annotation> {`)
+                $i.snippet(`function map_${$d.createIdentifier(key)}<Annotation>($: g_in.T.${$d.createIdentifier(key)}<Annotation>`)
+                $d.enrichedDictionaryForEach($.parameters, {
+                    'onEmpty': () => {
+
+                    },
+                    'onNotEmpty': ($c) => {
+                        $i.snippet(`, $x: {`)
+                        $i.indent(($i) => {
+                            $c(($) => {
+                                $i.nestedLine(($i) => {
+                                    $i.snippet(`'${$.key}': pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['global type'].key)}<Annotation>>`)
+                                })
+                            })
+                        })
+                        $i.snippet(`}`)
+                    }
+                })
+                $i.snippet(`): g_out.T.${$d.createIdentifier(key)}<Annotation> {`)
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
+
                         $i.snippet(`return `)
                         doType($.type, $d.createIdentifier(key), $i)
                     })

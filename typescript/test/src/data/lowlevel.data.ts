@@ -3,7 +3,7 @@ import * as pd from 'pareto-core-data'
 import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
     array,
-    component, constrainedDictionary, dictionary, globalType, group, grp, importedComponent, option, optional, prop, reference, taggedUnion, tbd, terminal, tu, typePath
+    component, constrainedDictionary, dictionary, globalType, group, grp, importedComponent, option, optional, prop, reference, taggedUnion, tbd, terminal, tparameter, tu, typePath
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 
 const d = pd.d
@@ -23,39 +23,39 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "block": option(component("Block", {})),
                 // "break": composite("BreakStatement", optional(component("identifier"))),
                 "call": option(group({
-                    "function": prop(component("Expression", {})),
+                    "function": prop(component("Expression", { "type": null })),
                     "type arguments": prop(component("Type", {})),
-                    "arguments": prop(component("Expression", {})),
+                    "arguments": prop(component("Expression", { "type": null })),
                 })),
                 "for": option(group({
                     "initializer": prop(component("Variables", {})),
-                    "condition": prop(component("Expression", {})),
-                    "incrementer": prop(component("Expression", {})),
+                    "condition": prop(component("Expression", { "type": null })),
+                    "incrementer": prop(component("Expression", { "type": null })),
                     "block": prop(component("Block", {})),
                 })),
                 "if": option(group({
-                    "condition": prop(component("Expression", {})),
+                    "condition": prop(component("Expression", { "type": null })),
                     "then": prop(component("Block", {})),
                     "else": prop(optional(component("Block", {}))),
                 })),
                 "minus assign": option(group({
                     "variable": prop(component("Data Path", {})),
-                    "right hand side": prop(component("Expression", {})),
+                    "right hand side": prop(component("Expression", { "type": null })),
                 })),
                 "plus assign": option(group({
                     "variable": prop(component("Data Path", {})),
-                    "right hand side": prop(component("Expression", {})),
+                    "right hand side": prop(component("Expression", { "type": null })),
                 })),
                 // "labeled": composite("LabeledStatement", group({
                 //     "label": member(component("identifier")),
                 //     "statement": member(component("statement")),
                 // })),
                 "return": option(group({
-                    "expression": prop(optional(component("Expression", {})))
+                    "expression": prop(optional(component("Expression", { "type": null })))
                 })),
 
                 "switch": option(group({
-                    "condition": prop(component("Expression", {})),
+                    "condition": prop(component("Expression", { "type": null })),
                     "cases": prop(constrainedDictionary(typePath("Type", [tu("tagged union")]), tbd(), group({
                         "block": prop(component("Block", {}))
                     }))),
@@ -71,7 +71,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 //     }))),
                 // }))),
                 "while": option(group({
-                    "condition": prop(component("Expression", {})),
+                    "condition": prop(component("Expression", { "type": null })),
                     "block": prop(component("Block", {})),
                 })),
             })))
@@ -82,7 +82,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "call": option(group({
                     "function": prop(component("Data Path", {})),
                     "type arguments": prop(component("Type", {})),
-                    "arguments": prop(component("Expression", {})),
+                    "arguments": prop(component("Expression", { "type": null })),
                 })),
                 "property": option(reference(typePath("Type", [tu("group"), grp("properties")]), tbd())),
             }))),
@@ -95,14 +95,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         })),
         "String Expression Or Selection": globalType({}, taggedUnion({
             "expression": option(component("String Expression", {})),
-            "selection": option(component("Data Path", {}), typePath("Type", [tu("string"), ])),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("string"),])),
         })),
         "String Expression": globalType({}, taggedUnion({
             "string literal": option(terminal("string literal")),
         })),
         "Numerical Expression Or Selection": globalType({}, taggedUnion({
             "expression": option(component("Numerical Expression", {})),
-            "selection": option(component("Data Path", {}), typePath("Type", [tu("number"), ])),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("number"),])),
         })),
         "Numerical Expression": globalType({}, taggedUnion({
             "minus": option(group({
@@ -121,7 +121,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         })),
         "Boolean Expression Or Selection": globalType({}, taggedUnion({
             "expression": option(component("Boolean Expression", {})),
-            "selection": option(component("Data Path", {}), typePath("Type", [tu("boolean"), ])),
+            "selection": option(component("Data Path", {}), typePath("Type", [tu("boolean"),])),
         })),
         "Boolean Expression": globalType({}, taggedUnion({
             "and": option(group({
@@ -164,36 +164,36 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
         })),
-        "Expression": globalType({}, taggedUnion({
+        "Expression": globalType({ "type": tparameter("Type") }, taggedUnion({
             //array
-            "array literal": option(array(component("Expression", {})), typePath("Type", [tu("array"), ])),
+            "array literal": option(array(component("Expression", { "type": null })), typePath("Type", [tu("array"),])),
 
             //object
             "object literal": option(group({
-                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {}))),
-            }), typePath("Type", [tu("group"), ])),
+                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", { "type": null }))),
+            }), typePath("Type", [tu("group"),])),
 
             //function (inline function)
             "function": option(group({
                 "arguments": prop(dictionary(group({}))), //no type info needed
                 //"signature": prop(component("FunctionSignature", {})),
                 "block": prop(component("Block", {})),
-            }), typePath("Type", [tu("function"), ])),
+            }), typePath("Type", [tu("function"),])),
 
             //boolean
-            "boolean": option(component("Boolean Expression", {}), typePath("Type", [tu("boolean"), ])),
+            "boolean": option(component("Boolean Expression", {}), typePath("Type", [tu("boolean"),])),
 
             //numerical
-            "numerical": option(component("Numerical Expression", {}), typePath("Type", [tu("number"), ])),
+            "numerical": option(component("Numerical Expression", {}), typePath("Type", [tu("number"),])),
 
             //string
-            "string": option(component("String Expression", {}), typePath("Type", [tu("string"), ])),
+            "string": option(component("String Expression", {}), typePath("Type", [tu("string"),])),
 
             //any
             "conditional": option(group({
                 "test": prop(component("Boolean Expression Or Selection", {})),
-                "true": prop(component("Expression", {})),
-                "false": prop(component("Expression", {})),
+                "true": prop(component("Expression", { "type": null })),
+                "false": prop(component("Expression", { "type": null })),
             })),
             //"identifier": option(terminal("identifier")),
             // "new": option(group({
@@ -201,7 +201,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "parameters": prop(dictionary(component("Expression", {}))),
             // })),
             // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
-            "null": option(group({}), typePath("Type", [tu("null"), ])),
+            "null": option(group({}), typePath("Type", [tu("null"),])),
             //"parenthesized": option(component("Expression", {})),
 
 
@@ -241,7 +241,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 //     "name": member(component("identifier")),
                 //     "definition": member(component("functionDefinition")),
                 // })),
-      
+
             }))
         }))),
         "SourceFile": globalType({}, group({
@@ -337,7 +337,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Variable Aggregates": globalType({}, dictionary(group({}))),
         "Variables": globalType({}, dictionary(group({
             "handle": prop(component("Variable", {})),
-            "initializer": prop(component("Expression", {})),
+            "initializer": prop(component("Expression", { "type": null })),
         })))
     }),
 }
