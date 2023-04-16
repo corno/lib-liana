@@ -271,7 +271,7 @@ export const $$: A.map = ($d) => {
                 case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                     const type = $.type
                     return pl.optional(
-                        $.constrained,
+                        $.constraint,
                         ($) => ['group', $d.filter(pm.wrapRawDictionary({
                             "annotation": createOptionalAnnotation(),
                             "constraint": createOptionalConstraint($x, () => ({

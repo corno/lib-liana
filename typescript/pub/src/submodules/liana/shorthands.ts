@@ -41,7 +41,8 @@ export function r(name: string): g_common.T.AnnotatedKey<pd.SourceLocation> {
 
 export function array(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return ['array', {
-        'type': type
+        'type': type,
+        'constraint': [false]
     }]
 }
 
@@ -83,13 +84,33 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Typ
     }]
 }
 
-export function globalType(parameters: RawDictionary<g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
+export function result(
+    type: string,
+    selection: g_this.T.Selection<pd.SourceLocation>,
+): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
+    return {
+        'type': {
+            'annotation': pd.getLocationInfo(1),
+            'key': type,
+        },
+        'selection': selection,
+    }
+}
+
+export function globalType(
+    parameters: RawDictionary<g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation>>,
+    type: g_this.T.Type<pd.SourceLocation>,
+    result?: g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation>,
+): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
     return {
         'type': type,
-        'parameters': pd.d(parameters)
+        'parameters': pd.d(parameters),
         // 'parameters': d_mappedimp(parameters, li, ($) => {
         //     return r_imp($, li)
         // })
+        'result': result === undefined
+            ? [false]
+            : [true, result],
     }
 }
 
@@ -108,7 +129,7 @@ export function group(properties: RawDictionary<g_this.T.Type.group.properties.D
 
 export function option(type: g_this.T.Type<pd.SourceLocation>, constrained?: g_this.T.Type__Path<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
-        'constrained': constrained === undefined
+        'constraint': constrained === undefined
             ? [false]
             : [true, {
                 'type path': constrained
@@ -134,7 +155,8 @@ export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.o
             //     return $
             // }),
             'options': pd.d(options),
-            'default': r_imp($, 1)
+            'default': r_imp($, 1),
+            'constraint': [false]
         }]
     })
 }
@@ -181,6 +203,35 @@ export function grp(prop: string): g_this.T.Type__Path.path.A<pd.SourceLocation>
     }]
 }
 
+export function sgrp(prop: string, tail: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
+    return ['group', {
+        'property': {
+            'annotation': pd.getLocationInfo(1),
+            'key': prop,
+        },
+        'selection': tail
+    }]
+}
+
+export function sarray(notEmpty: g_this.T.Selection<pd.SourceLocation>, empty: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
+    return ['array', {
+        'empty': empty,
+        'not empty': notEmpty,
+    }]
+}
+export function sref(): g_this.T.Selection<pd.SourceLocation> {
+    return ['reference', null]
+}
+export function scomponent($: string): g_this.T.Selection<pd.SourceLocation> {
+    return ['component', {
+        'type name': $
+    }]
+}
+
+export function stu(options: RawDictionary<g_this.T.Selection<pd.SourceLocation>>): g_this.T.Selection<pd.SourceLocation> {
+    return ['tagged union', pd.d(options)]
+}
+
 export function dict(): g_this.T.Type__Path.path.A<pd.SourceLocation> {
     return ['dictionary', {
         'annotation': pd.getLocationInfo(1),
@@ -222,7 +273,7 @@ export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLoc
 
 export function tparameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
-        'global type': {
+        'type': {
             'key': param,
             'annotation': pd.getLocationInfo(1),
         }

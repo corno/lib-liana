@@ -177,6 +177,19 @@ function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>): g_out.T.D
         }
     })
 }
+function select_Data__Path<Annotation>($: g_out.T.Data__Path<Annotation>): g_out.T.Type<Annotation> {
+    return pl.cc($['tail'], ($) => pl.optional(
+        $d.getLastElement($),
+        ($) => pl.cc($, ($) => {
+            switch ($[0]) {
+                case 'call': return pl.ss($, ($) => pl.cc($['function'], ($) => select_Data__Path($)))
+                case 'property': return pl.ss($, ($) => $.constraint)
+                default: return pl.au($[0])
+            }
+        }),
+        () => pl.cc($['variable'], ($) => $.constraint),
+    ))
+}
 function map_String__Expression__Or__Selection<Annotation>($: g_in.T.String__Expression__Or__Selection<Annotation>): g_out.T.String__Expression__Or__Selection<Annotation> {
     return pl.cc($, ($): g_out.T.String__Expression__Or__Selection<Annotation> => {
         switch ($[0]) {

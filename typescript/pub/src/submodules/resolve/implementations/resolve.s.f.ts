@@ -246,6 +246,29 @@ export const $$: A.resolve = <GAnnotation>($se: {
             //     }
             // }
             return out
+
+        }
+        function mapSelection($: g_liana.T.Selection<GAnnotation>): g_liana_resolved.T.Selection<GAnnotation> {
+            switch ($[0]) {
+                case 'reference': return pl.ss($, ($) => ['reference', null])
+                case 'array': return pl.ss($, ($) => ['array', {
+                    'empty': mapSelection($.empty),
+                    'not empty': mapSelection($['not empty']),
+                }])
+                case 'component': return pl.ss($, ($) => ['component', {
+                    'type name': $['type name']
+                }])
+                case 'group': return pl.ss($, ($) => ['group', {
+                    'property': {
+                        'annotation': $.property.annotation,
+                        'key': $.property.key,
+                        'constraint': [false]
+                    },
+                    'selection': mapSelection($.selection),
+                }])
+                case 'tagged union': return pl.ss($, ($) => ['tagged union', $.map(($) => mapSelection($))])
+                default: return pl.au($[0])
+            }
         }
         function mapTerminal($: g_liana.T.Terminal<GAnnotation>): g_liana_resolved.T.Terminal<GAnnotation> {
             return {
@@ -267,7 +290,16 @@ export const $$: A.resolve = <GAnnotation>($se: {
         function mapType($: g_liana.T.Type<GAnnotation>): g_liana_resolved.T.Type<GAnnotation> {
             switch ($[0]) {
                 case 'array': return pl.ss($, ($) => ['array', {
-                    'type': mapType($.type)
+                    'type': mapType($.type),
+                    'constraint': pl.optional(
+                        $.constraint,
+                        ($): g_liana_resolved.T.Type.array.constraint<GAnnotation> => [true, {
+                            'type path': mapTypePath($['type path']),
+                            'element value': mapSelection($['element value']),
+                            'initial value': mapSelection($['initial value']),
+                        }],
+                        () => [false]
+                    ),
                 }])
                 case 'component': return pl.ss($, ($) => ['component', {
                     'type': {
@@ -306,8 +338,8 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 case 'tagged union': return pl.ss($, ($) => ['tagged union', {
                     'options': $.options.map(($) => ({
                         'type': mapType($.type),
-                        'constrained': ($.constrained[0] === true)
-                            ? pl.cc($.constrained[1], ($) => [true, {
+                        'constraint': ($.constraint[0] === true)
+                            ? pl.cc($.constraint[1], ($) => [true, {
                                 'type path': mapTypePath($['type path'])
                             }])
                             : [false]
@@ -316,7 +348,19 @@ export const $$: A.resolve = <GAnnotation>($se: {
                         'annotation': $.default.annotation,
                         'key': $.default.key,
                         'constraint': [false],
-                    }
+                    },
+                    'constraint': pl.optional(
+                        $.constraint,
+                        ($): g_liana_resolved.T.Type.tagged__union.constraint<GAnnotation> => [true, {
+                            'type path': mapTypePath($['type path']),
+                            'options': $.options.map(($) => ({
+                                'annotation': $.annotation,
+                                'constraint': [false],
+                                'type': mapSelection($.type),
+                            }))
+                        }],
+                        () => [false]
+                    )
                 }])
                 case 'terminal': return pl.ss($, ($) => ['terminal', mapTerminal($)])
                 default: return pl.au($[0])
@@ -327,13 +371,25 @@ export const $$: A.resolve = <GAnnotation>($se: {
             'terminal types': $['terminal types'].map(($) => $),
             'global types': $['global types'].map(($) => ({
                 'parameters': $.parameters.map(($) => ({
-                    'global type': {
-                        'annotation': $['global type'].annotation,
-                        'key': $['global type'].key,
+                    'type': {
+                        'annotation': $['type'].annotation,
+                        'key': $['type'].key,
                         'constraint': [false],
                     }
                 })),
-                'type': mapType($.type)
+                'type': mapType($.type),
+                'result': pl.optional(
+                    $.result,
+                    ($): g_liana_resolved.T.Type__Library.global__types.D.result<GAnnotation> => [true, {
+                        'type': {
+                            'annotation': $.type.annotation,
+                            'key': $.type.key,
+                            'constraint': [false],
+                        },
+                        'selection': mapSelection($.selection),
+                    }],
+                    () => [false]
+                )
             })),
         }
         // return {

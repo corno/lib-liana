@@ -26,7 +26,8 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
             "identifier": null,
         }),
         'global types': pd.d({
-            "Root": globalType({ "parameterA": typePath("Root", [])}, group({
+            //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
+            "Root": globalType({}, group({
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
@@ -39,11 +40,11 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "h": prop(taggedUnion({
                     "a": option(group({})),
                 })),
-    
-    
+
+
             })),
             "Sub": globalType({}, group({
-    
+
             })),
         }),
 

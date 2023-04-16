@@ -3,7 +3,10 @@ import * as pd from 'pareto-core-data'
 import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
     array,
-    component, constrainedDictionary, dictionary, globalType, group, grp, importedComponent, option, optional, prop, reference, taggedUnion, tbd, terminal, tparameter, tu, typePath
+    component, constrainedDictionary, dictionary, globalType, group,
+    grp,
+    option, optional, prop, reference, result, sarray,
+    scomponent, sgrp, sref, stu, taggedUnion, tbd, terminal, tparameter, tu, typePath
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 
 const d = pd.d
@@ -92,7 +95,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "context": prop(component("Expression", {})),
             //     "property": prop(component("Expression", {})),
             // })),
-        })),
+        }), result("Type", sgrp("tail", sarray(
+            stu({
+                "call": sgrp("function", scomponent("Data Path")),
+                "property": sref()
+            }),
+            sgrp("variable", sref()),
+
+        )))),
         "String Expression Or Selection": globalType({}, taggedUnion({
             "expression": option(component("String Expression", {})),
             "selection": option(component("Data Path", {}), typePath("Type", [tu("string"),])),

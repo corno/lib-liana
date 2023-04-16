@@ -196,7 +196,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         $i.snippet(`case '${key}': return pl.ss($, ($) => ['${key}', `)
                                         const type = $.type
                                         pl.optional(
-                                            $.constrained,
+                                            $.constraint,
                                             ($) => {
                                                 $i.snippet(`pl.cc($, ($) => {`)
                                                 $i.indent(($i) => {
@@ -318,7 +318,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.indent(($i) => {
                             $c(($) => {
                                 $i.nestedLine(($i) => {
-                                    $i.snippet(`'${$.key}': pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['global type'].key)}<Annotation>>`)
+                                    $i.snippet(`'${$.key}': pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['type'].key)}<Annotation>>`)
                                 })
                             })
                         })
@@ -335,6 +335,97 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 })
                 $i.snippet(`}`)
             })
+            pl.optional(
+                $.result,
+                ($) => {
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`function select_${$d.createIdentifier(key)}<Annotation>($: g_out.T.${$d.createIdentifier(key)}<Annotation>): g_out.T.${$d.createIdentifier($.type.key)}<Annotation> {`)
+                        $i.indent(($i) => {
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`return `)
+                                function doSelection(
+                                    $: g_liana.T.Selection<Annotation>,
+                                    $i: g_fp.SYNC.I.Line,
+                                ) {
+                                    switch ($[0]) {
+                                        case 'array':
+                                            pl.ss($, ($) => {
+                                                $i.snippet(`pl.optional(`)
+                                                $i.indent(($i) => {
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`$d.getLastElement($),`)
+                                                    })
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`($) => `)
+                                                        doSelection($['not empty'], $i)
+                                                        $i.snippet(`,`)
+                                                    })
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`() => `)
+                                                        doSelection($.empty, $i)
+                                                        $i.snippet(`,`)
+                                                    })
+                                                })
+                                                $i.snippet(`)`)
+                                            })
+                                            break
+                                        case 'component':
+                                            pl.ss($, ($) => {
+                                                $i.snippet(`select_${$d.createIdentifier($['type name'])}($)`)
+                                            })
+                                            break
+                                        case 'group':
+                                            pl.ss($, ($) => {
+                                                $i.snippet(`pl.cc($['${$.property.key}'], ($) => `)
+                                                doSelection($.selection, $i)
+                                                $i.snippet(`)`)
+                                            })
+                                            break
+                                        case 'reference':
+                                            pl.ss($, ($) => {
+                                                $i.snippet(`$.constraint`)
+                                            })
+                                            break
+                                        case 'tagged union':
+                                            pl.ss($, ($) => {
+                                                $i.snippet(`pl.cc($, ($) => {`)
+                                                $i.indent(($i) => {
+                                                    $i.nestedLine(($i) => {
+                                                        $i.snippet(`switch ($[0]) {`)
+                                                        $i.indent(($i) => {
+                                                            $.__forEach(() => false, ($, key) => {
+                                                                $i.nestedLine(($i) => {
+                                                                    $i.snippet(`case '${key}': return pl.ss($, ($) => `)
+                                                                    doSelection($, $i)
+                                                                    $i.snippet(`)`)
+                            
+                                                                })
+                                                            })
+                                                            $i.nestedLine(($i) => {
+                                                                $i.snippet(`default: return pl.au($[0])`)
+                            
+                                                            })
+                                                        })
+                                                        $i.snippet(`}`)
+                                                    })
+                                                })
+                                                $i.snippet(`})`)
+                                            })
+                                            break
+                                        default: pl.au($[0])
+                                    }
+                                }
+                                doSelection($.selection, $i)
+                            })
+                        })
+                        $i.snippet(`}`)
+                    })
+
+                },
+                () => {
+
+                }
+            )
         })
     }
 }
