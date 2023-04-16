@@ -371,12 +371,25 @@ export const $$: A.resolve = <GAnnotation>($se: {
             'terminal types': $['terminal types'].map(($) => $),
             'global types': $['global types'].map(($) => ({
                 'parameters': $.parameters.map(($) => ({
-                    'computed': $.computed,
-                    'type': {
-                        'annotation': $['type'].annotation,
-                        'key': $['type'].key,
-                        'constraint': [false],
-                    }
+                    'type': pl.cc($.type, ($) => {
+                        switch ($[0]) {
+                            case 'delayed': return pl.ss($, ($) => ['delayed', {
+                                'type': {
+                                    'annotation': $['type'].annotation,
+                                    'key': $['type'].key,
+                                    'constraint': [false],
+                                }
+                            }])
+                            case 'direct': return pl.ss($, ($) => ['direct', {
+                                'type': {
+                                    'annotation': $['type'].annotation,
+                                    'key': $['type'].key,
+                                    'constraint': [false],
+                                }
+                            }])
+                            default: return pl.au($[0])
+                        }
+                    }),
                 })),
                 'type': mapType($.type),
                 'result': pl.optional(

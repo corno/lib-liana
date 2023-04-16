@@ -408,32 +408,48 @@ export namespace N {
                                                 
                                                 export namespace N {
                                                     
-                                                    export namespace TU {
+                                                    export namespace G {
                                                         
                                                         export namespace N {
                                                             
-                                                            export namespace no {
+                                                            export namespace _$ltype {
                                                                 
                                                                 export namespace N {
                                                                     
-                                                                    export namespace G {
+                                                                    export namespace TU {
                                                                         
-                                                                        export namespace N {}
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                }
-                                                                
-                                                                export namespace T {}
-                                                            }
-                                                            
-                                                            export namespace yes {
-                                                                
-                                                                export namespace N {
-                                                                    
-                                                                    export namespace G {
-                                                                        
-                                                                        export namespace N {}
+                                                                        export namespace N {
+                                                                            
+                                                                            export namespace delayed {
+                                                                                
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace G {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                            
+                                                                            export namespace direct {
+                                                                                
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace G {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                        }
                                                                         
                                                                         export namespace T {}
                                                                     }
@@ -801,7 +817,7 @@ export namespace N {
                                                                 
                                                                 export namespace N {
                                                                     
-                                                                    export namespace computed {
+                                                                    export namespace _$ltype {
                                                                         
                                                                         export namespace N {
                                                                             
@@ -809,13 +825,21 @@ export namespace N {
                                                                                 
                                                                                 export namespace N {
                                                                                     
-                                                                                    export namespace no {
+                                                                                    export namespace delayed {
                                                                                         
                                                                                         export namespace N {
                                                                                             
                                                                                             export namespace G {
                                                                                                 
-                                                                                                export namespace N {}
+                                                                                                export namespace N {
+                                                                                                    
+                                                                                                    export namespace _$ltype {
+                                                                                                        
+                                                                                                        export namespace N {}
+                                                                                                        
+                                                                                                        export namespace T {}
+                                                                                                    }
+                                                                                                }
                                                                                                 
                                                                                                 export namespace T {}
                                                                                             }
@@ -824,13 +848,21 @@ export namespace N {
                                                                                         export namespace T {}
                                                                                     }
                                                                                     
-                                                                                    export namespace yes {
+                                                                                    export namespace direct {
                                                                                         
                                                                                         export namespace N {
                                                                                             
                                                                                             export namespace G {
                                                                                                 
-                                                                                                export namespace N {}
+                                                                                                export namespace N {
+                                                                                                    
+                                                                                                    export namespace _$ltype {
+                                                                                                        
+                                                                                                        export namespace N {}
+                                                                                                        
+                                                                                                        export namespace T {}
+                                                                                                    }
+                                                                                                }
                                                                                                 
                                                                                                 export namespace T {}
                                                                                             }
@@ -843,13 +875,6 @@ export namespace N {
                                                                                 export namespace T {}
                                                                             }
                                                                         }
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                    
-                                                                    export namespace _$ltype {
-                                                                        
-                                                                        export namespace N {}
                                                                         
                                                                         export namespace T {}
                                                                     }
@@ -1378,24 +1403,34 @@ export namespace T {
                 
                 export namespace D {
                     
-                    export namespace no {}
+                    export namespace _ltype {
+                        
+                        export namespace delayed {}
+                        
+                        export type delayed<GAnnotation> = null
+                        
+                        export namespace direct {}
+                        
+                        export type direct<GAnnotation> = null
+                    }
                     
-                    export type no<GAnnotation> = null
-                    
-                    export namespace yes {}
-                    
-                    export type yes<GAnnotation> = null
+                    export type _ltype<GAnnotation> = 
+                        | ['delayed', null]
+                        | ['direct', null]
                 }
                 
-                export type D<GAnnotation> = 
-                    | ['no', null]
-                    | ['yes', null]
+                export type D<GAnnotation> = {
+                    readonly 'type': 
+                        | ['delayed', null]
+                        | ['direct', null]
+                }
             }
             
-            export type arguments<GAnnotation> = pt.Dictionary<
-                | ['no', null]
-                | ['yes', null]
-            >
+            export type arguments<GAnnotation> = pt.Dictionary<{
+                readonly 'type': 
+                    | ['delayed', null]
+                    | ['direct', null]
+            }>
             
             export namespace context {
                 
@@ -1449,10 +1484,11 @@ export namespace T {
         }
         
         export type component<GAnnotation> = {
-            readonly 'arguments': pt.Dictionary<
-                | ['no', null]
-                | ['yes', null]
-            >
+            readonly 'arguments': pt.Dictionary<{
+                readonly 'type': 
+                    | ['delayed', null]
+                    | ['direct', null]
+            }>
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
@@ -1643,10 +1679,11 @@ export namespace T {
             readonly 'type': T.Type<GAnnotation>
         }]
         | ['component', {
-            readonly 'arguments': pt.Dictionary<
-                | ['no', null]
-                | ['yes', null]
-            >
+            readonly 'arguments': pt.Dictionary<{
+                readonly 'type': 
+                    | ['delayed', null]
+                    | ['direct', null]
+            }>
             readonly 'context': 
                 | ['import', {
                     readonly 'library': {
@@ -1703,53 +1740,99 @@ export namespace T {
                     
                     export namespace D {
                         
-                        export namespace computed {
-                            
-                            export namespace no {}
-                            
-                            export type no<GAnnotation> = null
-                            
-                            export namespace yes {}
-                            
-                            export type yes<GAnnotation> = null
-                        }
-                        
-                        export type computed<GAnnotation> = 
-                            | ['no', null]
-                            | ['yes', null]
-                        
                         export namespace _ltype {
                             
-                            export type annotation<GAnnotation> = GAnnotation
+                            export namespace delayed {
+                                
+                                export namespace _ltype {
+                                    
+                                    export type annotation<GAnnotation> = GAnnotation
+                                    
+                                    export type key<GAnnotation> = string
+                                }
+                                
+                                export type _ltype<GAnnotation> = {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }
                             
-                            export type key<GAnnotation> = string
+                            export type delayed<GAnnotation> = {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }
+                            
+                            export namespace direct {
+                                
+                                export namespace _ltype {
+                                    
+                                    export type annotation<GAnnotation> = GAnnotation
+                                    
+                                    export type key<GAnnotation> = string
+                                }
+                                
+                                export type _ltype<GAnnotation> = {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }
+                            
+                            export type direct<GAnnotation> = {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }
                         }
                         
-                        export type _ltype<GAnnotation> = {
-                            readonly 'annotation': GAnnotation
-                            readonly 'key': string
-                        }
+                        export type _ltype<GAnnotation> = 
+                            | ['delayed', {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }]
+                            | ['direct', {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }]
                     }
                     
                     export type D<GAnnotation> = {
-                        readonly 'computed': 
-                            | ['no', null]
-                            | ['yes', null]
-                        readonly 'type': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'key': string
-                        }
+                        readonly 'type': 
+                            | ['delayed', {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }]
+                            | ['direct', {
+                                readonly 'type': {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }
+                            }]
                     }
                 }
                 
                 export type parameters<GAnnotation> = pt.Dictionary<{
-                    readonly 'computed': 
-                        | ['no', null]
-                        | ['yes', null]
-                    readonly 'type': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
+                    readonly 'type': 
+                        | ['delayed', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }
+                        }]
+                        | ['direct', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }
+                        }]
                 }>
                 
                 export namespace result {
@@ -1793,13 +1876,19 @@ export namespace T {
             
             export type D<GAnnotation> = {
                 readonly 'parameters': pt.Dictionary<{
-                    readonly 'computed': 
-                        | ['no', null]
-                        | ['yes', null]
-                    readonly 'type': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }
+                    readonly 'type': 
+                        | ['delayed', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }
+                        }]
+                        | ['direct', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }
+                        }]
                 }>
                 readonly 'result': [ false ] | [ true, {
                     readonly 'selection': T.Selection<GAnnotation>
@@ -1814,13 +1903,19 @@ export namespace T {
         
         export type global__types<GAnnotation> = pt.Dictionary<{
             readonly 'parameters': pt.Dictionary<{
-                readonly 'computed': 
-                    | ['no', null]
-                    | ['yes', null]
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                readonly 'type': 
+                    | ['delayed', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
+                    | ['direct', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }>
             readonly 'result': [ false ] | [ true, {
                 readonly 'selection': T.Selection<GAnnotation>
@@ -1854,13 +1949,19 @@ export namespace T {
     export type Type__Library<GAnnotation> = {
         readonly 'global types': pt.Dictionary<{
             readonly 'parameters': pt.Dictionary<{
-                readonly 'computed': 
-                    | ['no', null]
-                    | ['yes', null]
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                readonly 'type': 
+                    | ['delayed', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
+                    | ['direct', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }>
             readonly 'result': [ false ] | [ true, {
                 readonly 'selection': T.Selection<GAnnotation>

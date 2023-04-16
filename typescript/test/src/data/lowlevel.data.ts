@@ -7,7 +7,7 @@ import {
     component, constrainedDictionary, dictionary, globalType, group,
     grp,
     option, optional, prop, reference, sarray,
-    scomponent, sgrp, sref, stu, taggedUnion, tbd, terminal, tparameter, tu, typePath
+    scomponent, sgrp, sref, stu, taggedUnion, tbd, terminal, delayedParameter, directParameter, tu, typePath
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 
 const d = pd.d
@@ -22,7 +22,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     }),
     'global types': d({
         "Block": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
 
         }, group({
             "variables": prop(component("Variables", {})),
@@ -84,7 +84,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })))
         })),
         "Data Path": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
         }, group({
             "variable": prop(reference(typePath("Variable Aggregates", []), tbd())),
             "tail": prop(array(taggedUnion({
@@ -103,18 +103,18 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // })),
         })),
         "String Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
         }, taggedUnion({
             "expression": option(component("String Expression", {})),
             "selection": option(component("Data Path", { "variables": argument(false) })/*, typePath("Type", [tu("string"), ])*/),
         })),
         "String Expression": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
         }, taggedUnion({
             "string literal": option(terminal("string literal")),
         })),
         "Numerical Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
         }, taggedUnion({
             "expression": option(component("Numerical Expression", {
                 "variables": argument(false),
@@ -123,7 +123,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "variables": argument(false)
             })/*, typePath("Type", [tu("number"), ])*/),
         })),
-        "Numerical Expression": globalType({ "variables": tparameter("Variable Aggregates", false) }, taggedUnion({
+        "Numerical Expression": globalType({ "variables": directParameter("Variable Aggregates",) }, taggedUnion({
             "minus": option(group({
                 "left hand side": prop(component("Numerical Expression Or Selection", {
                     "variables": argument(false),
@@ -155,7 +155,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "numeric literal": option(terminal("numeric literal")),
         })),
         "Boolean Expression Or Selection": globalType({
-            "variables": tparameter("Variable Aggregates", false),
+            "variables": directParameter("Variable Aggregates",),
         }, taggedUnion({
             "expression": option(component("Boolean Expression", {
                 "variables": argument(false),
@@ -163,7 +163,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "selection": option(component("Data Path", { "variables": argument(false) }), typePath("Type", [tu("boolean"),])),
         })),
         "Boolean Expression": globalType({
-            "variables": tparameter("Type", false),
+            "variables": directParameter("Type"),
         }, taggedUnion({
             "and": option(group({
                 "left hand side": prop(component("Boolean Expression Or Selection", {
@@ -215,7 +215,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "right hand side": prop(component("Numerical Expression Or Selection", {})),
             })),
         })),
-        "Expression": globalType({ "type": tparameter("Type", false) }, taggedUnion({
+        "Expression": globalType({ "type": directParameter("Type") }, taggedUnion({
             //array
             "array literal": option(array(component("Expression", { "type": argument(false) })), typePath("Type", [tu("array"),])),
 
@@ -321,7 +321,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         }))),
         "Type": globalType({
-            "globalTypes": tparameter("GlobalTypes", true),
+            "globalTypes": delayedParameter("GlobalTypes"),
         }, taggedUnion({
             // "any": empty("AnyKeyword"),
             "array": option(component("Type", { "globalTypes": argument(false) })),
@@ -371,14 +371,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // "void": empty("VoidKeyword"),
         })),
         "Type Path": globalType({
-            "global types": tparameter("GlobalTypes", false),
+            "global types": delayedParameter("GlobalTypes"),
         }, group({
             "namespaces": prop(array(reference(typePath("GlobalTypes" /*constrain type to namespace*/, []), tbd()))),
             "type": prop(reference(typePath("GlobalTypes", []), /*constrain to type defintion*/ tbd())),
             "parameters": prop(dictionary(component("Type", { "globalTypes": argument(false) }))),
         })),
         "Type Parameters": globalType({
-            "global types": tparameter("GlobalTypes", true),
+            "global types": delayedParameter("GlobalTypes"),
         }, dictionary(component("Type", { "globalTypes": argument(false) }))),
         // "variable": composite("VariableStatement", group({
         //     "modifiers": member(component("modifiers")),

@@ -271,15 +271,25 @@ export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLoc
     }]
 }
 
-export function tparameter(param: string, computed: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function directParameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
-        'type': {
-            'key': param,
-            'annotation': pd.getLocationInfo(1),
-        },
-        'computed': computed
-            ? ['yes', null]
-            : ['no', null]
+        'type': ['direct', {
+            'type': {
+                'key': param,
+                'annotation': pd.getLocationInfo(1),
+            },
+        }]
+    }
+}
+
+export function delayedParameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+    return {
+        'type': ['delayed', {
+            'type': {
+                'key': param,
+                'annotation': pd.getLocationInfo(1),
+            },
+        }]
     }
 }
 
@@ -310,10 +320,12 @@ export function reference(
     }]
 }
 
-export function argument(computed: boolean): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-    return computed
-        ? ['yes', null]
-        : ['no', null]
+export function argument(delayed: boolean): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return {
+        'type': delayed
+            ? ['delayed', null]
+            : ['direct', null]
+    }
 }
 
 export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {

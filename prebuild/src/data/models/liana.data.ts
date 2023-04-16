@@ -111,9 +111,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     })),
                 })),
                 "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
-                "arguments": prop(dictionary(taggedUnion({
-                    "no": option(group({})),
-                    "yes": option(group({})),
+                "arguments": prop(dictionary(group({
+                    "type": prop(taggedUnion({
+                        "direct": option(group({
+                        })),
+                        "delayed": option(group({})),
+                    })),
                 }))),
             })),
         })),
@@ -122,10 +125,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "terminal types": prop(dictionary(group({}))),
             "global types": prop(dictionary(group({
                 "parameters": prop(dictionary(group({
-                    "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
-                    "computed": prop(taggedUnion({
-                        "no": option(group({})),
-                        "yes": option(group({})),
+                    "type": prop(taggedUnion({
+                        "direct": option(group({
+                            "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
+                        })),
+                        "delayed": option(group({
+                            "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
+                        })),
                     })),
                 }))),
                 "type": prop(component("Type", {})),

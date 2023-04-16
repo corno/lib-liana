@@ -71,14 +71,14 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 $c(($) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`'${$.key}': `)
-                                        pl.cc($.value, ($) => {
+                                        pl.cc($.value.type, ($) => {
                                             switch ($[0]) {
-                                                case 'no':
+                                                case 'direct':
                                                     pl.ss($, ($) => {
 
                                                     })
                                                     break
-                                                case 'yes':
+                                                case 'delayed':
                                                     pl.ss($, ($) => {
                                                         $i.snippet(`() => `)
                                                     })
@@ -335,22 +335,23 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             $c(($) => {
                                 $i.nestedLine(($i) => {
                                     $i.snippet(`'${$.key}': `)
-                                    pl.cc($.value.computed, ($) => {
+                                    pl.cc($.value.type, ($) => {
                                         switch ($[0]) {
-                                            case 'no':
+                                            case 'direct':
                                                 pl.ss($, ($) => {
-
+                                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
                                                 })
                                                 break
-                                            case 'yes':
+                                            case 'delayed':
                                                 pl.ss($, ($) => {
                                                     $i.snippet(`() => `)
+                                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
+
                                                 })
                                                 break
                                             default: pl.au($[0])
                                         }
                                     })
-                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($.value['type'].key)}<Annotation>>`)
                                 })
                             })
                         })

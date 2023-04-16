@@ -655,7 +655,7 @@ function map_Type<Annotation>($: g_in.T.Type<Annotation>, $x: {
     })
 }
 function map_Type__Path<Annotation>($: g_in.T.Type__Path<Annotation>, $x: {
-    'global types': pt.OptionalValue<g_out.T.GlobalTypes<Annotation>>
+    'global types': () => pt.OptionalValue<g_out.T.GlobalTypes<Annotation>>
 }): g_out.T.Type__Path<Annotation> {
     return pl.cc($, ($) => {
         const temp_namespaces: g_out.T.Type__Path.namespaces<Annotation> = pl.cc($['namespaces'], ($) => $.map(($) => pl.cc($, ($) => {
