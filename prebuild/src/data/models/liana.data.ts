@@ -113,9 +113,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
                 "arguments": prop(dictionary(group({
                     "type": prop(taggedUnion({
-                        "direct": option(group({
+                        "parameter": option(reference(typePath("Type Library", [grp("global types"), dict(), grp("parameters")]), tbd())),
+                        "resolved value placeholder": option(group({
                         })),
-                        "delayed": option(group({})),
+                        "non circular siblings placeholder": option(group({
+                        })),
+                        "all siblings placeholder": option(group({
+                        })),
                     })),
                 }))),
             })),
@@ -126,11 +130,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "global types": prop(dictionary(group({
                 "parameters": prop(dictionary(group({
                     "type": prop(taggedUnion({
-                        "direct": option(group({
+                        "resolved value": option(group({
                             "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
                         })),
-                        "delayed": option(group({
-                            "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
+                        "non circular siblings": option(group({
+                            "type": prop(component("Type Path", {})),
+                        })),
+                        "all siblings": option(group({
+                            "type": prop(component("Type Path", {})),
                         })),
                     })),
                 }))),

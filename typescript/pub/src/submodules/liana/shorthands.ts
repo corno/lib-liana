@@ -271,20 +271,25 @@ export function parameter(param: string): g_this.T.Reference._ltype<pd.SourceLoc
     }]
 }
 
-export function directParameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function allSiblings(path: g_this.T.Type__Path<pd.SourceLocation>): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
-        'type': ['direct', {
-            'type': {
-                'key': param,
-                'annotation': pd.getLocationInfo(1),
-            },
+        'type': ['all siblings', {
+            'type': path,
         }]
     }
 }
 
-export function delayedParameter(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function nonCircularSiblings(path: g_this.T.Type__Path<pd.SourceLocation>): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
-        'type': ['delayed', {
+        'type': ['non circular siblings', {
+            'type': path,
+        }]
+    }
+}
+
+export function resolvedValue(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+    return {
+        'type': ['resolved value', {
             'type': {
                 'key': param,
                 'annotation': pd.getLocationInfo(1),
@@ -320,11 +325,30 @@ export function reference(
     }]
 }
 
-export function argument(delayed: boolean): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+export function argResolvedValuePlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': delayed
-            ? ['delayed', null]
-            : ['direct', null]
+        'type': ['resolved value placeholder', null]
+    }
+}
+
+export function argAllSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return {
+        'type': ['all siblings placeholder', null]
+    }
+}
+
+export function argNonCircularSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return {
+        'type': ['non circular siblings placeholder', null]
+    }
+}
+
+export function paramRef(key: string): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return {
+        'type': ['parameter', {
+            'key': key,
+            'annotation': pd.getLocationInfo(1),
+        }]
     }
 }
 

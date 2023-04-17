@@ -19,7 +19,8 @@ import * as a_ts from "res-typescript"
 
 const d = pm.wrapRawDictionary
 
-import { $ as d_lowlevel } from "../../../data/lowlevel.data"
+import { $ as d_lowlevel_typesystem } from "../../../data/lowlevel_typesystem.data"
+import { $ as d_lowlevel_implementation } from "../../../data/lowlevel_implementation.data"
 import { $ as d_html } from "../../../data/html.data"
 import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
 import { $ as d_accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
@@ -113,13 +114,30 @@ export const $$: A.getTestSet = ($) => {
     
     a_fp.$b.createFile()(
         ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "lowlevel resolver.ts"]), ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "lowlevel typesystem resolver.ts"]), ($i) => {
                 g_2algorithm.$a.createResolverSkeleton({
                     'createIdentifier': a_ts.$r.createIdentifier(),
                     'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                         'compare': a_coll.$r.localeIsABeforeB(),
                     })
-                })(d_lowlevel, $i)
+                })(d_lowlevel_typesystem, $i)
+            })
+        },
+        {
+            'logError': () => {
+                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
+            }
+        }
+    )
+    a_fp.$b.createFile()(
+        ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "lowlevel implementation resolver.ts"]), ($i) => {
+                g_2algorithm.$a.createResolverSkeleton({
+                    'createIdentifier': a_ts.$r.createIdentifier(),
+                    'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+                        'compare': a_coll.$r.localeIsABeforeB(),
+                    })
+                })(d_lowlevel_implementation, $i)
             })
         },
         {

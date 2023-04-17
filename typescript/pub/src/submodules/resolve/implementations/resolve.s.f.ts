@@ -321,7 +321,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                             default: return pl.au($[0])
                         }
                     }),
-                    'arguments': $.arguments.map(($) => $)
+                    'arguments': pm.wrapRawDictionary({}), //FIXME!!!!!
                 }])
                 case 'dictionary': return pl.ss($, ($) => ['dictionary', {
                     'key': mapTerminal($.key),
@@ -370,27 +370,28 @@ export const $$: A.resolve = <GAnnotation>($se: {
             'imports': $.imports.map(($) => $),
             'terminal types': $['terminal types'].map(($) => $),
             'global types': $['global types'].map(($) => ({
-                'parameters': $.parameters.map(($) => ({
-                    'type': pl.cc($.type, ($) => {
-                        switch ($[0]) {
-                            case 'delayed': return pl.ss($, ($) => ['delayed', {
-                                'type': {
-                                    'annotation': $['type'].annotation,
-                                    'key': $['type'].key,
-                                    'constraint': [false],
-                                }
-                            }])
-                            case 'direct': return pl.ss($, ($) => ['direct', {
-                                'type': {
-                                    'annotation': $['type'].annotation,
-                                    'key': $['type'].key,
-                                    'constraint': [false],
-                                }
-                            }])
-                            default: return pl.au($[0])
-                        }
-                    }),
-                })),
+                'parameters': pm.wrapRawDictionary({}),//FIXME!!!!!
+                // 'parameters': $.parameters.map(($) => ({
+                //     'type': pl.cc($.type, ($) => {
+                //         switch ($[0]) {
+                //             case 'delayed': return pl.ss($, ($) => ['delayed', {
+                //                 'type': {
+                //                     'annotation': $['type'].annotation,
+                //                     'key': $['type'].key,
+                //                     'constraint': [false],
+                //                 }
+                //             }])
+                //             case 'direct': return pl.ss($, ($) => ['direct', {
+                //                 'type': {
+                //                     'annotation': $['type'].annotation,
+                //                     'key': $['type'].key,
+                //                     'constraint': [false],
+                //                 }
+                //             }])
+                //             default: return pl.au($[0])
+                //         }
+                //     }),
+                // })),
                 'type': mapType($.type),
                 'result': pl.optional(
                     $.result,

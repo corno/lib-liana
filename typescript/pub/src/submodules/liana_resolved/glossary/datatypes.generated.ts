@@ -420,7 +420,7 @@ export namespace N {
                                                                         
                                                                         export namespace N {
                                                                             
-                                                                            export namespace delayed {
+                                                                            export namespace all_$_$siblings_$_$placeholder {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -435,7 +435,29 @@ export namespace N {
                                                                                 export namespace T {}
                                                                             }
                                                                             
-                                                                            export namespace direct {
+                                                                            export namespace non_$_$circular_$_$siblings_$_$placeholder {
+                                                                                
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace G {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                            
+                                                                            export namespace parameter {
+                                                                                
+                                                                                export namespace N {}
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                            
+                                                                            export namespace resolved_$_$value_$_$placeholder {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -825,7 +847,7 @@ export namespace N {
                                                                                 
                                                                                 export namespace N {
                                                                                     
-                                                                                    export namespace delayed {
+                                                                                    export namespace all_$_$siblings {
                                                                                         
                                                                                         export namespace N {
                                                                                             
@@ -848,7 +870,30 @@ export namespace N {
                                                                                         export namespace T {}
                                                                                     }
                                                                                     
-                                                                                    export namespace direct {
+                                                                                    export namespace non_$_$circular_$_$siblings {
+                                                                                        
+                                                                                        export namespace N {
+                                                                                            
+                                                                                            export namespace G {
+                                                                                                
+                                                                                                export namespace N {
+                                                                                                    
+                                                                                                    export namespace _$ltype {
+                                                                                                        
+                                                                                                        export namespace N {}
+                                                                                                        
+                                                                                                        export namespace T {}
+                                                                                                    }
+                                                                                                }
+                                                                                                
+                                                                                                export namespace T {}
+                                                                                            }
+                                                                                        }
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                    
+                                                                                    export namespace resolved_$_$value {
                                                                                         
                                                                                         export namespace N {
                                                                                             
@@ -1446,31 +1491,73 @@ export namespace T {
                     
                     export namespace _ltype {
                         
-                        export namespace delayed {}
+                        export namespace all__siblings__placeholder {}
                         
-                        export type delayed<GAnnotation> = null
+                        export type all__siblings__placeholder<GAnnotation> = null
                         
-                        export namespace direct {}
+                        export namespace non__circular__siblings__placeholder {}
                         
-                        export type direct<GAnnotation> = null
+                        export type non__circular__siblings__placeholder<GAnnotation> = null
+                        
+                        export namespace parameter {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export namespace constraint {
+                                
+                                export type O<GAnnotation> = T.Type__Library.global__types.D.parameters.D<GAnnotation>
+                            }
+                            
+                            export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type parameter<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                        
+                        export namespace resolved__value__placeholder {}
+                        
+                        export type resolved__value__placeholder<GAnnotation> = null
                     }
                     
                     export type _ltype<GAnnotation> = 
-                        | ['delayed', null]
-                        | ['direct', null]
+                        | ['all siblings placeholder', null]
+                        | ['non circular siblings placeholder', null]
+                        | ['parameter', {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                            readonly 'key': string
+                        }]
+                        | ['resolved value placeholder', null]
                 }
                 
                 export type D<GAnnotation> = {
                     readonly 'type': 
-                        | ['delayed', null]
-                        | ['direct', null]
+                        | ['all siblings placeholder', null]
+                        | ['non circular siblings placeholder', null]
+                        | ['parameter', {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                            readonly 'key': string
+                        }]
+                        | ['resolved value placeholder', null]
                 }
             }
             
             export type arguments<GAnnotation> = pt.Dictionary<{
                 readonly 'type': 
-                    | ['delayed', null]
-                    | ['direct', null]
+                    | ['all siblings placeholder', null]
+                    | ['non circular siblings placeholder', null]
+                    | ['parameter', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                        readonly 'key': string
+                    }]
+                    | ['resolved value placeholder', null]
             }>
             
             export namespace context {
@@ -1545,8 +1632,14 @@ export namespace T {
         export type component<GAnnotation> = {
             readonly 'arguments': pt.Dictionary<{
                 readonly 'type': 
-                    | ['delayed', null]
-                    | ['direct', null]
+                    | ['all siblings placeholder', null]
+                    | ['non circular siblings placeholder', null]
+                    | ['parameter', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                        readonly 'key': string
+                    }]
+                    | ['resolved value placeholder', null]
             }>
             readonly 'context': 
                 | ['import', {
@@ -1763,8 +1856,14 @@ export namespace T {
         | ['component', {
             readonly 'arguments': pt.Dictionary<{
                 readonly 'type': 
-                    | ['delayed', null]
-                    | ['direct', null]
+                    | ['all siblings placeholder', null]
+                    | ['non circular siblings placeholder', null]
+                    | ['parameter', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D.parameters.D<GAnnotation>]
+                        readonly 'key': string
+                    }]
+                    | ['resolved value placeholder', null]
             }>
             readonly 'context': 
                 | ['import', {
@@ -1828,7 +1927,25 @@ export namespace T {
                         
                         export namespace _ltype {
                             
-                            export namespace delayed {
+                            export namespace all__siblings {
+                                
+                                export type _ltype<GAnnotation> = T.Type__Path<GAnnotation>
+                            }
+                            
+                            export type all__siblings<GAnnotation> = {
+                                readonly 'type': T.Type__Path<GAnnotation>
+                            }
+                            
+                            export namespace non__circular__siblings {
+                                
+                                export type _ltype<GAnnotation> = T.Type__Path<GAnnotation>
+                            }
+                            
+                            export type non__circular__siblings<GAnnotation> = {
+                                readonly 'type': T.Type__Path<GAnnotation>
+                            }
+                            
+                            export namespace resolved__value {
                                 
                                 export namespace _ltype {
                                     
@@ -1851,38 +1968,7 @@ export namespace T {
                                 }
                             }
                             
-                            export type delayed<GAnnotation> = {
-                                readonly 'type': {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                    readonly 'key': string
-                                }
-                            }
-                            
-                            export namespace direct {
-                                
-                                export namespace _ltype {
-                                    
-                                    export type annotation<GAnnotation> = GAnnotation
-                                    
-                                    export namespace constraint {
-                                        
-                                        export type O<GAnnotation> = T.Type__Library.global__types.D<GAnnotation>
-                                    }
-                                    
-                                    export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                    
-                                    export type key<GAnnotation> = string
-                                }
-                                
-                                export type _ltype<GAnnotation> = {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                    readonly 'key': string
-                                }
-                            }
-                            
-                            export type direct<GAnnotation> = {
+                            export type resolved__value<GAnnotation> = {
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -1892,14 +1978,13 @@ export namespace T {
                         }
                         
                         export type _ltype<GAnnotation> = 
-                            | ['delayed', {
-                                readonly 'type': {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                    readonly 'key': string
-                                }
+                            | ['all siblings', {
+                                readonly 'type': T.Type__Path<GAnnotation>
                             }]
-                            | ['direct', {
+                            | ['non circular siblings', {
+                                readonly 'type': T.Type__Path<GAnnotation>
+                            }]
+                            | ['resolved value', {
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -1910,14 +1995,13 @@ export namespace T {
                     
                     export type D<GAnnotation> = {
                         readonly 'type': 
-                            | ['delayed', {
-                                readonly 'type': {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                    readonly 'key': string
-                                }
+                            | ['all siblings', {
+                                readonly 'type': T.Type__Path<GAnnotation>
                             }]
-                            | ['direct', {
+                            | ['non circular siblings', {
+                                readonly 'type': T.Type__Path<GAnnotation>
+                            }]
+                            | ['resolved value', {
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -1929,14 +2013,13 @@ export namespace T {
                 
                 export type parameters<GAnnotation> = pt.Dictionary<{
                     readonly 'type': 
-                        | ['delayed', {
-                            readonly 'type': {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                readonly 'key': string
-                            }
+                        | ['all siblings', {
+                            readonly 'type': T.Type__Path<GAnnotation>
                         }]
-                        | ['direct', {
+                        | ['non circular siblings', {
+                            readonly 'type': T.Type__Path<GAnnotation>
+                        }]
+                        | ['resolved value', {
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -1997,14 +2080,13 @@ export namespace T {
             export type D<GAnnotation> = {
                 readonly 'parameters': pt.Dictionary<{
                     readonly 'type': 
-                        | ['delayed', {
-                            readonly 'type': {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                                readonly 'key': string
-                            }
+                        | ['all siblings', {
+                            readonly 'type': T.Type__Path<GAnnotation>
                         }]
-                        | ['direct', {
+                        | ['non circular siblings', {
+                            readonly 'type': T.Type__Path<GAnnotation>
+                        }]
+                        | ['resolved value', {
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -2027,14 +2109,13 @@ export namespace T {
         export type global__types<GAnnotation> = pt.Dictionary<{
             readonly 'parameters': pt.Dictionary<{
                 readonly 'type': 
-                    | ['delayed', {
-                        readonly 'type': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                            readonly 'key': string
-                        }
+                    | ['all siblings', {
+                        readonly 'type': T.Type__Path<GAnnotation>
                     }]
-                    | ['direct', {
+                    | ['non circular siblings', {
+                        readonly 'type': T.Type__Path<GAnnotation>
+                    }]
+                    | ['resolved value', {
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
@@ -2076,14 +2157,13 @@ export namespace T {
         readonly 'global types': pt.Dictionary<{
             readonly 'parameters': pt.Dictionary<{
                 readonly 'type': 
-                    | ['delayed', {
-                        readonly 'type': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                            readonly 'key': string
-                        }
+                    | ['all siblings', {
+                        readonly 'type': T.Type__Path<GAnnotation>
                     }]
-                    | ['direct', {
+                    | ['non circular siblings', {
+                        readonly 'type': T.Type__Path<GAnnotation>
+                    }]
+                    | ['resolved value', {
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]

@@ -73,20 +73,30 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         $i.snippet(`'${$.key}': `)
                                         pl.cc($.value.type, ($) => {
                                             switch ($[0]) {
-                                                case 'direct':
+                                                case 'all siblings placeholder':
                                                     pl.ss($, ($) => {
-
+                                                        $i.snippet(`undefined`)
                                                     })
                                                     break
-                                                case 'delayed':
+                                                case 'non circular siblings placeholder':
                                                     pl.ss($, ($) => {
-                                                        $i.snippet(`() => `)
+                                                        $i.snippet(`undefined`)
+                                                    })
+                                                    break
+                                                case 'parameter':
+                                                    pl.ss($, ($) => {
+                                                        $i.snippet(`$i['${$.key}']`)
+                                                    })
+                                                    break
+                                                case 'resolved value placeholder':
+                                                    pl.ss($, ($) => {
+                                                        $i.snippet(`[false]`)
                                                     })
                                                     break
                                                 default: pl.au($[0])
                                             }
                                         })
-                                        $i.snippet(`[false],`)
+                                        $i.snippet(`,`)
                                     })
                                 })
                             })
@@ -337,16 +347,22 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.snippet(`'${$.key}': `)
                                     pl.cc($.value.type, ($) => {
                                         switch ($[0]) {
-                                            case 'direct':
+                                            case 'all siblings':
                                                 pl.ss($, ($) => {
-                                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
+                                                    $i.snippet(`pt.Lookup<pt.ComputedValue<`)
+                                                    doTypePath($.type, $i)
+                                                    $i.snippet(`.D<Annotation>>>`)
                                                 })
                                                 break
-                                            case 'delayed':
+                                            case 'non circular siblings':
                                                 pl.ss($, ($) => {
-                                                    $i.snippet(`() => `)
+                                                    $i.snippet(`pt.Lookup<`)
+                                                    doTypePath($.type, $i)
+                                                    $i.snippet(`.D<Annotation>>`)                                                })
+                                                break
+                                            case 'resolved value':
+                                                pl.ss($, ($) => {
                                                     $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
-
                                                 })
                                                 break
                                             default: pl.au($[0])
