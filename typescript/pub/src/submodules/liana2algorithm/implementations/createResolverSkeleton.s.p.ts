@@ -54,6 +54,49 @@ export const $$: A.createResolverSkeleton = ($d) => {
             }
         })
     }
+    function doPath<Annotation>(
+        $: g_liana.T.Path<Annotation>,
+        $i: g_fp.SYNC.I.Line,
+    ) {
+        pl.cc($.start, ($) => {
+            switch ($[0]) {
+                case 'all siblings placeholder':
+                    pl.ss($, ($) => {
+                        $i.snippet(`undefined`)
+                    })
+                    break
+                case 'non circular siblings placeholder':
+                    pl.ss($, ($) => {
+                        $i.snippet(`undefined`)
+                    })
+                    break
+                case 'parameter':
+                    pl.ss($, ($) => {
+                        $i.snippet(`$x['${$.key}']`)
+                    })
+                    break
+                case 'resolved value placeholder':
+                    pl.ss($, ($) => {
+                        $i.snippet(`[false]`)
+                    })
+                    break
+                default: pl.au($[0])
+            }
+        })
+        pl.cc($.tail, ($) => {
+            $.__forEach(($) => {
+                switch ($[0]) {
+                    case 'tagged union': 
+                        pl.ss($, ($) => {
+                            $i.snippet(`/*${$.option.key}*/`)
+                        })
+                        break
+                    default: pl.au($[0])
+                }
+            })
+        })
+
+    }
     function doType<Annotation>(
         $: g_liana.T.Type<Annotation>,
         $x: string,
@@ -80,31 +123,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 $c(($) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`'${$.key}': `)
-                                        pl.cc($.value.type, ($) => {
-                                            switch ($[0]) {
-                                                case 'all siblings placeholder':
-                                                    pl.ss($, ($) => {
-                                                        $i.snippet(`undefined`)
-                                                    })
-                                                    break
-                                                case 'non circular siblings placeholder':
-                                                    pl.ss($, ($) => {
-                                                        $i.snippet(`undefined`)
-                                                    })
-                                                    break
-                                                case 'parameter':
-                                                    pl.ss($, ($) => {
-                                                        $i.snippet(`$x['${$.key}']`)
-                                                    })
-                                                    break
-                                                case 'resolved value placeholder':
-                                                    pl.ss($, ($) => {
-                                                        $i.snippet(`[false]`)
-                                                    })
-                                                    break
-                                                default: pl.au($[0])
-                                            }
-                                        })
+                                        doPath($.value.type, $i)
                                         $i.snippet(`,`)
                                     })
                                 })

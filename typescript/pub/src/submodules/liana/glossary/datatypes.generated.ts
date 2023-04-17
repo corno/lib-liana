@@ -37,17 +37,70 @@ export namespace N {
         
         export namespace N {
             
-            export namespace TU {
+            export namespace G {
                 
                 export namespace N {
                     
-                    export namespace all_$_$siblings_$_$placeholder {
+                    export namespace start {
                         
                         export namespace N {
                             
-                            export namespace G {
+                            export namespace TU {
                                 
-                                export namespace N {}
+                                export namespace N {
+                                    
+                                    export namespace all_$_$siblings_$_$placeholder {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace non_$_$circular_$_$siblings_$_$placeholder {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace parameter {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace resolved_$_$value_$_$placeholder {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                }
                                 
                                 export namespace T {}
                             }
@@ -56,35 +109,45 @@ export namespace N {
                         export namespace T {}
                     }
                     
-                    export namespace non_$_$circular_$_$siblings_$_$placeholder {
+                    export namespace tail {
                         
                         export namespace N {
                             
-                            export namespace G {
+                            export namespace A {
                                 
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace parameter {
-                        
-                        export namespace N {}
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace resolved_$_$value_$_$placeholder {
-                        
-                        export namespace N {
-                            
-                            export namespace G {
-                                
-                                export namespace N {}
+                                export namespace N {
+                                    
+                                    export namespace TU {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace tagged_$_$union {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace G {
+                                                        
+                                                        export namespace N {
+                                                            
+                                                            export namespace option {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                        }
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                }
                                 
                                 export namespace T {}
                             }
@@ -1535,39 +1598,106 @@ export namespace T {
     
     export namespace Path {
         
-        export namespace all__siblings__placeholder {}
-        
-        export type all__siblings__placeholder<GAnnotation> = null
-        
-        export namespace non__circular__siblings__placeholder {}
-        
-        export type non__circular__siblings__placeholder<GAnnotation> = null
-        
-        export namespace parameter {
+        export namespace start {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export namespace all__siblings__placeholder {}
             
-            export type key<GAnnotation> = string
+            export type all__siblings__placeholder<GAnnotation> = null
+            
+            export namespace non__circular__siblings__placeholder {}
+            
+            export type non__circular__siblings__placeholder<GAnnotation> = null
+            
+            export namespace parameter {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export type key<GAnnotation> = string
+            }
+            
+            export type parameter<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+            
+            export namespace resolved__value__placeholder {}
+            
+            export type resolved__value__placeholder<GAnnotation> = null
         }
         
-        export type parameter<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'key': string
+        export type start<GAnnotation> = 
+            | ['all siblings placeholder', null]
+            | ['non circular siblings placeholder', null]
+            | ['parameter', {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }]
+            | ['resolved value placeholder', null]
+        
+        export namespace tail {
+            
+            export namespace A {
+                
+                export namespace tagged__union {
+                    
+                    export namespace option {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export type key<GAnnotation> = string
+                    }
+                    
+                    export type option<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+                
+                export type tagged__union<GAnnotation> = {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+            }
+            
+            export type A<GAnnotation> = 
+                | ['tagged union', {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }]
         }
         
-        export namespace resolved__value__placeholder {}
-        
-        export type resolved__value__placeholder<GAnnotation> = null
+        export type tail<GAnnotation> = pt.Array<
+            | ['tagged union', {
+                readonly 'option': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+        >
     }
     
-    export type Path<GAnnotation> = 
-        | ['all siblings placeholder', null]
-        | ['non circular siblings placeholder', null]
-        | ['parameter', {
-            readonly 'annotation': GAnnotation
-            readonly 'key': string
-        }]
-        | ['resolved value placeholder', null]
+    export type Path<GAnnotation> = {
+        readonly 'start': 
+            | ['all siblings placeholder', null]
+            | ['non circular siblings placeholder', null]
+            | ['parameter', {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }]
+            | ['resolved value placeholder', null]
+        readonly 'tail': pt.Array<
+            | ['tagged union', {
+                readonly 'option': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'key': string
+                }
+            }]
+        >
+    }
     
     export namespace Reference {
         

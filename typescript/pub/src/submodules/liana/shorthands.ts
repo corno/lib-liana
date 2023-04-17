@@ -368,28 +368,49 @@ export function reference(
 
 export function argResolvedValuePlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['resolved value placeholder', null]
+        'type': {
+            'start': ['resolved value placeholder', null],
+            'tail': a([]),
+        }
     }
 }
 
 export function argAllSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['all siblings placeholder', null]
+        'type': {
+            'start': ['all siblings placeholder', null],
+            'tail': a([]),
+        }
     }
 }
 
 export function argNonCircularSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['non circular siblings placeholder', null]
+        'type': {
+            'start': ['non circular siblings placeholder', null],
+            'tail': a([]),
+        }
     }
 }
 
-export function paramRef(key: string): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-    return {
-        'type': ['parameter', {
-            'key': key,
+export function tuStep(option: string): g_this.T.Path.tail.A<pd.SourceLocation> {
+    return ['tagged union', {
+        'option': {
             'annotation': pd.getLocationInfo(1),
-        }]
+            'key': option
+        }
+    }]
+}
+
+export function paramRef(key: string, tail: g_this.T.Path.tail.A<pd.SourceLocation>[]): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+    return {
+        'type': {
+            'start': ['parameter', {
+                'key': key,
+                'annotation': pd.getLocationInfo(1),
+            }],
+            'tail': a(tail)
+        }
     }
 }
 

@@ -37,18 +37,38 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             },
             "Path": {
                 'parameters': d({}),
-                'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                    "all siblings placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
-                    "non circular siblings placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
-                    "parameter": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                        "annotation": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                        },
-                        "key": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
-                        },
-                    })],
-                    "resolved value placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                    "start": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                            "all siblings placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                            "non circular siblings placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                            "parameter": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
+                                "key": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                                },
+                            })],
+                            "resolved value placeholder": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                        })],
+                    },
+                    "tail": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['array', <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                            "tagged union": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "option": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                        "annotation": {
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                        },
+                                        "key": {
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                                        },
+                                    })],
+                                },
+                            })],
+                        })]],
+                    },
                 })]
             },
             "Reference": {
@@ -677,37 +697,76 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "Path": {
                 'types': d({}),
                 'namespaces': d({
-                    "TU": {
+                    "G": {
                         'types': d({}),
                         'namespaces': d({
-                            "all siblings placeholder": {
+                            "start": {
                                 'types': d({}),
                                 'namespaces': d({
-                                    "G": {
+                                    "TU": {
                                         'types': d({}),
-                                        'namespaces': d({}),
+                                        'namespaces': d({
+                                            "all siblings placeholder": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                            "non circular siblings placeholder": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                            "parameter": {
+                                                'types': d({}),
+                                                'namespaces': d({}),
+                                            },
+                                            "resolved value placeholder": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
+                                                    },
+                                                }),
+                                            },
+                                        }),
                                     },
                                 }),
                             },
-                            "non circular siblings placeholder": {
+                            "tail": {
                                 'types': d({}),
                                 'namespaces': d({
-                                    "G": {
+                                    "A": {
                                         'types': d({}),
-                                        'namespaces': d({}),
-                                    },
-                                }),
-                            },
-                            "parameter": {
-                                'types': d({}),
-                                'namespaces': d({}),
-                            },
-                            "resolved value placeholder": {
-                                'types': d({}),
-                                'namespaces': d({
-                                    "G": {
-                                        'types': d({}),
-                                        'namespaces': d({}),
+                                        'namespaces': d({
+                                            "TU": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "tagged union": {
+                                                        'types': d({}),
+                                                        'namespaces': d({
+                                                            "G": {
+                                                                'types': d({}),
+                                                                'namespaces': d({
+                                                                    "option": {
+                                                                        'types': d({}),
+                                                                        'namespaces': d({}),
+                                                                    },
+                                                                }),
+                                                            },
+                                                        }),
+                                                    },
+                                                }),
+                                            },
+                                        }),
                                     },
                                 }),
                             },
