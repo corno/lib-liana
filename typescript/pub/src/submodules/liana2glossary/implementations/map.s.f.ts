@@ -283,7 +283,7 @@ export const $$: A.map = ($d) => {
                         $.constraint,
                         ($) => ['group', $d.filter(pm.wrapRawDictionary({
                             "annotation": createOptionalAnnotation(),
-                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
+                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => $.option.key)),
                             "type": [true, {
                                 'type': mapTypeToType(type, $x)
                             }]
