@@ -746,6 +746,13 @@ export namespace N {
                                                                                 
                                                                                 export namespace N {
                                                                                     
+                                                                                    export namespace option {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                    
                                                                                     export namespace type_$_$path {
                                                                                         
                                                                                         export namespace N {}
@@ -1803,15 +1810,45 @@ export namespace T {
                         
                         export namespace O {
                             
+                            export namespace option {
+                                
+                                export type annotation<GAnnotation> = GAnnotation
+                                
+                                export namespace constraint {
+                                    
+                                    export type O<GAnnotation> = T.Type.tagged__union.options.D<GAnnotation>
+                                }
+                                
+                                export type constraint<GAnnotation> = [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                                
+                                export type key<GAnnotation> = string
+                            }
+                            
+                            export type option<GAnnotation> = {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                            
                             export type type__path<GAnnotation> = T.Type__Path<GAnnotation>
                         }
                         
                         export type O<GAnnotation> = {
+                            readonly 'option': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                             readonly 'type path': T.Type__Path<GAnnotation>
                         }
                     }
                     
                     export type constraint<GAnnotation> = [ false ] | [ true, {
+                        readonly 'option': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                            readonly 'key': string
+                        }
                         readonly 'type path': T.Type__Path<GAnnotation>
                     }]
                     
@@ -1820,6 +1857,11 @@ export namespace T {
                 
                 export type D<GAnnotation> = {
                     readonly 'constraint': [ false ] | [ true, {
+                        readonly 'option': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                            readonly 'key': string
+                        }
                         readonly 'type path': T.Type__Path<GAnnotation>
                     }]
                     readonly 'type': T.Type<GAnnotation>
@@ -1828,6 +1870,11 @@ export namespace T {
             
             export type options<GAnnotation> = pt.Dictionary<{
                 readonly 'constraint': [ false ] | [ true, {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                        readonly 'key': string
+                    }
                     readonly 'type path': T.Type__Path<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -1850,6 +1897,11 @@ export namespace T {
             }
             readonly 'options': pt.Dictionary<{
                 readonly 'constraint': [ false ] | [ true, {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                        readonly 'key': string
+                    }
                     readonly 'type path': T.Type__Path<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -1923,6 +1975,11 @@ export namespace T {
             }
             readonly 'options': pt.Dictionary<{
                 readonly 'constraint': [ false ] | [ true, {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
+                        readonly 'key': string
+                    }
                     readonly 'type path': T.Type__Path<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>

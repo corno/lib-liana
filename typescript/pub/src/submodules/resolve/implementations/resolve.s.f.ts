@@ -341,7 +341,12 @@ export const $$: A.resolve = <GAnnotation>($se: {
                         'type': mapType($.type),
                         'constraint': ($.constraint[0] === true)
                             ? pl.cc($.constraint[1], ($) => [true, {
-                                'type path': mapTypePath($['type path'])
+                                'type path': mapTypePath($['type path']),
+                                'option': {
+                                    'annotation': $['option'].annotation,
+                                    'key': $['option'].key,
+                                    'constraint': [false],
+                                },
                             }])
                             : [false]
                     })),

@@ -127,12 +127,16 @@ export function group(properties: RawDictionary<g_this.T.Type.group.properties.D
     }]
 }
 
-export function option(type: g_this.T.Type<pd.SourceLocation>, constrained?: g_this.T.Type__Path<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function option(type: g_this.T.Type<pd.SourceLocation>, constraint?: [g_this.T.Type__Path<pd.SourceLocation>, string]): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
-        'constraint': constrained === undefined
+        'constraint': constraint === undefined
             ? [false]
             : [true, {
-                'type path': constrained
+                'type path': constraint[0],
+                'option': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': constraint[1]
+                }
             }],
         'type': type,
     }

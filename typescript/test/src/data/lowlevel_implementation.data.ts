@@ -203,7 +203,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "selection": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
-            }), typePath("Type", [tu("boolean"),])),
+            }), [typePath("Type", []), "boolean"]),
         })),
         "Boolean Expression": globalType({
             "stack": resolvedValue("Variable Stack"),
@@ -262,13 +262,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //array
             "array literal": option(array(component("Expression", {
                 "type": argResolvedValuePlaceholder()
-            })), typePath("Type", [tu("array"),])),
+            })), [typePath("Type", []), "array"]),
             //object
             "object literal": option(group({
                 "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {
                     "type": argResolvedValuePlaceholder()
                 }))),
-            }), typePath("Type", [tu("group"),])),
+            }), [typePath("Type", []), "group"]),
             //function (inline function)
             "function": option(group({
                 "arguments": prop(dictionary(group({}))), //no type info needed
@@ -276,19 +276,19 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "block": prop(component("Block", {
                     "stack": argResolvedValuePlaceholder()
                 })),
-            }), typePath("Type", [tu("function"),])),
+            }), [typePath("Type", []), "function"]),
             //boolean
             "boolean": option(component("Boolean Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), typePath("Type", [tu("boolean"),])),
+            }), [typePath("Type", []), "boolean"]),
             //numerical
             "numerical": option(component("Numerical Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), typePath("Type", [tu("number"),])),
+            }), [typePath("Type", []), "number"]),
             //string
             "string": option(component("String Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), typePath("Type", [tu("string"),])),
+            }), [typePath("Type", []), "string"]),
             //any
             "conditional": option(group({
                 "test": prop(component("Boolean Expression Or Selection", {})),
@@ -305,7 +305,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "parameters": prop(dictionary(component("Expression", {}))),
             // })),
             // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
-            "null": option(group({}), typePath("Type", [tu("null"),])),
+            "null": option(group({}), [typePath("Type", []), "null"]),
             //"parenthesized": option(component("Expression", {})),
             "symbol": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()

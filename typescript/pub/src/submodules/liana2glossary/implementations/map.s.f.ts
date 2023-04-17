@@ -42,13 +42,13 @@ export const $$: A.map = ($d) => {
                 () => [false],
             )
         }
-        function createOptionalKeyConstraint(
-            $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>,
-            $y: g_liana.T.Reference<Annotation>
-        ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
-            return createOptionalConstraint($x, () => ({
+        function mapTypePath(
+            $: g_liana.T.Type__Path<Annotation>,
+            getLastStep: () => string
+        ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
+            return {
                 'context': pl.optional(
-                    $y['type path'].import,
+                    $.import,
                     ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
                         'glossary': {
                             'annotation': ['internal', "FXIME"],
@@ -58,9 +58,9 @@ export const $$: A.map = ($d) => {
                     () => ['local', null],
                 ),
                 'arguments': pm.wrapRawDictionary({}),
-                'type': $y['type path']['global type'].key,
+                'type': $['global type'].key,
                 'tail': $d.push({
-                    'array': $d.merge($y['type path'].path.map(($) => {
+                    'array': $d.merge($.path.map(($) => {
                         return pl.cc($, ($) => {
                             switch ($[0]) {
                                 case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
@@ -72,9 +72,9 @@ export const $$: A.map = ($d) => {
                             }
                         })
                     })),
-                    'element': "D",
+                    'element': getLastStep(),
                 }),
-            }))
+            }
         }
         function mapTypeToNamespace($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
             return {
@@ -199,7 +199,7 @@ export const $$: A.map = ($d) => {
                             case 'no': return pl.ss($, ($) => ['dictionary', mapTypeToType(type, $x)])
                             case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
                                 "annotation": createOptionalAnnotation(),
-                                "constraint": createOptionalKeyConstraint($x, $),
+                                "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
                                 "type": [true, {
                                     'type': mapTypeToType(type, $x),
                                 }]
@@ -231,7 +231,7 @@ export const $$: A.map = ($d) => {
                                     'type': ['string', null] //FIX: resolve the right type
                                 }]
                                 : [false],
-                            "constraint": createOptionalKeyConstraint($x, $),
+                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
                             "annotation": createOptionalAnnotation(),
                             // "referencedType": $.path.map(($) => {
                             //     switch ($[0]) {
@@ -283,12 +283,7 @@ export const $$: A.map = ($d) => {
                         $.constraint,
                         ($) => ['group', $d.filter(pm.wrapRawDictionary({
                             "annotation": createOptionalAnnotation(),
-                            "constraint": createOptionalConstraint($x, () => ({
-                                'context': ['local', null],
-                                'arguments': pm.wrapRawDictionary({}),
-                                'type': $['type path']['global type'].key,
-                                'tail': pm.wrapRawArray([]),
-                            })),
+                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
                             "type": [true, {
                                 'type': mapTypeToType(type, $x)
                             }]

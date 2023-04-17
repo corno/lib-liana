@@ -309,7 +309,7 @@ function map_Boolean__Expression__Or__Selection<Annotation>($: g_in.T.Boolean__E
                 'stack': [false],
             })])
             case 'selection': return pl.ss($, ($) => ['selection', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lboolean<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -418,7 +418,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
     return pl.cc($, ($): g_out.T.Expression<Annotation> => {
         switch ($[0]) {
             case 'array literal': return pl.ss($, ($) => ['array literal', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type.array<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -428,7 +428,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'object literal': return pl.ss($, ($) => ['object literal', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type.group<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -450,7 +450,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'function': return pl.ss($, ($) => ['function', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lfunction<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -469,7 +469,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'boolean': return pl.ss($, ($) => ['boolean', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lboolean<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -479,7 +479,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'numerical': return pl.ss($, ($) => ['numerical', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lnumber<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -489,7 +489,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'string': return pl.ss($, ($) => ['string', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lstring<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,
@@ -513,7 +513,7 @@ function map_Expression<Annotation>($: g_in.T.Expression<Annotation>, $x: {
                 }
             })])
             case 'null': return pl.ss($, ($) => ['null', pl.cc($, ($) => {
-                const constraint: pt.OptionalValue<g_out.T.Type._lnull<Annotation>> = [false]
+                const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
                 return {
                     'annotation': $.annotation,
                     'constraint': constraint,

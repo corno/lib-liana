@@ -88,7 +88,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "options": prop(dictionary(group({
                     "type": prop(component("Type", {})),
                     "constraint": prop(optional(group({
-                        "type path": prop(component("Type Path", {})),
+                        "type path": prop(component("Type Path", {})), //must be tagged union
+                        "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
                     }))),
                 }))),
                 "default": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
