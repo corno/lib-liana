@@ -33,6 +33,74 @@ export namespace N {
         export namespace T {}
     }
     
+    export namespace Path {
+        
+        export namespace N {
+            
+            export namespace TU {
+                
+                export namespace N {
+                    
+                    export namespace all_$_$siblings_$_$placeholder {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace non_$_$circular_$_$siblings_$_$placeholder {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace parameter {
+                        
+                        export namespace N {}
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace resolved_$_$value_$_$placeholder {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                }
+                
+                export namespace T {}
+            }
+        }
+        
+        export namespace T {}
+    }
+    
     export namespace Reference {
         
         export namespace N {
@@ -117,6 +185,21 @@ export namespace N {
                         export namespace T {}
                     }
                 }
+                
+                export namespace T {}
+            }
+        }
+        
+        export namespace T {}
+    }
+    
+    export namespace Reference_$_$Initializer {
+        
+        export namespace N {
+            
+            export namespace G {
+                
+                export namespace N {}
                 
                 export namespace T {}
             }
@@ -316,6 +399,45 @@ export namespace N {
         export namespace T {}
     }
     
+    export namespace Terminal_$_$Initializer {
+        
+        export namespace N {
+            
+            export namespace G {
+                
+                export namespace N {
+                    
+                    export namespace constrained {
+                        
+                        export namespace N {
+                            
+                            export namespace TU {
+                                
+                                export namespace N {
+                                    
+                                    export namespace yes {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                }
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                }
+                
+                export namespace T {}
+            }
+        }
+        
+        export namespace T {}
+    }
+    
     export namespace Type {
         
         export namespace N {
@@ -414,68 +536,7 @@ export namespace N {
                                                             
                                                             export namespace _$ltype {
                                                                 
-                                                                export namespace N {
-                                                                    
-                                                                    export namespace TU {
-                                                                        
-                                                                        export namespace N {
-                                                                            
-                                                                            export namespace all_$_$siblings_$_$placeholder {
-                                                                                
-                                                                                export namespace N {
-                                                                                    
-                                                                                    export namespace G {
-                                                                                        
-                                                                                        export namespace N {}
-                                                                                        
-                                                                                        export namespace T {}
-                                                                                    }
-                                                                                }
-                                                                                
-                                                                                export namespace T {}
-                                                                            }
-                                                                            
-                                                                            export namespace non_$_$circular_$_$siblings_$_$placeholder {
-                                                                                
-                                                                                export namespace N {
-                                                                                    
-                                                                                    export namespace G {
-                                                                                        
-                                                                                        export namespace N {}
-                                                                                        
-                                                                                        export namespace T {}
-                                                                                    }
-                                                                                }
-                                                                                
-                                                                                export namespace T {}
-                                                                            }
-                                                                            
-                                                                            export namespace parameter {
-                                                                                
-                                                                                export namespace N {}
-                                                                                
-                                                                                export namespace T {}
-                                                                            }
-                                                                            
-                                                                            export namespace resolved_$_$value_$_$placeholder {
-                                                                                
-                                                                                export namespace N {
-                                                                                    
-                                                                                    export namespace G {
-                                                                                        
-                                                                                        export namespace N {}
-                                                                                        
-                                                                                        export namespace T {}
-                                                                                    }
-                                                                                }
-                                                                                
-                                                                                export namespace T {}
-                                                                            }
-                                                                        }
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                }
+                                                                export namespace N {}
                                                                 
                                                                 export namespace T {}
                                                             }
@@ -568,6 +629,44 @@ export namespace N {
                             export namespace G {
                                 
                                 export namespace N {
+                                    
+                                    export namespace autofill {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace A {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace G {
+                                                        
+                                                        export namespace N {
+                                                            
+                                                            export namespace initializer {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                            
+                                                            export namespace source {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                        }
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
                                     
                                     export namespace key {
                                         
@@ -814,6 +913,144 @@ export namespace N {
         export namespace T {}
     }
     
+    export namespace Type_$_$Initializer {
+        
+        export namespace N {
+            
+            export namespace TU {
+                
+                export namespace N {
+                    
+                    export namespace component {
+                        
+                        export namespace N {}
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace group {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {
+                                    
+                                    export namespace properties {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace D {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace G {
+                                                        
+                                                        export namespace N {
+                                                            
+                                                            export namespace _$ltype {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                        }
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                }
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace optional {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {
+                                    
+                                    export namespace _$ltype {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace O {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                }
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace tagged_$_$union {
+                        
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {
+                                    
+                                    export namespace data {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace option {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                }
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace terminal {
+                        
+                        export namespace N {}
+                        
+                        export namespace T {}
+                    }
+                }
+                
+                export namespace T {}
+            }
+        }
+        
+        export namespace T {}
+    }
+    
     export namespace Type_$_$Library {
         
         export namespace N {
@@ -915,6 +1152,52 @@ export namespace N {
                                                                                                             export namespace O {
                                                                                                                 
                                                                                                                 export namespace N {}
+                                                                                                                
+                                                                                                                export namespace T {}
+                                                                                                            }
+                                                                                                        }
+                                                                                                        
+                                                                                                        export namespace T {}
+                                                                                                    }
+                                                                                                    
+                                                                                                    export namespace optional {
+                                                                                                        
+                                                                                                        export namespace N {
+                                                                                                            
+                                                                                                            export namespace TU {
+                                                                                                                
+                                                                                                                export namespace N {
+                                                                                                                    
+                                                                                                                    export namespace no {
+                                                                                                                        
+                                                                                                                        export namespace N {
+                                                                                                                            
+                                                                                                                            export namespace G {
+                                                                                                                                
+                                                                                                                                export namespace N {}
+                                                                                                                                
+                                                                                                                                export namespace T {}
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                        
+                                                                                                                        export namespace T {}
+                                                                                                                    }
+                                                                                                                    
+                                                                                                                    export namespace yes {
+                                                                                                                        
+                                                                                                                        export namespace N {
+                                                                                                                            
+                                                                                                                            export namespace G {
+                                                                                                                                
+                                                                                                                                export namespace N {}
+                                                                                                                                
+                                                                                                                                export namespace T {}
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                        
+                                                                                                                        export namespace T {}
+                                                                                                                    }
+                                                                                                                }
                                                                                                                 
                                                                                                                 export namespace T {}
                                                                                                             }
@@ -1250,6 +1533,42 @@ export namespace T {
         readonly 'type library': T.Type__Library<GAnnotation>
     }
     
+    export namespace Path {
+        
+        export namespace all__siblings__placeholder {}
+        
+        export type all__siblings__placeholder<GAnnotation> = null
+        
+        export namespace non__circular__siblings__placeholder {}
+        
+        export type non__circular__siblings__placeholder<GAnnotation> = null
+        
+        export namespace parameter {
+            
+            export type annotation<GAnnotation> = GAnnotation
+            
+            export type key<GAnnotation> = string
+        }
+        
+        export type parameter<GAnnotation> = {
+            readonly 'annotation': GAnnotation
+            readonly 'key': string
+        }
+        
+        export namespace resolved__value__placeholder {}
+        
+        export type resolved__value__placeholder<GAnnotation> = null
+    }
+    
+    export type Path<GAnnotation> = 
+        | ['all siblings placeholder', null]
+        | ['non circular siblings placeholder', null]
+        | ['parameter', {
+            readonly 'annotation': GAnnotation
+            readonly 'key': string
+        }]
+        | ['resolved value placeholder', null]
+    
     export namespace Reference {
         
         export namespace _ltype {
@@ -1310,6 +1629,10 @@ export namespace T {
             | ['tbd', null]
         readonly 'type path': T.Type__Path<GAnnotation>
     }
+    
+    export namespace Reference__Initializer {}
+    
+    export type Reference__Initializer<GAnnotation> = null
     
     export namespace Selection {
         
@@ -1439,6 +1762,22 @@ export namespace T {
             | ['yes', T.Reference<GAnnotation>]
     }
     
+    export namespace Terminal__Initializer {
+        
+        export namespace constrained {
+            
+            export type yes<GAnnotation> = T.Reference__Initializer<GAnnotation>
+        }
+        
+        export type constrained<GAnnotation> = 
+            | ['yes', T.Reference__Initializer<GAnnotation>]
+    }
+    
+    export type Terminal__Initializer<GAnnotation> = {
+        readonly 'constrained': 
+            | ['yes', T.Reference__Initializer<GAnnotation>]
+    }
+    
     export namespace Type {
         
         export namespace array {
@@ -1485,64 +1824,16 @@ export namespace T {
                 
                 export namespace D {
                     
-                    export namespace _ltype {
-                        
-                        export namespace all__siblings__placeholder {}
-                        
-                        export type all__siblings__placeholder<GAnnotation> = null
-                        
-                        export namespace non__circular__siblings__placeholder {}
-                        
-                        export type non__circular__siblings__placeholder<GAnnotation> = null
-                        
-                        export namespace parameter {
-                            
-                            export type annotation<GAnnotation> = GAnnotation
-                            
-                            export type key<GAnnotation> = string
-                        }
-                        
-                        export type parameter<GAnnotation> = {
-                            readonly 'annotation': GAnnotation
-                            readonly 'key': string
-                        }
-                        
-                        export namespace resolved__value__placeholder {}
-                        
-                        export type resolved__value__placeholder<GAnnotation> = null
-                    }
-                    
-                    export type _ltype<GAnnotation> = 
-                        | ['all siblings placeholder', null]
-                        | ['non circular siblings placeholder', null]
-                        | ['parameter', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'key': string
-                        }]
-                        | ['resolved value placeholder', null]
+                    export type _ltype<GAnnotation> = T.Path<GAnnotation>
                 }
                 
                 export type D<GAnnotation> = {
-                    readonly 'type': 
-                        | ['all siblings placeholder', null]
-                        | ['non circular siblings placeholder', null]
-                        | ['parameter', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'key': string
-                        }]
-                        | ['resolved value placeholder', null]
+                    readonly 'type': T.Path<GAnnotation>
                 }
             }
             
             export type arguments<GAnnotation> = pt.Dictionary<{
-                readonly 'type': 
-                    | ['all siblings placeholder', null]
-                    | ['non circular siblings placeholder', null]
-                    | ['parameter', {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }]
-                    | ['resolved value placeholder', null]
+                readonly 'type': T.Path<GAnnotation>
             }>
             
             export namespace context {
@@ -1598,14 +1889,7 @@ export namespace T {
         
         export type component<GAnnotation> = {
             readonly 'arguments': pt.Dictionary<{
-                readonly 'type': 
-                    | ['all siblings placeholder', null]
-                    | ['non circular siblings placeholder', null]
-                    | ['parameter', {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }]
-                    | ['resolved value placeholder', null]
+                readonly 'type': T.Path<GAnnotation>
             }>
             readonly 'context': 
                 | ['import', {
@@ -1623,12 +1907,36 @@ export namespace T {
         
         export namespace dictionary {
             
+            export namespace autofill {
+                
+                export namespace A {
+                    
+                    export type initializer<GAnnotation> = T.Type__Initializer<GAnnotation>
+                    
+                    export type source<GAnnotation> = T.Path<GAnnotation>
+                }
+                
+                export type A<GAnnotation> = {
+                    readonly 'initializer': T.Type__Initializer<GAnnotation>
+                    readonly 'source': T.Path<GAnnotation>
+                }
+            }
+            
+            export type autofill<GAnnotation> = pt.Array<{
+                readonly 'initializer': T.Type__Initializer<GAnnotation>
+                readonly 'source': T.Path<GAnnotation>
+            }>
+            
             export type key<GAnnotation> = T.Terminal<GAnnotation>
             
             export type _ltype<GAnnotation> = T.Type<GAnnotation>
         }
         
         export type dictionary<GAnnotation> = {
+            readonly 'autofill': pt.Array<{
+                readonly 'initializer': T.Type__Initializer<GAnnotation>
+                readonly 'source': T.Path<GAnnotation>
+            }>
             readonly 'key': T.Terminal<GAnnotation>
             readonly 'type': T.Type<GAnnotation>
         }
@@ -1830,14 +2138,7 @@ export namespace T {
         }]
         | ['component', {
             readonly 'arguments': pt.Dictionary<{
-                readonly 'type': 
-                    | ['all siblings placeholder', null]
-                    | ['non circular siblings placeholder', null]
-                    | ['parameter', {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
-                    }]
-                    | ['resolved value placeholder', null]
+                readonly 'type': T.Path<GAnnotation>
             }>
             readonly 'context': 
                 | ['import', {
@@ -1853,6 +2154,10 @@ export namespace T {
             }
         }]
         | ['dictionary', {
+            readonly 'autofill': pt.Array<{
+                readonly 'initializer': T.Type__Initializer<GAnnotation>
+                readonly 'source': T.Path<GAnnotation>
+            }>
             readonly 'key': T.Terminal<GAnnotation>
             readonly 'type': T.Type<GAnnotation>
         }]
@@ -1888,6 +2193,96 @@ export namespace T {
             }>
         }]
         | ['terminal', T.Terminal<GAnnotation>]
+    
+    export namespace Type__Initializer {
+        
+        export type component<GAnnotation> = T.Type__Initializer<GAnnotation>
+        
+        export namespace group {
+            
+            export namespace properties {
+                
+                export namespace D {
+                    
+                    export type _ltype<GAnnotation> = T.Type__Initializer<GAnnotation>
+                }
+                
+                export type D<GAnnotation> = {
+                    readonly 'type': T.Type__Initializer<GAnnotation>
+                }
+            }
+            
+            export type properties<GAnnotation> = pt.Dictionary<{
+                readonly 'type': T.Type__Initializer<GAnnotation>
+            }>
+        }
+        
+        export type group<GAnnotation> = {
+            readonly 'properties': pt.Dictionary<{
+                readonly 'type': T.Type__Initializer<GAnnotation>
+            }>
+        }
+        
+        export namespace optional {
+            
+            export namespace _ltype {
+                
+                export type O<GAnnotation> = T.Type__Initializer<GAnnotation>
+            }
+            
+            export type _ltype<GAnnotation> = [ false ] | [ true, T.Type__Initializer<GAnnotation>]
+        }
+        
+        export type optional<GAnnotation> = {
+            readonly 'type': [ false ] | [ true, T.Type__Initializer<GAnnotation>]
+        }
+        
+        export namespace tagged__union {
+            
+            export type data<GAnnotation> = T.Type__Initializer<GAnnotation>
+            
+            export namespace option {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export type key<GAnnotation> = string
+            }
+            
+            export type option<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+        }
+        
+        export type tagged__union<GAnnotation> = {
+            readonly 'data': T.Type__Initializer<GAnnotation>
+            readonly 'option': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+        }
+        
+        export type terminal<GAnnotation> = T.Terminal__Initializer<GAnnotation>
+    }
+    
+    export type Type__Initializer<GAnnotation> = 
+        | ['component', T.Type__Initializer<GAnnotation>]
+        | ['group', {
+            readonly 'properties': pt.Dictionary<{
+                readonly 'type': T.Type__Initializer<GAnnotation>
+            }>
+        }]
+        | ['optional', {
+            readonly 'type': [ false ] | [ true, T.Type__Initializer<GAnnotation>]
+        }]
+        | ['tagged union', {
+            readonly 'data': T.Type__Initializer<GAnnotation>
+            readonly 'option': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+        }]
+        | ['terminal', T.Terminal__Initializer<GAnnotation>]
     
     export namespace Type__Library {
         
@@ -1941,6 +2336,21 @@ export namespace T {
                                     readonly 'key': string
                                 }]
                                 
+                                export namespace optional {
+                                    
+                                    export namespace no {}
+                                    
+                                    export type no<GAnnotation> = null
+                                    
+                                    export namespace yes {}
+                                    
+                                    export type yes<GAnnotation> = null
+                                }
+                                
+                                export type optional<GAnnotation> = 
+                                    | ['no', null]
+                                    | ['yes', null]
+                                
                                 export namespace _ltype {
                                     
                                     export type annotation<GAnnotation> = GAnnotation
@@ -1959,6 +2369,9 @@ export namespace T {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
                                 }]
+                                readonly 'optional': 
+                                    | ['no', null]
+                                    | ['yes', null]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -1978,6 +2391,9 @@ export namespace T {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
                                 }]
+                                readonly 'optional': 
+                                    | ['no', null]
+                                    | ['yes', null]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -1998,6 +2414,9 @@ export namespace T {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
                                 }]
+                                readonly 'optional': 
+                                    | ['no', null]
+                                    | ['yes', null]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -2019,6 +2438,9 @@ export namespace T {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
                             }]
+                            readonly 'optional': 
+                                | ['no', null]
+                                | ['yes', null]
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
@@ -2079,6 +2501,9 @@ export namespace T {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
                             }]
+                            readonly 'optional': 
+                                | ['no', null]
+                                | ['yes', null]
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
@@ -2110,6 +2535,9 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }]
+                        readonly 'optional': 
+                            | ['no', null]
+                            | ['yes', null]
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
@@ -2160,6 +2588,9 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }]
+                        readonly 'optional': 
+                            | ['no', null]
+                            | ['yes', null]
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string

@@ -68,11 +68,12 @@ export function constrainedDictionary(
 ): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
         'key': constrainedTerminal(typePath, refType),
-        'type': type
+        'type': type,
+        'autofill': pd.a([]),
     }]
 }
 
-export function dictionary(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
+export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_this.T.Type.dictionary.autofill.A<pd.SourceLocation>[]): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
         // 'annotation': li,
         'key': {
@@ -81,6 +82,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Typ
             }]
         },
         'type': type,
+        'autofill': pd.a(autofill === undefined ? [] : autofill),
     }]
 }
 
@@ -127,17 +129,22 @@ export function group(properties: RawDictionary<g_this.T.Type.group.properties.D
     }]
 }
 
-export function option(type: g_this.T.Type<pd.SourceLocation>, constraint?: [g_this.T.Type__Path<pd.SourceLocation>, string]): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function option(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
-        'constraint': constraint === undefined
-            ? [false]
-            : [true, {
-                'type path': constraint[0],
-                'option': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': constraint[1]
-                }
-            }],
+        'constraint': [false],
+        'type': type,
+    }
+}
+
+export function constrainedOption(constraint: [g_this.T.Type__Path<pd.SourceLocation>, string], type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+    return {
+        'constraint': [true, {
+            'type path': constraint[0],
+            'option': {
+                'annotation': pd.getLocationInfo(1),
+                'key': constraint[1]
+            }
+        }],
         'type': type,
     }
 }
@@ -303,9 +310,10 @@ export function nonCircularSiblings(path: g_this.T.Type__Path<pd.SourceLocation>
     }
 }
 
-export function resolvedValue(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function resolvedValue(param: string, optional?: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', {
+            'optional': optional ? ['yes', null] : ['no', null],
             'import': [false],
             'type': {
                 'key': param,
@@ -315,9 +323,10 @@ export function resolvedValue(param: string): g_this.T.Type__Library.global__typ
     }
 }
 
-export function externalResolvedValue(imp: string, param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function externalResolvedValue(imp: string, param: string, optional?: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', {
+            'optional': optional ? ['yes', null] : ['no', null],
             'import': [true, {
                 'annotation': pd.getLocationInfo(1),
                 'key': imp,

@@ -1,107 +1,27 @@
 import * as pd from 'pareto-core-data'
-
-import * as g_liana from "lib-liana/dist/submodules/liana"
+import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
-    array,
-    component,
-    dictionary,
-    globalType,
-    group,
-    r,
-    reference,
-    taggedUnion,
-    prop,
-    tu,
-    grp,
-    optional,
-    dict,
-    option,
-    typePath,
-    tbd,
-    terminal,
-    constrainedDictionary,
     allSiblings,
     argAllSiblingsPlaceholder,
-    paramRef,
-} from "lib-liana/dist/submodules/liana/shorthands"
-
+    array,
+    component, constrainedDictionary,
+    dict,
+    dictionary,
+    globalType, group,
+    grp,
+    option, optional, paramRef, prop, reference,
+    taggedUnion, tbd, terminal, tu, typePath
+} from "../../.../../../pub/dist/submodules/liana/shorthands"
+const d = pd.d
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
     'terminal types': pd.d({
         "text": null,
     }),
     'global types': pd.d({
-        "Terminal Initializer": globalType({
-        }, group({
-            "constrained": prop(taggedUnion({
-                // "no": option(group({
-                //     "type": prop(reference(typePath("Type Library", [grp("terminal types")]), tbd())),
-                // })),
-                "yes": option(component("Reference Initializer", {
-                })),
-            })),
-        })),
-        "Type Initializer": globalType({}, taggedUnion({
-            "terminal": option(component("Terminal Initializer", {
-            })),
-            // "dictionary": option(group({
-            //     "key": prop(component("Terminal Initializer", {
-            //         "global types": paramRef("global types"),
-            //     })),
-            //     "type": prop(component("Type", {
-            //         "global types": paramRef("global types"),
-            //     })),
-            //     "autofill": prop(array(group({
-            //         "source": prop(component("Path", {})),
-            //         "initializer": prop(component("Type Initializer", {}))
-            //     })))
-            // })),
-            // "array": option(group({
-            //     "type": prop(component("Type", {
-            //         "global types": paramRef("global types"),
-            //     })),
-            //     "constraint": prop(optional(group({
-            //         "type path": prop(component("Type Path", {
-            //             "global types": paramRef("global types"),
-            //         })), //derive form initial value?
-            //         "initial value": prop(component("Selection", {})),
-            //         "element value": prop(component("Selection", {})),
-            //     })))
-            // })),
-            "optional": option(group({
-                "type": prop(optional(component("Type Initializer", {}))),
-            })),
-            "tagged union": option(group({
-                "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
-                "data": prop(component("Type Initializer", {}))
-            })),
-            "group": option(group({
-                "properties": prop(dictionary(group({
-                    "type": prop(component("Type Initializer", {
-                    })),
-                }))),
-            })),
-            "component": option(component("Type Initializer", {})),
-        })),
         "Model": globalType({}, group({
             "type library": prop(component("Type Library", {})),
             "root": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
-        })),
-        "Path": globalType({}, group({
-            "start": prop(taggedUnion({
-                "parameter": option(reference(typePath("Type Library", [grp("global types"), dict(), grp("parameters")]), tbd())),
-                "resolved value placeholder": option(group({
-                })),
-                "non circular siblings placeholder": option(group({
-                })),
-                "all siblings placeholder": option(group({
-                })),
-            })),
-            "tail": prop(array(taggedUnion({
-                "tagged union": option(group({
-                    "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
-                }))
-            })))
         })),
         "Reference": globalType({
             "global types": allSiblings(typePath("Type Library", [grp("global types")])),
@@ -119,10 +39,6 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "tbd": option(group({})),
             }))
         })),
-        "Reference Initializer": globalType({
-        }, group({
-            //FIXME
-        })),
         "Selection": globalType({}, taggedUnion({
             "reference": option(group({})),
             "component": option(group({
@@ -138,9 +54,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "selection": prop(component("Selection", {})),
             })),
         })),
-        "Terminal": globalType({
-            "global types": allSiblings(typePath("Type Library", [grp("global types")]))
-        }, group({
+        "Terminal": globalType({}, group({
             "constrained": prop(taggedUnion({
                 "no": option(group({
                     "type": prop(reference(typePath("Type Library", [grp("terminal types")]), tbd())),
@@ -153,20 +67,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Type": globalType({
             "global types": allSiblings(typePath("Type Library", [grp("global types")]))
         }, taggedUnion({
-            "terminal": option(component("Terminal", {
-                "global types": paramRef("global types"),
-            })),
+            "terminal": option(component("Terminal", {})),
             "dictionary": option(group({
-                "key": prop(component("Terminal", {
-                    "global types": paramRef("global types"),
-                })),
+                "key": prop(component("Terminal", {})),
                 "type": prop(component("Type", {
                     "global types": paramRef("global types"),
                 })),
-                "autofill": prop(array(group({
-                    "source": prop(component("Path", {})),
-                    "initializer": prop(component("Type Initializer", {}))
-                })))
             })),
             "array": option(group({
                 "type": prop(component("Type", {
@@ -220,7 +126,15 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })),
                 "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
                 "arguments": prop(dictionary(group({
-                    "type": prop(component("Path", {})),
+                    "type": prop(taggedUnion({
+                        "parameter": option(reference(typePath("Type Library", [grp("global types"), dict(), grp("parameters")]), tbd())),
+                        "resolved value placeholder": option(group({
+                        })),
+                        "non circular siblings placeholder": option(group({
+                        })),
+                        "all siblings placeholder": option(group({
+                        })),
+                    })),
                 }))),
             })),
         })),

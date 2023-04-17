@@ -19,6 +19,7 @@ import * as a_ts from "res-typescript"
 
 const d = pm.wrapRawDictionary
 
+import { $ as d_liana_dev } from "../../../data/liana_dev.data"
 import { $ as d_lowlevel_typesystem } from "../../../data/lowlevel_typesystem.data"
 import { $ as d_lowlevel_implementation } from "../../../data/lowlevel_implementation.data"
 import { $ as d_html } from "../../../data/html.data"
@@ -138,6 +139,23 @@ export const $$: A.getTestSet = ($) => {
                         'compare': a_coll.$r.localeIsABeforeB(),
                     })
                 })(d_lowlevel_implementation, $i)
+            })
+        },
+        {
+            'logError': () => {
+                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
+            }
+        }
+    )
+    a_fp.$b.createFile()(
+        ($i) => {
+            $i(pm.wrapRawArray([$.testDirectory, "liana dev resolver.ts"]), ($i) => {
+                g_2algorithm.$a.createResolverSkeleton({
+                    'createIdentifier': a_ts.$r.createIdentifier(),
+                    'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+                        'compare': a_coll.$r.localeIsABeforeB(),
+                    })
+                })(d_liana_dev, $i)
             })
         },
         {

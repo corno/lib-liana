@@ -372,17 +372,40 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                 break
                                             case 'resolved value':
                                                 pl.ss($, ($) => {
-                                                    $i.snippet(`pt.OptionalValue<g_out`)
-                                                    pl.optional(
-                                                        $.import,
-                                                        ($) => {
-                                                            $i.snippet(`_${$d.createIdentifier($.key)}`)
-                                                        },
-                                                        () => {
+                                                    $i.snippet(`pt.OptionalValue<`)
+                                                    function x() {
 
+                                                        $i.snippet(`g_out`)
+                                                        pl.optional(
+                                                            $.import,
+                                                            ($) => {
+                                                                $i.snippet(`_${$d.createIdentifier($.key)}`)
+                                                            },
+                                                            () => {
+
+                                                            }
+                                                        )
+                                                        $i.snippet(`.T.${$d.createIdentifier($['type'].key)}<Annotation>`)
+                                                    }
+                                                    pl.cc($.optional, ($) => {
+                                                        switch ($[0]) {
+                                                            case 'no':
+                                                                pl.ss($, ($) => {
+                                                                    x()
+                                                                })
+                                                                break
+                                                            case 'yes':
+                                                                pl.ss($, ($) => {
+                                                                    $i.snippet(`pt.OptionalValue<`)
+                                                                    x()
+                                                                    $i.snippet(`>`)
+                                                                })
+                                                                break
+                                                            default: pl.au($[0])
                                                         }
-                                                    )
-                                                    $i.snippet(`.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
+                                                    })
+                                                    $i.snippet(`>`)
+
                                                 })
                                                 break
                                             default: pl.au($[0])

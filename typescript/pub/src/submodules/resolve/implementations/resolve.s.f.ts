@@ -5,8 +5,8 @@ import * as pm from 'pareto-core-map'
 import * as g_main from "../../../main"
 import * as g_this from "../glossary"
 import * as g_common from "glo-pareto-common"
-import * as g_liana from "../../liana"
-import * as g_liana_resolved from "../../liana_resolved"
+import * as g_in from "../../liana"
+import * as g_out from "../../liana_resolved"
 
 import { A } from "../api.generated"
 
@@ -18,28 +18,39 @@ function _keys<T>($: pt.Dictionary<T>): string {
     return out
 }
 
-function _mapReferenceX<GAnnotation, Type>($: g_common.T.AnnotatedKey<GAnnotation>, $2: Type): g_common.T.AnnotatedKeyReferencePair<GAnnotation, Type> {
-    return {
-        'annotation': $.annotation,
-        'key': $.key,
-        'referencedValue': $2,
-    }
-}
-// function _mapReference<GAnnotation>($: g_common.T.AnnotatedKey<GAnnotation>): g_common.T.AnnotatedKey<GAnnotation> {
-//     return {
-//         'annotation': $.annotation,
-//         'key': $.key,
-//     }
-// }
 
 export const $$: A.resolve = <GAnnotation>($se: {
     readonly onError: g_main.SYNC.I.OnError<GAnnotation>;
 }) => {
-    //return () => {
-    return ($: g_liana.T.Type__Library<GAnnotation>): g_liana_resolved.T.Type__Library<GAnnotation> => {
+    
+
+
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+    //******************************************************************************************************************************************************************************* */
+
+    return ($: g_in.T.Type__Library<GAnnotation>): g_out.T.Type__Library<GAnnotation> => {
 
         const tl = $
-        function mapRef($: g_liana.T.Reference<GAnnotation>): g_liana_resolved.T.Reference<GAnnotation> {
+        function mapRef($: g_in.T.Reference<GAnnotation>): g_out.T.Reference<GAnnotation> {
             return {
                 'type path': mapTypePath($['type path']),
                 'type': pl.cc($.type, ($) => {
@@ -58,11 +69,11 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 })
             }
         }
-        function mapTypePath($: g_liana.T.Type__Path<GAnnotation>): g_liana_resolved.T.Type__Path<GAnnotation> {
+        function mapTypePath($: g_in.T.Type__Path<GAnnotation>): g_out.T.Type__Path<GAnnotation> {
             const ann = $['global type'].annotation
-            let current: pt.OptionalValue<g_liana.T.Type<GAnnotation>> = tl['global types'].__getEntry(
+            let current: pt.OptionalValue<g_in.T.Type<GAnnotation>> = tl['global types'].__getEntry(
                 $['global type'].key,
-                ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
+                ($): pt.OptionalValue<g_in.T.Type<GAnnotation>> => [true, $.type],
                 () => {
                     $se.onError({
                         'annotation': ann,
@@ -71,7 +82,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                     return [false]
                 }
             )
-            const out: g_liana_resolved.T.Type__Path<GAnnotation> = {
+            const out: g_out.T.Type__Path<GAnnotation> = {
                 'import': $.import,
                 'global type': {
                     'annotation': $['global type'].annotation,
@@ -139,7 +150,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                         const props = $[1].properties
                                         current = $[1].properties.__getEntry(
                                             grp.type.property.key,
-                                            ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
+                                            ($): pt.OptionalValue<g_in.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
                                                     'annotation': grp.type.property.annotation,
@@ -201,7 +212,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                                         const opts = $[1].options
                                         current = $[1].options.__getEntry(
                                             tu.type.option.key,
-                                            ($): pt.OptionalValue<g_liana.T.Type<GAnnotation>> => [true, $.type],
+                                            ($): pt.OptionalValue<g_in.T.Type<GAnnotation>> => [true, $.type],
                                             () => {
                                                 $se.onError({
                                                     'annotation': tu.type.option.annotation,
@@ -249,7 +260,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
             return out
 
         }
-        function mapSelection($: g_liana.T.Selection<GAnnotation>): g_liana_resolved.T.Selection<GAnnotation> {
+        function mapSelection($: g_in.T.Selection<GAnnotation>): g_out.T.Selection<GAnnotation> {
             switch ($[0]) {
                 case 'reference': return pl.ss($, ($) => ['reference', null])
                 case 'array': return pl.ss($, ($) => ['array', {
@@ -271,7 +282,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 default: return pl.au($[0])
             }
         }
-        function mapTerminal($: g_liana.T.Terminal<GAnnotation>): g_liana_resolved.T.Terminal<GAnnotation> {
+        function mapTerminal($: g_in.T.Terminal<GAnnotation>): g_out.T.Terminal<GAnnotation> {
             return {
                 'constrained': pl.cc($.constrained, ($) => {
                     switch ($[0]) {
@@ -288,13 +299,13 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 })
             }
         }
-        function mapType($: g_liana.T.Type<GAnnotation>): g_liana_resolved.T.Type<GAnnotation> {
+        function mapType($: g_in.T.Type<GAnnotation>): g_out.T.Type<GAnnotation> {
             switch ($[0]) {
                 case 'array': return pl.ss($, ($) => ['array', {
                     'type': mapType($.type),
                     'constraint': pl.optional(
                         $.constraint,
-                        ($): g_liana_resolved.T.Type.array.constraint<GAnnotation> => [true, {
+                        ($): g_out.T.Type.array.constraint<GAnnotation> => [true, {
                             'type path': mapTypePath($['type path']),
                             'element value': mapSelection($['element value']),
                             'initial value': mapSelection($['initial value']),
@@ -327,6 +338,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 case 'dictionary': return pl.ss($, ($) => ['dictionary', {
                     'key': mapTerminal($.key),
                     'type': mapType($.type),
+                    'autofill': pm.wrapRawArray([])//FIXME
                 }])
                 case 'group': return pl.ss($, ($) => ['group', {
                     'properties': $.properties.map(($) => ({
@@ -357,7 +369,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                     },
                     'constraint': pl.optional(
                         $.constraint,
-                        ($): g_liana_resolved.T.Type.tagged__union.constraint<GAnnotation> => [true, {
+                        ($): g_out.T.Type.tagged__union.constraint<GAnnotation> => [true, {
                             'type path': mapTypePath($['type path']),
                             'options': $.options.map(($) => ({
                                 'annotation': $.annotation,
@@ -401,7 +413,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 'type': mapType($.type),
                 'result': pl.optional(
                     $.result,
-                    ($): g_liana_resolved.T.Type__Library.global__types.D.result<GAnnotation> => [true, {
+                    ($): g_out.T.Type__Library.global__types.D.result<GAnnotation> => [true, {
                         'type': {
                             'annotation': $.type.annotation,
                             'key': $.type.key,
