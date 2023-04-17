@@ -125,7 +125,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         })),
         "Type Library": globalType({}, group({
-            "imports": prop(dictionary(terminal("identifier"))),
+            "imports": prop(dictionary(group({}))),
             "terminal types": prop(dictionary(group({}))),
             "global types": prop(dictionary(group({
                 "parameters": prop(dictionary(group({

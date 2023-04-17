@@ -999,7 +999,15 @@ export namespace N {
                             
                             export namespace D {
                                 
-                                export namespace N {}
+                                export namespace N {
+                                    
+                                    export namespace G {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                }
                                 
                                 export namespace T {}
                             }
@@ -2018,10 +2026,12 @@ export namespace T {
         
         export namespace imports {
             
-            export type D<GAnnotation> = string
+            export namespace D {}
+            
+            export type D<GAnnotation> = null
         }
         
-        export type imports<GAnnotation> = pt.Dictionary<string>
+        export type imports<GAnnotation> = pt.Dictionary<null>
         
         export namespace terminal__types {
             
@@ -2059,7 +2069,7 @@ export namespace T {
             }]
             readonly 'type': T.Type<GAnnotation>
         }>
-        readonly 'imports': pt.Dictionary<string>
+        readonly 'imports': pt.Dictionary<null>
         readonly 'terminal types': pt.Dictionary<null>
     }
     
