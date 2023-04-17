@@ -8,7 +8,17 @@ import { A } from "../api.generated"
 
 export const $$: A.createResolverSkeleton = ($d) => {
     function doTypePath<Annotation>($: g_liana.T.Type__Path<Annotation>, $i: g_fp.SYNC.I.Line) {
-        $i.snippet(`g_out.T.${$d.createIdentifier($['global type'].key)}`)
+        $i.snippet(`g_out`)
+        pl.optional(
+            $.import,
+            ($) => {
+                $i.snippet(`_${$d.createIdentifier($)}`)
+            },
+            () => {
+
+            }
+        )
+        $i.snippet(`.T.${$d.createIdentifier($['global type'].key)}`)
         $.path.__forEach(($) => {
             $i.snippet(`.`)
             switch ($[0]) {
@@ -20,7 +30,6 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 case 'dictionary':
                     pl.ss($, ($) => {
                         $i.snippet(`D`)
-
                     })
                     break
                 case 'group':
@@ -85,7 +94,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                     break
                                                 case 'parameter':
                                                     pl.ss($, ($) => {
-                                                        $i.snippet(`$i['${$.key}']`)
+                                                        $i.snippet(`$x['${$.key}']`)
                                                     })
                                                     break
                                                 case 'resolved value placeholder':

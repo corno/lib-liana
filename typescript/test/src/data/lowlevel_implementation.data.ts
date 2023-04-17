@@ -3,7 +3,7 @@ import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
     argResolvedValuePlaceholder,
     array,
-    component, constrainedDictionary, dictionary, externalTypePath, globalType, group,
+    component, constrainedDictionary, dictionary, externalResolvedValue, externalTypePath, globalType, group,
     grp,
     importedComponent,
     option, optional, paramRef, prop, reference, resolvedValue,
@@ -22,19 +22,20 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'global types': d({
         "Block": globalType({
             "stack": resolvedValue("Variable Stack"),
-            "global types": resolvedValue("Global Types"),
+            "global types": externalResolvedValue("typesystem", "Global Types"),
         }, group({
             "variables": prop(component("Variables", {})),
             "statements": prop(array(taggedUnion({
-                "block": option(component("Block", { "stack": argResolvedValuePlaceholder() })),
+                "block": option(component("Block", {
+                    "stack": argResolvedValuePlaceholder(),
+                    "global types": argResolvedValuePlaceholder(),
+                })),
                 // "break": composite("BreakStatement", optional(component("identifier"))),
                 "call": option(group({
                     "function": prop(component("Data Path", {
                         "type": argResolvedValuePlaceholder()
                     })),
-                    "type arguments": prop(importedComponent("typesystem", "Type", {
-                        "global types": argResolvedValuePlaceholder()
-                    })),
+                    "type arguments": prop(component("Type Arguments", {})),
                     "arguments": prop(component("Expression", {
                         "type": argResolvedValuePlaceholder()
                     })),
@@ -48,7 +49,9 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": argResolvedValuePlaceholder()
                     })),
                     "block": prop(component("Block", {
-                        "stack": argResolvedValuePlaceholder()
+                        "stack": argResolvedValuePlaceholder(),
+                        "global types": argResolvedValuePlaceholder(),
+                        
                     })),
                 })),
                 "if": option(group({
@@ -56,10 +59,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": argResolvedValuePlaceholder()
                     })),
                     "then": prop(component("Block", {
-                        "stack": argResolvedValuePlaceholder()
+                        "stack": argResolvedValuePlaceholder(),
+                        "global types": argResolvedValuePlaceholder(),
+                        
                     })),
                     "else": prop(optional(component("Block", {
-                        "stack": argResolvedValuePlaceholder()
+                        "stack": argResolvedValuePlaceholder(),
+                        "global types": argResolvedValuePlaceholder(),
+                        
                     }))),
                 })),
                 "minus assign": option(group({
@@ -93,11 +100,15 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     })),
                     "cases": prop(constrainedDictionary(externalTypePath("typesystem", "Type", [tu("tagged union")]), tbd(), group({
                         "block": prop(component("Block", {
-                            "stack": argResolvedValuePlaceholder()
+                            "stack": argResolvedValuePlaceholder(),
+                            "global types": argResolvedValuePlaceholder(),
+                            
                         }))
                     }))),
                     "default": prop(optional(component("Block", {
-                        "stack": argResolvedValuePlaceholder()
+                        "stack": argResolvedValuePlaceholder(),
+                        "global types": argResolvedValuePlaceholder(),
+                        
                     }))),
                 })),
                 // "throw": option(component("Expression", {})),
@@ -113,7 +124,9 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": argResolvedValuePlaceholder()
                     })),
                     "block": prop(component("Block", {
-                        "stack": argResolvedValuePlaceholder()
+                        "stack": argResolvedValuePlaceholder(),
+                        "global types": argResolvedValuePlaceholder(),
+                        
                     })),
                 })),
             })))
@@ -127,9 +140,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "function": prop(component("Data Path", {
                         "stack": argResolvedValuePlaceholder()
                     })),
-                    "type arguments": prop(constrainedDictionary(externalTypePath("typesystem", "Type Parameters", []), tbd(), group({
-                        "type": prop(component("Type Path", {}))
-                    }))),//can I define types inline? Or only refer to them?
+                    "type arguments": prop(component("Type Arguments", {})),
                     "arguments": prop(component("Expression", {
                         "type": argResolvedValuePlaceholder()
                     })),
@@ -144,7 +155,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "String Expression Or Selection": globalType({
             "stack": resolvedValue("Variable Stack"),
         }, taggedUnion({
-            "expression": option(component("String Expression", {})),
+            "expression": option(component("String Expression", {
+                "stack": argResolvedValuePlaceholder()
+
+            })),
             "selection": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
             })/*, externalTypePath("typesystem", "Type", [tu("string"), ])*/),
@@ -233,33 +247,57 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "true": option(group({})),
             //boolean/string
             "string equals": option(group({
-                "left hand side": prop(component("String Expression Or Selection", {})),
-                "right hand side": prop(component("String Expression Or Selection", {})),
+                "left hand side": prop(component("String Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("String Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
             "string not equals": option(group({
-                "left hand side": prop(component("String Expression Or Selection", {})),
-                "right hand side": prop(component("String Expression Or Selection", {})),
+                "left hand side": prop(component("String Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("String Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
             //boolean/number
             "number equals": option(group({
-                "left hand side": prop(component("Numerical Expression Or Selection", {})),
-                "right hand side": prop(component("Numerical Expression Or Selection", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
             "number not equals": option(group({
-                "left hand side": prop(component("Numerical Expression Or Selection", {})),
-                "right hand side": prop(component("Numerical Expression Or Selection", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
             "greater than": option(group({
-                "left hand side": prop(component("Numerical Expression Or Selection", {})),
-                "right hand side": prop(component("Numerical Expression Or Selection", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
             "less than": option(group({
-                "left hand side": prop(component("Numerical Expression Or Selection", {})),
-                "right hand side": prop(component("Numerical Expression Or Selection", {})),
+                "left hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
+                "right hand side": prop(component("Numerical Expression Or Selection", {
+                    "stack": argResolvedValuePlaceholder()
+                })),
             })),
         })),
         "Expression": globalType({
-            "type": resolvedValue("Type")
+            "type": externalResolvedValue("typesystem", "Type")
         }, taggedUnion({
             //array
             "array literal": option(array(component("Expression", {
@@ -276,7 +314,9 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "arguments": prop(dictionary(group({}))), //no type info needed
                 //"signature": prop(component("FunctionSignature", {})),
                 "block": prop(component("Block", {
-                    "stack": argResolvedValuePlaceholder()
+                    "stack": argResolvedValuePlaceholder(),
+                    "global types": argResolvedValuePlaceholder(),
+                    
                 })),
             }), [externalTypePath("typesystem", "Type", []), "function"]),
             //boolean
@@ -324,7 +364,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // })),
         })),
         "SourceFile": globalType({
-            "types": resolvedValue("Global Types")
+            "types": externalResolvedValue("typesystem", "Global Types")
         }, group({
             "symbols": prop(component("Symbols", {})),
         })),
@@ -336,8 +376,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type path": prop(component("Type Path", {})),
             })),
         }))),
+        "Type Arguments": globalType({}, constrainedDictionary(externalTypePath("typesystem", "Type Parameters", []), tbd(), group({
+            "type": prop(component("Type Path", {}))
+        }))),
         "Type Path": globalType({
-            "global types": resolvedValue("Global Types"),
+            "global types": externalResolvedValue("typesystem", "Global Types")
         }, group({
             "namespaces": prop(array(reference(externalTypePath("typesystem", "Global Types" /*constrain type to namespace*/, []), tbd()))),
             "type": prop(reference(externalTypePath("typesystem", "Global Types", []), /*constrain to type defintion*/ tbd())),
