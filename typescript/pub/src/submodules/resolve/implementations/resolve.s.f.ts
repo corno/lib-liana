@@ -72,6 +72,7 @@ export const $$: A.resolve = <GAnnotation>($se: {
                 }
             )
             const out: g_liana_resolved.T.Type__Path<GAnnotation> = {
+                'import': $.import,
                 'global type': {
                     'annotation': $['global type'].annotation,
                     'key': $['global type'].key,

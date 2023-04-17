@@ -260,6 +260,18 @@ export function typePath(
     path: g_this.T.Type__Path.path.A<pd.SourceLocation>[],
 ): g_this.T.Type__Path<pd.SourceLocation> {
     return {
+        'import': [false],
+        'global type': r_imp(globalType, 1),
+        'path': a(path),
+    }
+}
+export function externalTypePath(
+    imp: string,
+    globalType: string,
+    path: g_this.T.Type__Path.path.A<pd.SourceLocation>[],
+): g_this.T.Type__Path<pd.SourceLocation> {
+    return {
+        'import': [true, imp],
         'global type': r_imp(globalType, 1),
         'path': a(path),
     }

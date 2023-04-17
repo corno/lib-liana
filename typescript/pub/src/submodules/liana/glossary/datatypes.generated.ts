@@ -999,15 +999,7 @@ export namespace N {
                             
                             export namespace D {
                                 
-                                export namespace N {
-                                    
-                                    export namespace G {
-                                        
-                                        export namespace N {}
-                                        
-                                        export namespace T {}
-                                    }
-                                }
+                                export namespace N {}
                                 
                                 export namespace T {}
                             }
@@ -1058,6 +1050,21 @@ export namespace N {
                     export namespace global_$_$type {
                         
                         export namespace N {}
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace _$limport {
+                        
+                        export namespace N {
+                            
+                            export namespace O {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
                         
                         export namespace T {}
                     }
@@ -2011,12 +2018,10 @@ export namespace T {
         
         export namespace imports {
             
-            export namespace D {}
-            
-            export type D<GAnnotation> = null
+            export type D<GAnnotation> = string
         }
         
-        export type imports<GAnnotation> = pt.Dictionary<null>
+        export type imports<GAnnotation> = pt.Dictionary<string>
         
         export namespace terminal__types {
             
@@ -2054,7 +2059,7 @@ export namespace T {
             }]
             readonly 'type': T.Type<GAnnotation>
         }>
-        readonly 'imports': pt.Dictionary<null>
+        readonly 'imports': pt.Dictionary<string>
         readonly 'terminal types': pt.Dictionary<null>
     }
     
@@ -2071,6 +2076,13 @@ export namespace T {
             readonly 'annotation': GAnnotation
             readonly 'key': string
         }
+        
+        export namespace _limport {
+            
+            export type O<GAnnotation> = string
+        }
+        
+        export type _limport<GAnnotation> = [ false ] | [ true, string]
         
         export namespace path {
             
@@ -2265,6 +2277,7 @@ export namespace T {
             readonly 'annotation': GAnnotation
             readonly 'key': string
         }
+        readonly 'import': [ false ] | [ true, string]
         readonly 'path': pt.Array<
             | ['array', {
                 readonly 'annotation': GAnnotation

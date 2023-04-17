@@ -556,7 +556,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         })]],
                     },
                     "imports": {
-                        'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({})]],
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['string', null]],
                     },
                     "terminal types": {
                         'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({})]],
@@ -586,6 +586,9 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
                             },
                         })],
+                    },
+                    "import": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['string', null]],
                     },
                     "path": {
                         'type': <g_glossary.T.Type<pd.SourceLocation>>['array', <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
@@ -1330,12 +1333,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 'namespaces': d({
                                     "D": {
                                         'types': d({}),
-                                        'namespaces': d({
-                                            "G": {
-                                                'types': d({}),
-                                                'namespaces': d({}),
-                                            },
-                                        }),
+                                        'namespaces': d({}),
                                     },
                                 }),
                             },
@@ -1366,6 +1364,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             "global type": {
                                 'types': d({}),
                                 'namespaces': d({}),
+                            },
+                            "import": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "O": {
+                                        'types': d({}),
+                                        'namespaces': d({}),
+                                    },
+                                }),
                             },
                             "path": {
                                 'types': d({}),

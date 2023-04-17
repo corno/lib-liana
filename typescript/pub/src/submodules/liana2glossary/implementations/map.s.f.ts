@@ -47,7 +47,16 @@ export const $$: A.map = ($d) => {
             $y: g_liana.T.Reference<Annotation>
         ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
             return createOptionalConstraint($x, () => ({
-                'context': ['local', null],
+                'context': pl.optional(
+                    $y['type path'].import,
+                    ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
+                        'glossary': {
+                            'annotation': ['internal', "FXIME"],
+                            'key': $
+                        }
+                    }],
+                    () => ['local', null],
+                ),
                 'arguments': pm.wrapRawDictionary({}),
                 'type': $y['type path']['global type'].key,
                 'tail': $d.push({
@@ -67,30 +76,30 @@ export const $$: A.map = ($d) => {
                 }),
             }))
         }
-        function mapType($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
+        function mapTypeToNamespace($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
             return {
                 'namespaces': pl.cc($, ($) => {
                     switch ($[0]) {
                         case 'array': return pl.ss($, ($) => pm.wrapRawDictionary({
-                            "A": mapType($.type)
+                            "A": mapTypeToNamespace($.type)
                         }))
                         case 'optional': return pl.ss($, ($) => pm.wrapRawDictionary({
-                            "O": mapType($.type)
+                            "O": mapTypeToNamespace($.type)
                         }))
                         case 'component': return pl.ss($, ($) => pm.wrapRawDictionary({}))
                         case 'dictionary': return pl.ss($, ($) => pm.wrapRawDictionary({
-                            "D": mapType($.type)
+                            "D": mapTypeToNamespace($.type)
                         }))
                         case 'group': return pl.ss($, ($) => pm.wrapRawDictionary({
                             "G": {
-                                'namespaces': $.properties.map(($) => mapType($.type)),
+                                'namespaces': $.properties.map(($) => mapTypeToNamespace($.type)),
                                 'types': pm.wrapRawDictionary({}),
                             }
                         }))
                         case 'terminal': return pl.ss($, ($) => pm.wrapRawDictionary({}))
                         case 'tagged union': return pl.ss($, ($) => pm.wrapRawDictionary({
                             "TU": {
-                                'namespaces': $.options.map(($) => mapType($.type)),
+                                'namespaces': $.options.map(($) => mapTypeToNamespace($.type)),
                                 'types': pm.wrapRawDictionary({}),
                             }
                         }))
@@ -162,10 +171,10 @@ export const $$: A.map = ($d) => {
         //         default: return pl.au($[0])
         //     }
         // }
-        function mapType2($: g_liana.T.Type<Annotation>, $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+        function mapTypeToType($: g_liana.T.Type<Annotation>, $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             switch ($[0]) {
-                case 'array': return pl.ss($, ($) => ['array', mapType2($.type, $x)])
-                case 'optional': return pl.ss($, ($) => ['optional', mapType2($.type, $x)])
+                case 'array': return pl.ss($, ($) => ['array', mapTypeToType($.type, $x)])
+                case 'optional': return pl.ss($, ($) => ['optional', mapTypeToType($.type, $x)])
                 case 'component': return pl.ss($, ($) => ['reference', ['type', {
                     'context': pl.cc($, ($) => {
                         switch ($.context[0]) {
@@ -187,12 +196,12 @@ export const $$: A.map = ($d) => {
                     const type = $.type
                     return pl.cc($.key.constrained, ($) => {
                         switch ($[0]) {
-                            case 'no': return pl.ss($, ($) => ['dictionary', mapType2(type, $x)])
+                            case 'no': return pl.ss($, ($) => ['dictionary', mapTypeToType(type, $x)])
                             case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
                                 "annotation": createOptionalAnnotation(),
                                 "constraint": createOptionalKeyConstraint($x, $),
                                 "type": [true, {
-                                    'type': mapType2(type, $x),
+                                    'type': mapTypeToType(type, $x),
                                 }]
                             }))]])
                             default: return pl.au($[0])
@@ -200,7 +209,7 @@ export const $$: A.map = ($d) => {
                     })
                 }))
                 case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
-                    'type': mapType2($.type, $x),
+                    'type': mapTypeToType($.type, $x),
                 }))])
                 case 'terminal': return pl.ss($, ($) => {
                     switch ($.constrained[0]) {
@@ -281,10 +290,10 @@ export const $$: A.map = ($d) => {
                                 'tail': pm.wrapRawArray([]),
                             })),
                             "type": [true, {
-                                'type': mapType2(type, $x)
+                                'type': mapTypeToType(type, $x)
                             }]
                         }))],
-                        () => mapType2(type, $x)
+                        () => mapTypeToType(type, $x)
                     )
                     // switch ($[0]) {
                     //     case 'no': return pl.ss($, ($) => 
@@ -318,7 +327,7 @@ export const $$: A.map = ($d) => {
             'root': {
                 'namespaces': pl.optional(
                     $.settings.datamodel,
-                    ($) => library.library['global types'].map(($) => mapType($.type)),
+                    ($) => library.library['global types'].map(($) => mapTypeToNamespace($.type)),
                     () => pm.wrapRawDictionary({}),
                 ),
                 'types': pl.optional(
@@ -327,7 +336,7 @@ export const $$: A.map = ($d) => {
                         const dm = $
                         return library.library['global types'].map(($) => ({
                             'parameters': pm.wrapRawDictionary({}),
-                            'type': mapType2($.type, dm),
+                            'type': mapTypeToType($.type, dm),
                         }))
                     },
                     () => pm.wrapRawDictionary({}),

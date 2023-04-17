@@ -125,7 +125,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         })),
         "Type Library": globalType({}, group({
-            "imports": prop(dictionary(group({}))),
+            "imports": prop(dictionary(terminal("identifier"))),
             "terminal types": prop(dictionary(group({}))),
             "global types": prop(dictionary(group({
                 "parameters": prop(dictionary(group({
@@ -149,6 +149,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             }))),
         })),
         "Type Path": globalType({}, group({
+            "import": prop(optional(terminal("identifier"))),
             "global type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
             "path": prop(array(taggedUnion({
                 "dictionary": option(group({}), typePath("Type", [tu("dictionary")])),
