@@ -390,6 +390,16 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                 },
                                             })],
                                             "resolved value": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                                "import": {
+                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                                        "annotation": {
+                                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                                        },
+                                                        "key": {
+                                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                                                        },
+                                                    })]],
+                                                },
                                                 "type": {
                                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                                         "annotation": {
@@ -1088,6 +1098,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                                                                     "G": {
                                                                                                         'types': d({}),
                                                                                                         'namespaces': d({
+                                                                                                            "import": {
+                                                                                                                'types': d({}),
+                                                                                                                'namespaces': d({
+                                                                                                                    "O": {
+                                                                                                                        'types': d({}),
+                                                                                                                        'namespaces': d({}),
+                                                                                                                    },
+                                                                                                                }),
+                                                                                                            },
                                                                                                             "type": {
                                                                                                                 'types': d({}),
                                                                                                                 'namespaces': d({}),

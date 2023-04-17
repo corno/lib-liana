@@ -358,11 +358,22 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                 pl.ss($, ($) => {
                                                     $i.snippet(`pt.Lookup<`)
                                                     doTypePath($.type, $i)
-                                                    $i.snippet(`.D<Annotation>>`)                                                })
+                                                    $i.snippet(`.D<Annotation>>`)
+                                                })
                                                 break
                                             case 'resolved value':
                                                 pl.ss($, ($) => {
-                                                    $i.snippet(`pt.OptionalValue<g_out.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
+                                                    $i.snippet(`pt.OptionalValue<g_out`)
+                                                    pl.optional(
+                                                        $.import,
+                                                        ($) => {
+                                                            $i.snippet(`_${$d.createIdentifier($.key)}`)
+                                                        },
+                                                        () => {
+
+                                                        }
+                                                    )
+                                                    $i.snippet(`.T.${$d.createIdentifier($['type'].key)}<Annotation>>`)
                                                 })
                                                 break
                                             default: pl.au($[0])

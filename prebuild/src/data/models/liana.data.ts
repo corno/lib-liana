@@ -132,6 +132,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "parameters": prop(dictionary(group({
                     "type": prop(taggedUnion({
                         "resolved value": option(group({
+                            "import": prop(optional(reference(typePath("Type Library", [grp("imports")]), tbd()))),
                             "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
                         })),
                         "non circular siblings": option(group({
@@ -153,15 +154,15 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "import": prop(optional(terminal("identifier"))),
             "global type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
             "path": prop(array(taggedUnion({
-                "dictionary": option(group({}), typePath("Type", [tu("dictionary")])),
-                "optional": option(group({}), typePath("Type", [tu("optional")])),
-                "array": option(group({}), typePath("Type", [tu("array")])),
+                "dictionary": option(group({}), [typePath("Type", []), "dictionary"]),
+                "optional": option(group({}), [typePath("Type", []), "optional"]),
+                "array": option(group({}), [typePath("Type", []), "array"]),
                 "group": option(group({
                     "property": prop(reference(typePath("Type", [tu("group"), grp("properties")]), tbd()))
-                }), typePath("Type", [tu("group")])),
+                }), [typePath("Type", []), "group"]),
                 "tagged union": option(group({
                     "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
-                }), typePath("Type", [tu("tagged union")])),
+                }), [typePath("Type", []), "tagged union"]),
             })))
             // "type": prop(taggedUnion({
             //     "parameter": 

@@ -178,7 +178,7 @@ function map_Data__Path<Annotation>($: g_in.T.Data__Path<Annotation>, $x: {
                         'stack': [false],
                     }))
                     const temp_type__arguments: g_out.T.Data__Path.tail.A.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => $.map(($) => pl.cc($, ($) => {
-                        const constraint: pt.OptionalValue<g_out.T.Global__Types._lfunction.type__parameters.D<Annotation>> = [false]
+                        const constraint: pt.OptionalValue<g_out.T.Type__Parameters.D<Annotation>> = [false]
                         return {
                             'annotation': $.annotation,
                             'constraint': constraint,

@@ -908,6 +908,21 @@ export namespace N {
                                                                                                 
                                                                                                 export namespace N {
                                                                                                     
+                                                                                                    export namespace _$limport {
+                                                                                                        
+                                                                                                        export namespace N {
+                                                                                                            
+                                                                                                            export namespace O {
+                                                                                                                
+                                                                                                                export namespace N {}
+                                                                                                                
+                                                                                                                export namespace T {}
+                                                                                                            }
+                                                                                                        }
+                                                                                                        
+                                                                                                        export namespace T {}
+                                                                                                    }
+                                                                                                    
                                                                                                     export namespace _$ltype {
                                                                                                         
                                                                                                         export namespace N {}
@@ -1906,6 +1921,26 @@ export namespace T {
                             
                             export namespace resolved__value {
                                 
+                                export namespace _limport {
+                                    
+                                    export namespace O {
+                                        
+                                        export type annotation<GAnnotation> = GAnnotation
+                                        
+                                        export type key<GAnnotation> = string
+                                    }
+                                    
+                                    export type O<GAnnotation> = {
+                                        readonly 'annotation': GAnnotation
+                                        readonly 'key': string
+                                    }
+                                }
+                                
+                                export type _limport<GAnnotation> = [ false ] | [ true, {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }]
+                                
                                 export namespace _ltype {
                                     
                                     export type annotation<GAnnotation> = GAnnotation
@@ -1920,6 +1955,10 @@ export namespace T {
                             }
                             
                             export type resolved__value<GAnnotation> = {
+                                readonly 'import': [ false ] | [ true, {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -1935,6 +1974,10 @@ export namespace T {
                                 readonly 'type': T.Type__Path<GAnnotation>
                             }]
                             | ['resolved value', {
+                                readonly 'import': [ false ] | [ true, {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -1951,6 +1994,10 @@ export namespace T {
                                 readonly 'type': T.Type__Path<GAnnotation>
                             }]
                             | ['resolved value', {
+                                readonly 'import': [ false ] | [ true, {
+                                    readonly 'annotation': GAnnotation
+                                    readonly 'key': string
+                                }]
                                 readonly 'type': {
                                     readonly 'annotation': GAnnotation
                                     readonly 'key': string
@@ -1968,6 +2015,10 @@ export namespace T {
                             readonly 'type': T.Type__Path<GAnnotation>
                         }]
                         | ['resolved value', {
+                            readonly 'import': [ false ] | [ true, {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }]
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
@@ -2024,6 +2075,10 @@ export namespace T {
                             readonly 'type': T.Type__Path<GAnnotation>
                         }]
                         | ['resolved value', {
+                            readonly 'import': [ false ] | [ true, {
+                                readonly 'annotation': GAnnotation
+                                readonly 'key': string
+                            }]
                             readonly 'type': {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
@@ -2051,6 +2106,10 @@ export namespace T {
                         readonly 'type': T.Type__Path<GAnnotation>
                     }]
                     | ['resolved value', {
+                        readonly 'import': [ false ] | [ true, {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }]
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
@@ -2097,6 +2156,10 @@ export namespace T {
                         readonly 'type': T.Type__Path<GAnnotation>
                     }]
                     | ['resolved value', {
+                        readonly 'import': [ false ] | [ true, {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }]
                         readonly 'type': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string

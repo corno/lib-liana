@@ -3,14 +3,16 @@ import * as g_liana from "../../.../../../pub/dist/submodules/liana"
 import {
     argResolvedValuePlaceholder,
     array,
-    component, constrainedDictionary, dictionary, globalType, group,
+    component, constrainedDictionary, dictionary, externalTypePath, globalType, group,
     grp,
-    option, optional, paramRef, prop, reference, resolvedValue, sarray,
-    scomponent, sgrp, sref, stu, taggedUnion, tbd, terminal, tu, typePath
+    importedComponent,
+    option, optional, paramRef, prop, reference, resolvedValue,
+    taggedUnion, tbd, terminal, tu, typePath
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': d({
+        "typesystem": null,
     }),
     'terminal types': d({
         "numeric literal": null,
@@ -30,7 +32,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "function": prop(component("Data Path", {
                         "type": argResolvedValuePlaceholder()
                     })),
-                    "type arguments": prop(component("Type", {
+                    "type arguments": prop(importedComponent("typesystem", "Type", {
                         "global types": argResolvedValuePlaceholder()
                     })),
                     "arguments": prop(component("Expression", {
@@ -89,7 +91,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "condition": prop(component("Expression", {
                         "type": argResolvedValuePlaceholder()
                     })),
-                    "cases": prop(constrainedDictionary(typePath("Type", [tu("tagged union")]), tbd(), group({
+                    "cases": prop(constrainedDictionary(externalTypePath("typesystem", "Type", [tu("tagged union")]), tbd(), group({
                         "block": prop(component("Block", {
                             "stack": argResolvedValuePlaceholder()
                         }))
@@ -125,14 +127,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "function": prop(component("Data Path", {
                         "stack": argResolvedValuePlaceholder()
                     })),
-                    "type arguments": prop(constrainedDictionary(typePath("Global Types", [tu("function"), grp("type parameters")]), tbd(), group({
+                    "type arguments": prop(constrainedDictionary(externalTypePath("typesystem", "Type Parameters", []), tbd(), group({
                         "type": prop(component("Type Path", {}))
                     }))),//can I define types inline? Or only refer to them?
                     "arguments": prop(component("Expression", {
                         "type": argResolvedValuePlaceholder()
                     })),
                 })),
-                "property": option(reference(typePath("Type", [tu("group"), grp("properties")]), tbd())),
+                "property": option(reference(externalTypePath("typesystem", "Type", [tu("group"), grp("properties")]), tbd())),
             }))),
             // "property access": option(group({
             //     "context": prop(component("Expression", {})),
@@ -145,7 +147,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "expression": option(component("String Expression", {})),
             "selection": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
-            })/*, typePath("Type", [tu("string"), ])*/),
+            })/*, externalTypePath("typesystem", "Type", [tu("string"), ])*/),
         })),
         "String Expression": globalType({
             "stack": resolvedValue("Variable Stack"),
@@ -160,7 +162,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "selection": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
-            })/*, typePath("Type", [tu("number"), ])*/),
+            })/*, externalTypePath("typesystem", "Type", [tu("number"), ])*/),
         })),
         "Numerical Expression": globalType({
             "stack": resolvedValue("Variable Stack"),
@@ -203,7 +205,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "selection": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
-            }), [typePath("Type", []), "boolean"]),
+            }), [externalTypePath("typesystem", "Type", []), "boolean"]),
         })),
         "Boolean Expression": globalType({
             "stack": resolvedValue("Variable Stack"),
@@ -262,13 +264,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //array
             "array literal": option(array(component("Expression", {
                 "type": argResolvedValuePlaceholder()
-            })), [typePath("Type", []), "array"]),
+            })), [externalTypePath("typesystem", "Type", []), "array"]),
             //object
             "object literal": option(group({
-                "properties": prop(constrainedDictionary(typePath("Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {
+                "properties": prop(constrainedDictionary(externalTypePath("typesystem", "Type", [tu("group"), grp("properties")]), tbd(), component("Expression", {
                     "type": argResolvedValuePlaceholder()
                 }))),
-            }), [typePath("Type", []), "group"]),
+            }), [externalTypePath("typesystem", "Type", []), "group"]),
             //function (inline function)
             "function": option(group({
                 "arguments": prop(dictionary(group({}))), //no type info needed
@@ -276,19 +278,19 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "block": prop(component("Block", {
                     "stack": argResolvedValuePlaceholder()
                 })),
-            }), [typePath("Type", []), "function"]),
+            }), [externalTypePath("typesystem", "Type", []), "function"]),
             //boolean
             "boolean": option(component("Boolean Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), [typePath("Type", []), "boolean"]),
+            }), [externalTypePath("typesystem", "Type", []), "boolean"]),
             //numerical
             "numerical": option(component("Numerical Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), [typePath("Type", []), "number"]),
+            }), [externalTypePath("typesystem", "Type", []), "number"]),
             //string
             "string": option(component("String Expression", {
                 "stack": argResolvedValuePlaceholder()
-            }), [typePath("Type", []), "string"]),
+            }), [externalTypePath("typesystem", "Type", []), "string"]),
             //any
             "conditional": option(group({
                 "test": prop(component("Boolean Expression Or Selection", {})),
@@ -305,7 +307,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //     "parameters": prop(dictionary(component("Expression", {}))),
             // })),
             // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
-            "null": option(group({}), [typePath("Type", []), "null"]),
+            "null": option(group({}), [externalTypePath("typesystem", "Type", []), "null"]),
             //"parenthesized": option(component("Expression", {})),
             "symbol": option(component("Data Path", {
                 "stack": argResolvedValuePlaceholder()
@@ -337,15 +339,15 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Type Path": globalType({
             "global types": resolvedValue("Global Types"),
         }, group({
-            "namespaces": prop(array(reference(typePath("Global Types" /*constrain type to namespace*/, []), tbd()))),
-            "type": prop(reference(typePath("Global Types", []), /*constrain to type defintion*/ tbd())),
-            "parameters": prop(dictionary(component("Type", {
+            "namespaces": prop(array(reference(externalTypePath("typesystem", "Global Types" /*constrain type to namespace*/, []), tbd()))),
+            "type": prop(reference(externalTypePath("typesystem", "Global Types", []), /*constrain to type defintion*/ tbd())),
+            "parameters": prop(dictionary(importedComponent("typesystem", "Type", {
                 "global types": paramRef("global types")
             }))), //this should be a reference
         })),
         "Variable Stack": globalType({}, dictionary(group({}))),
         "Variables": globalType({}, dictionary(group({
-            "type": prop(reference(typePath("Global Types", []), tbd())),
+            "type": prop(reference(externalTypePath("typesystem", "Global Types", []), tbd())),
             "initializer": prop(component("Expression", {
                 "type": argResolvedValuePlaceholder()
             })),

@@ -306,6 +306,22 @@ export function nonCircularSiblings(path: g_this.T.Type__Path<pd.SourceLocation>
 export function resolvedValue(param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', {
+            'import': [false],
+            'type': {
+                'key': param,
+                'annotation': pd.getLocationInfo(1),
+            },
+        }]
+    }
+}
+
+export function externalResolvedValue(imp: string, param: string): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+    return {
+        'type': ['resolved value', {
+            'import': [true, {
+                'annotation': pd.getLocationInfo(1),
+                'key': imp,
+            }],
             'type': {
                 'key': param,
                 'annotation': pd.getLocationInfo(1),
