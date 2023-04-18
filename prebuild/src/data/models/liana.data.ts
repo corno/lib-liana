@@ -23,6 +23,7 @@ import {
     allSiblings,
     argAllSiblingsPlaceholder,
     paramRef,
+    constrainedOption,
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -46,10 +47,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             // "dictionary": option(group({
             //     "key": prop(component("Terminal Initializer", {
-            //         "global types": paramRef("global types"),
+            //         "global types": paramRef("global types", []),
             //     })),
             //     "type": prop(component("Type", {
-            //         "global types": paramRef("global types"),
+            //         "global types": paramRef("global types", []),
             //     })),
             //     "autofill": prop(array(group({
             //         "source": prop(component("Path", {})),
@@ -58,11 +59,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // })),
             // "array": option(group({
             //     "type": prop(component("Type", {
-            //         "global types": paramRef("global types"),
+            //         "global types": paramRef("global types", []),
             //     })),
             //     "constraint": prop(optional(group({
             //         "type path": prop(component("Type Path", {
-            //             "global types": paramRef("global types"),
+            //             "global types": paramRef("global types", []),
             //         })), //derive form initial value?
             //         "initial value": prop(component("Selection", {})),
             //         "element value": prop(component("Selection", {})),
@@ -107,7 +108,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "global types": allSiblings(typePath("Type Library", [grp("global types")])),
         }, group({
             "type path": prop(component("Type Path", {
-                "global types": paramRef("global types"),
+                "global types": paramRef("global types", []),
             })),
             "type": prop(taggedUnion({
                 "parameter": option(group({
@@ -146,7 +147,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "type": prop(reference(typePath("Type Library", [grp("terminal types")]), tbd())),
                 })),
                 "yes": option(component("Reference", {
-                    "global types": paramRef("global types"),
+                    "global types": paramRef("global types", []),
                 })),
             })),
         })),
@@ -154,14 +155,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "global types": allSiblings(typePath("Type Library", [grp("global types")]))
         }, taggedUnion({
             "terminal": option(component("Terminal", {
-                "global types": paramRef("global types"),
+                "global types": paramRef("global types", []),
             })),
             "dictionary": option(group({
                 "key": prop(component("Terminal", {
-                    "global types": paramRef("global types"),
+                    "global types": paramRef("global types", []),
                 })),
                 "type": prop(component("Type", {
-                    "global types": paramRef("global types"),
+                    "global types": paramRef("global types", []),
                 })),
                 "autofill": prop(array(group({
                     "source": prop(component("Path", {})),
@@ -170,11 +171,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "array": option(group({
                 "type": prop(component("Type", {
-                    "global types": paramRef("global types"),
+                    "global types": paramRef("global types", []),
                 })),
                 "constraint": prop(optional(group({
                     "type path": prop(component("Type Path", {
-                        "global types": paramRef("global types"),
+                        "global types": paramRef("global types", []),
                     })), //derive form initial value?
                     "initial value": prop(component("Selection", {})),
                     "element value": prop(component("Selection", {})),
@@ -186,11 +187,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "tagged union": option(group({
                 "options": prop(dictionary(group({
                     "type": prop(component("Type", {
-                        "global types": paramRef("global types"),
+                        "global types": paramRef("global types", []),
                     })),
                     "constraint": prop(optional(group({
                         "type path": prop(component("Type Path", {
-                            "global types": paramRef("global types"),
+                            "global types": paramRef("global types", []),
                         })), //must be tagged union
                         "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
                     }))),
@@ -198,7 +199,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "default": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
                 "constraint": prop(optional(group({
                     "type path": prop(component("Type Path", {
-                        "global types": paramRef("global types"),
+                        "global types": paramRef("global types", []),
                     })),
                     "options": prop(constrainedDictionary(typePath("Type", [tu("tagged union"), grp("options")]), tbd(), component("Selection", {}))),
                 })))
@@ -207,7 +208,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "properties": prop(dictionary(group({
                     //"sibling dependencies": prop(dictionary(terminal())),
                     "type": prop(component("Type", {
-                        "global types": paramRef("global types"),
+                        "global types": paramRef("global types", []),
                     })),
                 }))),
             })),
@@ -251,7 +252,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     })),
                 }))),
                 "type": prop(component("Type", {
-                    "global types": paramRef("global types"),
+                    "global types": paramRef("global types", []),
                 })),
                 "result": prop(optional(group({
                     "type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
@@ -265,15 +266,15 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "import": prop(optional(terminal("identifier"))),
             "global type": prop(reference(typePath("Type Library", [grp("global types")]), tbd())),
             "path": prop(array(taggedUnion({
-                "dictionary": option(group({}), [typePath("Type", []), "dictionary"]),
-                "optional": option(group({}), [typePath("Type", []), "optional"]),
-                "array": option(group({}), [typePath("Type", []), "array"]),
-                "group": option(group({
+                "dictionary": constrainedOption([typePath("Type", []), "dictionary"], group({})),
+                "optional": constrainedOption([typePath("Type", []), "optional"], group({})),
+                "array": constrainedOption([typePath("Type", []), "array"], group({})),
+                "group": constrainedOption([typePath("Type", []), "group"], group({
                     "property": prop(reference(typePath("Type", [tu("group"), grp("properties")]), tbd()))
-                }), [typePath("Type", []), "group"]),
-                "tagged union": option(group({
+                })),
+                "tagged union": constrainedOption([typePath("Type", []), "tagged union"], group({
                     "option": prop(reference(typePath("Type", [tu("tagged union"), grp("options")]), tbd())),
-                }), [typePath("Type", []), "tagged union"]),
+                })),
             })))
             // "type": prop(taggedUnion({
             //     "parameter": 
