@@ -72,6 +72,20 @@ export function pResolvedValue(gt: string, optional: boolean): g_this.T.Paramete
         }]
     }
 }
+export function pExternalResolvedValue(imp: string, gt: string, optional: boolean): g_this.T.Parameters.D<pd.SourceLocation> {
+    return {
+        'type': ['resolved value', {
+            'type': {
+                'import': [true, {
+                    'key': imp,
+                    'annotation': pd.getLocationInfo(1),
+                }],
+                'type': r_imp(gt, 1),
+            },
+            'optional': optional ? ['yes', null] : ['no', null]
+        }]
+    }
+}
 
 export function pNonCyclicSiblings(
     type: g_this.T.Type__Selection<pd.SourceLocation>
