@@ -152,48 +152,48 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 pl.ss($, ($) => {
                     const type = $.type
                     $i.snippet(`$.map(($) => `)
-                    pl.cc($.constrained, ($) => {
-                        switch ($[0]) {
-                            case 'no':
-                                pl.ss($, ($) => {
-                                    doType(type, $x + `.D`, $i)
-                                })
-                                break
-                            case 'yes':
-                                pl.ss($, ($) => {
-                                    $i.snippet(`pl.cc($, ($) => {`)
-                                    $i.indent(($i) => {
-                                        $i.nestedLine(($i) => {
-                                            $i.snippet(`const constraint: pt.OptionalValue<`)
-                                            doTypeSelection($['temp type path'], $i)
-                                            $i.snippet(`.D<Annotation>`)
-                                            $i.snippet(`> = [false]`)
-                                        })
-                                        $i.nestedLine(($i) => {
-                                            $i.snippet(`return {`)
-                                            $i.indent(($i) => {
-                                                $i.nestedLine(($i) => {
-                                                    $i.snippet(`'annotation': $.annotation,`)
-                                                })
-                                                $i.nestedLine(($i) => {
-                                                    $i.snippet(`'constraint': constraint,`)
-                                                })
-                                                $i.nestedLine(($i) => {
-                                                    $i.snippet(`'type': pl.cc($.type, ($) => `)
-                                                    doType(type, $x + `.D._ltype`, $i)
-                                                    $i.snippet(`),`)
-                                                })
-                                            })
-                                            $i.snippet(`}`)
-                                        })
-                                    })
-                                    $i.snippet(`})`)
+                    // pl.cc($.constrained, ($) => {
+                    //     switch ($[0]) {
+                    //         case 'no':
+                    //             pl.ss($, ($) => {
+                    //                 doType(type, $x + `.D`, $i)
+                    //             })
+                    //             break
+                    //         case 'yes':
+                    //             pl.ss($, ($) => {
+                    //                 $i.snippet(`pl.cc($, ($) => {`)
+                    //                 $i.indent(($i) => {
+                    //                     $i.nestedLine(($i) => {
+                    //                         $i.snippet(`const constraint: pt.OptionalValue<`)
+                    //                         doTypeSelection($['temp type path'], $i)
+                    //                         $i.snippet(`.D<Annotation>`)
+                    //                         $i.snippet(`> = [false]`)
+                    //                     })
+                    //                     $i.nestedLine(($i) => {
+                    //                         $i.snippet(`return {`)
+                    //                         $i.indent(($i) => {
+                    //                             $i.nestedLine(($i) => {
+                    //                                 $i.snippet(`'annotation': $.annotation,`)
+                    //                             })
+                    //                             $i.nestedLine(($i) => {
+                    //                                 $i.snippet(`'constraint': constraint,`)
+                    //                             })
+                    //                             $i.nestedLine(($i) => {
+                    //                                 $i.snippet(`'type': pl.cc($.type, ($) => `)
+                    //                                 doType(type, $x + `.D._ltype`, $i)
+                    //                                 $i.snippet(`),`)
+                    //                             })
+                    //                         })
+                    //                         $i.snippet(`}`)
+                    //                     })
+                    //                 })
+                    //                 $i.snippet(`})`)
 
-                                })
-                                break
-                            default: pl.au($[0])
-                        }
-                    })
+                    //             })
+                    //             break
+                    //         default: pl.au($[0])
+                    //     }
+                    // })
                     $i.snippet(`)`)
                 })
                 break

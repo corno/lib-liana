@@ -194,19 +194,25 @@ export const $$: A.map = ($d) => {
                 }]])
                 case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
                     const type = $.type
-                    return pl.cc($.constrained, ($) => {
-                        switch ($[0]) {
-                            case 'no': return pl.ss($, ($) => ['dictionary', mapTypeToType(type, $x)])
-                            case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
-                                "annotation": createOptionalAnnotation(),
-                                "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
-                                "type": [true, {
-                                    'type': mapTypeToType(type, $x),
-                                }]
-                            }))]])
-                            default: return pl.au($[0])
-                        }
-                    })
+                    
+                    return $d.isEmpty($.constraints)
+                        ? mapTypeToType(type, $x)
+                        : ['group', pm.wrapRawDictionary({
+                            "constraints": {
+                                'type': ['group', $.constraints.map(($) => {
+                                    return {
+                                        'type': ['group', $d.filter(pm.wrapRawDictionary({
+                                            "annotation": createOptionalAnnotation(),
+                                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
+        
+                                        }))]
+                                    }
+                                })]
+                            },
+                            "type": {
+                                'type': mapTypeToType(type, $x)
+                            }
+                        })]
                 }))
                 case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
                     'type': mapTypeToType($.type, $x),

@@ -88,16 +88,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "key": prop(component("Terminal", {
                     "global types": aContainingDictionary(parameter("global types")),
                 })),
-                "constrained": prop(taggedUnion({
-                    "no": option(group({
+                "constraints": prop(dictionary(group({
+                    "temp type path": prop(component("Type Selection", {
+                        "global types": aContainingDictionary(parameter("global types")),
                     })),
-                    "yes": option(group({
-                        "temp type path": prop(component("Type Selection", {
-                            "global types": aContainingDictionary(parameter("global types")),
-                        })),
-                        "selection": prop(component("Value Selection", {})),
-                    })),
-                })),
+                    "selection": prop(component("Value Selection", {})),
+                }))),
                 "type": prop(component("Type", {
                     "global types": aContainingDictionary(parameter("global types")),
                 })),

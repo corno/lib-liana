@@ -197,10 +197,26 @@ export function siblingReference(
     }]
 }
 
-export function constrainedDictionary(
+export function dictConstraint(
+
     start: string,
     tail: null[],
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
+): g_this.T.Type.dictionary.constraints.D<pd.SourceLocation> {
+    return {
+        'temp type path': typePath,
+        'selection': {
+            'start': {
+                'annotation': pd.getLocationInfo(1),
+                'key': start,
+            },
+            'tail': pd.a([])
+        },
+    }
+}
+
+export function constrainedDictionary(
+    constraints: RawDictionary<g_this.T.Type.dictionary.constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>
 ): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
@@ -210,16 +226,7 @@ export function constrainedDictionary(
                 'key': "identifier",
             },
         },
-        'constrained': ['yes', {
-            'temp type path': typePath,
-            'selection': {
-                'start': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': start,
-                },
-                'tail': pd.a([])
-            },
-        }],
+        'constraints': pd.d(constraints),
         'type': type,
         'autofill': pd.a([]),
     }]
@@ -231,7 +238,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
         'key': {
             'type': r_imp("identifier", 1)
         },
-        'constrained': ['no', null],
+        'constraints': pd.d({}),
         'type': type,
         'autofill': pd.a(autofill === undefined ? [] : autofill),
     }]

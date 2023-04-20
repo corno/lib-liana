@@ -824,51 +824,28 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
-                                    export namespace constrained {
+                                    export namespace constraints {
                                         
                                         export namespace N {
                                             
-                                            export namespace TU {
+                                            export namespace D {
                                                 
                                                 export namespace N {
                                                     
-                                                    export namespace no {
+                                                    export namespace G {
                                                         
                                                         export namespace N {
                                                             
-                                                            export namespace G {
+                                                            export namespace selection {
                                                                 
                                                                 export namespace N {}
                                                                 
                                                                 export namespace T {}
                                                             }
-                                                        }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                    
-                                                    export namespace yes {
-                                                        
-                                                        export namespace N {
                                                             
-                                                            export namespace G {
+                                                            export namespace temp_$_$type_$_$path {
                                                                 
-                                                                export namespace N {
-                                                                    
-                                                                    export namespace selection {
-                                                                        
-                                                                        export namespace N {}
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                    
-                                                                    export namespace temp_$_$type_$_$path {
-                                                                        
-                                                                        export namespace N {}
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                }
+                                                                export namespace N {}
                                                                 
                                                                 export namespace T {}
                                                             }
@@ -2415,31 +2392,25 @@ export namespace T {
                 readonly 'source': T.Value__Selection<GAnnotation>
             }>
             
-            export namespace constrained {
+            export namespace constraints {
                 
-                export namespace no {}
-                
-                export type no<GAnnotation> = null
-                
-                export namespace yes {
+                export namespace D {
                     
                     export type selection<GAnnotation> = T.Value__Selection<GAnnotation>
                     
                     export type temp__type__path<GAnnotation> = T.Type__Selection<GAnnotation>
                 }
                 
-                export type yes<GAnnotation> = {
+                export type D<GAnnotation> = {
                     readonly 'selection': T.Value__Selection<GAnnotation>
                     readonly 'temp type path': T.Type__Selection<GAnnotation>
                 }
             }
             
-            export type constrained<GAnnotation> = 
-                | ['no', null]
-                | ['yes', {
-                    readonly 'selection': T.Value__Selection<GAnnotation>
-                    readonly 'temp type path': T.Type__Selection<GAnnotation>
-                }]
+            export type constraints<GAnnotation> = pt.Dictionary<{
+                readonly 'selection': T.Value__Selection<GAnnotation>
+                readonly 'temp type path': T.Type__Selection<GAnnotation>
+            }>
             
             export type key<GAnnotation> = T.Terminal<GAnnotation>
             
@@ -2451,12 +2422,10 @@ export namespace T {
                 readonly 'initializer': T.Type__Initializer<GAnnotation>
                 readonly 'source': T.Value__Selection<GAnnotation>
             }>
-            readonly 'constrained': 
-                | ['no', null]
-                | ['yes', {
-                    readonly 'selection': T.Value__Selection<GAnnotation>
-                    readonly 'temp type path': T.Type__Selection<GAnnotation>
-                }]
+            readonly 'constraints': pt.Dictionary<{
+                readonly 'selection': T.Value__Selection<GAnnotation>
+                readonly 'temp type path': T.Type__Selection<GAnnotation>
+            }>
             readonly 'key': T.Terminal<GAnnotation>
             readonly 'type': T.Type<GAnnotation>
         }
@@ -2811,12 +2780,10 @@ export namespace T {
                 readonly 'initializer': T.Type__Initializer<GAnnotation>
                 readonly 'source': T.Value__Selection<GAnnotation>
             }>
-            readonly 'constrained': 
-                | ['no', null]
-                | ['yes', {
-                    readonly 'selection': T.Value__Selection<GAnnotation>
-                    readonly 'temp type path': T.Type__Selection<GAnnotation>
-                }]
+            readonly 'constraints': pt.Dictionary<{
+                readonly 'selection': T.Value__Selection<GAnnotation>
+                readonly 'temp type path': T.Type__Selection<GAnnotation>
+            }>
             readonly 'key': T.Terminal<GAnnotation>
             readonly 'type': T.Type<GAnnotation>
         }]
