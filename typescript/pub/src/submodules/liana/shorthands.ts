@@ -52,7 +52,7 @@ export function optional(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<
     }]
 }
 
-export function pAllSiblings(type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function pAllSiblings(type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
         'type': ['siblings', {
             'kind': ['cyclic', null],
@@ -61,7 +61,7 @@ export function pAllSiblings(type: g_this.T.Type__Selection<pd.SourceLocation>):
     }
 }
 
-export function pResolvedValue(gt: string, optional: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+export function pResolvedValue(gt: string, optional: boolean): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', {
             'type': {
@@ -75,7 +75,7 @@ export function pResolvedValue(gt: string, optional: boolean): g_this.T.Type__Li
 
 export function pNonCyclicSiblings(
     type: g_this.T.Type__Selection<pd.SourceLocation>
-): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
+): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
         'type': ['siblings', {
             'kind': ['non cyclic', null],
@@ -218,7 +218,7 @@ export function result(
 }
 
 export function globalType(
-    parameters: RawDictionary<g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation>>,
+    parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
     result?: g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation>,
 ): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
@@ -246,9 +246,6 @@ export function globalType(
     return {
         'type': type,
         'parameters': pd.d(parameters),
-        // 'parameters': d_mappedimp(parameters, li, ($) => {
-        //     return r_imp($, li)
-        // }),
         'variables': pd.d(variables),
         'result': result === undefined
             ? [false]
@@ -267,7 +264,7 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
     return ['group', {
         'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
             const v = clone(currentVariables)
-            currentVariables[key] = ['siblings', {
+            currentVariables[key] = ['sibling', {
                 'key': key,
                 'annotation': pd.getLocationInfo(1)
             }]
@@ -312,9 +309,6 @@ export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.o
     return pl.cc(firstKey, ($) => {
 
         return ['tagged union', {
-            // 'options': d_mappedimp(options, li, ($) => {
-            //     return $
-            // }),
             'options': pd.d(options),
             'default': r_imp($, 1),
             'constraint': [false]
@@ -329,31 +323,6 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
         }],
     }]
 }
-
-// export type ReferenceType =
-//     | ['sibling', string]
-//     | ['parent', null]
-//     | ['parameter', string]
-//     | ['self', null]
-
-// export type Step =
-//     | ['group', string]
-//     | ['tagged union', string]
-//     | ['reference', null]
-//     | ['array', null]
-
-// export function self(): ReferenceType {
-//     return ['self', null]
-// }
-// export function parent(): ReferenceType {
-//     return ['parent', null]
-// }
-// export function sibling(name: string): ReferenceType {
-//     return ['sibling', name]
-// }
-// export function parameter(name: string): ReferenceType {
-//     return ['parameter', name]
-// }
 
 export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['group', {
@@ -463,91 +432,6 @@ export function externalTypeSelection(
     }
 }
 
-// export function presolvedValue(param: string): g_this.T.Reference.referencee__type<pd.SourceLocation> {
-//     return ['resolved value', {
-//         'selection': r_imp(param, 1),
-//     }]
-// }
-
-// export function allSiblings(path: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
-//     return {
-//         'type': ['siblings', {
-//         }]
-//     }
-// }
-
-// export function nonCircularSiblings(path: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
-//     return {
-//         'type': ['non circular siblings', {
-//             'type': path,
-//         }]
-//     }
-// }
-
-// export function resolvedValue(param: string, optional?: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
-//     return {
-//         'type': ['resolved value', {
-//             'optional': optional ? ['yes', null] : ['no', null],
-//             'import': [false],
-//             'type': {
-//                 'key': param,
-//                 'annotation': pd.getLocationInfo(1),
-//             },
-//         }]
-//     }
-// }
-
-// export function externalResolvedValue(imp: string, param: string, optional?: boolean): g_this.T.Type__Library.global__types.D.parameters.D<pd.SourceLocation> {
-//     return {
-//         'type': ['resolved value', {
-//             'optional': optional ? ['yes', null] : ['no', null],
-//             'import': [true, {
-//                 'annotation': pd.getLocationInfo(1),
-//                 'key': imp,
-//             }],
-//             'type': {
-//                 'key': param,
-//                 'annotation': pd.getLocationInfo(1),
-//             },
-//         }]
-//     }
-// }
-
-// export function relative(): g_this.T.Reference.referencee__type<pd.SourceLocation> {
-//     return ['relative', null]
-// }
-
-// export function tbd(): g_this.T.Reference.referencee__type<pd.SourceLocation> {
-//     return ['tbd', null]
-// }
-
-// export function argResolvedValuePlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-//     return {
-//         'type': {
-//             'start': ['resolved value placeholder', null],
-//             'tail': a([]),
-//         }
-//     }
-// }
-
-// export function argAllSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-//     return {
-//         'type': {
-//             'start': ['all siblings placeholder', null],
-//             'tail': a([]),
-//         }
-//     }
-// }
-
-// export function argNonCircularSiblingsPlaceholder(): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-//     return {
-//         'type': {
-//             'start': ['non circular siblings placeholder', null],
-//             'tail': a([]),
-//         }
-//     }
-// }
-
 export function tuStep(option: string): g_this.T.Value__Selection.tail.A<pd.SourceLocation> {
     return ['tagged union', {
         'option': {
@@ -556,18 +440,6 @@ export function tuStep(option: string): g_this.T.Value__Selection.tail.A<pd.Sour
         }
     }]
 }
-
-// export function paramRef(key: string, tail: g_this.T.Value__Selection.tail.A<pd.SourceLocation>[]): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
-//     return {
-//         'type': {
-//             'start': ['parameter', {
-//                 'key': key,
-//                 'annotation': pd.getLocationInfo(1),
-//             }],
-//             'tail': a(tail)
-//         }
-//     }
-// }
 
 export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
