@@ -227,6 +227,12 @@ export function constrainedDictionary(
             },
         },
         'constraints': pd.d(constraints),
+        'variables': pd.d(constraints).__mapWithKey(($, key) => {
+            return ['dictionary constraint', {
+                'annotation': pd.getLocationInfo(1),
+                'key': key,
+            }]
+        }),
         'type': type,
         'autofill': pd.a([]),
     }]
@@ -239,6 +245,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
             'type': r_imp("identifier", 1)
         },
         'constraints': pd.d({}),
+        'variables': pd.d({}),
         'type': type,
         'autofill': pd.a(autofill === undefined ? [] : autofill),
     }]
@@ -516,12 +523,15 @@ export function component(type: string, args: RawDictionary<g_this.T.Type.compon
         'context': ['local', null],
         'type': r_imp(type, 1),
         'arguments': pd.d(args),
-        'used results': pd.d(usedResults === undefined ? {} : usedResults).map(($) => {
-            return {
-                'annotation': pd.getLocationInfo(1),
-                'type': null,
-            }
-        }),
+        'used results': {
+            'constraints': {
+                'results': {
+                    'annotation': pd.getLocationInfo(1),
+                    //'type': null,
+                },
+            },
+            'type': pd.d(usedResults === undefined ? {} : usedResults),
+        },
         'variables': pd.d(usedResults === undefined ? {} : usedResults).__mapWithKey(($, key) => {
             return ['type result', {
                 'key': key,
@@ -537,12 +547,15 @@ export function importedComponent(library: string, type: string, args: RawDictio
         }],
         'type': r_imp(type, 1),
         'arguments': pd.d(args),
-        'used results': pd.d(usedResults === undefined ? {} : usedResults).map(($) => {
-            return {
-                'annotation': pd.getLocationInfo(1),
-                'type': null,
-            }
-        }),
+        'used results': {
+            'constraints': {
+                'results': {
+                    'annotation': pd.getLocationInfo(1),
+                    //'type': null,
+                },
+            },
+            'type': pd.d(usedResults === undefined ? {} : usedResults),
+        },
         'variables': pd.d(usedResults === undefined ? {} : usedResults).__mapWithKey(($, key) => {
             return ['type result', {
                 'key': key,

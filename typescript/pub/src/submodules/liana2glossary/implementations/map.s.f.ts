@@ -196,7 +196,7 @@ export const $$: A.map = ($d) => {
                     const type = $.type
                     
                     return $d.isEmpty($.constraints)
-                        ? mapTypeToType(type, $x)
+                        ? ['dictionary', mapTypeToType(type, $x)]
                         : ['group', pm.wrapRawDictionary({
                             "constraints": {
                                 'type': ['group', $.constraints.map(($) => {
@@ -210,7 +210,7 @@ export const $$: A.map = ($d) => {
                                 })]
                             },
                             "type": {
-                                'type': mapTypeToType(type, $x)
+                                'type': ['dictionary', mapTypeToType(type, $x)]
                             }
                         })]
                 }))
