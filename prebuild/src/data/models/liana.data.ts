@@ -149,7 +149,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "arguments": prop(dictionary(group({
                     "type": prop(taggedUnion({
                         "resolved value": option(component("Value Selection", {})),
-                        "sibling": option(component("Containing Dictionary Selection", {})),
+                        "containing dictionary": option(component("Containing Dictionary Selection", {})),
                     })),
                 }))),
             })),

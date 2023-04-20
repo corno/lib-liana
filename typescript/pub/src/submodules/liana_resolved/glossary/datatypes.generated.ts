@@ -814,14 +814,14 @@ export namespace N {
                                                                         
                                                                         export namespace N {
                                                                             
-                                                                            export namespace resolved_$_$value {
+                                                                            export namespace containing_$_$dictionary {
                                                                                 
                                                                                 export namespace N {}
                                                                                 
                                                                                 export namespace T {}
                                                                             }
                                                                             
-                                                                            export namespace sibling {
+                                                                            export namespace resolved_$_$value {
                                                                                 
                                                                                 export namespace N {}
                                                                                 
@@ -2269,27 +2269,27 @@ export namespace T {
                     
                     export namespace _ltype {
                         
-                        export type resolved__value<GAnnotation> = T.Value__Selection<GAnnotation>
+                        export type containing__dictionary<GAnnotation> = T.Containing__Dictionary__Selection<GAnnotation>
                         
-                        export type sibling<GAnnotation> = T.Containing__Dictionary__Selection<GAnnotation>
+                        export type resolved__value<GAnnotation> = T.Value__Selection<GAnnotation>
                     }
                     
                     export type _ltype<GAnnotation> = 
+                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
                         | ['resolved value', T.Value__Selection<GAnnotation>]
-                        | ['sibling', T.Containing__Dictionary__Selection<GAnnotation>]
                 }
                 
                 export type D<GAnnotation> = {
                     readonly 'type': 
+                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
                         | ['resolved value', T.Value__Selection<GAnnotation>]
-                        | ['sibling', T.Containing__Dictionary__Selection<GAnnotation>]
                 }
             }
             
             export type arguments<GAnnotation> = pt.Dictionary<{
                 readonly 'type': 
+                    | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
                     | ['resolved value', T.Value__Selection<GAnnotation>]
-                    | ['sibling', T.Containing__Dictionary__Selection<GAnnotation>]
             }>
             
             export namespace context {
@@ -2364,8 +2364,8 @@ export namespace T {
         export type component<GAnnotation> = {
             readonly 'arguments': pt.Dictionary<{
                 readonly 'type': 
+                    | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
                     | ['resolved value', T.Value__Selection<GAnnotation>]
-                    | ['sibling', T.Containing__Dictionary__Selection<GAnnotation>]
             }>
             readonly 'context': 
                 | ['import', {
@@ -2656,8 +2656,8 @@ export namespace T {
         | ['component', {
             readonly 'arguments': pt.Dictionary<{
                 readonly 'type': 
+                    | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
                     | ['resolved value', T.Value__Selection<GAnnotation>]
-                    | ['sibling', T.Containing__Dictionary__Selection<GAnnotation>]
             }>
             readonly 'context': 
                 | ['import', {

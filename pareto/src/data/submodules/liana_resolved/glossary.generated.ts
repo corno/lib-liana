@@ -378,15 +378,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                 "type": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                                        "resolved value": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                        "containing dictionary": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                             'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                            'type': "Value Selection",
+                                            'type': "Containing Dictionary Selection",
                                             'tail': a([]),
                                             'arguments': d({}),
                                         }]],
-                                        "sibling": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                        "resolved value": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                             'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                            'type': "Containing Dictionary Selection",
+                                            'type': "Value Selection",
                                             'tail': a([]),
                                             'arguments': d({}),
                                         }]],
@@ -1553,11 +1553,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                                             "TU": {
                                                                                 'types': d({}),
                                                                                 'namespaces': d({
-                                                                                    "resolved value": {
+                                                                                    "containing dictionary": {
                                                                                         'types': d({}),
                                                                                         'namespaces': d({}),
                                                                                     },
-                                                                                    "sibling": {
+                                                                                    "resolved value": {
                                                                                         'types': d({}),
                                                                                         'namespaces': d({}),
                                                                                     },

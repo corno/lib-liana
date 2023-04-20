@@ -122,11 +122,11 @@ export function parameter(
     }]
 }
 
-export function aSibling(
+export function aContainingDictionary(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>
 ): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['sibling', sel],
+        'type': ['containing dictionary', sel],
     }
 }
 
@@ -138,7 +138,7 @@ function constrainedTerminal(
     }
 }
 
-export function resolvedValue(
+export function rResolvedValue(
     start: string,
     tail: null[],
 ): g_this.T.Reference.referencee__type<pd.SourceLocation> {
@@ -153,7 +153,7 @@ export function resolvedValue(
     }]
 }
 
-export function sibling(
+export function rSibling(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
 ): g_this.T.Reference.referencee__type<pd.SourceLocation> {
     return ['sibling', {

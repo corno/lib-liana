@@ -129,7 +129,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
 
                                                     })
                                                     break
-                                                case 'sibling':
+                                                case 'containing dictionary':
                                                     pl.ss($, ($) => {
                                                         doContainingDictionarySelection($, $i)
 
