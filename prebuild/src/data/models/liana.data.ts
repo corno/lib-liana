@@ -11,10 +11,8 @@ import {
     dictionary,
     globalType, globalTypeSelection, group,
     grp,
-    option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop, reference,
-    rResolvedValue,
-    rSibling,
-    taggedUnion, terminal, tu, typeSelection
+    option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
+    taggedUnion, terminal, tu, typeSelection, resolvedValueReference, siblingReference
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -36,14 +34,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "tagged union": option(dictionary(component("Selection", {}))),
             "group": option(group({
-                "property": prop(reference(rResolvedValue("", []), typeSelection("Type", [tu("group"), grp("properties")]))),
+                "property": prop(resolvedValueReference("", [], typeSelection("Type", [tu("group"), grp("properties")]))),
                 "selection": prop(component("Selection", {})),
             })),
         })),
         "Terminal": globalType({
             "terminal types": pResolvedValue("Terminal Types", false),
         }, group({
-            "type": prop(reference(rResolvedValue("terminal types", []), typeSelection("Terminal Types", []))),
+            "type": prop(resolvedValueReference("terminal types", [], typeSelection("Terminal Types", []))),
         })),
         "Variables": globalType({
             "parameters": pResolvedValue("Parameters", true),
@@ -52,11 +50,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "parent variables": pResolvedValue("Variables", true),
             "siblings": pNonCyclicSiblings(typeSelection("Type", [tu("group"), grp("properties")]))
         }, dictionary(taggedUnion({
-            "option constraint": option(reference(rResolvedValue("option constraints", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
-            "type result": option(reference(rResolvedValue("type results", []), typeSelection("Parameters", []))),
-            "parameter": option(reference(rResolvedValue("parameters", []), typeSelection("Parameters", []))),
-            "parent variable": option(reference(rResolvedValue("parent variables", []), typeSelection("Variables", []))),
-            "sibling": option(reference(rSibling(parameter("siblings")), typeSelection("Type", [tu("group"), grp("properties")]))),
+            "option constraint": option(resolvedValueReference("option constraints", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
+            "type result": option(resolvedValueReference("type results", [], typeSelection("Parameters", []))),
+            "parameter": option(resolvedValueReference("parameters", [], typeSelection("Parameters", []))),
+            "parent variable": option(resolvedValueReference("parent variables", [], typeSelection("Variables", []))),
+            "sibling": option(siblingReference(parameter("siblings"), typeSelection("Type", [tu("group"), grp("properties")]))),
         }))),
         "Type": globalType({
             "imports": pResolvedValue("Imports", false),
@@ -129,19 +127,19 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": prop(component("Type Selection", {
                             "global types": aContainingDictionary(parameter("global types")),
                         })), //must be tagged union
-                        "option": prop(reference(rResolvedValue("XXXXA", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
+                        "option": prop(resolvedValueReference("XXXXA", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                     }))),
                     "variables": prop(component("Variables", {})),
                     "type": prop(component("Type", {
                         "global types": aContainingDictionary(parameter("global types")),
                     })),
                 }))),
-                "default": prop(reference(rResolvedValue("options", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
+                "default": prop(resolvedValueReference("options", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 "constraint": prop(optional(group({
                     "type": prop(component("Type Selection", {
                         "global types": aContainingDictionary(parameter("global types")),
                     })),
-                    "options": prop(constrainedDictionary(rResolvedValue("options", []), typeSelection("Type", [tu("tagged union"), grp("options")]), component("Selection", {}))),
+                    "options": prop(constrainedDictionary("options", [], typeSelection("Type", [tu("tagged union"), grp("options")]), component("Selection", {}))),
                 })))
             })),
             "group": option(group({
@@ -156,17 +154,17 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "context": prop(taggedUnion({
                     "local": option(group({})),
                     "import": option(group({
-                        "library": prop(reference(rResolvedValue("TBD", []), typeSelection("Imports", []))),
+                        "library": prop(resolvedValueReference("TBD", [], typeSelection("Imports", []))),
                     })),
                 })),
-                "type": prop(reference(rResolvedValue("TBD", []), typeSelection("Type Library", [grp("global types")]))),
+                "type": prop(resolvedValueReference("TBD", [], typeSelection("Type Library", [grp("global types")]))),
                 "arguments": prop(dictionary(group({
                     "type": prop(taggedUnion({
                         "resolved value": option(component("Value Selection", {})),
                         "containing dictionary": option(component("Containing Dictionary Selection", {})),
                     })),
                 }))),
-                "used results": prop(constrainedDictionary(rResolvedValue("type", []), typeSelection("Type Library", [grp("global types"), dict(), grp("results")]), group({}))),
+                "used results": prop(constrainedDictionary("type", [], typeSelection("Type Library", [grp("global types"), dict(), grp("results")]), group({}))),
                 "variables": prop(component("Variables", {})),
             })),
         })),
@@ -178,7 +176,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         }, group({
             "constrained": prop(taggedUnion({
                 // "no": option(group({
-                //     "type": prop(reference(rResolvedValue("TBD", []), typeSelection("Type Library", [grp("terminal types")]))),
+                //     "type": prop(resolvedValueReference("TBD", []), typeSelection("Type Library", [grp("terminal types")]))),
                 // })),
                 "yes": option(component("Reference Initializer", {
                 })),
@@ -215,7 +213,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": prop(optional(component("Type Initializer", {}))),
             })),
             "tagged union": option(group({
-                "option": prop(reference(rResolvedValue("TBD", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
+                "option": prop(resolvedValueReference("TBD", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 "data": prop(component("Type Initializer", {}))
             })),
             "group": option(group({
@@ -227,10 +225,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "component": option(component("Type Initializer", {})),
         })),
         "Value Selection": globalType({}, group({
-            "start": prop(reference(rResolvedValue("TBD", []), typeSelection("Variables", []))),
+            "start": prop(resolvedValueReference("TBD", [], typeSelection("Variables", []))),
             "tail": prop(array(taggedUnion({
                 "tagged union": option(group({
-                    "option": prop(reference(rResolvedValue("TBD", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
+                    "option": prop(resolvedValueReference("TBD", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 }))
             })))
         })),
@@ -241,11 +239,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "cyclic": option(group({})),
                 }))
             })),
-            "parameter": option(reference(rResolvedValue("TBD", []), typeSelection("Parameters", []))),
+            "parameter": option(resolvedValueReference("TBD", [], typeSelection("Parameters", []))),
         })),
         "Global Type Selection": globalType({}, group({
-            "import": prop(optional(reference(rResolvedValue("TBD", []), typeSelection("Imports", [])))),
-            "type": prop(reference(rResolvedValue("TBD", []), typeSelection("Type Library", [grp("global types")]))),
+            "import": prop(optional(resolvedValueReference("TBD", [], typeSelection("Imports", [])))),
+            "type": prop(resolvedValueReference("TBD", [], typeSelection("Type Library", [grp("global types")]))),
 
         })),
         "Terminal Types": globalType({}, dictionary(group({}))),
@@ -280,7 +278,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "global types": aContainingDictionary(parameter("global types")),
                 })),
                 "results": prop(dictionary(group({
-                    "type": prop(reference(rResolvedValue("TBD", []), typeSelection("Type Library", [grp("global types")]))),
+                    "type": prop(resolvedValueReference("TBD", [], typeSelection("Type Library", [grp("global types")]))),
                     "selection": prop(component("Selection", {})),
                 })))
             }))),
@@ -295,16 +293,16 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "optional": constrainedOption({ "out": [typeSelection("Type", []), "optional"] }, group({})),
                 "array": constrainedOption({ "out": [typeSelection("Type", []), "array"] }, group({})),
                 "group": constrainedOption({ "out": [typeSelection("Type", []), "group"] }, group({
-                    "property": prop(reference(rResolvedValue("out", []), typeSelection("Type", [tu("group"), grp("properties")])))
+                    "property": prop(resolvedValueReference("out", [], typeSelection("Type", [tu("group"), grp("properties")])))
                 })),
                 "tagged union": constrainedOption({ "out": [typeSelection("Type", []), "tagged union"] }, group({
-                    "option": prop(reference(rResolvedValue("out", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
+                    "option": prop(resolvedValueReference("out", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 })),
             })))
         })),
         "Model": globalType({}, group({
             "type library": prop(component("Type Library", {})),
-            "root": prop(reference(rResolvedValue("type library", [/**global types */]), typeSelection("Type Library", [grp("global types")]))),
+            "root": prop(resolvedValueReference("type library", [/**global types */], typeSelection("Type Library", [grp("global types")]))),
         })),
     }),
 }
