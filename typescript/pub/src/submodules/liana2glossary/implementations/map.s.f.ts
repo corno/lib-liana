@@ -194,7 +194,7 @@ export const $$: A.map = ($d) => {
                 }]])
                 case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
                     const type = $.type
-                    return pl.cc($.key.constrained, ($) => {
+                    return pl.cc($.constrained, ($) => {
                         switch ($[0]) {
                             case 'no': return pl.ss($, ($) => ['dictionary', mapTypeToType(type, $x)])
                             case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
@@ -212,9 +212,10 @@ export const $$: A.map = ($d) => {
                     'type': mapTypeToType($.type, $x),
                 }))])
                 case 'terminal': return pl.ss($, ($) => {
+                    const term = $.terminal
                     switch ($.constrained[0]) {
                         case 'no': return pl.ss($.constrained, ($) => terminalMapping.__getEntry(
-                            $.type.key,
+                            term.type.key,
                             ($) => {
                                 switch ($[0]) {
                                     case 'boolean': return pl.ss($, ($) => ['boolean', null])
@@ -223,7 +224,7 @@ export const $$: A.map = ($d) => {
                                     default: return pl.au($[0])
                                 }
                             },
-                            () => pl.panic(`MISSING TERMINAL MAPPING: ${$.type.key}`)
+                            () => pl.panic(`MISSING TERMINAL MAPPING: ${term.type.key}`)
                         ))
                         case 'yes': return pl.ss($.constrained, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['group', $d.filter(pm.wrapRawDictionary({
                             "key": $x['constraints mapping']['terminal values']

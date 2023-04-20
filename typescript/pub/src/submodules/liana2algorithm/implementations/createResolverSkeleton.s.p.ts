@@ -152,7 +152,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 pl.ss($, ($) => {
                     const type = $.type
                     $i.snippet(`$.map(($) => `)
-                    pl.cc($.key.constrained, ($) => {
+                    pl.cc($.constrained, ($) => {
                         switch ($[0]) {
                             case 'no':
                                 pl.ss($, ($) => {

@@ -6,13 +6,12 @@ import {
     globalType,
     group,
     r,
-    reference,
     terminal,
     taggedUnion,
     prop,
     typeSelection,
     option,
-    rResolvedValue,
+    resolvedValueReference,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Model<pd.SourceLocation> = {
@@ -28,11 +27,11 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(reference(rResolvedValue("c", []), typeSelection("FOO", []))),
+                "d": prop(resolvedValueReference("c", [], typeSelection("FOO", []))),
                 "e": prop(group({
                     //"a": prop(ref(typeReference(['parent', null], [])],
                 })),
-                "f": prop(reference(rResolvedValue("d", []), typeSelection("FOO", []))),
+                "f": prop(resolvedValueReference("d", [], typeSelection("FOO", []))),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
                     "a": option(group({})),

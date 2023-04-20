@@ -65,8 +65,9 @@ export const $$: A.mapLiana2Serializer = () => {
                                 'callback': [false],
                             }])
                             case 'terminal': return pl.ss($, ($) => {
+                                const term = $.terminal
                                 switch ($.constrained[0]) {
-                                    case 'no': return pl.ss($.constrained, ($) => pl.cc(terminalMapping.__unsafeGetEntry($.type.key), ($) => {
+                                    case 'no': return pl.ss($.constrained, ($) => pl.cc(terminalMapping.__unsafeGetEntry(term.type.key), ($) => {
                                         switch ($[0]) {
                                             case 'boolean': return pl.ss($, ($) => ['interfaceCall', {
                                                 'child path': pm.wrapRawArray(["boolean"]),

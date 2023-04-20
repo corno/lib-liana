@@ -145,62 +145,81 @@ export function aContainingDictionary(
     }
 }
 
-function constrainedTerminal(
-    ref: g_this.T.Reference<pd.SourceLocation>,
-): g_this.T.Terminal<pd.SourceLocation> {
-    return {
-        'constrained': ['yes', ref],
-    }
-}
-
-export function rResolvedValue(
-    start: string,
-    tail: null[],
-): g_this.T.Reference.referencee__type<pd.SourceLocation> {
-    return ['resolved value', {
-        'selection': {
-            'start': {
-                'annotation': pd.getLocationInfo(1),
-                'key': start,
-            },
-            'tail': pd.a([])
-        },
-    }]
-}
-
-export function rSibling(
-    sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
-): g_this.T.Reference.referencee__type<pd.SourceLocation> {
-    return ['sibling', {
-        'selection': sel,
-    }]
-}
-
 //doesn't do anything
 export function prop(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return type
 }
 
-export function reference(
-    type: g_this.T.Reference.referencee__type<pd.SourceLocation>,
+export function resolvedValueReference(
+    start: string,
+    tail: null[],
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
-    return ['terminal', constrainedTerminal({
-        'temp type path': typePath,
-        'referencee type': type
-    })]
+    return ['terminal', {
+        'terminal': {
+            'type': {
+                'annotation': pd.getLocationInfo(1),
+                'key': "identifier",
+            }
+        },
+        'constrained': ['yes', {
+            'temp type path': typePath,
+            'referencee type': ['resolved value', {
+                'selection': {
+                    'start': {
+                        'annotation': pd.getLocationInfo(1),
+                        'key': start,
+                    },
+                    'tail': pd.a([])
+                },
+            }]
+        }],
+    }]
+}
+
+export function siblingReference(
+    sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
+    typePath: g_this.T.Type__Selection<pd.SourceLocation>,
+): g_this.T.Type<pd.SourceLocation> {
+    return ['terminal', {
+        'terminal': {
+            'type': {
+                'annotation': pd.getLocationInfo(1),
+                'key': "identifier",
+            }
+        },
+        'constrained': ['yes', {
+            'temp type path': typePath,
+            'referencee type': ['sibling', {
+                'selection': sel,
+            }]
+        }],
+    }]
 }
 
 export function constrainedDictionary(
-    ctype: g_this.T.Reference.referencee__type<pd.SourceLocation>,
+    start: string,
+    tail: null[],
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
     type: g_this.T.Type<pd.SourceLocation>
 ): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
-        'key': constrainedTerminal({
+        'key': {
+            'type': {
+                'annotation': pd.getLocationInfo(1),
+                'key': "identifier",
+            },
+        },
+        'constrained': ['yes', {
             'temp type path': typePath,
-            'referencee type': ctype,
-        }),
+            'selection': {
+                'start': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': start,
+                },
+                'tail': pd.a([])
+            },
+        }],
         'type': type,
         'autofill': pd.a([]),
     }]
@@ -210,10 +229,9 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
     return ['dictionary', {
         // 'annotation': li,
         'key': {
-            'constrained': ['no', {
-                'type': r_imp("identifier", 1)
-            }]
+            'type': r_imp("identifier", 1)
         },
+        'constrained': ['no', null],
         'type': type,
         'autofill': pd.a(autofill === undefined ? [] : autofill),
     }]
@@ -343,9 +361,13 @@ export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.o
 
 export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
     return ['terminal', {
-        'constrained': ['no', {
-            'type': r_imp(type, 1),
-        }],
+        'terminal': {
+            'type': {
+                'annotation': pd.getLocationInfo(1),
+                'key': type,
+            }
+        },
+        'constrained': ['no', null],
     }]
 }
 

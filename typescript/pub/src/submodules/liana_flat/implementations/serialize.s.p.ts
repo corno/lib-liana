@@ -242,32 +242,32 @@ export const $$: A.serialize = ($d) => {
                                                                         break
                                                                     case 'terminal':
                                                                         pl.ss($, ($) => {
-                                                                            switch ($.constrained[0]) {
-                                                                                case 'no':
-                                                                                    pl.ss($.constrained, ($) => {
-                                                                                        const type = pl.cc($, ($): string => {
-                                                                                            switch ($.type.key) {
-                                                                                                case 'bedrag': return "number"
-                                                                                                case 'bestand': "undefined"
-                                                                                                case 'dagen': return "number"
-                                                                                                case 'datum': "number"
-                                                                                                case 'identifier': return "string"
-                                                                                                case 'multiline text': return "string"
-                                                                                                case 'promillage': return "number"
-                                                                                                case 'single line text': return "string"
-                                                                                                default: return pl.panic(`Unknown string type: ${$.type.key}`)
-                                                                                            }
-                                                                                        })
-                                                                                        $i.snippet(type === "number" ? `parseInt(assertNotNull(${pathID}))` : `assertNotNull(${pathID})`)
-                                                                                    })
-                                                                                    break
-                                                                                case 'yes':
-                                                                                    pl.ss($.constrained, ($) => {
-                                                                                        $i.snippet(pathID)
-                                                                                    })
-                                                                                    break
-                                                                                default: pl.au($.constrained[0])
-                                                                            }
+                                                                            const type = pl.cc($, ($): string => {
+                                                                                switch ($.terminal.type.key) {
+                                                                                    case 'bedrag': return "number"
+                                                                                    case 'bestand': "undefined"
+                                                                                    case 'dagen': return "number"
+                                                                                    case 'datum': "number"
+                                                                                    case 'identifier': return "string"
+                                                                                    case 'multiline text': return "string"
+                                                                                    case 'promillage': return "number"
+                                                                                    case 'single line text': return "string"
+                                                                                    default: return pl.panic(`Unknown string type: ${$.terminal.type.key}`)
+                                                                                }
+                                                                            })
+                                                                            $i.snippet(type === "number" ? `parseInt(assertNotNull(${pathID}))` : `assertNotNull(${pathID})`)
+                                                                            // switch ($.constrained[0]) {
+                                                                            //     case 'no':
+                                                                            //         pl.ss($.constrained, ($) => {
+                                                                            //         })
+                                                                            //         break
+                                                                            //     case 'yes':
+                                                                            //         pl.ss($.constrained, ($) => {
+                                                                            //             $i.snippet(pathID)
+                                                                            //         })
+                                                                            //         break
+                                                                            //     default: pl.au($.constrained[0])
+                                                                            // }
                                                                         })
                                                                         break
                                                                     case 'tagged union':
