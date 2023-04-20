@@ -109,7 +109,7 @@ export function aResolvedValue(
                 'annotation': pd.getLocationInfo(1),
                 'key': start,
             },
-            'tail': pd.a([])
+            'tail': [false]
         }],
     }
 }
@@ -170,7 +170,7 @@ export function resolvedValueReference(
                         'annotation': pd.getLocationInfo(1),
                         'key': start,
                     },
-                    'tail': pd.a([])
+                    'tail': [false]
                 },
             }]
         }],
@@ -210,7 +210,7 @@ export function dictConstraint(
                 'annotation': pd.getLocationInfo(1),
                 'key': start,
             },
-            'tail': pd.a([])
+            'tail': [false]
         },
     }
 }
@@ -253,8 +253,8 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
 
 export function result(
     type: string,
-    selection: g_this.T.Selection<pd.SourceLocation>,
-): g_this.T.Type__Library.global__types.D.results.D<pd.SourceLocation> {
+    selection: g_this.T.Value__Selection<pd.SourceLocation>,
+): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
     return {
         'type': {
             'annotation': pd.getLocationInfo(1),
@@ -267,7 +267,7 @@ export function result(
 export function globalType(
     parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
-    results?: RawDictionary<g_this.T.Type__Library.global__types.D.results.D<pd.SourceLocation>>,
+    result?: g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation>,
 ): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
     const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
     pd.d(parameters).__forEach(() => false, ($, key) => {
@@ -294,10 +294,9 @@ export function globalType(
         'type': type,
         'parameters': pd.d(parameters),
         'variables': pd.d(variables),
-        'results': pd.d(results === undefined
-            ? {}
-            : results
-        )
+        'result': result === undefined
+            ? [false]
+            : [true, result]
     }
 }
 export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
@@ -363,14 +362,12 @@ export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.o
     if (firstKey === null) {
         firstKey = "--NO OPTIONS--"
     }
-    return pl.cc(firstKey, ($) => {
 
-        return ['tagged union', {
-            'options': pd.d(options),
-            'default': r_imp($, 1),
-            'constraint': [false]
-        }]
-    })
+    return ['tagged union', {
+        'options': pd.d(options),
+        'default': r_imp(firstKey, 1),
+        'result': [false]
+    }]
 }
 
 export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
@@ -398,34 +395,34 @@ export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLoca
     }]
 }
 
-export function sgrp(prop: string, tail: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
-    return ['group', {
-        'property': {
-            'annotation': pd.getLocationInfo(1),
-            'key': prop,
-        },
-        'selection': tail
-    }]
-}
+// export function sgrp(prop: string, tail: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
+//     return ['group', {
+//         'property': {
+//             'annotation': pd.getLocationInfo(1),
+//             'key': prop,
+//         },
+//         'selection': tail
+//     }]
+// }
 
-export function sarray(notEmpty: g_this.T.Selection<pd.SourceLocation>, empty: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
-    return ['array', {
-        'empty': empty,
-        'not empty': notEmpty,
-    }]
-}
-export function sref(): g_this.T.Selection<pd.SourceLocation> {
-    return ['reference', null]
-}
-export function scomponent($: string): g_this.T.Selection<pd.SourceLocation> {
-    return ['component', {
-        'type name': $
-    }]
-}
+// export function sarray(notEmpty: g_this.T.Selection<pd.SourceLocation>, empty: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
+//     return ['array', {
+//         'empty': empty,
+//         'not empty': notEmpty,
+//     }]
+// }
+// export function sref(): g_this.T.Selection<pd.SourceLocation> {
+//     return ['reference', null]
+// }
+// export function scomponent($: string): g_this.T.Selection<pd.SourceLocation> {
+//     return ['component', {
+//         'type name': $
+//     }]
+// }
 
-export function stu(options: RawDictionary<g_this.T.Selection<pd.SourceLocation>>): g_this.T.Selection<pd.SourceLocation> {
-    return ['tagged union', pd.d(options)]
-}
+// export function stu(options: RawDictionary<g_this.T.Selection<pd.SourceLocation>>): g_this.T.Selection<pd.SourceLocation> {
+//     return ['tagged union', pd.d(options)]
+// }
 
 export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['dictionary', {
@@ -509,58 +506,28 @@ export function externalTypeSelection(
     }
 }
 
-export function tuStep(option: string): g_this.T.Value__Selection.tail.A<pd.SourceLocation> {
-    return ['tagged union', {
-        'option': {
-            'annotation': pd.getLocationInfo(1),
-            'key': option
-        }
-    }]
-}
+// export function tuStep(option: string): g_this.T.Value__Selection.tail.A<pd.SourceLocation> {
+//     return ['tagged union', {
+//         'option': {
+//             'annotation': pd.getLocationInfo(1),
+//             'key': option
+//         }
+//     }]
+// }
 
-export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>, usedResults?: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
+export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['local', null],
         'type': r_imp(type, 1),
         'arguments': pd.d(args),
-        'used results': {
-            'constraints': {
-                'results': {
-                    'annotation': pd.getLocationInfo(1),
-                    //'type': null,
-                },
-            },
-            'type': pd.d(usedResults === undefined ? {} : usedResults),
-        },
-        'variables': pd.d(usedResults === undefined ? {} : usedResults).__mapWithKey(($, key) => {
-            return ['type result', {
-                'key': key,
-                'annotation': pd.getLocationInfo(1)
-            }]
-        })
     }]
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>, usedResults?: RawDictionary<null>): g_this.T.Type<pd.SourceLocation> {
+export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     return ['component', {
         'context': ['import', {
             'library': r_imp(library, 1)
         }],
         'type': r_imp(type, 1),
         'arguments': pd.d(args),
-        'used results': {
-            'constraints': {
-                'results': {
-                    'annotation': pd.getLocationInfo(1),
-                    //'type': null,
-                },
-            },
-            'type': pd.d(usedResults === undefined ? {} : usedResults),
-        },
-        'variables': pd.d(usedResults === undefined ? {} : usedResults).__mapWithKey(($, key) => {
-            return ['type result', {
-                'key': key,
-                'annotation': pd.getLocationInfo(1)
-            }]
-        })
     }]
 }
