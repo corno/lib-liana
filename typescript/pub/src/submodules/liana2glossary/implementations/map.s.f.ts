@@ -42,25 +42,25 @@ export const $$: A.map = ($d) => {
                 () => [false],
             )
         }
-        function mapTypePath(
-            $: g_liana.T.Type__Path<Annotation>,
+        function mapTypeSelection(
+            $: g_liana.T.Type__Selection<Annotation>,
             getLastStep: () => string
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
             return {
                 'context': pl.optional(
-                    $.import,
+                    $['global type'].import,
                     ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
                         'glossary': {
-                            'annotation': ['internal', "FXIME"],
-                            'key': $
+                            'annotation': ['source', $.annotation],
+                            'key': $.key
                         }
                     }],
                     () => ['local', null],
                 ),
                 'arguments': pm.wrapRawDictionary({}),
-                'type': $['global type'].key,
+                'type': $['global type'].type.key,
                 'tail': $d.push({
-                    'array': $d.merge($.path.map(($) => {
+                    'array': $d.merge($.tail.map(($) => {
                         return pl.cc($, ($) => {
                             switch ($[0]) {
                                 case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
@@ -199,7 +199,7 @@ export const $$: A.map = ($d) => {
                             case 'no': return pl.ss($, ($) => ['dictionary', mapTypeToType(type, $x)])
                             case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', $d.filter(pm.wrapRawDictionary({
                                 "annotation": createOptionalAnnotation(),
-                                "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
+                                "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
                                 "type": [true, {
                                     'type': mapTypeToType(type, $x),
                                 }]
@@ -231,7 +231,7 @@ export const $$: A.map = ($d) => {
                                     'type': ['string', null] //FIX: resolve the right type
                                 }]
                                 : [false],
-                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => "D")),
+                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
                             "annotation": createOptionalAnnotation(),
                             // "referencedType": $.path.map(($) => {
                             //     switch ($[0]) {
@@ -283,7 +283,7 @@ export const $$: A.map = ($d) => {
                         $.constraint,
                         ($) => ['group', $d.filter(pm.wrapRawDictionary({
                             "annotation": createOptionalAnnotation(),
-                            "constraint": createOptionalConstraint($x, () => mapTypePath($['type path'], () => $.option.key)),
+                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($.type, () => $.option.key)),
                             "type": [true, {
                                 'type': mapTypeToType(type, $x)
                             }]

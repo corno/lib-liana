@@ -7,10 +7,10 @@ const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "resolve": algorithm(sfunction("this", {}, "Resolve"), { "Annotation": "Annotation" }, dependent(null, {
-            //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        }, {
-            "onError": sSideEffect("main", { "Annotation": "Annotation" }, "OnError"),
-        })),
+        // "resolve": algorithm(sfunction("this", {}, "Resolve"), { "Annotation": "Annotation" }, dependent(null, {
+        //     //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
+        // }, {
+        //     "onError": sSideEffect("main", { "Annotation": "Annotation" }, "OnError"),
+        // })),
     }),
 }

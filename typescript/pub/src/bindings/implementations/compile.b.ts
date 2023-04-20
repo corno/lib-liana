@@ -13,11 +13,11 @@ export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
         const le = a_main.$r.createErrorLogger().construct()
         $.outputs.__forEach(($) => {
 
-            a_resolve.$a.resolve<GAnnotation>({
-                'onError': ($) => {
-                    le.data($.message)
-                }
-            })($.data['mapped library'].library)
+            // a_resolve.$a.resolve<GAnnotation>({
+            //     'onError': ($) => {
+            //         le.data($.message)
+            //     }
+            // })($.data['mapped library'].library)
 
             a_2glossary.$api.generateGlossary<GAnnotation>({
                 'getSourceLocation': $d.getSourceLocation,

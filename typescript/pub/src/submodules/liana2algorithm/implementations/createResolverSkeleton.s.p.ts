@@ -7,19 +7,19 @@ import * as g_fp from "lib-fountain-pen"
 import { A } from "../api.generated"
 
 export const $$: A.createResolverSkeleton = ($d) => {
-    function doTypePath<Annotation>($: g_liana.T.Type__Path<Annotation>, $i: g_fp.SYNC.I.Line) {
+    function doTypeSelection<Annotation>($: g_liana.T.Type__Selection<Annotation>, $i: g_fp.SYNC.I.Line) {
         $i.snippet(`g_out`)
         pl.optional(
-            $.import,
+            $['global type'].import,
             ($) => {
-                $i.snippet(`_${$d.createIdentifier($)}`)
+                $i.snippet(`_${$d.createIdentifier($.key)}`)
             },
             () => {
 
             }
         )
-        $i.snippet(`.T.${$d.createIdentifier($['global type'].key)}`)
-        $.path.__forEach(($) => {
+        $i.snippet(`.T.${$d.createIdentifier($['global type'].type.key)}`)
+        $.tail.__forEach(($) => {
             $i.snippet(`.`)
             switch ($[0]) {
                 case 'array':
@@ -54,39 +54,17 @@ export const $$: A.createResolverSkeleton = ($d) => {
             }
         })
     }
-    function doPath<Annotation>(
-        $: g_liana.T.Path<Annotation>,
+    function doValueSelection<Annotation>(
+        $: g_liana.T.Value__Selection<Annotation>,
         $i: g_fp.SYNC.I.Line,
     ) {
         pl.cc($.start, ($) => {
-            switch ($[0]) {
-                case 'all siblings placeholder':
-                    pl.ss($, ($) => {
-                        $i.snippet(`undefined`)
-                    })
-                    break
-                case 'non circular siblings placeholder':
-                    pl.ss($, ($) => {
-                        $i.snippet(`undefined`)
-                    })
-                    break
-                case 'parameter':
-                    pl.ss($, ($) => {
-                        $i.snippet(`$x['${$.key}']`)
-                    })
-                    break
-                case 'resolved value placeholder':
-                    pl.ss($, ($) => {
-                        $i.snippet(`[false]`)
-                    })
-                    break
-                default: pl.au($[0])
-            }
+            $i.snippet(`$v['${$.key}']`)
         })
         pl.cc($.tail, ($) => {
             $.__forEach(($) => {
                 switch ($[0]) {
-                    case 'tagged union': 
+                    case 'tagged union':
                         pl.ss($, ($) => {
                             $i.snippet(`/*${$.option.key}*/`)
                         })
@@ -95,6 +73,26 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 }
             })
         })
+
+    }
+    function doContainingDictionarySelection<Annotation>(
+        $: g_liana.T.Containing__Dictionary__Selection<Annotation>,
+        $i: g_fp.SYNC.I.Line,
+    ) {
+        switch ($[0]) {
+            case 'parameter':
+                pl.ss($, ($) => {
+                    $i.snippet(`$x['${$.key}']`)
+                })
+                break
+            case 'this':
+                pl.ss($, ($) => {
+                    $i.snippet(`FOOO`)
+
+                })
+                break
+            default: pl.au($[0])
+        }
 
     }
     function doType<Annotation>(
@@ -123,7 +121,23 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 $c(($) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`'${$.key}': `)
-                                        doPath($.value.type, $i)
+                                        pl.cc($.value.type, ($) => {
+                                            switch ($[0]) {
+                                                case 'resolved value':
+                                                    pl.ss($, ($) => {
+                                                        doValueSelection($, $i)
+
+                                                    })
+                                                    break
+                                                case 'sibling':
+                                                    pl.ss($, ($) => {
+                                                        doContainingDictionarySelection($, $i)
+
+                                                    })
+                                                    break
+                                                default: pl.au($[0])
+                                            }
+                                        })
                                         $i.snippet(`,`)
                                     })
                                 })
@@ -151,7 +165,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.indent(($i) => {
                                         $i.nestedLine(($i) => {
                                             $i.snippet(`const constraint: pt.OptionalValue<`)
-                                            doTypePath($['type path'], $i)
+                                            doTypeSelection($['temp type path'], $i)
                                             $i.snippet(`.D<Annotation>`)
                                             $i.snippet(`> = [false]`)
                                         })
@@ -256,7 +270,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                 $i.indent(($i) => {
                                                     $i.nestedLine(($i) => {
                                                         $i.snippet(`const constraint: pt.OptionalValue<`)
-                                                        doTypePath($['type path'], $i)
+                                                        doTypeSelection($.type, $i)
                                                         $i.snippet(`<Annotation>`)
                                                         $i.snippet(`> = [false]`)
                                                     })
@@ -318,7 +332,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.indent(($i) => {
                                         $i.nestedLine(($i) => {
                                             $i.snippet(`const constraint: pt.OptionalValue<`)
-                                            doTypePath($['type path'], $i)
+                                            doTypeSelection($['temp type path'], $i)
                                             $i.snippet(`.D`)
                                             $i.snippet(`<Annotation>`)
                                             $i.snippet(`> = [false]`)
@@ -375,18 +389,30 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.snippet(`'${$.key}': `)
                                     pl.cc($.value.type, ($) => {
                                         switch ($[0]) {
-                                            case 'all siblings':
+                                            case 'siblings':
                                                 pl.ss($, ($) => {
-                                                    $i.snippet(`pt.Lookup<pt.ComputedValue<`)
-                                                    doTypePath($.type, $i)
-                                                    $i.snippet(`.D<Annotation>>>`)
-                                                })
-                                                break
-                                            case 'non circular siblings':
-                                                pl.ss($, ($) => {
-                                                    $i.snippet(`pt.Lookup<`)
-                                                    doTypePath($.type, $i)
-                                                    $i.snippet(`.D<Annotation>>`)
+                                                    const type = $.type
+                                                    pl.cc($.kind, ($) => {
+                                                        switch ($[0]) {
+                                                            case 'cyclic':
+                                                                pl.ss($, ($) => {
+                                                                    $i.snippet(`pt.Lookup<pt.ComputedValue<`)
+                                                                    doTypeSelection(type, $i)
+                                                                    $i.snippet(`.D<Annotation>>>`)
+
+                                                                })
+                                                                break
+                                                            case 'non cyclic':
+                                                                pl.ss($, ($) => {
+                                                                    $i.snippet(`pt.Lookup<`)
+                                                                    doTypeSelection(type, $i)
+                                                                    $i.snippet(`.D<Annotation>>`)
+
+                                                                })
+                                                                break
+                                                            default: pl.au($[0])
+                                                        }
+                                                    })
                                                 })
                                                 break
                                             case 'resolved value':
@@ -396,7 +422,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
 
                                                         $i.snippet(`g_out`)
                                                         pl.optional(
-                                                            $.import,
+                                                            $.type.import,
                                                             ($) => {
                                                                 $i.snippet(`_${$d.createIdentifier($.key)}`)
                                                             },
@@ -404,7 +430,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
 
                                                             }
                                                         )
-                                                        $i.snippet(`.T.${$d.createIdentifier($['type'].key)}<Annotation>`)
+                                                        $i.snippet(`.T.${$d.createIdentifier($['type'].type.key)}<Annotation>`)
                                                     }
                                                     pl.cc($.optional, ($) => {
                                                         switch ($[0]) {

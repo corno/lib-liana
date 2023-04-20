@@ -2,9 +2,6 @@ import * as pd from 'pareto-core-data'
 
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import {
-    d,
-    array,
-    component,
     dictionary,
     globalType,
     group,
@@ -13,9 +10,9 @@ import {
     terminal,
     taggedUnion,
     prop,
-    typePath,
+    typeSelection,
     option,
-    tbd,
+    resolvedValue,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Model<pd.SourceLocation> = {
@@ -31,11 +28,11 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(reference(typePath("FOO", []), tbd())),
+                "d": prop(reference(resolvedValue("c", []), typeSelection("FOO", []))),
                 "e": prop(group({
                     //"a": prop(ref(typeReference(['parent', null], [])],
                 })),
-                "f": prop(reference(typePath("FOO", []), tbd())),
+                "f": prop(reference(resolvedValue("d", []), typeSelection("FOO", []))),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
                     "a": option(group({})),
