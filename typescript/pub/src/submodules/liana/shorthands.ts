@@ -105,7 +105,7 @@ export function aResolvedValue(
 ): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', {
-            'start':{
+            'start': {
                 'annotation': pd.getLocationInfo(1),
                 'key': start,
             },
@@ -159,7 +159,7 @@ export function rResolvedValue(
 ): g_this.T.Reference.referencee__type<pd.SourceLocation> {
     return ['resolved value', {
         'selection': {
-            'start':{
+            'start': {
                 'annotation': pd.getLocationInfo(1),
                 'key': start,
             },
@@ -351,7 +351,11 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 
 export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['group', {
-        'annotation': pd.getLocationInfo(1),
+        'constraints': {
+            'out': {
+                'annotation': pd.getLocationInfo(1),
+            }
+        },
         'type': {
             'property': r_imp(prop, 1),
         },
@@ -389,21 +393,33 @@ export function stu(options: RawDictionary<g_this.T.Selection<pd.SourceLocation>
 
 export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['dictionary', {
-        'annotation': pd.getLocationInfo(1),
+        'constraints': {
+            'out': {
+                'annotation': pd.getLocationInfo(1),
+            }
+        },
         'type': null,
     }]
 }
 
 export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['array', {
-        'annotation': pd.getLocationInfo(1),
+        'constraints': {
+            'out': {
+                'annotation': pd.getLocationInfo(1),
+            }
+        },
         'type': null,
     }]
 }
 
 export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['tagged union', {
-        'annotation': pd.getLocationInfo(1),
+        'constraints': {
+            'out': {
+                'annotation': pd.getLocationInfo(1),
+            }
+        },
         'type': {
             'option': r_imp(opt, 1),
         },

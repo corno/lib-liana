@@ -2812,7 +2812,23 @@ export namespace T {
                 
                 export namespace array {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace constraints {
+                        
+                        export namespace out {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                        }
+                        
+                        export type out<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     
                     export namespace _ltype {}
                     
@@ -2820,13 +2836,33 @@ export namespace T {
                 }
                 
                 export type array<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }
                 
                 export namespace dictionary {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace constraints {
+                        
+                        export namespace out {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                        }
+                        
+                        export type out<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     
                     export namespace _ltype {}
                     
@@ -2834,13 +2870,33 @@ export namespace T {
                 }
                 
                 export type dictionary<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }
                 
                 export namespace group {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace constraints {
+                        
+                        export namespace out {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                        }
+                        
+                        export type out<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     
                     export namespace _ltype {
                         
@@ -2866,7 +2922,11 @@ export namespace T {
                 }
                 
                 export type group<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': {
                         readonly 'property': {
                             readonly 'annotation': GAnnotation
@@ -2877,7 +2937,23 @@ export namespace T {
                 
                 export namespace optional {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace constraints {
+                        
+                        export namespace out {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                        }
+                        
+                        export type out<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     
                     export namespace _ltype {}
                     
@@ -2885,13 +2961,33 @@ export namespace T {
                 }
                 
                 export type optional<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }
                 
                 export namespace tagged__union {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace constraints {
+                        
+                        export namespace out {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                        }
+                        
+                        export type out<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     
                     export namespace _ltype {
                         
@@ -2917,7 +3013,11 @@ export namespace T {
                 }
                 
                 export type tagged__union<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': {
                         readonly 'option': {
                             readonly 'annotation': GAnnotation
@@ -2929,15 +3029,27 @@ export namespace T {
             
             export type A<GAnnotation> = 
                 | ['array', {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }]
                 | ['dictionary', {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }]
                 | ['group', {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': {
                         readonly 'property': {
                             readonly 'annotation': GAnnotation
@@ -2946,11 +3058,19 @@ export namespace T {
                     }
                 }]
                 | ['optional', {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': null
                 }]
                 | ['tagged union', {
-                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'out': {
+                            readonly 'annotation': GAnnotation
+                        }
+                    }
                     readonly 'type': {
                         readonly 'option': {
                             readonly 'annotation': GAnnotation
@@ -2962,15 +3082,27 @@ export namespace T {
         
         export type tail<GAnnotation> = pt.Array<
             | ['array', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['dictionary', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['group', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': {
                     readonly 'property': {
                         readonly 'annotation': GAnnotation
@@ -2979,11 +3111,19 @@ export namespace T {
                 }
             }]
             | ['optional', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['tagged union', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': {
                     readonly 'option': {
                         readonly 'annotation': GAnnotation
@@ -2998,15 +3138,27 @@ export namespace T {
         readonly 'global type': T.Global__Type__Selection<GAnnotation>
         readonly 'tail': pt.Array<
             | ['array', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['dictionary', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['group', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': {
                     readonly 'property': {
                         readonly 'annotation': GAnnotation
@@ -3015,11 +3167,19 @@ export namespace T {
                 }
             }]
             | ['optional', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': null
             }]
             | ['tagged union', {
-                readonly 'annotation': GAnnotation
+                readonly 'constraints': {
+                    readonly 'out': {
+                        readonly 'annotation': GAnnotation
+                    }
+                }
                 readonly 'type': {
                     readonly 'option': {
                         readonly 'annotation': GAnnotation
