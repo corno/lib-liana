@@ -275,13 +275,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
             "global type": prop(component("Global Type Selection", {})),
             "tail": prop(array(taggedUnion({
-                "dictionary": constrainedOption([typeSelection("Type", []), "dictionary"], group({})),
-                "optional": constrainedOption([typeSelection("Type", []), "optional"], group({})),
-                "array": constrainedOption([typeSelection("Type", []), "array"], group({})),
-                "group": constrainedOption([typeSelection("Type", []), "group"], group({
+                "dictionary": constrainedOption({ "out": [typeSelection("Type", []), "dictionary"] }, group({})),
+                "optional": constrainedOption({ "out": [typeSelection("Type", []), "optional"] }, group({})),
+                "array": constrainedOption({ "out": [typeSelection("Type", []), "array"] }, group({})),
+                "group": constrainedOption({ "out": [typeSelection("Type", []), "group"] }, group({
                     "property": prop(reference(rResolvedValue("OPTION CONSTRAINT", []), typeSelection("Type", [tu("group"), grp("properties")])))
                 })),
-                "tagged union": constrainedOption([typeSelection("Type", []), "tagged union"], group({
+                "tagged union": constrainedOption({ "out": [typeSelection("Type", []), "tagged union"] }, group({
                     "option": prop(reference(rResolvedValue("OPTION CONSTRAINT", []), typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 })),
             })))

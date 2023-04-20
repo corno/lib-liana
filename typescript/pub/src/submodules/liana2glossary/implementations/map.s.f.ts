@@ -279,17 +279,25 @@ export const $$: A.map = ($d) => {
                 })
                 case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                     const type = $.type
-                    return pl.optional(
-                        $.constraint,
-                        ($) => ['group', $d.filter(pm.wrapRawDictionary({
-                            "annotation": createOptionalAnnotation(),
-                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($.type, () => $.option.key)),
-                            "type": [true, {
+
+                    return $d.isEmpty($.constraints)
+                        ? mapTypeToType(type, $x)
+                        : ['group', pm.wrapRawDictionary({
+                            "constraints": {
+                                'type': ['group', $.constraints.map(($) => {
+                                    return {
+                                        'type': ['group', $d.filter(pm.wrapRawDictionary({
+                                            "annotation": createOptionalAnnotation(),
+                                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($.type, () => $.option.key)),
+        
+                                        }))]
+                                    }
+                                })]
+                            },
+                            "type": {
                                 'type': mapTypeToType(type, $x)
-                            }]
-                        }))],
-                        () => mapTypeToType(type, $x)
-                    )
+                            }
+                        })]
                     // switch ($[0]) {
                     //     case 'no': return pl.ss($, ($) => 
                     //     // case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', pm.wrapRawDictionary({      

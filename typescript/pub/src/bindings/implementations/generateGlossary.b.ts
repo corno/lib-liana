@@ -29,6 +29,7 @@ export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnno
             'filter': a_dictionary.$r.filter(),
             'merge': a_array.$r.merge(),
             'push': a_array.$r.push(),
+            'isEmpty': a_dictionary.$r.isEmpty(),
         })($.data)
 
         a_fp.$b.createFile()(

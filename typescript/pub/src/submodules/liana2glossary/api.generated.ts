@@ -12,6 +12,7 @@ export namespace D {
         readonly 'buildDictionary': g_build.SYNC.A.F.BuildUnsafeDictionary
         readonly 'decorateDictionaryEntriesWithKey': g_foreach.SYNC.A.F.DecorateDictionaryEntriesWithKey
         readonly 'filter': g_dictionary.SYNC.A.F.Filter
+        readonly 'isEmpty': g_dictionary.SYNC.A.F.IsEmpty
         readonly 'merge': g_array.SYNC.A.F.Merge
         readonly 'push': g_array.SYNC.A.F.Push
     }

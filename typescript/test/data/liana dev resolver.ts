@@ -603,76 +603,11 @@ function map_Type__Selection<Annotation>($: g_in.T.Type__Selection<Annotation>, 
         const temp_global__type: g_out.T.Type__Selection.global__type<Annotation> = pl.cc($['global type'], ($) => map_Global__Type__Selection<Annotation>($))
         const temp_tail: g_out.T.Type__Selection.tail<Annotation> = pl.cc($['tail'], ($) => $.map(($) => pl.cc($, ($): g_out.T.Type__Selection.tail.A<Annotation> => {
             switch ($[0]) {
-                case 'dictionary': return pl.ss($, ($) => ['dictionary', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                            return null
-                        })),
-                    }
-                })])
-                case 'optional': return pl.ss($, ($) => ['optional', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                            return null
-                        })),
-                    }
-                })])
-                case 'array': return pl.ss($, ($) => ['array', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                            return null
-                        })),
-                    }
-                })])
-                case 'group': return pl.ss($, ($) => ['group', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                            const temp_property: g_out.T.Type__Selection.tail.A.group._ltype.property<Annotation> = pl.cc($['property'], ($) => pl.cc($, ($) => {
-                                const constraint: pt.OptionalValue<g_out.T.Type.group.properties.D<Annotation>> = [false]
-                                return {
-                                    'annotation': $.annotation,
-                                    'constraint': constraint,
-                                    'key': $.key,
-                                }
-                            }))
-                            return {
-                                'property': temp_property,
-                            }
-                        })),
-                    }
-                })])
-                case 'tagged union': return pl.ss($, ($) => ['tagged union', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out.T.Type<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
-                            const temp_option: g_out.T.Type__Selection.tail.A.tagged__union._ltype.option<Annotation> = pl.cc($['option'], ($) => pl.cc($, ($) => {
-                                const constraint: pt.OptionalValue<g_out.T.Type.tagged__union.options.D<Annotation>> = [false]
-                                return {
-                                    'annotation': $.annotation,
-                                    'constraint': constraint,
-                                    'key': $.key,
-                                }
-                            }))
-                            return {
-                                'option': temp_option,
-                            }
-                        })),
-                    }
-                })])
+                case 'dictionary': return pl.ss($, ($) => ['dictionary', ])
+                case 'optional': return pl.ss($, ($) => ['optional', ])
+                case 'array': return pl.ss($, ($) => ['array', ])
+                case 'group': return pl.ss($, ($) => ['group', ])
+                case 'tagged union': return pl.ss($, ($) => ['tagged union', ])
                 default: return pl.au($[0])
             }
         })))

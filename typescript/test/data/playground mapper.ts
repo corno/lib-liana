@@ -286,9 +286,6 @@ function map_Type__Selection($: g_in.T.Type__Selection): g_out.T.Element {
                 case 'group': return ['group', ({
                     'property': pl.cc($, ($) => $),
                 })]
-                case 'tagged union': return ['tagged union', ({
-                    'option': pl.cc($, ($) => $),
-                })]
                 default: return pl.au($[1])
             }
         }))),

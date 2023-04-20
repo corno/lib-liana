@@ -17,6 +17,7 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
             "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
             "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
             "filter": sfunction("dictionary", {}, "Filter"),
+            "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
             "merge": sfunction("array", {}, "Merge"),
             "push": sfunction("array", {}, "Push"),
         }, {})),
