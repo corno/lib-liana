@@ -69,6 +69,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     })
                     $i.nestedLine(($i) => {
                         $i.snippet(`($) => `)
+                        $i.snippet(`[true, $]/*FIXME*/`)
                         pl.cc($['step type'], ($) => {
                             switch ($[0]) {
                                 case 'component':
@@ -131,6 +132,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
         
         $i.snippet(`pl.cc($v_${$d.createIdentifier($.start.key)}, ($) => `)
         doValueSelectionTail($.tail, $i)
+        $i.snippet(`)`)
 
     }
     function doContainingDictionarySelection<Annotation>(

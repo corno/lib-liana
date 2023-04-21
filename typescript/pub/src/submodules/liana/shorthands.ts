@@ -98,19 +98,54 @@ export function pNonCyclicSiblings(
     }
 }
 
+export function vgrp(
+    prop: string,
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['group', {
+            'property': {
+                'annotation': pd.getLocationInfo(1),
+                'key': prop,
+            }
+        }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+// export function comp(
+//     prop: string,
+//     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+// ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+//     return [true, {
+//         'step type': ['component', {
+//             'property': {
+//                 'annotation': pd.getLocationInfo(1),
+//                 'key': prop,
+//             }
+//         }],
+//         'tail': tail === undefined ? [false] : tail
+//     }]
+// }
+
+export function valSel(
+    start: string,
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection<pd.SourceLocation> {
+    return {
+        'start': {
+            'annotation': pd.getLocationInfo(1),
+            'key': start,
+        },
+        'tail': tail === undefined ? [false] : tail
+    }
+}
+
 
 export function aResolvedValue(
-    start: string,
-    tail: null[],
+    valSel: g_this.T.Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['resolved value', {
-            'start': {
-                'annotation': pd.getLocationInfo(1),
-                'key': start,
-            },
-            'tail': [false]
-        }],
+        'type': ['resolved value', valSel],
     }
 }
 
@@ -151,8 +186,7 @@ export function prop(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.S
 }
 
 export function resolvedValueReference(
-    start: string,
-    tail: null[],
+    valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     return ['terminal', {
@@ -165,13 +199,7 @@ export function resolvedValueReference(
         'constrained': ['yes', {
             'temp type path': typePath,
             'referencee type': ['resolved value', {
-                'selection': {
-                    'start': {
-                        'annotation': pd.getLocationInfo(1),
-                        'key': start,
-                    },
-                    'tail': [false]
-                },
+                'selection': valSel,
             }]
         }],
     }]
@@ -198,20 +226,12 @@ export function siblingReference(
 }
 
 export function dictConstraint(
-
-    start: string,
-    tail: null[],
+    valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type.dictionary.constraints.D<pd.SourceLocation> {
     return {
         'temp type path': typePath,
-        'selection': {
-            'start': {
-                'annotation': pd.getLocationInfo(1),
-                'key': start,
-            },
-            'tail': [false]
-        },
+        'selection': valSel,
     }
 }
 
@@ -333,22 +353,13 @@ export function option(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.ta
 
 
 export function optionConstraint(
-
-    start: string,
-    tail: null[],
-    //sel: g_this.T.Value__Selection<pd.SourceLocation>, 
+    valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     option: string,
     type: g_this.T.Type__Selection<pd.SourceLocation>
 ): g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
     return {
         'type': type,
-        'selection': {
-            'start': {
-                'annotation': pd.getLocationInfo(1),
-                'key': start,
-            },
-            'tail': [false]
-        },
+        'selection': valSel,
         'option': {
             'annotation': pd.getLocationInfo(1),
             'key': option

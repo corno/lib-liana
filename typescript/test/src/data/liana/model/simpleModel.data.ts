@@ -12,6 +12,7 @@ import {
     typeSelection,
     option,
     resolvedValueReference,
+    valSel,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Model<pd.SourceLocation> = {
@@ -27,11 +28,11 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(resolvedValueReference("c", [], typeSelection("FOO", []))),
+                "d": prop(resolvedValueReference(valSel("c"), typeSelection("FOO", []))),
                 "e": prop(group({
                     //"a": prop(ref(typeReference(['parent', null], [])],
                 })),
-                "f": prop(resolvedValueReference("d", [], typeSelection("FOO", []))),
+                "f": prop(resolvedValueReference(valSel("d"), typeSelection("FOO", []))),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
                     "a": option(group({})),
