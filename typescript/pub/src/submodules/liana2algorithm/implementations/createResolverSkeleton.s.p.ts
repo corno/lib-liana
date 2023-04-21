@@ -1,5 +1,6 @@
 import * as pl from 'pareto-core-lib'
 import * as pd from 'pareto-core-dev'
+import * as pt from 'pareto-core-types'
 
 import * as g_liana from "../../liana"
 import * as g_fp from "lib-fountain-pen"
@@ -157,7 +158,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
                                         doTypeSelection($.value['temp type path'], $i)
-                                        $i.snippet(` = `)
+                                        $i.snippet(`<Annotation> = `)
                                         doValueSelection($.value.selection, $i)
 
                                     })
@@ -203,12 +204,27 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 pl.ss($, ($) => {
                     $i.snippet(`pl.cc($, ($) => {`)
                     $i.indent(($i) => {
-                        $d.dictionaryForEach($.properties, ($) => {
+                        //determine order
+                        $d.sortTopologically($.properties, {
+                            'map': ($) => $d.filter($.variables.map( ($) => pl.cc($, ($) => {
+                                switch ($[0]) {
+                                    case 'dictionary constraint': return pl.ss($, ($) => [false])
+                                    case 'option constraint': return pl.ss($, ($) => [false])
+                                    case 'parameter': return pl.ss($, ($) => [false])
+                                    case 'parent variable': return pl.ss($, ($) => [false])
+                                    case 'sibling': return pl.ss($, ($) => [true, null])
+                                    default: return pl.au($[0])
+                                }
+                            })))
+                        }).__forEach(($) => {
+
                             $i.nestedLine(($i) => {
-                                $i.snippet(`const intermediate_${$d.createIdentifier(`${$.key}`)}: g_out.T.${$x}.${$d.createIdentifier($.key)}<Annotation> = pl.cc($['${$.key}'], ($) => `)
+                                $i.snippet(`const $v_${$d.createIdentifier(`${$.key}`)}: g_out.T.${$x}.${$d.createIdentifier($.key)}<Annotation> = pl.cc($['${$.key}'], ($) => `)
                                 doType($.value.type, $x + `.${$d.createIdentifier($.key)}`, $i)
                                 $i.snippet(`)`)
                             })
+                        })
+                        $d.dictionaryForEach($.properties, ($) => {
                         })
                         $i.nestedLine(($i) => {
                             $i.snippet(`return `)
@@ -222,7 +238,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         $d.dictionaryForEach($.properties, ($) => {
                                             $i.nestedLine(($i) => {
 
-                                                $i.snippet(`'${$.key}': intermediate_${$d.createIdentifier(`${$.key}`)},`)
+                                                $i.snippet(`'${$.key}': $v_${$d.createIdentifier(`${$.key}`)},`)
                                             })
                                         })
                                     })
@@ -280,31 +296,51 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                             $i.nestedLine(($i) => {
                                                                 $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
                                                                 doTypeSelection($.value['type'], $i)
-                                                                $i.snippet(`.${$d.createIdentifier($.value.option.key)} = `)
-                                                                $i.snippet(`pl.cc($, ($) => {`)
+                                                                $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation> = pl.cc($, ($) => {`)
                                                                 $i.indent(($i) => {
                                                                     $i.nestedLine(($i) => {
-                                                                        $i.snippet(`const x = pt.OptionalValue<`)
+                                                                        $i.snippet(`const x: pt.OptionalValue<`)
+                                                                        doTypeSelection($.value['type'], $i)
+                                                                        $i.snippet(`<Annotation>> = `)
                                                                         doValueSelection($.value.selection, $i)
-                                                                        $i.snippet(`>`)
                                                                     })
                                                                     $i.nestedLine(($i) => {
-                                                                        $i.snippet(`if (x[0] === '${$.value.option.key}') {`)
+                                                                        $i.snippet(`return pl.optional(`)
                                                                         $i.indent(($i) => {
                                                                             $i.nestedLine(($i) => {
-                                                                                $i.snippet(`return [true, x[1]]`)
+                                                                                $i.snippet(`x,`)
                                                                             })
-                                                                        })
-                                                                        $i.snippet(`} else {`)
-                                                                        $i.indent(($i) => {
                                                                             $i.nestedLine(($i) => {
-                                                                                $i.snippet(`$se.error("option constraint")`)
-                                                                                $i.snippet(`return [false]`)
-                                                                            })
-                                                                        })
-                                                                        $i.snippet(`}`)
-                                                                    })
+                                                                                $i.snippet(`($) => {`)
+                                                                                $i.indent(($i) => {
+                                                                                    $i.nestedLine(($i) => {
+                                                                                        $i.snippet(`if ($[0] === '${$.value.option.key}') {`)
+                                                                                        $i.indent(($i) => {
+                                                                                            $i.nestedLine(($i) => {
+                                                                                                $i.snippet(`return [true, $[1]]`)
+                                                                                            })
+                                                                                        })
+                                                                                        $i.snippet(`} else {`)
+                                                                                        $i.indent(($i) => {
+                                                                                            $i.nestedLine(($i) => {
+                                                                                                $i.snippet(`$se.error("option constraint")`)
+                                                                                            })
+                                                                                            $i.nestedLine(($i) => {
+                                                                                                $i.snippet(`return [false]`)
+                                                                                            })
+                                                                                        })
+                                                                                        $i.snippet(`}`)
+                                                                                    })
 
+                                                                                })
+                                                                                $i.snippet(`},`)
+                                                                            })
+                                                                            $i.nestedLine(($i) => {
+                                                                                $i.snippet(`() => [false],`)
+                                                                            })
+                                                                        })
+                                                                        $i.snippet(`)`)
+                                                                    })
                                                                 })
                                                                 $i.snippet(`})`)
                                                                 $.value.selection

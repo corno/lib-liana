@@ -21,6 +21,8 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
             "enrichedDictionaryForEach": procedure("foreach", {}, "EnrichedDictionaryForEach"),
             "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
             "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
+            "sortTopologically": sfunction("resolve", {}, "SortTopologically"),
+            "filter": sfunction("dictionary", {}, "Filter")
         }, {}))
     }),
 }

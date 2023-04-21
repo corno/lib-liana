@@ -17,6 +17,7 @@ import * as a_coll from "res-pareto-collation"
 import * as a_fp from "lib-fountain-pen"
 import * as a_ts from "res-typescript"
 import * as a_dictionary from "res-pareto-dictionary"
+import * as a_resolve from "res-pareto-resolve"
 
 const d = pm.wrapRawDictionary
 
@@ -142,6 +143,7 @@ export const $$: A.getTestSet = ($) => {
                         'compare': a_coll.$r.localeIsABeforeB(),
                     }),
                     'isEmpty': a_dictionary.$r.isEmpty(),
+                    'sortTopologically': a_resolve.$r.sortTopologically()
                 })(d_playground, $i)
             })
         },
@@ -163,6 +165,7 @@ export const $$: A.getTestSet = ($) => {
                         'compare': a_coll.$r.localeIsABeforeB(),
                     }),
                     'isEmpty': a_dictionary.$r.isEmpty(),
+                    'sortTopologically': a_resolve.$r.sortTopologically()
                 })(d_liana_dev, $i)
             })
         },

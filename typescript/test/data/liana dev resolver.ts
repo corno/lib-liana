@@ -10,34 +10,34 @@ function map_Reference<Annotation>(
     $v_global__types: pt.Lookup<pt.ComputedValue<g_out.T.Type__Library.global__types.D<Annotation>>>,
 ): g_out.T.Reference<Annotation> {
     return pl.cc($, ($) => {
-        const intermediate_referencee__type: g_out.T.Reference.referencee__type<Annotation> = pl.cc($['referencee type'], ($) => pl.cc($, ($): g_out.T.Reference.referencee__type<Annotation> => {
+        const $v_referencee__type: g_out.T.Reference.referencee__type<Annotation> = pl.cc($['referencee type'], ($) => pl.cc($, ($): g_out.T.Reference.referencee__type<Annotation> => {
             switch ($[0]) {
                 case 'resolved value': return pl.ss($, ($) => ['resolved value', pl.cc($, ($) => {
-                    const intermediate_selection: g_out.T.Reference.referencee__type.resolved__value.selection<Annotation> = pl.cc($['selection'], ($) => map_Value__Selection<Annotation>(
+                    const $v_selection: g_out.T.Reference.referencee__type.resolved__value.selection<Annotation> = pl.cc($['selection'], ($) => map_Value__Selection<Annotation>(
                         $,
                     ))
                     return {
-                        'selection': intermediate_selection,
+                        'selection': $v_selection,
                     }
                 })])
                 case 'sibling': return pl.ss($, ($) => ['sibling', pl.cc($, ($) => {
-                    const intermediate_selection: g_out.T.Reference.referencee__type.sibling.selection<Annotation> = pl.cc($['selection'], ($) => map_Containing__Dictionary__Selection<Annotation>(
+                    const $v_selection: g_out.T.Reference.referencee__type.sibling.selection<Annotation> = pl.cc($['selection'], ($) => map_Containing__Dictionary__Selection<Annotation>(
                         $,
                     ))
                     return {
-                        'selection': intermediate_selection,
+                        'selection': $v_selection,
                     }
                 })])
                 default: return pl.au($[0])
             }
         }))
-        const intermediate_temp__type__path: g_out.T.Reference.temp__type__path<Annotation> = pl.cc($['temp type path'], ($) => map_Type__Selection<Annotation>(
+        const $v_temp__type__path: g_out.T.Reference.temp__type__path<Annotation> = pl.cc($['temp type path'], ($) => map_Type__Selection<Annotation>(
             $,
             /*$v_global__types: */$v_global__types,
         ))
         return {
-            'referencee type': intermediate_referencee__type,
-            'temp type path': intermediate_temp__type__path,
+            'referencee type': $v_referencee__type,
+            'temp type path': $v_temp__type__path,
         }
     })
 }

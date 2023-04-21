@@ -33,6 +33,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
         "res-pareto-build": null,
         "res-pareto-dictionary": null,
         "res-pareto-foreach": null,
+        "res-pareto-resolve": null,
         "res-typescript": null,
     }),
     'type': ['library', {
@@ -62,6 +63,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
                 "lib-fountain-pen": null,
                 "lib-pareto-typescript-project": null,
                 "res-pareto-dictionary": null,
+                "res-pareto-resolve": null,
             }),
             'definition': {
                 'glossary': {

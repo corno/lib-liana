@@ -2,43 +2,22 @@ import * as pd from 'pareto-core-data'
 
 import * as g_liana from "lib-liana/dist/submodules/liana"
 import {
-    aResolvedValue,
     aContainingDictionary,
+    aResolvedValue,
     array,
     component, constrainedDictionary,
     constrainedOption,
-    dict,
+    dictConstraint,
     dictionary,
-    globalType, globalTypeSelection, group,
+    globalType,
+    group,
     grp,
-    option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
-    taggedUnion, terminal, tu, typeSelection, resolvedValueReference, siblingReference, dictConstraint
+    option,
+    optionConstraint,
+    optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
+    resolvedValueReference, siblingReference,
+    taggedUnion, terminal, tu, typeSelection
 } from "lib-liana/dist/submodules/liana/shorthands"
-
-
-export function optionConstraint(
-
-    start: string,
-    tail: null[],
-    //sel: g_this.T.Value__Selection<pd.SourceLocation>, 
-    option: string,
-    type: g_liana.T.Type__Selection<pd.SourceLocation>
-): g_liana.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
-    return {
-        'type': type,
-        'selection': {
-            'start': {
-                'annotation': pd.getLocationInfo(1),
-                'key': start,
-            },
-            'tail': [false]
-        },
-        'option': {
-            'annotation': pd.getLocationInfo(1),
-            'key': option
-        }
-    }
-}
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
