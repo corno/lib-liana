@@ -143,7 +143,8 @@ export const $$: A.getTestSet = ($) => {
                         'compare': a_coll.$r.localeIsABeforeB(),
                     }),
                     'isEmpty': a_dictionary.$r.isEmpty(),
-                    'sortTopologically': a_resolve.$r.sortTopologically()
+                    'sortTopologically': a_resolve.$r.sortTopologically(),
+                    'filter': a_dictionary.$r.filter(),
                 })(d_playground, $i)
             })
         },
@@ -165,7 +166,8 @@ export const $$: A.getTestSet = ($) => {
                         'compare': a_coll.$r.localeIsABeforeB(),
                     }),
                     'isEmpty': a_dictionary.$r.isEmpty(),
-                    'sortTopologically': a_resolve.$r.sortTopologically()
+                    'sortTopologically': a_resolve.$r.sortTopologically(),
+                    'filter': a_dictionary.$r.filter(),
                 })(d_liana_dev, $i)
             })
         },

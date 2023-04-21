@@ -55,25 +55,82 @@ export const $$: A.createResolverSkeleton = ($d) => {
             }
         })
     }
+    function doValueSelectionTail<Annotation>(
+        $: g_liana.T.Value__Selection__Tail<Annotation>,
+        $i: g_fp.SYNC.I.Line,
+    ) {
+        pl.optional(
+            $,
+            ($) => {
+                $i.snippet(`pl.optional(`)
+                $i.indent(($i) => {
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`$,`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`($) => `)
+                        pl.cc($['step type'], ($) => {
+                            switch ($[0]) {
+                                case 'component':
+                                    pl.ss($, ($) => {
+        
+                                    })
+                                    break
+                                case 'group':
+                                    pl.ss($, ($) => {
+        
+                                    })
+                                    break
+                                case 'reference':
+                                    pl.ss($, ($) => {
+                                    })
+                                    break
+                                case 'tagged union':
+                                    pl.ss($, ($) => {
+        
+                                    })
+                                    break
+                                default: pl.au($[0])
+                            }
+                        })
+                        doValueSelectionTail($.tail, $i)
+                        $i.snippet(`,`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`() => [false],`)
+                    })
+                })
+                $i.snippet(`)`)
+            },
+            () => {
+                $i.snippet(`$`)
+            }
+        )
+    }
     function doValueSelection<Annotation>(
         $: g_liana.T.Value__Selection<Annotation>,
         $i: g_fp.SYNC.I.Line,
     ) {
-        pl.cc($.start, ($) => {
-            $i.snippet(`$v_${$d.createIdentifier($.key)}`)
-        })
-        pl.cc($.tail, ($) => {
-            // $.__forEach(($) => {
-            //     switch ($[0]) {
-            //         case 'tagged union':
-            //             pl.ss($, ($) => {
-            //                 $i.snippet(`/*${$.option.key}*/`)
-            //             })
-            //             break
-            //         default: pl.au($[0])
-            //     }
-            // })
-        })
+        
+        // $i.snippet(`pl.optional(`)
+        // $i.indent(($i) => {
+        //     $i.nestedLine(($i) => {
+        //         $i.snippet(`$v_${$d.createIdentifier($.start.key)},`)
+        //     })
+        //     $i.nestedLine(($i) => {
+        //         $i.snippet(`($) => `)
+        //         doValueSelectionTail($.tail, $i)
+        //         $i.snippet(`,`)
+        //     })
+        //     $i.nestedLine(($i) => {
+        //         $i.snippet(`() => [false],`)
+        //     })
+        // })
+        // $i.snippet(`)`)
+
+        
+        $i.snippet(`pl.cc($v_${$d.createIdentifier($.start.key)}, ($) => `)
+        doValueSelectionTail($.tail, $i)
 
     }
     function doContainingDictionarySelection<Annotation>(
@@ -206,7 +263,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     $i.indent(($i) => {
                         //determine order
                         $d.sortTopologically($.properties, {
-                            'map': ($) => $d.filter($.variables.map( ($) => pl.cc($, ($) => {
+                            'map': ($) => $d.filter($.variables.map(($) => pl.cc($, ($) => {
                                 switch ($[0]) {
                                     case 'dictionary constraint': return pl.ss($, ($) => [false])
                                     case 'option constraint': return pl.ss($, ($) => [false])

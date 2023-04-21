@@ -61,10 +61,10 @@ function map_Boolean__Expression__Or__Selection($: g_in.T.Boolean__Expression__O
         }
     })
 }
-function map_Data__Path($: g_in.T.Data__Path): g_out.T.Element {
-    return ({
-        'variable': pl.cc($, ($) => $),
-        'tail': pl.cc($, ($) => $.map(($) => pl.cc($, ($) => {
+function map_Data__Path__Tail($: g_in.T.Data__Path__Tail): g_out.T.Element {
+    return pl.optional(
+        $,
+        ($) => [true, pl.cc($, ($) => {
             switch ($[0]) {
                 case 'call': return ['call', ({
                     'function': pl.cc($, ($) => map_Data__Path($)),
@@ -74,7 +74,14 @@ function map_Data__Path($: g_in.T.Data__Path): g_out.T.Element {
                 case 'property': return ['property', $]
                 default: return pl.au($[1])
             }
-        }))),
+        })],
+        () => [false],
+    )
+}
+function map_Data__Path($: g_in.T.Data__Path): g_out.T.Element {
+    return ({
+        'variable': pl.cc($, ($) => $),
+        'tail': pl.cc($, ($) => map_Data__Path__Tail($)),
     })
 }
 function map_Expression($: g_in.T.Expression): g_out.T.Element {
@@ -168,11 +175,11 @@ function map_Statements($: g_in.T.Statements): g_out.T.Element {
             })]
             case 'assign': return ['assign', map_Assign($)]
             case 'minus assign': return ['minus assign', ({
-                'variable': pl.cc($, ($) => map_Data__Path($)),
+                'target': pl.cc($, ($) => map_Data__Path($)),
                 'right hand side': pl.cc($, ($) => map_Expression($)),
             })]
             case 'plus assign': return ['plus assign', ({
-                'variable': pl.cc($, ($) => map_Data__Path($)),
+                'target': pl.cc($, ($) => map_Data__Path($)),
                 'right hand side': pl.cc($, ($) => map_Expression($)),
             })]
             case 'return': return ['return', ({

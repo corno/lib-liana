@@ -22,7 +22,7 @@ export const $$: A.map = ($d) => {
                 }]
                 : [false]
         }
-        function createOptionalConstraint(
+        function createOptionalConstraintProperty(
             $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>,
             $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
         ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
@@ -194,7 +194,7 @@ export const $$: A.map = ($d) => {
                 }]])
                 case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
                     const type = $.type
-                    
+
                     return $d.isEmpty($.constraints)
                         ? ['dictionary', mapTypeToType(type, $x)]
                         : ['group', pm.wrapRawDictionary({
@@ -203,13 +203,13 @@ export const $$: A.map = ($d) => {
                                     return {
                                         'type': ['group', $d.filter(pm.wrapRawDictionary({
                                             "annotation": createOptionalAnnotation(),
-                                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
-        
+                                            "constraint": createOptionalConstraintProperty($x, () => mapTypeSelection($['temp type path'], () => "D")),
+
                                         }))]
                                     }
                                 })]
                             },
-                            "type": {
+                            "content": {
                                 'type': ['dictionary', mapTypeToType(type, $x)]
                             }
                         })]
@@ -219,8 +219,8 @@ export const $$: A.map = ($d) => {
                 }))])
                 case 'terminal': return pl.ss($, ($) => {
                     const term = $.terminal
-                    switch ($.constrained[0]) {
-                        case 'no': return pl.ss($.constrained, ($) => terminalMapping.__getEntry(
+                    function tm(): g_glossary.T.Type<Annotation> {
+                        return terminalMapping.__getEntry(
                             term.type.key,
                             ($) => {
                                 switch ($[0]) {
@@ -231,55 +231,21 @@ export const $$: A.map = ($d) => {
                                 }
                             },
                             () => pl.panic(`MISSING TERMINAL MAPPING: ${term.type.key}`)
-                        ))
-                        case 'yes': return pl.ss($.constrained, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['group', $d.filter(pm.wrapRawDictionary({
-                            "key": $x['constraints mapping']['terminal values']
-                                ? [true, {
-                                    'type': ['string', null] //FIX: resolve the right type
-                                }]
-                                : [false],
-                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($['temp type path'], () => "D")),
-                            "annotation": createOptionalAnnotation(),
-                            // "referencedType": $.path.map(($) => {
-                            //     switch ($[0]) {
-                            //         case 'array':
-                            //             return pl.ss($, ($) => {
-                            //                 return ['array', null]
-                            //             })
-                            //         case 'dictionary':
-                            //             return pl.ss($, ($) => {
-                            //                 return ['dictionary', null]
-                            //             })
-                            //         case 'group':
-                            //             return pl.ss($, ($) => {
-                            //                 return ['group', {
-                            //                     'property': $.property
-                            //                 }]
-                            //             })
-                            //         case 'optional':
-                            //             return pl.ss($, ($) => {
-                            //                 return ['optional', null]
-                            //             })
-                            //         case 'tagged union':
-                            //             return pl.ss($, ($) => {
-                            //                 return ['tagged union', {
-                            //                     'option': $.option
-                            //                 }]
-                            //             })
-                            //         default: return pl.au($[0])
-                            //     }
-                            // })
-                        }))]
-                            // return ['reference', {
-                            //     'context': ['import', {
-                            //         'glossary': "common",
-                            //         'arguments': pm.wrapRawDictionary({}),
-                            //     }],
-                            //     'tail': a([]), 'type': "Reference",
-                            //     'arguments': pm.wrapRawDictionary({
-                            //         //"ReferencedType": <g_glossary.GTypeReference>['null', null], //FIXME
-                            //     }),
-                            // }]
+                        )
+                    }
+                    switch ($.constrained[0]) {
+                        case 'no': return pl.ss($.constrained, ($) => tm())
+                        case 'yes': return pl.ss($.constrained, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => $x['constraints mapping'].constraints[0] === false && !settings.annotations
+                            ? tm()
+                            : ['group', $d.filter(pm.wrapRawDictionary({
+                                "key": $x['constraints mapping']['terminal values']
+                                    ? [true, {
+                                        'type': tm(),
+                                    }]
+                                    : [false],
+                                "constraint": createOptionalConstraintProperty($x, () => mapTypeSelection($['temp type path'], () => "D")),
+                                "annotation": createOptionalAnnotation(),
+                            }))]
                         )
                         default: return pl.au($.constrained[0])
                     }
@@ -287,24 +253,38 @@ export const $$: A.map = ($d) => {
                 case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                     const type = $.type
 
-                    return $d.isEmpty($.constraints)
+
+
+                    const constraints = $.constraints
+                    return ($d.isEmpty($.constraints) || $x['constraints mapping'].constraints[0] === false) && !settings.annotations
                         ? mapTypeToType(type, $x)
-                        : ['group', pm.wrapRawDictionary({
-                            "constraints": {
-                                'type': ['group', $.constraints.map(($) => {
-                                    return {
-                                        'type': ['group', $d.filter(pm.wrapRawDictionary({
-                                            "annotation": createOptionalAnnotation(),
-                                            "constraint": createOptionalConstraint($x, () => mapTypeSelection($.type, () => $.option.key)),
-        
-                                        }))]
-                                    }
-                                })]
-                            },
-                            "type": {
+                        : ['group', $d.filter(pm.wrapRawDictionary({
+                            "annotation": createOptionalAnnotation(),
+                            "constraints": pl.optional(
+                                $x['constraints mapping'].constraints,
+                                ($): pt.OptionalValue<g_glossary.T.Type.group.D<Annotation>> => {
+                                    const constraintStrat = $
+                                    return [true, {
+                                        'type': ['group', constraints.map(($) => {
+                                            const $a = $
+                                            return {
+                                                'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
+                                                    switch (constraintStrat[0]) {
+                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]]])
+                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]])
+                                                        default: return pl.au(constraintStrat[0])
+                                                    }
+                                                })
+                                            }
+                                        })]
+                                    }]
+                                },
+                                () => [false]
+                            ),
+                            "content": [true, {
                                 'type': mapTypeToType(type, $x)
-                            }
-                        })]
+                            }],
+                        }))]
                     // switch ($[0]) {
                     //     case 'no': return pl.ss($, ($) => 
                     //     // case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', pm.wrapRawDictionary({      

@@ -31,7 +31,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "settings": member(group({
                     "annotations": member(boolean()),
                     "datamodel": member(optional(group({
-                        
                         "constraints mapping": member(group({
                             "terminal values": member(boolean()),
                             "constraints": member(optional(taggedUnion({

@@ -10,6 +10,10 @@ function map_Reference<Annotation>(
     $v_global__types: pt.Lookup<pt.ComputedValue<g_out.T.Type__Library.global__types.D<Annotation>>>,
 ): g_out.T.Reference<Annotation> {
     return pl.cc($, ($) => {
+        const $v_temp__type__path: g_out.T.Reference.temp__type__path<Annotation> = pl.cc($['temp type path'], ($) => map_Type__Selection<Annotation>(
+            $,
+            /*$v_global__types: */$v_global__types,
+        ))
         const $v_referencee__type: g_out.T.Reference.referencee__type<Annotation> = pl.cc($['referencee type'], ($) => pl.cc($, ($): g_out.T.Reference.referencee__type<Annotation> => {
             switch ($[0]) {
                 case 'resolved value': return pl.ss($, ($) => ['resolved value', pl.cc($, ($) => {
@@ -31,10 +35,6 @@ function map_Reference<Annotation>(
                 default: return pl.au($[0])
             }
         }))
-        const $v_temp__type__path: g_out.T.Reference.temp__type__path<Annotation> = pl.cc($['temp type path'], ($) => map_Type__Selection<Annotation>(
-            $,
-            /*$v_global__types: */$v_global__types,
-        ))
         return {
             'referencee type': $v_referencee__type,
             'temp type path': $v_temp__type__path,

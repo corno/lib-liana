@@ -147,28 +147,35 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "stack": aResolvedValue("stack", [])
             })),
         })),
+        "Data Path Tail": globalType({
+            "stack": pResolvedValue("Variables", false),
+            "global types": pExternalResolvedValue("typesystem", "Global Types", false),
+        }, optional(taggedUnion({
+            "call": option(group({
+                "function": prop(component("Data Path", {
+                    "global types": aResolvedValue("global types", []),
+                    "stack": aResolvedValue("stack", [])
+                })), /*constraint tagged union: type === function*/
+                "type arguments": prop(component("Type Arguments", {
+                    "type": aResolvedValue("function", [/*component constraint*/]),
+                    "global types": aResolvedValue("global types", []),
+                })),
+                "arguments": prop(component("Data Path", {
+                    "stack": aResolvedValue("stack", []),
+                    "global types": aResolvedValue("global types", [])
+                })),
+            })),
+            "property": option(resolvedValueReference("FIXME", [], externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
+        })), /*result("XXX"),*/ ),
         "Data Path": globalType({
             "stack": pResolvedValue("Variables", false),
             "global types": pExternalResolvedValue("typesystem", "Global Types", false),
         }, group({
             "variable": prop(resolvedValueReference("stack", [], typeSelection("Variables", []))),
-            "tail": prop(array(taggedUnion({
-                "call": option(group({
-                    "function": prop(component("Data Path", {
-                        "global types": aResolvedValue("global types", []),
-                        "stack": aResolvedValue("stack", [])
-                    })), /*constraint tagged union: type === function*/
-                    "type arguments": prop(component("Type Arguments", {
-                        "type": aResolvedValue("function", [/*component constraint*/]),
-                        "global types": aResolvedValue("global types", []),
-                    })),
-                    "arguments": prop(component("Data Path", {
-                        "stack": aResolvedValue("stack", []),
-                        "global types": aResolvedValue("global types", [])
-                    })),
-                })),
-                "property": option(resolvedValueReference("FIXME", [], externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
-            }))),
+            "tail": prop(component("Data Path Tail", {
+                "global types": aResolvedValue("global types", []),
+                "stack": aResolvedValue("stack", [])
+            })),
             // "property access": option(group({
             //     "context": prop(component("Expression", {})),
             //     "property": prop(component("Expression", {})),
@@ -393,14 +400,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "global types": aResolvedValue("global types", []),
                 })),
                 "incrementer": prop(component("Assign", {
-                    "stack": aResolvedValue("stack", []),
                     "global types": aResolvedValue("global types", []),
+                    "stack": aResolvedValue("stack", []),
                 })),
                 "block": prop(component("Block", {
                     "function": aResolvedValue("function", []),
                     "global types": aResolvedValue("global types", []),
                     "stack": aResolvedValue("stack", []),
-
                 })),
             })),
             "if": option(group({
@@ -420,27 +426,30 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "stack": aResolvedValue("stack", []),
                 }))),
             })),
-            "assign": option(component("Assign", {})),
+            "assign": option(component("Assign", {
+                "global types": aResolvedValue("global types", []),
+                "stack": aResolvedValue("stack", []),
+            })),
             "minus assign": option(group({
-                "variable": prop(component("Data Path", {
+                "target": prop(component("Data Path", {
                     "global types": aResolvedValue("global types", []),
                     "stack": aResolvedValue("stack", []),
                 })), /*must be number*/
                 "right hand side": prop(component("Expression", {
                     "global types": aResolvedValue("global types", []),
                     "stack": aResolvedValue("stack", []),
-                    "type": aResolvedValue("variable", [])
+                    "type": aResolvedValue("target", [])
                 })),
             })),
             "plus assign": option(group({
-                "variable": prop(component("Data Path", {
+                "target": prop(component("Data Path", {
                     "global types": aResolvedValue("global types", []),
                     "stack": aResolvedValue("stack", []),
                 })), /*must be number*/
                 "right hand side": prop(component("Expression", {
                     "global types": aResolvedValue("global types", []),
                     "stack": aResolvedValue("stack", []),
-                    "type": aResolvedValue("variable", [])
+                    "type": aResolvedValue("target", [])
                 })),
             })),
             // "labeled": composite("LabeledStatement", group({
@@ -460,7 +469,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "global types": aResolvedValue("global types", []),
                 })), /*must be tagged union */
                 "cases": prop(constrainedDictionary(
-                    { "foo": dictConstraint("condition", [], externalTypeSelection("typesystem", "Type", [tu("tagged union")])) },
+                    { "option": dictConstraint("condition", [], externalTypeSelection("typesystem", "Type", [tu("tagged union")])) },
                     group({
                         "block": prop(component("Block", {
                             "function": aResolvedValue("function", []),
