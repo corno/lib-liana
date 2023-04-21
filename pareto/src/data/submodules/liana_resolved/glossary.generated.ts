@@ -509,7 +509,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                 },
                                             })],
                                         },
-                                        "type": {
+                                        "content": {
                                             'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                                 'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
                                                 'type': "Value Selection",
@@ -750,80 +750,68 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                     "tail": {
                         'type': <g_glossary.T.Type<pd.SourceLocation>>['array', <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
                             "array": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
                                 "constraints": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "out": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "annotation": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                },
-                                                "constraint": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                        'type': "Type",
-                                                        'tail': a([
-                                                            "array",
-                                                        ]),
-                                                        'arguments': d({}),
-                                                    }]]],
-                                                },
-                                            })],
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                'type': "Type",
+                                                'tail': a([
+                                                    "array",
+                                                ]),
+                                                'arguments': d({}),
+                                            }]]],
                                         },
                                     })],
                                 },
-                                "type": {
+                                "content": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
                                 },
                             })],
                             "dictionary": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
                                 "constraints": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "out": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "annotation": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                },
-                                                "constraint": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                        'type': "Type",
-                                                        'tail': a([
-                                                            "dictionary",
-                                                        ]),
-                                                        'arguments': d({}),
-                                                    }]]],
-                                                },
-                                            })],
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                'type': "Type",
+                                                'tail': a([
+                                                    "dictionary",
+                                                ]),
+                                                'arguments': d({}),
+                                            }]]],
                                         },
                                     })],
                                 },
-                                "type": {
+                                "content": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
                                 },
                             })],
                             "group": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
                                 "constraints": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "out": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "annotation": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                },
-                                                "constraint": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                        'type': "Type",
-                                                        'tail': a([
-                                                            "group",
-                                                        ]),
-                                                        'arguments': d({}),
-                                                    }]]],
-                                                },
-                                            })],
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                'type': "Type",
+                                                'tail': a([
+                                                    "group",
+                                                ]),
+                                                'arguments': d({}),
+                                            }]]],
                                         },
                                     })],
                                 },
-                                "type": {
+                                "content": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "property": {
                                             'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
@@ -851,54 +839,46 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 },
                             })],
                             "optional": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
                                 "constraints": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "out": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "annotation": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                },
-                                                "constraint": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                        'type': "Type",
-                                                        'tail': a([
-                                                            "optional",
-                                                        ]),
-                                                        'arguments': d({}),
-                                                    }]]],
-                                                },
-                                            })],
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                'type': "Type",
+                                                'tail': a([
+                                                    "optional",
+                                                ]),
+                                                'arguments': d({}),
+                                            }]]],
                                         },
                                     })],
                                 },
-                                "type": {
+                                "content": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
                                 },
                             })],
                             "tagged union": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
                                 "constraints": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "out": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "annotation": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                },
-                                                "constraint": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                        'type': "Type",
-                                                        'tail': a([
-                                                            "tagged union",
-                                                        ]),
-                                                        'arguments': d({}),
-                                                    }]]],
-                                                },
-                                            })],
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                'type': "Type",
+                                                'tail': a([
+                                                    "tagged union",
+                                                ]),
+                                                'arguments': d({}),
+                                            }]]],
                                         },
                                     })],
                                 },
-                                "type": {
+                                "content": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                         "option": {
                                             'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({

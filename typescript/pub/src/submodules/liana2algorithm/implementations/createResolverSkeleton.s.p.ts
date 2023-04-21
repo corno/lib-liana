@@ -35,7 +35,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'group':
                     pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.type.property.key))
+                        $i.snippet($d.createIdentifier($.property.key))
 
                     })
                     break
@@ -47,7 +47,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'tagged union':
                     pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.type.option.key))
+                        $i.snippet($d.createIdentifier($.option.key))
 
                     })
                     break

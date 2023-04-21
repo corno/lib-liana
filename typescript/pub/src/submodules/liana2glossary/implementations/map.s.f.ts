@@ -65,9 +65,9 @@ export const $$: A.map = ($d) => {
                             switch ($[0]) {
                                 case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
                                 case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))
-                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.type.property.key]))
+                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.property.key]))
                                 case 'optional': return pl.ss($, ($) => pm.wrapRawArray(["O"]))
-                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.type.option.key]))
+                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.option.key]))
                                 default: return pl.au($[0])
                             }
                         })
@@ -252,11 +252,10 @@ export const $$: A.map = ($d) => {
                 })
                 case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                     const type = $.type
-
-
-
                     const constraints = $.constraints
-                    return ($d.isEmpty($.constraints) || $x['constraints mapping'].constraints[0] === false) && !settings.annotations
+
+                    //if there are no constraints -or- no constraints or annotations should be added, then don't create a meta data group
+                    return $d.isEmpty($.constraints) || ($x['constraints mapping'].constraints[0] === false && !settings.annotations)
                         ? mapTypeToType(type, $x)
                         : ['group', $d.filter(pm.wrapRawDictionary({
                             "annotation": createOptionalAnnotation(),
