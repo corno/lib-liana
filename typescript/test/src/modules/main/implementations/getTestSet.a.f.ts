@@ -16,6 +16,7 @@ import * as a_coll from "res-pareto-collation"
 
 import * as a_fp from "lib-fountain-pen"
 import * as a_ts from "res-typescript"
+import * as a_dictionary from "res-pareto-dictionary"
 
 const d = pm.wrapRawDictionary
 
@@ -134,9 +135,13 @@ export const $$: A.getTestSet = ($) => {
             $i(pm.wrapRawArray([$.testDirectory, "playground resolver.ts"]), ($i) => {
                 g_2algorithm.$a.createResolverSkeleton({
                     'createIdentifier': a_ts.$r.createIdentifier(),
+                    'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+                        'compare': a_coll.$r.localeIsABeforeB(),
+                    }),
                     'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                         'compare': a_coll.$r.localeIsABeforeB(),
-                    })
+                    }),
+                    'isEmpty': a_dictionary.$r.isEmpty(),
                 })(d_playground, $i)
             })
         },
@@ -151,9 +156,13 @@ export const $$: A.getTestSet = ($) => {
             $i(pm.wrapRawArray([$.testDirectory, "liana dev resolver.ts"]), ($i) => {
                 g_2algorithm.$a.createResolverSkeleton({
                     'createIdentifier': a_ts.$r.createIdentifier(),
+                    'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+                        'compare': a_coll.$r.localeIsABeforeB(),
+                    }),
                     'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                         'compare': a_coll.$r.localeIsABeforeB(),
-                    })
+                    }),
+                    'isEmpty': a_dictionary.$r.isEmpty(),
                 })(d_liana_dev, $i)
             })
         },

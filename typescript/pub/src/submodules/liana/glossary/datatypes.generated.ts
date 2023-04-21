@@ -855,6 +855,13 @@ export namespace N {
                                                                                         export namespace T {}
                                                                                     }
                                                                                     
+                                                                                    export namespace selection {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                    
                                                                                     export namespace _$ltype {
                                                                                         
                                                                                         export namespace N {}
@@ -2244,6 +2251,8 @@ export namespace T {
                                 readonly 'key': string
                             }
                             
+                            export type selection<GAnnotation> = T.Value__Selection<GAnnotation>
+                            
                             export type _ltype<GAnnotation> = T.Type__Selection<GAnnotation>
                         }
                         
@@ -2252,6 +2261,7 @@ export namespace T {
                                 readonly 'annotation': GAnnotation
                                 readonly 'key': string
                             }
+                            readonly 'selection': T.Value__Selection<GAnnotation>
                             readonly 'type': T.Type__Selection<GAnnotation>
                         }
                     }
@@ -2261,6 +2271,7 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'selection': T.Value__Selection<GAnnotation>
                         readonly 'type': T.Type__Selection<GAnnotation>
                     }>
                     
@@ -2275,6 +2286,7 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'selection': T.Value__Selection<GAnnotation>
                         readonly 'type': T.Type__Selection<GAnnotation>
                     }>
                     readonly 'type': T.Type<GAnnotation>
@@ -2288,6 +2300,7 @@ export namespace T {
                         readonly 'annotation': GAnnotation
                         readonly 'key': string
                     }
+                    readonly 'selection': T.Value__Selection<GAnnotation>
                     readonly 'type': T.Type__Selection<GAnnotation>
                 }>
                 readonly 'type': T.Type<GAnnotation>
@@ -2375,6 +2388,7 @@ export namespace T {
                         readonly 'annotation': GAnnotation
                         readonly 'key': string
                     }
+                    readonly 'selection': T.Value__Selection<GAnnotation>
                     readonly 'type': T.Type__Selection<GAnnotation>
                 }>
                 readonly 'type': T.Type<GAnnotation>
@@ -2536,6 +2550,7 @@ export namespace T {
                         readonly 'annotation': GAnnotation
                         readonly 'key': string
                     }
+                    readonly 'selection': T.Value__Selection<GAnnotation>
                     readonly 'type': T.Type__Selection<GAnnotation>
                 }>
                 readonly 'type': T.Type<GAnnotation>

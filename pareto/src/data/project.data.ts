@@ -61,6 +61,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
                 "res-typescript": null,
                 "lib-fountain-pen": null,
                 "lib-pareto-typescript-project": null,
+                "res-pareto-dictionary": null,
             }),
             'definition': {
                 'glossary': {

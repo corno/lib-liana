@@ -31,6 +31,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
                 "build": external("res-pareto-build"),
                 "common": external("glo-pareto-common"),
                 "ts": external("res-typescript"),
+                "dictionary": external("res-pareto-dictionary"),
                 "foreach": external("res-pareto-foreach"),
                 "this": this_(),
             }),

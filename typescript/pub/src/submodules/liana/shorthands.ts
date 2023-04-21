@@ -331,17 +331,21 @@ export function option(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.ta
     }
 }
 
-export function constrainedOption(constraints: RawDictionary<[g_this.T.Type__Selection<pd.SourceLocation>, string]>, type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+
+export function optionConstraint(sel: g_this.T.Value__Selection<pd.SourceLocation>, option: string, type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
     return {
-        'constraints': pd.d(constraints).map(($) => {
-            return {
-                'type': $[0],
-                'option': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': $[1]
-                }
-            }
-        }),
+        'type': type,
+        'selection': sel,
+        'option': {
+            'annotation': pd.getLocationInfo(1),
+            'key': option
+        }
+    }
+}
+
+export function constrainedOption(constraints: RawDictionary<g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+    return {
+        'constraints': pd.d(constraints),
         'variables': pd.d(constraints).__mapWithKey(($, key) => {
             return ['option constraint', {
                 'annotation': pd.getLocationInfo(1),

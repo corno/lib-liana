@@ -123,6 +123,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": prop(component("Type Selection", {
                             "global types": aContainingDictionary(parameter("global types")),
                         })), //must be tagged union
+                        "selection": prop(component("Value Selection", {})),
                         "option": prop(resolvedValueReference("XXXXA", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                     }))),
                     "variables": prop(component("Variables", {})),
