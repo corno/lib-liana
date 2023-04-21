@@ -15,6 +15,31 @@ import {
     taggedUnion, terminal, tu, typeSelection, resolvedValueReference, siblingReference, dictConstraint
 } from "lib-liana/dist/submodules/liana/shorthands"
 
+
+export function optionConstraint(
+
+    start: string,
+    tail: null[],
+    //sel: g_this.T.Value__Selection<pd.SourceLocation>, 
+    option: string,
+    type: g_liana.T.Type__Selection<pd.SourceLocation>
+): g_liana.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
+    return {
+        'type': type,
+        'selection': {
+            'start': {
+                'annotation': pd.getLocationInfo(1),
+                'key': start,
+            },
+            'tail': [false]
+        },
+        'option': {
+            'annotation': pd.getLocationInfo(1),
+            'key': option
+        }
+    }
+}
+
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
     'terminal types': pd.d({
@@ -282,13 +307,23 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
             "global type": prop(component("Global Type Selection", {})),
             "tail": prop(array(taggedUnion({
-                "dictionary": constrainedOption({ "out": [typeSelection("Type", []), "dictionary"] }, group({})),
-                "optional": constrainedOption({ "out": [typeSelection("Type", []), "optional"] }, group({})),
-                "array": constrainedOption({ "out": [typeSelection("Type", []), "array"] }, group({})),
-                "group": constrainedOption({ "out": [typeSelection("Type", []), "group"] }, group({
+                "dictionary": constrainedOption({
+                    "out": optionConstraint("TBD", [], "dictionary", typeSelection("Type", []))
+                }, group({})),
+                "optional": constrainedOption({
+                    "out": optionConstraint("TBD", [], "optional", typeSelection("Type", []))
+                }, group({})),
+                "array": constrainedOption({
+                    "out": optionConstraint("TBD", [], "array", typeSelection("Type", []))
+                }, group({})),
+                "group": constrainedOption({
+                    "out": optionConstraint("TBD", [], "group", typeSelection("Type", []))
+                }, group({
                     "property": prop(resolvedValueReference("out", [], typeSelection("Type", [tu("group"), grp("properties")])))
                 })),
-                "tagged union": constrainedOption({ "out": [typeSelection("Type", []), "tagged union"] }, group({
+                "tagged union": constrainedOption({
+                    "out": optionConstraint("TBD", [], "tagged union", typeSelection("Type", []))
+                }, group({
                     "option": prop(resolvedValueReference("out", [], typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 })),
             })))

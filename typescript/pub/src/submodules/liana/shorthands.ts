@@ -332,10 +332,23 @@ export function option(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.ta
 }
 
 
-export function optionConstraint(sel: g_this.T.Value__Selection<pd.SourceLocation>, option: string, type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
+export function optionConstraint(
+
+    start: string,
+    tail: null[],
+    //sel: g_this.T.Value__Selection<pd.SourceLocation>, 
+    option: string,
+    type: g_this.T.Type__Selection<pd.SourceLocation>
+): g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
     return {
         'type': type,
-        'selection': sel,
+        'selection': {
+            'start': {
+                'annotation': pd.getLocationInfo(1),
+                'key': start,
+            },
+            'tail': [false]
+        },
         'option': {
             'annotation': pd.getLocationInfo(1),
             'key': option
