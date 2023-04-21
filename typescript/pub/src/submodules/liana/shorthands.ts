@@ -428,15 +428,10 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 //     return ['tagged union', pd.d(options)]
 // }
 
-/*
 export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['group', {
-        'constraints': {
-            'out': {
-                'annotation': pd.getLocationInfo(1),
-            }
-        },
-        'type': {
+        'annotation': pd.getLocationInfo(1),
+        'content': {
             'property': r_imp(prop, 1),
         },
     }]
@@ -444,58 +439,24 @@ export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLoca
 
 export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['dictionary', {
-        'constraints': {
-            'out': {
-                'annotation': pd.getLocationInfo(1),
-            }
-        },
-        'type': null,
+        'annotation': pd.getLocationInfo(1),
+        'content': null,
     }]
 }
 
 export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['array', {
-        'constraints': {
-            'out': {
-                'annotation': pd.getLocationInfo(1),
-            }
-        },
-        'type': null,
+        'annotation': pd.getLocationInfo(1),
+        'content': null,
     }]
 }
 
 export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     return ['tagged union', {
-        'constraints': {
-            'out': {
-                'annotation': pd.getLocationInfo(1),
-            }
-        },
-        'type': {
+        'annotation': pd.getLocationInfo(1),
+        'content': {
             'option': r_imp(opt, 1),
         },
-    }]
-}
-*/
-
-
-export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['group',  {
-        'property': r_imp(prop, 1),
-    },]
-}
-
-export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['dictionary', null]
-}
-
-export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['array', null]
-}
-
-export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['tagged union', {
-        'option': r_imp(opt, 1),
     }]
 }
 

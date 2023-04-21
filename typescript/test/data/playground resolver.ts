@@ -235,7 +235,7 @@ function map_Boolean__Expression__Or__Selection<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => map_Data__Path<Annotation>(
+                    'type': pl.cc($.content, ($) => map_Data__Path<Annotation>(
                         $,
                         /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                         /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -345,7 +345,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => $.map(($) => map_Expression<Annotation>(
+                    'type': pl.cc($.content, ($) => $.map(($) => map_Expression<Annotation>(
                         $,
                         /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                         /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -374,7 +374,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => map_Boolean__Expression<Annotation>(
+                    'type': pl.cc($.content, ($) => map_Boolean__Expression<Annotation>(
                         $,
                         /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                         /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -426,7 +426,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => pl.cc($, ($) => {
+                    'type': pl.cc($.content, ($) => pl.cc($, ($) => {
                         const $v_parameters: g_out.T.Expression._lfunction._ltype.parameters<Annotation> = pl.cc($['parameters'], ($) => $.map(($) => pl.cc($, ($) => {
                             return null
                         })))
@@ -470,7 +470,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => pl.cc($, ($) => {
+                    'type': pl.cc($.content, ($) => pl.cc($, ($) => {
                         return null
                     })),
                 }
@@ -496,7 +496,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => map_Numerical__Expression<Annotation>(
+                    'type': pl.cc($.content, ($) => map_Numerical__Expression<Annotation>(
                         $,
                         /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                         /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -524,7 +524,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => pl.cc($, ($) => {
+                    'type': pl.cc($.content, ($) => pl.cc($, ($) => {
                         const $v_properties: g_out.T.Expression.object__literal._ltype.properties<Annotation> = pl.cc($['properties'], ($) => $.map(($) => pl.cc($, ($) => {
                             const $v_X: g_out_typesystem.T.Type.group.properties<Annotation> = pl.cc($v_XXX, ($) => $
                             return {
@@ -532,7 +532,7 @@ function map_Expression<Annotation>(
                                 'constraints': {
                                     'X': $v_X,
                                 },
-                                'type': pl.cc($.type, ($) => map_Expression<Annotation>(
+                                'type': pl.cc($.content, ($) => map_Expression<Annotation>(
                                     $,
                                     /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                                     /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -567,7 +567,7 @@ function map_Expression<Annotation>(
                     'constraints': {
                         'out': $v_out,
                     },
-                    'type': pl.cc($.type, ($) => map_String__Expression<Annotation>(
+                    'type': pl.cc($.content, ($) => map_String__Expression<Annotation>(
                         $,
                         /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                         /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -719,7 +719,7 @@ function map_Statements<Annotation>(
                         'constraints': {
                             'parameter': $v_parameter,
                         },
-                        'type': pl.cc($.type, ($) => map_Expression<Annotation>(
+                        'type': pl.cc($.content, ($) => map_Expression<Annotation>(
                             $,
                             /*$v_global__types: */pl.cc($v_global__types, ($) => $,
                             /*$v_stack: */pl.cc($v_stack, ($) => $,
@@ -846,7 +846,7 @@ function map_Statements<Annotation>(
                         'constraints': {
                             'option': $v_option,
                         },
-                        'type': pl.cc($.type, ($) => pl.cc($, ($) => {
+                        'type': pl.cc($.content, ($) => pl.cc($, ($) => {
                             const $v_block: g_out.T.Statements.A._lswitch.cases.D._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>(
                                 $,
                                 /*$v__lfunction: */pl.cc($v__lfunction, ($) => $,
@@ -969,7 +969,7 @@ function map_Type__Arguments<Annotation>(
             'constraints': {
                 'x': $v_x,
             },
-            'type': pl.cc($.type, ($) => pl.cc($, ($) => {
+            'type': pl.cc($.content, ($) => pl.cc($, ($) => {
                 const $v__ltype: g_out.T.Type__Arguments.D._ltype._ltype<Annotation> = pl.cc($['type'], ($) => map_Type__Path<Annotation>(
                     $,
                     /*$v_global__types: */pl.cc($v_global__types, ($) => $,

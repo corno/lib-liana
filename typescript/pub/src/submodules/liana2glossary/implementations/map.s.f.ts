@@ -65,9 +65,9 @@ export const $$: A.map = ($d) => {
                             switch ($[0]) {
                                 case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
                                 case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))
-                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.property.key]))
+                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.content.property.key]))
                                 case 'optional': return pl.ss($, ($) => pm.wrapRawArray(["O"]))
-                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.option.key]))
+                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.content.option.key]))
                                 default: return pl.au($[0])
                             }
                         })

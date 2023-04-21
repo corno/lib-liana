@@ -2780,95 +2780,185 @@ export namespace T {
             
             export namespace A {
                 
-                export namespace array {}
+                export namespace array {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
                 
-                export type array<GAnnotation> = null
+                export type array<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }
                 
-                export namespace dictionary {}
+                export namespace dictionary {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
                 
-                export type dictionary<GAnnotation> = null
+                export type dictionary<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }
                 
                 export namespace group {
                     
-                    export namespace property {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace content {
                         
-                        export type annotation<GAnnotation> = GAnnotation
+                        export namespace property {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
                         
-                        export type key<GAnnotation> = string
+                        export type property<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                     
-                    export type property<GAnnotation> = {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    export type content<GAnnotation> = {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }
                 
                 export type group<GAnnotation> = {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }
                 
-                export namespace optional {}
+                export namespace optional {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
                 
-                export type optional<GAnnotation> = null
+                export type optional<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }
                 
                 export namespace tagged__union {
                     
-                    export namespace option {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace content {
                         
-                        export type annotation<GAnnotation> = GAnnotation
+                        export namespace option {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
                         
-                        export type key<GAnnotation> = string
+                        export type option<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                     
-                    export type option<GAnnotation> = {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    export type content<GAnnotation> = {
+                        readonly 'option': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }
                 
                 export type tagged__union<GAnnotation> = {
-                    readonly 'option': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'option': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }
             }
             
             export type A<GAnnotation> = 
-                | ['array', null]
-                | ['dictionary', null]
+                | ['array', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }]
+                | ['dictionary', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }]
                 | ['group', {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }]
-                | ['optional', null]
+                | ['optional', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': null
+                }]
                 | ['tagged union', {
-                    readonly 'option': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'key': string
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'option': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                 }]
         }
         
         export type tail<GAnnotation> = pt.Array<
-            | ['array', null]
-            | ['dictionary', null]
+            | ['array', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['dictionary', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['group', {
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }]
-            | ['optional', null]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['tagged union', {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }]
         >
@@ -2877,19 +2967,34 @@ export namespace T {
     export type Type__Selection<GAnnotation> = {
         readonly 'global type': T.Global__Type__Selection<GAnnotation>
         readonly 'tail': pt.Array<
-            | ['array', null]
-            | ['dictionary', null]
+            | ['array', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['dictionary', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['group', {
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }]
-            | ['optional', null]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['tagged union', {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }]
         >

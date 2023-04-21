@@ -35,7 +35,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'group':
                     pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.property.key))
+                        $i.snippet($d.createIdentifier($.content.property.key))
 
                     })
                     break
@@ -47,7 +47,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'tagged union':
                     pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.option.key))
+                        $i.snippet($d.createIdentifier($.content.option.key))
 
                     })
                     break
@@ -240,7 +240,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                             $i.snippet(`},`)
                                         })
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                            $i.snippet(`'type': pl.cc($.content, ($) => `)
                                             doType(type, $x + `.D._ltype`, $i)
                                             $i.snippet(`),`)
                                         })
@@ -424,7 +424,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                     $i.snippet(`},`)
                                                                 })
                                                                 $i.nestedLine(($i) => {
-                                                                    $i.snippet(`'type': pl.cc($.type, ($) => `)
+                                                                    $i.snippet(`'type': pl.cc($.content, ($) => `)
                                                                     doType(type, $x + `.${$d.createIdentifier(key)}._ltype`, $i)
                                                                     $i.snippet(`),`)
                                                                 })
