@@ -126,7 +126,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "global types": aContainingDictionary(parameter("global types")),
                     })),
                     "set": prop(component("Value Selection Tail", {})),
-                    "not set": prop(component("Value Selection Tail", {})),
+                    "not set": prop(component("Value Selection", {})),
                 })))
             })),
             "tagged union": option(group({

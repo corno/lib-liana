@@ -54,11 +54,9 @@ export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this
 }
 
 export function optionalResult(
-
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     set: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
-    notSet: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
-
+    notSet: g_this.T.Value__Selection<pd.SourceLocation>,
  ): g_this.T.Type.optional.result.O<pd.SourceLocation> {
     return {
         'type': type,

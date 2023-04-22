@@ -2259,7 +2259,7 @@ export namespace T {
                 
                 export namespace O {
                     
-                    export type not__set<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
+                    export type not__set<GAnnotation> = T.Value__Selection<GAnnotation>
                     
                     export type _lset<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
                     
@@ -2267,14 +2267,14 @@ export namespace T {
                 }
                 
                 export type O<GAnnotation> = {
-                    readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                    readonly 'not set': T.Value__Selection<GAnnotation>
                     readonly 'set': T.Value__Selection__Tail<GAnnotation>
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
             }
             
             export type result<GAnnotation> = [ false ] | [ true, {
-                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'not set': T.Value__Selection<GAnnotation>
                 readonly 'set': T.Value__Selection__Tail<GAnnotation>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
@@ -2284,7 +2284,7 @@ export namespace T {
         
         export type optional<GAnnotation> = {
             readonly 'result': [ false ] | [ true, {
-                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'not set': T.Value__Selection<GAnnotation>
                 readonly 'set': T.Value__Selection__Tail<GAnnotation>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
@@ -2561,7 +2561,7 @@ export namespace T {
         }]
         | ['optional', {
             readonly 'result': [ false ] | [ true, {
-                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'not set': T.Value__Selection<GAnnotation>
                 readonly 'set': T.Value__Selection__Tail<GAnnotation>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]

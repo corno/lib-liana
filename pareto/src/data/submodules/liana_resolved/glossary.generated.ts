@@ -393,7 +393,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 "not set": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                         'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                        'type': "Value Selection Tail",
+                                        'type': "Value Selection",
                                         'tail': a([]),
                                         'arguments': d({}),
                                     }]],
