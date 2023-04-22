@@ -55,7 +55,7 @@ export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this
 
 export function optionalResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    set: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
+    set: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
     notSet: g_this.T.Value__Selection<pd.SourceLocation>,
  ): g_this.T.Type.optional.result.O<pd.SourceLocation> {
     return {
@@ -112,8 +112,8 @@ export function pNonCyclicSiblings(
 }
 
 export function result(
-    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
         'step type': ['result', null],
         'tail': tail === undefined ? [false] : tail
@@ -122,8 +122,8 @@ export function result(
 
 export function sgrp(
     prop: string,
-    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
         'step type': ['group', {
             'property': {
@@ -134,18 +134,19 @@ export function sgrp(
         'tail': tail === undefined ? [false] : tail
     }]
 }
-export function scomp(
-    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+
+export function ref(
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
-        'step type': ['component', null],
+        'step type': ['reference', null],
         'tail': tail === undefined ? [false] : tail
     }]
 }
 // export function comp(
 //     prop: string,
-//     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
-// ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+//     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+// ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
 //     return [true, {
 //         'step type': ['component', {
 //             'property': {
@@ -159,7 +160,7 @@ export function scomp(
 
 export function valSel(
     start: string,
-    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Value__Selection<pd.SourceLocation> {
     return {
         'start': {
@@ -303,7 +304,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
 
 export function globalTypeResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    selection: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
+    selection: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
     return {
         'temp type': type,

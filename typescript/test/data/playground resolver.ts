@@ -5,1041 +5,485 @@ import * as pt from 'pareto-core-types'
 import * as g_in from ".."
 import * as g_out from ".."
 
-function map_Assign<Annotation>(
-    $: g_in.T.Assign<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Assign<Annotation> {
+function map_Stamdata<Annotation>(
+    $: g_in.T.Stamdata<Annotation>,
+): g_out.T.Stamdata<Annotation> {
     return pl.cc($, ($) => {
-        const $v_variable: g_out.T.Assign.variable<Annotation> = pl.cc($['variable'], ($) => map_Data__Path<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v_stack: */pl.cc($v_stack, ($) => $),
-        ))
-        const $v_right__hand__side: g_out.T.Assign.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Expression<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v_stack: */pl.cc($v_stack, ($) => $),
-            /*$v__ltype: */pl.cc($v__ltype, ($) => $),
-        ))
-        return {
-            'right hand side': $v_right__hand__side,
-            'variable': $v_variable,
-        }
-    })
-}
-function map_Block<Annotation>(
-    $: g_in.T.Block<Annotation>,
-    $v__lfunction: pt.OptionalValue<g_out_typesystem.T.Function<Annotation>>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Block<Annotation> {
-    return pl.cc($, ($) => {
-        const $v_variables: g_out.T.Block.variables<Annotation> = pl.cc($['variables'], ($) => map_Variables<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v_stack: */pl.cc($v_stack, ($) => $),
-        ))
-        const $v_statements: g_out.T.Block.statements<Annotation> = pl.cc($['statements'], ($) => map_Statements<Annotation>(
-            $,
-            /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v_stack: */pl.cc($v_variables, ($) => $),
-        ))
-        return {
-            'statements': $v_statements,
-            'variables': $v_variables,
-        }
-    })
-}
-function map_Boolean__Expression<Annotation>(
-    $: g_in.T.Boolean__Expression<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Boolean__Expression<Annotation> {
-    return pl.cc($, ($): g_out.T.Boolean__Expression<Annotation> => {
-        switch ($[0]) {
-            case 'and': return pl.ss($, ($) => ['and', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.and.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.and.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'false': return pl.ss($, ($) => ['false', pl.cc($, ($) => {
-                return null
-            })])
-            case 'greater than': return pl.ss($, ($) => ['greater than', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.greater__than.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.greater__than.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'less than': return pl.ss($, ($) => ['less than', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.less__than.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.less__than.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'not': return pl.ss($, ($) => ['not', map_Boolean__Expression__Or__Selection<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'number equals': return pl.ss($, ($) => ['number equals', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.number__equals.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.number__equals.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'number not equals': return pl.ss($, ($) => ['number not equals', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.number__not__equals.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.number__not__equals.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'or': return pl.ss($, ($) => ['or', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.or.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.or.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'string equals': return pl.ss($, ($) => ['string equals', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.string__equals.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_String__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.string__equals.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_String__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'string not equals': return pl.ss($, ($) => ['string not equals', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Boolean__Expression.string__not__equals.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_String__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Boolean__Expression.string__not__equals.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_String__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'true': return pl.ss($, ($) => ['true', pl.cc($, ($) => {
-                return null
-            })])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_Boolean__Expression__Or__Selection<Annotation>(
-    $: g_in.T.Boolean__Expression__Or__Selection<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Boolean__Expression__Or__Selection<Annotation> {
-    return pl.cc($, ($): g_out.T.Boolean__Expression__Or__Selection<Annotation> => {
-        switch ($[0]) {
-            case 'expression': return pl.ss($, ($) => ['expression', map_Boolean__Expression<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_Data__Path<Annotation>(
-    $: g_in.T.Data__Path<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Data__Path<Annotation> {
-    return pl.cc($, ($) => {
-        const $v_variable: g_out.T.Data__Path.variable<Annotation> = pl.cc($['variable'], ($) => pl.cc($, ($) => {
-            const constraint: pt.OptionalValue<g_out.T.Variables.D<Annotation>> = [false]
+        const $p_gebruikers: g_out.T.Stamdata.gebruikers<Annotation> = pl.cc($['gebruikers'], ($) => $.map(($) => pl.cc($, ($) => {
+            const $p_volledige__naam: g_out.T.Stamdata.gebruikers.D.volledige__naam<Annotation> = pl.cc($['volledige naam'], ($) => $)
+            const $v_volledige__naam: pt.OptionalValue<g_out.T.Stamdata.gebruikers.D.volledige__naam<Annotation>> = [true, $p_volledige__naam]
             return {
-                'annotation': $.annotation,
-                'constraint': constraint,
-                'key': $.key,
-            }
-        }))
-        const $v_tail: g_out.T.Data__Path.tail<Annotation> = pl.cc($['tail'], ($) => map_Data__Path__Tail<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v_stack: */pl.cc($v_stack, ($) => $),
-        ))
-        return {
-            'tail': $v_tail,
-            'variable': $v_variable,
-        }
-    })
-}
-function map_Data__Path__Tail<Annotation>(
-    $: g_in.T.Data__Path__Tail<Annotation>,
-    $v_current: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Data__Path__Tail<Annotation> {
-    return pl.optional(
-        $,
-        ($): g_out.T.Data__Path__Tail<Annotation> => [true, pl.cc($, ($) => {
-            const $v_step: g_out.T.Data__Path__Tail.O.step<Annotation> = pl.cc($['step'], ($) => pl.cc($, ($): g_out.T.Data__Path__Tail.O.step<Annotation> => {
-                switch ($[0]) {
-                    case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
-                        const $v__lfunction: g_out.T.Data__Path__Tail.O.step.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>(
-                            $,
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        ))
-                        const $v_type__arguments: g_out.T.Data__Path__Tail.O.step.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type__Arguments<Annotation>(
-                            $,
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v__ltype: */pl.cc($v__lfunction, ($) => $),
-                        ))
-                        const $v_arguments: g_out.T.Data__Path__Tail.O.step.call.arguments<Annotation> = pl.cc($['arguments'], ($) => map_Data__Path<Annotation>(
-                            $,
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        ))
-                        return {
-                            'arguments': $v_arguments,
-                            'function': $v__lfunction,
-                            'type arguments': $v_type__arguments,
-                        }
-                    })])
-                    case 'property': return pl.ss($, ($) => ['property', pl.cc($, ($) => {
-                        const constraint: pt.OptionalValue<g_out_typesystem.T.Type.group.properties.D<Annotation>> = [false]
-                        return {
-                            'annotation': $.annotation,
-                            'constraint': constraint,
-                            'key': $.key,
-                        }
-                    })])
-                    default: return pl.au($[0])
-                }
-            }))
-            const $v_tail: g_out.T.Data__Path__Tail.O.tail<Annotation> = pl.cc($['tail'], ($) => map_Data__Path__Tail<Annotation>(
-                $,
-            ))
-            return {
-                'step': $v_step,
-                'tail': $v_tail,
-            }
-        })],
-        () => [false],
-    )
-}
-function map_Expression<Annotation>(
-    $: g_in.T.Expression<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-    $v__ltype: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>>,
-): g_out.T.Expression<Annotation> {
-    return pl.cc($, ($): g_out.T.Expression<Annotation> => {
-        switch ($[0]) {
-            case 'array literal': return pl.ss($, ($) => ['array literal', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type.array<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'array') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => $.map(($) => map_Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        /*$v__ltype: */pl.cc($v_out, ($) => $),
-                    ))),
-                }
-            })])
-            case 'boolean': return pl.ss($, ($) => ['boolean', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lboolean<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'boolean') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => map_Boolean__Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )),
-                }
-            })])
-            case 'conditional': return pl.ss($, ($) => ['conditional', pl.cc($, ($) => {
-                const $v_test: g_out.T.Expression.conditional.test<Annotation> = pl.cc($['test'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v__ltrue: g_out.T.Expression.conditional._ltrue<Annotation> = pl.cc($['true'], ($) => map_Expression<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    /*$v__ltype: */pl.cc($v__ltype, ($) => $),
-                ))
-                const $v__lfalse: g_out.T.Expression.conditional._lfalse<Annotation> = pl.cc($['false'], ($) => map_Expression<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    /*$v__ltype: */pl.cc($v__ltype, ($) => $),
-                ))
-                return {
-                    'false': $v__lfalse,
-                    'test': $v_test,
-                    'true': $v__ltrue,
-                }
-            })])
-            case 'function': return pl.ss($, ($) => ['function', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lfunction<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'function') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                        const $v_parameters: g_out.T.Expression._lfunction._ltype.parameters<Annotation> = pl.cc($['parameters'], ($) => $.map(($) => pl.cc($, ($) => {
-                            return null
-                        })))
-                        const $v_variables: g_out.T.Expression._lfunction._ltype.variables<Annotation> = pl.cc($['variables'], ($) => map_Variables<Annotation>(
-                            $,
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        ))
-                        const $v_statements: g_out.T.Expression._lfunction._ltype.statements<Annotation> = pl.cc($['statements'], ($) => map_Statements<Annotation>(
-                            $,
-                            /*$v__lfunction: */pl.cc($v_out, ($) => $),
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v_stack: */pl.cc($v_variables, ($) => $),
-                        ))
-                        return {
-                            'parameters': $v_parameters,
-                            'statements': $v_statements,
-                            'variables': $v_variables,
-                        }
-                    })),
-                }
-            })])
-            case 'null': return pl.ss($, ($) => ['null', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lnull<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'null') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                        return null
-                    })),
-                }
-            })])
-            case 'numerical': return pl.ss($, ($) => ['numerical', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lnumber<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'number') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => map_Numerical__Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )),
-                }
-            })])
-            case 'object literal': return pl.ss($, ($) => ['object literal', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type.group<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'group') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                        const $v_properties: g_out.T.Expression.object__literal._ltype.properties<Annotation> = pl.cc($['properties'], ($) => $.content.map(($) => pl.cc($, ($) => {
-                            const $v_X: g_out_typesystem.T.Type.group.properties<Annotation> = pl.cc($v_TBD, ($) => $)
-                            return {
-                                'annotation': $.annotation,
-                                'constraints': {
-                                    'X': $v_X,
-                                },
-                                'content': pl.cc($.content, ($) => map_Expression<Annotation>(
-                                    $,
-                                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                                    /*$v__ltype: */pl.cc($v_out, ($) => $),
-                                )),
-                            }
-                        })))
-                        return {
-                            'properties': $v_properties,
-                        }
-                    })),
-                }
-            })])
-            case 'string': return pl.ss($, ($) => ['string', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lstring<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'string') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => map_String__Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )),
-                }
-            })])
-            case 'symbol': return pl.ss($, ($) => ['symbol', map_Data__Path<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_Numerical__Expression<Annotation>(
-    $: g_in.T.Numerical__Expression<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Numerical__Expression<Annotation> {
-    return pl.cc($, ($): g_out.T.Numerical__Expression<Annotation> => {
-        switch ($[0]) {
-            case 'minus': return pl.ss($, ($) => ['minus', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Numerical__Expression.minus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Numerical__Expression.minus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'numeric literal': return pl.ss($, ($) => ['numeric literal', $])
-            case 'plus': return pl.ss($, ($) => ['plus', pl.cc($, ($) => {
-                const $v_left__hand__side: g_out.T.Numerical__Expression.plus.left__hand__side<Annotation> = pl.cc($['left hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Numerical__Expression.plus.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Numerical__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'left hand side': $v_left__hand__side,
-                    'right hand side': $v_right__hand__side,
-                }
-            })])
-            case 'postdecrement': return pl.ss($, ($) => ['postdecrement', map_Numerical__Expression__Or__Selection<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'postincrement': return pl.ss($, ($) => ['postincrement', map_Numerical__Expression__Or__Selection<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'predecrement': return pl.ss($, ($) => ['predecrement', map_Numerical__Expression__Or__Selection<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'preincrement': return pl.ss($, ($) => ['preincrement', map_Numerical__Expression__Or__Selection<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_Numerical__Expression__Or__Selection<Annotation>(
-    $: g_in.T.Numerical__Expression__Or__Selection<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Numerical__Expression__Or__Selection<Annotation> {
-    return pl.cc($, ($): g_out.T.Numerical__Expression__Or__Selection<Annotation> => {
-        switch ($[0]) {
-            case 'expression': return pl.ss($, ($) => ['expression', map_Numerical__Expression<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_SourceFile<Annotation>(
-    $: g_in.T.SourceFile<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-): g_out.T.SourceFile<Annotation> {
-    return pl.cc($, ($) => {
-        const $v_symbols: g_out.T.SourceFile.symbols<Annotation> = pl.cc($['symbols'], ($) => map_Symbols<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-        ))
-        return {
-            'symbols': $v_symbols,
-        }
-    })
-}
-function map_Statements<Annotation>(
-    $: g_in.T.Statements<Annotation>,
-    $v__lfunction: pt.OptionalValue<g_out_typesystem.T.Function<Annotation>>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Statements<Annotation> {
-    return $.map(($) => pl.cc($, ($): g_out.T.Statements.A<Annotation> => {
-        switch ($[0]) {
-            case 'assign': return pl.ss($, ($) => ['assign', map_Assign<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'block': return pl.ss($, ($) => ['block', map_Block<Annotation>(
-                $,
-                /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
-                const $v__lfunction: g_out.T.Statements.A.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_type__arguments: g_out.T.Statements.A.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type__Arguments<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_type__parameters: */pl.cc($v__lfunction, ($) => $),
-                ))
-                const $v_arguments: g_out.T.Statements.A.call.arguments<Annotation> = pl.cc($['arguments'], ($) => $.content.map(($) => pl.cc($, ($) => {
-                    const $v_parameter: g_out_typesystem.T.Function.parameters<Annotation> = pl.cc($v__lfunction, ($) => $)
-                    return {
-                        'annotation': $.annotation,
-                        'constraints': {
-                            'parameter': $v_parameter,
-                        },
-                        'content': pl.cc($.content, ($) => map_Expression<Annotation>(
-                            $,
-                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                            /*$v_stack: */pl.cc($v_stack, ($) => $),
-                            /*$v__ltype: */pl.cc($v_parameter, ($) => $),
-                        )),
-                    }
-                })))
-                return {
-                    'arguments': $v_arguments,
-                    'function': $v__lfunction,
-                    'type arguments': $v_type__arguments,
-                }
-            })])
-            case 'for': return pl.ss($, ($) => ['for', pl.cc($, ($) => {
-                const $v_condition: g_out.T.Statements.A._lfor.condition<Annotation> = pl.cc($['condition'], ($) => map_Boolean__Expression<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_incrementer: g_out.T.Statements.A._lfor.incrementer<Annotation> = pl.cc($['incrementer'], ($) => map_Assign<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_block: g_out.T.Statements.A._lfor.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>(
-                    $,
-                    /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'block': $v_block,
-                    'condition': $v_condition,
-                    'incrementer': $v_incrementer,
-                }
-            })])
-            case 'if': return pl.ss($, ($) => ['if', pl.cc($, ($) => {
-                const $v_condition: g_out.T.Statements.A._lif.condition<Annotation> = pl.cc($['condition'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_then: g_out.T.Statements.A._lif.then<Annotation> = pl.cc($['then'], ($) => map_Block<Annotation>(
-                    $,
-                    /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v__lelse: g_out.T.Statements.A._lif._lelse<Annotation> = pl.cc($['else'], ($) => pl.optional(
-                    $,
-                    ($): g_out.T.Statements.A._lif._lelse<Annotation> => [true, map_Block<Annotation>(
-                        $,
-                        /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )],
-                    () => [false],
-                ))
-                return {
-                    'condition': $v_condition,
-                    'else': $v__lelse,
-                    'then': $v_then,
-                }
-            })])
-            case 'minus assign': return pl.ss($, ($) => ['minus assign', pl.cc($, ($) => {
-                const $v_target: g_out.T.Statements.A.minus__assign.target<Annotation> = pl.cc($['target'], ($) => map_Data__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Statements.A.minus__assign.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Expression<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    /*$v__ltype: */pl.cc($v_target, ($) => $),
-                ))
-                return {
-                    'right hand side': $v_right__hand__side,
-                    'target': $v_target,
-                }
-            })])
-            case 'plus assign': return pl.ss($, ($) => ['plus assign', pl.cc($, ($) => {
-                const $v_target: g_out.T.Statements.A.plus__assign.target<Annotation> = pl.cc($['target'], ($) => map_Data__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_right__hand__side: g_out.T.Statements.A.plus__assign.right__hand__side<Annotation> = pl.cc($['right hand side'], ($) => map_Expression<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    /*$v__ltype: */pl.cc($v_target, ($) => $),
-                ))
-                return {
-                    'right hand side': $v_right__hand__side,
-                    'target': $v_target,
-                }
-            })])
-            case 'return': return pl.ss($, ($) => ['return', pl.cc($, ($) => {
-                const $v_expression: g_out.T.Statements.A._lreturn.expression<Annotation> = pl.cc($['expression'], ($) => pl.optional(
-                    $,
-                    ($): g_out.T.Statements.A._lreturn.expression<Annotation> => [true, map_Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        /*$v__ltype: */pl.cc($v__lfunction, ($) => $),
-                    )],
-                    () => [false],
-                ))
-                return {
-                    'expression': $v_expression,
-                }
-            })])
-            case 'switch': return pl.ss($, ($) => ['switch', pl.cc($, ($) => {
-                const $v_condition: g_out.T.Statements.A._lswitch.condition<Annotation> = pl.cc($['condition'], ($) => map_Data__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_cases: g_out.T.Statements.A._lswitch.cases<Annotation> = pl.cc($['cases'], ($) => $.content.map(($) => pl.cc($, ($) => {
-                    const $v_option: g_out_typesystem.T.Type.tagged__union<Annotation> = pl.cc($v_condition, ($) => $)
-                    return {
-                        'annotation': $.annotation,
-                        'constraints': {
-                            'option': $v_option,
-                        },
-                        'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                            const $v_block: g_out.T.Statements.A._lswitch.cases.D._ltype.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>(
-                                $,
-                                /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                                /*$v_stack: */pl.cc($v_stack, ($) => $),
-                            ))
-                            return {
-                                'block': $v_block,
-                            }
-                        })),
-                    }
-                })))
-                const $v__ldefault: g_out.T.Statements.A._lswitch._ldefault<Annotation> = pl.cc($['default'], ($) => pl.optional(
-                    $,
-                    ($): g_out.T.Statements.A._lswitch._ldefault<Annotation> => [true, map_Block<Annotation>(
-                        $,
-                        /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )],
-                    () => [false],
-                ))
-                return {
-                    'cases': $v_cases,
-                    'condition': $v_condition,
-                    'default': $v__ldefault,
-                }
-            })])
-            case 'while': return pl.ss($, ($) => ['while', pl.cc($, ($) => {
-                const $v_condition: g_out.T.Statements.A._lwhile.condition<Annotation> = pl.cc($['condition'], ($) => map_Boolean__Expression__Or__Selection<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                const $v_block: g_out.T.Statements.A._lwhile.block<Annotation> = pl.cc($['block'], ($) => map_Block<Annotation>(
-                    $,
-                    /*$v__lfunction: */pl.cc($v__lfunction, ($) => $),
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                    /*$v_stack: */pl.cc($v_stack, ($) => $),
-                ))
-                return {
-                    'block': $v_block,
-                    'condition': $v_condition,
-                }
-            })])
-            default: return pl.au($[0])
-        }
-    }))
-}
-function map_String__Expression<Annotation>(
-    $: g_in.T.String__Expression<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.String__Expression<Annotation> {
-    return pl.cc($, ($): g_out.T.String__Expression<Annotation> => {
-        switch ($[0]) {
-            case 'string literal': return pl.ss($, ($) => ['string literal', $])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_String__Expression__Or__Selection<Annotation>(
-    $: g_in.T.String__Expression__Or__Selection<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.String__Expression__Or__Selection<Annotation> {
-    return pl.cc($, ($): g_out.T.String__Expression__Or__Selection<Annotation> => {
-        switch ($[0]) {
-            case 'expression': return pl.ss($, ($) => ['expression', map_String__Expression<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>(
-                $,
-                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                /*$v_stack: */pl.cc($v_stack, ($) => $),
-            )])
-            default: return pl.au($[0])
-        }
-    })
-}
-function map_Symbols<Annotation>(
-    $: g_in.T.Symbols<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-): g_out.T.Symbols<Annotation> {
-    return $.map(($) => pl.cc($, ($): g_out.T.Symbols.D<Annotation> => {
-        switch ($[0]) {
-            case 'namespace': return pl.ss($, ($) => ['namespace', pl.cc($, ($) => {
-                const $v_symbols: g_out.T.Symbols.D.namespace.symbols<Annotation> = pl.cc($['symbols'], ($) => map_Symbols<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                ))
-                return {
-                    'symbols': $v_symbols,
-                }
-            })])
-            case 'symbol': return pl.ss($, ($) => ['symbol', pl.cc($, ($) => {
-                const $v_type__path: g_out.T.Symbols.D._lsymbol.type__path<Annotation> = pl.cc($['type path'], ($) => map_Type__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                ))
-                return {
-                    'type path': $v_type__path,
-                }
-            })])
-            default: return pl.au($[0])
-        }
-    }))
-}
-function map_Type__Arguments<Annotation>(
-    $: g_in.T.Type__Arguments<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_type__parameters: pt.OptionalValue<g_out_typesystem.T.Type__Parameters<Annotation>>,
-): g_out.T.Type__Arguments<Annotation> {
-    return $.content.map(($) => pl.cc($, ($) => {
-        const $v_x: g_out_typesystem.T.Type__Parameters<Annotation> = pl.cc($v_type__parameters, ($) => $)
-        return {
-            'annotation': $.annotation,
-            'constraints': {
-                'x': $v_x,
-            },
-            'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                const $v__ltype: g_out.T.Type__Arguments.D._ltype._ltype<Annotation> = pl.cc($['type'], ($) => map_Type__Path<Annotation>(
-                    $,
-                    /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                ))
-                return {
-                    'type': $v__ltype,
-                }
-            })),
-        }
-    }))
-}
-function map_Type__Path<Annotation>(
-    $: g_in.T.Type__Path<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-): g_out.T.Type__Path<Annotation> {
-    return pl.cc($, ($) => {
-        const $v_namespaces: g_out.T.Type__Path.namespaces<Annotation> = pl.cc($['namespaces'], ($) => $.map(($) => pl.cc($, ($) => {
-            const constraint: pt.OptionalValue<g_out_typesystem.T.Global__Types.D<Annotation>> = [false]
-            return {
-                'annotation': $.annotation,
-                'constraint': constraint,
-                'key': $.key,
+                'volledige naam': $p_volledige__naam,
             }
         })))
-        const $v__ltype: g_out.T.Type__Path._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($) => {
-            const constraint: pt.OptionalValue<g_out_typesystem.T.Global__Types.D<Annotation>> = [false]
-            return {
-                'annotation': $.annotation,
-                'constraint': constraint,
-                'key': $.key,
-            }
-        }))
-        const $v_arguments: g_out.T.Type__Path.arguments<Annotation> = pl.cc($['arguments'], ($) => map_Type__Arguments<Annotation>(
-            $,
-            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-            /*$v__ltype: */pl.cc($v__ltype, ($) => $),
-        ))
-        return {
-            'arguments': $v_arguments,
-            'namespaces': $v_namespaces,
-            'type': $v__ltype,
-        }
-    })
-}
-function map_Variables<Annotation>(
-    $: g_in.T.Variables<Annotation>,
-    $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
-    $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
-): g_out.T.Variables<Annotation> {
-    return $.map(($) => pl.cc($, ($) => {
-        const $v__ltype: g_out.T.Variables.D._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($): g_out.T.Variables.D._ltype<Annotation> => {
-            switch ($[0]) {
-                case 'local': return pl.ss($, ($) => ['local', pl.cc($, ($) => {
-                    const $v__ltype: g_out.T.Variables.D._ltype.local._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($) => {
-                        const constraint: pt.OptionalValue<g_out_typesystem.T.Global__Types.D<Annotation>> = [false]
+        const $v_gebruikers: pt.OptionalValue<g_out.T.Stamdata.gebruikers<Annotation>> = [true, $p_gebruikers]
+        const $p_balans: g_out.T.Stamdata.balans<Annotation> = pl.cc($['balans'], ($) => pl.cc($, ($) => {
+            const $p_hoofdcategorieen__fiscus: g_out.T.Stamdata.balans.hoofdcategorieen__fiscus<Annotation> = pl.cc($['hoofdcategorieen fiscus'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_zijde: g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'activa': return pl.ss($, ($) => ['activa', pl.cc($, ($) => {
+                            return null
+                        })])
+                        case 'passiva': return pl.ss($, ($) => ['passiva', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.zijde<Annotation>> = [true, $p_zijde]
+                const $p_subcategorieen: g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                    return null
+                })))
+                const $v_subcategorieen: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen<Annotation>> = [true, $p_subcategorieen]
+                return {
+                    'subcategorieen': $p_subcategorieen,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_hoofdcategorieen__fiscus: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus<Annotation>> = [true, $p_hoofdcategorieen__fiscus]
+            const $p_hoofdcategorieen: g_out.T.Stamdata.balans.hoofdcategorieen<Annotation> = pl.cc($['hoofdcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_zijde: g_out.T.Stamdata.balans.hoofdcategorieen.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.balans.hoofdcategorieen.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'activa': return pl.ss($, ($) => ['activa', pl.cc($, ($) => {
+                            return null
+                        })])
+                        case 'passiva': return pl.ss($, ($) => ['passiva', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.zijde<Annotation>> = [true, $p_zijde]
+                const $p_subcategorieen: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                    const $p_hoofdcategorie__fiscus: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation> = pl.cc($['hoofdcategorie fiscus'], ($) => pl.cc($, ($) => {
+                        const key = $.key
+                        const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>> = pl.optional/*3*/(
+                            $v_hoofdcategorieen__fiscus,
+                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            ),
+                            () => [false],
+                        )
                         return {
                             'annotation': $.annotation,
                             'constraint': constraint,
                             'key': $.key,
                         }
                     }))
-                    const $v_initializer: g_out.T.Variables.D._ltype.local.initializer<Annotation> = pl.cc($['initializer'], ($) => map_Expression<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                        /*$v__ltype: */pl.cc($v__ltype, ($) => $),
-                    ))
+                    const $v_hoofdcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation>> = [true, $p_hoofdcategorie__fiscus]
+                    const $p_subcategorie__fiscus: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation> = pl.cc($['subcategorie fiscus'], ($) => pl.cc($, ($) => {
+                        const key = $.key
+                        const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                            $v_hoofdcategorie__fiscus,
+                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            ),
+                            () => [false],
+                        )
+                        return {
+                            'annotation': $.annotation,
+                            'constraint': constraint,
+                            'key': $.key,
+                        }
+                    }))
+                    const $v_subcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation>> = [true, $p_subcategorie__fiscus]
                     return {
-                        'initializer': $v_initializer,
-                        'type': $v__ltype,
+                        'hoofdcategorie fiscus': $p_hoofdcategorie__fiscus,
+                        'subcategorie fiscus': $p_subcategorie__fiscus,
                     }
-                })])
-                case 'parameter': return pl.ss($, ($) => ['parameter', pl.cc($, ($) => {
-                    return null
-                })])
-                case 'stack': return pl.ss($, ($) => ['stack', pl.cc($, ($) => {
-                    return null
-                })])
-                default: return pl.au($[0])
+                })))
+                const $v_subcategorieen: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen<Annotation>> = [true, $p_subcategorieen]
+                return {
+                    'subcategorieen': $p_subcategorieen,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_hoofdcategorieen: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen<Annotation>> = [true, $p_hoofdcategorieen]
+            const $p_grootboekrekeningen: g_out.T.Stamdata.balans.grootboekrekeningen<Annotation> = pl.cc($['grootboekrekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_hoofdcategorie: g_out.T.Stamdata.balans.grootboekrekeningen.D.hoofdcategorie<Annotation> = pl.cc($['hoofdcategorie'], ($) => pl.cc($, ($) => {
+                    const key = $.key
+                    const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        $v_hoofdcategorieen,
+                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>>>(
+                            key,
+                            ($) => [true, $],
+                            () => {
+                                $se.error("no such entry")
+                                return [false]
+                            },
+                        ),
+                        () => [false],
+                    )
+                    return {
+                        'annotation': $.annotation,
+                        'constraint': constraint,
+                        'key': $.key,
+                    }
+                }))
+                const $v_hoofdcategorie: pt.OptionalValue<g_out.T.Stamdata.balans.grootboekrekeningen.D.hoofdcategorie<Annotation>> = [true, $p_hoofdcategorie]
+                const $p_subcategorie: g_out.T.Stamdata.balans.grootboekrekeningen.D.subcategorie<Annotation> = pl.cc($['subcategorie'], ($) => pl.cc($, ($) => {
+                    const key = $.key
+                    const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        $v_hoofdcategorie,
+                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                            key,
+                            ($) => [true, $],
+                            () => {
+                                $se.error("no such entry")
+                                return [false]
+                            },
+                        ),
+                        () => [false],
+                    )
+                    return {
+                        'annotation': $.annotation,
+                        'constraint': constraint,
+                        'key': $.key,
+                    }
+                }))
+                const $v_subcategorie: pt.OptionalValue<g_out.T.Stamdata.balans.grootboekrekeningen.D.subcategorie<Annotation>> = [true, $p_subcategorie]
+                const $p_zijde: g_out.T.Stamdata.balans.grootboekrekeningen.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.balans.grootboekrekeningen.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'activa': return pl.ss($, ($) => ['activa', pl.cc($, ($) => {
+                            return null
+                        })])
+                        case 'passiva': return pl.ss($, ($) => ['passiva', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.balans.grootboekrekeningen.D.zijde<Annotation>> = [true, $p_zijde]
+                return {
+                    'hoofdcategorie': $p_hoofdcategorie,
+                    'subcategorie': $p_subcategorie,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_grootboekrekeningen: pt.OptionalValue<g_out.T.Stamdata.balans.grootboekrekeningen<Annotation>> = [true, $p_grootboekrekeningen]
+            return {
+                'grootboekrekeningen': $p_grootboekrekeningen,
+                'hoofdcategorieen': $p_hoofdcategorieen,
+                'hoofdcategorieen fiscus': $p_hoofdcategorieen__fiscus,
             }
         }))
+        const $v_balans: pt.OptionalValue<g_out.T.Stamdata.balans<Annotation>> = [true, $p_balans]
+        const $p_resultaat: g_out.T.Stamdata.resultaat<Annotation> = pl.cc($['resultaat'], ($) => pl.cc($, ($) => {
+            const $p_hoofdcategorieen__fiscus: g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus<Annotation> = pl.cc($['hoofdcategorieen fiscus'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_zijde: g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'kosten': return pl.ss($, ($) => ['kosten', pl.cc($, ($) => {
+                            return null
+                        })])
+                        case 'opbrengsten': return pl.ss($, ($) => ['opbrengsten', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.zijde<Annotation>> = [true, $p_zijde]
+                const $p_subcategorieen: g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                    return null
+                })))
+                const $v_subcategorieen: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen<Annotation>> = [true, $p_subcategorieen]
+                return {
+                    'subcategorieen': $p_subcategorieen,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_hoofdcategorieen__fiscus: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus<Annotation>> = [true, $p_hoofdcategorieen__fiscus]
+            const $p_hoofdcategorieen: g_out.T.Stamdata.resultaat.hoofdcategorieen<Annotation> = pl.cc($['hoofdcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_zijde: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.resultaat.hoofdcategorieen.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'kosten': return pl.ss($, ($) => ['kosten', pl.cc($, ($) => {
+                            return null
+                        })])
+                        case 'opbrengsten': return pl.ss($, ($) => ['opbrengsten', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.zijde<Annotation>> = [true, $p_zijde]
+                const $p_subcategorieen: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+                    const $p_hoofdcategorie__fiscus: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation> = pl.cc($['hoofdcategorie fiscus'], ($) => pl.cc($, ($) => {
+                        const key = $.key
+                        const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>> = pl.optional/*3*/(
+                            $v_hoofdcategorieen__fiscus,
+                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            ),
+                            () => [false],
+                        )
+                        return {
+                            'annotation': $.annotation,
+                            'constraint': constraint,
+                            'key': $.key,
+                        }
+                    }))
+                    const $v_hoofdcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation>> = [true, $p_hoofdcategorie__fiscus]
+                    const $p_subcategorie__fiscus: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation> = pl.cc($['subcategorie fiscus'], ($) => pl.cc($, ($) => {
+                        const key = $.key
+                        const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                            $v_hoofdcategorie__fiscus,
+                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            ),
+                            () => [false],
+                        )
+                        return {
+                            'annotation': $.annotation,
+                            'constraint': constraint,
+                            'key': $.key,
+                        }
+                    }))
+                    const $v_subcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation>> = [true, $p_subcategorie__fiscus]
+                    return {
+                        'hoofdcategorie fiscus': $p_hoofdcategorie__fiscus,
+                        'subcategorie fiscus': $p_subcategorie__fiscus,
+                    }
+                })))
+                const $v_subcategorieen: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen<Annotation>> = [true, $p_subcategorieen]
+                return {
+                    'subcategorieen': $p_subcategorieen,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_hoofdcategorieen: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen<Annotation>> = [true, $p_hoofdcategorieen]
+            const $p_correctietypes__vennootschapsbelasting: g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting<Annotation> = pl.cc($['correctietypes vennootschapsbelasting'], ($) => $.map(($) => pl.cc($, ($) => {
+                return null
+            })))
+            const $v_correctietypes__vennootschapsbelasting: pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting<Annotation>> = [true, $p_correctietypes__vennootschapsbelasting]
+            const $p_grootboekrekeningen: g_out.T.Stamdata.resultaat.grootboekrekeningen<Annotation> = pl.cc($['grootboekrekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_hoofdcategorie: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.hoofdcategorie<Annotation> = pl.cc($['hoofdcategorie'], ($) => pl.cc($, ($) => {
+                    const key = $.key
+                    const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        $v_hoofdcategorieen,
+                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>>>(
+                            key,
+                            ($) => [true, $],
+                            () => {
+                                $se.error("no such entry")
+                                return [false]
+                            },
+                        ),
+                        () => [false],
+                    )
+                    return {
+                        'annotation': $.annotation,
+                        'constraint': constraint,
+                        'key': $.key,
+                    }
+                }))
+                const $v_hoofdcategorie: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.hoofdcategorie<Annotation>> = [true, $p_hoofdcategorie]
+                const $p_subcategorie: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.subcategorie<Annotation> = pl.cc($['subcategorie'], ($) => pl.cc($, ($) => {
+                    const key = $.key
+                    const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        $v_hoofdcategorie,
+                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                            key,
+                            ($) => [true, $],
+                            () => {
+                                $se.error("no such entry")
+                                return [false]
+                            },
+                        ),
+                        () => [false],
+                    )
+                    return {
+                        'annotation': $.annotation,
+                        'constraint': constraint,
+                        'key': $.key,
+                    }
+                }))
+                const $v_subcategorie: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.subcategorie<Annotation>> = [true, $p_subcategorie]
+                const $p_zijde: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde<Annotation> = pl.cc($['zijde'], ($) => pl.cc($, ($): g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde<Annotation> => {
+                    switch ($[0]) {
+                        case 'kosten': return pl.ss($, ($) => ['kosten', pl.cc($, ($) => {
+                            const $p_correctie__op__vennootschapsbelasting: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting<Annotation> = pl.cc($['correctie op vennootschapsbelasting'], ($) => pl.cc($, ($): g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting<Annotation> => {
+                                switch ($[0]) {
+                                    case 'ja': return pl.ss($, ($) => ['ja', pl.cc($, ($) => {
+                                        const $p_correctietype: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting.ja.correctietype<Annotation> = pl.cc($['correctietype'], ($) => pl.cc($, ($) => {
+                                            const key = $.key
+                                            const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>> = pl.optional/*3*/(
+                                                $v_correctietypes__vennootschapsbelasting,
+                                                ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>>>(
+                                                    key,
+                                                    ($) => [true, $],
+                                                    () => {
+                                                        $se.error("no such entry")
+                                                        return [false]
+                                                    },
+                                                ),
+                                                () => [false],
+                                            )
+                                            return {
+                                                'annotation': $.annotation,
+                                                'constraint': constraint,
+                                                'key': $.key,
+                                            }
+                                        }))
+                                        const $v_correctietype: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting.ja.correctietype<Annotation>> = [true, $p_correctietype]
+                                        return {
+                                            'correctietype': $p_correctietype,
+                                        }
+                                    })])
+                                    case 'nee': return pl.ss($, ($) => ['nee', pl.cc($, ($) => {
+                                        return null
+                                    })])
+                                    default: return pl.au($[0])
+                                }
+                            }))
+                            const $v_correctie__op__vennootschapsbelasting: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting<Annotation>> = [true, $p_correctie__op__vennootschapsbelasting]
+                            return {
+                                'correctie op vennootschapsbelasting': $p_correctie__op__vennootschapsbelasting,
+                            }
+                        })])
+                        case 'opbrengsten': return pl.ss($, ($) => ['opbrengsten', pl.cc($, ($) => {
+                            return null
+                        })])
+                        default: return pl.au($[0])
+                    }
+                }))
+                const $v_zijde: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde<Annotation>> = [true, $p_zijde]
+                return {
+                    'hoofdcategorie': $p_hoofdcategorie,
+                    'subcategorie': $p_subcategorie,
+                    'zijde': $p_zijde,
+                }
+            })))
+            const $v_grootboekrekeningen: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen<Annotation>> = [true, $p_grootboekrekeningen]
+            return {
+                'correctietypes vennootschapsbelasting': $p_correctietypes__vennootschapsbelasting,
+                'grootboekrekeningen': $p_grootboekrekeningen,
+                'hoofdcategorieen': $p_hoofdcategorieen,
+                'hoofdcategorieen fiscus': $p_hoofdcategorieen__fiscus,
+            }
+        }))
+        const $v_resultaat: pt.OptionalValue<g_out.T.Stamdata.resultaat<Annotation>> = [true, $p_resultaat]
+        const $p_BTW_micategorieen: g_out.T.Stamdata.BTW_micategorieen<Annotation> = pl.cc($['BTW-categorieen'], ($) => $.map(($) => pl.cc($, ($) => {
+            const $p_BTW_miheffing: g_out.T.Stamdata.BTW_micategorieen.D.BTW_miheffing<Annotation> = pl.cc($['BTW-heffing'], ($) => pl.cc($, ($): g_out.T.Stamdata.BTW_micategorieen.D.BTW_miheffing<Annotation> => {
+                switch ($[0]) {
+                    case 'ja': return pl.ss($, ($) => ['ja', pl.cc($, ($) => {
+                        const $p_BTW_mipromillage: g_out.T.Stamdata.BTW_micategorieen.D.BTW_miheffing.ja.BTW_mipromillage<Annotation> = pl.cc($['BTW-promillage'], ($) => $)
+                        const $v_BTW_mipromillage: pt.OptionalValue<g_out.T.Stamdata.BTW_micategorieen.D.BTW_miheffing.ja.BTW_mipromillage<Annotation>> = [true, $p_BTW_mipromillage]
+                        return {
+                            'BTW-promillage': $p_BTW_mipromillage,
+                        }
+                    })])
+                    case 'nee': return pl.ss($, ($) => ['nee', pl.cc($, ($) => {
+                        return null
+                    })])
+                    default: return pl.au($[0])
+                }
+            }))
+            const $v_BTW_miheffing: pt.OptionalValue<g_out.T.Stamdata.BTW_micategorieen.D.BTW_miheffing<Annotation>> = [true, $p_BTW_miheffing]
+            return {
+                'BTW-heffing': $p_BTW_miheffing,
+            }
+        })))
+        const $v_BTW_micategorieen: pt.OptionalValue<g_out.T.Stamdata.BTW_micategorieen<Annotation>> = [true, $p_BTW_micategorieen]
+        const $p_klanten: g_out.T.Stamdata.klanten<Annotation> = pl.cc($['klanten'], ($) => $.map(($) => pl.cc($, ($) => {
+            const $p_projecten: g_out.T.Stamdata.klanten.D.projecten<Annotation> = pl.cc($['projecten'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_offertes: g_out.T.Stamdata.klanten.D.projecten.D.offertes<Annotation> = pl.cc($['offertes'], ($) => $.map(($) => pl.cc($, ($) => {
+                    const $p_opbrengsten: g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten<Annotation> = pl.cc($['opbrengsten'], ($) => $.map(($) => pl.cc($, ($) => {
+                        const $p__ltype: g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($): g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype<Annotation> => {
+                            switch ($[0]) {
+                                case 'project': return pl.ss($, ($) => ['project', pl.cc($, ($) => {
+                                    const $p_betaaldatum: g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype.project.betaaldatum<Annotation> = pl.cc($['betaaldatum'], ($) => $)
+                                    const $v_betaaldatum: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype.project.betaaldatum<Annotation>> = [true, $p_betaaldatum]
+                                    const $p_bedrag: g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype.project.bedrag<Annotation> = pl.cc($['bedrag'], ($) => $)
+                                    const $v_bedrag: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype.project.bedrag<Annotation>> = [true, $p_bedrag]
+                                    return {
+                                        'bedrag': $p_bedrag,
+                                        'betaaldatum': $p_betaaldatum,
+                                    }
+                                })])
+                                default: return pl.au($[0])
+                            }
+                        }))
+                        const $v__ltype: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D._ltype<Annotation>> = [true, $p__ltype]
+                        return {
+                            'type': $p__ltype,
+                        }
+                    })))
+                    const $v_opbrengsten: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten<Annotation>> = [true, $p_opbrengsten]
+                    return {
+                        'opbrengsten': $p_opbrengsten,
+                    }
+                })))
+                const $v_offertes: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes<Annotation>> = [true, $p_offertes]
+                return {
+                    'offertes': $p_offertes,
+                }
+            })))
+            const $v_projecten: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten<Annotation>> = [true, $p_projecten]
+            const $p_licentieovereenkomsten: g_out.T.Stamdata.klanten.D.licentieovereenkomsten<Annotation> = pl.cc($['licentieovereenkomsten'], ($) => $.map(($) => pl.cc($, ($) => {
+                const $p_periodes: g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes<Annotation> = pl.cc($['periodes'], ($) => $.map(($) => pl.cc($, ($) => {
+                    const $p_bedrag: g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D.bedrag<Annotation> = pl.cc($['bedrag'], ($) => $)
+                    const $v_bedrag: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D.bedrag<Annotation>> = [true, $p_bedrag]
+                    return {
+                        'bedrag': $p_bedrag,
+                    }
+                })))
+                const $v_periodes: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes<Annotation>> = [true, $p_periodes]
+                return {
+                    'periodes': $p_periodes,
+                }
+            })))
+            const $v_licentieovereenkomsten: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten<Annotation>> = [true, $p_licentieovereenkomsten]
+            return {
+                'licentieovereenkomsten': $p_licentieovereenkomsten,
+                'projecten': $p_projecten,
+            }
+        })))
+        const $v_klanten: pt.OptionalValue<g_out.T.Stamdata.klanten<Annotation>> = [true, $p_klanten]
+        const $p_medewerkers: g_out.T.Stamdata.medewerkers<Annotation> = pl.cc($['medewerkers'], ($) => $.map(($) => pl.cc($, ($) => {
+            return null
+        })))
+        const $v_medewerkers: pt.OptionalValue<g_out.T.Stamdata.medewerkers<Annotation>> = [true, $p_medewerkers]
+        const $p_leveranciers: g_out.T.Stamdata.leveranciers<Annotation> = pl.cc($['leveranciers'], ($) => $.map(($) => pl.cc($, ($) => {
+            return null
+        })))
+        const $v_leveranciers: pt.OptionalValue<g_out.T.Stamdata.leveranciers<Annotation>> = [true, $p_leveranciers]
+        const $p_bankrekeningen: g_out.T.Stamdata.bankrekeningen<Annotation> = pl.cc($['bankrekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
+            return null
+        })))
+        const $v_bankrekeningen: pt.OptionalValue<g_out.T.Stamdata.bankrekeningen<Annotation>> = [true, $p_bankrekeningen]
+        const $p_informele__rekeningen: g_out.T.Stamdata.informele__rekeningen<Annotation> = pl.cc($['informele rekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
+            return null
+        })))
+        const $v_informele__rekeningen: pt.OptionalValue<g_out.T.Stamdata.informele__rekeningen<Annotation>> = [true, $p_informele__rekeningen]
         return {
-            'type': $v__ltype,
+            'balans': $p_balans,
+            'bankrekeningen': $p_bankrekeningen,
+            'BTW-categorieen': $p_BTW_micategorieen,
+            'gebruikers': $p_gebruikers,
+            'informele rekeningen': $p_informele__rekeningen,
+            'klanten': $p_klanten,
+            'leveranciers': $p_leveranciers,
+            'medewerkers': $p_medewerkers,
+            'resultaat': $p_resultaat,
         }
-    }))
+    })
 }
