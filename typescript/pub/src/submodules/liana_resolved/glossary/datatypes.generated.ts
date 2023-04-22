@@ -3425,166 +3425,209 @@ export namespace T {
         
         export namespace step__type {
             
-            export namespace component {
+            export namespace content {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace constraints {
+                export namespace component {
                     
-                    export namespace component {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace constraints {
                         
-                        export type O<GAnnotation> = T.Type.component<GAnnotation>
-                    }
-                    
-                    export type component<GAnnotation> = [ false ] | [ true, T.Type.component<GAnnotation>]
-                }
-                
-                export type constraints<GAnnotation> = {
-                    readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
-                }
-                
-                export namespace content {}
-                
-                export type content<GAnnotation> = null
-            }
-            
-            export type component<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
-                }
-                readonly 'content': null
-            }
-            
-            export namespace group {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace constraints {
-                    
-                    export namespace group {
-                        
-                        export type O<GAnnotation> = T.Type.group<GAnnotation>
-                    }
-                    
-                    export type group<GAnnotation> = [ false ] | [ true, T.Type.group<GAnnotation>]
-                }
-                
-                export type constraints<GAnnotation> = {
-                    readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
-                }
-                
-                export namespace content {
-                    
-                    export namespace property {
-                        
-                        export type annotation<GAnnotation> = GAnnotation
-                        
-                        export namespace constraint {
+                        export namespace component {
                             
-                            export type O<GAnnotation> = T.Type.group.properties.D<GAnnotation>
+                            export type O<GAnnotation> = T.Type.component<GAnnotation>
                         }
                         
-                        export type constraint<GAnnotation> = [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                        export type component<GAnnotation> = [ false ] | [ true, T.Type.component<GAnnotation>]
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
+                    }
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
+                
+                export type component<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }
+                
+                export namespace group {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace constraints {
                         
-                        export type key<GAnnotation> = string
-                    }
-                    
-                    export type property<GAnnotation> = {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
-                        readonly 'key': string
-                    }
-                }
-                
-                export type content<GAnnotation> = {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
-                        readonly 'key': string
-                    }
-                }
-            }
-            
-            export type group<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
-                }
-                readonly 'content': {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
-                        readonly 'key': string
-                    }
-                }
-            }
-            
-            export namespace reference {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace constraints {
-                    
-                    export namespace reference {
+                        export namespace group {
+                            
+                            export type O<GAnnotation> = T.Type.group<GAnnotation>
+                        }
                         
-                        export type O<GAnnotation> = T.Type.terminal<GAnnotation>
+                        export type group<GAnnotation> = [ false ] | [ true, T.Type.group<GAnnotation>]
                     }
                     
-                    export type reference<GAnnotation> = [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    export type constraints<GAnnotation> = {
+                        readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
+                    }
+                    
+                    export namespace content {
+                        
+                        export namespace property {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export namespace constraint {
+                                
+                                export type O<GAnnotation> = T.Type.group.properties.D<GAnnotation>
+                            }
+                            
+                            export type constraint<GAnnotation> = [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type property<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
+                    
+                    export type content<GAnnotation> = {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
                 }
                 
-                export type constraints<GAnnotation> = {
-                    readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                export type group<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
+                    }
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
                 }
                 
-                export namespace content {}
+                export namespace reference {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace constraints {
+                        
+                        export namespace reference {
+                            
+                            export type O<GAnnotation> = T.Type.terminal<GAnnotation>
+                        }
+                        
+                        export type reference<GAnnotation> = [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
                 
-                export type content<GAnnotation> = null
+                export type reference<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }
+                
+                export namespace result {}
+                
+                export type result<GAnnotation> = null
             }
             
-            export type reference<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
-                }
-                readonly 'content': null
+            export type content<GAnnotation> = 
+                | ['component', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
+                | ['group', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
+                    }
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
+                }]
+                | ['reference', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
+                | ['result', null]
+            
+            export namespace result {
+                
+                export type O<GAnnotation> = T.Type<GAnnotation>
             }
             
-            export namespace result {}
-            
-            export type result<GAnnotation> = null
+            export type result<GAnnotation> = [ false ] | [ true, T.Type<GAnnotation>]
         }
         
-        export type step__type<GAnnotation> = 
-            | ['component', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
-                }
-                readonly 'content': null
-            }]
-            | ['group', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
-                }
-                readonly 'content': {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
-                        readonly 'key': string
+        export type step__type<GAnnotation> = {
+            readonly 'content': 
+                | ['component', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
                     }
-                }
-            }]
-            | ['reference', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
-                }
-                readonly 'content': null
-            }]
-            | ['result', null]
+                    readonly 'content': null
+                }]
+                | ['group', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
+                    }
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
+                }]
+                | ['reference', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
+                | ['result', null]
+            readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
+        }
         
         export namespace tail {
             
@@ -3595,35 +3638,38 @@ export namespace T {
     }
     
     export type Value__Selection__Tail<GAnnotation> = {
-        readonly 'step type': 
-            | ['component', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
-                }
-                readonly 'content': null
-            }]
-            | ['group', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
-                }
-                readonly 'content': {
-                    readonly 'property': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
-                        readonly 'key': string
+        readonly 'step type': {
+            readonly 'content': 
+                | ['component', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'component': [ false ] | [ true, T.Type.component<GAnnotation>]
                     }
-                }
-            }]
-            | ['reference', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraints': {
-                    readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
-                }
-                readonly 'content': null
-            }]
-            | ['result', null]
+                    readonly 'content': null
+                }]
+                | ['group', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'group': [ false ] | [ true, T.Type.group<GAnnotation>]
+                    }
+                    readonly 'content': {
+                        readonly 'property': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'constraint': [ false ] | [ true, T.Type.group.properties.D<GAnnotation>]
+                            readonly 'key': string
+                        }
+                    }
+                }]
+                | ['reference', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'reference': [ false ] | [ true, T.Type.terminal<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
+                | ['result', null]
+            readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
+        }
         readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
     }
     

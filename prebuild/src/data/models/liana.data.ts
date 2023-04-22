@@ -191,9 +191,9 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 }, group({
                     "property": prop(resolvedValueReference(valSel("group"), typeSelection("Type", [tu("group"), grp("properties")]))),
                 })),
-            }, /*tuResult(globalTypeSelection("Type"), {
+            }, tuResult(globalTypeSelection("Type"), {
 
-            })*/)),
+            }))),
             "tail": prop(optional(component("Value Selection Tail", {
                 "type": aResolvedValue(valSel("step type", result()))
             }))),
