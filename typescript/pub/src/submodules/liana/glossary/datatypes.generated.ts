@@ -1686,6 +1686,21 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
+                                    export namespace optional {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace reference {
                                         
                                         export namespace N {
@@ -1701,7 +1716,7 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
-                                    export namespace result {
+                                    export namespace tagged_$_$union {
                                         
                                         export namespace N {
                                             
@@ -3087,6 +3102,20 @@ export namespace T {
                 }
             }
             
+            export namespace optional {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
+            
+            export type optional<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
+            
             export namespace reference {
                 
                 export type annotation<GAnnotation> = GAnnotation
@@ -3101,9 +3130,19 @@ export namespace T {
                 readonly 'content': null
             }
             
-            export namespace result {}
+            export namespace tagged__union {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
             
-            export type result<GAnnotation> = null
+            export type tagged__union<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
         }
         
         export type step__type<GAnnotation> = 
@@ -3120,11 +3159,18 @@ export namespace T {
                     }
                 }
             }]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['reference', {
                 readonly 'annotation': GAnnotation
                 readonly 'content': null
             }]
-            | ['result', null]
+            | ['tagged union', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
         
         export namespace tail {
             
@@ -3149,11 +3195,18 @@ export namespace T {
                     }
                 }
             }]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['reference', {
                 readonly 'annotation': GAnnotation
                 readonly 'content': null
             }]
-            | ['result', null]
+            | ['tagged union', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
         readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
     }
     

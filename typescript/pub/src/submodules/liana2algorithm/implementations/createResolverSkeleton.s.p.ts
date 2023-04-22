@@ -88,11 +88,29 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 }
             )
         }
+        function doResult($i: g_fp.SYNC.I.Line) {
+            $i.snippet(`pl.optional(`)
+            $i.indent(($i) => {
+                $i.nestedLine(($i) => {
+                    $i.snippet(`$.result,`)
+                })
+                $i.nestedLine(($i) => {
+                    $i.snippet(`($) => `)
+                    doTail($i)
+                    $i.snippet(`,`)
+                })
+                $i.nestedLine(($i) => {
+                    $i.snippet(`() => [false],`)
+                })
+            })
+            $i.snippet(`)`)
+
+        }
         pl.cc($['step type'], ($) => {
             switch ($[0]) {
                 case 'component':
                     pl.ss($, ($) => {
-                        $i.snippet(`.???`)
+                        doResult($i)
                     })
                     break
                 case 'group':
@@ -122,23 +140,14 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.snippet(`)`)
                     })
                     break
-                case 'result':
+                case 'tagged union':
                     pl.ss($, ($) => {
-                        $i.snippet(`pl.optional/*2*/(`)
-                        $i.indent(($i) => {
-                            $i.nestedLine(($i) => {
-                                $i.snippet(`$.result,`)
-                            })
-                            $i.nestedLine(($i) => {
-                                $i.snippet(`($) => `)
-                                doTail($i)
-                                $i.snippet(`,`)
-                            })
-                            $i.nestedLine(($i) => {
-                                $i.snippet(`() => [false],`)
-                            })
-                        })
-                        $i.snippet(`)`)
+                        doResult($i)
+                    })
+                    break
+                case 'optional':
+                    pl.ss($, ($) => {
+                        doResult($i)
                     })
                     break
                 default: pl.au($[0])

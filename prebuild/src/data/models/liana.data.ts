@@ -181,10 +181,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "component": constrainedOption({
                     "component": optionConstraint(valSel("type"), "component", typeSelection("Type", []))
                 }, group({
-                    //"type name": prop(terminal("identifier"))//FIXME derive this value
                 })),
-                "result": option(group({
-                    //can be: tagged union, optional, component
+                "tagged union": constrainedOption({
+                    "tagged union": optionConstraint(valSel("type"), "tagged union", typeSelection("Type", []))
+                }, group({
+                })),
+                "optional": constrainedOption({
+                    "optional": optionConstraint(valSel("type"), "optional", typeSelection("Type", []))
+                }, group({
                 })),
                 "group": constrainedOption({
                     "group": optionConstraint(valSel("type"), "group", typeSelection("Type", []))

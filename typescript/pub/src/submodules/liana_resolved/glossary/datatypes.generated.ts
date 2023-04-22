@@ -1686,6 +1686,21 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
+                                    export namespace optional {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace reference {
                                         
                                         export namespace N {
@@ -1701,7 +1716,7 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
-                                    export namespace result {
+                                    export namespace tagged_$_$union {
                                         
                                         export namespace N {
                                             
@@ -3522,6 +3537,37 @@ export namespace T {
                     }
                 }
                 
+                export namespace optional {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace constraints {
+                        
+                        export namespace optional {
+                            
+                            export type O<GAnnotation> = T.Type.optional<GAnnotation>
+                        }
+                        
+                        export type optional<GAnnotation> = [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'optional': [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
+                
+                export type optional<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'optional': [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }
+                
                 export namespace reference {
                     
                     export type annotation<GAnnotation> = GAnnotation
@@ -3553,9 +3599,36 @@ export namespace T {
                     readonly 'content': null
                 }
                 
-                export namespace result {}
+                export namespace tagged__union {
+                    
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace constraints {
+                        
+                        export namespace tagged__union {
+                            
+                            export type O<GAnnotation> = T.Type.tagged__union<GAnnotation>
+                        }
+                        
+                        export type tagged__union<GAnnotation> = [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    
+                    export type constraints<GAnnotation> = {
+                        readonly 'tagged union': [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    
+                    export namespace content {}
+                    
+                    export type content<GAnnotation> = null
+                }
                 
-                export type result<GAnnotation> = null
+                export type tagged__union<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'tagged union': [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }
             }
             
             export type content<GAnnotation> = 
@@ -3579,6 +3652,13 @@ export namespace T {
                         }
                     }
                 }]
+                | ['optional', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'optional': [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
                 | ['reference', {
                     readonly 'annotation': GAnnotation
                     readonly 'constraints': {
@@ -3586,7 +3666,13 @@ export namespace T {
                     }
                     readonly 'content': null
                 }]
-                | ['result', null]
+                | ['tagged union', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'tagged union': [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
             
             export namespace result {
                 
@@ -3618,6 +3704,13 @@ export namespace T {
                         }
                     }
                 }]
+                | ['optional', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'optional': [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
                 | ['reference', {
                     readonly 'annotation': GAnnotation
                     readonly 'constraints': {
@@ -3625,7 +3718,13 @@ export namespace T {
                     }
                     readonly 'content': null
                 }]
-                | ['result', null]
+                | ['tagged union', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'tagged union': [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
             readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
         }
         
@@ -3660,6 +3759,13 @@ export namespace T {
                         }
                     }
                 }]
+                | ['optional', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'optional': [ false ] | [ true, T.Type.optional<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
                 | ['reference', {
                     readonly 'annotation': GAnnotation
                     readonly 'constraints': {
@@ -3667,7 +3773,13 @@ export namespace T {
                     }
                     readonly 'content': null
                 }]
-                | ['result', null]
+                | ['tagged union', {
+                    readonly 'annotation': GAnnotation
+                    readonly 'constraints': {
+                        readonly 'tagged union': [ false ] | [ true, T.Type.tagged__union<GAnnotation>]
+                    }
+                    readonly 'content': null
+                }]
             readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
         }
         readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]

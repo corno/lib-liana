@@ -111,11 +111,36 @@ export function pNonCyclicSiblings(
     }
 }
 
-export function result(
+export function scomponent(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
-        'step type': ['result', null],
+        'step type': ['component', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+export function soptional(
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['optional',  {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+export function staggedunion(
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['tagged union',  {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
         'tail': tail === undefined ? [false] : tail
     }]
 }
