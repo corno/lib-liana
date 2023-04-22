@@ -492,10 +492,14 @@ export function globalTypeSelection(
 }
 
 export function externalGlobalTypeSelection(
+    imp: string,
     globalType: string,
 ): g_this.T.Global__Type__Selection<pd.SourceLocation> {
     return {
-        'import': [false],
+        'import': [true, {
+            'annotation': pd.getLocationInfo(1),
+            'key': imp,
+        }],
         'type': r_imp(globalType, 1),
     }
 }

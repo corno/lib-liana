@@ -205,47 +205,17 @@ export const $$: A.map = ($d) => {
                     }
                     return !settings.annotations
                         ? doDict()
-                        : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
-                            "content": [true, {
-                                'type': doDict()
-                            }],
-                            "annotation": createOptionalAnnotation(),
-                            // "constraints_FIXME": pl.optional(
-                            //     $x['constraints mapping'].constraints,
-                            //     (): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> => {
-                            //         return [true, {
-                            //             'type': ['group', $.constraints.map(($) => {
-                            //                 function createOptionalConstraintProperty(
-                            //                     $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>,
-                            //                     $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
-                            //                 ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
-                            //                     return pl.optional(
-                            //                         $x['constraints mapping'].constraints,
-                            //                         ($) => pl.cc($, ($) => {
-                            //                             switch ($[0]) {
-                            //                                 case 'optional': return pl.ss($, ($) => [true, {
-                            //                                     'type': ['optional', ['reference', ['type', $cb()]]]
-                            //                                 }])
-                            //                                 case 'required': return pl.ss($, ($) => [true, {
-                            //                                     'type': ['reference', ['type', $cb()]]
-                            //                                 }])
-                            //                                 default: return pl.au($[0])
-                            //                             }
-                            //                         }),
-                            //                         () => [false],
-                            //                     )
-                            //                 }
-                            //                 return {
-                            //                     'type': ['group', $d.filter(pm.wrapRawDictionary({
-                            //                         "constraint": createOptionalConstraintProperty($x, () => mapTypeSelection($['temp type path'], () => "D")),
-                            //                     }))]
-                            //                 }
-                            //             })]
-                            //         }]
-                            //     },
-                            //     () => [false]
-                            // ),
-                        }))]
+
+                        //**********this has quite some impact, leave it for now */
+                        //this annotation can be used for reporting when an entry cannot be found.
+
+                        // : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
+                        //     "content": [true, {
+                        //         'type': doDict()
+                        //     }],
+                        //     "annotation": createOptionalAnnotation(),
+                        // }))]
+                        : doDict()
                 }))
                 case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
                     'type': mapTypeToType($.type, $x),
