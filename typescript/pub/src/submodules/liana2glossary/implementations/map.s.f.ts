@@ -250,53 +250,63 @@ export const $$: A.map = ($d) => {
                         default: return pl.au($.constrained[0])
                     }
                 })
-                case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
-                    const type = $.type
-                    const constraints = $.constraints
+                case 'tagged union': return pl.ss($, ($) => {
 
-                    //if there are no constraints -or- no constraints or annotations should be added, then don't create a meta data group
-                    return $d.isEmpty($.constraints) || ($x['constraints mapping'].constraints[0] === false && !settings.annotations)
-                        ? mapTypeToType(type, $x)
-                        : ['group', $d.filter(pm.wrapRawDictionary({
-                            "annotation": createOptionalAnnotation(),
-                            "constraints": pl.optional(
-                                $x['constraints mapping'].constraints,
-                                ($): pt.OptionalValue<g_glossary.T.Type.group.D<Annotation>> => {
-                                    const constraintStrat = $
-                                    return [true, {
-                                        'type': ['group', constraints.map(($) => {
-                                            const $a = $
-                                            return {
-                                                'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
-                                                    switch (constraintStrat[0]) {
-                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]]])
-                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]])
-                                                        default: return pl.au(constraintStrat[0])
+                    function doTU(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+                        return ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
+                            const type = $.type
+                            const constraints = $.constraints
+
+                            //if there are no constraints -or- no constraints or annotations should be added, then don't create a meta data group
+                            return $d.isEmpty($.constraints) || ($x['constraints mapping'].constraints[0] === false && !settings.annotations)
+                                ? mapTypeToType(type, $x)
+                                : ['group', $d.filter(pm.wrapRawDictionary({
+                                    "annotation": createOptionalAnnotation(),
+                                    "constraints": pl.optional(
+                                        $x['constraints mapping'].constraints,
+                                        ($): pt.OptionalValue<g_glossary.T.Type.group.D<Annotation>> => {
+                                            const constraintStrat = $
+                                            return [true, {
+                                                'type': ['group', constraints.map(($) => {
+                                                    const $a = $
+                                                    return {
+                                                        'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
+                                                            switch (constraintStrat[0]) {
+                                                                case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]]])
+                                                                case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]])
+                                                                default: return pl.au(constraintStrat[0])
+                                                            }
+                                                        })
                                                     }
-                                                })
-                                            }
-                                        })]
-                                    }]
-                                },
-                                () => [false]
-                            ),
-                            "content": [true, {
-                                'type': mapTypeToType(type, $x)
-                            }],
+                                                })]
+                                            }]
+                                        },
+                                        () => [false]
+                                    ),
+                                    "content": [true, {
+                                        'type': mapTypeToType(type, $x)
+                                    }],
+                                }))]
                         }))]
-                    // switch ($[0]) {
-                    //     case 'no': return pl.ss($, ($) => 
-                    //     // case 'yes': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['dictionary', ['group', pm.wrapRawDictionary({      
-                    //     //     "annotation": {
-                    //     //         'type': ['reference', ['glossary parameter', "Annotation"]],
-                    //     //     },
-                    //     //     "type": {
-                    //     //         'type': mapType2(type),
-                    //     //     }
-                    //     // })]])
-                    //     default: return pl.au($[0])
-                    // }
-                }))])
+
+                    }
+                    return pl.optional(
+                        $x['constraints mapping'].constraints,
+                        () => pl.optional(
+                            $.result,
+                            ($) => ['group', pm.wrapRawDictionary({
+                                "content": {
+                                    'type': doTU()
+                                },
+                                "result": {
+                                    'type': ['boolean', null]
+                                }
+                            })],
+                            () => doTU(),
+                        ),
+                        () => doTU(),
+                    )
+                })
                 default: return pl.au($[0])
             }
         }
@@ -323,10 +333,29 @@ export const $$: A.map = ($d) => {
                     $.settings.datamodel,
                     ($) => {
                         const dm = $
-                        return library.library['global types'].map(($) => ({
-                            'parameters': pm.wrapRawDictionary({}),
-                            'type': mapTypeToType($.type, dm),
-                        }))
+                        return library.library['global types'].map(($) => {
+                            const result = $.result
+                            const type = $.type
+                            return {
+                                'parameters': pm.wrapRawDictionary({}),
+                                'type': pl.optional(
+                                    dm['constraints mapping'].constraints,
+                                    ($) => pl.optional(
+                                        result,
+                                        ($) => ['group', pm.wrapRawDictionary({
+                                            "content": {
+                                                'type': mapTypeToType(type, dm)
+                                            },
+                                            "result": {
+                                                'type': ['boolean', null] //FIXME
+                                            }
+                                        })],
+                                        () => mapTypeToType(type, dm),
+                                    ),
+                                    () => mapTypeToType(type, dm),
+                                ),
+                            }
+                        })
                     },
                     () => pm.wrapRawDictionary({}),
                 )

@@ -204,13 +204,14 @@ export const $$: A.createResolverSkeleton = ($d) => {
             case 'dictionary':
                 pl.ss($, ($) => {
                     const type = $.type
-                    $i.snippet(`$.map(($) => `)
                     $d.enrichedDictionaryForEach($.constraints, {
                         'onEmpty': () => {
+                            $i.snippet(`$.map(($) => `)
+
                             doType(type, $x + `.D`, $i)
                         },
                         'onNotEmpty': ($c) => {
-
+                            $i.snippet(`$.content.map(($) => `)
                             $i.snippet(`pl.cc($, ($) => {`)
                             $i.indent(($i) => {
                                 $c(($) => {
@@ -242,7 +243,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                             $i.snippet(`},`)
                                         })
                                         $i.nestedLine(($i) => {
-                                            $i.snippet(`'type': pl.cc($.content, ($) => `)
+                                            $i.snippet(`'content': pl.cc($.content, ($) => `)
                                             doType(type, $x + `.D._ltype`, $i)
                                             $i.snippet(`),`)
                                         })
@@ -426,7 +427,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                     $i.snippet(`},`)
                                                                 })
                                                                 $i.nestedLine(($i) => {
-                                                                    $i.snippet(`'type': pl.cc($.content, ($) => `)
+                                                                    $i.snippet(`'content': pl.cc($.content, ($) => `)
                                                                     doType(type, $x + `.${$d.createIdentifier(key)}._ltype`, $i)
                                                                     $i.snippet(`),`)
                                                                 })
