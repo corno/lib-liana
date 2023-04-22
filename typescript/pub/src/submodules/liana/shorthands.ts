@@ -487,35 +487,43 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 // }
 
 export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['group', {
-        'annotation': pd.getLocationInfo(1),
-        'content': {
-            'property': r_imp(prop, 1),
-        },
-    }]
+    return{
+        'step type':  ['group', {
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'property': r_imp(prop, 1),
+            },
+        }]
+    }
 }
 
 export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['dictionary', {
-        'annotation': pd.getLocationInfo(1),
-        'content': null,
-    }]
+    return {
+        'step type': ['dictionary', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }]
+    }
 }
 
 export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['array', {
-        'annotation': pd.getLocationInfo(1),
-        'content': null,
-    }]
+    return {
+        'step type': ['array', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }]
+    }
 }
 
 export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return ['tagged union', {
-        'annotation': pd.getLocationInfo(1),
-        'content': {
-            'option': r_imp(opt, 1),
-        },
-    }]
+    return {
+        'step type': ['tagged union', {
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'option': r_imp(opt, 1),
+            },
+        }]
+    }
 }
 
 

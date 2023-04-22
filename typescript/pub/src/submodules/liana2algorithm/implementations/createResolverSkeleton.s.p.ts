@@ -35,37 +35,40 @@ export const $$: A.createResolverSkeleton = ($d) => {
         $i.snippet(`.T.${$d.createIdentifier($['global type'].type.key)}`)
         $.tail.__forEach(($) => {
             $i.snippet(`.`)
-            switch ($[0]) {
-                case 'array':
-                    pl.ss($, ($) => {
-                        $i.snippet(`A`)
-                    })
-                    break
-                case 'dictionary':
-                    pl.ss($, ($) => {
-                        $i.snippet(`D`)
-                    })
-                    break
-                case 'group':
-                    pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.content.property.key))
+            pl.cc($['step type'], ($) => {
 
-                    })
-                    break
-                case 'optional':
-                    pl.ss($, ($) => {
-                        $i.snippet(`O`)
+                switch ($[0]) {
+                    case 'array':
+                        pl.ss($, ($) => {
+                            $i.snippet(`A`)
+                        })
+                        break
+                    case 'dictionary':
+                        pl.ss($, ($) => {
+                            $i.snippet(`D`)
+                        })
+                        break
+                    case 'group':
+                        pl.ss($, ($) => {
+                            $i.snippet($d.createIdentifier($.content.property.key))
 
-                    })
-                    break
-                case 'tagged union':
-                    pl.ss($, ($) => {
-                        $i.snippet($d.createIdentifier($.content.option.key))
+                        })
+                        break
+                    case 'optional':
+                        pl.ss($, ($) => {
+                            $i.snippet(`O`)
 
-                    })
-                    break
-                default: pl.au($[0])
-            }
+                        })
+                        break
+                    case 'tagged union':
+                        pl.ss($, ($) => {
+                            $i.snippet($d.createIdentifier($.content.option.key))
+
+                        })
+                        break
+                    default: pl.au($[0])
+                }
+            })
         })
     }
     function doValueSelectionTail<Annotation>(

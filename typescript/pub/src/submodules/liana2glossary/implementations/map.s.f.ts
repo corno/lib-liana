@@ -71,7 +71,7 @@ export const $$: A.map = ($d) => {
                 'type': $['global type'].type.key,
                 'tail': $d.push({
                     'array': $d.merge($.tail.map(($) => {
-                        return pl.cc($, ($) => {
+                        return pl.cc($['step type'], ($) => {
                             switch ($[0]) {
                                 case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
                                 case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))

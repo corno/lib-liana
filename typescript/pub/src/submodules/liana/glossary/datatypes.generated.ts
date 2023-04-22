@@ -1475,89 +1475,105 @@ export namespace N {
         
         export namespace N {
             
-            export namespace TU {
+            export namespace G {
                 
                 export namespace N {
                     
-                    export namespace array {
+                    export namespace step_$_$type {
                         
                         export namespace N {
                             
-                            export namespace G {
-                                
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace dictionary {
-                        
-                        export namespace N {
-                            
-                            export namespace G {
-                                
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace group {
-                        
-                        export namespace N {
-                            
-                            export namespace G {
+                            export namespace TU {
                                 
                                 export namespace N {
                                     
-                                    export namespace property {
+                                    export namespace array {
                                         
-                                        export namespace N {}
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
                                         
                                         export namespace T {}
                                     }
-                                }
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace optional {
-                        
-                        export namespace N {
-                            
-                            export namespace G {
-                                
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace tagged_$_$union {
-                        
-                        export namespace N {
-                            
-                            export namespace G {
-                                
-                                export namespace N {
                                     
-                                    export namespace option {
+                                    export namespace dictionary {
                                         
-                                        export namespace N {}
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace group {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace property {
+                                                        
+                                                        export namespace N {}
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace optional {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace tagged_$_$union {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace option {
+                                                        
+                                                        export namespace N {}
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
                                         
                                         export namespace T {}
                                     }
@@ -2800,154 +2816,191 @@ export namespace T {
     
     export namespace Type__Selection__Tail {
         
-        export namespace array {
+        export namespace step__type {
             
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {}
-            
-            export type content<GAnnotation> = null
-        }
-        
-        export type array<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }
-        
-        export namespace dictionary {
-            
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {}
-            
-            export type content<GAnnotation> = null
-        }
-        
-        export type dictionary<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }
-        
-        export namespace group {
-            
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {
+            export namespace array {
                 
-                export namespace property {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type property<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
             }
             
-            export type content<GAnnotation> = {
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            export type array<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
             }
-        }
-        
-        export type group<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-            }
-        }
-        
-        export namespace optional {
             
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {}
-            
-            export type content<GAnnotation> = null
-        }
-        
-        export type optional<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }
-        
-        export namespace tagged__union {
-            
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {
+            export namespace dictionary {
                 
-                export namespace option {
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
+            
+            export type dictionary<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
+            
+            export namespace group {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace property {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export type key<GAnnotation> = string
+                    }
                     
-                    export type key<GAnnotation> = string
+                    export type property<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
                 
-                export type option<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+                export type content<GAnnotation> = {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }
             
-            export type content<GAnnotation> = {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+            export type group<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+            }
+            
+            export namespace optional {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
+            
+            export type optional<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
+            
+            export namespace tagged__union {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {
+                    
+                    export namespace option {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export type key<GAnnotation> = string
+                    }
+                    
+                    export type option<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+                
+                export type content<GAnnotation> = {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+            }
+            
+            export type tagged__union<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
             }
         }
         
-        export type tagged__union<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+        export type step__type<GAnnotation> = 
+            | ['array', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['dictionary', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['group', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
-            }
-        }
+            }]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['tagged union', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
+                }
+            }]
     }
     
-    export type Type__Selection__Tail<GAnnotation> = 
-        | ['array', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }]
-        | ['dictionary', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }]
-        | ['group', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+    export type Type__Selection__Tail<GAnnotation> = {
+        readonly 'step type': 
+            | ['array', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['dictionary', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['group', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'property': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
-            }
-        }]
-        | ['optional', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': null
-        }]
-        | ['tagged union', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'option': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
+            }]
+            | ['optional', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
+            | ['tagged union', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': {
+                    readonly 'option': {
+                        readonly 'annotation': GAnnotation
+                        readonly 'key': string
+                    }
                 }
-            }
-        }]
+            }]
+    }
     
     export namespace Value__Selection {
         
