@@ -272,14 +272,11 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
 }
 
 export function result(
-    type: string,
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     selection: g_this.T.Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
     return {
-        'type': {
-            'annotation': pd.getLocationInfo(1),
-            'key': type,
-        },
+        'temp type': type,
         'selection': selection,
     }
 }
@@ -380,7 +377,27 @@ export function constrainedOption(constraints: RawDictionary<g_this.T.Type.tagge
     }
 }
 
-export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+export function tuResult(
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
+    options: RawDictionary<g_this.T.Type.tagged__union.result.O.options.content.D<pd.SourceLocation>>
+): g_this.T.Type.tagged__union.result.O<pd.SourceLocation> {
+    return {
+        'type': type,
+        'options': {
+            'constraints': {
+                'options': {
+                    'annotation': pd.getLocationInfo(1)
+                }
+            },
+            'content': pd.d(options),
+        },
+    }
+}
+
+export function taggedUnion(
+    options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>,
+    result?: g_this.T.Type.tagged__union.result.O<pd.SourceLocation>,
+): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
         if (firstKey === null) {
@@ -394,7 +411,7 @@ export function taggedUnion(options: RawDictionary<g_this.T.Type.tagged__union.o
     return ['tagged union', {
         'options': pd.d(options),
         'default': r_imp(firstKey, 1),
-        'result': [false]
+        'result': result === undefined ? [false]: [true, result]
     }]
 }
 

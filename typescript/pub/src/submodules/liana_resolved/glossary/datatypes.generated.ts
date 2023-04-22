@@ -1292,7 +1292,7 @@ export namespace N {
                                                                         export namespace T {}
                                                                     }
                                                                     
-                                                                    export namespace _$ltype {
+                                                                    export namespace temp_$_$type {
                                                                         
                                                                         export namespace N {}
                                                                         
@@ -2444,7 +2444,7 @@ export namespace T {
                         readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
                     }
                     
-                    export type _ltype<GAnnotation> = T.Type__Selection<GAnnotation>
+                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                 }
                 
                 export type O<GAnnotation> = {
@@ -2457,7 +2457,7 @@ export namespace T {
                         }
                         readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
                     }
-                    readonly 'type': T.Type__Selection<GAnnotation>
+                    readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
             }
             
@@ -2471,7 +2471,7 @@ export namespace T {
                     }
                     readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 }
-                readonly 'type': T.Type__Selection<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
         
@@ -2504,7 +2504,7 @@ export namespace T {
                     }
                     readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 }
-                readonly 'type': T.Type__Selection<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
         
@@ -2671,7 +2671,7 @@ export namespace T {
                     }
                     readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 }
-                readonly 'type': T.Type__Selection<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }]
         | ['terminal', {
@@ -2804,44 +2804,18 @@ export namespace T {
                         
                         export type selection<GAnnotation> = T.Value__Selection<GAnnotation>
                         
-                        export namespace _ltype {
-                            
-                            export type annotation<GAnnotation> = GAnnotation
-                            
-                            export namespace constraint {
-                                
-                                export type O<GAnnotation> = T.Type__Library.global__types.D<GAnnotation>
-                            }
-                            
-                            export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                            
-                            export type key<GAnnotation> = string
-                        }
-                        
-                        export type _ltype<GAnnotation> = {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                            readonly 'key': string
-                        }
+                        export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                     }
                     
                     export type O<GAnnotation> = {
                         readonly 'selection': T.Value__Selection<GAnnotation>
-                        readonly 'type': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                            readonly 'key': string
-                        }
+                        readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                     }
                 }
                 
                 export type result<GAnnotation> = [ false ] | [ true, {
                     readonly 'selection': T.Value__Selection<GAnnotation>
-                    readonly 'type': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                        readonly 'key': string
-                    }
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 
                 export type _ltype<GAnnotation> = T.Type<GAnnotation>
@@ -2853,11 +2827,7 @@ export namespace T {
                 readonly 'parameters': T.Parameters<GAnnotation>
                 readonly 'result': [ false ] | [ true, {
                     readonly 'selection': T.Value__Selection<GAnnotation>
-                    readonly 'type': {
-                        readonly 'annotation': GAnnotation
-                        readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                        readonly 'key': string
-                    }
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
                 readonly 'variables': T.Variables<GAnnotation>
@@ -2868,11 +2838,7 @@ export namespace T {
             readonly 'parameters': T.Parameters<GAnnotation>
             readonly 'result': [ false ] | [ true, {
                 readonly 'selection': T.Value__Selection<GAnnotation>
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
-                }
+                readonly 'temp type': T.Global__Type__Selection<GAnnotation>
             }]
             readonly 'type': T.Type<GAnnotation>
             readonly 'variables': T.Variables<GAnnotation>
@@ -2888,11 +2854,7 @@ export namespace T {
             readonly 'parameters': T.Parameters<GAnnotation>
             readonly 'result': [ false ] | [ true, {
                 readonly 'selection': T.Value__Selection<GAnnotation>
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
-                }
+                readonly 'temp type': T.Global__Type__Selection<GAnnotation>
             }]
             readonly 'type': T.Type<GAnnotation>
             readonly 'variables': T.Variables<GAnnotation>
