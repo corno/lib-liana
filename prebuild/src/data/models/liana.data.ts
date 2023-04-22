@@ -16,7 +16,7 @@ import {
     optionConstraint,
     optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
     resolvedValueReference, siblingReference,
-    taggedUnion, terminal, tu, typeSelection, valSel, sgrp, dict, tuResult, globalTypeSelection, result, ref
+    taggedUnion, terminal, tu, typeSelection, valSel, sgrp, dict, tuResult, globalTypeSelection, ref, staggedunion
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -153,7 +153,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "library": prop(resolvedValueReference(valSel("imports"), typeSelection("Imports", []))),
                     })),
                 }, tuResult(globalTypeSelection("Type Library"), {}))),
-                "type": prop(resolvedValueReference(valSel("context", result(sgrp("global types"))), typeSelection("Type Library", [grp("global types")]))),
+                "type": prop(resolvedValueReference(valSel("context", staggedunion(sgrp("global types"))), typeSelection("Type Library", [grp("global types")]))),
                 "arguments": prop(constrainedDictionary({
                     "parameter": dictConstraint(valSel("type", ref(sgrp("parameters"))), typeSelection("Parameters", []))
                 }, group({
@@ -193,7 +193,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
             }))),
             "tail": prop(optional(component("Value Selection Tail", {
-                "type": aResolvedValue(valSel("step type", result()))
+                "type": aResolvedValue(valSel("step type", staggedunion()))
             }))),
         })),
         "Optional Value Selection Tail": globalType({
