@@ -214,34 +214,11 @@ function map_Boolean__Expression__Or__Selection<Annotation>(
                 /*$v_global__types: */pl.cc($v_global__types, ($) => $),
                 /*$v_stack: */pl.cc($v_stack, ($) => $),
             )])
-            case 'selection': return pl.ss($, ($) => ['selection', pl.cc($, ($) => {
-                const $v_out: g_out_typesystem.T.Type._lboolean<Annotation> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = pl.cc($v_TBD, ($) => $)
-                    return pl.optional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'boolean') {
-                                return [true, $[1]]
-                            } else {
-                                $se.error("option constraint")
-                                return [false]
-                            }
-                        },
-                        () => [false],
-                    )
-                })
-                return {
-                    'annotation': $.annotation,
-                    'constraints': {
-                        'out': $v_out,
-                    },
-                    'content': pl.cc($.content, ($) => map_Data__Path<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    )),
-                }
-            })])
+            case 'selection': return pl.ss($, ($) => ['selection', map_Data__Path<Annotation>(
+                $,
+                /*$v_global__types: */pl.cc($v_global__types, ($) => $),
+                /*$v_stack: */pl.cc($v_stack, ($) => $),
+            )])
             default: return pl.au($[0])
         }
     })
@@ -273,44 +250,54 @@ function map_Data__Path<Annotation>(
 }
 function map_Data__Path__Tail<Annotation>(
     $: g_in.T.Data__Path__Tail<Annotation>,
+    $v_current: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>>,
     $v_global__types: pt.OptionalValue<g_out_typesystem.T.Global__Types<Annotation>>,
     $v_stack: pt.OptionalValue<g_out.T.Variables<Annotation>>,
 ): g_out.T.Data__Path__Tail<Annotation> {
     return pl.optional(
         $,
-        ($): g_out.T.Data__Path__Tail<Annotation> => [true, pl.cc($, ($): g_out.T.Data__Path__Tail.O<Annotation> => {
-            switch ($[0]) {
-                case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
-                    const $v__lfunction: g_out.T.Data__Path__Tail.O.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    ))
-                    const $v_type__arguments: g_out.T.Data__Path__Tail.O.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type__Arguments<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v__ltype: */pl.cc($v__lfunction, ($) => $),
-                    ))
-                    const $v_arguments: g_out.T.Data__Path__Tail.O.call.arguments<Annotation> = pl.cc($['arguments'], ($) => map_Data__Path<Annotation>(
-                        $,
-                        /*$v_global__types: */pl.cc($v_global__types, ($) => $),
-                        /*$v_stack: */pl.cc($v_stack, ($) => $),
-                    ))
-                    return {
-                        'arguments': $v_arguments,
-                        'function': $v__lfunction,
-                        'type arguments': $v_type__arguments,
-                    }
-                })])
-                case 'property': return pl.ss($, ($) => ['property', pl.cc($, ($) => {
-                    const constraint: pt.OptionalValue<g_out_typesystem.T.Type.group.properties.D<Annotation>> = [false]
-                    return {
-                        'annotation': $.annotation,
-                        'constraint': constraint,
-                        'key': $.key,
-                    }
-                })])
-                default: return pl.au($[0])
+        ($): g_out.T.Data__Path__Tail<Annotation> => [true, pl.cc($, ($) => {
+            const $v_step: g_out.T.Data__Path__Tail.O.step<Annotation> = pl.cc($['step'], ($) => pl.cc($, ($): g_out.T.Data__Path__Tail.O.step<Annotation> => {
+                switch ($[0]) {
+                    case 'call': return pl.ss($, ($) => ['call', pl.cc($, ($) => {
+                        const $v__lfunction: g_out.T.Data__Path__Tail.O.step.call._lfunction<Annotation> = pl.cc($['function'], ($) => map_Data__Path<Annotation>(
+                            $,
+                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
+                            /*$v_stack: */pl.cc($v_stack, ($) => $),
+                        ))
+                        const $v_type__arguments: g_out.T.Data__Path__Tail.O.step.call.type__arguments<Annotation> = pl.cc($['type arguments'], ($) => map_Type__Arguments<Annotation>(
+                            $,
+                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
+                            /*$v__ltype: */pl.cc($v__lfunction, ($) => $),
+                        ))
+                        const $v_arguments: g_out.T.Data__Path__Tail.O.step.call.arguments<Annotation> = pl.cc($['arguments'], ($) => map_Data__Path<Annotation>(
+                            $,
+                            /*$v_global__types: */pl.cc($v_global__types, ($) => $),
+                            /*$v_stack: */pl.cc($v_stack, ($) => $),
+                        ))
+                        return {
+                            'arguments': $v_arguments,
+                            'function': $v__lfunction,
+                            'type arguments': $v_type__arguments,
+                        }
+                    })])
+                    case 'property': return pl.ss($, ($) => ['property', pl.cc($, ($) => {
+                        const constraint: pt.OptionalValue<g_out_typesystem.T.Type.group.properties.D<Annotation>> = [false]
+                        return {
+                            'annotation': $.annotation,
+                            'constraint': constraint,
+                            'key': $.key,
+                        }
+                    })])
+                    default: return pl.au($[0])
+                }
+            }))
+            const $v_tail: g_out.T.Data__Path__Tail.O.tail<Annotation> = pl.cc($['tail'], ($) => map_Data__Path__Tail<Annotation>(
+                $,
+            ))
+            return {
+                'step': $v_step,
+                'tail': $v_tail,
             }
         })],
         () => [false],

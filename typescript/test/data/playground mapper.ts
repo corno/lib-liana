@@ -64,16 +64,19 @@ function map_Boolean__Expression__Or__Selection($: g_in.T.Boolean__Expression__O
 function map_Data__Path__Tail($: g_in.T.Data__Path__Tail): g_out.T.Element {
     return pl.optional(
         $,
-        ($) => [true, pl.cc($, ($) => {
-            switch ($[0]) {
-                case 'call': return ['call', ({
-                    'function': pl.cc($, ($) => map_Data__Path($)),
-                    'type arguments': pl.cc($, ($) => map_Type__Arguments($)),
-                    'arguments': pl.cc($, ($) => map_Data__Path($)),
-                })]
-                case 'property': return ['property', $]
-                default: return pl.au($[1])
-            }
+        ($) => [true, ({
+            'step': pl.cc($, ($) => pl.cc($, ($) => {
+                switch ($[0]) {
+                    case 'call': return ['call', ({
+                        'function': pl.cc($, ($) => map_Data__Path($)),
+                        'type arguments': pl.cc($, ($) => map_Type__Arguments($)),
+                        'arguments': pl.cc($, ($) => map_Data__Path($)),
+                    })]
+                    case 'property': return ['property', $]
+                    default: return pl.au($[1])
+                }
+            })),
+            'tail': pl.cc($, ($) => map_Data__Path__Tail($)),
         })],
         () => [false],
     )

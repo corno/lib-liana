@@ -11,7 +11,7 @@ import {
     globalType, globalTypeSelection, group,
     grp,
     option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
-    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel,
+    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, result, optionalResult, externalGlobalTypeSelection, globalTypeResult, vgrp,
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -140,33 +140,38 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "global types": aResolvedValue(valSel("global types")),
                 "stack": aResolvedValue(valSel("stack"))
             })),
-            "selection": constrainedOption({
-                "out": optionConstraint(valSel("TBD"), "boolean", externalTypeSelection("typesystem", "Type", []))
-            }, component("Data Path", {
+            "selection": option(component("Data Path", {
                 "global types": aResolvedValue(valSel("global types")),
-                "stack": aResolvedValue(valSel("stack"))
+                "stack": aResolvedValue(valSel("stack"), /*constrain to boolean*/)
             })),
         })),
         "Data Path Tail": globalType({
+            "current": pExternalResolvedValue("typesystem", "Type", false),
             "stack": pResolvedValue("Variables", false),
             "global types": pExternalResolvedValue("typesystem", "Global Types", false),
-        }, optional(taggedUnion({
-            "call": option(group({
-                "function": prop(component("Data Path", {
-                    "global types": aResolvedValue(valSel("global types")),
-                    "stack": aResolvedValue(valSel("stack"))
-                })), /*constraint tagged union: type === function*/
-                "type arguments": prop(component("Type Arguments", {
-                    "type": aResolvedValue(valSel("function" /*component constraint*/)),
-                    "global types": aResolvedValue(valSel("global types")),
+        }, optional(
+            group({
+                "step": prop(taggedUnion({
+                    "call": option(group({
+                        "function": prop(component("Data Path", {
+                            "global types": aResolvedValue(valSel("global types")),
+                            "stack": aResolvedValue(valSel("stack"))
+                        })), /*constraint tagged union: type === function*/
+                        "type arguments": prop(component("Type Arguments", {
+                            "type": aResolvedValue(valSel("function" /*component constraint*/)),
+                            "global types": aResolvedValue(valSel("global types")),
+                        })),
+                        "arguments": prop(component("Data Path", {
+                            "stack": aResolvedValue(valSel("stack")),
+                            "global types": aResolvedValue(valSel("global types"))
+                        })),
+                    })),
+                    "property": option(resolvedValueReference(valSel("current", vgrp("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
                 })),
-                "arguments": prop(component("Data Path", {
-                    "stack": aResolvedValue(valSel("stack")),
-                    "global types": aResolvedValue(valSel("global types"))
-                })),
-            })),
-            "property": option(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
-        })), /*result("XXX"),*/),
+                "tail": prop(component("Data Path Tail", {}))
+            }),
+            optionalResult(externalGlobalTypeSelection("typesystem", "Type"), result(), valSel("current")),
+        ), globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), result())),
         "Data Path": globalType({
             "stack": pResolvedValue("Variables", false),
             "global types": pExternalResolvedValue("typesystem", "Global Types", false),

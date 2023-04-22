@@ -21,11 +21,8 @@ import * as a_resolve from "res-pareto-resolve"
 
 const d = pm.wrapRawDictionary
 
-import { $ as d_liana_dev } from "../../../data/liana_dev.data"
 import { $ as d_playground } from "../../../data/playground.data"
-import { $ as d_html } from "../../../data/html.data"
 import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
-import { $ as d_accountingModel } from "../../../data/liana2pareto/mappedModel/accounting.data"
 
 import { A } from "../api.generated"
 
@@ -101,21 +98,6 @@ export const $$: A.getTestSet = ($) => {
 
     a_fp.$b.createFile()(
         ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "html visitor.ts"]), ($i) => {
-                g_2algorithm.$a.create121Mapper({
-                    'createIdentifier': a_ts.$r.createIdentifier(),
-                })(d_html, $i)
-            })
-        },
-        {
-            'logError': () => {
-
-            }
-        }
-    )
-    
-    a_fp.$b.createFile()(
-        ($i) => {
             $i(pm.wrapRawArray([$.testDirectory, "playground mapper.ts"]), ($i) => {
                 g_2algorithm.$a.create121Mapper({
                     'createIdentifier': a_ts.$r.createIdentifier(),
@@ -154,29 +136,7 @@ export const $$: A.getTestSet = ($) => {
             }
         }
     )
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "liana dev resolver.ts"]), ($i) => {
-                g_2algorithm.$a.createResolverSkeleton({
-                    'createIdentifier': a_ts.$r.createIdentifier(),
-                    'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
-                        'compare': a_coll.$r.localeIsABeforeB(),
-                    }),
-                    'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
-                        'compare': a_coll.$r.localeIsABeforeB(),
-                    }),
-                    'isEmpty': a_dictionary.$r.isEmpty(),
-                    'sortTopologically': a_resolve.$r.sortTopologically(),
-                    'filter': a_dictionary.$r.filter(),
-                })(d_liana_dev, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
+
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         // const res = g_resolve.$a.resolve<Annotation>({
@@ -208,7 +168,6 @@ export const $$: A.getTestSet = ($) => {
         // }
     }
     // x(lianaModel)
-    x(d_accountingModel)
     x(d_simpleModel)
 
     // const mappedGlossary = gliana2glossary.$a.({
