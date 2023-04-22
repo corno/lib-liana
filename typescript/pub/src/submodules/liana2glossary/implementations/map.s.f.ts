@@ -359,18 +359,20 @@ export const $$: A.map = ($d) => {
                                 'parameters': pm.wrapRawDictionary({}),
                                 'type': pl.optional(
                                     dm['constraints mapping'].constraints,
-                                    ($) => pl.optional(
-                                        result,
-                                        ($) => ['group', pm.wrapRawDictionary({
-                                            "content": {
-                                                'type': mapTypeToType(type, dm)
-                                            },
-                                            "result": {
-                                                'type': ['boolean', null] //FIXME
-                                            }
-                                        })],
-                                        () => mapTypeToType(type, dm),
-                                    ),
+                                    ($constraint) => {
+                                        return pl.optional(
+                                            result,
+                                            ($) => ['group', pm.wrapRawDictionary({
+                                                "content": {
+                                                    'type': mapTypeToType(type, dm)
+                                                },
+                                                "result": {
+                                                    'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
+                                                }
+                                            })],
+                                            () => mapTypeToType(type, dm),
+                                        )
+                                    },
                                     () => mapTypeToType(type, dm),
                                 ),
                             }
