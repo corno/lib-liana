@@ -22,6 +22,36 @@ export const $$: A.map = ($d) => {
                 }]
                 : [false]
         }
+        
+        function createConstraintType(
+            $: g_liana2glossary.T.MapData.settings.datamodel.O.constraints__mapping.constraints.O<Annotation>,
+            $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
+        ): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+            switch ($[0]) {
+                case 'optional': return pl.ss($, ($) => ['optional', ['reference', ['type', $cb()]]])
+                case 'required': return pl.ss($, ($) => ['reference', ['type', $cb()]])
+                default: return pl.au($[0])
+            }
+        }
+        function mapGlobalTypeSelection(
+            $: g_liana.T.Global__Type__Selection<Annotation>,
+        ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
+            return {
+                'context': pl.optional(
+                    $.import,
+                    ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
+                        'glossary': {
+                            'annotation': ['source', $.annotation],
+                            'key': $.key
+                        }
+                    }],
+                    () => ['local', null],
+                ),
+                'arguments': pm.wrapRawDictionary({}),
+                'type': $.type.key,
+                'tail': pm.wrapRawArray([]),
+            }
+        }
         function mapTypeSelection(
             $: g_liana.T.Type__Selection<Annotation>,
             getLastStep: () => string
@@ -89,72 +119,34 @@ export const $$: A.map = ($d) => {
                 'types': pl.cc($, ($) => pm.wrapRawDictionary({})),
             }
         }
-        // function ref(type: string): g_glossary.T.Type {
-        //     return ['reference', {
-        //         'context': ['local', null],
-        //         'type': {
-        //             'annotation': "SSDF",
-        //             'name': type
-        //         },
-        //     }]
-        // }
-
-        // function generateBlock($: g_liana.T.LocalType): g_algorithm.TFunctionBlock {
-        //     return {
-        //         'returnExpression': generateExpression($)
-        //     }
-        // }
-        // function generateExpression($: g_liana.T.LocalType): g_algorithm.TExpression {
-        //     switch ($[0]) {
-        //         case 'array':
-        //             return pl.ss($, ($) => {
-        //                 return ['mapArray', {
-        //                     'block': generateBlock($.type),
-        //                 }]
-        //             })
-        //         case 'boolean':
-        //             return pl.ss($, ($) => {
-        //                 return ['implementMe', "liana2pareto"]
-        //             })
-        //         case 'component':
-        //             return pl.ss($, ($) => {
-        //                 return ['call', {
-        //                     'function': $.type.name
-        //                 }]
-        //             })
-        //         case 'dictionary':
-        //             return pl.ss($, ($) => {
-        //                 return ['mapDictionary', {
-        //                     'block': generateBlock($.type),
-        //                 }]
-        //             })
-        //         case 'group':
-        //             return pl.ss($, ($) => {
-        //                 return ['groupInitializer', {
-        //                     'properties': $.properties.dictionary.map(($) => {
-        //                         return generateExpression($.type)
-        //                     })
-        //                 }]
-        //             })
-        //         case 'string':
-        //             return pl.ss($, ($) => {
-        //                 return ['implementMe', "liana2pareto"]
-        //             })
-        //         case 'tagged union':
-        //             return pl.ss($, ($) => {
-        //                 return ['switch', {
-        //                     'cases': $.options.dictionary.map(($) => {
-        //                         return generateBlock($.type)
-        //                     })
-        //                 }]
-        //             })
-        //         default: return pl.au($[0])
-        //     }
-        // }
         function mapTypeToType($: g_liana.T.Type<Annotation>, $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             switch ($[0]) {
                 case 'array': return pl.ss($, ($) => ['array', mapTypeToType($.type, $x)])
-                case 'optional': return pl.ss($, ($) => ['optional', mapTypeToType($.type, $x)])
+                case 'optional': return pl.ss($, ($) => {
+                    function doOpt(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+                        return ['optional', mapTypeToType($.type, $x)]
+                    }
+                    const result = $.result
+                    return pl.optional(
+                        $x['constraints mapping'].constraints,
+                        ($) => {
+                            const $constraint = $
+                            return pl.optional(
+                                result,
+                                ($) => ['group', pm.wrapRawDictionary({
+                                    "content": {
+                                        'type': doOpt()
+                                    },
+                                    "result": {
+                                        'type': createConstraintType($constraint, () => mapGlobalTypeSelection($.type))
+                                    }
+                                })],
+                                () => doOpt(),
+                            )
+                        },
+                        () => doOpt(),
+                    )
+                })
                 case 'component': return pl.ss($, ($) => ['reference', ['type', {
                     'context': pl.cc($, ($) => {
                         switch ($.context[0]) {
@@ -313,20 +305,24 @@ export const $$: A.map = ($d) => {
                         }))]
 
                     }
+                    const result = $.result
                     return pl.optional(
                         $x['constraints mapping'].constraints,
-                        () => pl.optional(
-                            $.result,
-                            ($) => ['group', pm.wrapRawDictionary({
-                                "content": {
-                                    'type': doTU()
-                                },
-                                "result": {
-                                    'type': ['boolean', null]
-                                }
-                            })],
-                            () => doTU(),
-                        ),
+                        ($) => {
+                            const $constraint = $
+                            return pl.optional(
+                                result,
+                                ($) => ['group', pm.wrapRawDictionary({
+                                    "content": {
+                                        'type': doTU()
+                                    },
+                                    "result": {
+                                        'type': createConstraintType($constraint, () => mapGlobalTypeSelection($.type))
+                                    }
+                                })],
+                                () => doTU(),
+                            )
+                        },
                         () => doTU(),
                     )
                 })
