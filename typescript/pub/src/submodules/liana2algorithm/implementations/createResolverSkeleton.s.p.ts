@@ -86,7 +86,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     pl.ss($, ($) => {
                                     })
                                     break
-                                case 'tagged union':
+                                case 'result':
                                     pl.ss($, ($) => {
         
                                     })

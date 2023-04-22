@@ -46,10 +46,25 @@ export function array(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.
     }]
 }
 
-export function optional(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
+export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this.T.Type.optional.result.O<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return ['optional', {
-        'type': type
+        'type': type,
+        'result': result === undefined ? [false] : [true, result]
     }]
+}
+
+export function optionalResult(
+
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
+    set: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
+    notSet: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
+
+ ): g_this.T.Type.optional.result.O<pd.SourceLocation> {
+    return {
+        'type': type,
+        'not set': notSet,
+        'set': set,
+    }
 }
 
 export function pAllSiblings(type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
@@ -96,6 +111,15 @@ export function pNonCyclicSiblings(
             'type': type
         }]
     }
+}
+
+export function result(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['result', null],
+        'tail': tail === undefined ? [false] : tail
+    }]
 }
 
 export function vgrp(
@@ -271,9 +295,9 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
     }]
 }
 
-export function result(
+export function globalTypeResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    selection: g_this.T.Value__Selection<pd.SourceLocation>,
+    selection: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
     return {
         'temp type': type,
@@ -383,7 +407,7 @@ export function tuResult(
 ): g_this.T.Type.tagged__union.result.O<pd.SourceLocation> {
     return {
         'type': type,
-        'options':pd.d(options),
+        'options': pd.d(options),
     }
 }
 
@@ -404,7 +428,7 @@ export function taggedUnion(
     return ['tagged union', {
         'options': pd.d(options),
         'default': r_imp(firstKey, 1),
-        'result': result === undefined ? [false]: [true, result]
+        'result': result === undefined ? [false] : [true, result]
     }]
 }
 

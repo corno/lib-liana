@@ -33,7 +33,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "component": option(group({
                     "type name": prop(terminal("identifier"))//FIXME derive this value
                 })),
-                "tagged union": option(group({ //must have a result
+                "result": option(group({
+                    //can be: tagged union, optional, component
                 })),
                 "group": option(group({
                     "property": prop(resolvedValueReference(valSel(""), typeSelection("Type", [tu("group"), grp("properties")]))),
@@ -120,6 +121,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "optional": option(group({
                 "type": prop(component("Type", {})),
+                "result": prop(optional(group({
+                    "type": prop(component("Global Type Selection", {
+                        "global types": aContainingDictionary(parameter("global types")),
+                    })),
+                    "set": prop(component("Value Selection Tail", {})),
+                    "not set": prop(component("Value Selection Tail", {})),
+                })))
             })),
             "tagged union": option(group({
                 "options": prop(dictionary(group({
@@ -143,7 +151,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     // "options": prop(constrainedDictionary({
                     //     "options": dictConstraint(valSel("options"), typeSelection("Type", [tu("tagged union"), grp("options")])),
                     // }, component("Value Selection", {}))),
-                    "options": prop(dictionary(component("Value Selection", {}))),
+                    "options": prop(dictionary(component("Value Selection Tail", {}))),
                 })))
             })),
             "group": option(group({
@@ -277,7 +285,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })),
                 "result": prop(optional(group({
                     "temp type": prop(component("Global Type Selection", {})),
-                    "selection": prop(component("Value Selection", {})),
+                    "selection": prop(component("Value Selection Tail", {})),
                 })))
             }))),
         })),

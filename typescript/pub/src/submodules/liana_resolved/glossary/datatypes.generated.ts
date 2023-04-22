@@ -794,6 +794,51 @@ export namespace N {
                                 
                                 export namespace N {
                                     
+                                    export namespace result {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace O {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace G {
+                                                        
+                                                        export namespace N {
+                                                            
+                                                            export namespace not_$_$set {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                            
+                                                            export namespace _$lset {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                            
+                                                            export namespace _$ltype {
+                                                                
+                                                                export namespace N {}
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                        }
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace _$ltype {
                                         
                                         export namespace N {}
@@ -1608,7 +1653,7 @@ export namespace N {
                                                 export namespace T {}
                                             }
                                             
-                                            export namespace tagged_$_$union {
+                                            export namespace result {
                                                 
                                                 export namespace N {
                                                     
@@ -2276,10 +2321,39 @@ export namespace T {
         
         export namespace optional {
             
+            export namespace result {
+                
+                export namespace O {
+                    
+                    export type not__set<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
+                    
+                    export type _lset<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
+                    
+                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                }
+                
+                export type O<GAnnotation> = {
+                    readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                    readonly 'set': T.Value__Selection__Tail<GAnnotation>
+                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                }
+            }
+            
+            export type result<GAnnotation> = [ false ] | [ true, {
+                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }]
+            
             export type _ltype<GAnnotation> = T.Type<GAnnotation>
         }
         
         export type optional<GAnnotation> = {
+            readonly 'result': [ false ] | [ true, {
+                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }]
             readonly 'type': T.Type<GAnnotation>
         }
         
@@ -2399,22 +2473,22 @@ export namespace T {
                     
                     export namespace options {
                         
-                        export type D<GAnnotation> = T.Value__Selection<GAnnotation>
+                        export type D<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
                     }
                     
-                    export type options<GAnnotation> = pt.Dictionary<T.Value__Selection<GAnnotation>>
+                    export type options<GAnnotation> = pt.Dictionary<T.Value__Selection__Tail<GAnnotation>>
                     
                     export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                 }
                 
                 export type O<GAnnotation> = {
-                    readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
+                    readonly 'options': pt.Dictionary<T.Value__Selection__Tail<GAnnotation>>
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
             }
             
             export type result<GAnnotation> = [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
+                readonly 'options': pt.Dictionary<T.Value__Selection__Tail<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
@@ -2439,7 +2513,7 @@ export namespace T {
                 readonly 'variables': T.Variables<GAnnotation>
             }>
             readonly 'result': [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
+                readonly 'options': pt.Dictionary<T.Value__Selection__Tail<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
@@ -2576,6 +2650,11 @@ export namespace T {
             }>
         }]
         | ['optional', {
+            readonly 'result': [ false ] | [ true, {
+                readonly 'not set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'set': T.Value__Selection__Tail<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }]
             readonly 'type': T.Type<GAnnotation>
         }]
         | ['tagged union', {
@@ -2598,7 +2677,7 @@ export namespace T {
                 readonly 'variables': T.Variables<GAnnotation>
             }>
             readonly 'result': [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
+                readonly 'options': pt.Dictionary<T.Value__Selection__Tail<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }]
@@ -2730,19 +2809,19 @@ export namespace T {
                     
                     export namespace O {
                         
-                        export type selection<GAnnotation> = T.Value__Selection<GAnnotation>
+                        export type selection<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
                         
                         export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                     }
                     
                     export type O<GAnnotation> = {
-                        readonly 'selection': T.Value__Selection<GAnnotation>
+                        readonly 'selection': T.Value__Selection__Tail<GAnnotation>
                         readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                     }
                 }
                 
                 export type result<GAnnotation> = [ false ] | [ true, {
-                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'selection': T.Value__Selection__Tail<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 
@@ -2754,7 +2833,7 @@ export namespace T {
             export type D<GAnnotation> = {
                 readonly 'parameters': T.Parameters<GAnnotation>
                 readonly 'result': [ false ] | [ true, {
-                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'selection': T.Value__Selection__Tail<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -2765,7 +2844,7 @@ export namespace T {
         export type global__types<GAnnotation> = pt.Dictionary<{
             readonly 'parameters': T.Parameters<GAnnotation>
             readonly 'result': [ false ] | [ true, {
-                readonly 'selection': T.Value__Selection<GAnnotation>
+                readonly 'selection': T.Value__Selection__Tail<GAnnotation>
                 readonly 'temp type': T.Global__Type__Selection<GAnnotation>
             }]
             readonly 'type': T.Type<GAnnotation>
@@ -2781,7 +2860,7 @@ export namespace T {
         readonly 'global types': pt.Dictionary<{
             readonly 'parameters': T.Parameters<GAnnotation>
             readonly 'result': [ false ] | [ true, {
-                readonly 'selection': T.Value__Selection<GAnnotation>
+                readonly 'selection': T.Value__Selection__Tail<GAnnotation>
                 readonly 'temp type': T.Global__Type__Selection<GAnnotation>
             }]
             readonly 'type': T.Type<GAnnotation>
@@ -3259,9 +3338,9 @@ export namespace T {
                 
                 export type reference<GAnnotation> = null
                 
-                export namespace tagged__union {}
+                export namespace result {}
                 
-                export type tagged__union<GAnnotation> = null
+                export type result<GAnnotation> = null
             }
             
             export type step__type<GAnnotation> = 
@@ -3276,7 +3355,7 @@ export namespace T {
                     }
                 }]
                 | ['reference', null]
-                | ['tagged union', null]
+                | ['result', null]
             
             export type tail<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
         }
@@ -3294,7 +3373,7 @@ export namespace T {
                     }
                 }]
                 | ['reference', null]
-                | ['tagged union', null]
+                | ['result', null]
             readonly 'tail': T.Value__Selection__Tail<GAnnotation>
         }
     }
@@ -3312,7 +3391,7 @@ export namespace T {
                 }
             }]
             | ['reference', null]
-            | ['tagged union', null]
+            | ['result', null]
         readonly 'tail': T.Value__Selection__Tail<GAnnotation>
     }]
     
