@@ -62,6 +62,79 @@ export const $$: A.createResolverSkeleton = ($d) => {
         pl.optional(
             $,
             ($) => {
+                const tail = $.tail
+                pl.cc($['step type'], ($) => {
+                    switch ($[0]) {
+                        case 'component':
+                            pl.ss($, ($) => {
+                                $i.snippet(`.???`)
+                            })
+                            break
+                        case 'group':
+                            pl.ss($, ($) => {
+                                $i.snippet(`pl.cc($['${$.property.key}'], ($) => `)
+                                doValueSelectionTail(tail, $i)
+                                $i.snippet(`)`)
+                            })
+                            break
+                        case 'reference':
+                            pl.ss($, ($) => {
+                                $i.snippet(`pl.optional(`)
+                                $i.indent(($i) => {
+                                    $i.nestedLine(($i) => {
+                                        $i.snippet(`$.constraint,`)
+                                    })
+                                    $i.nestedLine(($i) => {
+                                        $i.snippet(`($) => `)
+                                        doValueSelectionTail(tail, $i)
+                                        $i.snippet(`,`)
+                                    })
+                                    $i.nestedLine(($i) => {
+                                        $i.snippet(`() => [false],`)
+                                    })
+                                })
+                                $i.snippet(`)`)
+                            })
+                            break
+                        case 'result':
+                            pl.ss($, ($) => {
+                                $i.snippet(`pl.cc($.result, ($) => `)
+                                doValueSelectionTail(tail, $i)
+                                $i.snippet(`)`)
+                            })
+                            break
+                        default: pl.au($[0])
+                    }
+                })
+                $i.snippet(`pl.optional(`)
+                $i.indent(($i) => {
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`$,`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`($) => `)
+                        $i.snippet(`[true, $]/*FIXME*/`)
+                        doValueSelectionTail($.tail, $i)
+                        $i.snippet(`,`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`() => [false],`)
+                    })
+                })
+                $i.snippet(`)`)
+            },
+            () => {
+                $i.snippet(`$`)
+            }
+        )
+    }
+    function doValueSelectionTailForOptional<Annotation>(
+        $: g_liana.T.Value__Selection__Tail<Annotation>,
+        $i: g_fp.SYNC.I.Line,
+    ) {
+        pl.optional(
+            $,
+            ($) => {
                 $i.snippet(`pl.optional(`)
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
@@ -74,12 +147,12 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             switch ($[0]) {
                                 case 'component':
                                     pl.ss($, ($) => {
-        
+
                                     })
                                     break
                                 case 'group':
                                     pl.ss($, ($) => {
-        
+
                                     })
                                     break
                                 case 'reference':
@@ -88,7 +161,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     break
                                 case 'result':
                                     pl.ss($, ($) => {
-        
+
                                     })
                                     break
                                 default: pl.au($[0])
@@ -112,7 +185,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
         $: g_liana.T.Value__Selection<Annotation>,
         $i: g_fp.SYNC.I.Line,
     ) {
-        
+
         // $i.snippet(`pl.optional(`)
         // $i.indent(($i) => {
         //     $i.nestedLine(($i) => {
@@ -129,7 +202,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
         // })
         // $i.snippet(`)`)
 
-        
+
         $i.snippet(`pl.cc($v_${$d.createIdentifier($.start.key)}, ($) => `)
         doValueSelectionTail($.tail, $i)
         $i.snippet(`)`)

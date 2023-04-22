@@ -11,7 +11,7 @@ import {
     globalType, globalTypeSelection, group,
     grp,
     option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
-    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, result, optionalResult, externalGlobalTypeSelection, globalTypeResult, vgrp,
+    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, result, optionalResult, externalGlobalTypeSelection, globalTypeResult, sgrp,
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -166,7 +166,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                             "global types": aResolvedValue(valSel("global types"))
                         })),
                     })),
-                    "property": option(resolvedValueReference(valSel("current", vgrp("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
+                    "property": option(resolvedValueReference(valSel("current", sgrp("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
                 })),
                 "tail": prop(component("Data Path Tail", {}))
             }),

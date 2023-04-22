@@ -722,11 +722,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                     "step type": {
                         'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                            "component": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                "type name": {
-                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
-                                },
-                            })],
+                            "component": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
                             "group": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                 "property": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
@@ -1774,12 +1770,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                         'namespaces': d({
                                                             "G": {
                                                                 'types': d({}),
-                                                                'namespaces': d({
-                                                                    "type name": {
-                                                                        'types': d({}),
-                                                                        'namespaces': d({}),
-                                                                    },
-                                                                }),
+                                                                'namespaces': d({}),
                                                             },
                                                         }),
                                                     },

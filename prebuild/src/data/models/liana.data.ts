@@ -31,7 +31,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "step type": prop(taggedUnion({
                 "reference": option(group({})),
                 "component": option(group({
-                    "type name": prop(terminal("identifier"))//FIXME derive this value
+                    //"type name": prop(terminal("identifier"))//FIXME derive this value
                 })),
                 "result": option(group({
                     //can be: tagged union, optional, component

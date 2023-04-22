@@ -1598,15 +1598,7 @@ export namespace N {
                                                     
                                                     export namespace G {
                                                         
-                                                        export namespace N {
-                                                            
-                                                            export namespace type_$_$name {
-                                                                
-                                                                export namespace N {}
-                                                                
-                                                                export namespace T {}
-                                                            }
-                                                        }
+                                                        export namespace N {}
                                                         
                                                         export namespace T {}
                                                     }
@@ -3027,14 +3019,9 @@ export namespace T {
             
             export namespace step__type {
                 
-                export namespace component {
-                    
-                    export type type__name<GAnnotation> = string
-                }
+                export namespace component {}
                 
-                export type component<GAnnotation> = {
-                    readonly 'type name': string
-                }
+                export type component<GAnnotation> = null
                 
                 export namespace group {
                     
@@ -3068,9 +3055,7 @@ export namespace T {
             }
             
             export type step__type<GAnnotation> = 
-                | ['component', {
-                    readonly 'type name': string
-                }]
+                | ['component', null]
                 | ['group', {
                     readonly 'property': {
                         readonly 'annotation': GAnnotation
@@ -3085,9 +3070,7 @@ export namespace T {
         
         export type O<GAnnotation> = {
             readonly 'step type': 
-                | ['component', {
-                    readonly 'type name': string
-                }]
+                | ['component', null]
                 | ['group', {
                     readonly 'property': {
                         readonly 'annotation': GAnnotation
@@ -3102,9 +3085,7 @@ export namespace T {
     
     export type Value__Selection__Tail<GAnnotation> = [ false ] | [ true, {
         readonly 'step type': 
-            | ['component', {
-                readonly 'type name': string
-            }]
+            | ['component', null]
             | ['group', {
                 readonly 'property': {
                     readonly 'annotation': GAnnotation

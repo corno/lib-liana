@@ -120,7 +120,7 @@ export function result(
     }]
 }
 
-export function vgrp(
+export function sgrp(
     prop: string,
     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
@@ -131,6 +131,14 @@ export function vgrp(
                 'key': prop,
             }
         }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+export function scomp(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['component', null],
         'tail': tail === undefined ? [false] : tail
     }]
 }
