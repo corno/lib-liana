@@ -57,7 +57,7 @@ export function optionalResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     set: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
     notSet: g_this.T.Value__Selection<pd.SourceLocation>,
- ): g_this.T.Type.optional.result.O<pd.SourceLocation> {
+): g_this.T.Type.optional.result.O<pd.SourceLocation> {
     return {
         'type': type,
         'not set': notSet,
@@ -126,9 +126,12 @@ export function sgrp(
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
         'step type': ['group', {
-            'property': {
-                'annotation': pd.getLocationInfo(1),
-                'key': prop,
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'property': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': prop,
+                }
             }
         }],
         'tail': tail === undefined ? [false] : tail
@@ -139,7 +142,10 @@ export function ref(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
-        'step type': ['reference', null],
+        'step type': ['reference', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
         'tail': tail === undefined ? [false] : tail
     }]
 }
@@ -259,7 +265,7 @@ export function siblingReference(
 export function dictConstraint(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
-): g_this.T.Type.dictionary.constraints.D<pd.SourceLocation> {
+): g_this.T.Dictionary__Constraints.D<pd.SourceLocation> {
     return {
         'temp type path': typePath,
         'selection': valSel,
@@ -267,7 +273,7 @@ export function dictConstraint(
 }
 
 export function constrainedDictionary(
-    constraints: RawDictionary<g_this.T.Type.dictionary.constraints.D<pd.SourceLocation>>,
+    constraints: RawDictionary<g_this.T.Dictionary__Constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>
 ): g_this.T.Type<pd.SourceLocation> {
     return ['dictionary', {
@@ -384,7 +390,7 @@ export function optionConstraint(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     option: string,
     type: g_this.T.Type__Selection<pd.SourceLocation>
-): g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation> {
+): g_this.T.Option__Constraints.D<pd.SourceLocation> {
     return {
         'type': type,
         'selection': valSel,
@@ -395,7 +401,7 @@ export function optionConstraint(
     }
 }
 
-export function constrainedOption(constraints: RawDictionary<g_this.T.Type.tagged__union.options.D.constraints.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function constrainedOption(constraints: RawDictionary<g_this.T.Option__Constraints.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d(constraints),
         'variables': pd.d(constraints).__mapWithKey(($, key) => {

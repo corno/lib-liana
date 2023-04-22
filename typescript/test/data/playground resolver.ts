@@ -80,13 +80,17 @@ function map_Stamdata<Annotation>(
                         const key = $.key
                         const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
                             $v_hoofdcategorie__fiscus,
-                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
-                                key,
-                                ($) => [true, $],
-                                () => {
-                                    $se.error("no such entry")
-                                    return [false]
-                                },
+                            ($) => pl.optional/*1*/(
+                                $.constraint,
+                                ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                    key,
+                                    ($) => [true, $],
+                                    () => {
+                                        $se.error("no such entry")
+                                        return [false]
+                                    },
+                                )),
+                                () => [false],
                             ),
                             () => [false],
                         )
@@ -135,13 +139,17 @@ function map_Stamdata<Annotation>(
                     const key = $.key
                     const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
                         $v_hoofdcategorie,
-                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
-                            key,
-                            ($) => [true, $],
-                            () => {
-                                $se.error("no such entry")
-                                return [false]
-                            },
+                        ($) => pl.optional/*1*/(
+                            $.constraint,
+                            ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            )),
+                            () => [false],
                         ),
                         () => [false],
                     )
@@ -241,13 +249,17 @@ function map_Stamdata<Annotation>(
                         const key = $.key
                         const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
                             $v_hoofdcategorie__fiscus,
-                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
-                                key,
-                                ($) => [true, $],
-                                () => {
-                                    $se.error("no such entry")
-                                    return [false]
-                                },
+                            ($) => pl.optional/*1*/(
+                                $.constraint,
+                                ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                    key,
+                                    ($) => [true, $],
+                                    () => {
+                                        $se.error("no such entry")
+                                        return [false]
+                                    },
+                                )),
+                                () => [false],
                             ),
                             () => [false],
                         )
@@ -300,13 +312,17 @@ function map_Stamdata<Annotation>(
                     const key = $.key
                     const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
                         $v_hoofdcategorie,
-                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
-                            key,
-                            ($) => [true, $],
-                            () => {
-                                $se.error("no such entry")
-                                return [false]
-                            },
+                        ($) => pl.optional/*1*/(
+                            $.constraint,
+                            ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                                key,
+                                ($) => [true, $],
+                                () => {
+                                    $se.error("no such entry")
+                                    return [false]
+                                },
+                            )),
+                            () => [false],
                         ),
                         () => [false],
                     )

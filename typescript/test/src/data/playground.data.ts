@@ -11,7 +11,7 @@ import {
     globalType, globalTypeSelection, group,
     grp,
     option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
-    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, result, optionalResult, externalGlobalTypeSelection, globalTypeResult, sgrp, tuResult,
+    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, result, optionalResult, externalGlobalTypeSelection, globalTypeResult, sgrp, tuResult, ref,
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 
@@ -47,12 +47,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         })),
                         "subcategorieen": prop(dictionary(group({
                             "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen fiscus")]))),
-                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", sgrp("subcategorieen")), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
+                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
                         }))),
                     }))),
                     "grootboekrekeningen": prop(dictionary(group({
                         "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen")]))),
-                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", sgrp("subcategorieen")), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
+                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
                         "zijde": prop(taggedUnion({
                             "activa": option(group({})),
                             "passiva": option(group({})),
@@ -74,13 +74,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         })),
                         "subcategorieen": prop(dictionary(group({
                             "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen fiscus")]))),
-                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", sgrp("subcategorieen")), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
+                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
                         }))),
                     }))),
                     "correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
                     "grootboekrekeningen": prop(dictionary(group({
                         "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen")]))),
-                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", sgrp("subcategorieen")), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
+                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
                         "zijde": prop(taggedUnion({
                             "opbrengsten": option(group({})),
                             "kosten": option(group({

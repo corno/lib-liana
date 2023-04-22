@@ -73,7 +73,19 @@ export const $$: A.createResolverSkeleton = ($d) => {
         $i: g_fp.SYNC.I.Line,
         $c: ($i: g_fp.SYNC.I.Line,) => void,
     ) {
-        const tail = $.tail
+
+        function doTail($i: g_fp.SYNC.I.Line) {
+            pl.optional(
+                $.tail,
+                ($) => {
+                    doValueSelectionTail($, $i, $c)
+                },
+                () => {
+                    $c($i)
+                }
+            )
+
+        }
         pl.cc($['step type'], ($) => {
             switch ($[0]) {
                 case 'component':
@@ -83,72 +95,48 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'group':
                     pl.ss($, ($) => {
-                        const prop = $.property
-                        pl.optional(
-                            tail,
-                            ($) => {
-                                $i.snippet(`pl.cc($['${prop.key}'], ($) => `)
-                                doValueSelectionTail($, $i, $c)
-                                $i.snippet(`)`)
-                            },
-                            () => {
-                                $c($i)
-                            }
-                        )
+                        const prop = $.content.property
+                        $i.snippet(`pl.cc($['${prop.key}'], ($) => `)
+                        doTail($i)
+                        $i.snippet(`)`)
                     })
                     break
                 case 'reference':
                     pl.ss($, ($) => {
-                        pl.optional(
-                            tail,
-                            ($) => {
-                                $i.snippet(`pl.optional/*1*/(`)
-                                $i.indent(($i) => {
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`$.constraint,`)
-                                    })
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`($) => `)
-                                        doValueSelectionTail($, $i, $c)
-                                        $i.snippet(`,`)
-                                    })
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`() => [false],`)
-                                    })
-                                })
-                            },
-                            () => {
-                                $c($i)
-                            }
-                        )
+                        $i.snippet(`pl.optional/*1*/(`)
+                        $i.indent(($i) => {
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`$.constraint,`)
+                            })
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`($) => `)
+                                doTail($i)
+                                $i.snippet(`,`)
+                            })
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`() => [false],`)
+                            })
+                        })
                         $i.snippet(`)`)
                     })
                     break
                 case 'result':
                     pl.ss($, ($) => {
-                        pl.optional(
-                            tail,
-                            ($) => {
-                                $i.snippet(`pl.optional/*2*/(`)
-                                $i.indent(($i) => {
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`$.result,`)
-                                    })
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`($) => `)
-                                        doValueSelectionTail($, $i, $c)
-                                        $i.snippet(`,`)
-                                    })
-                                    $i.nestedLine(($i) => {
-                                        $i.snippet(`() => [false],`)
-                                    })
-                                })
-                                $i.snippet(`)`)
-                            },
-                            () => {
-                                $c($i)
-                            }
-                        )
+                        $i.snippet(`pl.optional/*2*/(`)
+                        $i.indent(($i) => {
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`$.result,`)
+                            })
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`($) => `)
+                                doTail($i)
+                                $i.snippet(`,`)
+                            })
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`() => [false],`)
+                            })
+                        })
+                        $i.snippet(`)`)
                     })
                     break
                 default: pl.au($[0])
