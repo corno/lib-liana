@@ -125,23 +125,18 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })))
             })),
             "tagged union": option(group({
+                "result": prop(optional(component("Global Type Selection", {
+                    "global types": aContainingDictionary(parameter("global types")),
+                }))),
                 "options": prop(dictionary(group({
                     "constraints": prop(component("Option Constraints", {})),
                     "variables": prop(component("Variables", {})),
                     "type": prop(component("Type", {
                         "global types": aContainingDictionary(parameter("global types")),
                     })),
+                    "result": prop(optional(component("Optional Value Selection Tail", {})))
                 }))),
                 "default": prop(resolvedValueReference(valSel("options"), typeSelection("Type", [tu("tagged union"), grp("options")]))),
-                "result": prop(optional(group({
-                    "type": prop(component("Global Type Selection", {
-                        "global types": aContainingDictionary(parameter("global types")),
-                    })),
-                    // "options": prop(constrainedDictionary({
-                    //     "options": dictConstraint(valSel("options"), typeSelection("Type", [tu("tagged union"), grp("options")])),
-                    // }, component("Value Selection", {}))),
-                    "options": prop(dictionary(component("Optional Value Selection Tail", {}))),
-                })))
             })),
             "group": option(group({
                 "properties": prop(dictionary(group({
@@ -176,7 +171,6 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "reference": constrainedOption({
                     "reference": optionConstraint(valSel("type"), "terminal", typeSelection("Type", []))
                 }, group({
-
                 })),
                 "component": constrainedOption({
                     "component": optionConstraint(valSel("type"), "component", typeSelection("Type", []))

@@ -11,7 +11,7 @@ import {
     globalType, globalTypeSelection, group,
     grp,
     option, optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
-    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, scomponent, staggedunion, optionalResult, externalGlobalTypeSelection, globalTypeResult, sgrp, tuResult, ref, siblingReference,
+    taggedUnion, terminal, tu, typeSelection, pExternalResolvedValue, externalTypeSelection, resolvedValueReference, dictConstraint, optionConstraint, valSel, scomponent, staggedunion, optionalResult, externalGlobalTypeSelection, globalTypeResult, sgrp, ref, siblingReference, resultTaggedUnion,
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 
@@ -148,12 +148,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 }))),
             })),
             "component": option(group({
-                "context": prop(taggedUnion({
+                "context": prop(resultTaggedUnion(globalTypeSelection("Type Library"), {
                     "local": option(group({})),
                     "import": option(group({
                         "library": prop(resolvedValueReference(valSel("imports"), typeSelection("Imports", []))),
                     })),
-                }, tuResult(globalTypeSelection("Type Library"), {}))),
+                })),
                 "type": prop(resolvedValueReference(valSel("context", staggedunion(sgrp("global types"))), typeSelection("Type Library", [grp("global types")]))),
                 "arguments": prop(constrainedDictionary({
                     "parameter": dictConstraint(valSel("type", ref(sgrp("parameters"))), typeSelection("Parameters", []))
@@ -311,7 +311,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Type Selection Tail": globalType({
             "context": pResolvedValue("Type", false)
         }, group({
-            "step type": prop(taggedUnion({
+            "step type": prop(resultTaggedUnion(globalTypeSelection("Type"), {
                 "dictionary": constrainedOption({
                     "out": optionConstraint(valSel("type"), "dictionary", typeSelection("Type", []))
                 }, group({})),
@@ -331,9 +331,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 }, group({
                     "option": prop(resolvedValueReference(valSel("out"), typeSelection("Type", [tu("tagged union"), grp("options")]))),
                 })),
-            }, tuResult(globalTypeSelection("Type"), {
-    
-            }))),
+            })),
         })),
         "Type Selection": globalType({
             "global types": pAllSiblings(typeSelection("Type Library", [grp("global types")]))

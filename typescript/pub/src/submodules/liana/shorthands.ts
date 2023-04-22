@@ -126,7 +126,7 @@ export function soptional(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
-        'step type': ['optional',  {
+        'step type': ['optional', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
@@ -137,7 +137,7 @@ export function staggedunion(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
     return [true, {
-        'step type': ['tagged union',  {
+        'step type': ['tagged union', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
@@ -402,11 +402,15 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
     }]
 }
 
-export function option(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function option(
+    type: g_this.T.Type<pd.SourceLocation>,
+    result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d({}),
         'variables': pd.d({}),
         'type': type,
+        'result': result === undefined ? [false] : [true, result]
     }
 }
 
@@ -426,7 +430,11 @@ export function optionConstraint(
     }
 }
 
-export function constrainedOption(constraints: RawDictionary<g_this.T.Option__Constraints.D<pd.SourceLocation>>, type: g_this.T.Type<pd.SourceLocation>,): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+export function constrainedOption(
+    constraints: RawDictionary<g_this.T.Option__Constraints.D<pd.SourceLocation>>,
+    type: g_this.T.Type<pd.SourceLocation>,
+    result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d(constraints),
         'variables': pd.d(constraints).__mapWithKey(($, key) => {
@@ -436,22 +444,12 @@ export function constrainedOption(constraints: RawDictionary<g_this.T.Option__Co
             }]
         }),
         'type': type,
-    }
-}
-
-export function tuResult(
-    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    options: RawDictionary<g_this.T.Type.tagged__union.result.O.options.D<pd.SourceLocation>>
-): g_this.T.Type.tagged__union.result.O<pd.SourceLocation> {
-    return {
-        'type': type,
-        'options': pd.d(options),
+        'result': result === undefined ? [false] : [true, result]
     }
 }
 
 export function taggedUnion(
     options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>,
-    result?: g_this.T.Type.tagged__union.result.O<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
@@ -466,7 +464,27 @@ export function taggedUnion(
     return ['tagged union', {
         'options': pd.d(options),
         'default': r_imp(firstKey, 1),
-        'result': result === undefined ? [false] : [true, result]
+        'result': [false]
+    }]
+}
+export function resultTaggedUnion(
+    result: g_this.T.Type.tagged__union.result.O<pd.SourceLocation>,
+    options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>,
+): g_this.T.Type<pd.SourceLocation> {
+    let firstKey: null | string = null
+    pd.d(options).__mapWithKey(($, key) => {
+        if (firstKey === null) {
+            firstKey = key
+        }
+    })
+    if (firstKey === null) {
+        firstKey = "--NO OPTIONS--"
+    }
+
+    return ['tagged union', {
+        'result': [true, result],
+        'options': pd.d(options),
+        'default': r_imp(firstKey, 1),
     }]
 }
 
@@ -512,8 +530,8 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 // }
 
 export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
-    return{
-        'step type':  ['group', {
+    return {
+        'step type': ['group', {
             'annotation': pd.getLocationInfo(1),
             'content': {
                 'property': r_imp(prop, 1),

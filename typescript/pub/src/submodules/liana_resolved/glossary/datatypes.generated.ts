@@ -955,6 +955,21 @@ export namespace N {
                                                                 export namespace T {}
                                                             }
                                                             
+                                                            export namespace result {
+                                                                
+                                                                export namespace N {
+                                                                    
+                                                                    export namespace O {
+                                                                        
+                                                                        export namespace N {}
+                                                                        
+                                                                        export namespace T {}
+                                                                    }
+                                                                }
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                            
                                                             export namespace _$ltype {
                                                                 
                                                                 export namespace N {}
@@ -987,38 +1002,7 @@ export namespace N {
                                             
                                             export namespace O {
                                                 
-                                                export namespace N {
-                                                    
-                                                    export namespace G {
-                                                        
-                                                        export namespace N {
-                                                            
-                                                            export namespace options {
-                                                                
-                                                                export namespace N {
-                                                                    
-                                                                    export namespace D {
-                                                                        
-                                                                        export namespace N {}
-                                                                        
-                                                                        export namespace T {}
-                                                                    }
-                                                                }
-                                                                
-                                                                export namespace T {}
-                                                            }
-                                                            
-                                                            export namespace _$ltype {
-                                                                
-                                                                export namespace N {}
-                                                                
-                                                                export namespace T {}
-                                                            }
-                                                        }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                }
+                                                export namespace N {}
                                                 
                                                 export namespace T {}
                                             }
@@ -2577,6 +2561,13 @@ export namespace T {
                     
                     export type constraints<GAnnotation> = T.Option__Constraints<GAnnotation>
                     
+                    export namespace result {
+                        
+                        export type O<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
+                    }
+                    
+                    export type result<GAnnotation> = [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                    
                     export type _ltype<GAnnotation> = T.Type<GAnnotation>
                     
                     export type variables<GAnnotation> = T.Variables<GAnnotation>
@@ -2584,6 +2575,7 @@ export namespace T {
                 
                 export type D<GAnnotation> = {
                     readonly 'constraints': T.Option__Constraints<GAnnotation>
+                    readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
                     readonly 'type': T.Type<GAnnotation>
                     readonly 'variables': T.Variables<GAnnotation>
                 }
@@ -2591,34 +2583,17 @@ export namespace T {
             
             export type options<GAnnotation> = pt.Dictionary<{
                 readonly 'constraints': T.Option__Constraints<GAnnotation>
+                readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
                 readonly 'type': T.Type<GAnnotation>
                 readonly 'variables': T.Variables<GAnnotation>
             }>
             
             export namespace result {
                 
-                export namespace O {
-                    
-                    export namespace options {
-                        
-                        export type D<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
-                    }
-                    
-                    export type options<GAnnotation> = pt.Dictionary<T.Optional__Value__Selection__Tail<GAnnotation>>
-                    
-                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
-                }
-                
-                export type O<GAnnotation> = {
-                    readonly 'options': pt.Dictionary<T.Optional__Value__Selection__Tail<GAnnotation>>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
-                }
+                export type O<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             }
             
-            export type result<GAnnotation> = [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Optional__Value__Selection__Tail<GAnnotation>>
-                readonly 'type': T.Global__Type__Selection<GAnnotation>
-            }]
+            export type result<GAnnotation> = [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
         }
         
         export type tagged__union<GAnnotation> = {
@@ -2629,13 +2604,11 @@ export namespace T {
             }
             readonly 'options': pt.Dictionary<{
                 readonly 'constraints': T.Option__Constraints<GAnnotation>
+                readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
                 readonly 'type': T.Type<GAnnotation>
                 readonly 'variables': T.Variables<GAnnotation>
             }>
-            readonly 'result': [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Optional__Value__Selection__Tail<GAnnotation>>
-                readonly 'type': T.Global__Type__Selection<GAnnotation>
-            }]
+            readonly 'result': [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
         }
         
         export namespace terminal {
@@ -2791,13 +2764,11 @@ export namespace T {
             }
             readonly 'options': pt.Dictionary<{
                 readonly 'constraints': T.Option__Constraints<GAnnotation>
+                readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
                 readonly 'type': T.Type<GAnnotation>
                 readonly 'variables': T.Variables<GAnnotation>
             }>
-            readonly 'result': [ false ] | [ true, {
-                readonly 'options': pt.Dictionary<T.Optional__Value__Selection__Tail<GAnnotation>>
-                readonly 'type': T.Global__Type__Selection<GAnnotation>
-            }]
+            readonly 'result': [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
         }]
         | ['terminal', {
             readonly 'constrained': 

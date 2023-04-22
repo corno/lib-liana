@@ -317,7 +317,7 @@ export const $$: A.map = ($d) => {
                                         'type': doTU()
                                     },
                                     "result": {
-                                        'type': createConstraintType($constraint, () => mapGlobalTypeSelection($.type))
+                                        'type': createConstraintType($constraint, () => mapGlobalTypeSelection($))
                                     }
                                 })],
                                 () => doTU(),
