@@ -379,18 +379,11 @@ export function constrainedOption(constraints: RawDictionary<g_this.T.Type.tagge
 
 export function tuResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    options: RawDictionary<g_this.T.Type.tagged__union.result.O.options.content.D<pd.SourceLocation>>
+    options: RawDictionary<g_this.T.Type.tagged__union.result.O.options.D<pd.SourceLocation>>
 ): g_this.T.Type.tagged__union.result.O<pd.SourceLocation> {
     return {
         'type': type,
-        'options': {
-            'constraints': {
-                'options': {
-                    'annotation': pd.getLocationInfo(1)
-                }
-            },
-            'content': pd.d(options),
-        },
+        'options':pd.d(options),
     }
 }
 

@@ -140,9 +140,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "type": prop(component("Global Type Selection", {
                         "global types": aContainingDictionary(parameter("global types")),
                     })),
-                    "options": prop(constrainedDictionary({
-                        "options": dictConstraint(valSel("options"), typeSelection("Type", [tu("tagged union"), grp("options")])),
-                    }, component("Value Selection", {}))),
+                    // "options": prop(constrainedDictionary({
+                    //     "options": dictConstraint(valSel("options"), typeSelection("Type", [tu("tagged union"), grp("options")])),
+                    // }, component("Value Selection", {}))),
+                    "options": prop(dictionary(component("Value Selection", {}))),
                 })))
             })),
             "group": option(group({

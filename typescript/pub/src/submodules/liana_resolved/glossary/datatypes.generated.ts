@@ -2399,78 +2399,22 @@ export namespace T {
                     
                     export namespace options {
                         
-                        export namespace constraints {
-                            
-                            export namespace options {
-                                
-                                export type annotation<GAnnotation> = GAnnotation
-                                
-                                export namespace constraint {
-                                    
-                                    export type O<GAnnotation> = T.Type.tagged__union.options.D<GAnnotation>
-                                }
-                                
-                                export type constraint<GAnnotation> = [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                            }
-                            
-                            export type options<GAnnotation> = {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                            }
-                        }
-                        
-                        export type constraints<GAnnotation> = {
-                            readonly 'options': {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                            }
-                        }
-                        
-                        export namespace content {
-                            
-                            export type D<GAnnotation> = T.Value__Selection<GAnnotation>
-                        }
-                        
-                        export type content<GAnnotation> = pt.Dictionary<T.Value__Selection<GAnnotation>>
+                        export type D<GAnnotation> = T.Value__Selection<GAnnotation>
                     }
                     
-                    export type options<GAnnotation> = {
-                        readonly 'constraints': {
-                            readonly 'options': {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                            }
-                        }
-                        readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
-                    }
+                    export type options<GAnnotation> = pt.Dictionary<T.Value__Selection<GAnnotation>>
                     
                     export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                 }
                 
                 export type O<GAnnotation> = {
-                    readonly 'options': {
-                        readonly 'constraints': {
-                            readonly 'options': {
-                                readonly 'annotation': GAnnotation
-                                readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                            }
-                        }
-                        readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
-                    }
+                    readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
             }
             
             export type result<GAnnotation> = [ false ] | [ true, {
-                readonly 'options': {
-                    readonly 'constraints': {
-                        readonly 'options': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                        }
-                    }
-                    readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
-                }
+                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
@@ -2495,15 +2439,7 @@ export namespace T {
                 readonly 'variables': T.Variables<GAnnotation>
             }>
             readonly 'result': [ false ] | [ true, {
-                readonly 'options': {
-                    readonly 'constraints': {
-                        readonly 'options': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                        }
-                    }
-                    readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
-                }
+                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }
@@ -2662,15 +2598,7 @@ export namespace T {
                 readonly 'variables': T.Variables<GAnnotation>
             }>
             readonly 'result': [ false ] | [ true, {
-                readonly 'options': {
-                    readonly 'constraints': {
-                        readonly 'options': {
-                            readonly 'annotation': GAnnotation
-                            readonly 'constraint': [ false ] | [ true, T.Type.tagged__union.options.D<GAnnotation>]
-                        }
-                    }
-                    readonly 'content': pt.Dictionary<T.Value__Selection<GAnnotation>>
-                }
+                readonly 'options': pt.Dictionary<T.Value__Selection<GAnnotation>>
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
         }]

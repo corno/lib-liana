@@ -388,27 +388,12 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         "result": {
                             'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                 "options": {
-                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                        "constraints": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                "options": {
-                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                                        "annotation": {
-                                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
-                                                        },
-                                                    })],
-                                                },
-                                            })],
-                                        },
-                                        "content": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                'type': "Value Selection",
-                                                'tail': a([]),
-                                                'arguments': d({}),
-                                            }]]],
-                                        },
-                                    })],
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                        'type': "Value Selection",
+                                        'tail': a([]),
+                                        'arguments': d({}),
+                                    }]]],
                                 },
                                 "type": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
