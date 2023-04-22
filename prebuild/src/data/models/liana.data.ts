@@ -16,7 +16,7 @@ import {
     optionConstraint,
     optional, pAllSiblings, pNonCyclicSiblings, pResolvedValue, parameter, prop,
     resolvedValueReference, siblingReference,
-    taggedUnion, terminal, tu, typeSelection, valSel, vgrp
+    taggedUnion, terminal, tu, typeSelection, valSel, sgrp
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
@@ -323,7 +323,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         })),
         "Model": globalType({}, group({
             "type library": prop(component("Type Library", {})),
-            "root": prop(resolvedValueReference(valSel("type library", vgrp("global types")), typeSelection("Type Library", [grp("global types")]))),
+            "root": prop(resolvedValueReference(valSel("type library", sgrp("global types")), typeSelection("Type Library", [grp("global types")]))),
         })),
     }),
 }
