@@ -18,10 +18,12 @@ import {
 export const $: g_liana.T.Model<pd.SourceLocation> = {
     'type library': {
         'imports': pd.d({}),
-        'terminal types': pd.d({
-            "text": null,
-            "identifier": null,
-        }),
+        'labels': {
+            'atom types': pd.d({
+                "text": null,
+                "identifier": null
+            }),
+        },
         'global types': pd.d({
             //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
             "Root": globalType({}, group({

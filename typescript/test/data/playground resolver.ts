@@ -15,9 +15,9 @@ function map_Afhandeling<Annotation>(
         switch ($[0]) {
             case 'BTW-periode': return pl.ss($, ($) => ['BTW-periode', pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_boekingen,
-                    ($) => pl.cc($['BTW periodes'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
+                    ($) => pl.cc($['BTW periodes'], ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -35,9 +35,9 @@ function map_Afhandeling<Annotation>(
             })])
             case 'informele rekening': return pl.ss($, ($) => ['informele rekening', pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_jaarstamdata,
-                    ($) => pl.cc($['informele rekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
+                    ($) => pl.cc($['informele rekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -55,9 +55,9 @@ function map_Afhandeling<Annotation>(
             })])
             case 'inkoop': return pl.ss($, ($) => ['inkoop', pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Boekingen.inkopen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_boekingen,
-                    ($) => pl.cc($['inkopen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.inkopen.D<Annotation>>>(
+                    ($) => pl.cc($['inkopen'], ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.inkopen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.inkopen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -76,9 +76,9 @@ function map_Afhandeling<Annotation>(
             case 'overloop': return pl.ss($, ($) => ['overloop', pl.cc($, ($) => {
                 const $p_jaar: g_out.T.Afhandeling.overloop.jaar<Annotation> = pl.cc($['jaar'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_overloop,
-                        ($) => pl.cc($['jaren'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D<Annotation>>>(
+                        ($) => pl.cc($['jaren'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D<Annotation>>>(
                             key,
                             ($) => [true, $],
                             () => {
@@ -99,11 +99,11 @@ function map_Afhandeling<Annotation>(
                     switch ($[0]) {
                         case 'BTW-periode': return pl.ss($, ($) => ['BTW-periode', pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.BTW__periodes.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_jaar,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['BTW periodes'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.BTW__periodes.D<Annotation>>>(
+                                    ($) => pl.cc($['BTW periodes'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.BTW__periodes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.BTW__periodes.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -123,11 +123,11 @@ function map_Afhandeling<Annotation>(
                         })])
                         case 'inkoop': return pl.ss($, ($) => ['inkoop', pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.inkopen.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_jaar,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['inkopen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.inkopen.D<Annotation>>>(
+                                    ($) => pl.cc($['inkopen'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.inkopen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.inkopen.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -147,11 +147,11 @@ function map_Afhandeling<Annotation>(
                         })])
                         case 'verkoop': return pl.ss($, ($) => ['verkoop', pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.verkopen.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_jaar,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['verkopen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.verkopen.D<Annotation>>>(
+                                    ($) => pl.cc($['verkopen'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.jaren.D.verkopen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.jaren.D.verkopen.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -180,9 +180,9 @@ function map_Afhandeling<Annotation>(
             })])
             case 'verkoop': return pl.ss($, ($) => ['verkoop', pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Boekingen.verkopen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_boekingen,
-                    ($) => pl.cc($['verkopen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.verkopen.D<Annotation>>>(
+                    ($) => pl.cc($['verkopen'], ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.verkopen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.verkopen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -266,9 +266,9 @@ function map_Boekingen<Annotation>(
                 const $v_datum: pt.OptionalValue<g_out.T.Boekingen.overige__balans__items.D.memoriaal__boekingen.D.datum<Annotation>> = [true, $p_datum]
                 const $p_grootboekrekening: g_out.T.Boekingen.overige__balans__items.D.memoriaal__boekingen.D.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_jaarstamdata,
-                        ($) => pl.cc($['balans grootboekrekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                        ($) => pl.cc($['balans grootboekrekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                             key,
                             ($) => [true, $],
                             () => {
@@ -327,9 +327,9 @@ function map_Boekingen<Annotation>(
                     case 'inkoop': return pl.ss($, ($) => ['inkoop', pl.cc($, ($) => {
                         const $p_crediteur: g_out.T.Boekingen.inkopen.D._ltype.inkoop.crediteur<Annotation> = pl.cc($['crediteur'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Stamdata.leveranciers.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_stamdata,
-                                ($) => pl.cc($['leveranciers'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.leveranciers.D<Annotation>>>(
+                                ($) => pl.cc($['leveranciers'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.leveranciers.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.leveranciers.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -356,9 +356,9 @@ function map_Boekingen<Annotation>(
                     case 'salaris': return pl.ss($, ($) => ['salaris', pl.cc($, ($) => {
                         const $p_ronde: g_out.T.Boekingen.inkopen.D._ltype.salaris.ronde<Annotation> = pl.cc($['ronde'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Boekingen.salarisrondes.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_salarisrondes,
-                                ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.salarisrondes.D<Annotation>>>(
+                                ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.salarisrondes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.salarisrondes.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -383,9 +383,9 @@ function map_Boekingen<Annotation>(
                                 case 'salaris': return pl.ss($, ($) => ['salaris', pl.cc($, ($) => {
                                     const $p_medewerker: g_out.T.Boekingen.inkopen.D._ltype.salaris._ltype.salaris.medewerker<Annotation> = pl.cc($['medewerker'], ($) => pl.cc($, ($) => {
                                         const key = $.key
-                                        const constraint: pt.OptionalValue<g_out.T.Stamdata.medewerkers.D<Annotation>> = pl.optional/*3*/(
+                                        pl.optional/*3*/(
                                             $v_stamdata,
-                                            ($) => pl.cc($['medewerkers'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.medewerkers.D<Annotation>>>(
+                                            ($) => pl.cc($['medewerkers'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.medewerkers.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.medewerkers.D<Annotation>>>(
                                                 key,
                                                 ($) => [true, $],
                                                 () => {
@@ -425,9 +425,9 @@ function map_Boekingen<Annotation>(
             const $p_BTW_miregime: g_out.T.Boekingen.inkopen.D.BTW_miregime<Annotation> = pl.cc($['BTW-regime'], ($) => pl.cc($, ($) => {
                 const $p_BTW_miperiode: g_out.T.Boekingen.inkopen.D.BTW_miregime.BTW_miperiode<Annotation> = pl.cc($['BTW-periode'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_BTW__periodes,
-                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
+                        ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
                             key,
                             ($) => [true, $],
                             () => {
@@ -485,9 +485,9 @@ function map_Boekingen<Annotation>(
                     })])
                     case 'rekening courant': return pl.ss($, ($) => ['rekening courant', pl.cc($, ($) => {
                         const key = $.key
-                        const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = pl.optional/*3*/(
+                        pl.optional/*3*/(
                             $v_jaarstamdata,
-                            ($) => pl.cc($['informele rekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
+                            ($) => pl.cc($['informele rekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
                                 key,
                                 ($) => [true, $],
                                 () => {
@@ -538,9 +538,9 @@ function map_Boekingen<Annotation>(
                         case 'balans': return pl.ss($, ($) => ['balans', pl.cc($, ($) => {
                             const $p_balans__item: g_out.T.Boekingen.inkopen.D.regels.D._ltype.balans.balans__item<Annotation> = pl.cc($['balans item'], ($) => pl.cc($, ($) => {
                                 const key = $.key
-                                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>> = pl.optional/*3*/(
+                                pl.optional/*3*/(
                                     $v_jaarstamdata,
-                                    ($) => pl.cc($['overige balans items'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>>>(
+                                    ($) => pl.cc($['overige balans items'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -564,9 +564,9 @@ function map_Boekingen<Annotation>(
                         case 'kosten': return pl.ss($, ($) => ['kosten', pl.cc($, ($) => {
                             const $p_grootboekrekening: g_out.T.Boekingen.inkopen.D.regels.D._ltype.kosten.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                                 const key = $.key
-                                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                                pl.optional/*3*/(
                                     $v_jaarstamdata,
-                                    ($) => pl.cc($['resultaat grootboekrekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
+                                    ($) => pl.cc($['resultaat grootboekrekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -629,9 +629,9 @@ function map_Boekingen<Annotation>(
             const $v_betalingstermijn: pt.OptionalValue<g_out.T.Boekingen.verkopen.D.betalingstermijn<Annotation>> = [true, $p_betalingstermijn]
             const $p_debiteur: g_out.T.Boekingen.verkopen.D.debiteur<Annotation> = pl.cc($['debiteur'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_stamdata,
-                    ($) => pl.cc($['klanten'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D<Annotation>>>(
+                    ($) => pl.cc($['klanten'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -650,9 +650,9 @@ function map_Boekingen<Annotation>(
             const $v_debiteur: pt.OptionalValue<g_out.T.Boekingen.verkopen.D.debiteur<Annotation>> = [true, $p_debiteur]
             const $p_BTW_miperiode: g_out.T.Boekingen.verkopen.D.BTW_miperiode<Annotation> = pl.cc($['BTW-periode'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_BTW__periodes,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -674,11 +674,11 @@ function map_Boekingen<Annotation>(
                     case 'licentieovereenkomst': return pl.ss($, ($) => ['licentieovereenkomst', pl.cc($, ($) => {
                         const $p_overeenkomst: g_out.T.Boekingen.verkopen.D.contracttype.licentieovereenkomst.overeenkomst<Annotation> = pl.cc($['overeenkomst'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_debiteur,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['licentieovereenkomsten'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D<Annotation>>>(
+                                    ($) => pl.cc($['licentieovereenkomsten'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -704,11 +704,11 @@ function map_Boekingen<Annotation>(
                     case 'project': return pl.ss($, ($) => ['project', pl.cc($, ($) => {
                         const $p_project: g_out.T.Boekingen.verkopen.D.contracttype.project.project<Annotation> = pl.cc($['project'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_debiteur,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['projecten'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D<Annotation>>>(
+                                    ($) => pl.cc($['projecten'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -729,11 +729,11 @@ function map_Boekingen<Annotation>(
                         const $v_project: pt.OptionalValue<g_out.T.Boekingen.verkopen.D.contracttype.project.project<Annotation>> = [true, $p_project]
                         const $p_offerte: g_out.T.Boekingen.verkopen.D.contracttype.project.offerte<Annotation> = pl.cc($['offerte'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_project,
                                 ($) => pl.optional/*1*/(
                                     $.constraint,
-                                    ($) => pl.cc($['offertes'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D<Annotation>>>(
+                                    ($) => pl.cc($['offertes'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -769,9 +769,9 @@ function map_Boekingen<Annotation>(
                     case 'rekening courant': return pl.ss($, ($) => ['rekening courant', pl.cc($, ($) => {
                         const $p_rekening__courant: g_out.T.Boekingen.verkopen.D.afhandeling.rekening__courant.rekening__courant<Annotation> = pl.cc($['rekening courant'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_jaarstamdata,
-                                ($) => pl.cc($['informele rekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
+                                ($) => pl.cc($['informele rekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.informele__rekeningen.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -806,9 +806,9 @@ function map_Boekingen<Annotation>(
                         case 'balans': return pl.ss($, ($) => ['balans', pl.cc($, ($) => {
                             const $p_balans__item: g_out.T.Boekingen.verkopen.D.regels.D._ltype.balans.balans__item<Annotation> = pl.cc($['balans item'], ($) => pl.cc($, ($) => {
                                 const key = $.key
-                                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>> = pl.optional/*3*/(
+                                pl.optional/*3*/(
                                     $v_jaarstamdata,
-                                    ($) => pl.cc($['overige balans items'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>>>(
+                                    ($) => pl.cc($['overige balans items'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -832,9 +832,9 @@ function map_Boekingen<Annotation>(
                         case 'opbrengsten': return pl.ss($, ($) => ['opbrengsten', pl.cc($, ($) => {
                             const $p_grootboekrekening: g_out.T.Boekingen.verkopen.D.regels.D._ltype.opbrengsten.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                                 const key = $.key
-                                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                                pl.optional/*3*/(
                                     $v_jaarstamdata,
-                                    ($) => pl.cc($['resultaat grootboekrekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
+                                    ($) => pl.cc($['resultaat grootboekrekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
                                         key,
                                         ($) => [true, $],
                                         () => {
@@ -876,11 +876,11 @@ function map_Boekingen<Annotation>(
                         case 'standaard': return pl.ss($, ($) => ['standaard', pl.cc($, ($) => {
                             const $p_BTW_micateogrie: g_out.T.Boekingen.verkopen.D.regels.D.BTW_miregime.standaard.BTW_micateogrie<Annotation> = pl.cc($['BTW-cateogrie'], ($) => pl.cc($, ($) => {
                                 const key = $.key
-                                const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D._1_pe__BTW_micategorieen.D<Annotation>> = pl.optional/*3*/(
+                                pl.optional/*3*/(
                                     $v_BTW_miperiode,
                                     ($) => pl.optional/*1*/(
                                         $.constraint,
-                                        ($) => pl.cc($['1. BTW-categorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D._1_pe__BTW_micategorieen.D<Annotation>>>(
+                                        ($) => pl.cc($['1. BTW-categorieen'], ($) => const constraint: pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D._1_pe__BTW_micategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Boekingen.BTW__periodes.D._1_pe__BTW_micategorieen.D<Annotation>>>(
                                             key,
                                             ($) => [true, $],
                                             () => {
@@ -937,11 +937,11 @@ function map_Boekingen<Annotation>(
                                 'content': pl.cc($.content, ($) => pl.cc($, ($) => {
                                     const $p_periode: g_out.T.Boekingen.verkopen.D.regels.D.contracttype2.licentieovereenkomst.content.periode<Annotation> = pl.cc($['periode'], ($) => pl.cc($, ($) => {
                                         const key = $.key
-                                        const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D<Annotation>> = pl.optional/*3*/(
+                                        pl.optional/*3*/(
                                             $v_parent,
                                             ($) => pl.cc($['overeenkomst'], ($) => pl.optional/*1*/(
                                                 $.constraint,
-                                                ($) => pl.cc($['periodes'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D<Annotation>>>(
+                                                ($) => pl.cc($['periodes'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.licentieovereenkomsten.D.periodes.D<Annotation>>>(
                                                     key,
                                                     ($) => [true, $],
                                                     () => {
@@ -997,11 +997,11 @@ function map_Boekingen<Annotation>(
                                 'content': pl.cc($.content, ($) => pl.cc($, ($) => {
                                     const $p_opbrengst: g_out.T.Boekingen.verkopen.D.regels.D.contracttype2.project.content.opbrengst<Annotation> = pl.cc($['opbrengst'], ($) => pl.cc($, ($) => {
                                         const key = $.key
-                                        const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D<Annotation>> = pl.optional/*3*/(
+                                        pl.optional/*3*/(
                                             $v_parent,
                                             ($) => pl.cc($['offerte'], ($) => pl.optional/*1*/(
                                                 $.constraint,
-                                                ($) => pl.cc($['opbrengsten'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D<Annotation>>>(
+                                                ($) => pl.cc($['opbrengsten'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.klanten.D.projecten.D.offertes.D.opbrengsten.D<Annotation>>>(
                                                     key,
                                                     ($) => [true, $],
                                                     () => {
@@ -1180,9 +1180,9 @@ function map_Jaar<Annotation>(
                                         )])
                                         case 'verrekenpost': return pl.ss($, ($) => ['verrekenpost', pl.cc($, ($) => {
                                             const key = $.key
-                                            const constraint: pt.OptionalValue<g_out.T.Jaar.afhandeling.verrekenposten.D<Annotation>> = pl.optional/*3*/(
+                                            pl.optional/*3*/(
                                                 $v_verrekenposten,
-                                                ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaar.afhandeling.verrekenposten.D<Annotation>>>(
+                                                ($) => const constraint: pt.OptionalValue<g_out.T.Jaar.afhandeling.verrekenposten.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaar.afhandeling.verrekenposten.D<Annotation>>>(
                                                     key,
                                                     ($) => [true, $],
                                                     () => {
@@ -1272,9 +1272,9 @@ function map_Jaarstamdata<Annotation>(
         const $p_informele__rekeningen: g_out.T.Jaarstamdata.informele__rekeningen<Annotation> = pl.cc($['informele rekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
             const $p_grootboekrekening: g_out.T.Jaarstamdata.informele__rekeningen.D.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1301,9 +1301,9 @@ function map_Jaarstamdata<Annotation>(
                     case 'nee': return pl.ss($, ($) => ['nee', pl.cc($, ($) => {
                         const $p_rekening: g_out.T.Jaarstamdata.informele__rekeningen.D.nieuw.nee.rekening<Annotation> = pl.cc($['rekening'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.informele__rekeningen.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_overloop,
-                                ($) => pl.cc($['informele rekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.informele__rekeningen.D<Annotation>>>(
+                                ($) => pl.cc($['informele rekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.informele__rekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.informele__rekeningen.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -1340,9 +1340,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_beginsaldo: pt.OptionalValue<g_out.T.Jaarstamdata.overige__balans__items.D.beginsaldo<Annotation>> = [true, $p_beginsaldo]
             const $p_grootboekrekening: g_out.T.Jaarstamdata.overige__balans__items.D.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1367,9 +1367,9 @@ function map_Jaarstamdata<Annotation>(
                     case 'nee': return pl.ss($, ($) => ['nee', pl.cc($, ($) => {
                         const $p_balans__item: g_out.T.Jaarstamdata.overige__balans__items.D.nieuw.nee.balans__item<Annotation> = pl.cc($['balans item'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.overige__balans__items.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_overloop,
-                                ($) => pl.cc($['overige balans items'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.overige__balans__items.D<Annotation>>>(
+                                ($) => pl.cc($['overige balans items'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.overige__balans__items.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.overige__balans__items.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -1420,9 +1420,9 @@ function map_Jaarstamdata<Annotation>(
         const $p_grootboeken: g_out.T.Jaarstamdata.grootboeken<Annotation> = pl.cc($['grootboeken'], ($) => pl.cc($, ($) => {
             const $p_resultaat__dit__jaar: g_out.T.Jaarstamdata.grootboeken.resultaat__dit__jaar<Annotation> = pl.cc($['resultaat dit jaar'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_resultaat__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1441,9 +1441,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_resultaat__dit__jaar: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.resultaat__dit__jaar<Annotation>> = [true, $p_resultaat__dit__jaar]
             const $p_winstreserve: g_out.T.Jaarstamdata.grootboeken.winstreserve<Annotation> = pl.cc($['winstreserve'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1462,9 +1462,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_winstreserve: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.winstreserve<Annotation>> = [true, $p_winstreserve]
             const $p_BTW__afrondingen: g_out.T.Jaarstamdata.grootboeken.BTW__afrondingen<Annotation> = pl.cc($['BTW afrondingen'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_resultaat__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.resultaat__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1483,9 +1483,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_BTW__afrondingen: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.BTW__afrondingen<Annotation>> = [true, $p_BTW__afrondingen]
             const $p_beginsaldo__nog__aan__te__geven__BTW: g_out.T.Jaarstamdata.grootboeken.beginsaldo__nog__aan__te__geven__BTW<Annotation> = pl.cc($['beginsaldo nog aan te geven BTW'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1504,9 +1504,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_beginsaldo__nog__aan__te__geven__BTW: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.beginsaldo__nog__aan__te__geven__BTW<Annotation>> = [true, $p_beginsaldo__nog__aan__te__geven__BTW]
             const $p_nog__aan__te__geven__BTW: g_out.T.Jaarstamdata.grootboeken.nog__aan__te__geven__BTW<Annotation> = pl.cc($['nog aan te geven BTW'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1525,9 +1525,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_nog__aan__te__geven__BTW: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.nog__aan__te__geven__BTW<Annotation>> = [true, $p_nog__aan__te__geven__BTW]
             const $p_inkoop__saldo: g_out.T.Jaarstamdata.grootboeken.inkoop__saldo<Annotation> = pl.cc($['inkoop saldo'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1546,9 +1546,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_inkoop__saldo: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.inkoop__saldo<Annotation>> = [true, $p_inkoop__saldo]
             const $p_verkoop__saldo: g_out.T.Jaarstamdata.grootboeken.verkoop__saldo<Annotation> = pl.cc($['verkoop saldo'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1567,9 +1567,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_verkoop__saldo: pt.OptionalValue<g_out.T.Jaarstamdata.grootboeken.verkoop__saldo<Annotation>> = [true, $p_verkoop__saldo]
             const $p_BTW__periode: g_out.T.Jaarstamdata.grootboeken.BTW__periode<Annotation> = pl.cc($['BTW periode'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1609,9 +1609,9 @@ function map_Jaarstamdata<Annotation>(
                     case 'nee': return pl.ss($, ($) => ['nee', pl.cc($, ($) => {
                         const $p_rekening: g_out.T.Jaarstamdata.bankrekeningen.D.nieuw.nee.rekening<Annotation> = pl.cc($['rekening'], ($) => pl.cc($, ($) => {
                             const key = $.key
-                            const constraint: pt.OptionalValue<g_out.T.Overloop.bankrekeningen.D<Annotation>> = pl.optional/*3*/(
+                            pl.optional/*3*/(
                                 $v_overloop,
-                                ($) => pl.cc($['bankrekeningen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Overloop.bankrekeningen.D<Annotation>>>(
+                                ($) => pl.cc($['bankrekeningen'], ($) => const constraint: pt.OptionalValue<g_out.T.Overloop.bankrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Overloop.bankrekeningen.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -1638,9 +1638,9 @@ function map_Jaarstamdata<Annotation>(
             const $v_nieuw: pt.OptionalValue<g_out.T.Jaarstamdata.bankrekeningen.D.nieuw<Annotation>> = [true, $p_nieuw]
             const $p_grootboekrekening: g_out.T.Jaarstamdata.bankrekeningen.D.grootboekrekening<Annotation> = pl.cc($['grootboekrekening'], ($) => pl.cc($, ($) => {
                 const key = $.key
-                const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = pl.optional/*3*/(
+                pl.optional/*3*/(
                     $v_balans__grootboekrekeningen,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
+                    ($) => const constraint: pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Jaarstamdata.balans__grootboekrekeningen.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -1798,9 +1798,9 @@ function map_Stamdata<Annotation>(
                 const $p_subcategorieen: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
                     const $p_hoofdcategorie__fiscus: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation> = pl.cc($['hoofdcategorie fiscus'], ($) => pl.cc($, ($) => {
                         const key = $.key
-                        const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>> = pl.optional/*3*/(
+                        pl.optional/*3*/(
                             $v_hoofdcategorieen__fiscus,
-                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>>>(
+                            ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D<Annotation>>>(
                                 key,
                                 ($) => [true, $],
                                 () => {
@@ -1819,11 +1819,11 @@ function map_Stamdata<Annotation>(
                     const $v_hoofdcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation>> = [true, $p_hoofdcategorie__fiscus]
                     const $p_subcategorie__fiscus: g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation> = pl.cc($['subcategorie fiscus'], ($) => pl.cc($, ($) => {
                         const key = $.key
-                        const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        pl.optional/*3*/(
                             $v_hoofdcategorie__fiscus,
                             ($) => pl.optional/*1*/(
                                 $.constraint,
-                                ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                ($) => pl.cc($['subcategorieen'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -1857,9 +1857,9 @@ function map_Stamdata<Annotation>(
             const $p_grootboekrekeningen: g_out.T.Stamdata.balans.grootboekrekeningen<Annotation> = pl.cc($['grootboekrekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
                 const $p_hoofdcategorie: g_out.T.Stamdata.balans.grootboekrekeningen.D.hoofdcategorie<Annotation> = pl.cc($['hoofdcategorie'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_hoofdcategorieen,
-                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>>>(
+                        ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D<Annotation>>>(
                             key,
                             ($) => [true, $],
                             () => {
@@ -1878,11 +1878,11 @@ function map_Stamdata<Annotation>(
                 const $v_hoofdcategorie: pt.OptionalValue<g_out.T.Stamdata.balans.grootboekrekeningen.D.hoofdcategorie<Annotation>> = [true, $p_hoofdcategorie]
                 const $p_subcategorie: g_out.T.Stamdata.balans.grootboekrekeningen.D.subcategorie<Annotation> = pl.cc($['subcategorie'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_hoofdcategorie,
                         ($) => pl.optional/*1*/(
                             $.constraint,
-                            ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                            ($) => pl.cc($['subcategorieen'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.balans.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
                                 key,
                                 ($) => [true, $],
                                 () => {
@@ -1967,9 +1967,9 @@ function map_Stamdata<Annotation>(
                 const $p_subcategorieen: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen<Annotation> = pl.cc($['subcategorieen'], ($) => $.map(($) => pl.cc($, ($) => {
                     const $p_hoofdcategorie__fiscus: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation> = pl.cc($['hoofdcategorie fiscus'], ($) => pl.cc($, ($) => {
                         const key = $.key
-                        const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>> = pl.optional/*3*/(
+                        pl.optional/*3*/(
                             $v_hoofdcategorieen__fiscus,
-                            ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>>>(
+                            ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D<Annotation>>>(
                                 key,
                                 ($) => [true, $],
                                 () => {
@@ -1988,11 +1988,11 @@ function map_Stamdata<Annotation>(
                     const $v_hoofdcategorie__fiscus: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.hoofdcategorie__fiscus<Annotation>> = [true, $p_hoofdcategorie__fiscus]
                     const $p_subcategorie__fiscus: g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D.subcategorie__fiscus<Annotation> = pl.cc($['subcategorie fiscus'], ($) => pl.cc($, ($) => {
                         const key = $.key
-                        const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                        pl.optional/*3*/(
                             $v_hoofdcategorie__fiscus,
                             ($) => pl.optional/*1*/(
                                 $.constraint,
-                                ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
+                                ($) => pl.cc($['subcategorieen'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen__fiscus.D.subcategorieen.D<Annotation>>>(
                                     key,
                                     ($) => [true, $],
                                     () => {
@@ -2030,9 +2030,9 @@ function map_Stamdata<Annotation>(
             const $p_grootboekrekeningen: g_out.T.Stamdata.resultaat.grootboekrekeningen<Annotation> = pl.cc($['grootboekrekeningen'], ($) => $.map(($) => pl.cc($, ($) => {
                 const $p_hoofdcategorie: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.hoofdcategorie<Annotation> = pl.cc($['hoofdcategorie'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_hoofdcategorieen,
-                        ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>>>(
+                        ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D<Annotation>>>(
                             key,
                             ($) => [true, $],
                             () => {
@@ -2051,11 +2051,11 @@ function map_Stamdata<Annotation>(
                 const $v_hoofdcategorie: pt.OptionalValue<g_out.T.Stamdata.resultaat.grootboekrekeningen.D.hoofdcategorie<Annotation>> = [true, $p_hoofdcategorie]
                 const $p_subcategorie: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.subcategorie<Annotation> = pl.cc($['subcategorie'], ($) => pl.cc($, ($) => {
                     const key = $.key
-                    const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>> = pl.optional/*3*/(
+                    pl.optional/*3*/(
                         $v_hoofdcategorie,
                         ($) => pl.optional/*1*/(
                             $.constraint,
-                            ($) => pl.cc($['subcategorieen'], ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
+                            ($) => pl.cc($['subcategorieen'], ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.hoofdcategorieen.D.subcategorieen.D<Annotation>>>(
                                 key,
                                 ($) => [true, $],
                                 () => {
@@ -2082,9 +2082,9 @@ function map_Stamdata<Annotation>(
                                     case 'ja': return pl.ss($, ($) => ['ja', pl.cc($, ($) => {
                                         const $p_correctietype: g_out.T.Stamdata.resultaat.grootboekrekeningen.D.zijde.kosten.correctie__op__vennootschapsbelasting.ja.correctietype<Annotation> = pl.cc($['correctietype'], ($) => pl.cc($, ($) => {
                                             const key = $.key
-                                            const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>> = pl.optional/*3*/(
+                                            pl.optional/*3*/(
                                                 $v_correctietypes__vennootschapsbelasting,
-                                                ($) => $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>>>(
+                                                ($) => const constraint: pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>> = $.__getEntry<pt.OptionalValue<g_out.T.Stamdata.resultaat.correctietypes__vennootschapsbelasting.D<Annotation>>>(
                                                     key,
                                                     ($) => [true, $],
                                                     () => {
