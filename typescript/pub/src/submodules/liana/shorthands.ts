@@ -40,24 +40,30 @@ export function r(name: string): g_common.T.AnnotatedKey<pd.SourceLocation> {
 }
 
 export function array(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
-    return ['array', {
-        'type': type,
-        //'constraint': [false]
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['array', {
+            'type': type,
+            //'constraint': [false]
+        }]
+    }
 }
 
-export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this.T.Type.optional.result.O<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
-    return ['optional', {
-        'type': type,
-        'result': result === undefined ? [false] : [true, result]
-    }]
+export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this.T.Type._ltype.optional.result.O<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'classes': pd.d({}),
+        'type': ['optional', {
+            'type': type,
+            'result': result === undefined ? [false] : [true, result]
+        }]
+    }
 }
 
 export function optionalResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     set: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
     notSet: g_this.T.Value__Selection<pd.SourceLocation>,
-): g_this.T.Type.optional.result.O<pd.SourceLocation> {
+): g_this.T.Type._ltype.optional.result.O<pd.SourceLocation> {
     return {
         'type': type,
         'not set': notSet,
@@ -205,7 +211,7 @@ export function valSel(
 
 export function aResolvedValue(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
-): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
     return {
         'type': ['resolved value', valSel],
     }
@@ -236,7 +242,7 @@ export function parameter(
 
 export function aContainingDictionary(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>
-): g_this.T.Type.component.arguments.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
     return {
         'type': ['containing dictionary', sel],
     }
@@ -251,40 +257,46 @@ export function resolvedValueReference(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
-    return ['terminal', {
-        'terminal': {
-            'type': {
-                'annotation': pd.getLocationInfo(1),
-                'key': "identifier",
-            }
-        },
-        'constrained': ['yes', {
-            'temp type path': typePath,
-            'referencee type': ['resolved value', {
-                'selection': valSel,
-            }]
-        }],
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['terminal', {
+            'terminal': {
+                'type': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': "identifier",
+                }
+            },
+            'constrained': ['yes', {
+                'referencee type': ['resolved value', {
+                    'temp type path': typePath,
+                    'selection': valSel,
+                }]
+            }],
+        }]
+    }
 }
 
 export function siblingReference(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
     typePath: g_this.T.Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
-    return ['terminal', {
-        'terminal': {
-            'type': {
-                'annotation': pd.getLocationInfo(1),
-                'key': "identifier",
-            }
-        },
-        'constrained': ['yes', {
-            'temp type path': typePath,
-            'referencee type': ['sibling', {
-                'selection': sel,
-            }]
-        }],
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['terminal', {
+            'terminal': {
+                'type': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': "identifier",
+                }
+            },
+            'constrained': ['yes', {
+                'referencee type': ['sibling', {
+                    'temp type path': typePath,
+                    'selection': sel,
+                }]
+            }],
+        }]
+    }
 }
 
 export function dictConstraint(
@@ -301,36 +313,42 @@ export function constrainedDictionary(
     constraints: RawDictionary<g_this.T.Dictionary__Constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>
 ): g_this.T.Type<pd.SourceLocation> {
-    return ['dictionary', {
-        'key': {
-            'type': {
-                'annotation': pd.getLocationInfo(1),
-                'key': "identifier",
+    return {
+        'classes': pd.d({}),
+        'type': ['dictionary', {
+            'key': {
+                'type': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': "identifier",
+                },
             },
-        },
-        'constraints': pd.d(constraints),
-        'variables': pd.d(constraints).__mapWithKey(($, key) => {
-            return ['dictionary constraint', {
-                'annotation': pd.getLocationInfo(1),
-                'key': key,
-            }]
-        }),
-        'type': type,
-        'autofill': pd.a([]),
-    }]
+            'constraints': pd.d(constraints),
+            'variables': pd.d(constraints).__mapWithKey(($, key) => {
+                return ['dictionary constraint', {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': key,
+                }]
+            }),
+            'type': type,
+            'autofill': pd.a([]),
+        }]
+    }
 }
 
-export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_this.T.Type.dictionary.autofill.A<pd.SourceLocation>[]): g_this.T.Type<pd.SourceLocation> {
-    return ['dictionary', {
-        // 'annotation': li,
-        'key': {
-            'type': r_imp("identifier", 1)
-        },
-        'constraints': pd.d({}),
-        'variables': pd.d({}),
-        'type': type,
-        'autofill': pd.a(autofill === undefined ? [] : autofill),
-    }]
+export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_this.T.Type._ltype.dictionary.autofill.A<pd.SourceLocation>[]): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'classes': pd.d({}),
+        'type': ['dictionary', {
+            // 'annotation': li,
+            'key': {
+                'type': r_imp("identifier", 1)
+            },
+            'constraints': pd.d({}),
+            'variables': pd.d({}),
+            'type': type,
+            'autofill': pd.a(autofill === undefined ? [] : autofill),
+        }]
+    }
 }
 
 export function globalTypeResult(
@@ -387,25 +405,28 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
         })
         return out
     }
-    return ['group', {
-        'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
-            const v = clone(currentVariables)
-            currentVariables[key] = ['sibling', {
-                'key': key,
-                'annotation': pd.getLocationInfo(1)
-            }]
-            return {
-                'variables': pd.d(v),
-                'type': $,
-            }
-        })
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['group', {
+            'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
+                const v = clone(currentVariables)
+                currentVariables[key] = ['sibling', {
+                    'key': key,
+                    'annotation': pd.getLocationInfo(1)
+                }]
+                return {
+                    'variables': pd.d(v),
+                    'type': $,
+                }
+            })
+        }]
+    }
 }
 
 export function option(
     type: g_this.T.Type<pd.SourceLocation>,
     result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
-): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d({}),
         'variables': pd.d({}),
@@ -434,7 +455,7 @@ export function constrainedOption(
     constraints: RawDictionary<g_this.T.Option__Constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
     result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
-): g_this.T.Type.tagged__union.options.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d(constraints),
         'variables': pd.d(constraints).__mapWithKey(($, key) => {
@@ -449,7 +470,7 @@ export function constrainedOption(
 }
 
 export function taggedUnion(
-    options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>,
+    options: RawDictionary<g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
@@ -461,15 +482,18 @@ export function taggedUnion(
         firstKey = "--NO OPTIONS--"
     }
 
-    return ['tagged union', {
-        'options': pd.d(options),
-        'default': r_imp(firstKey, 1),
-        'result': [false]
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['tagged union', {
+            'options': pd.d(options),
+            'default': r_imp(firstKey, 1),
+            'result': [false]
+        }]
+    }
 }
 export function resultTaggedUnion(
-    result: g_this.T.Type.tagged__union.result.O<pd.SourceLocation>,
-    options: RawDictionary<g_this.T.Type.tagged__union.options.D<pd.SourceLocation>>,
+    result: g_this.T.Type._ltype.tagged__union.result.O<pd.SourceLocation>,
+    options: RawDictionary<g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(options).__mapWithKey(($, key) => {
@@ -481,23 +505,29 @@ export function resultTaggedUnion(
         firstKey = "--NO OPTIONS--"
     }
 
-    return ['tagged union', {
-        'result': [true, result],
-        'options': pd.d(options),
-        'default': r_imp(firstKey, 1),
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['tagged union', {
+            'result': [true, result],
+            'options': pd.d(options),
+            'default': r_imp(firstKey, 1),
+        }]
+    }
 }
 
 export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
-    return ['terminal', {
-        'terminal': {
-            'type': {
-                'annotation': pd.getLocationInfo(1),
-                'key': type,
-            }
-        },
-        'constrained': ['no', null],
-    }]
+    return {
+        'classes': pd.d({}),
+        'type': ['terminal', {
+            'terminal': {
+                'type': {
+                    'annotation': pd.getLocationInfo(1),
+                    'key': type,
+                }
+            },
+            'constrained': ['no', null],
+        }]
+    }
 }
 
 // export function sgrp(prop: string, tail: g_this.T.Selection<pd.SourceLocation>): g_this.T.Selection<pd.SourceLocation> {
@@ -630,19 +660,25 @@ export function externalTypeSelection(
 //     }]
 // }
 
-export function component(type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
-    return ['component', {
-        'context': ['local', null],
-        'type': r_imp(type, 1),
-        'arguments': pd.d(args),
-    }]
+export function component(type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'classes': pd.d({}),
+        'type': ['component', {
+            'context': ['local', null],
+            'type': r_imp(type, 1),
+            'arguments': pd.d(args),
+        }]
+    }
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
-    return ['component', {
-        'context': ['import', {
-            'library': r_imp(library, 1)
-        }],
-        'type': r_imp(type, 1),
-        'arguments': pd.d(args),
-    }]
+export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'classes': pd.d({}),
+        'type': ['component', {
+            'context': ['import', {
+                'library': r_imp(library, 1)
+            }],
+            'type': r_imp(type, 1),
+            'arguments': pd.d(args),
+        }]
+    }
 }
