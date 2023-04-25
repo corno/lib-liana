@@ -21,9 +21,12 @@ import {
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
-    'terminal types': pd.d({
-        "text": null,
-    }),
+    'labels': {
+
+        'atom types': pd.d({
+            "text": null,
+        }),
+    },
     'global types': pd.d({
         "Atom": globalType({
             "labels": pResolvedValue("Labels", false),
