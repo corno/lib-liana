@@ -136,6 +136,30 @@ export function pNonCyclicSiblings(
     }
 }
 
+export function scomponent(
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['component', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+
+export function soptional(
+    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
+    return [true, {
+        'step type': ['optional', {
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
+        }],
+        'tail': tail === undefined ? [false] : tail
+    }]
+}
+
 export function snothing(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
@@ -148,28 +172,6 @@ export function snothing(
     }]
 }
 
-export function scomponent(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
-        'step type': ['component', {
-            'annotation': pd.getLocationInfo(1),
-            'content': null,
-        }],
-        'tail': tail === undefined ? [false] : tail
-    }]
-}
-export function soptional(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
-        'step type': ['optional', {
-            'annotation': pd.getLocationInfo(1),
-            'content': null,
-        }],
-        'tail': tail === undefined ? [false] : tail
-    }]
-}
 export function staggedunion(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
