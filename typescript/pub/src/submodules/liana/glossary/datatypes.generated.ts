@@ -900,6 +900,60 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
+                                    export namespace nothing {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {
+                                                    
+                                                    export namespace result {
+                                                        
+                                                        export namespace N {
+                                                            
+                                                            export namespace O {
+                                                                
+                                                                export namespace N {
+                                                                    
+                                                                    export namespace G {
+                                                                        
+                                                                        export namespace N {
+                                                                            
+                                                                            export namespace selection {
+                                                                                
+                                                                                export namespace N {}
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                            
+                                                                            export namespace temp_$_$type {
+                                                                                
+                                                                                export namespace N {}
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                        }
+                                                                        
+                                                                        export namespace T {}
+                                                                    }
+                                                                }
+                                                                
+                                                                export namespace T {}
+                                                            }
+                                                        }
+                                                        
+                                                        export namespace T {}
+                                                    }
+                                                }
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace optional {
                                         
                                         export namespace N {
@@ -934,7 +988,7 @@ export namespace N {
                                                                                 export namespace T {}
                                                                             }
                                                                             
-                                                                            export namespace _$ltype {
+                                                                            export namespace temp_$_$type {
                                                                                 
                                                                                 export namespace N {}
                                                                                 
@@ -2430,6 +2484,36 @@ export namespace T {
                 }>
             }
             
+            export namespace nothing {
+                
+                export namespace result {
+                    
+                    export namespace O {
+                        
+                        export type selection<GAnnotation> = T.Value__Selection<GAnnotation>
+                        
+                        export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                    }
+                    
+                    export type O<GAnnotation> = {
+                        readonly 'selection': T.Value__Selection<GAnnotation>
+                        readonly 'temp type': T.Global__Type__Selection<GAnnotation>
+                    }
+                }
+                
+                export type result<GAnnotation> = [ false ] | [ true, {
+                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
+                }]
+            }
+            
+            export type nothing<GAnnotation> = {
+                readonly 'result': [ false ] | [ true, {
+                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
+                }]
+            }
+            
             export namespace optional {
                 
                 export namespace result {
@@ -2440,20 +2524,20 @@ export namespace T {
                         
                         export type _lset<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
                         
-                        export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                        export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                     }
                     
                     export type O<GAnnotation> = {
                         readonly 'not set': T.Value__Selection<GAnnotation>
                         readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
-                        readonly 'type': T.Global__Type__Selection<GAnnotation>
+                        readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                     }
                 }
                 
                 export type result<GAnnotation> = [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
                     readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 
                 export type _ltype<GAnnotation> = T.Type<GAnnotation>
@@ -2463,7 +2547,7 @@ export namespace T {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
                     readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
             }
@@ -2672,11 +2756,17 @@ export namespace T {
                     readonly 'variables': T.Variables<GAnnotation>
                 }>
             }]
+            | ['nothing', {
+                readonly 'result': [ false ] | [ true, {
+                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
+                }]
+            }]
             | ['optional', {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
                     readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
             }]
@@ -2752,11 +2842,17 @@ export namespace T {
                     readonly 'variables': T.Variables<GAnnotation>
                 }>
             }]
+            | ['nothing', {
+                readonly 'result': [ false ] | [ true, {
+                    readonly 'selection': T.Value__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
+                }]
+            }]
             | ['optional', {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
                     readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                    readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
             }]

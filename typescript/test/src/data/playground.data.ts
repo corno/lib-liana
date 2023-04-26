@@ -16,439 +16,662 @@ import {
 const d = pd.d
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
-    'imports': pd.d({}),
+    'imports': d({
+        "typesystem": null,
+    }),
     'labels': {
-        'atom types': pd.d({
-            "bedrag": null,
-            "bestand": null,
-            "dagen": null,
-            "datum": null,
-            "multiline text": null,
-            "promillage": null,
+        'atom types': d({
+            "numeric literal": null,
+            "string literal": null,
             "identifier": null,
-            "single line text": null,
         }),
     },
-    'global types': pd.d({
-        "Stamdata": globalType({}, group({
-            "gebruikers": prop(dictionary(group({
-                "volledige naam": prop(terminal("single line text")),
-            }))),
-            "balans": prop(group({
-                "hoofdcategorieen fiscus": prop(dictionary(group({
-                    "zijde": prop(taggedUnion({
-                        "activa": option(group({})),
-                        "passiva": option(group({})),
-                    })),
-                    "subcategorieen": prop(dictionary(group({}))),
-                }))),
-                "hoofdcategorieen": prop(dictionary(group({
-                    "zijde": prop(taggedUnion({
-                        "activa": option(group({})),
-                        "passiva": option(group({})),
-                    })),
-                    "subcategorieen": prop(dictionary(group({
-                        "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen fiscus")]))),
-                        "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
-                    }))),
-                }))),
-                "grootboekrekeningen": prop(dictionary(group({
-                    "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen")]))),
-                    "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("balans"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
-                    "zijde": prop(taggedUnion({
-                        "activa": option(group({})),
-                        "passiva": option(group({})),
-                    })),
-                }))),
-            })),
-            "resultaat": prop(group({
-                "hoofdcategorieen fiscus": prop(dictionary(group({
-                    "zijde": prop(taggedUnion({
-                        "kosten": option(group({})),
-                        "opbrengsten": option(group({})),
-                    })),
-                    "subcategorieen": prop(dictionary(group({}))),
-                }))),
-                "hoofdcategorieen": prop(dictionary(group({
-                    "zijde": prop(taggedUnion({
-                        "kosten": option(group({})),
-                        "opbrengsten": option(group({})),
-                    })),
-                    "subcategorieen": prop(dictionary(group({
-                        "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen fiscus")]))),
-                        "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen fiscus"), dict(), grp("subcategorieen")]))),
-                    }))),
-                }))),
-                "correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
-                "grootboekrekeningen": prop(dictionary(group({
-                    "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen")]))),
-                    "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", ref(sgrp("subcategorieen"))), typeSelection("Stamdata", [grp("resultaat"), grp("hoofdcategorieen"), dict(), grp("subcategorieen")]))),
-                    "zijde": prop(taggedUnion({
-                        "opbrengsten": option(group({})),
-                        "kosten": option(group({
-                            "correctie op vennootschapsbelasting": prop(taggedUnion({
-                                "nee": option(group({})),
-                                "ja": option(group({
-                                    "correctietype": prop(resolvedValueReference(valSel("correctietypes vennootschapsbelasting"), typeSelection("Stamdata", [grp("resultaat"), grp("correctietypes vennootschapsbelasting")]))),
-                                })),
+    'global types': d({
+        // "Block": globalType({
+        //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false), //needed to determine the type of the return expression
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false), //needed for 'Type Path'
+        //     "stack": pResolvedValue("Variables", false), //needed for 'Address Selection' and assignment statements
+        // }, group({
+        //     "variables": prop(component("Variables", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack")),
+        //     })),
+        //     "statements": prop(component("Statements", {
+        //         "function": aResolvedValue(valSel("function")),
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("variables"))
+        //     }))
+        // })),
+        // "Boolean Expression": globalType({
+        //     "stack": pResolvedValue("Variables", false),
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        // }, taggedUnion({
+        //     "and": option(group({
+        //         "left hand side": prop(component("Boolean Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Boolean Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "or": option(group({
+        //         "left hand side": prop(component("Boolean Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Boolean Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "false": option(group({})),
+        //     "not": option(component("Boolean Expression Or Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "true": option(group({})),
+        //     //boolean/string
+        //     "string equals": option(group({
+        //         "left hand side": prop(component("String Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("String Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "string not equals": option(group({
+        //         "left hand side": prop(component("String Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("String Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     //boolean/number
+        //     "number equals": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "number not equals": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "greater than": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "less than": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        // })),
+        // "Boolean Expression Or Selection": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        //     "stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("Boolean Expression", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "selection": option(component("Address Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"), /*constrain to boolean*/)
+        //     })),
+        // })),
+        "Address Selection Tail": globalType(
+            {
+                "current address": pExternalResolvedValue("typesystem", "Type", false),
+                "variable stack": pResolvedValue("Variables", false),
+                "global types": pExternalResolvedValue("typesystem", "Global Types", false),
+            },
+            optional(
+                group({
+                    "step": prop(taggedUnion({
+                        "call": constrainedOption({
+                            "address function": optionConstraint(valSel("current address"), "address function", externalTypeSelection("typesystem", "Type", []))
+                        }, group({
+                            // "function": prop(component("Address Selection", {
+                            //     "global types": aResolvedValue(valSel("global types")),
+                            //     "stack": aResolvedValue(valSel("stack"))
+                            // })), /*constraint tagged union: type === address function*/
+                            "type arguments": prop(component("Type Arguments", {
+                                "type": aResolvedValue(valSel("function" /*component constraint*/)),
+                                "global types": aResolvedValue(valSel("global types")),
                             })),
+                            "arguments": prop(constrainedDictionary({
+                                "parameter": dictConstraint(valSel("address function", sgrp("parameters")), externalTypeSelection("typesystem", "Parameters", []))
+                            }, component("Expression", {
+                                "stack": aResolvedValue(valSel("stack")),
+                                "global types": aResolvedValue(valSel("global types")),
+                                "type": aResolvedValue(valSel("parameter", sgrp("type", scomponent())))
+                            }))),
                         })),
+                        "property": constrainedOption({
+                            "group": optionConstraint(valSel("current address"), "group", externalTypeSelection("typesystem", "Type", []))
+                        }, resolvedValueReference(valSel("group", sgrp("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")]))),
                     })),
-                }))),
-            })),
-            "BTW-categorieen": prop(dictionary(group({
-                "BTW-heffing": prop(taggedUnion({
-                    "nee": option(group({})),
-                    "ja": option(group({
-                        "BTW-promillage": prop(terminal("promillage")),
-                    })),
+                    "tail": prop(component("Address Selection Tail", {}))
+                }),
+                optionalResult(externalGlobalTypeSelection("typesystem", "Type"), sgrp("tail"), valSel("current")),
+            ),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), soptional())
+        ),
+        "Address Selection": globalType(
+            {
+                "stack": pResolvedValue("Variables", false),
+                "global types": pExternalResolvedValue("typesystem", "Global Types", false),
+            },
+            group({
+                "variable": prop(resolvedValueReference(valSel("stack"), typeSelection("Variables", []))),
+                "tail": prop(component("Address Selection Tail", {
+                    "current address": aResolvedValue(valSel("variable", ref(sgrp("type", staggedunion())))),
+                    "global types": aResolvedValue(valSel("global types")),
+                    "stack": aResolvedValue(valSel("stack"))
                 })),
-            }))),
-            "klanten": prop(dictionary(group({
-                "projecten": prop(dictionary(group({
-                    "offertes": prop(dictionary(group({
-                        "opbrengsten": prop(dictionary(group({
-                            "type": prop(taggedUnion({
-                                "project": option(group({
-                                    "betaaldatum": prop(terminal("datum")),
-                                    "bedrag": prop(terminal("bedrag")),
-                                })),
-                            })),
-                        }))),
-                    }))),
-                }))),
-                "licentieovereenkomsten": prop(dictionary(group({
-                    "periodes": prop(dictionary(group({
-                        "bedrag": prop(terminal("bedrag")),
-                    }))),
-                }))),
-            }))),
-            "medewerkers": prop(dictionary(group({}))),
-            "leveranciers": prop(dictionary(group({}))),
-            "bankrekeningen": prop(dictionary(group({}))),
-            "informele rekeningen": prop(dictionary(group({}))),
-        })),
-        "Overloop": globalType({
-            "stamdata": pResolvedValue("Stamdata", false),
-        }, group({
-            "jaren": prop(dictionary(group({
-                "inkopen": prop(dictionary(group({
-                    "openstaand": prop(terminal("bedrag"))
-                }))),
-                "verkopen": prop(dictionary(group({
-                    "openstaand": prop(terminal("bedrag"))
-                }))),
-                "BTW periodes": prop(dictionary(group({
-                    "openstaand": prop(terminal("bedrag"))
-                }))),
-            }))),
-            "informele rekeningen": prop(dictionary(group({
-                "eindsaldo": prop(terminal("bedrag"))
-            }))),
-            "overige balans items": prop(dictionary(group({
-                "eindsaldo": prop(terminal("bedrag"))
-            }))),
-            "bankrekeningen": prop(dictionary(group({
-                "eindsaldo": prop(terminal("bedrag"))
-            }))),
-        })),
-        "Jaarstamdata": globalType({
-            "stamdata": pResolvedValue("Stamdata", false),
-            "overloop": pResolvedValue("Overloop", false),
-        }, group({
-            "balans grootboekrekeningen": prop(constrainedDictionary({
-                //typePath("Stamdata", [grp("balans"), grp("grootboekrekeningen")]), tbd()
-            }, group({
-                "type": prop(taggedUnion({
-                    "bankrekening": option(group({})),
-                    "informele rekening": option(group({})),
-                    "overig": option(group({})),
+            }),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), sgrp("tail", scomponent()))
+        ),
+        "Expression": globalType(
+            {
+                "expected type": pExternalResolvedValue("typesystem", "Type", false),
+                "global types": pExternalResolvedValue("typesystem", "Type", false),
+                "stack": pResolvedValue("Variables", false),
+            },
+            taggedUnion({
+                // //array
+                // "array literal": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "array", externalTypeSelection("typesystem", "Type", []))
+                // }, array(component("Expression", {
+                //     "expected type": aResolvedValue(valSel("out")),
+                //     "global types": aResolvedValue(valSel("global types")),
+                //     "stack": aResolvedValue(valSel("stack")),
+                // }))),
+                // //object
+                // "object literal": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "group", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "properties": prop(constrainedDictionary(
+                //         { "X": dictConstraint(valSel("out", sgrp("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")])) },
+                //         component("Expression", {
+                //             "expected type": aResolvedValue(valSel("out")),
+                //             "global types": aResolvedValue(valSel("global types")),
+                //             "stack": aResolvedValue(valSel("stack")),
+                //         })
+                //     )),
+                // })),
+                // //function (inline function)
+                // "address function": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "parameters": prop(dictionary(group({}))), //no type info needed
+                //     //"signature": prop(component("FunctionSignature", {})),
+                //     "variables": prop(component("Variables", {
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                //         "stack": aResolvedValue(valSel("stack")),
+                //     })),
+                //     "statements": prop(component("Statements", {
+                //         "function": aResolvedValue(valSel("out")),
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         "stack": aResolvedValue(valSel("variables"))
+                //     })),
+                //     "return selection": prop(component("Address Selection", {
+                //         // "function": aResolvedValue(valSel("out")),
+                //         // "global types": aResolvedValue(valSel("global types")),
+                //         // "stack": aResolvedValue(valSel("variables"))
+                //     })),
+                // })),
+                // "value function": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "parameters": prop(dictionary(group({}))), //no type info needed
+                //     //"signature": prop(component("FunctionSignature", {})),
+                //     "variables": prop(component("Variables", {
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                //         "stack": aResolvedValue(valSel("stack")),
+                //     })),
+                //     "statements": prop(component("Statements", {
+                //         "function": aResolvedValue(valSel("out")),
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         "stack": aResolvedValue(valSel("variables"))
+                //     })),
+                //     "return expression": prop(component("Expression", {
+                //         // "function": aResolvedValue(valSel("out")),
+                //         // "global types": aResolvedValue(valSel("global types")),
+                //         // "stack": aResolvedValue(valSel("variables"))
+                //     })),
+                // })),
+                // // "procedure": constrainedOption({
+                // //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // // }, group({
+                // //     "parameters": prop(dictionary(group({}))), //no type info needed
+                // //     //"signature": prop(component("FunctionSignature", {})),
+                // //     "variables": prop(component("Variables", {
+                // //         "global types": aResolvedValue(valSel("global types")),
+                // //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                // //         "stack": aResolvedValue(valSel("stack")),
+                // //     })),
+                // //     "statements": prop(component("Statements", {
+                // //         "function": aResolvedValue(valSel("out")),
+                // //         "global types": aResolvedValue(valSel("global types")),
+                // //         "stack": aResolvedValue(valSel("variables"))
+                // //     })),
+                // // })),
+                // //boolean
+                // "boolean": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "boolean", externalTypeSelection("typesystem", "Type", []))
+                // }, component("Boolean Expression", {
+                //     "global types": aResolvedValue(valSel("global types")),
+                //     "stack": aResolvedValue(valSel("stack"))
+                // })),
+                // //numerical
+                // "numerical": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "number", externalTypeSelection("typesystem", "Type", []))
+                // }, component("Numerical Expression", {
+                //     "global types": aResolvedValue(valSel("global types")),
+                //     "stack": aResolvedValue(valSel("stack"))
+                // })),
+                //string
+                "string": constrainedOption({
+                    "out": optionConstraint(valSel("type"), "string", externalTypeSelection("typesystem", "Type", []))
+                }, component("String Expression", {
+                    "global types": aResolvedValue(valSel("global types")),
+                    "stack": aResolvedValue(valSel("stack"))
                 })),
-            }))),
-            "resultaat grootboekrekeningen": prop(constrainedDictionary({
-                //typePath("Stamdata", [grp("resultaat"), grp("grootboekrekeningen")]), tbd()
-            }, group({
-            }))),
-            "informele rekeningen": prop(constrainedDictionary({
-                //typePath("Stamdata", [grp("informele rekeningen")]), tbd()
-            }, group({
-                "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "beginsaldo": prop(terminal("bedrag")),
-                "nieuw": prop(taggedUnion({
-                    "nee": option(group({
-                        "rekening": prop(resolvedValueReference(valSel("overloop", sgrp("informele rekeningen")), typeSelection("Overloop", [grp("informele rekeningen")]))),
-                    })),
-                    "ja": option(group({})),
-                })),
-            }))),
-            "overige balans items": prop(dictionary(group({
-                "beginsaldo": prop(terminal("bedrag")),
-                "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "nieuw": prop(taggedUnion({
-                    "nee": option(group({
-                        "balans item": prop(resolvedValueReference(valSel("overloop", sgrp("overige balans items")), typeSelection("Overloop", [grp("overige balans items")]))),
-                    })),
-                    "ja": option(group({})),
-                })),
-            }))),
-            "startdatum boekjaar": prop(terminal("datum")),
-            "beginsaldo Winstreserve": prop(terminal("bedrag")),
-            "afgesloten": prop(taggedUnion({
-                "nee": option(group({
-                })),
-                "ja": option(group({})),
-            })),
-            "grootboeken": prop(group({
-                "resultaat dit jaar": prop(resolvedValueReference(valSel("resultaat grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("resultaat grootboekrekeningen")]))),
-                "winstreserve": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "BTW afrondingen": prop(resolvedValueReference(valSel("resultaat grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("resultaat grootboekrekeningen")]))),
-                "beginsaldo nog aan te geven BTW": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "nog aan te geven BTW": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "inkoop saldo": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "verkoop saldo": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                "BTW periode": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-            })),
-            "bankrekeningen": prop(dictionary(group({
-                "beginsaldo": prop(terminal("bedrag")),
-                "nieuw": prop(taggedUnion({
-                    "nee": option(group({
-                        "rekening": prop(resolvedValueReference(valSel("overloop", sgrp("bankrekeningen")), typeSelection("Overloop", [grp("bankrekeningen")]))),
-                    })),
-                    "ja": option(group({})),
-                })),
-                "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-            }))),
-        })),
-        "Boekingen": globalType({
-            "stamdata": pResolvedValue("Stamdata", false),
-            "jaarstamdata": pResolvedValue("Jaarstamdata", false),
-            "overloop": pResolvedValue("Overloop", false),
-        }, group({
-            "salarisrondes": prop(dictionary(group({
-            }))),
-            "BTW periodes": prop(dictionary(group({
-                "omschrijving": prop(terminal("multiline text")),
-                "status": prop(taggedUnion({
-                    "aangegeven": option(group({
-                        "bedrag": prop(terminal("bedrag")),
-                        "afronding": prop(terminal("bedrag")),
-                        "datum": prop(terminal("datum")),
-                    })),
-                    "openstaand": option(group({})),
-                })),
-                "1. BTW-categorieen": prop(constrainedDictionary({
-                    //valSel("XXXX"), typeSelection("Stamdata", [grp("BTW-categorieen")])
-                }, group({
-                }))),
-                "documenten": prop(dictionary(group({
-                    "bestand": prop(terminal("bestand")),
-                }))),
-            }))),
-            "overige balans items": prop(dictionary(group({ //constrain
-                "memoriaal boekingen": prop(dictionary(group({
-                    "bedrag": prop(terminal("bedrag")),
-                    "datum": prop(terminal("datum")),
-                    "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("balans grootboekrekeningen")), typeSelection("Jaarstamdata", [grp("balans grootboekrekeningen")]))),
-                    "omschrijving": prop(terminal("multiline text")),
-                }))),
-            }))),
-            "inkopen": prop(dictionary(group({
-                "datum": prop(terminal("datum")),
-                "brondocument": prop(taggedUnion({
-                    "toegevoegd": option(terminal("bestand")),
-                    "nog toevoegen": option(group({})),
-                    "niet van toepassing": option(group({})),
-                    "ontbreekt": option(group({})),
-                })),
-                "type": prop(taggedUnion({
-                    "bonnetje": option(group({})),
-                    "inkoop": option(group({
-                        "crediteur": prop(resolvedValueReference(valSel("stamdata", sgrp("leveranciers")), typeSelection("Stamdata", [grp("leveranciers")]))),
-                        "factuurnummer": prop(terminal("identifier")),
-                    })),
-                    "salaris": option(group({
-                        "ronde": prop(resolvedValueReference(valSel("salarisrondes"), typeSelection("Boekingen", [grp("salarisrondes")]))),
-                        "type": prop(taggedUnion({
-                            "salaris": option(group({
-                                "medewerker": prop(resolvedValueReference(valSel("stamdata", sgrp("medewerkers")), typeSelection("Stamdata", [grp("medewerkers")]))),
-                            })),
-                            "loonheffing": option(group({})),
-                            "wBSO": option(group({})),
-                        }))
-                    })),
-                })),
-                "BTW-regime": prop(group({
-                    "BTW-periode": prop(resolvedValueReference(valSel("BTW periodes"), typeSelection("Boekingen", [grp("BTW periodes")]))),
-                    "type": prop(taggedUnion({
-                        "standaard": option(group({})),
-                        "geen BTW van toepassing": option(group({})),
-                        "binnenland heffing verlegd": option(group({})),
-                        "intracommunautair": option(group({})),
-                        "import van buiten de EU": option(group({})),
+                // //any
+                // "conditional": option(group({
+                //     "test": prop(component("Boolean Expression Or Selection", {
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         "stack": aResolvedValue(valSel("stack"))
+                //     })),
+                //     "true": prop(component("Expression", {
+                //         "stack": aResolvedValue(valSel("stack")),
+                //         "global types": aResolvedValue(valSel("global types")),
+                //         "type": aResolvedValue(valSel("type")),
+                //     })),
+                //     "false": prop(component("Expression", {
+                //         "expected type": aResolvedValue(valSel("expected type")),
+                //         "stack": aResolvedValue(valSel("stack")),
+                //         "global types": aResolvedValue(valSel("global types")),
+                //     })),
+                // })),
+                // //"identifier": option(terminal("identifier")),
+                // // "new": option(group({
+                // //     "class": prop(terminal("identifier")),
+                // //     "parameters": prop(dictionary(component("Expression", {}))),
+                // // })),
+                // // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
+                // "null": constrainedOption({
+                //     "out": optionConstraint(valSel("TBD"), "null", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+
+                // })),
+                // //"parenthesized": option(component("Expression", {})),
+                // "symbol": option(component("Address Selection", { //something that is stored
+                //     "global types": aResolvedValue(valSel("global types")),
+                //     "stack": aResolvedValue(valSel("stack"))
+                // })),
+                // // "template": composite("TemplateExpression", group({
+                // //     "head": member(empty("TemplateHead", { "text": terminal() })),
+                // //     "spans": member(array(composite("TemplateSpan", group({
+                // //         "expression": member(component("Expression")),
+                // //         "type": member(choice({
+                // //             "middle": empty("TemplateMiddle", { "text": terminal() }),
+                // //             "tail": empty("TemplateTail", { "text": terminal() }),
+                // //         })),
+                // //     })))),
+                // // })),
+            })
+        ),
+        // "Numerical Expression": globalType({
+        //     "stack": pResolvedValue("Variables", false),
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        // }, taggedUnion({
+        //     "minus": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "plus": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })),
+        //     })),
+        //     "predecrement": option(component("Numerical Expression Or Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "preincrement": option(component("Numerical Expression Or Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "postdecrement": option(component("Numerical Expression Or Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "postincrement": option(component("Numerical Expression Or Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "numeric literal": option(terminal("numeric literal")),
+        // })),
+        // "Numerical Expression Or Selection": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        //     "stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("Numerical Expression", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "selection": option(component("Address Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })/*, externalTypeSelection("typesystem", "Type", [tu("number"), ])*/),
+        // })),
+        // "SourceFile": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false)
+        // }, group({
+        //     "symbols": prop(component("Symbols", {
+        //         "global types": aResolvedValue(valSel("global types"))
+        //     })),
+        // })),
+        // "Assign": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        //     "stack": pResolvedValue("Variables", false),
+        // }, group({
+        //     "target": prop(component("Address Selection", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "right hand side": prop(component("Expression", {
+        //         "expected type": aResolvedValue(valSel("target", scomponent())),
+        //         "stack": aResolvedValue(valSel("stack")),
+        //         "global types": aResolvedValue(valSel("global types")),
+        //     })),
+        // })),
+        // "Statements": globalType({
+        //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
+        //     "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        //     "stack": pResolvedValue("Variables", false),
+        // }, array(taggedUnion({
+        //     "block": option(component("Block", {
+        //         "parameters": aResolvedValue(valSel("parameters")),
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack")),
+        //     })),
+        //     "with": option(group({
+        //         "address": prop(component("Address Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+        //         })),
+        //         "action": prop(taggedUnion({
+        //             "call": constrainedOption({
+        //                 "procedure address": optionConstraint(valSel("address", scomponent()), "procedure", externalTypeSelection("typesystem", "Type", [tu("procedure")]))
+        //             }, group({
+        //                 "type arguments": prop(component("Type Arguments", {
+        //                     "type parameters": aResolvedValue(valSel("function")),
+        //                     "global types": aResolvedValue(valSel("global types")),
+        //                 })),
+        //                 "arguments": prop(constrainedDictionary(
+        //                     { "parameter": dictConstraint(valSel("function"), externalTypeSelection("typesystem", "Parameters", [])) },
+        //                     component("Expression", {
+        //                         "expected type": aResolvedValue(valSel("parameter")),
+        //                         "stack": aResolvedValue(valSel("stack")),
+        //                         "global types": aResolvedValue(valSel("global types")),
+        //                     })
+        //                 )),
+        //             })),
+        //             "assign": option(component("Assign", {
+        //                 "global types": aResolvedValue(valSel("global types")),
+        //                 "stack": aResolvedValue(valSel("stack")),
+        //             })),
+        //             "minus assign": constrainedOption({
+        //                 "number address": optionConstraint(valSel("address", scomponent()), "number", typeSelection("Foo", []))
+        //             }, group({/*must be number*/
+        //                 "right hand side": prop(component("Number Expression Or Selection", {
+        //                     "global types": aResolvedValue(valSel("global types")),
+        //                     "stack": aResolvedValue(valSel("stack")),
+        //                 })),
+        //             })),
+        //             "plus assign": constrainedOption({
+        //                 "number address": optionConstraint(valSel("address", scomponent()), "number", typeSelection("Foo", []))
+        //             }, group({/*must be number*/
+        //                 "right hand side": prop(component("Expression", {
+        //                     "global types": aResolvedValue(valSel("global types")),
+        //                     "stack": aResolvedValue(valSel("stack")),
+        //                 })),
+        //             })),
+        //             "switch": constrainedOption({
+        //                 "tagged union address": optionConstraint(valSel("address", scomponent()), "tagged union", typeSelection("Foo", []))
+        //             }, group({
+        //                 "cases": prop(constrainedDictionary(
+        //                     { "option": dictConstraint(valSel("tagged union address", sgrp("options")), externalTypeSelection("typesystem", "Type", [tu("tagged union"), grp("options")])) },
+        //                     group({
+        //                         "block": prop(component("Block", {
+        //                             "function": aResolvedValue(valSel("function")),
+        //                             "global types": aResolvedValue(valSel("global types")),
+        //                             "stack": aResolvedValue(valSel("stack")),
+        //                         }))
+        //                     })
+        //                 )),
+        //                 "default": prop(optional(component("Block", {
+        //                     "function": aResolvedValue(valSel("function")),
+        //                     "global types": aResolvedValue(valSel("global types")),
+        //                     "stack": aResolvedValue(valSel("stack")),
+        //                 }))),
+        //             })),
+        //         }))
+        //     })),
+        //     "for": option(group({
+        //         "condition": prop(component("Boolean Expression", {
+        //             "stack": aResolvedValue(valSel("stack")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //         })),
+        //         "incrementer": prop(component("Assign", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+        //         })),
+        //         "block": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+        //         })),
+        //     })),
+        //     "if": option(group({
+        //         "condition": prop(component("Boolean Expression Or Selection", {
+        //             "stack": aResolvedValue(valSel("stack")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //         })),
+        //         "then": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+
+        //         })),
+        //         "else": prop(optional(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+        //         }))),
+        //     })),
+        //     // "labeled": composite("LabeledStatement", group({
+        //     //     "label": member(component("identifier")),
+        //     //     "statement": member(component("statement")),
+        //     // })),
+        //     // "return": option(group({
+        //     //     "expression": prop(optional(component("Expression", {
+        //     //         "expected type": aResolvedValue(valSel("function", sgrp("return type", result()))),
+        //     //         "stack": aResolvedValue(valSel("stack")),
+        //     //         "global types": aResolvedValue(valSel("global types")),
+        //     //     })))
+        //     // })),
+        //     // "throw": option(component("Expression", {})),
+        //     // "try": option(group({
+        //     //     "block": prop(component("Block", {})),
+        //     //     "catchClause": prop(group({
+        //     //         "variable": prop(component("variableDeclaration")),
+        //     //         "block": member(component("block")),
+        //     //     }))),
+        //     // }))),
+        //     "while": option(group({
+        //         "condition": prop(component("Boolean Expression Or Selection", {
+        //             "stack": aResolvedValue(valSel("stack")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //         })),
+        //         "block": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack")),
+        //         })),
+        //     })),
+        // }))),
+        "String Expression": globalType(
+            {
+                "global types": pExternalResolvedValue("typesystem", "Type", false),
+                "stack": pResolvedValue("Variables", false),
+            },
+            taggedUnion({
+                "string literal": option(terminal("string literal")),
+            }))
+        ,
+        // "String Expression Or Selection": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        //     "stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("String Expression", {
+        //         "global types": aResolvedValue(valSel("global types")),
+        //         "stack": aResolvedValue(valSel("stack"))
+        //     })),
+        //     "selection": option(group({
+        //         "selection": prop(component("Address Selection", {
+        //             "global types": aResolvedValue(valSel("global types")),
+        //             "stack": aResolvedValue(valSel("stack"))
+        //         })/*, externalTypeSelection("typesystem", "Type", [tu("string"), ])*/),
+        //         "cast to string": prop(taggedUnion({
+        //             "string": constrainedOption({
+        //                 "string": optionConstraint(valSel("selection", scomponent()), "string", externalTypeSelection("typesystem", "Type", []))
+        //             }, group({}))
+        //         }))
+        //     })),
+        // })),
+        // "Symbols": globalType({
+        //     "global types": pExternalResolvedValue("typesystem", "Type", false),
+        // }, dictionary(taggedUnion({
+        //     "namespace": option(group({
+        //         "symbols": prop(component("Symbols", {
+        //             "global types": aResolvedValue(valSel("global types"))
+        //         }))
+        //     })),
+        //     "symbol": option(group({
+        //         "type path": prop(component("Type Selection", {
+        //             "global types": aResolvedValue(valSel("global types"))
+        //         })),
+        //     })),
+        // }))),
+        "Type Arguments": globalType(
+            {
+                "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
+                "global types": pExternalResolvedValue("typesystem", "Type", false)
+            },
+            constrainedDictionary(
+                { "x": dictConstraint(valSel("type parameters"), externalTypeSelection("typesystem", "Type Parameters", [])) },
+                group({
+                    "type": prop(component("Type Selection", {
+                        "global types": aResolvedValue(valSel("global types"))
                     }))
+                })
+            )
+        ),
+        "Type Selection Tail": globalType(
+            {
+                "global types": pExternalResolvedValue("typesystem", "Type", false)
+            },
+            optional(
+                group({
+                    //"step type": prop(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, []))),
+                    "tail": prop(component("Type Selection Tail", {
+                        "global types": aResolvedValue(valSel("global types"))
+                    })),
+                }),
+                optionalResult(externalGlobalTypeSelection("typesystem", "Type"), sgrp("tail", scomponent()), valSel("global types"))),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), soptional())),
+        "Type Selection": globalType(
+            {
+                "global types": pExternalResolvedValue("typesystem", "Type", false)
+            },
+            group({
+                // "steps": prop(array(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, [])))),
+                //"type": prop(resolvedValueReference(valSel("namespaces"), externalTypeSelection("typesystem", "Type", []), /*constrain to type defintion*/)),
+                "arguments": prop(component("Type Arguments", {
+                    "type": aResolvedValue(valSel("type")),
+                    "global types": aResolvedValue(valSel("global types"))
                 })),
-                "afhandeling": prop(taggedUnion({
-                    "mutaties": option(group({})),
-                    "rekening courant": option(resolvedValueReference(valSel("jaarstamdata", sgrp("informele rekeningen")), typeSelection("Jaarstamdata", [grp("informele rekeningen")]))),
-                    "nog te betalen": option(group({
-                        "betalingstermijn": prop(terminal("dagen")),
-                    })),
-                })),
-                "regels": prop(dictionary(group({
-                    "omschrijving": prop(terminal("multiline text")),
-                    "bedrag": prop(taggedUnion({
-                        "bekend": option(group({
-                            "bedrag inclusief BTW": prop(terminal("bedrag")),
-                            "BTW": prop(terminal("bedrag")),
+            })
+        ),
+        "Variables": globalType(
+            {
+                "global types": pExternalResolvedValue("typesystem", "Global Types", false),
+                "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
+                "stack": pResolvedValue("Variables", false),
+            },
+            dictionary(group({
+                "type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
+                    "parameter": option(group({
+                        "parameter": prop(resolvedValueReference(valSel("parameters"), externalTypeSelection("typesystem", "Parameters", []))),
+                    }), sgrp("parameter", ref())),
+                    "stack": option(group({})),
+                    "local": option(group({
+                        "type": prop(resolvedValueReference(valSel("global types"), externalTypeSelection("typesystem", "Global Types", []))),
+                        "initializer": prop(component("Expression", {
+                            "expected type": aResolvedValue(valSel("type")),
+                            "stack": aResolvedValue(valSel("stack")),
+                            "global types": aResolvedValue(valSel("global types")),
                         })),
-                        "nog niet bekend": option(group({
-                            "aantekeningen": prop(terminal("multiline text")),
-                        })),
-                    })),
-                    "type": prop(taggedUnion({
-                        "kosten": option(group({
-                            "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("resultaat grootboekrekeningen")), typeSelection("Jaarstamdata", [grp("resultaat grootboekrekeningen")]))),
-                        })),
-                        "balans": option(group({
-                            "balans item": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("overige balans items")), typeSelection("Jaarstamdata", [grp("overige balans items")]))),
-                        })),
-                    })),
-                }))),
-            }))),
-            "verkopen": prop(dictionary(group({
-                "brondocument": prop(taggedUnion({
-                    "nog toevoegen": option(group({
-                    })),
-                    "toegevoegd": option(group({
-                        "document": prop(terminal("bestand")),
-                    })),
-                })),
-                "betalingstermijn": prop(terminal("dagen")),
-                "debiteur": prop(resolvedValueReference(valSel("stamdata", sgrp("klanten")), typeSelection("Stamdata", [grp("klanten")]))),
-                "BTW-periode": prop(resolvedValueReference(valSel("BTW periodes"), typeSelection("Boekingen", [grp("BTW periodes")]))),
-
-                "contracttype": prop(taggedUnion({
-                    "licentieovereenkomst": option(group({
-                        "overeenkomst": prop(resolvedValueReference(valSel("debiteur", ref(sgrp("licentieovereenkomsten"))), typeSelection("Stamdata", [grp("klanten"), dict(), grp("licentieovereenkomsten")]))),
-                    })),
-                    "project": option(group({
-                        "project": prop(resolvedValueReference(valSel("debiteur", ref(sgrp("projecten"))), typeSelection("Stamdata", [grp("klanten"), dict(), grp("projecten")]))),
-                        "offerte": prop(resolvedValueReference(valSel("project", ref(sgrp("offertes"))), typeSelection("Stamdata", [grp("klanten"), dict(), grp("projecten"), dict(), grp("offertes")]))),
-                    })),
-                })),
-
-                "afhandeling": prop(taggedUnion({
-                    "mutaties": option(group({
-                    })),
-                    "rekening courant": option(group({
-                        "rekening courant": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("informele rekeningen")), typeSelection("Jaarstamdata", [grp("informele rekeningen")]))),
                     })),
                 })),
-                "regels": prop(dictionary(group({
-                    "omschrijving": prop(terminal("multiline text")),
-                    "bedrag exclusief BTW": prop(terminal("bedrag")),
-                    "type": prop(taggedUnion({
-                        "opbrengsten": option(group({
-                            "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("resultaat grootboekrekeningen")), typeSelection("Jaarstamdata", [grp("resultaat grootboekrekeningen")]))),
-                        })),
-                        "balans": option(group({
-                            "balans item": prop(resolvedValueReference(valSel("jaarstamdata", sgrp("overige balans items")), typeSelection("Jaarstamdata", [grp("overige balans items")]))),
-                        })),
-                    })),
-                    "BTW-regime": prop(taggedUnion({
-                        "standaard": option(group({
-                            "BTW-cateogrie": prop(resolvedValueReference(valSel("BTW-periode", ref(sgrp("1. BTW-categorieen"))), typeSelection("Boekingen", [grp("BTW periodes"), dict(), grp("1. BTW-categorieen")]))),
-                        })),
-                        "binnenland heffing verlegd": option(group({
-                        })),
-                        "intracommunautair": option(group({
-                        })),
-                        "export buiten de EU": option(group({
-                        })),
-                        "installatie of afstandsverkopen binnen de EU": option(group({
-                        })),
-                    })),
-                    "contracttype2": prop(taggedUnion({
-                        "los": option(group({
-                        })),
-                        "licentieovereenkomst": constrainedOption({
-                            "parent": optionConstraint(valSel("contracttype"), "licentieovereenkomst", typeSelection("Boekingen", [grp("verkopen"), dict(), grp("contracttype")]))
-                        }, group({
-                            "periode": prop(resolvedValueReference(valSel("parent", sgrp("overeenkomst", ref(sgrp("periodes")))), typeSelection("Stamdata", [grp("klanten"), dict(), grp("licentieovereenkomsten"), dict(), grp("periodes")]))),
-                        })),
-                        "project": constrainedOption({
-                            "parent": optionConstraint(valSel("contracttype"), "project", typeSelection("Boekingen", [grp("verkopen"), dict(), grp("contracttype")]))
-                        }, group({
-                            "opbrengst": prop(resolvedValueReference(valSel("parent", sgrp("offerte", ref(sgrp("opbrengsten")))), typeSelection("Stamdata", [grp("klanten"), dict(), grp("projecten"), dict(), grp("offertes"), dict(), grp("opbrengsten")]))),
-                        })),
-                    })),
-                }))),
-            }))),
-        })),
-        "Afhandeling": globalType({
-            "jaarstamdata": pResolvedValue("Jaarstamdata", false),
-            "boekingen": pResolvedValue("Boekingen", false),
-            "overloop": pResolvedValue("Overloop", false),
-        }, taggedUnion({
-            "overloop": option(group({
-                "jaar": prop(resolvedValueReference(valSel("overloop", sgrp("jaren")), typeSelection("Overloop", [grp("jaren")]))),
-                "type": prop(taggedUnion({
-                    "inkoop": option(resolvedValueReference(valSel("jaar", ref(sgrp("inkopen"))), typeSelection("Overloop", [grp("jaren"), dict(), grp("inkopen")]))),
-                    "verkoop": option(resolvedValueReference(valSel("jaar", ref(sgrp("verkopen"))), typeSelection("Overloop", [grp("jaren"), dict(), grp("verkopen")]))),
-                    "BTW-periode": option(resolvedValueReference(valSel("jaar", ref(sgrp("BTW periodes"))), typeSelection("Overloop", [grp("jaren"), dict(), grp("BTW periodes")]))),
-                }))
-            })),
-            "inkoop": option(resolvedValueReference(valSel("boekingen", sgrp("inkopen")), typeSelection("Boekingen", [grp("inkopen")]))),
-            "verkoop": option(resolvedValueReference(valSel("boekingen", sgrp("verkopen")), typeSelection("Boekingen", [grp("verkopen")]))),
-            "BTW-periode": option(resolvedValueReference(valSel("boekingen", sgrp("BTW periodes")), typeSelection("Boekingen", [grp("BTW periodes")]))),
-            "informele rekening": option(resolvedValueReference(valSel("jaarstamdata", sgrp("informele rekeningen")), typeSelection("Jaarstamdata", [grp("informele rekeningen")]))),
-        })),
-        "Jaar": globalType({}, group({
-            "stamdata": prop(component("Stamdata", {})),
-            "overloop": prop(component("Overloop", {
-                "stamdata": aResolvedValue(valSel("stamdata")),
-            })),
-            "jaarstamdata": prop(component("Jaarstamdata", {
-                "overloop": aResolvedValue(valSel("overloop")),
-                "stamdata": aResolvedValue(valSel("stamdata")),
-            })),
-            "boekingen": prop(component("Boekingen", {
-                "stamdata": aResolvedValue(valSel("stamdata")),
-                "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                "overloop": aResolvedValue(valSel("overloop")),
-            })),
-            "afhandeling": prop(group({
-                "verrekenposten": prop(dictionary(group({
-                    "mutaties": prop(dictionary(group({
-                        "bedrag": prop(terminal("bedrag")),
-                        "afhandeling": prop(component("Afhandeling", {
-                            "boekingen": aResolvedValue(valSel("boekingen")),
-                            "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                            "overloop": aResolvedValue(valSel("overloop")),
-                        })),
-                    }))),
-                }))),
-                "bankrekeningen": prop(dictionary(group({
-                    "mutaties": prop(dictionary(group({
-                        "omschrijving": prop(terminal("multiline text")),
-                        "bedrag": prop(terminal("bedrag")),
-                        "datum": prop(terminal("datum")),
-                        "status": prop(taggedUnion({
-                            "nog te verwerken": option(group({})),
-                            "verwerkt": option(group({
-                                "afhandeling": prop(taggedUnion({
-                                    "alg": option(component("Afhandeling", {
-                                        "boekingen": aResolvedValue(valSel("boekingen")),
-                                        "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                                        "overloop": aResolvedValue(valSel("overloop")),
-                                    })),
-                                    "verrekenpost": option(resolvedValueReference(valSel("verrekenposten"), typeSelection("Jaar", [grp("afhandeling"), grp("verrekenposten")]))),
-                                })),
-                            })),
-                        })),
-                    }))),
-                }))),
-            })),
-        })),
+            }))
+        ),
     }),
 }

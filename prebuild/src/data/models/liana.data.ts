@@ -67,6 +67,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         }, group({
             "classes": prop(constrainedDictionary({}, group({}))),
             "type": prop(taggedUnion({
+                "nothing": option(group({
+                    "result": prop(optional(group({
+                        "temp type": prop(component("Global Type Selection", {
+                            "global types": aContainingDictionary(parameter("global types")),
+                        })),
+                        "selection": prop(component("Value Selection", {})),
+                    })))
+                })),
                 "terminal": option(group({
                     "terminal": prop(component("Atom", {
                         "labels": aResolvedValue(valSel("labels")),
@@ -125,11 +133,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "optional": option(group({
                     "type": prop(component("Type", {})),
                     "result": prop(optional(group({
-                        "type": prop(component("Global Type Selection", {
+                        "temp type": prop(component("Global Type Selection", {
                             "global types": aContainingDictionary(parameter("global types")),
                         })),
                         "set": prop(component("Optional Value Selection Tail", {})),
-                        "not set": prop(component("Value Selection", {})),
+                        "not set": prop(component("Value Selection", {})),//validate result is equal to 'set' result
                     })))
                 })),
                 "tagged union": option(group({

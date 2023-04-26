@@ -5,6 +5,7 @@ import * as g_project from "lib-pareto-typescript-project/dist/submodules/projec
 import { $ as main_ } from "./main/module.data"
 import { $ as errorMessaging } from "./submodules/errormessaging/module.data"
 import { $ as liana } from "./submodules/liana/module.data"
+import { $ as a_generate_dependencygraph } from "./submodules/dependencygraph/module.data"
 import { $ as liana_resolved } from "./submodules/liana_resolved/module.data"
 import { $ as resolve } from "./submodules/resolve/module.data"
 import { $ as liana_flat } from "./submodules/liana_flat/module.data"
@@ -42,6 +43,7 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
             "algorithm_temp": algorithm_temp,
             "errorMessaging": errorMessaging,
             "p2ts_temp": p2ts_temp,
+            "generate_dependencygraph": a_generate_dependencygraph,
             "liana": liana,
             "liana_resolved": liana_resolved,
             "resolve": resolve,

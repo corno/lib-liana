@@ -94,6 +94,7 @@ export const $$: A.map = ($d) => {
                             case 'array': return pl.ss($, ($) => pm.wrapRawDictionary({
                                 "A": mapTypeToNamespace($.type)
                             }))
+                            case 'nothing': return pl.ss($, ($) => pm.wrapRawDictionary({}))
                             case 'optional': return pl.ss($, ($) => pm.wrapRawDictionary({
                                 "O": mapTypeToNamespace($.type)
                             }))
@@ -125,6 +126,7 @@ export const $$: A.map = ($d) => {
         function mapTypeToType($: g_liana.T.Type<Annotation>, $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             return pl.cc($.type, ($) => {
                 switch ($[0]) {
+                    case 'nothing': return pl.ss($, ($) => ['null', null])
                     case 'array': return pl.ss($, ($) => ['array', mapTypeToType($.type, $x)])
                     case 'optional': return pl.ss($, ($) => {
                         function doOpt(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
@@ -142,7 +144,7 @@ export const $$: A.map = ($d) => {
                                             'type': doOpt()
                                         },
                                         "result": {
-                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($.type))
+                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
                                         }
                                     })],
                                     () => doOpt(),

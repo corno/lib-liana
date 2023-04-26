@@ -13,6 +13,7 @@ export const $$: A.mapLiana2States = ($d) => {
             return  pl.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'array': return pl.ss($, ($) => ['array', mapType($.type)])
+                    case 'nothing': return pl.ss($, ($) => ['null', null])//IS THIS CORRECT?
                     case 'optional': return pl.ss($, ($) => ['optional', mapType($.type)])
                     case 'component': return pl.ss($, ($) => ['reference', $.type.key])
                     case 'dictionary': return pl.ss($, ($) => ['dictionary', mapType($.type)])

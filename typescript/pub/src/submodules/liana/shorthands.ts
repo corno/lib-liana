@@ -59,13 +59,32 @@ export function optional(type: g_this.T.Type<pd.SourceLocation>, result?: g_this
     }
 }
 
+export function nothing(result?: g_this.T.Type._ltype.nothing.result.O<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'classes': pd.d({}),
+        'type': ['nothing', {
+            'result': result === undefined ? [false] : [true, result]
+        }]
+    }
+}
+
+export function nothingResult(
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
+    selection: g_this.T.Value__Selection<pd.SourceLocation>,
+): g_this.T.Type._ltype.nothing.result.O<pd.SourceLocation> {
+    return {
+        'temp type': type,
+        'selection': selection,
+    }
+}
+
 export function optionalResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     set: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
     notSet: g_this.T.Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type._ltype.optional.result.O<pd.SourceLocation> {
     return {
-        'type': type,
+        'temp type': type,
         'not set': notSet,
         'set': set,
     }

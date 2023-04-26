@@ -26,6 +26,11 @@ export const $$: A.create121Mapper = ($d) => {
                         $i.snippet(`map_${$d.createIdentifier($.type.key)}($)`)
                     })
                     break
+                case 'nothing':
+                    pl.ss($, ($) => {
+                        $i.snippet(`null`)
+                    })
+                    break
                 case 'dictionary':
                     pl.ss($, ($) => {
                         $i.snippet(`$.map(($) => `)
@@ -39,7 +44,7 @@ export const $$: A.create121Mapper = ($d) => {
                         $i.indent(($i) => {
                             $.properties.__forEach(() => false, ($, key) => {
                                 $i.nestedLine(($i) => {
-    
+
                                     $i.snippet(`'${key}': pl.cc($, ($) => `)
                                     doType($.type, $i)
                                     $i.snippet(`),`)
@@ -80,12 +85,12 @@ export const $$: A.create121Mapper = ($d) => {
                                             $i.snippet(`case '${key}': return ['${key}', `)
                                             doType($.type, $i)
                                             $i.snippet(`]`)
-                                            
+
                                         })
                                     })
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`default: return pl.au($[1])`)
-    
+
                                     })
                                 })
                                 $i.snippet(`}`)
@@ -101,7 +106,7 @@ export const $$: A.create121Mapper = ($d) => {
                     break
                 default: pl.au($[0])
             }
-          
+
         })
     }
     return <Annotation>($: g_liana.T.Type__Library<Annotation>, $i: g_fp.SYNC.I.Block) => {

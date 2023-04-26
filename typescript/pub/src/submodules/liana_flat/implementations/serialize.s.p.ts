@@ -54,6 +54,11 @@ export const $$: A.serialize = ($d) => {
                                 })
                             })
                             break
+                        case 'nothing':
+                            pl.ss($, ($) => {
+
+                            })
+                            break
                         case 'component':
                             pl.ss($, ($) => {
 
@@ -112,6 +117,11 @@ export const $$: A.serialize = ($d) => {
                                                                 })
                                                                 break
                                                             case 'component':
+                                                                pl.ss($, ($) => {
+
+                                                                })
+                                                                break
+                                                            case 'nothing':
                                                                 pl.ss($, ($) => {
 
                                                                 })
@@ -197,6 +207,11 @@ export const $$: A.serialize = ($d) => {
                                                                 pl.cc($.$.type, ($) => {
 
                                                                     switch ($[0]) {
+                                                                        case 'nothing':
+                                                                            pl.ss($, ($) => {
+                                                                                $i.snippet(`null`)
+                                                                            })
+                                                                            break
                                                                         case 'array':
                                                                             pl.ss($, ($) => {
                                                                                 $i.snippet(`[]`)

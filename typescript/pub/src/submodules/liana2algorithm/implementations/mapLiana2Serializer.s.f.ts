@@ -27,6 +27,11 @@ export const $$: A.mapLiana2Serializer = () => {
                                     'data': [false],
                                     'callback': [false],
                                 }])
+                                case 'nothing': return pl.ss($, ($) => ['interfaceCall', {//FIXME
+                                    'child path': pm.wrapRawArray(["nothing"]),
+                                    'data': [false],
+                                    'callback': [false],
+                                }])
                                 case 'component': return pl.ss($, ($) => ['interfaceCall', {
                                     'child path': pm.wrapRawArray(["component"]),
                                     'data': [false],

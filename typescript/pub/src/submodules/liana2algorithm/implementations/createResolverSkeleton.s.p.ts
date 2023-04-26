@@ -89,7 +89,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
             )
         }
         function doResult($i: g_fp.SYNC.I.Line) {
-            $i.snippet(`pl.optional(`)
+            $i.snippet(`tempoptional(`)
             $i.indent(($i) => {
                 $i.nestedLine(($i) => {
                     $i.snippet(`$.result,`)
@@ -123,7 +123,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'reference':
                     pl.ss($, ($) => {
-                        $i.snippet(`pl.optional/*1*/(`)
+                        $i.snippet(`tempoptional/*1*/(`)
                         $i.indent(($i) => {
                             $i.nestedLine(($i) => {
                                 $i.snippet(`$.constraint,`)
@@ -160,7 +160,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
         $c: ($i: g_fp.SYNC.I.Line,) => void,
     ) {
         const start = $.start
-        $i.snippet(`pl.optional/*3*/(`)
+        $i.snippet(`tempoptional/*3*/(`)
         $i.indent(($i) => {
             $i.nestedLine(($i) => {
                 $i.snippet(`$v_${$d.createIdentifier(start.key)},`)
@@ -218,6 +218,11 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.snippet(`)`)
                     })
                     break
+                case 'nothing':
+                    pl.ss($, ($) => {
+                        $i.snippet(`null????`)
+                    })
+                    break
                 case 'component':
                     pl.ss($, ($) => {
                         $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>(`)
@@ -225,7 +230,6 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             $i.line(`$,`)
                             $d.dictionaryForEach($.arguments, ($) => {
                                 $i.nestedLine(($i) => {
-                                    $i.snippet(`/*$v_${$d.createIdentifier($.key)}: */`)
                                     pl.cc($.value, ($) => {
                                         pl.cc($.type, ($) => {
                                             switch ($[0]) {
@@ -247,6 +251,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         })
                                     })
                                     $i.snippet(`,`)
+                                    $i.snippet(`//$v_${$d.createIdentifier($.key)}`)
                                 })
                             })
                         })
@@ -369,7 +374,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     break
                 case 'optional':
                     pl.ss($, ($) => {
-                        $i.snippet(`pl.optional/*4*/(`)
+                        $i.snippet(`tempoptional/*4*/(`)
                         $i.indent(($i) => {
                             $i.nestedLine(($i) => {
                                 $i.snippet(`$,`)
@@ -410,9 +415,9 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                         $i.indent(($i) => {
                                                             $c(($) => {
                                                                 $i.nestedLine(($i) => {
-                                                                    $i.snippet(`const $v_${$d.createIdentifier($.key)}: pt.OptionalValue<`)
+                                                                    $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
                                                                     doTypeSelection($.value['type'], $i)
-                                                                    $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation>> = pl.cc($, ($) => {`)
+                                                                    $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation> = pl.cc($, ($) => {`)
                                                                     $i.indent(($i) => {
                                                                         $i.nestedLine(($i) => {
                                                                             $i.snippet(`const x: pt.OptionalValue<`)
@@ -423,7 +428,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                             })
                                                                         })
                                                                         $i.nestedLine(($i) => {
-                                                                            $i.snippet(`return pl.optional(`)
+                                                                            $i.snippet(`return tempoptional(`)
                                                                             $i.indent(($i) => {
                                                                                 $i.nestedLine(($i) => {
                                                                                     $i.snippet(`x,`)
@@ -486,7 +491,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                     })
                                                                     $i.nestedLine(($i) => {
                                                                         $i.snippet(`'content': pl.cc($.content, ($) => `)
-                                                                        doType(type, typePath + `.${$d.createIdentifier(key)}.content`, $i)
+                                                                        doType(type, typePath + `.${$d.createIdentifier(key)}._ltype`, $i)
                                                                         $i.snippet(`),`)
                                                                     })
                                                                 })
@@ -532,56 +537,51 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                             })
                                             $i.nestedLine(($i) => {
                                                 pl.cc($['referencee type'], ($) => {
-                                                    function getEntry($i: g_fp.SYNC.I.Line, $c: {
-                                                        typeSel: ($i: g_fp.SYNC.I.Line) => void
-                                                    }) {
-
-                                                        function type($i: g_fp.SYNC.I.Line) {
-
-                                                            $i.snippet(`pt.OptionalValue<`)
-                                                            $c.typeSel($i)
-                                                            $i.snippet(`.D`)
-                                                            $i.snippet(`<Annotation>`)
-                                                            $i.snippet(`>`)
-                                                        }
-                                                        $i.snippet(`const constraint: `)
-                                                        type($i)
-                                                        $i.snippet(` = `)
-                                                        $i.snippet(`$.__getEntry<`)
-                                                        type($i)
-                                                        $i.snippet(`>(`)
-                                                        $i.indent(($i) => {
-                                                            $i.nestedLine(($i) => {
-                                                                $i.snippet(`key,`)
-                                                            })
-                                                            $i.nestedLine(($i) => {
-                                                                $i.snippet(`($) => [true, $],`)
-                                                            })
-                                                            $i.nestedLine(($i) => {
-                                                                $i.snippet(`() => {`)
-                                                                $i.indent(($i) => {
-                                                                    $i.nestedLine(($i) => {
-                                                                        $i.snippet(`$se.error("no such entry")`)
-                                                                    })
-                                                                    $i.nestedLine(($i) => {
-                                                                        $i.snippet(`return [false]`)
-                                                                    })
-                                                                })
-                                                                $i.snippet(`},`)
-                                                            })
-                                                        })
-                                                        $i.snippet(`)`)
-                                                    }
                                                     switch ($[0]) {
                                                         case 'resolved value':
                                                             pl.ss($, ($) => {
+
+                                                                function type($i: g_fp.SYNC.I.Line) {
+
+                                                                    $i.snippet(`pt.OptionalValue<`)
+                                                                    doTypeSelection($['temp type path'], $i)
+                                                                    $i.snippet(`.D`)
+                                                                    $i.snippet(`<Annotation>`)
+                                                                    $i.snippet(`>`)
+                                                                }
+                                                                $i.snippet(`const constraint: `)
+                                                                type($i)
+                                                                $i.snippet(` = `)
                                                                 const sel = $.selection
                                                                 doValueSelection($.selection, $i, ($i) => {
-                                                                    getEntry($i, {
-                                                                        'typeSel': ($i) => {
-                                                                            doTypeSelection($['temp type path'], $i)
-                                                                        }
-                                                                    })
+
+                                                                    function getEntry($i: g_fp.SYNC.I.Line) {
+                                                                        $i.snippet(`$.__getEntry<`)
+                                                                        type($i)
+                                                                        $i.snippet(`>(`)
+                                                                        $i.indent(($i) => {
+                                                                            $i.nestedLine(($i) => {
+                                                                                $i.snippet(`key,`)
+                                                                            })
+                                                                            $i.nestedLine(($i) => {
+                                                                                $i.snippet(`($) => [true, $],`)
+                                                                            })
+                                                                            $i.nestedLine(($i) => {
+                                                                                $i.snippet(`() => {`)
+                                                                                $i.indent(($i) => {
+                                                                                    $i.nestedLine(($i) => {
+                                                                                        $i.snippet(`$se.error("no such entry")`)
+                                                                                    })
+                                                                                    $i.nestedLine(($i) => {
+                                                                                        $i.snippet(`return [false]`)
+                                                                                    })
+                                                                                })
+                                                                                $i.snippet(`},`)
+                                                                            })
+                                                                        })
+                                                                        $i.snippet(`)`)
+                                                                    }
+                                                                    getEntry($i)
                                                                 })
                                                             })
                                                             break
@@ -717,27 +717,30 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                 $i.snippet(`,`)
                             })
                         })
+
                     })
                 })
                 $i.snippet(`): g_out.T.${$d.createIdentifier($.key)}<Annotation> {`)
-                $i.indent(($i) => {
-                    $i.nestedLine(($i) => {
+                const type = $.value.type
+                const key = $.key
+                pl.optional(
+                    $.value.result,
+                    ($) => {
+                        $i.indent(($i) => {
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`const content = `)
+                                doType(type, `${$d.createIdentifier(key)}.content`, $i)
 
-                        $i.snippet(`return `)
-                        const type = $.value.type
-                        const key = $.key
-                        pl.optional(
-                            $.value.result,
-                            ($) => {
+                            })
+                            $i.nestedLine(($i) => {
+                                $i.snippet(`return `)
                                 $i.snippet(`{`)
                                 $i.indent(($i) => {
                                     $i.nestedLine(($i) => {
-                                        $i.snippet(`content: `)
-                                        doType(type, `${$d.createIdentifier(key)}.content`, $i)
-                                        $i.snippet(`,`)
+                                        $i.snippet(`content: content,`)
                                     })
                                     $i.nestedLine(($i) => {
-                                        $i.snippet(`result: `)
+                                        $i.snippet(`result: pl.cc(content, ($) => `)
 
                                         pl.optional(
                                             $.selection,
@@ -750,16 +753,26 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                 $i.snippet(`[true, $]`)
                                             }
                                         )
-                                        $i.snippet(`,`)
+                                        $i.snippet(`),`)
                                     })
                                 })
                                 $i.snippet(`}`)
-                            },
-                            () => doType($.value.type, $d.createIdentifier($.key), $i),
-                        )
 
-                    })
-                })
+                            })
+                        })
+                    },
+                    () => {
+
+                        $i.indent(($i) => {
+                            $i.nestedLine(($i) => {
+
+                                $i.snippet(`return `)
+                                doType($.value.type, $d.createIdentifier($.key), $i)
+
+                            })
+                        })
+                    },
+                )
                 $i.snippet(`}`)
             })
             // $d.enrichedDictionaryForEach($.results, {
