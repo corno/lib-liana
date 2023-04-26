@@ -387,7 +387,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
 export function globalTypeResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
     selection: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
-): g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation> {
+): g_this.T.Global__Types.D.result.O<pd.SourceLocation> {
     return {
         'temp type': type,
         'selection': selection,
@@ -397,8 +397,8 @@ export function globalTypeResult(
 export function globalType(
     parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
-    result?: g_this.T.Type__Library.global__types.D.result.O<pd.SourceLocation>,
-): g_this.T.Type__Library.global__types.D<pd.SourceLocation> {
+    result?: g_this.T.Global__Types.D.result.O<pd.SourceLocation>,
+): g_this.T.Global__Types.D<pd.SourceLocation> {
     const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
     pd.d(parameters).__forEach(() => false, ($, key) => {
         pl.cc($.type, ($) => {
