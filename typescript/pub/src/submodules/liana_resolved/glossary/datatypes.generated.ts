@@ -1786,6 +1786,21 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
+                                    export namespace nothing {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace optional {
                                         
                                         export namespace N {
@@ -3789,6 +3804,37 @@ export namespace T {
                         }
                     }
                     
+                    export namespace nothing {
+                        
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export namespace constraints {
+                            
+                            export namespace nothing {
+                                
+                                export type O<GAnnotation> = T.Type._ltype.nothing<GAnnotation>
+                            }
+                            
+                            export type nothing<GAnnotation> = [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        
+                        export type constraints<GAnnotation> = {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        
+                        export namespace content {}
+                        
+                        export type content<GAnnotation> = null
+                    }
+                    
+                    export type nothing<GAnnotation> = {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraints': {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        readonly 'content': null
+                    }
+                    
                     export namespace optional {
                         
                         export type annotation<GAnnotation> = GAnnotation
@@ -3904,6 +3950,13 @@ export namespace T {
                             }
                         }
                     }]
+                    | ['nothing', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraints': {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        readonly 'content': null
+                    }]
                     | ['optional', {
                         readonly 'annotation': GAnnotation
                         readonly 'constraints': {
@@ -3955,6 +4008,13 @@ export namespace T {
                                 readonly 'key': string
                             }
                         }
+                    }]
+                    | ['nothing', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraints': {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        readonly 'content': null
                     }]
                     | ['optional', {
                         readonly 'annotation': GAnnotation
@@ -4026,6 +4086,13 @@ export namespace T {
                             }
                         }
                     }]
+                    | ['nothing', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraints': {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        readonly 'content': null
+                    }]
                     | ['optional', {
                         readonly 'annotation': GAnnotation
                         readonly 'constraints': {
@@ -4086,6 +4153,13 @@ export namespace T {
                                 readonly 'key': string
                             }
                         }
+                    }]
+                    | ['nothing', {
+                        readonly 'annotation': GAnnotation
+                        readonly 'constraints': {
+                            readonly 'nothing': [ false ] | [ true, T.Type._ltype.nothing<GAnnotation>]
+                        }
+                        readonly 'content': null
                     }]
                     | ['optional', {
                         readonly 'annotation': GAnnotation

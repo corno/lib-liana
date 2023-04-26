@@ -1786,6 +1786,21 @@ export namespace N {
                                         export namespace T {}
                                     }
                                     
+                                    export namespace nothing {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace G {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
                                     export namespace optional {
                                         
                                         export namespace N {
@@ -3340,6 +3355,20 @@ export namespace T {
                 }
             }
             
+            export namespace nothing {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
+            
+            export type nothing<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
+            
             export namespace optional {
                 
                 export type annotation<GAnnotation> = GAnnotation
@@ -3397,6 +3426,10 @@ export namespace T {
                     }
                 }
             }]
+            | ['nothing', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }]
             | ['optional', {
                 readonly 'annotation': GAnnotation
                 readonly 'content': null
@@ -3432,6 +3465,10 @@ export namespace T {
                         readonly 'key': string
                     }
                 }
+            }]
+            | ['nothing', {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
             }]
             | ['optional', {
                 readonly 'annotation': GAnnotation

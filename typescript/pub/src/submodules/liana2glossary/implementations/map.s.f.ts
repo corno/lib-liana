@@ -22,7 +22,7 @@ export const $$: A.map = ($d) => {
                 }]
                 : [false]
         }
-        
+
         function createConstraintType(
             $: g_liana2glossary.T.MapData.settings.datamodel.O.constraints__mapping.constraints.O<Annotation>,
             $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
@@ -117,7 +117,7 @@ export const $$: A.map = ($d) => {
                             }))
                             default: return pl.au($[0])
                         }
-                      
+
                     })
                 }),
                 'types': pl.cc($, ($) => pm.wrapRawDictionary({})),
@@ -126,7 +126,25 @@ export const $$: A.map = ($d) => {
         function mapTypeToType($: g_liana.T.Type<Annotation>, $x: g_liana2glossary.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             return pl.cc($.type, ($) => {
                 switch ($[0]) {
-                    case 'nothing': return pl.ss($, ($) => ['null', null])
+                    case 'nothing': return pl.ss($, ($) => {
+                        const result = $.result
+                        return pl.optional(
+                            $x['constraints mapping'].constraints,
+                            ($) => {
+                                const $constraint = $
+                                return pl.optional(
+                                    result,
+                                    ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['group', pm.wrapRawDictionary({
+                                        "result": {
+                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
+                                        }
+                                    })],
+                                    () => ['null', null],
+                                )
+                            },
+                            () => ['null', null],
+                        )
+                    })
                     case 'array': return pl.ss($, ($) => ['array', mapTypeToType($.type, $x)])
                     case 'optional': return pl.ss($, ($) => {
                         function doOpt(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
@@ -203,10 +221,10 @@ export const $$: A.map = ($d) => {
                         }
                         return !settings.annotations
                             ? doDict()
-    
+
                             //**********this has quite some impact, leave it for now */
                             //this annotation can be used for reporting when an entry cannot be found.
-    
+
                             // : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
                             //     "content": [true, {
                             //         'type': doDict()
@@ -265,12 +283,12 @@ export const $$: A.map = ($d) => {
                                         }]
                                         : [false],
                                     "constraint": createOptionalConstraintProperty($x, () => pl.cc($['referencee type'], ($) => {
-                                            switch ($[0]) {
-                                                case 'resolved value': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
-                                                case 'sibling': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
-                                                default: return pl.au($[0])
-                                            }
-                                      
+                                        switch ($[0]) {
+                                            case 'resolved value': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
+                                            case 'sibling': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
+                                            default: return pl.au($[0])
+                                        }
+
                                     })),
                                     "annotation": createOptionalAnnotation(),
                                 }))]
@@ -279,12 +297,12 @@ export const $$: A.map = ($d) => {
                         }
                     })
                     case 'tagged union': return pl.ss($, ($) => {
-    
+
                         function doTU(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
                             return ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                                 const type = $.type
                                 const constraints = $.constraints
-    
+
                                 //if there are no constraints -or- no constraints or annotations should be added, then don't create a meta data group
                                 return $d.isEmpty($.constraints) || ($x['constraints mapping'].constraints[0] === false && !settings.annotations)
                                     ? mapTypeToType(type, $x)
@@ -316,7 +334,7 @@ export const $$: A.map = ($d) => {
                                         }],
                                     }))]
                             }))]
-    
+
                         }
                         const result = $.result
                         return pl.optional(
@@ -341,7 +359,7 @@ export const $$: A.map = ($d) => {
                     })
                     default: return pl.au($[0])
                 }
-              
+
             })
         }
         return {

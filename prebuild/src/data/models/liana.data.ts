@@ -201,6 +201,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "optional": optionConstraint(valSel("type"), "optional", typeSelection("Type", [grp("type")]))
                 }, group({
                 })),
+                "nothing": constrainedOption({
+                    "nothing": optionConstraint(valSel("type"), "nothing", typeSelection("Type", [grp("type")]))
+                }, group({
+                })),
                 "group": constrainedOption({
                     "group": optionConstraint(valSel("type"), "group", typeSelection("Type", [grp("type")]))
                 }, group({

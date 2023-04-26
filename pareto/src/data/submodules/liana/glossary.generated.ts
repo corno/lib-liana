@@ -826,6 +826,14 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                     })],
                                 },
                             })],
+                            "nothing": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
+                                "content": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                                },
+                            })],
                             "optional": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                 "annotation": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
@@ -1992,6 +2000,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                                 'namespaces': d({}),
                                                             },
                                                         }),
+                                                    },
+                                                }),
+                                            },
+                                            "nothing": {
+                                                'types': d({}),
+                                                'namespaces': d({
+                                                    "G": {
+                                                        'types': d({}),
+                                                        'namespaces': d({}),
                                                     },
                                                 }),
                                             },

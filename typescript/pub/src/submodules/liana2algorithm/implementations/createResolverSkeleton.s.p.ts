@@ -150,6 +150,11 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         doResult($i)
                     })
                     break
+                case 'nothing':
+                    pl.ss($, ($) => {
+                        doResult($i)
+                    })
+                    break
                 default: pl.au($[0])
             }
         })
