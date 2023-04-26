@@ -160,19 +160,6 @@ export function soptional(
     }]
 }
 
-export function snothing2(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
-        'step type': ['nothing', {
-            'annotation': pd.getLocationInfo(1),
-            'content': null,
-        }],
-        'tail': tail === undefined ? [false] : tail
-    }]
-}
-
-
 export function snothing(
     tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
