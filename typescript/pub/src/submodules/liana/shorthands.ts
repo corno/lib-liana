@@ -90,7 +90,7 @@ export function optionalResult(
     }
 }
 
-export function pAllSiblings(type: g_this.T.Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
+export function pAllSiblings(type: g_this.T.Global__Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
         'type': ['siblings', {
             'kind': ['cyclic', null],
@@ -126,7 +126,7 @@ export function pExternalResolvedValue(imp: string, gt: string, optional: boolea
 }
 
 export function pNonCyclicSiblings(
-    type: g_this.T.Type__Selection<pd.SourceLocation>
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>
 ): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
         'type': ['siblings', {
@@ -288,7 +288,7 @@ export function prop(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.S
 
 export function resolvedValueReference(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
-    typePath: g_this.T.Type__Selection<pd.SourceLocation>,
+    temp_type: g_this.T.Temp__Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
@@ -301,7 +301,7 @@ export function resolvedValueReference(
             },
             'constrained': ['yes', {
                 'referencee type': ['resolved value', {
-                    'temp type path': typePath,
+                    'temp type': temp_type,
                     'selection': valSel,
                 }]
             }],
@@ -311,7 +311,7 @@ export function resolvedValueReference(
 
 export function siblingReference(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
-    typePath: g_this.T.Type__Selection<pd.SourceLocation>,
+    temp_type: g_this.T.Temp__Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
@@ -324,7 +324,7 @@ export function siblingReference(
             },
             'constrained': ['yes', {
                 'referencee type': ['sibling', {
-                    'temp type path': typePath,
+                    'temp type': temp_type,
                     'selection': sel,
                 }]
             }],
@@ -334,10 +334,10 @@ export function siblingReference(
 
 export function dictConstraint(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
-    typePath: g_this.T.Type__Selection<pd.SourceLocation>,
+    temp_type: g_this.T.Temp__Type__Selection<pd.SourceLocation>,
 ): g_this.T.Dictionary__Constraints.D<pd.SourceLocation> {
     return {
-        'temp type path': typePath,
+        'temp type': temp_type,
         'selection': valSel,
     }
 }
@@ -472,10 +472,10 @@ export function option(
 export function optionConstraint(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
     option: string,
-    type: g_this.T.Type__Selection<pd.SourceLocation>
+    type: g_this.T.Temp__Type__Selection<pd.SourceLocation>
 ): g_this.T.Option__Constraints.D<pd.SourceLocation> {
     return {
-        'type': type,
+        'temp type': type,
         'selection': valSel,
         'option': {
             'annotation': pd.getLocationInfo(1),
@@ -592,7 +592,7 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 //     return ['tagged union', pd.d(options)]
 // }
 
-export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
+export function t_grp(prop: string): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
     return {
         'step type': ['group', {
             'annotation': pd.getLocationInfo(1),
@@ -603,7 +603,7 @@ export function grp(prop: string): g_this.T.Type__Selection.tail.A<pd.SourceLoca
     }
 }
 
-export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
+export function t_dict(): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
     return {
         'step type': ['dictionary', {
             'annotation': pd.getLocationInfo(1),
@@ -612,7 +612,7 @@ export function dict(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     }
 }
 
-export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
+export function t_arr(): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
     return {
         'step type': ['array', {
             'annotation': pd.getLocationInfo(1),
@@ -621,7 +621,7 @@ export function arr(): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
     }
 }
 
-export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocation> {
+export function t_tu(opt: string): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
     return {
         'step type': ['tagged union', {
             'annotation': pd.getLocationInfo(1),
@@ -629,6 +629,23 @@ export function tu(opt: string): g_this.T.Type__Selection.tail.A<pd.SourceLocati
                 'option': r_imp(opt, 1),
             },
         }]
+    }
+}
+
+export function tempExternalTypeSelection(
+    imp: string,
+    globalType: string,
+    path: g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation>[],
+): g_this.T.Temp__Type__Selection<pd.SourceLocation> {
+    return {
+        'global type': {
+            'import': [true, {
+                'key': imp,
+                'annotation': pd.getLocationInfo(1),
+            }],
+            'type': r_imp(globalType, 1),
+        },
+        'tail': a(path),
     }
 }
 
@@ -655,29 +672,13 @@ export function externalGlobalTypeSelection(
     }
 }
 
-export function typeSelection(
+export function tempTypeSelection(
     globalType: string,
-    path: g_this.T.Type__Selection.tail.A<pd.SourceLocation>[],
-): g_this.T.Type__Selection<pd.SourceLocation> {
+    path: g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation>[],
+): g_this.T.Temp__Type__Selection<pd.SourceLocation> {
     return {
         'global type': {
             'import': [false],
-            'type': r_imp(globalType, 1),
-        },
-        'tail': a(path),
-    }
-}
-export function externalTypeSelection(
-    imp: string,
-    globalType: string,
-    path: g_this.T.Type__Selection.tail.A<pd.SourceLocation>[],
-): g_this.T.Type__Selection<pd.SourceLocation> {
-    return {
-        'global type': {
-            'import': [true, {
-                'key': imp,
-                'annotation': pd.getLocationInfo(1),
-            }],
             'type': r_imp(globalType, 1),
         },
         'tail': a(path),

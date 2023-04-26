@@ -21,7 +21,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
         )
         $i.snippet(`.T.${$d.createIdentifier($.type.key)}`)
     }
-    function doTypeSelection<Annotation>($: g_liana.T.Type__Selection<Annotation>, $i: g_fp.SYNC.I.Line) {
+    function doTempTypeSelection<Annotation>($: g_liana.T.Temp__Type__Selection<Annotation>, $i: g_fp.SYNC.I.Line) {
         $i.snippet(`g_out`)
         pl.optional(
             $['global type'].import,
@@ -278,7 +278,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $c(($) => {
                                         $i.nestedLine(($i) => {
                                             $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
-                                            doTypeSelection($.value['temp type path'], $i)
+                                            doTempTypeSelection($.value['temp type'], $i)
                                             $i.snippet(`.D<Annotation> = `)
                                             doValueSelection($.value.selection, $i, ($i) => {
                                                 $i.snippet(`[true, $]`)
@@ -421,12 +421,12 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                             $c(($) => {
                                                                 $i.nestedLine(($i) => {
                                                                     $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
-                                                                    doTypeSelection($.value['type'], $i)
+                                                                    doTempTypeSelection($.value['temp type'], $i)
                                                                     $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation> = pl.cc($, ($) => {`)
                                                                     $i.indent(($i) => {
                                                                         $i.nestedLine(($i) => {
                                                                             $i.snippet(`const x: pt.OptionalValue<`)
-                                                                            doTypeSelection($.value['type'], $i)
+                                                                            doTempTypeSelection($.value['temp type'], $i)
                                                                             $i.snippet(`<Annotation>> = `)
                                                                             doValueSelection($.value.selection, $i, ($i) => {
                                                                                 $i.snippet(`[true, $]`)
@@ -549,7 +549,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                 function type($i: g_fp.SYNC.I.Line) {
 
                                                                     $i.snippet(`pt.OptionalValue<`)
-                                                                    doTypeSelection($['temp type path'], $i)
+                                                                    doTempTypeSelection($['temp type'], $i)
                                                                     $i.snippet(`.D`)
                                                                     $i.snippet(`<Annotation>`)
                                                                     $i.snippet(`>`)
@@ -660,7 +660,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                         case 'cyclic':
                                                             pl.ss($, ($) => {
                                                                 $i.snippet(`pt.Lookup<pt.ComputedValue<`)
-                                                                doTypeSelection(type, $i)
+                                                                doGlobalTypeSelection(type, $i)
                                                                 $i.snippet(`.D<Annotation>>>`)
 
                                                             })
@@ -668,7 +668,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                         case 'non cyclic':
                                                             pl.ss($, ($) => {
                                                                 $i.snippet(`pt.Lookup<`)
-                                                                doTypeSelection(type, $i)
+                                                                doGlobalTypeSelection(type, $i)
                                                                 $i.snippet(`.D<Annotation>>`)
 
                                                             })

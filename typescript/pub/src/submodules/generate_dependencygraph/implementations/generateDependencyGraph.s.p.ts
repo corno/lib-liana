@@ -25,7 +25,7 @@ export const $$: A.generateDependencyGraph = () => {
                                 case 'siblings':
                                     pl.ss($, ($) => {
 
-                                        $i.line(`"${key}" -> "${ $.type['global type'].type.key}" [color="red"]`)
+                                        $i.line(`"${key}" -> "${ $.type.type.key}" [color="red"]`)
                                     })
                                     break
                                 default: pl.au($[0])

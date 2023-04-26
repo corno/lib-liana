@@ -9,7 +9,7 @@ import {
     terminal,
     taggedUnion,
     prop,
-    typeSelection,
+    tempTypeSelection,
     option,
     resolvedValueReference,
     valSel,
@@ -30,11 +30,11 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "a": prop(terminal("text")),
                 "b": prop(terminal("text")),
                 "c": prop(dictionary(group({}))),
-                "d": prop(resolvedValueReference(valSel("c"), typeSelection("FOO", []))),
+                "d": prop(resolvedValueReference(valSel("c"), tempTypeSelection("FOO", []))),
                 "e": prop(group({
                     //"a": prop(ref(typeReference(['parent', null], [])],
                 })),
-                "f": prop(resolvedValueReference(valSel("d"), typeSelection("FOO", []))),
+                "f": prop(resolvedValueReference(valSel("d"), tempTypeSelection("FOO", []))),
                 //"g": prop(taggedUnion({})],
                 "h": prop(taggedUnion({
                     "a": option(group({})),

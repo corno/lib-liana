@@ -52,8 +52,8 @@ export const $$: A.map = ($d) => {
                 'tail': pm.wrapRawArray([]),
             }
         }
-        function mapTypeSelection(
-            $: g_liana.T.Type__Selection<Annotation>,
+        function mapTempTypeSelection(
+            $: g_liana.T.Temp__Type__Selection<Annotation>,
             getLastStep: () => string
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
             return {
@@ -204,8 +204,8 @@ export const $$: A.map = ($d) => {
                                                 return {
                                                     'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                         switch (constraintStrat[0]) {
-                                                            case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTypeSelection($a['temp type path'], () => "D")]]])
-                                                            case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTypeSelection($a['temp type path'], () => "D")]])
+                                                            case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]]])
+                                                            case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]])
                                                             default: return pl.au(constraintStrat[0])
                                                         }
                                                     })
@@ -284,8 +284,8 @@ export const $$: A.map = ($d) => {
                                         : [false],
                                     "constraint": createOptionalConstraintProperty($x, () => pl.cc($['referencee type'], ($) => {
                                         switch ($[0]) {
-                                            case 'resolved value': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
-                                            case 'sibling': return pl.ss($, ($) => mapTypeSelection($['temp type path'], () => "D"))
+                                            case 'resolved value': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
+                                            case 'sibling': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
                                             default: return pl.au($[0])
                                         }
 
@@ -318,8 +318,8 @@ export const $$: A.map = ($d) => {
                                                         return {
                                                             'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                                 switch (constraintStrat[0]) {
-                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]]])
-                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTypeSelection($a.type, () => $a.option.key)]])
+                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => $a.option.key)]]])
+                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => $a.option.key)]])
                                                                     default: return pl.au(constraintStrat[0])
                                                                 }
                                                             })
