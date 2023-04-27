@@ -136,7 +136,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "temp type": prop(component("Global Type Selection", {
                             "global types": aContainingDictionary(parameter("global types")),
                         })),
-                        "set": prop(component("Optional Value Selection Tail", {})),
+                        "set": prop(component("Any Value Selection", {})),
                         "not set": prop(component("Value Selection", {})),//validate result is equal to 'set' result
                     })))
                 })),
@@ -150,7 +150,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         "type": prop(component("Type", {
                             "global types": aContainingDictionary(parameter("global types")),
                         })),
-                        "result": prop(optional(component("Optional Value Selection Tail", {})))
+                        "result": prop(optional(component("Any Value Selection", {})))
                     }))),
                     "default": prop(resolvedValueReference(valSel("options"), tempTypeSelection("Type", [t_grp("type"), t_tu("tagged union"), t_grp("options")]))),
                 })),
@@ -216,9 +216,12 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": aResolvedValue(valSel("step type", staggedunion()))
             }), optionalResult(globalTypeSelection("Type"), scomponent(), valSel("step type")))),
         }), globalTypeResult(globalTypeSelection("Type"), sgrp("tail", soptional()))),
-        "Optional Value Selection Tail": globalType({
+        "Any Value Selection": globalType({
             "type": pResolvedValue("Type", false),
-        }, optional(component("Value Selection Tail", {}))),
+        }, group({
+            "start": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables", [])))),
+            "tail": prop(optional(component("Value Selection Tail", {})))
+        })),
         "Reference Initializer": globalType({
         }, group({
             //FIXME
@@ -325,7 +328,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "result": prop(optional(group({
                 "temp type": prop(component("Global Type Selection", {})),
-                "selection": prop(component("Optional Value Selection Tail", {})),
+                "selection": prop(component("Any Value Selection", {})),
             })))
         })),
         "Type Library": globalType({}, group({

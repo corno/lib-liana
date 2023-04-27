@@ -12,6 +12,39 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({}),
     'root': {
         'types': d({
+            "Any Value Selection": {
+                'parameters': d({}),
+                'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                    "start": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                            "annotation": {
+                                'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                            },
+                            "constraint": {
+                                'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                    'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                    'type': "Variables",
+                                    'tail': a([
+                                        "D",
+                                    ]),
+                                    'arguments': d({}),
+                                }]]],
+                            },
+                            "key": {
+                                'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                            },
+                        })]],
+                    },
+                    "tail": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                            'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                            'type': "Value Selection Tail",
+                            'tail': a([]),
+                            'arguments': d({}),
+                        }]]],
+                    },
+                })]
+            },
             "Atom": {
                 'parameters': d({}),
                 'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
@@ -121,7 +154,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             "selection": {
                                 'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                     'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                    'type': "Optional Value Selection Tail",
+                                    'type': "Any Value Selection",
                                     'tail': a([]),
                                     'arguments': d({}),
                                 }]],
@@ -289,15 +322,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         }]],
                     },
                 })]]
-            },
-            "Optional Value Selection Tail": {
-                'parameters': d({}),
-                'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                    'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                    'type': "Value Selection Tail",
-                    'tail': a([]),
-                    'arguments': d({}),
-                }]]]
             },
             "Parameters": {
                 'parameters': d({}),
@@ -788,7 +812,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                         "set": {
                                             'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                                 'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                'type': "Optional Value Selection Tail",
+                                                'type': "Any Value Selection",
                                                 'tail': a([]),
                                                 'arguments': d({}),
                                             }]],
@@ -849,7 +873,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                         "result": {
                                             'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                                                 'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                'type': "Optional Value Selection Tail",
+                                                'type': "Any Value Selection",
                                                 'tail': a([]),
                                                 'arguments': d({}),
                                             }]]],
@@ -1387,6 +1411,34 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             },
         }),
         'namespaces': d({
+            "Any Value Selection": {
+                'types': d({}),
+                'namespaces': d({
+                    "G": {
+                        'types': d({}),
+                        'namespaces': d({
+                            "start": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "O": {
+                                        'types': d({}),
+                                        'namespaces': d({}),
+                                    },
+                                }),
+                            },
+                            "tail": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "O": {
+                                        'types': d({}),
+                                        'namespaces': d({}),
+                                    },
+                                }),
+                            },
+                        }),
+                    },
+                }),
+            },
             "Atom": {
                 'types': d({}),
                 'namespaces': d({
@@ -1648,15 +1700,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 }),
                             },
                         }),
-                    },
-                }),
-            },
-            "Optional Value Selection Tail": {
-                'types': d({}),
-                'namespaces': d({
-                    "O": {
-                        'types': d({}),
-                        'namespaces': d({}),
                     },
                 }),
             },

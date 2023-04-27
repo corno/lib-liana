@@ -71,22 +71,13 @@ export const $$: A.createResolverSkeleton = ($d) => {
             })
         })
     }
-    function doOptionalValueSelectionTail<Annotation>(
-        $: g_liana.T.Optional__Value__Selection__Tail<Annotation>,
-        $i: g_fp.SYNC.I.Line,
-        $c: ($i: g_fp.SYNC.I.Line,) => void,
-    ) {
+    // function doOptionalValueSelectionTail<Annotation>(
+    //     $: g_liana.T.Optional__Value__Selection__Tail<Annotation>,
+    //     $i: g_fp.SYNC.I.Line,
+    //     $c: ($i: g_fp.SYNC.I.Line,) => void,
+    // ) {
 
-        pl.optional(
-            $,
-            ($) => {
-                doValueSelectionTail($, $i, $c)
-            },
-            () => {
-                $c($i)
-            }
-        )
-    }
+
     function doValueSelectionTail<Annotation>(
         $: g_liana.T.Value__Selection__Tail<Annotation>,
         $i: g_fp.SYNC.I.Line,
@@ -101,7 +92,15 @@ export const $$: A.createResolverSkeleton = ($d) => {
                 })
                 $i.nestedLine(($i) => {
                     $i.snippet(`($) => `)
-                    doOptionalValueSelectionTail($.tail, $i, $c)
+                    pl.optional(
+                        $.tail,
+                        ($) => {
+                            doValueSelectionTail($, $i, $c)
+                        },
+                        () => {
+                            $c($i)
+                        }
+                    )
                     $i.snippet(`,`)
                 })
                 $i.nestedLine(($i) => {
@@ -122,7 +121,17 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     pl.ss($, ($) => {
                         const prop = $.content.property
                         $i.snippet(`pl.cc($['${prop.key}'], ($) => `)
-                        doOptionalValueSelectionTail(tail, $i, $c)
+
+                        
+                        pl.optional(
+                            tail,
+                            ($) => {
+                                doValueSelectionTail($, $i, $c)
+                            },
+                            () => {
+                                $c($i)
+                            }
+                        )
                         $i.snippet(`)`)
                     })
                     break
@@ -135,7 +144,17 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             })
                             $i.nestedLine(($i) => {
                                 $i.snippet(`($) => `)
-                                doOptionalValueSelectionTail(tail, $i, $c)
+
+
+                                pl.optional(
+                                    tail,
+                                    ($) => {
+                                        doValueSelectionTail($, $i, $c)
+                                    },
+                                    () => {
+                                        $c($i)
+                                    }
+                                )
                                 $i.snippet(`,`)
                             })
                             $i.nestedLine(($i) => {
@@ -193,6 +212,54 @@ export const $$: A.createResolverSkeleton = ($d) => {
             })
         })
         $i.snippet(`)`)
+    }
+    function doAnyValueSelection<Annotation>(
+        $: g_liana.T.Any__Value__Selection<Annotation>,
+        $i: g_fp.SYNC.I.Line,
+        $c: ($i: g_fp.SYNC.I.Line,) => void,
+    ) {
+        const start = $.start
+        const tail = $.tail
+        pl.optional(
+            $.start,
+            ($) => {
+                const start = $
+                $i.snippet(`tempoptional/*3*/(`)
+                $i.indent(($i) => {
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`$v_${$d.createIdentifier(start.key)},`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`($) => `)
+                        pl.optional(
+                            tail,
+                            ($) => {
+                                doValueSelectionTail($, $i, $c)
+                            },
+                            () => {
+                                $c($i)
+                            }
+                        )
+                        $i.snippet(`,`)
+                    })
+                    $i.nestedLine(($i) => {
+                        $i.snippet(`() => [false],`)
+                    })
+                })
+                $i.snippet(`)`)
+            },
+            () => {
+                pl.optional(
+                    $.tail,
+                    ($) => {
+                        doValueSelectionTail($, $i, $c)
+                    },
+                    () => {
+                        $c($i)
+                    }
+                )
+            },
+        )
     }
     function doContainingDictionarySelection<Annotation>(
         $: g_liana.T.Containing__Dictionary__Selection<Annotation>,
@@ -452,7 +519,9 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                     })
                                                     $i.nestedLine(($i) => {
                                                         $i.snippet(`($) => `)
-                                                        doOptionalValueSelectionTail($.set, $i, ($i) => {
+
+                                                        
+                                                        doAnyValueSelection($.set, $i, ($i) => {
                                                             $i.snippet(`[true, $]`)
                                                         })
                                                         $i.snippet(`,`)
@@ -504,9 +573,9 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                             $i.indent(($i) => {
                                                                 $c(($) => {
                                                                     $i.nestedLine(($i) => {
-                                                                        $i.snippet(`const $v_${$d.createIdentifier($.key)}: `)
+                                                                        $i.snippet(`const /*option constraint*/$v_${$d.createIdentifier($.key)}: pt.OptionalValue<`)
                                                                         doTempTypeSelection($.value['temp type'], $i)
-                                                                        $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation> = pl.cc($, ($) => {`)
+                                                                        $i.snippet(`.${$d.createIdentifier($.value.option.key)}<Annotation>> = pl.cc($, ($) => {`)
                                                                         $i.indent(($i) => {
                                                                             $i.nestedLine(($i) => {
                                                                                 $i.snippet(`const x: pt.OptionalValue<`)
@@ -610,7 +679,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                                                 })
                                                                 $i.nestedLine(($i) => {
                                                                     $i.snippet(`'result': pl.cc(content, ($) => `)
-                                                                    doOptionalValueSelectionTail($, $i, ($i) => {
+                                                                    doAnyValueSelection($, $i, ($i) => {
                                                                         $i.snippet(`[true, $]`)
                                                                     })
                                                                     $i.snippet(`),`)
@@ -864,17 +933,9 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`result: pl.cc(content, ($) => `)
 
-                                        pl.optional(
-                                            $.selection,
-                                            ($) => {
-                                                doValueSelectionTail($, $i, ($i) => {
-                                                    $i.snippet(`[true, $]`)
-                                                })
-                                            },
-                                            () => {
-                                                $i.snippet(`[true, $]`)
-                                            }
-                                        )
+                                        doAnyValueSelection($.selection, $i, ($i) => {
+                                            $i.snippet(`[true, $]`)
+                                        })
                                         $i.snippet(`),`)
                                     })
                                 })

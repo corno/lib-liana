@@ -3,6 +3,52 @@ import * as pt from 'pareto-core-types'
 
 export namespace N {
     
+    export namespace Any_$_$Value_$_$Selection {
+        
+        export namespace N {
+            
+            export namespace G {
+                
+                export namespace N {
+                    
+                    export namespace start {
+                        
+                        export namespace N {
+                            
+                            export namespace O {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace tail {
+                        
+                        export namespace N {
+                            
+                            export namespace O {
+                                
+                                export namespace N {}
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                }
+                
+                export namespace T {}
+            }
+        }
+        
+        export namespace T {}
+    }
+    
     export namespace Atom {
         
         export namespace N {
@@ -430,21 +476,6 @@ export namespace N {
                         export namespace T {}
                     }
                 }
-                
-                export namespace T {}
-            }
-        }
-        
-        export namespace T {}
-    }
-    
-    export namespace Optional_$_$Value_$_$Selection_$_$Tail {
-        
-        export namespace N {
-            
-            export namespace O {
-                
-                export namespace N {}
                 
                 export namespace T {}
             }
@@ -1953,6 +1984,54 @@ export namespace N {
 
 export namespace T {
     
+    export namespace Any__Value__Selection {
+        
+        export namespace start {
+            
+            export namespace O {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace constraint {
+                    
+                    export type O<GAnnotation> = T.Variables.D<GAnnotation>
+                }
+                
+                export type constraint<GAnnotation> = [ false ] | [ true, T.Variables.D<GAnnotation>]
+                
+                export type key<GAnnotation> = string
+            }
+            
+            export type O<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'constraint': [ false ] | [ true, T.Variables.D<GAnnotation>]
+                readonly 'key': string
+            }
+        }
+        
+        export type start<GAnnotation> = [ false ] | [ true, {
+            readonly 'annotation': GAnnotation
+            readonly 'constraint': [ false ] | [ true, T.Variables.D<GAnnotation>]
+            readonly 'key': string
+        }]
+        
+        export namespace tail {
+            
+            export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
+        }
+        
+        export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+    }
+    
+    export type Any__Value__Selection<GAnnotation> = {
+        readonly 'start': [ false ] | [ true, {
+            readonly 'annotation': GAnnotation
+            readonly 'constraint': [ false ] | [ true, T.Variables.D<GAnnotation>]
+            readonly 'key': string
+        }]
+        readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+    }
+    
     export namespace Atom {
         
         export namespace _ltype {
@@ -2087,19 +2166,19 @@ export namespace T {
             
             export namespace O {
                 
-                export type selection<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
+                export type selection<GAnnotation> = T.Any__Value__Selection<GAnnotation>
                 
                 export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             }
             
             export type O<GAnnotation> = {
-                readonly 'selection': T.Optional__Value__Selection__Tail<GAnnotation>
+                readonly 'selection': T.Any__Value__Selection<GAnnotation>
                 readonly 'temp type': T.Global__Type__Selection<GAnnotation>
             }
         }
         
         export type result<GAnnotation> = [ false ] | [ true, {
-            readonly 'selection': T.Optional__Value__Selection__Tail<GAnnotation>
+            readonly 'selection': T.Any__Value__Selection<GAnnotation>
             readonly 'temp type': T.Global__Type__Selection<GAnnotation>
         }]
         
@@ -2111,7 +2190,7 @@ export namespace T {
     export type Global__Type<GAnnotation> = {
         readonly 'parameters': T.Parameters<GAnnotation>
         readonly 'result': [ false ] | [ true, {
-            readonly 'selection': T.Optional__Value__Selection__Tail<GAnnotation>
+            readonly 'selection': T.Any__Value__Selection<GAnnotation>
             readonly 'temp type': T.Global__Type__Selection<GAnnotation>
         }]
         readonly 'type': T.Type<GAnnotation>
@@ -2291,13 +2370,6 @@ export namespace T {
         readonly 'selection': T.Value__Selection<GAnnotation>
         readonly 'temp type': T.Temp__Type__Selection<GAnnotation>
     }>
-    
-    export namespace Optional__Value__Selection__Tail {
-        
-        export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
-    }
-    
-    export type Optional__Value__Selection__Tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
     
     export namespace Parameters {
         
@@ -3143,21 +3215,21 @@ export namespace T {
                         
                         export type not__set<GAnnotation> = T.Value__Selection<GAnnotation>
                         
-                        export type _lset<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
+                        export type _lset<GAnnotation> = T.Any__Value__Selection<GAnnotation>
                         
                         export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                     }
                     
                     export type O<GAnnotation> = {
                         readonly 'not set': T.Value__Selection<GAnnotation>
-                        readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
+                        readonly 'set': T.Any__Value__Selection<GAnnotation>
                         readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                     }
                 }
                 
                 export type result<GAnnotation> = [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
-                    readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
+                    readonly 'set': T.Any__Value__Selection<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 
@@ -3167,7 +3239,7 @@ export namespace T {
             export type optional<GAnnotation> = {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
-                    readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
+                    readonly 'set': T.Any__Value__Selection<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -3203,10 +3275,10 @@ export namespace T {
                         
                         export namespace result {
                             
-                            export type O<GAnnotation> = T.Optional__Value__Selection__Tail<GAnnotation>
+                            export type O<GAnnotation> = T.Any__Value__Selection<GAnnotation>
                         }
                         
-                        export type result<GAnnotation> = [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                        export type result<GAnnotation> = [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                         
                         export type _ltype<GAnnotation> = T.Type<GAnnotation>
                         
@@ -3215,7 +3287,7 @@ export namespace T {
                     
                     export type D<GAnnotation> = {
                         readonly 'constraints': T.Option__Constraints<GAnnotation>
-                        readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                        readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
                     }
@@ -3223,7 +3295,7 @@ export namespace T {
                 
                 export type options<GAnnotation> = pt.Dictionary<{
                     readonly 'constraints': T.Option__Constraints<GAnnotation>
-                    readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                    readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                     readonly 'type': T.Type<GAnnotation>
                     readonly 'variables': T.Variables<GAnnotation>
                 }>
@@ -3244,7 +3316,7 @@ export namespace T {
                 }
                 readonly 'options': pt.Dictionary<{
                     readonly 'constraints': T.Option__Constraints<GAnnotation>
-                    readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                    readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                     readonly 'type': T.Type<GAnnotation>
                     readonly 'variables': T.Variables<GAnnotation>
                 }>
@@ -3403,7 +3475,7 @@ export namespace T {
             | ['optional', {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
-                    readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
+                    readonly 'set': T.Any__Value__Selection<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -3416,7 +3488,7 @@ export namespace T {
                 }
                 readonly 'options': pt.Dictionary<{
                     readonly 'constraints': T.Option__Constraints<GAnnotation>
-                    readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                    readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                     readonly 'type': T.Type<GAnnotation>
                     readonly 'variables': T.Variables<GAnnotation>
                 }>
@@ -3498,7 +3570,7 @@ export namespace T {
             | ['optional', {
                 readonly 'result': [ false ] | [ true, {
                     readonly 'not set': T.Value__Selection<GAnnotation>
-                    readonly 'set': T.Optional__Value__Selection__Tail<GAnnotation>
+                    readonly 'set': T.Any__Value__Selection<GAnnotation>
                     readonly 'temp type': T.Global__Type__Selection<GAnnotation>
                 }]
                 readonly 'type': T.Type<GAnnotation>
@@ -3511,7 +3583,7 @@ export namespace T {
                 }
                 readonly 'options': pt.Dictionary<{
                     readonly 'constraints': T.Option__Constraints<GAnnotation>
-                    readonly 'result': [ false ] | [ true, T.Optional__Value__Selection__Tail<GAnnotation>]
+                    readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
                     readonly 'type': T.Type<GAnnotation>
                     readonly 'variables': T.Variables<GAnnotation>
                 }>

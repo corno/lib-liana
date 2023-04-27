@@ -80,7 +80,7 @@ export function nothingResult(
 
 export function optionalResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    set: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+    set: g_this.T.Any__Value__Selection<pd.SourceLocation>,
     notSet: g_this.T.Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type._ltype.optional.result.O<pd.SourceLocation> {
     return {
@@ -136,59 +136,59 @@ export function pNonCyclicSiblings(
     }
 }
 
-export function scomponent(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+export function s_component(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['component', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
 }
 
-export function soptional(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+export function s_optional(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['optional', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
 }
 
-export function snothing(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+export function s_nothing(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['nothing', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail],
+    }
 }
 
-export function staggedunion(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+export function s_taggedunion(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['tagged union', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
 }
 
-export function sgrp(
+export function s_group(
     prop: string,
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['group', {
             'annotation': pd.getLocationInfo(1),
             'content': {
@@ -198,20 +198,20 @@ export function sgrp(
                 }
             }
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
 }
 
-export function ref(
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
-): g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation> {
-    return [true, {
+export function s_reference(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
+    return {
         'step type': ['reference', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
         }],
-        'tail': tail === undefined ? [false] : tail
-    }]
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
 }
 // export function comp(
 //     prop: string,
@@ -228,16 +228,38 @@ export function ref(
 //     }]
 // }
 
+export function varSel(
+    start: string,
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Any__Value__Selection<pd.SourceLocation> {
+    return {
+        'start': [true, {
+            'annotation': pd.getLocationInfo(1),
+            'key': start,
+        }],
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
+}
+
+export function tailSel(
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
+): g_this.T.Any__Value__Selection<pd.SourceLocation> {
+    return {
+        'start': [false],
+        'tail': tail === undefined ? [false] : [true, tail]
+    }
+}
+
 export function valSel(
     start: string,
-    tail?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>
+    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>
 ): g_this.T.Value__Selection<pd.SourceLocation> {
     return {
         'start': {
             'annotation': pd.getLocationInfo(1),
             'key': start,
         },
-        'tail': tail === undefined ? [false] : tail
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
@@ -392,7 +414,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
 
 export function globalTypeResult(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    selection: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+    selection: g_this.T.Any__Value__Selection<pd.SourceLocation>,
 ): g_this.T.Global__Type.result.O<pd.SourceLocation> {
     return {
         'temp type': type,
@@ -464,7 +486,7 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
 
 export function option(
     type: g_this.T.Type<pd.SourceLocation>,
-    result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+    result?: g_this.T.Any__Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d({}),
@@ -493,7 +515,7 @@ export function optionConstraint(
 export function constrainedOption(
     constraints: RawDictionary<g_this.T.Option__Constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
-    result?: g_this.T.Optional__Value__Selection__Tail<pd.SourceLocation>,
+    result?: g_this.T.Any__Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type._ltype.tagged__union.options.D<pd.SourceLocation> {
     return {
         'constraints': pd.d(constraints),
