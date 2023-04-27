@@ -5,20 +5,32 @@ import {
     component, constrainedDictionary,
     constrainedOption, dictConstraint,
     dictionary, externalGlobalTypeSelection,
-    globalType, globalTypeResult, globalTypeSelection,
+    globalType, globalTypeResult,
+    globalTypeSelection,
     group,
     nothing, nothingResult,
-    option, optionConstraint, optional, optionalResult,
-    pExternalResolvedValue, pResolvedValue,
+    option, optionConstraint, optional,
+    optionalResult,
+    pExternalResolvedValue,
+    pResolvedValue,
     prop,
     resolvedValueReference,
     resultTaggedUnion,
-    t_dict, t_grp, t_tu,
+    s_component,
+    s_reference,
+    s_group,
+    s_nothing,
+    s_optional, s_taggedunion,
+    t_dict,
+    t_grp,
+    t_tu,
     taggedUnion,
     tempExternalTypeSelection,
     tempTypeSelection,
     terminal,
     valSel,
+    tailSel,
+    varSel
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 
@@ -34,5 +46,720 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         }),
     },
     'global types': d({
+        "A Result": globalType({}, group({
+            "foo": prop(terminal("identifier")),
+        })),
+        "A tagged union with result": globalType({}, group({
+            "tu": prop(resultTaggedUnion(globalTypeSelection("A Result"), {
+                "a": option(group({
+                    "result": prop(component("A Result", {}))
+                }), tailSel(s_group("result")))
+            }))
+        })),
+        "A tagged union with constrained option": globalType({}, group({
+            "tu1": prop(taggedUnion({
+                "a": option(group({
+                    "bar": prop(terminal("identifier")),
+                }))
+            })),
+            "tu2": prop(taggedUnion({
+                "a": constrainedOption({
+                    "opt constraint": optionConstraint(valSel("tu1"), "a", tempTypeSelection("A tagged union with constrained option", [t_grp("tu1")]))
+                }, group({
+                    "result": prop(component("A Result", {}))
+                }))
+            }))
+        })),
+        "A dictionary with constraint": globalType({}, group({
+            "dict": prop(dictionary(group({}))),
+            "constrained dict": prop(constrainedDictionary(
+                {
+                    "a constraint": dictConstraint(valSel("dict"), tempTypeSelection("A dictionary with constraint", [t_grp("dict")]))
+                },
+                group({}),
+            )),
+        })),
+        "A optional with result": globalType({
+            "result param": pResolvedValue("A Result", false),
+        }, group({
+            "opt": prop(optional(group({
+                "result": prop(component("A Result", {}))
+            }), optionalResult(globalTypeSelection("A Result"), tailSel(s_group("result")), valSel("result param"))))
+        })),
+
+        // "Block": globalType({
+        //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false), //needed to determine the type of the return expression
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false), //needed for 'Type Path'
+        //     "variable stack": pResolvedValue("Variables", false), //needed for 'Address Selection' and assignment statements
+        // }, group({
+        //     "variables": prop(component("Variables", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack")),
+        //     })),
+        //     "statements": prop(component("Statements", {
+        //         "function": aResolvedValue(valSel("function")),
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variables"))
+        //     }))
+        // })),
+        // "Boolean Expression": globalType({
+        //     "variable stack": pResolvedValue("Variables", false),
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        // }, taggedUnion({
+        //     "and": option(group({
+        //         "left hand side": prop(component("Boolean Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Boolean Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "or": option(group({
+        //         "left hand side": prop(component("Boolean Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Boolean Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "false": option(group({})),
+        //     "not": option(component("Boolean Expression Or Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "true": option(group({})),
+        //     //boolean/string
+        //     "string equals": option(group({
+        //         "left hand side": prop(component("String Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("String Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "string not equals": option(group({
+        //         "left hand side": prop(component("String Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("String Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     //boolean/number
+        //     "number equals": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "number not equals": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "greater than": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "less than": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        // })),
+        // "Boolean Expression Or Selection": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        //     "variable stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("Boolean Expression", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "selection": option(component("Address Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"), /*constrain to boolean*/)
+        //     })),
+        // })),
+        "Address Selection Tail": globalType(
+            {
+                "current address": pExternalResolvedValue("typesystem", "Type", false),
+                "variable stack": pResolvedValue("Variables", false),
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+            },
+            optional(
+                group({
+                    "step": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
+                        "call": constrainedOption({
+                            "address function": optionConstraint(valSel("current address"), "address function", tempExternalTypeSelection("typesystem", "Type", []))
+                        }, group({
+                            // "function": prop(component("Address Selection", {
+                            //     "namespace": aResolvedValue(valSel("namespace")),
+                            //     "variable stack": aResolvedValue(valSel("variable stack"))
+                            // })), /*constraint tagged union: type === address function*/
+                            "type arguments": prop(component("Type Arguments", {
+                                "type parameters": aResolvedValue(valSel("address function", s_group("type parameters"))),
+                                "namespace": aResolvedValue(valSel("namespace")),
+                            })),
+                            "arguments": prop(constrainedDictionary({
+                                "parameter": dictConstraint(valSel("address function", s_group("parameters")), tempExternalTypeSelection("typesystem", "Parameters", []))
+                            }, component("Expression", {
+                                "expected type": aResolvedValue(valSel("parameter", s_group("type"))),
+                                "namespace": aResolvedValue(valSel("namespace")),
+                                "variable stack": aResolvedValue(valSel("variable stack")),
+                            }))),
+                        }), varSel("address function", s_group("return value"))),
+                        "property": constrainedOption({
+                            "group": optionConstraint(valSel("current address"), "group", tempExternalTypeSelection("typesystem", "Type", []))
+                        }, resolvedValueReference(valSel("group", s_group("properties")), tempExternalTypeSelection("typesystem", "Type", [t_tu("group"), t_grp("properties")]))),
+                    })),
+                    "tail": prop(component("Address Selection Tail", {
+                        "current address": aResolvedValue(valSel("step", s_taggedunion())),
+                        "namespace": aResolvedValue(valSel("namespace")),
+                        "variable stack": aResolvedValue(valSel("variable stack"))
+                    }))
+                }),
+                optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("current address")),
+            ),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))
+        ),
+        "Address Selection": globalType(
+            {
+                "variable stack": pResolvedValue("Variables", false),
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+            },
+            group({
+                "variable": prop(resolvedValueReference(valSel("variable stack"), tempTypeSelection("Variables", []))),
+                "tail": prop(component("Address Selection Tail", {
+                    "current address": aResolvedValue(valSel("variable", s_reference(s_group("type", s_taggedunion())))),
+                    "namespace": aResolvedValue(valSel("namespace")),
+                    "variable stack": aResolvedValue(valSel("variable stack"))
+                })),
+            }),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())))
+        ),
+        "Expression": globalType(
+            {
+                "expected type": pExternalResolvedValue("typesystem", "Type", false),
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+                "variable stack": pResolvedValue("Variables", false),
+            },
+            taggedUnion({
+                // //array
+                // "array literal": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "array", externalTypeSelection("typesystem", "Type", []))
+                // }, array(component("Expression", {
+                //     "expected type": aResolvedValue(valSel("out")),
+                //     "namespace": aResolvedValue(valSel("namespace")),
+                //     "variable stack": aResolvedValue(valSel("variable stack")),
+                // }))),
+                // //object
+                // "object literal": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "group", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "properties": prop(constrainedDictionary(
+                //         { "X": dictConstraint(valSel("out", s_group("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")])) },
+                //         component("Expression", {
+                //             "expected type": aResolvedValue(valSel("out")),
+                //             "namespace": aResolvedValue(valSel("namespace")),
+                //             "variable stack": aResolvedValue(valSel("variable stack")),
+                //         })
+                //     )),
+                // })),
+                // //function (inline function)
+                // "address function": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "parameters": prop(dictionary(group({}))), //no type info needed
+                //     //"signature": prop(component("FunctionSignature", {})),
+                //     "variables": prop(component("Variables", {
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                //         "variable stack": aResolvedValue(valSel("variable stack")),
+                //     })),
+                //     "statements": prop(component("Statements", {
+                //         "function": aResolvedValue(valSel("out")),
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         "variable stack": aResolvedValue(valSel("variables"))
+                //     })),
+                //     "return selection": prop(component("Address Selection", {
+                //         // "function": aResolvedValue(valSel("out")),
+                //         // "namespace": aResolvedValue(valSel("namespace")),
+                //         // "variable stack": aResolvedValue(valSel("variables"))
+                //     })),
+                // })),
+                // "value function": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+                //     "parameters": prop(dictionary(group({}))), //no type info needed
+                //     //"signature": prop(component("FunctionSignature", {})),
+                //     "variables": prop(component("Variables", {
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                //         "variable stack": aResolvedValue(valSel("variable stack")),
+                //     })),
+                //     "statements": prop(component("Statements", {
+                //         "function": aResolvedValue(valSel("out")),
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         "variable stack": aResolvedValue(valSel("variables"))
+                //     })),
+                //     "return expression": prop(component("Expression", {
+                //         // "function": aResolvedValue(valSel("out")),
+                //         // "namespace": aResolvedValue(valSel("namespace")),
+                //         // "variable stack": aResolvedValue(valSel("variables"))
+                //     })),
+                // })),
+                // // "procedure": constrainedOption({
+                // //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type", []))
+                // // }, group({
+                // //     "parameters": prop(dictionary(group({}))), //no type info needed
+                // //     //"signature": prop(component("FunctionSignature", {})),
+                // //     "variables": prop(component("Variables", {
+                // //         "namespace": aResolvedValue(valSel("namespace")),
+                // //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
+                // //         "variable stack": aResolvedValue(valSel("variable stack")),
+                // //     })),
+                // //     "statements": prop(component("Statements", {
+                // //         "function": aResolvedValue(valSel("out")),
+                // //         "namespace": aResolvedValue(valSel("namespace")),
+                // //         "variable stack": aResolvedValue(valSel("variables"))
+                // //     })),
+                // // })),
+                // //boolean
+                // "boolean": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "boolean", externalTypeSelection("typesystem", "Type", []))
+                // }, component("Boolean Expression", {
+                //     "namespace": aResolvedValue(valSel("namespace")),
+                //     "variable stack": aResolvedValue(valSel("variable stack"))
+                // })),
+                // //numerical
+                // "numerical": constrainedOption({
+                //     "out": optionConstraint(valSel("type"), "number", externalTypeSelection("typesystem", "Type", []))
+                // }, component("Numerical Expression", {
+                //     "namespace": aResolvedValue(valSel("namespace")),
+                //     "variable stack": aResolvedValue(valSel("variable stack"))
+                // })),
+                //string
+                "string": constrainedOption({
+                    "out": optionConstraint(valSel("expected type"), "string", tempExternalTypeSelection("typesystem", "Type", []))
+                }, component("String Expression", {
+                    "namespace": aResolvedValue(valSel("namespace")),
+                    "variable stack": aResolvedValue(valSel("variable stack"))
+                })),
+                // //any
+                // "conditional": option(group({
+                //     "test": prop(component("Boolean Expression Or Selection", {
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         "variable stack": aResolvedValue(valSel("variable stack"))
+                //     })),
+                //     "true": prop(component("Expression", {
+                //         "variable stack": aResolvedValue(valSel("variable stack")),
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //         "type": aResolvedValue(valSel("type")),
+                //     })),
+                //     "false": prop(component("Expression", {
+                //         "expected type": aResolvedValue(valSel("expected type")),
+                //         "variable stack": aResolvedValue(valSel("variable stack")),
+                //         "namespace": aResolvedValue(valSel("namespace")),
+                //     })),
+                // })),
+                // //"identifier": option(terminal("identifier")),
+                // // "new": option(group({
+                // //     "class": prop(terminal("identifier")),
+                // //     "parameters": prop(dictionary(component("Expression", {}))),
+                // // })),
+                // // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
+                // "null": constrainedOption({
+                //     "out": optionConstraint(valSel("TBD"), "null", externalTypeSelection("typesystem", "Type", []))
+                // }, group({
+
+                // })),
+                // //"parenthesized": option(component("Expression", {})),
+                // "symbol": option(component("Address Selection", { //something that is stored
+                //     "namespace": aResolvedValue(valSel("namespace")),
+                //     "variable stack": aResolvedValue(valSel("variable stack"))
+                // })),
+                // // "template": composite("TemplateExpression", group({
+                // //     "head": member(empty("TemplateHead", { "text": terminal() })),
+                // //     "spans": member(array(composite("TemplateSpan", group({
+                // //         "expression": member(component("Expression")),
+                // //         "type": member(choice({
+                // //             "middle": empty("TemplateMiddle", { "text": terminal() }),
+                // //             "tail": empty("TemplateTail", { "text": terminal() }),
+                // //         })),
+                // //     })))),
+                // // })),
+            })
+        ),
+        // "Numerical Expression": globalType({
+        //     "variable stack": pResolvedValue("Variables", false),
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        // }, taggedUnion({
+        //     "minus": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "plus": option(group({
+        //         "left hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //         "right hand side": prop(component("Numerical Expression Or Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })),
+        //     })),
+        //     "predecrement": option(component("Numerical Expression Or Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "preincrement": option(component("Numerical Expression Or Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "postdecrement": option(component("Numerical Expression Or Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "postincrement": option(component("Numerical Expression Or Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "numeric literal": option(terminal("numeric literal")),
+        // })),
+        // "Numerical Expression Or Selection": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        //     "variable stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("Numerical Expression", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "selection": option(component("Address Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })/*, externalTypeSelection("typesystem", "Type", [tu("number"), ])*/),
+        // })),
+        // "SourceFile": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+        // }, group({
+        //     "symbols": prop(component("Symbols", {
+        //         "namespace": aResolvedValue(valSel("namespace"))
+        //     })),
+        // })),
+        // "Assign": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        //     "variable stack": pResolvedValue("Variables", false),
+        // }, group({
+        //     "target": prop(component("Address Selection", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "right hand side": prop(component("Expression", {
+        //         "expected type": aResolvedValue(valSel("target", s_component())),
+        //         "variable stack": aResolvedValue(valSel("variable stack")),
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //     })),
+        // })),
+        // "Statements": globalType({
+        //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
+        //     "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        //     "variable stack": pResolvedValue("Variables", false),
+        // }, array(taggedUnion({
+        //     "block": option(component("Block", {
+        //         "parameters": aResolvedValue(valSel("parameters")),
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack")),
+        //     })),
+        //     "with": option(group({
+        //         "address": prop(component("Address Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //         })),
+        //         "action": prop(taggedUnion({
+        //             "call": constrainedOption({
+        //                 "procedure address": optionConstraint(valSel("address", s_component()), "procedure", externalTypeSelection("typesystem", "Type", [tu("procedure")]))
+        //             }, group({
+        //                 "type arguments": prop(component("Type Arguments", {
+        //                     "type parameters": aResolvedValue(valSel("function")),
+        //                     "namespace": aResolvedValue(valSel("namespace")),
+        //                 })),
+        //                 "arguments": prop(constrainedDictionary(
+        //                     { "parameter": dictConstraint(valSel("function"), externalTypeSelection("typesystem", "Parameters", [])) },
+        //                     component("Expression", {
+        //                         "expected type": aResolvedValue(valSel("parameter")),
+        //                         "variable stack": aResolvedValue(valSel("variable stack")),
+        //                         "namespace": aResolvedValue(valSel("namespace")),
+        //                     })
+        //                 )),
+        //             })),
+        //             "assign": option(component("Assign", {
+        //                 "namespace": aResolvedValue(valSel("namespace")),
+        //                 "variable stack": aResolvedValue(valSel("variable stack")),
+        //             })),
+        //             "minus assign": constrainedOption({
+        //                 "number address": optionConstraint(valSel("address", s_component()), "number", typeSelection("Foo", []))
+        //             }, group({/*must be number*/
+        //                 "right hand side": prop(component("Number Expression Or Selection", {
+        //                     "namespace": aResolvedValue(valSel("namespace")),
+        //                     "variable stack": aResolvedValue(valSel("variable stack")),
+        //                 })),
+        //             })),
+        //             "plus assign": constrainedOption({
+        //                 "number address": optionConstraint(valSel("address", s_component()), "number", typeSelection("Foo", []))
+        //             }, group({/*must be number*/
+        //                 "right hand side": prop(component("Expression", {
+        //                     "namespace": aResolvedValue(valSel("namespace")),
+        //                     "variable stack": aResolvedValue(valSel("variable stack")),
+        //                 })),
+        //             })),
+        //             "switch": constrainedOption({
+        //                 "tagged union address": optionConstraint(valSel("address", s_component()), "tagged union", typeSelection("Foo", []))
+        //             }, group({
+        //                 "cases": prop(constrainedDictionary(
+        //                     { "option": dictConstraint(valSel("tagged union address", s_group("options")), externalTypeSelection("typesystem", "Type", [tu("tagged union"), grp("options")])) },
+        //                     group({
+        //                         "block": prop(component("Block", {
+        //                             "function": aResolvedValue(valSel("function")),
+        //                             "namespace": aResolvedValue(valSel("namespace")),
+        //                             "variable stack": aResolvedValue(valSel("variable stack")),
+        //                         }))
+        //                     })
+        //                 )),
+        //                 "default": prop(optional(component("Block", {
+        //                     "function": aResolvedValue(valSel("function")),
+        //                     "namespace": aResolvedValue(valSel("namespace")),
+        //                     "variable stack": aResolvedValue(valSel("variable stack")),
+        //                 }))),
+        //             })),
+        //         }))
+        //     })),
+        //     "for": option(group({
+        //         "condition": prop(component("Boolean Expression", {
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //         })),
+        //         "incrementer": prop(component("Assign", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //         })),
+        //         "block": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //         })),
+        //     })),
+        //     "if": option(group({
+        //         "condition": prop(component("Boolean Expression Or Selection", {
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //         })),
+        //         "then": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+
+        //         })),
+        //         "else": prop(optional(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //         }))),
+        //     })),
+        //     // "labeled": composite("LabeledStatement", group({
+        //     //     "label": member(component("identifier")),
+        //     //     "statement": member(component("statement")),
+        //     // })),
+        //     // "return": option(group({
+        //     //     "expression": prop(optional(component("Expression", {
+        //     //         "expected type": aResolvedValue(valSel("function", s_group("return type", result()))),
+        //     //         "variable stack": aResolvedValue(valSel("variable stack")),
+        //     //         "namespace": aResolvedValue(valSel("namespace")),
+        //     //     })))
+        //     // })),
+        //     // "throw": option(component("Expression", {})),
+        //     // "try": option(group({
+        //     //     "block": prop(component("Block", {})),
+        //     //     "catchClause": prop(group({
+        //     //         "variable": prop(component("variableDeclaration")),
+        //     //         "block": member(component("block")),
+        //     //     }))),
+        //     // }))),
+        //     "while": option(group({
+        //         "condition": prop(component("Boolean Expression Or Selection", {
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //         })),
+        //         "block": prop(component("Block", {
+        //             "function": aResolvedValue(valSel("function")),
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack")),
+        //         })),
+        //     })),
+        // }))),
+        "String Expression": globalType(
+            {
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+                "variable stack": pResolvedValue("Variables", false),
+            },
+            taggedUnion({
+                "string literal": option(terminal("string literal")),
+            }))
+        ,
+        // "String Expression Or Selection": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        //     "variable stack": pResolvedValue("Variables", false),
+        // }, taggedUnion({
+        //     "expression": option(component("String Expression", {
+        //         "namespace": aResolvedValue(valSel("namespace")),
+        //         "variable stack": aResolvedValue(valSel("variable stack"))
+        //     })),
+        //     "selection": option(group({
+        //         "selection": prop(component("Address Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace")),
+        //             "variable stack": aResolvedValue(valSel("variable stack"))
+        //         })/*, externalTypeSelection("typesystem", "Type", [tu("string"), ])*/),
+        //         "cast to string": prop(taggedUnion({
+        //             "string": constrainedOption({
+        //                 "string": optionConstraint(valSel("selection", s_component()), "string", externalTypeSelection("typesystem", "Type", []))
+        //             }, group({}))
+        //         }))
+        //     })),
+        // })),
+        // "Symbols": globalType({
+        //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+        // }, dictionary(taggedUnion({
+        //     "namespace": option(group({
+        //         "symbols": prop(component("Symbols", {
+        //             "namespace": aResolvedValue(valSel("namespace"))
+        //         }))
+        //     })),
+        //     "symbol": option(group({
+        //         "type path": prop(component("Type Selection", {
+        //             "namespace": aResolvedValue(valSel("namespace"))
+        //         })),
+        //     })),
+        // }))),
+        "Type Arguments": globalType(
+            {
+                "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+            },
+            constrainedDictionary(
+                { "x": dictConstraint(valSel("type parameters"), tempExternalTypeSelection("typesystem", "Type Parameters", [])) },
+                group({
+                    "type": prop(component("Type Selection", {
+                        "namespace": aResolvedValue(valSel("namespace"))
+                    }))
+                })
+            )
+        ),
+        "Type Selection Tail": globalType(
+            {
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+            },
+            optional(
+                group({
+                    //"step type": prop(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, []))),
+                    "tail": prop(component("Type Selection Tail", {
+                        "namespace": aResolvedValue(valSel("namespace"))
+                    })),
+                }),
+                optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("namespace"))),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))),
+        "Type Selection": globalType(
+            {
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+            },
+            group({
+                "referenced type": prop(resolvedValueReference(valSel("namespace"), tempExternalTypeSelection("typesystem", "Namespace", []))),
+                "type of referenced type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"),
+                    {
+                        "namespace": constrainedOption(
+                            {
+                                "referenced namespace": optionConstraint(valSel("referenced type", s_reference()), "namespace", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
+                            },
+                            component("Type Selection", {
+                                "namespace": aResolvedValue(valSel("namespace"))
+                            }),
+                            tailSel(s_component())
+                        ),
+                        "type definition": constrainedOption(
+                            {
+                                "referenced type definition": optionConstraint(valSel("referenced type", s_reference()), "type definition", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
+                            },
+                            group({}),
+                            varSel("referenced type definition"),
+
+                        )
+                    }))
+            }),
+            // group({
+            //     // "steps": prop(array(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, [])))),
+            //     "type": prop(resolvedValueReference(valSel("namespace"), externalTypeSelection("typesystem", "Namespace", []), /*constrain to type defintion*/)),
+            //     "arguments": prop(component("Type Arguments", {
+            //         "type": aResolvedValue(valSel("type")),
+            //         "namespace": aResolvedValue(valSel("namespace"))
+            //     })),
+            // }),
+            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("type of referenced type", s_reference())))
+        ),
+        "Variables": globalType(
+            {
+                "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
+                "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
+                "variable stack": pResolvedValue("Variables", false),
+            },
+            dictionary(group({
+                "type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
+                    "parameter": option(group({
+                        "parameter": prop(resolvedValueReference(valSel("parameters"), tempExternalTypeSelection("typesystem", "Parameters", []))),
+                    }), tailSel(s_group("parameter", s_reference()))),
+                    "variable stack": option(group({})),
+                    "local": option(group({
+                        "type": prop(resolvedValueReference(valSel("namespace"), tempExternalTypeSelection("typesystem", "Namespace", []))),
+                        "initializer": prop(component("Expression", {
+                            "expected type": aResolvedValue(valSel("type", s_reference())),
+                            "namespace": aResolvedValue(valSel("namespace")),
+                            "variable stack": aResolvedValue(valSel("variable stack")),
+                        })),
+                    })),
+                })),
+            }))
+        ),
     }),
 }
