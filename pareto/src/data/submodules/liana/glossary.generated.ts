@@ -412,20 +412,27 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             "component": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                                 "arguments": {
                                     'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                                        "type": {
-                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                                                "containing dictionary": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                    'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                    'type': "Containing Dictionary Selection",
-                                                    'tail': a([]),
-                                                    'arguments': d({}),
-                                                }]],
-                                                "resolved value": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                                    'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
-                                                    'type': "Value Selection",
-                                                    'tail': a([]),
-                                                    'arguments': d({}),
-                                                }]],
+                                        "annotation": {
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                        },
+                                        "content": {
+                                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                                "type": {
+                                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                                                        "containing dictionary": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                            'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                            'type': "Containing Dictionary Selection",
+                                                            'tail': a([]),
+                                                            'arguments': d({}),
+                                                        }]],
+                                                        "resolved value": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                                            'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                                            'type': "Value Selection",
+                                                            'tail': a([]),
+                                                            'arguments': d({}),
+                                                        }]],
+                                                    })],
+                                                },
                                             })],
                                         },
                                     })]],

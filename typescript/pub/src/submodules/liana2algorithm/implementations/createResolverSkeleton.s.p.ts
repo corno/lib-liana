@@ -241,7 +241,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                             $d.dictionaryForEach($.arguments, ($) => {
                                 $i.nestedLine(($i) => {
                                     pl.cc($.value, ($) => {
-                                        pl.cc($.type, ($) => {
+                                        pl.cc($.content.type, ($) => {
                                             switch ($[0]) {
                                                 case 'resolved value':
                                                     pl.ss($, ($) => {

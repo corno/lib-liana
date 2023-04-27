@@ -2609,29 +2609,46 @@ export namespace T {
                     
                     export namespace D {
                         
-                        export namespace _ltype {
+                        export type annotation<GAnnotation> = GAnnotation
+                        
+                        export namespace content {
                             
-                            export type containing__dictionary<GAnnotation> = T.Containing__Dictionary__Selection<GAnnotation>
+                            export namespace _ltype {
+                                
+                                export type containing__dictionary<GAnnotation> = T.Containing__Dictionary__Selection<GAnnotation>
+                                
+                                export type resolved__value<GAnnotation> = T.Value__Selection<GAnnotation>
+                            }
                             
-                            export type resolved__value<GAnnotation> = T.Value__Selection<GAnnotation>
+                            export type _ltype<GAnnotation> = 
+                                | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                                | ['resolved value', T.Value__Selection<GAnnotation>]
                         }
                         
-                        export type _ltype<GAnnotation> = 
-                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                        export type content<GAnnotation> = {
+                            readonly 'type': 
+                                | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                                | ['resolved value', T.Value__Selection<GAnnotation>]
+                        }
                     }
                     
                     export type D<GAnnotation> = {
-                        readonly 'type': 
-                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                        readonly 'annotation': GAnnotation
+                        readonly 'content': {
+                            readonly 'type': 
+                                | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                                | ['resolved value', T.Value__Selection<GAnnotation>]
+                        }
                     }
                 }
                 
                 export type arguments<GAnnotation> = pt.Dictionary<{
-                    readonly 'type': 
-                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                        | ['resolved value', T.Value__Selection<GAnnotation>]
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'type': 
+                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                    }
                 }>
                 
                 export namespace context {
@@ -2687,9 +2704,12 @@ export namespace T {
             
             export type component<GAnnotation> = {
                 readonly 'arguments': pt.Dictionary<{
-                    readonly 'type': 
-                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                        | ['resolved value', T.Value__Selection<GAnnotation>]
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'type': 
+                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                    }
                 }>
                 readonly 'context': 
                     | ['import', {
@@ -2995,9 +3015,12 @@ export namespace T {
             }]
             | ['component', {
                 readonly 'arguments': pt.Dictionary<{
-                    readonly 'type': 
-                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                        | ['resolved value', T.Value__Selection<GAnnotation>]
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'type': 
+                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                    }
                 }>
                 readonly 'context': 
                     | ['import', {
@@ -3078,9 +3101,12 @@ export namespace T {
             }]
             | ['component', {
                 readonly 'arguments': pt.Dictionary<{
-                    readonly 'type': 
-                        | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
-                        | ['resolved value', T.Value__Selection<GAnnotation>]
+                    readonly 'annotation': GAnnotation
+                    readonly 'content': {
+                        readonly 'type': 
+                            | ['containing dictionary', T.Containing__Dictionary__Selection<GAnnotation>]
+                            | ['resolved value', T.Value__Selection<GAnnotation>]
+                    }
                 }>
                 readonly 'context': 
                     | ['import', {

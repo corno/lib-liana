@@ -246,7 +246,10 @@ export function aResolvedValue(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['resolved value', valSel],
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'type': ['resolved value', valSel],
+        },
     }
 }
 
@@ -277,7 +280,10 @@ export function aContainingDictionary(
     sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>
 ): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
     return {
-        'type': ['containing dictionary', sel],
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'type': ['containing dictionary', sel],
+        },
     }
 }
 

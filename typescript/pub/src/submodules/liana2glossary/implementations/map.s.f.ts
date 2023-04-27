@@ -192,7 +192,7 @@ export const $$: A.map = ($d) => {
                         const type = $.type
                         const constraints = $.constraints
 
-                        return ['dictionary', ($d.isEmpty(constraints) && !settings.annotations)
+                        return ['dictionary', ($d.isEmpty(constraints))
                             ? mapTypeToType(type, $x)
                             : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
                                 "annotation": createOptionalAnnotation(),
