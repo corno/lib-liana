@@ -191,47 +191,34 @@ export const $$: A.map = ($d) => {
                     case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
                         const type = $.type
                         const constraints = $.constraints
-                        function doDict(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
-                            return ['dictionary', pl.optional(
-                                $x['constraints mapping'].constraints,
-                                (constraintStrat) => $d.isEmpty(constraints)
-                                    ? mapTypeToType(type, $x)
-                                    : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
-                                        "annotation": createOptionalAnnotation(),
-                                        "constraints": [true, {
-                                            'type': ['group', constraints.map(($) => {
-                                                const $a = $
-                                                return {
-                                                    'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
-                                                        switch (constraintStrat[0]) {
-                                                            case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]]])
-                                                            case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]])
-                                                            default: return pl.au(constraintStrat[0])
-                                                        }
-                                                    })
-                                                }
-                                            })]
-                                        }],
-                                        "content": [true, {
-                                            'type': mapTypeToType(type, $x)
-                                        }]
-                                    }))],
-                                () => mapTypeToType(type, $x)
-                            )]
-                        }
-                        return !settings.annotations
-                            ? doDict()
 
-                            //**********this has quite some impact, leave it for now */
-                            //this annotation can be used for reporting when an entry cannot be found.
-
-                            // : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
-                            //     "content": [true, {
-                            //         'type': doDict()
-                            //     }],
-                            //     "annotation": createOptionalAnnotation(),
-                            // }))]
-                            : doDict()
+                        return ['dictionary', ($d.isEmpty(constraints) && !settings.annotations)
+                            ? mapTypeToType(type, $x)
+                            : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
+                                "annotation": createOptionalAnnotation(),
+                                "constraints": pl.optional(
+                                    $x['constraints mapping'].constraints,
+                                    (constraintStrat): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> => [true, {
+                                        'type': ['group', constraints.map(($) => {
+                                            const $a = $
+                                            return {
+                                                'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
+                                                    switch (constraintStrat[0]) {
+                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]]])
+                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]])
+                                                        default: return pl.au(constraintStrat[0])
+                                                    }
+                                                })
+                                            }
+                                        })]
+                                    }],
+                                    () => [false]
+                                ),
+                                "content": [true, {
+                                    'type': mapTypeToType(type, $x)
+                                }]
+                            }))]
+                        ]
                     }))
                     case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
                         'type': mapTypeToType($.type, $x),
