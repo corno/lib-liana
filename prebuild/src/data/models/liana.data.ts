@@ -62,8 +62,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "Type": globalType({
             "imports": pResolvedValue("Imports", false),
             "labels": pResolvedValue("Labels", false),
-            "all global types": pAllSiblings(globalTypeSelection("Global Types")),
-            "noncyclic global types": pNonCyclicSiblings(globalTypeSelection("Global Types")),
+            "all global types": pAllSiblings(globalTypeSelection("Global Type")),
+            "noncyclic global types": pNonCyclicSiblings(globalTypeSelection("Global Type")),
         }, group({
             "classes": prop(constrainedDictionary({}, group({}))),
             "type": prop(taggedUnion({
@@ -164,7 +164,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                             "library": prop(resolvedValueReference(valSel("imports"), tempTypeSelection("Imports", []))),
                         })),
                     })),
-                    "type": prop(resolvedValueReference(valSel("context", staggedunion(sgrp("global types"))), tempTypeSelection("Global Types", []))),
+                    "type": prop(resolvedValueReference(valSel("context", staggedunion(sgrp("global types"))), tempTypeSelection("Type Library", [t_grp("global types")]))),
                     "arguments": prop(constrainedDictionary({
                         "parameter": dictConstraint(valSel("type", ref(sgrp("parameters"))), tempTypeSelection("Parameters", []))
                     }, group({
@@ -290,7 +290,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         })),
         "Global Type Selection": globalType({}, group({
             "import": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Imports", [])))),
-            "type": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Global Types", []))),
+            "type": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type Library", [t_grp("global types")]))),
 
         })),
         "Labels": globalType({}, group({
@@ -317,7 +317,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         }))),
         "Imports": globalType({}, dictionary(group({}))),
-        "Global Types": globalType({}, dictionary(group({
+        "Global Type": globalType({}, group({
             "parameters": prop(component("Parameters", {})),
             "variables": prop(component("Variables", {})),
             "type": prop(component("Type", {
@@ -327,11 +327,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "temp type": prop(component("Global Type Selection", {})),
                 "selection": prop(component("Optional Value Selection Tail", {})),
             })))
-        }))),
+        })),
         "Type Library": globalType({}, group({
             "imports": prop(component("Imports", {})),
             "labels": prop(component("Labels", {})),
-            "global types": prop(component("Global Types", {})),
+            "global types": prop(dictionary(component("Global Type", {}))),
         })),
         "Temp Type Selection Tail": globalType({
             "context": pResolvedValue("Type", false)
@@ -359,7 +359,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
         })),
         "Temp Type Selection": globalType({
-            "global types": pAllSiblings(globalTypeSelection("Global Types"))
+            "global types": pAllSiblings(globalTypeSelection("Global Type"))
         }, group({
 
             "global type": prop(component("Global Type Selection", {})),
@@ -367,7 +367,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         })),
         "Model": globalType({}, group({
             "type library": prop(component("Type Library", {})),
-            "root": prop(resolvedValueReference(valSel("type library", sgrp("global types")), tempTypeSelection("Global Types", []))),
+            "root": prop(resolvedValueReference(valSel("type library", sgrp("global types")), tempTypeSelection("Type Library", [t_grp("global types")]))),
         })),
     }),
 }
