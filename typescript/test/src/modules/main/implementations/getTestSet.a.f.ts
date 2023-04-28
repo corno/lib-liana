@@ -5,16 +5,15 @@ import * as pv from 'pareto-core-dev'
 import * as pa from 'pareto-core-async'
 
 import * as g_test from "lib-pareto-test"
-import * as g_pub from "../../../../../pub/dist"
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
-import * as a_dependencygraph from "../../../../../pub/dist/submodules/generate_dependencygraph"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
 import * as g_2algorithm from "../../../../../pub/dist/submodules/liana2algorithm"
-import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
 
+import * as a_pub from "../../../../../pub/dist"
+import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
+import * as a_dependencygraph from "../../../../../pub/dist/submodules/generate_dependencygraph"
 import * as a_foreach from "res-pareto-foreach"
 import * as a_coll from "res-pareto-collation"
-
 import * as a_fp from "lib-fountain-pen"
 import * as a_ts from "res-typescript"
 import * as a_dictionary from "res-pareto-dictionary"
@@ -103,7 +102,7 @@ export const $$: A.getTestSet = ($) => {
         ($i) => {
             $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
                 a_dependencygraph.$a.generateDependencyGraph()({
-                    'data': d_playground,
+                    'data': d_playground.model['type library'],
                 }, $i)
             })
         },
@@ -121,30 +120,7 @@ export const $$: A.getTestSet = ($) => {
                     // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                     //     'compare': a_coll.$r.localeIsABeforeB(),
                     // })
-                })(d_playground, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "playground resolver.ts"]), ($i) => {
-                g_2algorithm.$a.createResolverSkeleton({
-                    'createIdentifier': a_ts.$r.createIdentifier(),
-                    'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
-                        'compare': a_coll.$r.localeIsABeforeB(),
-                    }),
-                    'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
-                        'compare': a_coll.$r.localeIsABeforeB(),
-                    }),
-                    'isEmpty': a_dictionary.$r.isEmpty(),
-                    'sortTopologically': a_resolve.$r.sortTopologically(),
-                    'filter': a_dictionary.$r.filter(),
-                })(d_playground, $i)
+                })(d_playground.model['type library'], $i)
             })
         },
         {
@@ -154,6 +130,10 @@ export const $$: A.getTestSet = ($) => {
         }
     )
 
+    a_pub.$b.generateResover()({
+        'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
+        'data': d_playground,
+    }, null)
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         // const res = g_resolve.$a.resolve<Annotation>({

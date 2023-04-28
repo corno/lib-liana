@@ -43,25 +43,30 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     },
     'global types': {
         'declarations': pd.d({
+            "Labels": globalTypeDeclaration({}),
             "Atom": globalTypeDeclaration({
                 "labels": pResolvedValue("Labels", false),
             }),
+            "Parameters": globalTypeDeclaration({}),
+            "Dictionary Constraints": globalTypeDeclaration({}),
+            "Option Constraints": globalTypeDeclaration({}),
+            "Properties": globalTypeDeclaration({}),
             "Variables": globalTypeDeclaration({
                 "parameters": pResolvedValue("Parameters", true),
                 "option constraints": pResolvedValue("Option Constraints", true),
                 "dictionary constraints": pResolvedValue("Dictionary Constraints", true),
-                "parent variables": pResolvedValue("Variables", true),
+                "parent variables": pResolvedValue("Variables", true),//Circular
                 "siblings": pNonCyclicSiblings(globalTypeSelection("Properties"))
             }),
-            "Dictionary Constraints": globalTypeDeclaration({}),
-            "Option Constraints": globalTypeDeclaration({}),
+
+            "Imports": globalTypeDeclaration({}),
             "Type": globalTypeDeclaration({
                 "imports": pResolvedValue("Imports", false),
                 "labels": pResolvedValue("Labels", false),
                 //"all global types": pAllSiblings(globalTypeSelection("Global Type")),
                 //"noncyclic global types": pNonCyclicSiblings(globalTypeSelection("Global Type")),
             }),
-            "Properties": globalTypeDeclaration({}),
+            
             "Value Selection Tail": globalTypeDeclaration(
                 {
                     "type": pResolvedValue("Type", false),
@@ -77,9 +82,6 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "Type Initializer": globalTypeDeclaration({}),
             "Containing Dictionary Selection": globalTypeDeclaration({}),
             "Global Type Selection": globalTypeDeclaration({}),
-            "Labels": globalTypeDeclaration({}),
-            "Parameters": globalTypeDeclaration({}),
-            "Imports": globalTypeDeclaration({}),
             "Global Type Declaration": globalTypeDeclaration({}),
             "Global Type Definition": globalTypeDeclaration({}),
             "Temp Type Selection Tail": globalTypeDeclaration({

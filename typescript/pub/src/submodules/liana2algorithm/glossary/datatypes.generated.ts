@@ -29,6 +29,39 @@ export namespace T {
         readonly 'serialize': [ false ] | [ true, null]
     }
     
+    export namespace CreateResolverParameters {
+        
+        export type _lin<GAnnotation> = string
+        
+        export type model<GAnnotation> = g_liana.T.Model<GAnnotation>
+        
+        export namespace out {
+            
+            export type root<GAnnotation> = string
+            
+            export namespace subs {
+                
+                export type D<GAnnotation> = string
+            }
+            
+            export type subs<GAnnotation> = pt.Dictionary<string>
+        }
+        
+        export type out<GAnnotation> = {
+            readonly 'root': string
+            readonly 'subs': pt.Dictionary<string>
+        }
+    }
+    
+    export type CreateResolverParameters<GAnnotation> = {
+        readonly 'in': string
+        readonly 'model': g_liana.T.Model<GAnnotation>
+        readonly 'out': {
+            readonly 'root': string
+            readonly 'subs': pt.Dictionary<string>
+        }
+    }
+    
     export namespace OutAnnotation {
         
         export type internal<GAnnotation> = string

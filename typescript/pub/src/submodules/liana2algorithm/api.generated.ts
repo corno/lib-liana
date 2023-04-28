@@ -15,7 +15,7 @@ export namespace D {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
     }
     
-    export type createResolverSkeleton<GAnnotation> = {
+    export type createResolver<GAnnotation> = {
         readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
         readonly 'dictionaryForEach': g_foreach.SYNC.A.P.DictionaryForEach
         readonly 'enrichedDictionaryForEach': g_foreach.SYNC.A.P.EnrichedDictionaryForEach
@@ -34,7 +34,7 @@ export namespace A {
     
     export type create121Mapper = <GAnnotation>($d: D.create121Mapper<GAnnotation>, ) => g_this.SYNC.A.P.Create121Mapper<GAnnotation>
     
-    export type createResolverSkeleton = <GAnnotation>($d: D.createResolverSkeleton<GAnnotation>, ) => g_this.SYNC.A.P.CreateResolverSkeleton<GAnnotation>
+    export type createResolver = <GAnnotation>($d: D.createResolver<GAnnotation>, ) => g_this.SYNC.A.P.CreateResolver<GAnnotation>
     
     export type mapLiana2Serializer = <GAnnotation>() => g_this.SYNC.A.F.MapLiana2Serializer<GAnnotation>
     
@@ -43,7 +43,7 @@ export namespace A {
 
 export type API = {
     readonly 'create121Mapper': A.create121Mapper
-    readonly 'createResolverSkeleton': A.createResolverSkeleton
+    readonly 'createResolver': A.createResolver
     readonly 'mapLiana2Serializer': A.mapLiana2Serializer
     readonly 'mapLiana2States': A.mapLiana2States
 }

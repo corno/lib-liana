@@ -1,7 +1,7 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    data, externalTypeReference, glossaryParameter, group, imp, member, optional, procedure, ref, sExternalInterfaceReference, sInterfaceReference, sfunction, string, taggedUnion, type, typeReference
+    data, dictionary, externalTypeReference, glossaryParameter, group, imp, member, optional, procedure, ref, sExternalInterfaceReference, sInterfaceReference, sfunction, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -33,6 +33,14 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "source": ref(glossaryParameter("Annotation")),
                 "internal": string(),
             })),
+            "CreateResolverParameters": type(group({
+                "model": member(ref(externalTypeReference("liana", "Model"))),
+                "in": member(string()),
+                "out": member(group({
+                    "root": member(string()),
+                    "subs": member(dictionary(string())),
+                })),
+            }))
         }),
     },
     'asynchronous': {
@@ -45,7 +53,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "MapLiana2States": sfunction(externalTypeReference("algorithm", "States"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
             "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
             "Create121Mapper": procedure(data(externalTypeReference("liana", "Type Library")), sExternalInterfaceReference("fp", "Block")),
-            "CreateResolverSkeleton": procedure(data(externalTypeReference("liana", "Type Library")), sExternalInterfaceReference("fp", "Block")),
+            "CreateResolver": procedure(data(typeReference("CreateResolverParameters")), sExternalInterfaceReference("fp", "Block")),
         }),
     },
 

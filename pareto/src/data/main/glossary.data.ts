@@ -34,6 +34,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "common": imp({}),
         "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
         "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana2algorithm": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
@@ -43,6 +44,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                     "path": member(ref(externalTypeReference("common", "Path"))),
                     "data": member(ref(externalTypeReference("liana2glossary", "MapData"))),
                 })))
+            })),
+            "GenerateResolverParameters": type(group({
+                "path": member(ref(externalTypeReference("common", "Path"))),
+                "data": member(ref(externalTypeReference("liana2algorithm", "CreateResolverParameters"))),
             })),
             "Error": type(group({
                 "message": member(ref(externalTypeReference("common", "String"))),
@@ -101,9 +106,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({
             "OnError": sInterface(sInterfaceMethod(typeReference("Error"))),
+            "Nothing": sInterface(['group', { 'members': pd.d({}) }]),
         }),
         'algorithms': d({
-            "Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError"))
+            "Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError")),
+            "GenerateResolver": procedure(data(typeReference("GenerateResolverParameters")), sInterfaceReference("Nothing")),
         }),
     },
 

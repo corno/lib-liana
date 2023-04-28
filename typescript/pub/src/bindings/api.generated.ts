@@ -17,6 +17,7 @@ export namespace D {
         readonly 'getSourceLocation': g_glossary.SYNC.A.F.GetSourceLocation<GAnnotation>
     }
     
+    
 }
 
 export namespace A {
@@ -27,6 +28,8 @@ export namespace A {
     
     export type generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnnotation>, ) => g_liana2glossary.SYNC.A.P.Generate<GAnnotation>
     
+    export type generateResover = <GAnnotation>() => g_main.SYNC.A.P.GenerateResolver<GAnnotation>
+    
     export type serialize_$flat = <GAnnotation>() => g_flat.SYNC.A.P.Serialize<GAnnotation>
 }
 
@@ -34,5 +37,6 @@ export type API = {
     readonly 'compile': A.compile
     readonly 'generateAPI': A.generateAPI
     readonly 'generateGlossary': A.generateGlossary
+    readonly 'generateResover': A.generateResover
     readonly 'serialize_flat': A.serialize_$flat
 }

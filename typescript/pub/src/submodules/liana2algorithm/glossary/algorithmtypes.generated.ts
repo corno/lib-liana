@@ -29,7 +29,7 @@ export namespace SYNC {
         
         
         export namespace P {
-            export type CreateResolverSkeleton<GAnnotation> = ($: g_liana.T.Type__Library<GAnnotation>, $i: g_fp.SYNC.I.Block) => void
+            export type CreateResolver<GAnnotation> = ($: T.CreateResolverParameters<GAnnotation>, $i: g_fp.SYNC.I.Block) => void
         }
         
         
