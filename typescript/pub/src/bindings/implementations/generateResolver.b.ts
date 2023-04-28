@@ -14,7 +14,7 @@ import * as a_fp from "lib-fountain-pen"
 
 import { A } from "../api.generated"
 
-export const $$: A.generateResover = () => {
+export const $$: A.generateResolver = () => {
     return ($) => {
 
         a_fp.$b.createFile()(

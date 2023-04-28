@@ -26,9 +26,9 @@ export const $$: A.resolve = ($d, $se) => {
             })))
             const $v_dict: pt.OptionalValue<g_out.T.A__dictionary__with__constraint.dict<Annotation>> = [true, $p_dict]
             const $p_constrained__dict: g_out.T.A__dictionary__with__constraint.constrained__dict<Annotation> = pl.cc($['constrained dict'], ($) => $.__mapWithKey(($, key) => pl.cc($, ($) => {
-                const /*dict constraint*/$v_a__constraint: pt.OptionalValue<g_out.T.A__dictionary__with__constraintdict.D<Annotation>> = tempoptional/*3*/(
+                const /*dict constraint*/$v_a__constraint: pt.OptionalValue<g_out.T.A__dictionary__with__constraint.dict.D<Annotation>> = tempoptional/*3*/(
                     $v_dict,
-                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.A__dictionary__with__constraintdict.D<Annotation>>>(
+                    ($) => $.__getEntry<pt.OptionalValue<g_out.T.A__dictionary__with__constraint.dict.D<Annotation>>>(
                         key,
                         ($) => [true, $],
                         () => {
@@ -127,8 +127,8 @@ export const $$: A.resolve = ($d, $se) => {
             const $p_tu2: g_out.T.A__tagged__union__with__constrained__option.tu2<Annotation> = pl.cc($['tu2'], ($) => pl.cc($, ($): g_out.T.A__tagged__union__with__constrained__option.tu2<Annotation> => {
                 switch ($[0]) {
                     case 'a': return pl.ss($, ($) => {
-                        const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__optiontu1.a<Annotation>> = pl.cc($, ($) => {
-                            const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__optiontu1.a<Annotation>> = tempoptional/*3*/(
+                        const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = pl.cc($, ($) => {
+                            const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = tempoptional/*3*/(
                                 $v_tu1,
                                 ($) => ($[0] === 'a')
                                     ? [true, $[1]]
@@ -190,8 +190,8 @@ export const $$: A.resolve = ($d, $se) => {
             const $p_tu2: g_out.T.A__tagged__union__with__constrained__option__and__result.tu2<Annotation> = pl.cc($['tu2'], ($) => pl.cc($, ($): g_out.T.A__tagged__union__with__constrained__option__and__result.tu2<Annotation> => {
                 switch ($[0]) {
                     case 'a': return pl.ss($, ($) => { //option with result
-                        const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__optiontu1.a<Annotation>> = pl.cc($, ($) => {
-                            const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__optiontu1.a<Annotation>> = tempoptional/*3*/(
+                        const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = pl.cc($, ($) => {
+                            const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = tempoptional/*3*/(
                                 $v_tu1,
                                 ($) => ($[0] === 'a')
                                     ? [true, $[1]]
@@ -463,9 +463,9 @@ export const $$: A.resolve = ($d, $se) => {
                                         },
                                         'content': pl.cc($.content, ($) => pl.cc($, ($) => {
                                             const key = $.key
-                                            const constraint: pt.OptionalValue<g_out_typesystem.T.Typegroupproperties.D<Annotation>> = tempoptional/*3*/(
+                                            const constraint: pt.OptionalValue<g_out_typesystem.T.Type.group.properties.D<Annotation>> = tempoptional/*3*/(
                                                 $v_group,
-                                                ($) => pl.cc($['properties'], ($) => $.__getEntry<pt.OptionalValue<g_out_typesystem.T.Typegroupproperties.D<Annotation>>>(
+                                                ($) => pl.cc($['properties'], ($) => $.__getEntry<pt.OptionalValue<g_out_typesystem.T.Type.group.properties.D<Annotation>>>(
                                                     key,
                                                     ($) => [true, $],
                                                     () => {
@@ -694,8 +694,8 @@ export const $$: A.resolve = ($d, $se) => {
             const $p_type__of__referenced__type: g_out.T.Type__Selection.content.type__of__referenced__type<Annotation> = pl.cc($['type of referenced type'], ($) => pl.cc($, ($): g_out.T.Type__Selection.content.type__of__referenced__type<Annotation> => {
                 switch ($[0]) {
                     case 'namespace': return pl.ss($, ($) => { //option with result
-                        const /*option constraint*/$v_referenced__namespace: pt.OptionalValue<g_out_typesystem.T.NamespaceD_ltype.namespace<Annotation>> = pl.cc($, ($) => {
-                            const optConstraint: pt.OptionalValue<g_out_typesystem.T.NamespaceD_ltype.namespace<Annotation>> = tempoptional/*3*/(
+                        const /*option constraint*/$v_referenced__namespace: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.namespace<Annotation>> = pl.cc($, ($) => {
+                            const optConstraint: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.namespace<Annotation>> = tempoptional/*3*/(
                                 $v_referenced__type,
                                 ($) => tempoptional/*1*/(
                                     $.constraint,
@@ -738,8 +738,8 @@ export const $$: A.resolve = ($d, $se) => {
                         }
                     })
                     case 'type definition': return pl.ss($, ($) => { //option with result
-                        const /*option constraint*/$v_referenced__type__definition: pt.OptionalValue<g_out_typesystem.T.NamespaceD_ltype.type__definition<Annotation>> = pl.cc($, ($) => {
-                            const optConstraint: pt.OptionalValue<g_out_typesystem.T.NamespaceD_ltype.type__definition<Annotation>> = tempoptional/*3*/(
+                        const /*option constraint*/$v_referenced__type__definition: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.type__definition<Annotation>> = pl.cc($, ($) => {
+                            const optConstraint: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.type__definition<Annotation>> = tempoptional/*3*/(
                                 $v_referenced__type,
                                 ($) => tempoptional/*1*/(
                                     $.constraint,

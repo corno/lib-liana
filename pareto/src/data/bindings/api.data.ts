@@ -16,6 +16,6 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         "generateGlossary": algorithm(procedure("liana2glossary", {}, "Generate"), { "Annotation": "Annotation" }, dependent(null, {
             "getSourceLocation": sfunction("glossary", {"A": "GAnnotation" }, "GetSourceLocation")
         }, {})),
-        "generateResover": algorithm(procedure("main", {}, "GenerateResolver"), { "Annotation": "Annotation" })
+        "generateResolver": algorithm(procedure("main", {}, "GenerateResolver"), { "Annotation": "Annotation" })
     }),
 }

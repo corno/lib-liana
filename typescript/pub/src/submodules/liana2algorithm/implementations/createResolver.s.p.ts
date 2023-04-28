@@ -21,6 +21,7 @@ export const $$: A.createResolver = ($d) => {
         $i.snippet(`.T.${$d.createIdentifier($.type.key)}`)
     }
     function doTempTypeSelectionTail<Annotation>($: g_liana.T.Temp__Type__Selection__Tail<Annotation>, $i: g_fp.SYNC.I.Line) {
+        $i.snippet(`.`)
         pl.cc($['step type'], ($) => {
             switch ($[0]) {
                 case 'array':
@@ -902,7 +903,7 @@ export const $$: A.createResolver = ($d) => {
                                                                     pl.ss($, ($) => {
                                                                         $i.snippet(`pt.Lookup<pt.ComputedValue<`)
                                                                         doGlobalTypeSelection(type, $i)
-                                                                        $i.snippet(`.D<Annotation>>>`)
+                                                                        $i.snippet(`<Annotation>>>`)
 
                                                                     })
                                                                     break
@@ -910,7 +911,7 @@ export const $$: A.createResolver = ($d) => {
                                                                     pl.ss($, ($) => {
                                                                         $i.snippet(`pt.Lookup<`)
                                                                         doGlobalTypeSelection(type, $i)
-                                                                        $i.snippet(`.D<Annotation>>`)
+                                                                        $i.snippet(`<Annotation>>`)
 
                                                                     })
                                                                     break

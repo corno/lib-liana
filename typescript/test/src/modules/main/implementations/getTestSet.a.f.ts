@@ -130,7 +130,7 @@ export const $$: A.getTestSet = ($) => {
         }
     )
 
-    a_pub.$b.generateResover()({
+    a_pub.$b.generateResolver()({
         'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
         'data': d_playground,
     }, null)
