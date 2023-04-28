@@ -54,12 +54,12 @@ function map_A__optional__with__result<Annotation>(
             const content: g_out.T.A__optional__with__result.opt.content<Annotation> = tempoptional/*4*/(
                 $,
                 ($): g_out.T.A__optional__with__result.opt.content<Annotation> => [true, pl.cc($, ($) => {
-                    const $p_result: g_out.T.A__optional__with__result.opt.content.O.result<Annotation> = pl.cc($['result'], ($) => map_A__Result<Annotation>(
+                    const $p_rslt: g_out.T.A__optional__with__result.opt.content.O.rslt<Annotation> = pl.cc($['rslt'], ($) => map_A__Result<Annotation>(
                         $,
                     ))
-                    const $v_result: pt.OptionalValue<g_out.T.A__optional__with__result.opt.content.O.result<Annotation>> = [true, $p_result]
+                    const $v_rslt: pt.OptionalValue<g_out.T.A__optional__with__result.opt.content.O.rslt<Annotation>> = [true, $p_rslt]
                     return {
-                        'result': $p_result,
+                        'rslt': $p_rslt,
                     }
                 })],
                 () => [false],
@@ -68,7 +68,7 @@ function map_A__optional__with__result<Annotation>(
                 'content': content,
                 'result': tempoptional(
                     content,
-                    ($) => pl.cc($['result'], ($) => [true, $]),
+                    ($) => pl.cc($['rslt'], ($) => [true, $]),
                     () => tempoptional/*3*/(
                         $v_result__param,
                         ($) => [true, $],
@@ -117,23 +117,18 @@ function map_A__tagged__union__with__constrained__option<Annotation>(
             switch ($[0]) {
                 case 'a': return pl.ss($, ($) => {
                     const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = pl.cc($, ($) => {
-                        const x: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1<Annotation>> = tempoptional/*3*/(
+                        const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = tempoptional/*3*/(
                             $v_tu1,
-                            ($) => [true, $],
-                            () => [false],
-                        )
-                        return tempoptional(
-                            x,
-                            ($) => {
-                                if ($[0] === 'a') {
-                                    return [true, $[1]]
-                                } else {
+                            ($) => ($[0] === 'a')
+                                ? [true, $[1]]
+                                : pl.cc($, ($) => {
                                     $se.error("option constraint")
                                     return [false]
-                                }
-                            },
+                                })
+                            ,
                             () => [false],
                         )
+                        return optConstraint
                     })
                     return ['a', pl.cc($, ($) => {
                         return {
@@ -142,12 +137,12 @@ function map_A__tagged__union__with__constrained__option<Annotation>(
                                 'opt constraint': $v_opt__constraint,
                             },
                             'content': pl.cc($.content, ($) => pl.cc($, ($) => {
-                                const $p_result: g_out.T.A__tagged__union__with__constrained__option.tu2.a.content.result<Annotation> = pl.cc($['result'], ($) => map_A__Result<Annotation>(
+                                const $p_rslt: g_out.T.A__tagged__union__with__constrained__option.tu2.a.content.rslt<Annotation> = pl.cc($['rslt'], ($) => map_A__Result<Annotation>(
                                     $,
                                 ))
-                                const $v_result: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu2.a.content.result<Annotation>> = [true, $p_result]
+                                const $v_rslt: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu2.a.content.rslt<Annotation>> = [true, $p_rslt]
                                 return {
-                                    'result': $p_result,
+                                    'rslt': $p_rslt,
                                 }
                             })),
                         }
@@ -164,6 +159,73 @@ function map_A__tagged__union__with__constrained__option<Annotation>(
     })
 }
 
+function map_A__tagged__union__with__constrained__option__and__result<Annotation>(
+    $: g_in.T.A__tagged__union__with__constrained__option__and__result<Annotation>,
+): g_out.T.A__tagged__union__with__constrained__option__and__result<Annotation> {
+    return pl.cc($, ($) => {
+        const $p_tu1: g_out.T.A__tagged__union__with__constrained__option__and__result.tu1<Annotation> = pl.cc($['tu1'], ($) => pl.cc($, ($): g_out.T.A__tagged__union__with__constrained__option__and__result.tu1<Annotation> => {
+            switch ($[0]) {
+                case 'a': return pl.ss($, ($) => ['a', pl.cc($, ($) => {
+                    const $p_bar: g_out.T.A__tagged__union__with__constrained__option__and__result.tu1.a.bar<Annotation> = pl.cc($['bar'], ($) => $)
+                    const $v_bar: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option__and__result.tu1.a.bar<Annotation>> = [true, $p_bar]
+                    return {
+                        'bar': $p_bar,
+                    }
+                })])
+                default: return pl.au($[0])
+            }
+        }))
+        const $v_tu1: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option__and__result.tu1<Annotation>> = [true, $p_tu1]
+        const $p_tu2: g_out.T.A__tagged__union__with__constrained__option__and__result.tu2<Annotation> = pl.cc($['tu2'], ($) => pl.cc($, ($): g_out.T.A__tagged__union__with__constrained__option__and__result.tu2<Annotation> => {
+            switch ($[0]) {
+                case 'a': return pl.ss($, ($) => { //option with result
+                    const /*option constraint*/$v_opt__constraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = pl.cc($, ($) => {
+                        const optConstraint: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option.tu1.a<Annotation>> = tempoptional/*3*/(
+                            $v_tu1,
+                            ($) => ($[0] === 'a')
+                                ? [true, $[1]]
+                                : pl.cc($, ($) => {
+                                    $se.error("option constraint")
+                                    return [false]
+                                })
+                            ,
+                            () => [false],
+                        )
+                        return optConstraint
+                    })
+                    const stateData: g_out.T.A__tagged__union__with__constrained__option__and__result.tu2.content.a<Annotation> = pl.cc($, ($) => {
+                        return {
+                            'annotation': $.annotation,
+                            'constraints': {
+                                'opt constraint': $v_opt__constraint,
+                            },
+                            'content': pl.cc($.content, ($) => pl.cc($, ($) => {
+                                const $p_rslt: g_out.T.A__tagged__union__with__constrained__option__and__result.tu2.content.a.content.rslt<Annotation> = pl.cc($['rslt'], ($) => map_A__Result<Annotation>(
+                                    $,
+                                ))
+                                const $v_rslt: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option__and__result.tu2.content.a.content.rslt<Annotation>> = [true, $p_rslt]
+                                return {
+                                    'rslt': $p_rslt,
+                                }
+                            })),
+                        }
+                    })
+                    return {
+                        'content': ['a', stateData],
+                        'result': pl.cc(stateData.content, ($): pt.OptionalValue<g_out.T.A__Result<Annotation>> => pl.cc($['rslt'], ($) => [true, $])),
+                    }
+                })
+                default: return pl.au($[0])
+            }
+        }))
+        const $v_tu2: pt.OptionalValue<g_out.T.A__tagged__union__with__constrained__option__and__result.tu2<Annotation>> = [true, $p_tu2]
+        return {
+            'tu1': $p_tu1,
+            'tu2': $p_tu2,
+        }
+    })
+}
+
 function map_A__tagged__union__with__result<Annotation>(
     $: g_in.T.A__tagged__union__with__result<Annotation>,
 ): g_out.T.A__tagged__union__with__result<Annotation> {
@@ -171,18 +233,18 @@ function map_A__tagged__union__with__result<Annotation>(
         const $p_tu: g_out.T.A__tagged__union__with__result.tu<Annotation> = pl.cc($['tu'], ($) => pl.cc($, ($): g_out.T.A__tagged__union__with__result.tu<Annotation> => {
             switch ($[0]) {
                 case 'a': return pl.ss($, ($) => { //option with result
-                    const content: g_out.T.A__tagged__union__with__result.tu.content.a<Annotation> = pl.cc($, ($) => {
-                        const $p_result: g_out.T.A__tagged__union__with__result.tu.content.a.result<Annotation> = pl.cc($['result'], ($) => map_A__Result<Annotation>(
+                    const stateData: g_out.T.A__tagged__union__with__result.tu.content.a<Annotation> = pl.cc($, ($) => {
+                        const $p_rslt: g_out.T.A__tagged__union__with__result.tu.content.a.rslt<Annotation> = pl.cc($['rslt'], ($) => map_A__Result<Annotation>(
                             $,
                         ))
-                        const $v_result: pt.OptionalValue<g_out.T.A__tagged__union__with__result.tu.content.a.result<Annotation>> = [true, $p_result]
+                        const $v_rslt: pt.OptionalValue<g_out.T.A__tagged__union__with__result.tu.content.a.rslt<Annotation>> = [true, $p_rslt]
                         return {
-                            'result': $p_result,
+                            'rslt': $p_rslt,
                         }
                     })
                     return {
-                        'content': ['a', content],
-                        'result': pl.cc(content, ($) => pl.cc($['result'], ($) => [true, $])),
+                        'content': ['a', stateData],
+                        'result': pl.cc(stateData, ($): pt.OptionalValue<g_out.T.A__Result<Annotation>> => pl.cc($['rslt'], ($) => [true, $])),
                     }
                 })
                 default: return pl.au($[0])
@@ -255,8 +317,8 @@ function map_Address__Selection<Annotation>(
         }
     })
     return {
-        content: content,
-        result: pl.cc(content, ($) => pl.cc($['tail'], ($) => tempoptional(
+        'content': content,
+        'result': pl.cc(content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => pl.cc($['tail'], ($) => tempoptional(
             $.result,
             ($) => [true, $],
             () => [false],
@@ -278,25 +340,20 @@ function map_Address__Selection__Tail<Annotation>(
                     switch ($[0]) {
                         case 'call': return pl.ss($, ($) => { //option with result
                             const /*option constraint*/$v_address__function: pt.OptionalValue<g_out_typesystem.T.Type.address__function<Annotation>> = pl.cc($, ($) => {
-                                const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = tempoptional/*3*/(
+                                const optConstraint: pt.OptionalValue<g_out_typesystem.T.Type.address__function<Annotation>> = tempoptional/*3*/(
                                     $v_current__address,
-                                    ($) => [true, $],
-                                    () => [false],
-                                )
-                                return tempoptional(
-                                    x,
-                                    ($) => {
-                                        if ($[0] === 'address function') {
-                                            return [true, $[1]]
-                                        } else {
+                                    ($) => ($[0] === 'address function')
+                                        ? [true, $[1]]
+                                        : pl.cc($, ($) => {
                                             $se.error("option constraint")
                                             return [false]
-                                        }
-                                    },
+                                        })
+                                    ,
                                     () => [false],
                                 )
+                                return optConstraint
                             })
-                            const content: g_out.T.Address__Selection__Tail.content.content.O.step.content.call<Annotation> = pl.cc($, ($) => {
+                            const stateData: g_out.T.Address__Selection__Tail.content.content.O.step.content.call<Annotation> = pl.cc($, ($) => {
                                 return {
                                     'annotation': $.annotation,
                                     'constraints': {
@@ -364,35 +421,30 @@ function map_Address__Selection__Tail<Annotation>(
                                 }
                             })
                             return {
-                                'content': ['call', content],
-                                'result': pl.cc(content, ($) => tempoptional/*3*/(
+                                'content': ['call', stateData],
+                                'result': pl.cc(stateData.content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => tempoptional/*3*/(
                                     $v_address__function,
-                                    ($) => pl.cc($['return value'], ($) => [true, $]),
+                                    ($) => pl.cc($['return type'], ($) => [true, $]),
                                     () => [false],
                                 )),
                             }
                         })
-                        case 'property': return pl.ss($, ($) => {
+                        case 'property': return pl.ss($, ($) => { //option with result
                             const /*option constraint*/$v_group: pt.OptionalValue<g_out_typesystem.T.Type.group<Annotation>> = pl.cc($, ($) => {
-                                const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = tempoptional/*3*/(
+                                const optConstraint: pt.OptionalValue<g_out_typesystem.T.Type.group<Annotation>> = tempoptional/*3*/(
                                     $v_current__address,
-                                    ($) => [true, $],
-                                    () => [false],
-                                )
-                                return tempoptional(
-                                    x,
-                                    ($) => {
-                                        if ($[0] === 'group') {
-                                            return [true, $[1]]
-                                        } else {
+                                    ($) => ($[0] === 'group')
+                                        ? [true, $[1]]
+                                        : pl.cc($, ($) => {
                                             $se.error("option constraint")
                                             return [false]
-                                        }
-                                    },
+                                        })
+                                    ,
                                     () => [false],
                                 )
+                                return optConstraint
                             })
-                            return ['property', pl.cc($, ($) => {
+                            const stateData: g_out.T.Address__Selection__Tail.content.content.O.step.content.property<Annotation> = pl.cc($, ($) => {
                                 return {
                                     'annotation': $.annotation,
                                     'constraints': {
@@ -419,7 +471,15 @@ function map_Address__Selection__Tail<Annotation>(
                                         }
                                     })),
                                 }
-                            })]
+                            })
+                            return {
+                                'content': ['property', stateData],
+                                'result': pl.cc(stateData.content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => tempoptional/*1*/(
+                                    $.constraint,
+                                    ($) => pl.cc($['type'], ($) => [true, $]),
+                                    () => [false],
+                                )),
+                            }
                         })
                         default: return pl.au($[0])
                     }
@@ -473,8 +533,8 @@ function map_Address__Selection__Tail<Annotation>(
         }
     })
     return {
-        content: content,
-        result: pl.cc(content, ($) => tempoptional(
+        'content': content,
+        'result': pl.cc(content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => tempoptional(
             $.result,
             ($) => [true, $],
             () => [false],
@@ -492,23 +552,18 @@ function map_Expression<Annotation>(
         switch ($[0]) {
             case 'string': return pl.ss($, ($) => {
                 const /*option constraint*/$v_out: pt.OptionalValue<g_out_typesystem.T.Type._lstring<Annotation>> = pl.cc($, ($) => {
-                    const x: pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> = tempoptional/*3*/(
+                    const optConstraint: pt.OptionalValue<g_out_typesystem.T.Type._lstring<Annotation>> = tempoptional/*3*/(
                         $v_expected__type,
-                        ($) => [true, $],
-                        () => [false],
-                    )
-                    return tempoptional(
-                        x,
-                        ($) => {
-                            if ($[0] === 'string') {
-                                return [true, $[1]]
-                            } else {
+                        ($) => ($[0] === 'string')
+                            ? [true, $[1]]
+                            : pl.cc($, ($) => {
                                 $se.error("option constraint")
                                 return [false]
-                            }
-                        },
+                            })
+                        ,
                         () => [false],
                     )
+                    return optConstraint
                 })
                 return ['string', pl.cc($, ($) => {
                     return {
@@ -621,29 +676,24 @@ function map_Type__Selection<Annotation>(
             switch ($[0]) {
                 case 'namespace': return pl.ss($, ($) => { //option with result
                     const /*option constraint*/$v_referenced__namespace: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.namespace<Annotation>> = pl.cc($, ($) => {
-                        const x: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype<Annotation>> = tempoptional/*3*/(
+                        const optConstraint: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.namespace<Annotation>> = tempoptional/*3*/(
                             $v_referenced__type,
                             ($) => tempoptional/*1*/(
                                 $.constraint,
-                                ($) => [true, $],
+                                ($) => pl.cc($['type'], ($) => ($[0] === 'namespace')
+                                    ? [true, $[1]]
+                                    : pl.cc($, ($) => {
+                                        $se.error("option constraint")
+                                        return [false]
+                                    })
+                                ),
                                 () => [false],
                             ),
                             () => [false],
                         )
-                        return tempoptional(
-                            x,
-                            ($) => {
-                                if ($[0] === 'namespace') {
-                                    return [true, $[1]]
-                                } else {
-                                    $se.error("option constraint")
-                                    return [false]
-                                }
-                            },
-                            () => [false],
-                        )
+                        return optConstraint
                     })
-                    const content: g_out.T.Type__Selection.content.type__of__referenced__type.content.namespace<Annotation> = pl.cc($, ($) => {
+                    const stateData: g_out.T.Type__Selection.content.type__of__referenced__type.content.namespace<Annotation> = pl.cc($, ($) => {
                         return {
                             'annotation': $.annotation,
                             'constraints': {
@@ -660,8 +710,8 @@ function map_Type__Selection<Annotation>(
                         }
                     })
                     return {
-                        'content': ['namespace', content],
-                        'result': pl.cc(content, ($) => tempoptional(
+                        'content': ['namespace', stateData],
+                        'result': pl.cc(stateData.content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => tempoptional(
                             $.result,
                             ($) => [true, $],
                             () => [false],
@@ -670,29 +720,24 @@ function map_Type__Selection<Annotation>(
                 })
                 case 'type definition': return pl.ss($, ($) => { //option with result
                     const /*option constraint*/$v_referenced__type__definition: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.type__definition<Annotation>> = pl.cc($, ($) => {
-                        const x: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype<Annotation>> = tempoptional/*3*/(
+                        const optConstraint: pt.OptionalValue<g_out_typesystem.T.Namespace.D._ltype.type__definition<Annotation>> = tempoptional/*3*/(
                             $v_referenced__type,
                             ($) => tempoptional/*1*/(
                                 $.constraint,
-                                ($) => [true, $],
+                                ($) => pl.cc($['type'], ($) => ($[0] === 'type definition')
+                                    ? [true, $[1]]
+                                    : pl.cc($, ($) => {
+                                        $se.error("option constraint")
+                                        return [false]
+                                    })
+                                ),
                                 () => [false],
                             ),
                             () => [false],
                         )
-                        return tempoptional(
-                            x,
-                            ($) => {
-                                if ($[0] === 'type definition') {
-                                    return [true, $[1]]
-                                } else {
-                                    $se.error("option constraint")
-                                    return [false]
-                                }
-                            },
-                            () => [false],
-                        )
+                        return optConstraint
                     })
-                    const content: g_out.T.Type__Selection.content.type__of__referenced__type.content.type__definition<Annotation> = pl.cc($, ($) => {
+                    const stateData: g_out.T.Type__Selection.content.type__of__referenced__type.content.type__definition<Annotation> = pl.cc($, ($) => {
                         return {
                             'annotation': $.annotation,
                             'constraints': {
@@ -704,10 +749,10 @@ function map_Type__Selection<Annotation>(
                         }
                     })
                     return {
-                        'content': ['type definition', content],
-                        'result': pl.cc(content, ($) => tempoptional/*3*/(
+                        'content': ['type definition', stateData],
+                        'result': pl.cc(stateData.content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => tempoptional/*3*/(
                             $v_referenced__type__definition,
-                            ($) => [true, $],
+                            ($) => pl.cc($['type'], ($) => [true, $]),
                             () => [false],
                         )),
                     }
@@ -722,62 +767,12 @@ function map_Type__Selection<Annotation>(
         }
     })
     return {
-        content: content,
-        result: pl.cc(content, ($) => pl.cc($['type of referenced type'], ($) => tempoptional/*1*/(
-            $.constraint,
-            ($) => [true, $],
-            () => [false],
-        ))),
-    }
-}
-
-function map_Type__Selection__Tail<Annotation>(
-    $: g_in.T.Type__Selection__Tail<Annotation>,
-    $v_namespace: pt.OptionalValue<g_out_typesystem.T.Namespace<Annotation>>,
-): g_out.T.Type__Selection__Tail<Annotation> {
-    const content = pl.cc($, ($) => { //optional with result
-        const content: g_out.T.Type__Selection__Tail.content.content<Annotation> = tempoptional/*4*/(
-            $,
-            ($): g_out.T.Type__Selection__Tail.content.content<Annotation> => [true, pl.cc($, ($) => {
-                const $p_tail: g_out.T.Type__Selection__Tail.content.content.O.tail<Annotation> = pl.cc($['tail'], ($) => map_Type__Selection__Tail<Annotation>(
-                    $,
-                    tempoptional/*3*/(
-                        $v_namespace,
-                        ($) => [true, $],
-                        () => [false],
-                    ),//$v_namespace
-                ))
-                const $v_tail: pt.OptionalValue<g_out.T.Type__Selection__Tail.content.content.O.tail<Annotation>> = [true, $p_tail]
-                return {
-                    'tail': $p_tail,
-                }
-            })],
-            () => [false],
-        )
-        return {
-            'content': content,
-            'result': tempoptional(
-                content,
-                ($) => pl.cc($['tail'], ($) => tempoptional(
-                    $.result,
-                    ($) => [true, $],
-                    () => [false],
-                )),
-                () => tempoptional/*3*/(
-                    $v_namespace,
-                    ($) => [true, $],
-                    () => [false],
-                ),
-            ),
-        }
-    })
-    return {
-        content: content,
-        result: pl.cc(content, ($) => tempoptional(
+        'content': content,
+        'result': pl.cc(content, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => pl.cc($['type of referenced type'], ($) => tempoptional(
             $.result,
             ($) => [true, $],
             () => [false],
-        )),
+        ))),
     }
 }
 
@@ -790,58 +785,56 @@ function map_Variables<Annotation>(
     return $.__mapWithKey(($, key) => pl.cc($, ($) => {
         const $p__ltype: g_out.T.Variables.D._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($): g_out.T.Variables.D._ltype<Annotation> => {
             switch ($[0]) {
-                case 'local': return pl.ss($, ($) => ['local', pl.cc($, ($) => {
-                    const $p__ltype: g_out.T.Variables.D._ltype.local._ltype<Annotation> = pl.cc($['type'], ($) => pl.cc($, ($) => {
-                        const key = $.key
-                        const constraint: pt.OptionalValue<g_out_typesystem.T.Namespace.D<Annotation>> = tempoptional/*3*/(
-                            $v_namespace,
-                            ($) => $.__getEntry<pt.OptionalValue<g_out_typesystem.T.Namespace.D<Annotation>>>(
-                                key,
-                                ($) => [true, $],
-                                () => {
-                                    $se.error("no such entry")
-                                    return [false]
-                                },
-                            ),
-                            () => [false],
-                        )
-                        return {
-                            'annotation': $.annotation,
-                            'constraint': constraint,
-                            'key': $.key,
-                        }
-                    }))
-                    const $v__ltype: pt.OptionalValue<g_out.T.Variables.D._ltype.local._ltype<Annotation>> = [true, $p__ltype]
-                    const $p_initializer: g_out.T.Variables.D._ltype.local.initializer<Annotation> = pl.cc($['initializer'], ($) => map_Expression<Annotation>(
-                        $,
-                        tempoptional/*3*/(
-                            $v__ltype,
-                            ($) => tempoptional/*1*/(
-                                $.constraint,
+                case 'local': return pl.ss($, ($) => { //option with result
+                    const stateData: g_out.T.Variables.D._ltype.content.local<Annotation> = pl.cc($, ($) => {
+                        const $p__ltype: g_out.T.Variables.D._ltype.content.local._ltype<Annotation> = pl.cc($['type'], ($) => map_Type__Selection<Annotation>(
+                            $,
+                            tempoptional/*3*/(
+                                $v_namespace,
                                 ($) => [true, $],
                                 () => [false],
-                            ),
-                            () => [false],
-                        ),//$v_expected__type
-                        tempoptional/*3*/(
-                            $v_namespace,
-                            ($) => [true, $],
-                            () => [false],
-                        ),//$v_namespace
-                        tempoptional/*3*/(
-                            $v_variable__stack,
-                            ($) => [true, $],
-                            () => [false],
-                        ),//$v_variable__stack
-                    ))
-                    const $v_initializer: pt.OptionalValue<g_out.T.Variables.D._ltype.local.initializer<Annotation>> = [true, $p_initializer]
+                            ),//$v_namespace
+                        ))
+                        const $v__ltype: pt.OptionalValue<g_out.T.Variables.D._ltype.content.local._ltype<Annotation>> = [true, $p__ltype]
+                        const $p_initializer: g_out.T.Variables.D._ltype.content.local.initializer<Annotation> = pl.cc($['initializer'], ($) => map_Expression<Annotation>(
+                            $,
+                            tempoptional/*3*/(
+                                $v__ltype,
+                                ($) => tempoptional(
+                                    $.result,
+                                    ($) => [true, $],
+                                    () => [false],
+                                ),
+                                () => [false],
+                            ),//$v_expected__type
+                            tempoptional/*3*/(
+                                $v_namespace,
+                                ($) => [true, $],
+                                () => [false],
+                            ),//$v_namespace
+                            tempoptional/*3*/(
+                                $v_variable__stack,
+                                ($) => [true, $],
+                                () => [false],
+                            ),//$v_variable__stack
+                        ))
+                        const $v_initializer: pt.OptionalValue<g_out.T.Variables.D._ltype.content.local.initializer<Annotation>> = [true, $p_initializer]
+                        return {
+                            'initializer': $p_initializer,
+                            'type': $p__ltype,
+                        }
+                    })
                     return {
-                        'initializer': $p_initializer,
-                        'type': $p__ltype,
+                        'content': ['local', stateData],
+                        'result': pl.cc(stateData, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => pl.cc($['type'], ($) => tempoptional(
+                            $.result,
+                            ($) => [true, $],
+                            () => [false],
+                        ))),
                     }
-                })])
+                })
                 case 'parameter': return pl.ss($, ($) => { //option with result
-                    const content: g_out.T.Variables.D._ltype.content.parameter<Annotation> = pl.cc($, ($) => {
+                    const stateData: g_out.T.Variables.D._ltype.content.parameter<Annotation> = pl.cc($, ($) => {
                         const $p_parameter: g_out.T.Variables.D._ltype.content.parameter.parameter<Annotation> = pl.cc($['parameter'], ($) => pl.cc($, ($) => {
                             const key = $.key
                             const constraint: pt.OptionalValue<g_out_typesystem.T.Parameters.D<Annotation>> = tempoptional/*3*/(
@@ -868,17 +861,54 @@ function map_Variables<Annotation>(
                         }
                     })
                     return {
-                        'content': ['parameter', content],
-                        'result': pl.cc(content, ($) => pl.cc($['parameter'], ($) => tempoptional/*1*/(
+                        'content': ['parameter', stateData],
+                        'result': pl.cc(stateData, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => pl.cc($['parameter'], ($) => tempoptional/*1*/(
                             $.constraint,
-                            ($) => [true, $],
+                            ($) => pl.cc($['type'], ($) => [true, $]),
                             () => [false],
                         ))),
                     }
                 })
-                case 'variable stack': return pl.ss($, ($) => ['variable stack', pl.cc($, ($) => {
-                    return null
-                })])
+                case 'variable stack2': return pl.ss($, ($) => { //option with result
+                    const stateData: g_out.T.Variables.D._ltype.content.variable__stack2<Annotation> = pl.cc($, ($) => {
+                        const $p_variable: g_out.T.Variables.D._ltype.content.variable__stack2.variable<Annotation> = pl.cc($['variable'], ($) => pl.cc($, ($) => {
+                            const key = $.key
+                            const constraint: pt.OptionalValue<g_out.T.Variables.D<Annotation>> = tempoptional/*3*/(
+                                $v_variable__stack,
+                                ($) => $.__getEntry<pt.OptionalValue<g_out.T.Variables.D<Annotation>>>(
+                                    key,
+                                    ($) => [true, $],
+                                    () => {
+                                        $se.error("no such entry")
+                                        return [false]
+                                    },
+                                ),
+                                () => [false],
+                            )
+                            return {
+                                'annotation': $.annotation,
+                                'constraint': constraint,
+                                'key': $.key,
+                            }
+                        }))
+                        const $v_variable: pt.OptionalValue<g_out.T.Variables.D._ltype.content.variable__stack2.variable<Annotation>> = [true, $p_variable]
+                        return {
+                            'variable': $p_variable,
+                        }
+                    })
+                    return {
+                        'content': ['variable stack2', stateData],
+                        'result': pl.cc(stateData, ($): pt.OptionalValue<g_out_typesystem.T.Type<Annotation>> => pl.cc($['variable'], ($) => tempoptional/*1*/(
+                            $.constraint,
+                            ($) => pl.cc($['type'], ($) => tempoptional(
+                                $.result,
+                                ($) => [true, $],
+                                () => [false],
+                            )),
+                            () => [false],
+                        ))),
+                    }
+                })
                 default: return pl.au($[0])
             }
         }))

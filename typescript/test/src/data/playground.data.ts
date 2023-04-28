@@ -5,7 +5,7 @@ import {
     component, constrainedDictionary,
     constrainedOption, dictConstraint,
     dictionary, externalGlobalTypeSelection,
-    globalType, globalTypeResult,
+    globalType,
     globalTypeSelection,
     group,
     nothing, nothingResult,
@@ -52,8 +52,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "A tagged union with result": globalType({}, group({
             "tu": prop(resultTaggedUnion(globalTypeSelection("A Result"), {
                 "a": option(group({
-                    "result": prop(component("A Result", {}))
-                }), tailSel(s_group("result")))
+                    "rslt": prop(component("A Result", {}))
+                }), tailSel(s_group("rslt")))
             }))
         })),
         "A tagged union with constrained option": globalType({}, group({
@@ -66,9 +66,23 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "a": constrainedOption({
                     "opt constraint": optionConstraint(valSel("tu1"), "a", tempTypeSelection("A tagged union with constrained option", [t_grp("tu1")]))
                 }, group({
-                    "result": prop(component("A Result", {}))
+                    "rslt": prop(component("A Result", {}))
                 }))
             }))
+        })),
+        "A tagged union with constrained option and result": globalType({}, group({
+            "tu1": prop(taggedUnion({
+                "a": option(group({
+                    "bar": prop(terminal("identifier")),
+                }))
+            })),
+            "tu2": prop(resultTaggedUnion(globalTypeSelection("A Result"), ({
+                "a": constrainedOption({
+                    "opt constraint": optionConstraint(valSel("tu1"), "a", tempTypeSelection("A tagged union with constrained option", [t_grp("tu1")]))
+                }, group({
+                    "rslt": prop(component("A Result", {}))
+                }), tailSel(s_group("rslt")))
+            }))),
         })),
         "A dictionary with constraint": globalType({}, group({
             "dict": prop(dictionary(group({}))),
@@ -83,8 +97,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "result param": pResolvedValue("A Result", false),
         }, group({
             "opt": prop(optional(group({
-                "result": prop(component("A Result", {}))
-            }), optionalResult(globalTypeSelection("A Result"), tailSel(s_group("result")), valSel("result param"))))
+                "rslt": prop(component("A Result", {}))
+            }), optionalResult(globalTypeSelection("A Result"), tailSel(s_group("rslt")), valSel("result param"))))
         })),
 
         // "Block": globalType({
@@ -235,10 +249,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                                 "namespace": aResolvedValue(valSel("namespace")),
                                 "variable stack": aResolvedValue(valSel("variable stack")),
                             }))),
-                        }), varSel("address function", s_group("return value"))),
-                        "property": constrainedOption({
-                            "group": optionConstraint(valSel("current address"), "group", tempExternalTypeSelection("typesystem", "Type", []))
-                        }, resolvedValueReference(valSel("group", s_group("properties")), tempExternalTypeSelection("typesystem", "Type", [t_tu("group"), t_grp("properties")]))),
+                        }), varSel("address function", s_group("return type"))),
+                        "property": constrainedOption(
+                            {
+                                "group": optionConstraint(valSel("current address"), "group", tempExternalTypeSelection("typesystem", "Type", []))
+                            },
+                            resolvedValueReference(valSel("group", s_group("properties")), tempExternalTypeSelection("typesystem", "Type", [t_tu("group"), t_grp("properties")])),
+                            tailSel(s_reference(s_group("type"))),
+                        ),
                     })),
                     "tail": prop(component("Address Selection Tail", {
                         "current address": aResolvedValue(valSel("step", s_taggedunion())),
@@ -248,7 +266,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 }),
                 optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("current address")),
             ),
-            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))
+            externalGlobalTypeSelection("typesystem", "Type"),
+            tailSel(s_optional())
         ),
         "Address Selection": globalType(
             {
@@ -263,7 +282,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "variable stack": aResolvedValue(valSel("variable stack"))
                 })),
             }),
-            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())))
+            externalGlobalTypeSelection("typesystem", "Type"),
+            tailSel(s_group("tail", s_component()))
         ),
         "Expression": globalType(
             {
@@ -688,19 +708,20 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })
             )
         ),
-        "Type Selection Tail": globalType(
-            {
-                "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
-            },
-            optional(
-                group({
-                    //"step type": prop(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, []))),
-                    "tail": prop(component("Type Selection Tail", {
-                        "namespace": aResolvedValue(valSel("namespace"))
-                    })),
-                }),
-                optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("namespace"))),
-            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))),
+        // "Type Selection Tail": globalType(
+        //     {
+        //         "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+        //     },
+        //     optional(
+        //         group({
+        //             //"step type": prop(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/, []))),
+        //             "tail": prop(component("Type Selection Tail", {
+        //                 "namespace": aResolvedValue(valSel("namespace"))
+        //             })),
+        //         }),
+        //         optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("namespace"))),
+        //     globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))
+        // ),
         "Type Selection": globalType(
             {
                 "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
@@ -711,7 +732,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     {
                         "namespace": constrainedOption(
                             {
-                                "referenced namespace": optionConstraint(valSel("referenced type", s_reference()), "namespace", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
+                                "referenced namespace": optionConstraint(valSel("referenced type", s_reference(s_group("type"))), "namespace", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
                             },
                             component("Type Selection", {
                                 "namespace": aResolvedValue(valSel("namespace"))
@@ -720,10 +741,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                         ),
                         "type definition": constrainedOption(
                             {
-                                "referenced type definition": optionConstraint(valSel("referenced type", s_reference()), "type definition", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
+                                "referenced type definition": optionConstraint(valSel("referenced type", s_reference(s_group("type"))), "type definition", tempExternalTypeSelection("typesystem", "Namespace", [t_dict(), t_grp("type")]))
                             },
                             group({}),
-                            varSel("referenced type definition"),
+                            varSel("referenced type definition", s_group("type")),
 
                         )
                     }))
@@ -736,7 +757,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             //         "namespace": aResolvedValue(valSel("namespace"))
             //     })),
             // }),
-            globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("type of referenced type", s_reference())))
+            externalGlobalTypeSelection("typesystem", "Type"),
+            tailSel(s_group("type of referenced type", s_taggedunion()))
         ),
         "Variables": globalType(
             {
@@ -748,16 +770,20 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
                     "parameter": option(group({
                         "parameter": prop(resolvedValueReference(valSel("parameters"), tempExternalTypeSelection("typesystem", "Parameters", []))),
-                    }), tailSel(s_group("parameter", s_reference()))),
-                    "variable stack": option(group({})),
+                    }), tailSel(s_group("parameter", s_reference(s_group("type"))))),
+                    "variable stack2": option(group({
+                        "variable": prop(resolvedValueReference(valSel("variable stack"), tempTypeSelection("Variables", []))),
+                    }), tailSel(s_group("variable", s_reference(s_group("type", s_taggedunion()))))),
                     "local": option(group({
-                        "type": prop(resolvedValueReference(valSel("namespace"), tempExternalTypeSelection("typesystem", "Namespace", []))),
+                        "type": prop(component("Type Selection", {
+                            "namespace": aResolvedValue(valSel("namespace")),
+                        })),
                         "initializer": prop(component("Expression", {
-                            "expected type": aResolvedValue(valSel("type", s_reference())),
+                            "expected type": aResolvedValue(valSel("type", s_component())),
                             "namespace": aResolvedValue(valSel("namespace")),
                             "variable stack": aResolvedValue(valSel("variable stack")),
                         })),
-                    })),
+                    }), tailSel(s_group("type", s_component()))),
                 })),
             }))
         ),

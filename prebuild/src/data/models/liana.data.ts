@@ -32,6 +32,8 @@ import {
     tempTypeSelection, valSel
 } from "lib-liana/dist/submodules/liana/shorthands"
 
+const forwardComponent = component
+
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
     'labels': {
@@ -227,12 +229,16 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "tail": prop(optional(component("Value Selection Tail", {
                 "type": aResolvedValue(valSel("step type", s_taggedunion()))
-            }), optionalResult(globalTypeSelection("Type"), tailSel( s_component()), valSel("step type")))),
-        }), globalTypeResult(globalTypeSelection("Type"), tailSel( s_group("tail", s_optional())))),
+            }), optionalResult(globalTypeSelection("Type"), tailSel(s_component()), valSel("step type")))),
+        }), globalTypeResult(globalTypeSelection("Type"), tailSel(s_group("tail", s_optional())))),
         "Any Value Selection": globalType({
             "type": pResolvedValue("Type", false),
         }, group({
             "start": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables", [])))),
+            "tail": prop(optional(component("Value Selection Tail", {})))
+        })),
+        "Value Selection": globalType({}, group({
+            "start": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables", []))),
             "tail": prop(optional(component("Value Selection Tail", {})))
         })),
         "Reference Initializer": globalType({
@@ -291,10 +297,6 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             })),
             "component": option(component("Type Initializer", {})),
         })),
-        "Value Selection": globalType({}, group({
-            "start": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables", []))),
-            "tail": prop(optional(component("Value Selection Tail", {})))
-        })),
         "Containing Dictionary Selection": globalType({}, taggedUnion({
             "this": option(group({
                 "type": prop(taggedUnion({
@@ -334,20 +336,17 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         }))),
         "Imports": globalType({}, dictionary(group({}))),
         "Global Type": globalType({}, group({
-            "parameters": prop(component("Parameters", {})),
-            "variables": prop(component("Variables", {})),
-            "type": prop(component("Type", {
-                "global types": aContainingDictionary(parameter("global types")),
+            "definition": prop(group({
+                "parameters": prop(component("Parameters", {})),
+                "result": prop(optional(component("Global Type Selection", {}))),
             })),
-            "result": prop(optional(group({
-                "temp type": prop(component("Global Type Selection", {})),
-                "selection": prop(component("Any Value Selection", {})),
-            })))
-        })),
-        "Type Library": globalType({}, group({
-            "imports": prop(component("Imports", {})),
-            "labels": prop(component("Labels", {})),
-            "global types": prop(dictionary(component("Global Type", {}))),
+            "implementation": prop(group({
+                "variables": prop(component("Variables", {})),
+                "type": prop(component("Type", {
+                    "global types": aContainingDictionary(parameter("global types")),
+                })),
+                "result": prop(optional(component("Any Value Selection", {}))),
+            })),
         })),
         "Temp Type Selection Tail": globalType({
             "context": pResolvedValue("Type", false)
@@ -380,6 +379,11 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
             "global type": prop(component("Global Type Selection", {})),
             "tail": prop(array(component("Temp Type Selection Tail", {})))
+        })),
+        "Type Library": globalType({}, group({
+            "imports": prop(component("Imports", {})),
+            "labels": prop(component("Labels", {})),
+            "global types": prop(dictionary(component("Global Type", {}))),
         })),
         "Model": globalType({}, group({
             "type library": prop(component("Type Library", {})),

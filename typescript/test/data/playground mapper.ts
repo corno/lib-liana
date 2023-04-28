@@ -14,7 +14,7 @@ function map_A__tagged__union__with__result($: g_in.T.A__tagged__union__with__re
         'tu': pl.cc($, ($) => pl.cc($, ($) => {
             switch ($[0]) {
                 case 'a': return ['a', ({
-                    'result': pl.cc($, ($) => map_A__Result($)),
+                    'rslt': pl.cc($, ($) => map_A__Result($)),
                 })]
                 default: return pl.au($[1])
             }
@@ -34,7 +34,27 @@ function map_A__tagged__union__with__constrained__option($: g_in.T.A__tagged__un
         'tu2': pl.cc($, ($) => pl.cc($, ($) => {
             switch ($[0]) {
                 case 'a': return ['a', ({
-                    'result': pl.cc($, ($) => map_A__Result($)),
+                    'rslt': pl.cc($, ($) => map_A__Result($)),
+                })]
+                default: return pl.au($[1])
+            }
+        })),
+    })
+}
+function map_A__tagged__union__with__constrained__option__and__result($: g_in.T.A__tagged__union__with__constrained__option__and__result): g_out.T.Element {
+    return ({
+        'tu1': pl.cc($, ($) => pl.cc($, ($) => {
+            switch ($[0]) {
+                case 'a': return ['a', ({
+                    'bar': pl.cc($, ($) => $),
+                })]
+                default: return pl.au($[1])
+            }
+        })),
+        'tu2': pl.cc($, ($) => pl.cc($, ($) => {
+            switch ($[0]) {
+                case 'a': return ['a', ({
+                    'rslt': pl.cc($, ($) => map_A__Result($)),
                 })]
                 default: return pl.au($[1])
             }
@@ -52,7 +72,7 @@ function map_A__optional__with__result($: g_in.T.A__optional__with__result): g_o
         'opt': pl.cc($, ($) => pl.optional(
             $,
             ($) => [true, ({
-                'result': pl.cc($, ($) => map_A__Result($)),
+                'rslt': pl.cc($, ($) => map_A__Result($)),
             })],
             () => [false],
         )),
@@ -104,15 +124,6 @@ function map_Type__Arguments($: g_in.T.Type__Arguments): g_out.T.Element {
         'type': pl.cc($, ($) => map_Type__Selection($)),
     }))
 }
-function map_Type__Selection__Tail($: g_in.T.Type__Selection__Tail): g_out.T.Element {
-    return pl.optional(
-        $,
-        ($) => [true, ({
-            'tail': pl.cc($, ($) => map_Type__Selection__Tail($)),
-        })],
-        () => [false],
-    )
-}
 function map_Type__Selection($: g_in.T.Type__Selection): g_out.T.Element {
     return ({
         'referenced type': pl.cc($, ($) => $),
@@ -132,9 +143,11 @@ function map_Variables($: g_in.T.Variables): g_out.T.Element {
                 case 'parameter': return ['parameter', ({
                     'parameter': pl.cc($, ($) => $),
                 })]
-                case 'variable stack': return ['variable stack', ({})]
+                case 'variable stack2': return ['variable stack2', ({
+                    'variable': pl.cc($, ($) => $),
+                })]
                 case 'local': return ['local', ({
-                    'type': pl.cc($, ($) => $),
+                    'type': pl.cc($, ($) => map_Type__Selection($)),
                     'initializer': pl.cc($, ($) => map_Expression($)),
                 })]
                 default: return pl.au($[1])

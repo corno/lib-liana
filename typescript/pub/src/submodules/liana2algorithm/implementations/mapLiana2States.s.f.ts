@@ -40,6 +40,6 @@ export const $$: A.mapLiana2States = ($d) => {
               
             })
         }
-        return $.library['global types'].map(($) => mapType($.type))
+        return $.library['global types'].map(($) => mapType($.implementation.type))
     }
 }

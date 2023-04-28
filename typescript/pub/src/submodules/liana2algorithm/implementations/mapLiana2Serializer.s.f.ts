@@ -142,7 +142,7 @@ export const $$: A.mapLiana2Serializer = () => {
                     //'innerFunctions': pm.wrapRawDictionary<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>({}),
                     'innerFunctions': $.library['global types'].map<g_algorithm.T.ProcedureBlock.innerFunctions.D<OutAnnotation>>(($) => ({
                         'type': ['procedure', {
-                            'block': mapType($.type)
+                            'block': mapType($.implementation.type)
                         }]
                     })),
                     'statements': pm.wrapRawArray([]),

@@ -365,7 +365,7 @@ export const $$: A.map = ($d) => {
             'root': {
                 'namespaces': pl.optional(
                     $.settings.datamodel,
-                    ($) => library.library['global types'].map(($) => mapTypeToNamespace($.type)),
+                    ($) => library.library['global types'].map(($) => mapTypeToNamespace($.implementation.type)),
                     () => pm.wrapRawDictionary({}),
                 ),
                 'types': pl.optional(
@@ -373,8 +373,8 @@ export const $$: A.map = ($d) => {
                     ($) => {
                         const dm = $
                         return library.library['global types'].map(($) => {
-                            const result = $.result
-                            const type = $.type
+                            const result = $.definition.result
+                            const type = $.implementation.type
                             return {
                                 'parameters': pm.wrapRawDictionary({}),
                                 'type': pl.optional(
@@ -387,7 +387,7 @@ export const $$: A.map = ($d) => {
                                                     'type': mapTypeToType(type, dm)
                                                 },
                                                 "result": {
-                                                    'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
+                                                    'type': createConstraintType($constraint, () => mapGlobalTypeSelection($))
                                                 }
                                             })],
                                             () => mapTypeToType(type, dm),

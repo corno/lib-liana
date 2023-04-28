@@ -123,7 +123,7 @@ export const $$: A.create121Mapper = ($d) => {
                 $i.indent(($i) => {
                     $i.nestedLine(($i) => {
                         $i.snippet(`return `)
-                        doType($.type, $i)
+                        doType($.implementation.type, $i)
                     })
                 })
                 $i.snippet(`}`)

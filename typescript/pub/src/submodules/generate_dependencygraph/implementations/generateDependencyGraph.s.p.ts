@@ -13,7 +13,7 @@ export const $$: A.generateDependencyGraph = () => {
                 $.data['global types'].__forEach(() => false, ($, key) => {
                     $i.line(`"${key}"`)
 
-                    $.parameters.__forEach(() => false, ($, paramKey) => {
+                    $.definition.parameters.__forEach(() => false, ($, paramKey) => {
                         pl.cc($.type, ($) => {
                             switch ($[0]) {
                                 case 'resolved value':

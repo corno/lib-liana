@@ -242,33 +242,26 @@ export namespace N {
                 
                 export namespace N {
                     
-                    export namespace parameters {
-                        
-                        export namespace N {}
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace result {
+                    export namespace definition {
                         
                         export namespace N {
                             
-                            export namespace O {
+                            export namespace G {
                                 
                                 export namespace N {
                                     
-                                    export namespace G {
+                                    export namespace parameters {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace result {
                                         
                                         export namespace N {
                                             
-                                            export namespace selection {
-                                                
-                                                export namespace N {}
-                                                
-                                                export namespace T {}
-                                            }
-                                            
-                                            export namespace temp_$_$type {
+                                            export namespace O {
                                                 
                                                 export namespace N {}
                                                 
@@ -287,16 +280,47 @@ export namespace N {
                         export namespace T {}
                     }
                     
-                    export namespace _$ltype {
+                    export namespace implementation {
                         
-                        export namespace N {}
-                        
-                        export namespace T {}
-                    }
-                    
-                    export namespace variables {
-                        
-                        export namespace N {}
+                        export namespace N {
+                            
+                            export namespace G {
+                                
+                                export namespace N {
+                                    
+                                    export namespace result {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace O {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace _$ltype {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                    
+                                    export namespace variables {
+                                        
+                                        export namespace N {}
+                                        
+                                        export namespace T {}
+                                    }
+                                }
+                                
+                                export namespace T {}
+                            }
+                        }
                         
                         export namespace T {}
                     }
@@ -2132,41 +2156,54 @@ export namespace T {
     
     export namespace Global__Type {
         
-        export type parameters<GAnnotation> = T.Parameters<GAnnotation>
-        
-        export namespace result {
+        export namespace definition {
             
-            export namespace O {
+            export type parameters<GAnnotation> = T.Parameters<GAnnotation>
+            
+            export namespace result {
                 
-                export type selection<GAnnotation> = T.Any__Value__Selection<GAnnotation>
-                
-                export type temp__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                export type O<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             }
             
-            export type O<GAnnotation> = {
-                readonly 'selection': T.Any__Value__Selection<GAnnotation>
-                readonly 'temp type': T.Global__Type__Selection<GAnnotation>
-            }
+            export type result<GAnnotation> = [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
         }
         
-        export type result<GAnnotation> = [ false ] | [ true, {
-            readonly 'selection': T.Any__Value__Selection<GAnnotation>
-            readonly 'temp type': T.Global__Type__Selection<GAnnotation>
-        }]
+        export type definition<GAnnotation> = {
+            readonly 'parameters': T.Parameters<GAnnotation>
+            readonly 'result': [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
+        }
         
-        export type _ltype<GAnnotation> = T.Type<GAnnotation>
+        export namespace implementation {
+            
+            export namespace result {
+                
+                export type O<GAnnotation> = T.Any__Value__Selection<GAnnotation>
+            }
+            
+            export type result<GAnnotation> = [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
+            
+            export type _ltype<GAnnotation> = T.Type<GAnnotation>
+            
+            export type variables<GAnnotation> = T.Variables<GAnnotation>
+        }
         
-        export type variables<GAnnotation> = T.Variables<GAnnotation>
+        export type implementation<GAnnotation> = {
+            readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
+            readonly 'type': T.Type<GAnnotation>
+            readonly 'variables': T.Variables<GAnnotation>
+        }
     }
     
     export type Global__Type<GAnnotation> = {
-        readonly 'parameters': T.Parameters<GAnnotation>
-        readonly 'result': [ false ] | [ true, {
-            readonly 'selection': T.Any__Value__Selection<GAnnotation>
-            readonly 'temp type': T.Global__Type__Selection<GAnnotation>
-        }]
-        readonly 'type': T.Type<GAnnotation>
-        readonly 'variables': T.Variables<GAnnotation>
+        readonly 'definition': {
+            readonly 'parameters': T.Parameters<GAnnotation>
+            readonly 'result': [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
+        }
+        readonly 'implementation': {
+            readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
+            readonly 'type': T.Type<GAnnotation>
+            readonly 'variables': T.Variables<GAnnotation>
+        }
     }
     
     export namespace Global__Type__Selection {
