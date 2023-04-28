@@ -3,7 +3,8 @@ import * as pd from 'pareto-core-data'
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import {
     dictionary,
-    globalType,
+    globalTypeDeclaration,
+    globalTypeDefinition,
     group,
     r,
     terminal,
@@ -13,7 +14,6 @@ import {
     option,
     resolvedValueReference,
     valSel,
-    def,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Model<pd.SourceLocation> = {
@@ -25,33 +25,38 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
                 "identifier": null
             }),
         },
-        'global types': pd.d({
-            //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
-            "Root": globalType(
-                def({}),
-                group({
-                    "a": prop(terminal("text")),
-                    "b": prop(terminal("text")),
-                    "c": prop(dictionary(group({}))),
-                    "d": prop(resolvedValueReference(valSel("c"), tempTypeSelection("FOO", []))),
-                    "e": prop(group({
-                        //"a": prop(ref(typeReference(['parent', null], [])],
-                    })),
-                    "f": prop(resolvedValueReference(valSel("d"), tempTypeSelection("FOO", []))),
-                    //"g": prop(taggedUnion({})],
-                    "h": prop(taggedUnion({
-                        "a": option(group({})),
-                    })),
-
-
-                })
-            ),
-            "Sub": globalType(
-                def({}),
-                group({
-                })
-            ),
-        }),
+        'global types': {
+            'declarations': pd.d({
+                //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
+                "Root": globalTypeDeclaration({}),
+                "Sub": globalTypeDeclaration({}),
+            }),
+            'definitions': pd.d({
+                //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
+                "Root": globalTypeDefinition(
+                    group({
+                        "a": prop(terminal("text")),
+                        "b": prop(terminal("text")),
+                        "c": prop(dictionary(group({}))),
+                        "d": prop(resolvedValueReference(valSel("c"), tempTypeSelection("FOO", []))),
+                        "e": prop(group({
+                            //"a": prop(ref(typeReference(['parent', null], [])],
+                        })),
+                        "f": prop(resolvedValueReference(valSel("d"), tempTypeSelection("FOO", []))),
+                        //"g": prop(taggedUnion({})],
+                        "h": prop(taggedUnion({
+                            "a": option(group({})),
+                        })),
+    
+    
+                    })
+                ),
+                "Sub": globalTypeDefinition(
+                    group({
+                    })
+                ),
+            })
+        },
 
     },
     'root': r("Root"),

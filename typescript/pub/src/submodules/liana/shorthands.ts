@@ -412,10 +412,10 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
     }
 }
 
-export function def(
+export function globalTypeDeclaration(
     parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
-    result_type?: g_this.T.Global__Type.definition.result.O<pd.SourceLocation>,
-): g_this.T.Global__Type.definition<pd.SourceLocation> {
+    result_type?: g_this.T.Global__Type__Declaration.result.O<pd.SourceLocation>,
+): g_this.T.Global__Type__Declaration<pd.SourceLocation> {
     return {
         'parameters': pd.d(parameters),
         'result': result_type === undefined
@@ -425,41 +425,37 @@ export function def(
 }
 
 
-export function globalType(
-    def: g_this.T.Global__Type.definition<pd.SourceLocation>,
+export function globalTypeDefinition(
     type: g_this.T.Type<pd.SourceLocation>,
-    result_selection?: g_this.T.Global__Type.implementation.result.O<pd.SourceLocation>,
-): g_this.T.Global__Type<pd.SourceLocation> {
-    const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
-    def.parameters.__forEach(() => false, ($, key) => {
-        pl.cc($.type, ($) => {
-            switch ($[0]) {
-                case 'resolved value':
-                    pl.ss($, ($) => {
+    result_selection?: g_this.T.Global__Type__Definition.result.O<pd.SourceLocation>,
+): g_this.T.Global__Type__Definition<pd.SourceLocation> {
+    // const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
+    // def.parameters.__forEach(() => false, ($, key) => {
+    //     pl.cc($.type, ($) => {
+    //         switch ($[0]) {
+    //             case 'resolved value':
+    //                 pl.ss($, ($) => {
 
-                    })
-                    break
-                case 'siblings':
-                    pl.ss($, ($) => {
-                        variables[key] = ['parameter', {
-                            'key': key,
-                            'annotation': pd.getLocationInfo(1),
-                        }]
-                    })
-                    break
-                default: pl.au($[0])
-            }
-        })
-    })
+    //                 })
+    //                 break
+    //             case 'siblings':
+    //                 pl.ss($, ($) => {
+    //                     variables[key] = ['parameter', {
+    //                         'key': key,
+    //                         'annotation': pd.getLocationInfo(1),
+    //                     }]
+    //                 })
+    //                 break
+    //             default: pl.au($[0])
+    //         }
+    //     })
+    // })
     return {
-        'definition': def,
-        'implementation': {
-            'type': type,
-            'variables': pd.d(variables),
-            'result': result_selection === undefined
-                ? [false]
-                : [true, result_selection]
-        },
+        'type': type,
+        'variables': pd.d({}),//FIXME
+        'result': result_selection === undefined
+            ? [false]
+            : [true, result_selection]
     }
 }
 

@@ -10,10 +10,10 @@ export const $$: A.generateDependencyGraph = () => {
         $i.nestedLine(($i) => {
             $i.snippet(`digraph G {`)
             $i.indent(($i) => {
-                $.data['global types'].__forEach(() => false, ($, key) => {
+                $.data['global types'].declarations.__forEach(() => false, ($, key) => {
                     $i.line(`"${key}"`)
 
-                    $.definition.parameters.__forEach(() => false, ($, paramKey) => {
+                    $.parameters.__forEach(() => false, ($, paramKey) => {
                         pl.cc($.type, ($) => {
                             switch ($[0]) {
                                 case 'resolved value':

@@ -5,7 +5,6 @@ import {
     component, constrainedDictionary,
     constrainedOption, dictConstraint,
     dictionary, externalGlobalTypeSelection,
-    globalType,
     globalTypeSelection,
     group,
     nothing, nothingResult,
@@ -45,6 +44,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "identifier": null,
         }),
     },
-    'global types': d({
-    }),
+    'global types': {
+        'declarations': d({
+        }),
+        'definitions': d({
+        }),
+    }
 }

@@ -365,16 +365,19 @@ export const $$: A.map = ($d) => {
             'root': {
                 'namespaces': pl.optional(
                     $.settings.datamodel,
-                    ($) => library.library['global types'].map(($) => mapTypeToNamespace($.implementation.type)),
+                    ($) => library.library['global types'].definitions.map(($) => mapTypeToNamespace($.type)),
                     () => pm.wrapRawDictionary({}),
                 ),
                 'types': pl.optional(
                     $.settings.datamodel,
                     ($) => {
                         const dm = $
-                        return library.library['global types'].map(($) => {
-                            const result = $.definition.result
-                            const type = $.implementation.type
+                        const gt = library.library['global types']
+                        return library.library['global types'].definitions.__mapWithKey(($, key) => {
+                            const declaration = gt.declarations.__unsafeGetEntry(key)
+
+                            const result = declaration.result
+                            const type = $.type
                             return {
                                 'parameters': pm.wrapRawDictionary({}),
                                 'type': pl.optional(

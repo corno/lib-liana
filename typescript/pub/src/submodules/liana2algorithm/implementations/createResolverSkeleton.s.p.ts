@@ -842,7 +842,10 @@ export const $$: A.createResolverSkeleton = ($d) => {
         $i.line(`import * as g_out from ".."`)
         $i.line(``)
 
-        $d.dictionaryForEach($['global types'], ($) => {
+        const gt = $['global types']
+
+        $d.dictionaryForEach($['global types'].definitions, ($) => {
+            const declaration = gt.declarations.__unsafeGetEntry($.key)
             const gt_key = $.key
             $i.line(``)
             $i.nestedLine(($i) => {
@@ -852,7 +855,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.snippet(`$: g_in.T.${$d.createIdentifier($.key)}<Annotation>,`)
                     })
                     pl.cc($.value, ($) => {
-                        $d.dictionaryForEach($.definition.parameters, ($) => {
+                        $d.dictionaryForEach(declaration.parameters, ($) => {
                             $i.nestedLine(($i) => {
                                 $i.snippet(`$v_${$d.createIdentifier($.key)}: `)
                                 pl.cc($.value.type, ($) => {
@@ -931,11 +934,10 @@ export const $$: A.createResolverSkeleton = ($d) => {
                     })
                 })
                 $i.snippet(`): g_out.T.${$d.createIdentifier($.key)}<Annotation> {`)
-                const type = $.value.implementation.type
+                const type = $.value.type
                 const key = $.key
-                const definition = $.value.definition
                 pl.optional(
-                    $.value.implementation.result,
+                    $.value.result,
                     ($) => {
                         $i.indent(($i) => {
                             $i.nestedLine(($i) => {
@@ -954,7 +956,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                                         $i.snippet(`'result': pl.cc(content, ($): `)
                                         $i.snippet(`pt.OptionalValue<`)
                                         pl.optional(
-                                            definition.result,
+                                            declaration.result,
                                             ($) => {
                                                 doGlobalTypeSelection($, $i)
                                             },
@@ -980,7 +982,7 @@ export const $$: A.createResolverSkeleton = ($d) => {
                         $i.indent(($i) => {
                             $i.nestedLine(($i) => {
                                 $i.snippet(`return `)
-                                doType($.value.implementation.type, $d.createIdentifier($.key), $i)
+                                doType($.value.type, $d.createIdentifier($.key), $i)
                             })
                         })
                     },
