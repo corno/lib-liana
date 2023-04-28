@@ -56,6 +56,26 @@ export const $$: A.map = ($d) => {
             $: g_liana.T.Temp__Type__Selection<Annotation>,
             getLastStep: () => string
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
+            function tail2tail($: g_liana.T.Temp__Type__Selection__Tail<Annotation>): pt.Array<string> {
+                return $d.merge(pm.wrapRawArray([
+                    pl.cc($['step type'], ($) => {
+                        switch ($[0]) {
+                            case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
+                            case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))
+                            case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.content.property.key]))
+                            case 'optional': return pl.ss($, ($) => pm.wrapRawArray(["O"]))
+                            case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.content.option.key]))
+                            default: return pl.au($[0])
+                        }
+                    }),
+                    pl.optional(
+                        $.tail,
+                        ($) => tail2tail($),
+                        () => pm.wrapRawArray([]),
+                    )
+                ]))
+
+            }
             return {
                 'context': pl.optional(
                     $['global type'].import,
@@ -70,18 +90,11 @@ export const $$: A.map = ($d) => {
                 'arguments': pm.wrapRawDictionary({}),
                 'type': $['global type'].type.key,
                 'tail': $d.push({
-                    'array': $d.merge($.tail.map(($) => {
-                        return pl.cc($['step type'], ($) => {
-                            switch ($[0]) {
-                                case 'array': return pl.ss($, ($) => pm.wrapRawArray(["A"]))
-                                case 'dictionary': return pl.ss($, ($) => pm.wrapRawArray(["D"]))
-                                case 'group': return pl.ss($, ($) => pm.wrapRawArray([$.content.property.key]))
-                                case 'optional': return pl.ss($, ($) => pm.wrapRawArray(["O"]))
-                                case 'tagged union': return pl.ss($, ($) => pm.wrapRawArray([$.content.option.key]))
-                                default: return pl.au($[0])
-                            }
-                        })
-                    })),
+                    'array': pl.optional(
+                        $.tail,
+                        ($) => tail2tail($),
+                        () => pm.wrapRawArray([]),
+                    ),
                     'element': getLastStep(),
                 }),
             }

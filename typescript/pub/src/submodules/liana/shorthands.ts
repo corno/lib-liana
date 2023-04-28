@@ -622,50 +622,64 @@ export function terminal(type: string): g_this.T.Type<pd.SourceLocation> {
 //     return ['tagged union', pd.d(options)]
 // }
 
-export function t_grp(prop: string): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
+export function t_grp(
+    prop: string,
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
+): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
     return {
         'step type': ['group', {
             'annotation': pd.getLocationInfo(1),
             'content': {
                 'property': r_imp(prop, 1),
             },
-        }]
+        }],
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
-export function t_dict(): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
+export function t_dict(
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
+): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
     return {
         'step type': ['dictionary', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
-        }]
+        }],
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
-export function t_arr(): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
+export function t_arr(
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
+): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
     return {
         'step type': ['array', {
             'annotation': pd.getLocationInfo(1),
             'content': null,
-        }]
+        }],
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
-export function t_tu(opt: string): g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation> {
+export function t_tu(
+    opt: string,
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
+    ): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
     return {
         'step type': ['tagged union', {
             'annotation': pd.getLocationInfo(1),
             'content': {
                 'option': r_imp(opt, 1),
             },
-        }]
+        }],
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
 export function tempExternalTypeSelection(
     imp: string,
     globalType: string,
-    path: g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation>[],
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Temp__Type__Selection<pd.SourceLocation> {
     return {
         'global type': {
@@ -675,7 +689,7 @@ export function tempExternalTypeSelection(
             }],
             'type': r_imp(globalType, 1),
         },
-        'tail': a(path),
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 
@@ -704,14 +718,14 @@ export function externalGlobalTypeSelection(
 
 export function tempTypeSelection(
     globalType: string,
-    path: g_this.T.Temp__Type__Selection.tail.A<pd.SourceLocation>[],
+    tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Temp__Type__Selection<pd.SourceLocation> {
     return {
         'global type': {
             'import': [false],
             'type': r_imp(globalType, 1),
         },
-        'tail': a(path),
+        'tail': tail === undefined ? [false] : [true, tail]
     }
 }
 

@@ -20,6 +20,50 @@ export const $$: A.createResolver = ($d) => {
         )
         $i.snippet(`.T.${$d.createIdentifier($.type.key)}`)
     }
+    function doTempTypeSelectionTail<Annotation>($: g_liana.T.Temp__Type__Selection__Tail<Annotation>, $i: g_fp.SYNC.I.Line) {
+        pl.cc($['step type'], ($) => {
+            switch ($[0]) {
+                case 'array':
+                    pl.ss($, ($) => {
+                        $i.snippet(`A`)
+                    })
+                    break
+                case 'dictionary':
+                    pl.ss($, ($) => {
+                        $i.snippet(`D`)
+                    })
+                    break
+                case 'group':
+                    pl.ss($, ($) => {
+                        $i.snippet($d.createIdentifier($.content.property.key))
+
+                    })
+                    break
+                case 'optional':
+                    pl.ss($, ($) => {
+                        $i.snippet(`O`)
+
+                    })
+                    break
+                case 'tagged union':
+                    pl.ss($, ($) => {
+                        $i.snippet($d.createIdentifier($.content.option.key))
+
+                    })
+                    break
+                default: pl.au($[0])
+            }
+        })
+        pl.optional(
+            $.tail,
+            ($) => {
+                doTempTypeSelectionTail($, $i)
+            },
+            () => {
+
+            }
+        )
+    }
     function doTempTypeSelection<Annotation>($: g_liana.T.Temp__Type__Selection<Annotation>, $i: g_fp.SYNC.I.Line) {
         $i.snippet(`g_out`)
         pl.optional(
@@ -32,43 +76,15 @@ export const $$: A.createResolver = ($d) => {
             }
         )
         $i.snippet(`.T.${$d.createIdentifier($['global type'].type.key)}`)
-        $.tail.__forEach(($) => {
-            $i.snippet(`.`)
-            pl.cc($['step type'], ($) => {
+        pl.optional(
+            $.tail,
+            ($) => {
+                doTempTypeSelectionTail($, $i)
+            },
+            () => {
 
-                switch ($[0]) {
-                    case 'array':
-                        pl.ss($, ($) => {
-                            $i.snippet(`A`)
-                        })
-                        break
-                    case 'dictionary':
-                        pl.ss($, ($) => {
-                            $i.snippet(`D`)
-                        })
-                        break
-                    case 'group':
-                        pl.ss($, ($) => {
-                            $i.snippet($d.createIdentifier($.content.property.key))
-
-                        })
-                        break
-                    case 'optional':
-                        pl.ss($, ($) => {
-                            $i.snippet(`O`)
-
-                        })
-                        break
-                    case 'tagged union':
-                        pl.ss($, ($) => {
-                            $i.snippet($d.createIdentifier($.content.option.key))
-
-                        })
-                        break
-                    default: pl.au($[0])
-                }
-            })
-        })
+            }
+        )
     }
     // function doOptionalValueSelectionTail<Annotation>(
     //     $: g_liana.T.Optional__Value__Selection__Tail<Annotation>,

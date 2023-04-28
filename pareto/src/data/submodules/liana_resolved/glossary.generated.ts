@@ -404,7 +404,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         }]],
                     },
                     "tail": {
-                        'type': <g_glossary.T.Type<pd.SourceLocation>>['array', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
                             'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
                             'type': "Temp Type Selection Tail",
                             'tail': a([]),
@@ -591,6 +591,14 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 }]]],
                             },
                         })],
+                    },
+                    "tail": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                            'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                            'type': "Temp Type Selection Tail",
+                            'tail': a([]),
+                            'arguments': d({}),
+                        }]]],
                     },
                 })]
             },
@@ -1878,7 +1886,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             "tail": {
                                 'types': d({}),
                                 'namespaces': d({
-                                    "A": {
+                                    "O": {
                                         'types': d({}),
                                         'namespaces': d({}),
                                     },
@@ -1956,6 +1964,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                 }),
                                             },
                                         }),
+                                    },
+                                }),
+                            },
+                            "tail": {
+                                'types': d({}),
+                                'namespaces': d({
+                                    "O": {
+                                        'types': d({}),
+                                        'namespaces': d({}),
                                     },
                                 }),
                             },

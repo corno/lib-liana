@@ -742,7 +742,7 @@ export namespace N {
                         
                         export namespace N {
                             
-                            export namespace A {
+                            export namespace O {
                                 
                                 export namespace N {}
                                 
@@ -868,6 +868,21 @@ export namespace N {
                                         export namespace T {}
                                     }
                                 }
+                                
+                                export namespace T {}
+                            }
+                        }
+                        
+                        export namespace T {}
+                    }
+                    
+                    export namespace tail {
+                        
+                        export namespace N {
+                            
+                            export namespace O {
+                                
+                                export namespace N {}
                                 
                                 export namespace T {}
                             }
@@ -2547,15 +2562,15 @@ export namespace T {
         
         export namespace tail {
             
-            export type A<GAnnotation> = T.Temp__Type__Selection__Tail<GAnnotation>
+            export type O<GAnnotation> = T.Temp__Type__Selection__Tail<GAnnotation>
         }
         
-        export type tail<GAnnotation> = pt.Array<T.Temp__Type__Selection__Tail<GAnnotation>>
+        export type tail<GAnnotation> = [ false ] | [ true, T.Temp__Type__Selection__Tail<GAnnotation>]
     }
     
     export type Temp__Type__Selection<GAnnotation> = {
         readonly 'global type': T.Global__Type__Selection<GAnnotation>
-        readonly 'tail': pt.Array<T.Temp__Type__Selection__Tail<GAnnotation>>
+        readonly 'tail': [ false ] | [ true, T.Temp__Type__Selection__Tail<GAnnotation>]
     }
     
     export namespace Temp__Type__Selection__Tail {
@@ -2894,6 +2909,13 @@ export namespace T {
                 }]
             readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
         }
+        
+        export namespace tail {
+            
+            export type O<GAnnotation> = T.Temp__Type__Selection__Tail<GAnnotation>
+        }
+        
+        export type tail<GAnnotation> = [ false ] | [ true, T.Temp__Type__Selection__Tail<GAnnotation>]
     }
     
     export type Temp__Type__Selection__Tail<GAnnotation> = {
@@ -2948,6 +2970,7 @@ export namespace T {
                 }]
             readonly 'result': [ false ] | [ true, T.Type<GAnnotation>]
         }
+        readonly 'tail': [ false ] | [ true, T.Temp__Type__Selection__Tail<GAnnotation>]
     }
     
     export namespace Type {

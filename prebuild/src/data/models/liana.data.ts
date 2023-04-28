@@ -66,7 +66,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 //"all global types": pAllSiblings(globalTypeSelection("Global Type")),
                 //"noncyclic global types": pNonCyclicSiblings(globalTypeSelection("Global Type")),
             }),
-            
+
             "Value Selection Tail": globalTypeDeclaration(
                 {
                     "type": pResolvedValue("Type", false),
@@ -438,13 +438,14 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                             "option": prop(resolvedValueReference(valSel("tagged union"), tempTypeSelection("Type", [t_grp("type"), t_tu("tagged union"), t_grp("options")]))),
                         })),
                     })),
+                    "tail": prop(optional(component("Temp Type Selection Tail", {})))
                 })
             ),
             "Temp Type Selection": globalTypeDefinition(
                 group({
 
                     "global type": prop(component("Global Type Selection", {})),
-                    "tail": prop(array(component("Temp Type Selection Tail", {})))
+                    "tail": prop(optional(component("Temp Type Selection Tail", {})))
                 })
             ),
             "Type Library": globalTypeDefinition(
