@@ -10,7 +10,6 @@ import {
     dictConstraint,
     dictionary,
     globalType,
-    globalTypeResult,
     globalTypeSelection,
     group,
     option,
@@ -197,40 +196,45 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "global types": aContainingDictionary(parameter("global types")),
             })),
         }))),
-        "Value Selection Tail": globalType({
-            "type": pResolvedValue("Type", false),
-        }, group({
-            "step type": prop(resultTaggedUnion(globalTypeSelection("Type"), {
-                "reference": constrainedOption({
-                    "reference": optionConstraint(valSel("type"), "terminal", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
+        "Value Selection Tail": globalType(
+            {
+                "type": pResolvedValue("Type", false),
+            },
+            group({
+                "step type": prop(resultTaggedUnion(globalTypeSelection("Type"), {
+                    "reference": constrainedOption({
+                        "reference": optionConstraint(valSel("type"), "terminal", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                    })),
+                    "component": constrainedOption({
+                        "component": optionConstraint(valSel("type"), "component", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                    })),
+                    "tagged union": constrainedOption({
+                        "tagged union": optionConstraint(valSel("type"), "tagged union", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                    })),
+                    "optional": constrainedOption({
+                        "optional": optionConstraint(valSel("type"), "optional", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                    })),
+                    "nothing": constrainedOption({
+                        "nothing": optionConstraint(valSel("type"), "nothing", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                    })),
+                    "group": constrainedOption({
+                        "group": optionConstraint(valSel("type"), "group", tempTypeSelection("Type", [t_grp("type")]))
+                    }, group({
+                        "property": prop(resolvedValueReference(valSel("group"), tempTypeSelection("Properties", []))),
+                    })),
                 })),
-                "component": constrainedOption({
-                    "component": optionConstraint(valSel("type"), "component", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
-                })),
-                "tagged union": constrainedOption({
-                    "tagged union": optionConstraint(valSel("type"), "tagged union", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
-                })),
-                "optional": constrainedOption({
-                    "optional": optionConstraint(valSel("type"), "optional", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
-                })),
-                "nothing": constrainedOption({
-                    "nothing": optionConstraint(valSel("type"), "nothing", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
-                })),
-                "group": constrainedOption({
-                    "group": optionConstraint(valSel("type"), "group", tempTypeSelection("Type", [t_grp("type")]))
-                }, group({
-                    "property": prop(resolvedValueReference(valSel("group"), tempTypeSelection("Properties", []))),
-                })),
-            })),
-            "tail": prop(optional(component("Value Selection Tail", {
-                "type": aResolvedValue(valSel("step type", s_taggedunion()))
-            }), optionalResult(globalTypeSelection("Type"), tailSel(s_component()), valSel("step type")))),
-        }), globalTypeResult(globalTypeSelection("Type"), tailSel(s_group("tail", s_optional())))),
+                "tail": prop(optional(component("Value Selection Tail", {
+                    "type": aResolvedValue(valSel("step type", s_taggedunion()))
+                }), optionalResult(globalTypeSelection("Type"), tailSel(s_component()), valSel("step type")))),
+            }),
+            globalTypeSelection("Type"),
+            tailSel(s_group("tail", s_optional()))
+        ),
         "Any Value Selection": globalType({
             "type": pResolvedValue("Type", false),
         }, group({

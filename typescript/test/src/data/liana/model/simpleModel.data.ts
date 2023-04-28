@@ -13,6 +13,7 @@ import {
     option,
     resolvedValueReference,
     valSel,
+    def,
 } from "../../../../../pub/dist/submodules/liana/shorthands"
 
 export const $: g_liana.T.Model<pd.SourceLocation> = {
@@ -26,25 +27,30 @@ export const $: g_liana.T.Model<pd.SourceLocation> = {
         },
         'global types': pd.d({
             //"Root": globalType({ "parameterA": typePath("Root", [])}, group({
-            "Root": globalType({}, group({
-                "a": prop(terminal("text")),
-                "b": prop(terminal("text")),
-                "c": prop(dictionary(group({}))),
-                "d": prop(resolvedValueReference(valSel("c"), tempTypeSelection("FOO", []))),
-                "e": prop(group({
-                    //"a": prop(ref(typeReference(['parent', null], [])],
-                })),
-                "f": prop(resolvedValueReference(valSel("d"), tempTypeSelection("FOO", []))),
-                //"g": prop(taggedUnion({})],
-                "h": prop(taggedUnion({
-                    "a": option(group({})),
-                })),
+            "Root": globalType(
+                def({}),
+                group({
+                    "a": prop(terminal("text")),
+                    "b": prop(terminal("text")),
+                    "c": prop(dictionary(group({}))),
+                    "d": prop(resolvedValueReference(valSel("c"), tempTypeSelection("FOO", []))),
+                    "e": prop(group({
+                        //"a": prop(ref(typeReference(['parent', null], [])],
+                    })),
+                    "f": prop(resolvedValueReference(valSel("d"), tempTypeSelection("FOO", []))),
+                    //"g": prop(taggedUnion({})],
+                    "h": prop(taggedUnion({
+                        "a": option(group({})),
+                    })),
 
 
-            })),
-            "Sub": globalType({}, group({
-
-            })),
+                })
+            ),
+            "Sub": globalType(
+                def({}),
+                group({
+                })
+            ),
         }),
 
     },

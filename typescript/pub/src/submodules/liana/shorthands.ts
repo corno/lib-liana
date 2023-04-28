@@ -412,14 +412,26 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
     }
 }
 
-export function globalType(
+export function def(
     parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
-    type: g_this.T.Type<pd.SourceLocation>,
     result_type?: g_this.T.Global__Type.definition.result.O<pd.SourceLocation>,
+): g_this.T.Global__Type.definition<pd.SourceLocation> {
+    return {
+        'parameters': pd.d(parameters),
+        'result': result_type === undefined
+            ? [false]
+            : [true, result_type]
+    }
+}
+
+
+export function globalType(
+    def: g_this.T.Global__Type.definition<pd.SourceLocation>,
+    type: g_this.T.Type<pd.SourceLocation>,
     result_selection?: g_this.T.Global__Type.implementation.result.O<pd.SourceLocation>,
 ): g_this.T.Global__Type<pd.SourceLocation> {
     const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
-    pd.d(parameters).__forEach(() => false, ($, key) => {
+    def.parameters.__forEach(() => false, ($, key) => {
         pl.cc($.type, ($) => {
             switch ($[0]) {
                 case 'resolved value':
@@ -440,12 +452,7 @@ export function globalType(
         })
     })
     return {
-        'definition': {
-            'parameters': pd.d(parameters),
-            'result': result_type === undefined
-            ? [false]
-            : [true, result_type]
-        },
+        'definition': def,
         'implementation': {
             'type': type,
             'variables': pd.d(variables),
@@ -455,6 +462,7 @@ export function globalType(
         },
     }
 }
+
 export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
     const currentVariables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
     function clone($: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>>) {
