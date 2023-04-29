@@ -289,6 +289,12 @@ export function thisCyclic(
     }]
 }
 
+export function lresolvedDictionary(
+    valSel: g_this.T.Value__Selection<pd.SourceLocation>
+): g_this.T.Lookup__Selection<pd.SourceLocation> {
+    return ['resolved dictionary', valSel]
+}
+
 export function lparameter(
     param: string,
 ): g_this.T.Lookup__Selection<pd.SourceLocation> {
