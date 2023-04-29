@@ -277,16 +277,23 @@ export const $$: A.createResolver = ($d) => {
             },
         )
     }
-    function doContainingDictionarySelection<Annotation>(
-        $: g_liana.T.Containing__Dictionary__Selection<Annotation>,
+    function doLookupSelection<Annotation>(
+        $: g_liana.T.Lookup__Selection<Annotation>,
         $i: g_fp.SYNC.I.Line,
     ) {
         switch ($[0]) {
-            case 'parameter':
+            case 'resolved dictionary':
                 pl.ss($, ($) => {
-                    $i.snippet(`$v_${$d.createIdentifier($.key)}`)
+                    doValueSelection($, $i, ($i) => {
+                        $i.snippet(`XXXXXXXXXXX`)
+                    })
                 })
                 break
+                case 'parameter':
+                    pl.ss($, ($) => {
+                        $i.snippet(`$v_${$d.createIdentifier($.key)}`)
+                    })
+                    break
             case 'this':
                 pl.ss($, ($) => {
                     $i.snippet(`FOOO`)
@@ -333,9 +340,9 @@ export const $$: A.createResolver = ($d) => {
                                                         })
                                                     })
                                                     break
-                                                case 'containing dictionary':
+                                                case 'lookup':
                                                     pl.ss($, ($) => {
-                                                        doContainingDictionarySelection($, $i)
+                                                        doLookupSelection($, $i)
 
                                                     })
                                                     break
@@ -450,7 +457,7 @@ export const $$: A.createResolver = ($d) => {
                                         case 'option constraint': return pl.ss($, ($) => [false])
                                         case 'parameter': return pl.ss($, ($) => [false])
                                         case 'parent variable': return pl.ss($, ($) => [false])
-                                        case 'sibling': return pl.ss($, ($) => [true, null])
+                                        case 'lookup': return pl.ss($, ($) => [true, null])
                                         default: return pl.au($[0])
                                     }
                                 })))
@@ -812,7 +819,7 @@ export const $$: A.createResolver = ($d) => {
                                                                 })
                                                             })
                                                             break
-                                                        case 'sibling':
+                                                        case 'lookup':
                                                             pl.ss($, ($) => {
                                                                 $i.snippet(`FIXME`)
                                                             })

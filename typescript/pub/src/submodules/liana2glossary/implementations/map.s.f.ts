@@ -41,7 +41,9 @@ export const $$: A.map = ($d) => {
                     $.import,
                     ($): g_glossary.T.DataSpecifier._ltype.context<g_this.T.OutAnnotation<Annotation>> => ['import', {
                         'glossary': {
-                            'glossary arguments': pm.wrapRawDictionary({}),
+                            'glossary arguments': pm.wrapRawDictionary({
+                                "Annotation": ['glossary parameterXX', "Annotation"]
+                            }),
                             'glossary': {
                                 'annotation': ['source', $.annotation],
                                 'key': $.key
@@ -84,7 +86,9 @@ export const $$: A.map = ($d) => {
                     $['global type'].import,
                     ($): g_glossary.T.DataSpecifier._ltype.context<g_this.T.OutAnnotation<Annotation>> => ['import', {
                         'glossary': {
-                            'glossary arguments': pm.wrapRawDictionary({}),
+                            'glossary arguments': pm.wrapRawDictionary({
+                                "Annotation": ['glossary parameterXX', "Annotation"]
+                            }),
                             'glossary': {
                                 'annotation': ['source', $.annotation],
                                 'key': $.key
@@ -195,11 +199,13 @@ export const $$: A.map = ($d) => {
                             switch ($.context[0]) {
                                 case 'import': return pl.ss($.context, ($) => ['import', {
                                     'glossary': {
-                                        'glossary arguments': pm.wrapRawDictionary({}),
                                         'glossary': {
                                             'annotation': ['source', $.library.annotation],
                                             'key': $.library.key
-                                        }
+                                        },
+                                        'glossary arguments': pm.wrapRawDictionary({
+                                            "Annotation": ['glossary parameterXX', "Annotation"]
+                                        }),
                                     }
                                 }])
                                 case 'local': return pl.ss($.context, ($) => ['local', null])
@@ -294,7 +300,7 @@ export const $$: A.map = ($d) => {
                                     "constraint": createOptionalConstraintProperty($x, () => pl.cc($['referencee type'], ($) => {
                                         switch ($[0]) {
                                             case 'resolved value': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
-                                            case 'sibling': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
+                                            case 'lookup': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
                                             default: return pl.au($[0])
                                         }
 

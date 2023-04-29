@@ -276,35 +276,35 @@ export function aResolvedValue(
 }
 
 export function thisNonCyclic(
-): g_this.T.Containing__Dictionary__Selection<pd.SourceLocation> {
+): g_this.T.Lookup__Selection<pd.SourceLocation> {
     return ['this', {
         'type': ['non cyclic', null]
     }]
 }
 
 export function thisCyclic(
-): g_this.T.Containing__Dictionary__Selection<pd.SourceLocation> {
+): g_this.T.Lookup__Selection<pd.SourceLocation> {
     return ['this', {
         'type': ['cyclic', null]
     }]
 }
 
-export function parameter(
+export function lparameter(
     param: string,
-): g_this.T.Containing__Dictionary__Selection<pd.SourceLocation> {
+): g_this.T.Lookup__Selection<pd.SourceLocation> {
     return ['parameter', {
         'annotation': pd.getLocationInfo(1),
         'key': param
     }]
 }
 
-export function aContainingDictionary(
-    sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>
+export function aLookup(
+    sel: g_this.T.Lookup__Selection<pd.SourceLocation>
 ): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
     return {
         'annotation': pd.getLocationInfo(1),
         'content': {
-            'type': ['containing dictionary', sel],
+            'type': ['lookup', sel],
         },
     }
 }
@@ -337,8 +337,8 @@ export function resolvedValueReference(
     }
 }
 
-export function siblingReference(
-    sel: g_this.T.Containing__Dictionary__Selection<pd.SourceLocation>,
+export function lookupReference(
+    sel: g_this.T.Lookup__Selection<pd.SourceLocation>,
     temp_type: g_this.T.Temp__Type__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
@@ -351,7 +351,7 @@ export function siblingReference(
                 }
             },
             'constrained': ['yes', {
-                'referencee type': ['sibling', {
+                'referencee type': ['lookup', {
                     'temp type': temp_type,
                     'selection': sel,
                 }]
@@ -473,7 +473,7 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
         'type': ['group', {
             'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
                 const v = clone(currentVariables)
-                currentVariables[key] = ['sibling', {
+                currentVariables[key] = ['lookup', {
                     'key': key,
                     'annotation': pd.getLocationInfo(1)
                 }]
