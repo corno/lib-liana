@@ -386,7 +386,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                                 "yes": option(group({})),
                             }))
                         })),
-                        "siblings": option(group({
+                        "lookup": option(group({
                             "type": prop(component("Global Type Selection", {
                                 "global types": aLookup(lparameter("global types")),
                             })),

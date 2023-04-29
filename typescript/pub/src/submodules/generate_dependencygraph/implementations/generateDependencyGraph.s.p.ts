@@ -22,7 +22,7 @@ export const $$: A.generateDependencyGraph = () => {
                                         $i.line(`"${key}" -> "${ $.type.type.key}"`)
                                     })
                                     break
-                                case 'siblings':
+                                case 'lookup':
                                     pl.ss($, ($) => {
 
                                         $i.line(`"${key}" -> "${ $.type.type.key}" [color="red"]`)

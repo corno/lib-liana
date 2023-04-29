@@ -901,7 +901,7 @@ export const $$: A.createResolver = ($d) => {
                                         $i.snippet(`$v_${$d.createIdentifier($.key)}: `)
                                         pl.cc($.value.type, ($) => {
                                             switch ($[0]) {
-                                                case 'siblings':
+                                                case 'lookup':
                                                     pl.ss($, ($) => {
                                                         const type = $.type
                                                         pl.cc($.kind, ($) => {

@@ -90,9 +90,9 @@ export function optionalResult(
     }
 }
 
-export function pAllSiblings(type: g_this.T.Global__Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
+export function pCyclicLookup(type: g_this.T.Global__Type__Selection<pd.SourceLocation>): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
-        'type': ['siblings', {
+        'type': ['lookup', {
             'kind': ['cyclic', null],
             'type': type
         }]
@@ -125,11 +125,11 @@ export function pExternalResolvedValue(imp: string, gt: string, optional: boolea
     }
 }
 
-export function pNonCyclicSiblings(
+export function pNonCyclicLookup(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>
 ): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
-        'type': ['siblings', {
+        'type': ['lookup', {
             'kind': ['non cyclic', null],
             'type': type
         }]

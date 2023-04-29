@@ -519,7 +519,7 @@ export namespace N {
                                         
                                         export namespace N {
                                             
-                                            export namespace resolved_$_$value {
+                                            export namespace lookup {
                                                 
                                                 export namespace N {
                                                     
@@ -527,7 +527,7 @@ export namespace N {
                                                         
                                                         export namespace N {
                                                             
-                                                            export namespace optional {
+                                                            export namespace kind {
                                                                 
                                                                 export namespace N {
                                                                     
@@ -535,7 +535,7 @@ export namespace N {
                                                                         
                                                                         export namespace N {
                                                                             
-                                                                            export namespace no {
+                                                                            export namespace cyclic {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -550,7 +550,7 @@ export namespace N {
                                                                                 export namespace T {}
                                                                             }
                                                                             
-                                                                            export namespace yes {
+                                                                            export namespace non_$_$cyclic {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -588,7 +588,7 @@ export namespace N {
                                                 export namespace T {}
                                             }
                                             
-                                            export namespace siblings {
+                                            export namespace resolved_$_$value {
                                                 
                                                 export namespace N {
                                                     
@@ -596,7 +596,7 @@ export namespace N {
                                                         
                                                         export namespace N {
                                                             
-                                                            export namespace kind {
+                                                            export namespace optional {
                                                                 
                                                                 export namespace N {
                                                                     
@@ -604,7 +604,7 @@ export namespace N {
                                                                         
                                                                         export namespace N {
                                                                             
-                                                                            export namespace cyclic {
+                                                                            export namespace no {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -619,7 +619,7 @@ export namespace N {
                                                                                 export namespace T {}
                                                                             }
                                                                             
-                                                                            export namespace non_$_$cyclic {
+                                                                            export namespace yes {
                                                                                 
                                                                                 export namespace N {
                                                                                     
@@ -2373,6 +2373,33 @@ export namespace T {
             
             export namespace _ltype {
                 
+                export namespace lookup {
+                    
+                    export namespace kind {
+                        
+                        export namespace cyclic {}
+                        
+                        export type cyclic<GAnnotation> = null
+                        
+                        export namespace non__cyclic {}
+                        
+                        export type non__cyclic<GAnnotation> = null
+                    }
+                    
+                    export type kind<GAnnotation> = 
+                        | ['cyclic', null]
+                        | ['non cyclic', null]
+                    
+                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                }
+                
+                export type lookup<GAnnotation> = {
+                    readonly 'kind': 
+                        | ['cyclic', null]
+                        | ['non cyclic', null]
+                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                }
+                
                 export namespace resolved__value {
                     
                     export namespace optional {
@@ -2399,62 +2426,35 @@ export namespace T {
                         | ['yes', null]
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
-                
-                export namespace siblings {
-                    
-                    export namespace kind {
-                        
-                        export namespace cyclic {}
-                        
-                        export type cyclic<GAnnotation> = null
-                        
-                        export namespace non__cyclic {}
-                        
-                        export type non__cyclic<GAnnotation> = null
-                    }
-                    
-                    export type kind<GAnnotation> = 
-                        | ['cyclic', null]
-                        | ['non cyclic', null]
-                    
-                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
-                }
-                
-                export type siblings<GAnnotation> = {
+            }
+            
+            export type _ltype<GAnnotation> = 
+                | ['lookup', {
                     readonly 'kind': 
                         | ['cyclic', null]
                         | ['non cyclic', null]
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
-                }
-            }
-            
-            export type _ltype<GAnnotation> = 
+                }]
                 | ['resolved value', {
                     readonly 'optional': 
                         | ['no', null]
                         | ['yes', null]
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
-                }]
-                | ['siblings', {
-                    readonly 'kind': 
-                        | ['cyclic', null]
-                        | ['non cyclic', null]
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }]
         }
         
         export type D<GAnnotation> = {
             readonly 'type': 
+                | ['lookup', {
+                    readonly 'kind': 
+                        | ['cyclic', null]
+                        | ['non cyclic', null]
+                    readonly 'type': T.Global__Type__Selection<GAnnotation>
+                }]
                 | ['resolved value', {
                     readonly 'optional': 
                         | ['no', null]
                         | ['yes', null]
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
-                }]
-                | ['siblings', {
-                    readonly 'kind': 
-                        | ['cyclic', null]
-                        | ['non cyclic', null]
                     readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }]
         }
@@ -2462,16 +2462,16 @@ export namespace T {
     
     export type Parameters<GAnnotation> = pt.Dictionary<{
         readonly 'type': 
+            | ['lookup', {
+                readonly 'kind': 
+                    | ['cyclic', null]
+                    | ['non cyclic', null]
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }]
             | ['resolved value', {
                 readonly 'optional': 
                     | ['no', null]
                     | ['yes', null]
-                readonly 'type': T.Global__Type__Selection<GAnnotation>
-            }]
-            | ['siblings', {
-                readonly 'kind': 
-                    | ['cyclic', null]
-                    | ['non cyclic', null]
                 readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
     }>
