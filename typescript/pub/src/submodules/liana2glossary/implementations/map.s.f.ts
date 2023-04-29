@@ -18,7 +18,7 @@ export const $$: A.map = ($d) => {
         function createOptionalAnnotation(): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
             return settings.annotations
                 ? [true, {
-                    'type': ['reference', ['glossary parameter', "Annotation"]],
+                    'type': ['reference', ['glossary parameterXX', "Annotation"]],
                 }]
                 : [false]
         }
@@ -39,17 +39,18 @@ export const $$: A.map = ($d) => {
             return {
                 'context': pl.optional(
                     $.import,
-                    ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
-                        'glossary': {
-                            'annotation': ['source', $.annotation],
-                            'key': $.key
-                        }
+                    ($): g_glossary.T.DataSpecifier._ltype.context<g_this.T.OutAnnotation<Annotation>> => ['import', {
+                        // 'glossary': {
+                        //     'annotation': ['source', $.annotation],
+                        //     'key': $.key
+                        // }
+                        'glossaryXX': $.key,
                     }],
                     () => ['local', null],
                 ),
                 'arguments': pm.wrapRawDictionary({}),
-                'type': $.type.key,
-                'tail': pm.wrapRawArray([]),
+                'typeXX': $.type.key,
+                'tailXX': pm.wrapRawArray([]),
             }
         }
         function mapTempTypeSelection(
@@ -79,17 +80,18 @@ export const $$: A.map = ($d) => {
             return {
                 'context': pl.optional(
                     $['global type'].import,
-                    ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
-                        'glossary': {
-                            'annotation': ['source', $.annotation],
-                            'key': $.key
-                        }
+                    ($): g_glossary.T.DataSpecifier._ltype.context<g_this.T.OutAnnotation<Annotation>> => ['import', {
+                        // 'glossary': {
+                        //     'annotation': ['source', $.annotation],
+                        //     'key': $.key
+                        // }
+                        'glossaryXX': $.key,
                     }],
                     () => ['local', null],
                 ),
                 'arguments': pm.wrapRawDictionary({}),
-                'type': $['global type'].type.key,
-                'tail': $d.push({
+                'typeXX': $['global type'].type.key,
+                'tailXX': $d.push({
                     'array': pl.optional(
                         $.tail,
                         ($) => tail2tail($),
@@ -187,18 +189,19 @@ export const $$: A.map = ($d) => {
                     case 'component': return pl.ss($, ($) => ['reference', ['type', {
                         'context': pl.cc($, ($) => {
                             switch ($.context[0]) {
-                                case 'import': return pl.ss($.context, ($): g_glossary.T.Context<g_this.T.OutAnnotation<Annotation>> => ['import', {
-                                    'glossary': {
-                                        'annotation': ['source', $.library.annotation],
-                                        'key': $.library.key,
-                                    },
+                                case 'import': return pl.ss($.context, ($) => ['import', {
+                                    // 'glossary': {
+                                    //     'annotation': ['source', $.library.annotation],
+                                    //     'key': $.library.key,
+                                    // },
+                                    'glossaryXX': $.library.key,
                                 }])
                                 case 'local': return pl.ss($.context, ($) => ['local', null])
                                 default: return pl.au($.context[0])
                             }
                         }),
-                        'type': $.type.key,
-                        'tail': pm.wrapRawArray([]),
+                        'typeXX': $.type.key,
+                        'tailXX': pm.wrapRawArray([]),
                         'arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({}),
                     }]])
                     case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
@@ -363,120 +366,122 @@ export const $$: A.map = ($d) => {
             })
         }
         return {
-            'parameters': $.settings.annotations
-                ? pm.wrapRawDictionary({
-                    "Annotation": null,
-                })
-                : pm.wrapRawDictionary({}),
 
 
             'imports': $['mapped library'].library.imports.map(($) => ({
                 'arguments': pm.wrapRawDictionary({
-                    "Annotation": ['glossary parameter', "Annotation"]
+                    "Annotation": ['glossary parameterXX', "Annotation"]
                 })
             })),
-            'root': {
-                'namespaces': pl.optional(
-                    $.settings.datamodel,
-                    ($) => library.library['global types'].definitions.map(($) => mapTypeToNamespace($.type)),
-                    () => pm.wrapRawDictionary({}),
-                ),
-                'types': pl.optional(
-                    $.settings.datamodel,
-                    ($) => {
-                        const dm = $
-                        const gt = library.library['global types']
-                        return library.library['global types'].definitions.__mapWithKey(($, key) => {
-                            const declaration = gt.declarations.__unsafeGetEntry(key)
+            'core': {
+                'parameters': $.settings.annotations
+                    ? pm.wrapRawDictionary({
+                        "Annotation": null,
+                    })
+                    : pm.wrapRawDictionary({}),
+                'root': {
+                    'namespaces': pl.optional(
+                        $.settings.datamodel,
+                        ($) => library.library['global types'].definitions.map(($) => mapTypeToNamespace($.type)),
+                        () => pm.wrapRawDictionary({}),
+                    ),
+                    'types': pl.optional(
+                        $.settings.datamodel,
+                        ($) => {
+                            const dm = $
+                            const gt = library.library['global types']
+                            return library.library['global types'].definitions.__mapWithKey(($, key) => {
+                                const declaration = gt.declarations.__unsafeGetEntry(key)
 
-                            const result = declaration.result
-                            const type = $.type
-                            return {
-                                'parameters': pm.wrapRawDictionary({}),
-                                'type': pl.optional(
-                                    dm['constraints mapping'].constraints,
-                                    ($constraint) => {
-                                        return pl.optional(
-                                            result,
-                                            ($) => ['group', pm.wrapRawDictionary({
-                                                "content": {
-                                                    'type': mapTypeToType(type, dm)
-                                                },
-                                                "result": {
-                                                    'type': createConstraintType($constraint, () => mapGlobalTypeSelection($))
-                                                }
-                                            })],
-                                            () => mapTypeToType(type, dm),
-                                        )
-                                    },
-                                    () => mapTypeToType(type, dm),
-                                ),
-                            }
-                        })
-                    },
-                    () => pm.wrapRawDictionary({}),
-                )
-            },
-            'asynchronous': {
-                'interfaces': pm.wrapRawDictionary({}),
-                'algorithms': pm.wrapRawDictionary({}),
-            },
-            'synchronous': {
-                'interfaces': pm.wrapRawDictionary({
-                    // if ($.settings['visitor interface'][0] === true) {
-                    //     // add({
-                    //     //     'key': "Visitor",
-                    //     //     'value': ['group', {
-                    //     //         'members': $.mappedModel.model['type library']['global types'].map<g_glossary.T.Interface<Annotation>>(($) => {
-                    //     //             return ['method', {
-                    //     //                 'data': [false], //FIXME
-                    //     //                 'interface': [false], //FIXME
-                    //     //             }]
-                    //     //         })
-                    //     //     }],
-                    //     // })
-                    // }
-
-
-                }),
-                'algorithms': $d.buildDictionary((add) => {
-                    if ($.settings.algorithms.serialize[0] === true) {
-                        // function typeReference(type: string): g_glossary.T.TypeReference<Annotation> {
-                        //     return {
-                        //         'context': ['local', null],
-                        //         'type': type,
-                        //         // 'type': {
-                        //         //     'annotation': "SSDF",
-                        //         //     'name': type
-                        //         // },
-                        //         'arguments': pm.wrapRawDictionary({}),
-                        //     }
+                                const result = declaration.result
+                                const type = $.type
+                                return {
+                                    'parameters': pm.wrapRawDictionary({}),
+                                    'type': pl.optional(
+                                        dm['constraints mapping'].constraints,
+                                        ($constraint) => {
+                                            return pl.optional(
+                                                result,
+                                                ($) => ['group', pm.wrapRawDictionary({
+                                                    "content": {
+                                                        'type': mapTypeToType(type, dm)
+                                                    },
+                                                    "result": {
+                                                        'type': createConstraintType($constraint, () => mapGlobalTypeSelection($))
+                                                    }
+                                                })],
+                                                () => mapTypeToType(type, dm),
+                                            )
+                                        },
+                                        () => mapTypeToType(type, dm),
+                                    ),
+                                }
+                            })
+                        },
+                        () => pm.wrapRawDictionary({}),
+                    )
+                },
+                'asynchronous': {
+                    'interfaces': pm.wrapRawDictionary({}),
+                    'algorithms': pm.wrapRawDictionary({}),
+                },
+                'synchronous': {
+                    'interfaces': pm.wrapRawDictionary({
+                        // if ($.settings['visitor interface'][0] === true) {
+                        //     // add({
+                        //     //     'key': "Visitor",
+                        //     //     'value': ['group', {
+                        //     //         'members': $.mappedModel.model['type library']['global types'].map<g_glossary.T.Interface<Annotation>>(($) => {
+                        //     //             return ['method', {
+                        //     //                 'data': [false], //FIXME
+                        //     //                 'interface': [false], //FIXME
+                        //     //             }]
+                        //     //         })
+                        //     //     }],
+                        //     // })
                         // }
-                        // add({
-                        //     'key': "Serialize",
-                        //     'value': {
-                        //         'return type': ['nothing', null],
-                        //         //'data': typeReference($['mapped model'].model.root.key), //unresolved
-                        //         'input builder': [false],
-                        //         'output builder': [true, {
-                        //             'context': ['import', {
-                        //                 'glossary': "fp",
-                        //                 'arguments': pm.wrapRawDictionary({}),
-                        //             }],
-                        //             'builder': "Line"
-                        //             // 'context': ['import', {
-                        //             //     'name': "fp",
-                        //             //     'annotation': "FFF",
-                        //             // }],
-                        //             // 'interface': {
-                        //             //     'name': "Line",
-                        //             //     'annotation': "FFF",
-                        //             // }
-                        //         }],
-                        //     },
-                        // })
-                    }
-                })
+
+
+                    }),
+                    'algorithms': $d.buildDictionary((add) => {
+                        if ($.settings.algorithms.serialize[0] === true) {
+                            // function typeReference(type: string): g_glossary.T.TypeReference<Annotation> {
+                            //     return {
+                            //         'context': ['local', null],
+                            //         'type': type,
+                            //         // 'type': {
+                            //         //     'annotation': "SSDF",
+                            //         //     'name': type
+                            //         // },
+                            //         'arguments': pm.wrapRawDictionary({}),
+                            //     }
+                            // }
+                            // add({
+                            //     'key': "Serialize",
+                            //     'value': {
+                            //         'return type': ['nothing', null],
+                            //         //'data': typeReference($['mapped model'].model.root.key), //unresolved
+                            //         'input builder': [false],
+                            //         'output builder': [true, {
+                            //             'context': ['import', {
+                            //                 'glossary': "fp",
+                            //                 'arguments': pm.wrapRawDictionary({}),
+                            //             }],
+                            //             'builder': "Line"
+                            //             // 'context': ['import', {
+                            //             //     'name': "fp",
+                            //             //     'annotation': "FFF",
+                            //             // }],
+                            //             // 'interface': {
+                            //             //     'name': "Line",
+                            //             //     'annotation': "FFF",
+                            //             // }
+                            //         }],
+                            //     },
+                            // })
+                        }
+                    })
+                },
             },
         }
     }
