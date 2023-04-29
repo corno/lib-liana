@@ -10,13 +10,12 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({
-        "fp": imp({}),
-        "main": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "fp": imp(),
+        "liana2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -30,7 +29,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "Serialize": procedure(data(externalTypeReference("liana2glossary", "Mapped Library")), sExternalInterfaceReference("fp", "Directory")),
+            "Serialize": procedure(data(externalTypeReference("liana2glossary", "Mapped Library", { "Annotation": glossaryParameter("Annotation") })), sExternalInterfaceReference("fp", "Directory")),
         }),
     },
 

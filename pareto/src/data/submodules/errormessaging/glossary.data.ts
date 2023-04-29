@@ -15,11 +15,11 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
     }),
     'imports': d({
-        "common": imp({}),
-        "main": imp({ "Annotation": typeReference("Typescript Location") }),
+        "common": imp(),
+        "main": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -38,7 +38,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "CreateErrorMessage": sfunction(externalTypeReference("common", "String"), data(externalTypeReference("main", "Error"))),
+            "CreateErrorMessage": sfunction(externalTypeReference("common", "String"), data(externalTypeReference("main", "Error", { "Annotation": typeReference("Typescript Location") }))),
         }),
     },
 

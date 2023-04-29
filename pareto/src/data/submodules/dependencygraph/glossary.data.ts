@@ -11,22 +11,22 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({
-        "common": imp({}),
-        "fp": imp({}),
+        "common": imp(),
+        "fp": imp(),
         // "main": imp({ "Annotation": glossaryParameter("Annotation") }),
         // "api": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana": imp(),
         // "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
             "GenerateDependencyGraphParameters": type(group({
-                "data": member(ref(externalTypeReference("liana", "Type Library"))),
+                "data": member(ref(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
                 //"path": member(ref(externalTypeReference("common", "Path"))),
             })),
             "OutAnnotation": type(taggedUnion({

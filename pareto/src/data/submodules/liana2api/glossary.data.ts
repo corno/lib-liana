@@ -11,22 +11,19 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({
-        "common": imp({}),
-        "fs": imp({}),
-        "main": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "api": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "common": imp(),
+        "fs": imp(),
+        "liana2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
             "GenerateData": type(group({
-                "data": member(ref(externalTypeReference("liana2glossary", "MapData"))),
+                "data": member(ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))),
                 "path": member(ref(externalTypeReference("common", "Path"))),
             })),
             "OutAnnotation": type(taggedUnion({
@@ -46,7 +43,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         'algorithms': d({
             "Generate": procedure(data(typeReference("GenerateData")), sExternalInterfaceReference("common", "String")),
             //"GenerateAndReport": sfunc(typeReference("GenerateData"), null, builderReference("OnWriteFileError"), null),
-            //"Map": sfunction(externalTypeReference("api", "API"), data(typeReference("MapData"))),
+            //"Map": sfunction(externalTypeReference("api", "API", { "Annotation": typeReference("OutAnnotation") }), data(typeReference("MapData"))),
         }),
     },
 

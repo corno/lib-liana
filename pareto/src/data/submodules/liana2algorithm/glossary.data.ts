@@ -9,16 +9,15 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({
-        "algorithm": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "algorithm_temp": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "main": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "fp": imp({}),
-        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
-        "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "algorithm": imp(),
+        "algorithm_temp": imp(),
+        "fp": imp(),
+        "liana": imp(),
+        "liana2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -34,7 +33,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "internal": string(),
             })),
             "CreateResolverParameters": type(group({
-                "model": member(ref(externalTypeReference("liana", "Model"))),
+                "model": member(ref(externalTypeReference("liana", "Model", { "Annotation": glossaryParameter("Annotation") }))),
                 "in": member(string()),
                 "out": member(group({
                     "root": member(string()),
@@ -50,9 +49,9 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "MapLiana2States": sfunction(externalTypeReference("algorithm", "States"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
-            "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation"), data(externalTypeReference("liana2glossary", "Mapped Library"))),
-            "Create121Mapper": procedure(data(externalTypeReference("liana", "Type Library")), sExternalInterfaceReference("fp", "Block")),
+            "MapLiana2States": sfunction(externalTypeReference("algorithm", "States", { "Annotation": typeReference("OutAnnotation") }), data(externalTypeReference("liana2glossary", "Mapped Library", { "Annotation": glossaryParameter("Annotation") }))),
+            "MapLiana2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation", { "Annotation": typeReference("OutAnnotation") }), data(externalTypeReference("liana2glossary", "Mapped Library", { "Annotation": glossaryParameter("Annotation") }))),
+            "Create121Mapper": procedure(data(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") })), sExternalInterfaceReference("fp", "Block")),
             "CreateResolver": procedure(data(typeReference("CreateResolverParameters")), sExternalInterfaceReference("fp", "Block")),
         }),
     },

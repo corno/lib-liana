@@ -7,13 +7,13 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({
-        "unresolved": imp({"Annotation": glossaryParameter("Annotation"),}),
-        "resolved": imp({"Annotation": glossaryParameter("Annotation"),}),
-        "model": imp({    }),
+        "unresolved": imp(),
+        "resolved": imp(),
+        "model": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -30,7 +30,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "Error": sInterface(sInterfaceMethod(typeReference("Error")))
         }),
         'algorithms': d({
-            "Resolve": sfunction(externalTypeReference("resolved", "Type Library"), data(externalTypeReference("unresolved", "Type Library"))),
+            "Resolve": sfunction(externalTypeReference("resolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}), data(externalTypeReference("unresolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}))),
         }),
     },
 }
