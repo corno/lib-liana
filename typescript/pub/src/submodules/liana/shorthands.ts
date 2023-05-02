@@ -397,12 +397,12 @@ export function constrainedDictionary(
                 }]
             }),
             'type': type,
-            'autofill': pd.a([]),
+            //'autofill': pd.a([]),
         }]
     }
 }
 
-export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_this.T.Type._ltype.dictionary.autofill.A<pd.SourceLocation>[]): g_this.T.Type<pd.SourceLocation> {
+export function dictionary(type: g_this.T.Type<pd.SourceLocation>/*, autofill?: g_this.T.Type._ltype.dictionary.autofill.A<pd.SourceLocation>[]*/): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
         'type': ['dictionary', {
@@ -413,7 +413,7 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>, autofill?: g_
             'constraints': pd.d({}),
             'variables': pd.d({}),
             'type': type,
-            'autofill': pd.a(autofill === undefined ? [] : autofill),
+            //'autofill': pd.a(autofill === undefined ? [] : autofill),
         }]
     }
 }

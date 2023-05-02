@@ -1,33 +1,283 @@
 digraph G {
-    "A Result"
-    "A tagged union with result"
-    "A tagged union with constrained option"
-    "A tagged union with constrained option and result"
-    "A dictionary with constraint"
-    "A optional with result"
-    "A optional with result" -> "A Result"
-    "Address Selection Tail"
-    "Address Selection Tail" -> "Type"
-    "Address Selection Tail" -> "Variables"
-    "Address Selection Tail" -> "Namespace"
-    "Address Selection"
-    "Address Selection" -> "Variables"
-    "Address Selection" -> "Namespace"
-    "Expression"
-    "Expression" -> "Type"
-    "Expression" -> "Namespace"
-    "Expression" -> "Variables"
-    "String Expression"
-    "String Expression" -> "Namespace"
-    "String Expression" -> "Variables"
-    "Type Arguments"
-    "Type Arguments" -> "Type Parameters"
-    "Type Arguments" -> "Namespace"
-    "Type Selection"
-    "Type Selection" -> "Namespace"
+    "Labels"
+    "Atom"
+    "Parameters"
+    "Dictionary Constraints"
+    "Option Constraints"
+    "Properties"
     "Variables"
-    "Variables" -> "Namespace"
-    "Variables" -> "Parameters"
-    "Variables" -> "Variables"
-    "Source File"
+    "Imports"
+    "Type"
+    "Value Selection Tail"
+    "Any Value Selection"
+    "Value Selection"
+    "Reference Initializer"
+    "Atom Initializer"
+    "Type Initializer"
+    "Lookup Selection"
+    "Global Type Selection"
+    "Global Type Declaration"
+    "Global Type Definition"
+    "Temp Type Selection Tail"
+    "Temp Type Selection"
+    "Type Library"
+    "Model"
+    "Atom" -> "Labels" [label="parameter"]
+    "Variables" -> "Parameters" [label="parameter"]
+    "Variables" -> "Option Constraints" [label="parameter"]
+    "Variables" -> "Dictionary Constraints" [label="parameter"]
+    "Variables" -> "Variables" [label="parameter"]
+    "Variables" -> "Properties" [label="parameter"]
+    "Type" -> "Imports" [label="parameter"]
+    "Type" -> "Labels" [label="parameter"]
+    "Value Selection Tail" -> "Type" [label="parameter"]
+    "Value Selection Tail" -> "Type" [label="return type"]
+    "Any Value Selection" -> "Type" [label="parameter"]
+    "Temp Type Selection Tail" -> "Type" [label="parameter"]
+    "Temp Type Selection" -> "Global Type Declaration" [label="parameter"]
+    "Dictionary Constraints" -> "Temp Type Selection" [label="component"]
+    "Dictionary Constraints" -> "Value Selection" [label="component"]
+    "Option Constraints" -> "Temp Type Selection" [label="component"]
+    "Option Constraints" -> "Value Selection" [label="component"]
+    "Type" -> "Global Type Selection" [label="component"]
+    "Type" -> "Value Selection" [label="component"]
+    "Type" -> "Atom" [label="component"]
+    "Type" -> "Temp Type Selection" [label="component"]
+    "Type" -> "Value Selection" [label="component"]
+    "Type" -> "Temp Type Selection" [label="component"]
+    "Type" -> "Lookup Selection" [label="component"]
+    "Type" -> "Atom" [label="component"]
+    "Type" -> "Dictionary Constraints" [label="component"]
+    "Type" -> "Variables" [label="component"]
+    "Type" -> "Type" [label="component"]
+    "Type" -> "Value Selection" [label="component"]
+    "Type" -> "Type Initializer" [label="component"]
+    "Type" -> "Type" [label="component"]
+    "Type" -> "Type" [label="component"]
+    "Type" -> "Global Type Selection" [label="component"]
+    "Type" -> "Any Value Selection" [label="component"]
+    "Type" -> "Value Selection" [label="component"]
+    "Type" -> "Global Type Selection" [label="component"]
+    "Type" -> "Option Constraints" [label="component"]
+    "Type" -> "Variables" [label="component"]
+    "Type" -> "Type" [label="component"]
+    "Type" -> "Any Value Selection" [label="component"]
+    "Type" -> "Properties" [label="component"]
+    "Type" -> "Value Selection" [label="component"]
+    "Type" -> "Lookup Selection" [label="component"]
+    "Properties" -> "Variables" [label="component"]
+    "Properties" -> "Type" [label="component"]
+    "Value Selection Tail" -> "Value Selection Tail" [label="component"]
+    "Any Value Selection" -> "Value Selection Tail" [label="component"]
+    "Value Selection" -> "Value Selection Tail" [label="component"]
+    "Atom Initializer" -> "Reference Initializer" [label="component"]
+    "Type Initializer" -> "Atom Initializer" [label="component"]
+    "Type Initializer" -> "Type Initializer" [label="component"]
+    "Type Initializer" -> "Type Initializer" [label="component"]
+    "Type Initializer" -> "Type Initializer" [label="component"]
+    "Type Initializer" -> "Type Initializer" [label="component"]
+    "Lookup Selection" -> "Value Selection" [label="component"]
+    "Parameters" -> "Global Type Selection" [label="component"]
+    "Parameters" -> "Global Type Selection" [label="component"]
+    "Global Type Declaration" -> "Parameters" [label="component"]
+    "Global Type Declaration" -> "Global Type Selection" [label="component"]
+    "Global Type Definition" -> "Variables" [label="component"]
+    "Global Type Definition" -> "Type" [label="component"]
+    "Global Type Definition" -> "Any Value Selection" [label="component"]
+    "Temp Type Selection Tail" -> "Temp Type Selection Tail" [label="component"]
+    "Temp Type Selection" -> "Global Type Selection" [label="component"]
+    "Temp Type Selection" -> "Temp Type Selection Tail" [label="component"]
+    "Type Library" -> "Imports" [label="component"]
+    "Type Library" -> "Labels" [label="component"]
+    "Type Library" -> "Global Type Declaration" [label="component"]
+    "Type Library" -> "Global Type Definition" [label="component"]
+    "Model" -> "Type Library" [label="component"]
+}
+{
+    "Atom": {
+        'parameters': [
+            "Labels",
+        ],
+        'components': [],
+    },
+    "Variables": {
+        'parameters': [
+            "Parameters",
+            "Option Constraints",
+            "Dictionary Constraints",
+            "Variables",
+            "Properties",
+        ],
+        'components': [],
+    },
+    "Dictionary Constraints": {
+        'parameters': [],
+        'components': [
+            "Temp Type Selection",
+            "Value Selection",
+        ],
+    },
+    "Option Constraints": {
+        'parameters': [],
+        'components': [
+            "Temp Type Selection",
+            "Value Selection",
+        ],
+    },
+    "Type": {
+        'parameters': [
+            "Imports",
+            "Labels",
+        ],
+        'components': [
+            "Global Type Selection",
+            "Value Selection",
+            "Atom",
+            "Temp Type Selection",
+            "Value Selection",
+            "Temp Type Selection",
+            "Lookup Selection",
+            "Atom",
+            "Dictionary Constraints",
+            "Variables",
+            "Type",
+            "Value Selection",
+            "Type Initializer",
+            "Type",
+            "Type",
+            "Global Type Selection",
+            "Any Value Selection",
+            "Value Selection",
+            "Global Type Selection",
+            "Option Constraints",
+            "Variables",
+            "Type",
+            "Any Value Selection",
+            "Properties",
+            "Value Selection",
+            "Lookup Selection",
+        ],
+    },
+    "Properties": {
+        'parameters': [],
+        'components': [
+            "Variables",
+            "Type",
+        ],
+    },
+    "Value Selection Tail": {
+        'parameters': [
+            "Type",
+            "Type",
+        ],
+        'components': [
+            "Value Selection Tail",
+        ],
+    },
+    "Any Value Selection": {
+        'parameters': [
+            "Type",
+        ],
+        'components': [
+            "Value Selection Tail",
+        ],
+    },
+    "Value Selection": {
+        'parameters': [],
+        'components': [
+            "Value Selection Tail",
+        ],
+    },
+    "Reference Initializer": {
+        'parameters': [],
+        'components': [],
+    },
+    "Atom Initializer": {
+        'parameters': [],
+        'components': [
+            "Reference Initializer",
+        ],
+    },
+    "Type Initializer": {
+        'parameters': [],
+        'components': [
+            "Atom Initializer",
+            "Type Initializer",
+            "Type Initializer",
+            "Type Initializer",
+            "Type Initializer",
+        ],
+    },
+    "Lookup Selection": {
+        'parameters': [],
+        'components': [
+            "Value Selection",
+        ],
+    },
+    "Global Type Selection": {
+        'parameters': [],
+        'components': [],
+    },
+    "Labels": {
+        'parameters': [],
+        'components': [],
+    },
+    "Parameters": {
+        'parameters': [],
+        'components': [
+            "Global Type Selection",
+            "Global Type Selection",
+        ],
+    },
+    "Imports": {
+        'parameters': [],
+        'components': [],
+    },
+    "Global Type Declaration": {
+        'parameters': [],
+        'components': [
+            "Parameters",
+            "Global Type Selection",
+        ],
+    },
+    "Global Type Definition": {
+        'parameters': [],
+        'components': [
+            "Variables",
+            "Type",
+            "Any Value Selection",
+        ],
+    },
+    "Temp Type Selection Tail": {
+        'parameters': [
+            "Type",
+        ],
+        'components': [
+            "Temp Type Selection Tail",
+        ],
+    },
+    "Temp Type Selection": {
+        'parameters': [
+            "Global Type Declaration",
+        ],
+        'components': [
+            "Global Type Selection",
+            "Temp Type Selection Tail",
+        ],
+    },
+    "Type Library": {
+        'parameters': [],
+        'components': [
+            "Imports",
+            "Labels",
+            "Global Type Declaration",
+            "Global Type Definition",
+        ],
+    },
+    "Model": {
+        'parameters': [],
+        'components': [
+            "Type Library",
+        ],
+    },
 }

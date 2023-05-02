@@ -59,7 +59,7 @@ export const $$: A.map = ($d) => {
         }
         function mapTempTypeSelection(
             $: g_liana.T.Temp__Type__Selection<Annotation>,
-            getLastStep: () => string
+            getLastSteps: () => pt.Array<string>
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
             function tail2tail($: g_liana.T.Temp__Type__Selection__Tail<Annotation>): pt.Array<string> {
                 return $d.merge(pm.wrapRawArray([
@@ -99,14 +99,14 @@ export const $$: A.map = ($d) => {
                 ),
                 'type arguments': pm.wrapRawDictionary({}),
                 'typeXX': $['global type'].type.key,
-                'tailXX': $d.push({
-                    'array': pl.optional(
+                'tailXX': $d.merge(pm.wrapRawArray([
+                    pl.optional(
                         $.tail,
                         ($) => tail2tail($),
                         () => pm.wrapRawArray([]),
                     ),
-                    'element': getLastStep(),
-                }),
+                    getLastSteps()
+                ])),
             }
         }
         function mapTypeToNamespace($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
@@ -232,8 +232,8 @@ export const $$: A.map = ($d) => {
                                             return {
                                                 'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                     switch (constraintStrat[0]) {
-                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]]])
-                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => "D")]])
+                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray(["D"]))]]])
+                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray(["D"]))]])
                                                         default: return pl.au(constraintStrat[0])
                                                     }
                                                 })
@@ -253,7 +253,7 @@ export const $$: A.map = ($d) => {
                     }))])
                     case 'terminal': return pl.ss($, ($) => {
                         const term = $.terminal
-                        function tm(): g_glossary.T.Type<Annotation> {
+                        function createMappedTerminal(): g_glossary.T.Type<Annotation> {
                             return terminalMapping.__getEntry(
                                 term.type.key,
                                 ($) => {
@@ -288,22 +288,21 @@ export const $$: A.map = ($d) => {
                             )
                         }
                         switch ($.constrained[0]) {
-                            case 'no': return pl.ss($.constrained, ($) => tm())
+                            case 'no': return pl.ss($.constrained, ($) => createMappedTerminal())
                             case 'yes': return pl.ss($.constrained, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => $x['constraints mapping'].constraints[0] === false && !settings.annotations
-                                ? tm()
+                                ? createMappedTerminal()
                                 : ['group', $d.filter(pm.wrapRawDictionary({
                                     "key": $x['constraints mapping']['terminal values']
                                         ? [true, {
-                                            'type': tm(),
+                                            'type': createMappedTerminal(),
                                         }]
                                         : [false],
                                     "constraint": createOptionalConstraintProperty($x, () => pl.cc($['referencee type'], ($) => {
                                         switch ($[0]) {
-                                            case 'resolved value': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
-                                            case 'lookup': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => "D"))
+                                            case 'resolved value': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => pm.wrapRawArray(["D"])))
+                                            case 'lookup': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => pm.wrapRawArray(["XXXXXXFIXME*****"])))
                                             default: return pl.au($[0])
                                         }
-
                                     })),
                                     "annotation": createOptionalAnnotation(),
                                 }))]
@@ -312,7 +311,6 @@ export const $$: A.map = ($d) => {
                         }
                     })
                     case 'tagged union': return pl.ss($, ($) => {
-
                         function doTU(): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
                             return ['taggedUnion', $.options.map(($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => pl.cc($, ($) => {
                                 const type = $.type
@@ -333,8 +331,8 @@ export const $$: A.map = ($d) => {
                                                         return {
                                                             'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                                 switch (constraintStrat[0]) {
-                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => $a.option.key)]]])
-                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => $a.option.key)]])
+                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray([$a.option.key]))]]])
+                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray([$a.option.key]))]])
                                                                     default: return pl.au(constraintStrat[0])
                                                                 }
                                                             })

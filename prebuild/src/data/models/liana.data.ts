@@ -17,7 +17,7 @@ import {
     optionConstraint,
     optional,
     optionalResult,
-    pAllSiblings, pNonCyclicSiblings, pResolvedValue, lparameter, prop,
+    pCyclicLookup, pNonCyclicLookup, pResolvedValue, lparameter, prop,
     resolvedValueReference,
     resultTaggedUnion,
     s_component,
@@ -56,7 +56,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "option constraints": pResolvedValue("Option Constraints", true),
                 "dictionary constraints": pResolvedValue("Dictionary Constraints", true),
                 "parent variables": pResolvedValue("Variables", true),//Circular
-                "lookup": pNonCyclicSiblings(globalTypeSelection("Properties"))
+                "lookup": pNonCyclicLookup(globalTypeSelection("Properties"))
             }),
 
             "Imports": globalTypeDeclaration({}),
@@ -77,9 +77,9 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "type": pResolvedValue("Type", false),
             }),
             "Value Selection": globalTypeDeclaration({}),
-            "Reference Initializer": globalTypeDeclaration({}),
-            "Atom Initializer": globalTypeDeclaration({}),
-            "Type Initializer": globalTypeDeclaration({}),
+            // "Reference Initializer": globalTypeDeclaration({}),
+            // "Atom Initializer": globalTypeDeclaration({}),
+            // "Type Initializer": globalTypeDeclaration({}),
             "Lookup Selection": globalTypeDeclaration({}),
             "Global Type Selection": globalTypeDeclaration({}),
             "Global Type Declaration": globalTypeDeclaration({}),
@@ -88,7 +88,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "context": pResolvedValue("Type", false)
             }),
             "Temp Type Selection": globalTypeDeclaration({
-                "global types": pAllSiblings(globalTypeSelection("Global Type Declaration"))
+                "global types": pCyclicLookup(globalTypeSelection("Global Type Declaration"))
             }),
             "Type Library": globalTypeDeclaration({}),
             "Model": globalTypeDeclaration({}),
@@ -175,10 +175,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                             "type": prop(component("Type", {
                                 "global types": aLookup(lparameter("global types")),
                             })),
-                            "autofill": prop(array(group({
-                                "source": prop(component("Value Selection", {})),
-                                "initializer": prop(component("Type Initializer", {}))
-                            })))
+                            // "autofill": prop(array(group({
+                            //     "source": prop(component("Value Selection", {})),
+                            //     "initializer": prop(component("Type Initializer", {}))
+                            // })))
                         })),
                         "array": option(group({
                             // "constraints": prop(dictionary(group({
@@ -294,65 +294,65 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "tail": prop(optional(component("Value Selection Tail", {})))
                 })
             ),
-            "Reference Initializer": globalTypeDefinition(
-                group({
-                    //FIXME
-                })),
-            "Atom Initializer": globalTypeDefinition(
-                group({
-                    "constrained": prop(taggedUnion({
-                        // "no": option(group({
-                        //     "type": prop(resolvedValueReference(valSel("TBD")), typeSelection("Type Library", [grp("labels")]))),
-                        // })),
-                        "yes": option(component("Reference Initializer", {
-                        })),
-                    })),
-                })
-            ),
-            "Type Initializer": globalTypeDefinition(
-                taggedUnion({
-                    "terminal": option(component("Atom Initializer", {
-                    })),
-                    // "dictionary": option(group({
-                    //     "key": prop(component("Atom Initializer", {
-                    //         "global types": aSibling(lparameter("global types")),
-                    //     })),
-                    //     "type": prop(component("Type", {
-                    //         "global types": aSibling(lparameter("global types")),
-                    //     })),
-                    //     "autofill": prop(array(group({
-                    //         "source": prop(component("Path", {})),
-                    //         "initializer": prop(component("Type Initializer", {}))
-                    //     })))
-                    // })),
-                    // "array": option(group({
-                    //     "type": prop(component("Type", {
-                    //         "global types": aSibling(lparameter("global types")),
-                    //     })),
-                    //     "constraint": prop(optional(group({
-                    //         "Temp Type Selection": prop(component("Temp Type Selection", {
-                    //             "global types": aSibling(lparameter("global types")),
-                    //         })), //derive form initial value?
-                    //         "initial value": prop(component("Selection", {})),
-                    //         "element value": prop(component("Selection", {})),
-                    //     })))
-                    // })),
-                    "optional": option(group({
-                        "type": prop(optional(component("Type Initializer", {}))),
-                    })),
-                    "tagged union": option(group({
-                        "option": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
-                        "data": prop(component("Type Initializer", {}))
-                    })),
-                    "group": option(group({
-                        "properties": prop(dictionary(group({
-                            "type": prop(component("Type Initializer", {
-                            })),
-                        }))),
-                    })),
-                    "component": option(component("Type Initializer", {})),
-                })
-            ),
+            // "Reference Initializer": globalTypeDefinition(
+            //     group({
+            //         //FIXME
+            //     })),
+            // "Atom Initializer": globalTypeDefinition(
+            //     group({
+            //         "constrained": prop(taggedUnion({
+            //             // "no": option(group({
+            //             //     "type": prop(resolvedValueReference(valSel("TBD")), typeSelection("Type Library", [grp("labels")]))),
+            //             // })),
+            //             "yes": option(component("Reference Initializer", {
+            //             })),
+            //         })),
+            //     })
+            // ),
+            // "Type Initializer": globalTypeDefinition(
+            //     taggedUnion({
+            //         "terminal": option(component("Atom Initializer", {
+            //         })),
+            //         // "dictionary": option(group({
+            //         //     "key": prop(component("Atom Initializer", {
+            //         //         "global types": aSibling(lparameter("global types")),
+            //         //     })),
+            //         //     "type": prop(component("Type", {
+            //         //         "global types": aSibling(lparameter("global types")),
+            //         //     })),
+            //         //     "autofill": prop(array(group({
+            //         //         "source": prop(component("Path", {})),
+            //         //         "initializer": prop(component("Type Initializer", {}))
+            //         //     })))
+            //         // })),
+            //         // "array": option(group({
+            //         //     "type": prop(component("Type", {
+            //         //         "global types": aSibling(lparameter("global types")),
+            //         //     })),
+            //         //     "constraint": prop(optional(group({
+            //         //         "Temp Type Selection": prop(component("Temp Type Selection", {
+            //         //             "global types": aSibling(lparameter("global types")),
+            //         //         })), //derive form initial value?
+            //         //         "initial value": prop(component("Selection", {})),
+            //         //         "element value": prop(component("Selection", {})),
+            //         //     })))
+            //         // })),
+            //         "optional": option(group({
+            //             "type": prop(optional(component("Type Initializer", {}))),
+            //         })),
+            //         "tagged union": option(group({
+            //             "option": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
+            //             "data": prop(component("Type Initializer", {}))
+            //         })),
+            //         "group": option(group({
+            //             "properties": prop(dictionary(group({
+            //                 "type": prop(component("Type Initializer", {
+            //                 })),
+            //             }))),
+            //         })),
+            //         "component": option(component("Type Initializer", {})),
+            //     })
+            // ),
             "Lookup Selection": globalTypeDefinition(
                 taggedUnion({
                     "resolved dictionary": option(component("Value Selection", {})),

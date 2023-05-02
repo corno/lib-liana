@@ -31,7 +31,14 @@ import {
     tailSel,
     varSel,
     globalTypeDeclaration,
-    globalTypeDefinition
+    globalTypeDefinition,
+    lookupReference,
+    thisNonCyclic,
+    aLookup,
+    lparameter,
+    array,
+    pCyclicLookup,
+    pNonCyclicLookup
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 
@@ -45,793 +52,442 @@ export const $: g_liana2algorithm.T.CreateResolverParameters<pd.SourceLocation> 
     },
     'model': {
         'type library': {
-            'imports': d({
-                "typesystem": null,
-            }),
+            'imports': pd.d({}),
             'labels': {
-                'atom types': d({
-                    "numeric literal": null,
-                    "string literal": null,
-                    "identifier": null,
+                'atom types': pd.d({
+                    "text": null,
                 }),
             },
             'global types': {
-                'declarations': d({
-                    "A Result": globalTypeDeclaration({}),
-                    "A tagged union with result": globalTypeDeclaration({}),
-                    "A tagged union with constrained option": globalTypeDeclaration({}),
-                    "A tagged union with constrained option and result": globalTypeDeclaration({}),
-                    "A dictionary with constraint": globalTypeDeclaration({}),
-                    "A optional with result": globalTypeDeclaration({
-                        "result param": pResolvedValue("A Result", false),
+                'declarations': pd.d({
+                    "Labels": globalTypeDeclaration({}),
+                    "Atom": globalTypeDeclaration({
+                        "labels": pResolvedValue("Labels", false),
                     }),
-                    "Address Selection Tail": globalTypeDeclaration(
-                        {
-                            "current address": pExternalResolvedValue("typesystem", "Type", false),
-                            "variable stack": pResolvedValue("Variables", false),
-                            "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                        },
-                        externalGlobalTypeSelection("typesystem", "Type")
-                    ),
-                    "Address Selection": globalTypeDeclaration(
-                        {
-                            "variable stack": pResolvedValue("Variables", false),
-                            "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                        },
-                        externalGlobalTypeSelection("typesystem", "Type"),
-                    ),
-                    "Expression": globalTypeDeclaration({
-                        "expected type": pExternalResolvedValue("typesystem", "Type", false),
-                        "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                        "variable stack": pResolvedValue("Variables", false),
-                    }),
-                    "String Expression": globalTypeDeclaration({
-                        "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                        "variable stack": pResolvedValue("Variables", false),
-                    }),
-                    "Type Arguments": globalTypeDeclaration({
-                        "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
-                        "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
-                    }),
-                    "Type Selection": globalTypeDeclaration(
-                        {
-                            "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
-                        },
-                        externalGlobalTypeSelection("typesystem", "Type"),
-                    ),
+                    "Parameters": globalTypeDeclaration({}),
+                    "Dictionary Constraints": globalTypeDeclaration({}),
+                    "Option Constraints": globalTypeDeclaration({}),
+                    "Properties": globalTypeDeclaration({}),
                     "Variables": globalTypeDeclaration({
-                        "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                        "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
-                        "variable stack": pResolvedValue("Variables", false),
+                        "parameters": pResolvedValue("Parameters", true),
+                        "option constraints": pResolvedValue("Option Constraints", true),
+                        "dictionary constraints": pResolvedValue("Dictionary Constraints", true),
+                        "parent variables": pResolvedValue("Variables", true),//Circular
+                        "lookup": pNonCyclicLookup(globalTypeSelection("Properties"))
                     }),
-                    "Source File": globalTypeDeclaration({
-                        //"namespace": pExternalResolvedValue("typesystem", "Namespace", false)
+        
+                    "Imports": globalTypeDeclaration({}),
+                    "Type": globalTypeDeclaration({
+                        "imports": pResolvedValue("Imports", false),
+                        "labels": pResolvedValue("Labels", false),
+                        //"all global types": pAllSiblings(globalTypeSelection("Global Type")),
+                        //"noncyclic global types": pNonCyclicSiblings(globalTypeSelection("Global Type")),
                     }),
+        
+                    "Value Selection Tail": globalTypeDeclaration(
+                        {
+                            "type": pResolvedValue("Type", false),
+                        },
+                        globalTypeSelection("Type"),
+                    ),
+                    "Any Value Selection": globalTypeDeclaration({
+                        "type": pResolvedValue("Type", false),
+                    }),
+                    "Value Selection": globalTypeDeclaration({}),
+                    "Reference Initializer": globalTypeDeclaration({}),
+                    "Atom Initializer": globalTypeDeclaration({}),
+                    "Type Initializer": globalTypeDeclaration({}),
+                    "Lookup Selection": globalTypeDeclaration({}),
+                    "Global Type Selection": globalTypeDeclaration({}),
+                    "Global Type Declaration": globalTypeDeclaration({}),
+                    "Global Type Definition": globalTypeDeclaration({}),
+                    "Temp Type Selection Tail": globalTypeDeclaration({
+                        "context": pResolvedValue("Type", false)
+                    }),
+                    "Temp Type Selection": globalTypeDeclaration({
+                        "global types": pCyclicLookup(globalTypeSelection("Global Type Declaration"))
+                    }),
+                    "Type Library": globalTypeDeclaration({}),
+                    "Model": globalTypeDeclaration({}),
                 }),
-                'definitions': d({
-                    "A Result": globalTypeDefinition(
+                'definitions': pd.d({
+                    "Atom": globalTypeDefinition(
                         group({
-                            "foo": prop(terminal("identifier")),
+                            "type": prop(resolvedValueReference(valSel("labels"), tempTypeSelection("Labels", t_grp("atom types")))),
                         })
-                    ),
-                    "A tagged union with result": globalTypeDefinition(
-                        group({
-                            "tu": prop(resultTaggedUnion(globalTypeSelection("A Result"), {
-                                "a": option(group({
-                                    "rslt": prop(component("A Result", {}))
-                                }), tailSel(s_group("rslt")))
-                            }))
-                        })
-                    ),
-                    "A tagged union with constrained option": globalTypeDefinition(
-                        group({
-                            "tu1": prop(taggedUnion({
-                                "a": option(group({
-                                    "bar": prop(terminal("identifier")),
-                                }))
-                            })),
-                            "tu2": prop(taggedUnion({
-                                "a": constrainedOption({
-                                    "opt constraint": optionConstraint(valSel("tu1"), "a", tempTypeSelection("A tagged union with constrained option", t_grp("tu1")))
-                                }, group({
-                                    "rslt": prop(component("A Result", {}))
-                                }))
-                            }))
-                        })
-                    ),
-                    "A tagged union with constrained option and result": globalTypeDefinition(
-                        group({
-                            "tu1": prop(taggedUnion({
-                                "a": option(group({
-                                    "bar": prop(terminal("identifier")),
-                                }))
-                            })),
-                            "tu2": prop(resultTaggedUnion(globalTypeSelection("A Result"), ({
-                                "a": constrainedOption({
-                                    "opt constraint": optionConstraint(valSel("tu1"), "a", tempTypeSelection("A tagged union with constrained option", t_grp("tu1")))
-                                }, group({
-                                    "rslt": prop(component("A Result", {}))
-                                }), tailSel(s_group("rslt")))
-                            }))),
-                        })
-                    ),
-                    "A dictionary with constraint": globalTypeDefinition(
-                        group({
-                            "dict": prop(dictionary(group({}))),
-                            "constrained dict": prop(constrainedDictionary(
-                                {
-                                    "a constraint": dictConstraint(valSel("dict"), tempTypeSelection("A dictionary with constraint", t_grp("dict")))
-                                },
-                                group({}),
-                            )),
-                        })
-                    ),
-                    "A optional with result": globalTypeDefinition(
-                        group({
-                            "opt": prop(optional(group({
-                                "rslt": prop(component("A Result", {}))
-                            }), optionalResult(globalTypeSelection("A Result"), tailSel(s_group("rslt")), valSel("result param"))))
-                        })
-                    ),
-    
-                    // "Block": globalTypeDefinition({
-                    //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false), //needed to determine the type of the return expression
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false), //needed for 'Type Path'
-                    //     "variable stack": pResolvedValue("Variables", false), //needed for 'Address Selection' and assignment statements
-                    // }, group({
-                    //     "variables": prop(component("Variables", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack")),
-                    //     })),
-                    //     "statements": prop(component("Statements", {
-                    //         "function": aResolvedValue(valSel("function")),
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variables"))
-                    //     }))
-                    // })),
-                    // "Boolean Expression": globalTypeDefinition({
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    // }, taggedUnion({
-                    //     "and": option(group({
-                    //         "left hand side": prop(component("Boolean Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Boolean Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "or": option(group({
-                    //         "left hand side": prop(component("Boolean Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Boolean Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "false": option(group({})),
-                    //     "not": option(component("Boolean Expression Or Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "true": option(group({})),
-                    //     //boolean/string
-                    //     "string equals": option(group({
-                    //         "left hand side": prop(component("String Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("String Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "string not equals": option(group({
-                    //         "left hand side": prop(component("String Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("String Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     //boolean/number
-                    //     "number equals": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "number not equals": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "greater than": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "less than": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    // })),
-                    // "Boolean Expression Or Selection": globalTypeDefinition({
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    // }, taggedUnion({
-                    //     "expression": option(component("Boolean Expression", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "selection": option(component("Address Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"), /*constrain to boolean*/)
-                    //     })),
-                    // })),
-                    "Address Selection Tail": globalTypeDefinition(
-                        optional(
-                            group({
-                                "step": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
-                                    "call": constrainedOption({
-                                        "address function": optionConstraint(valSel("current address"), "address function", tempExternalTypeSelection("typesystem", "Type"))
-                                    }, group({
-                                        // "function": prop(component("Address Selection", {
-                                        //     "namespace": aResolvedValue(valSel("namespace")),
-                                        //     "variable stack": aResolvedValue(valSel("variable stack"))
-                                        // })), /*constraint tagged union: type === address function*/
-                                        "type arguments": prop(component("Type Arguments", {
-                                            "type parameters": aResolvedValue(valSel("address function", s_group("type parameters"))),
-                                            "namespace": aResolvedValue(valSel("namespace")),
-                                        })),
-                                        "arguments": prop(constrainedDictionary({
-                                            "parameter": dictConstraint(valSel("address function", s_group("parameters")), tempExternalTypeSelection("typesystem", "Parameters"))
-                                        }, component("Expression", {
-                                            "expected type": aResolvedValue(valSel("parameter", s_group("type"))),
-                                            "namespace": aResolvedValue(valSel("namespace")),
-                                            "variable stack": aResolvedValue(valSel("variable stack")),
-                                        }))),
-                                    }), varSel("address function", s_group("return type"))),
-                                    "property": constrainedOption(
-                                        {
-                                            "group": optionConstraint(valSel("current address"), "group", tempExternalTypeSelection("typesystem", "Type"))
-                                        },
-                                        resolvedValueReference(valSel("group", s_group("properties")), tempExternalTypeSelection("typesystem", "Type", t_tu("group", t_grp("properties")))),
-                                        tailSel(s_reference(s_group("type"))),
-                                    ),
-                                })),
-                                "tail": prop(component("Address Selection Tail", {
-                                    "current address": aResolvedValue(valSel("step", s_taggedunion())),
-                                    "namespace": aResolvedValue(valSel("namespace")),
-                                    "variable stack": aResolvedValue(valSel("variable stack"))
-                                }))
-                            }),
-                            optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("current address")),
-                        ),
-                        tailSel(s_optional()),
-                    ),
-                    "Address Selection": globalTypeDefinition(
-                        group({
-                            "variable": prop(resolvedValueReference(valSel("variable stack"), tempTypeSelection("Variables"))),
-                            "tail": prop(component("Address Selection Tail", {
-                                "current address": aResolvedValue(valSel("variable", s_reference(s_group("type", s_taggedunion())))),
-                                "namespace": aResolvedValue(valSel("namespace")),
-                                "variable stack": aResolvedValue(valSel("variable stack"))
-                            })),
-                        }),
-                        tailSel(s_group("tail", s_component())),
-                    ),
-                    "Expression": globalTypeDefinition(
-                        taggedUnion({
-                            // //array
-                            // "array literal": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "array", externalTypeSelection("typesystem", "Type"))
-                            // }, array(component("Expression", {
-                            //     "expected type": aResolvedValue(valSel("out")),
-                            //     "namespace": aResolvedValue(valSel("namespace")),
-                            //     "variable stack": aResolvedValue(valSel("variable stack")),
-                            // }))),
-                            // //object
-                            // "object literal": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "group", externalTypeSelection("typesystem", "Type"))
-                            // }, group({
-                            //     "properties": prop(constrainedDictionary(
-                            //         { "X": dictConstraint(valSel("out", s_group("properties")), externalTypeSelection("typesystem", "Type", [tu("group"), grp("properties")])) },
-                            //         component("Expression", {
-                            //             "expected type": aResolvedValue(valSel("out")),
-                            //             "namespace": aResolvedValue(valSel("namespace")),
-                            //             "variable stack": aResolvedValue(valSel("variable stack")),
-                            //         })
-                            //     )),
-                            // })),
-                            // //function (inline function)
-                            // "address function": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type"))
-                            // }, group({
-                            //     "parameters": prop(dictionary(group({}))), //no type info needed
-                            //     //"signature": prop(component("FunctionSignature", {})),
-                            //     "variables": prop(component("Variables", {
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
-                            //         "variable stack": aResolvedValue(valSel("variable stack")),
-                            //     })),
-                            //     "statements": prop(component("Statements", {
-                            //         "function": aResolvedValue(valSel("out")),
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         "variable stack": aResolvedValue(valSel("variables"))
-                            //     })),
-                            //     "return selection": prop(component("Address Selection", {
-                            //         // "function": aResolvedValue(valSel("out")),
-                            //         // "namespace": aResolvedValue(valSel("namespace")),
-                            //         // "variable stack": aResolvedValue(valSel("variables"))
-                            //     })),
-                            // })),
-                            // "value function": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type"))
-                            // }, group({
-                            //     "parameters": prop(dictionary(group({}))), //no type info needed
-                            //     //"signature": prop(component("FunctionSignature", {})),
-                            //     "variables": prop(component("Variables", {
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
-                            //         "variable stack": aResolvedValue(valSel("variable stack")),
-                            //     })),
-                            //     "statements": prop(component("Statements", {
-                            //         "function": aResolvedValue(valSel("out")),
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         "variable stack": aResolvedValue(valSel("variables"))
-                            //     })),
-                            //     "return expression": prop(component("Expression", {
-                            //         // "function": aResolvedValue(valSel("out")),
-                            //         // "namespace": aResolvedValue(valSel("namespace")),
-                            //         // "variable stack": aResolvedValue(valSel("variables"))
-                            //     })),
-                            // })),
-                            // // "procedure": constrainedOption({
-                            // //     "out": optionConstraint(valSel("type"), "function", externalTypeSelection("typesystem", "Type"))
-                            // // }, group({
-                            // //     "parameters": prop(dictionary(group({}))), //no type info needed
-                            // //     //"signature": prop(component("FunctionSignature", {})),
-                            // //     "variables": prop(component("Variables", {
-                            // //         "namespace": aResolvedValue(valSel("namespace")),
-                            // //         //"parameters": [true, aResolvedValue(valSel("parameters"))],
-                            // //         "variable stack": aResolvedValue(valSel("variable stack")),
-                            // //     })),
-                            // //     "statements": prop(component("Statements", {
-                            // //         "function": aResolvedValue(valSel("out")),
-                            // //         "namespace": aResolvedValue(valSel("namespace")),
-                            // //         "variable stack": aResolvedValue(valSel("variables"))
-                            // //     })),
-                            // // })),
-                            // //boolean
-                            // "boolean": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "boolean", externalTypeSelection("typesystem", "Type"))
-                            // }, component("Boolean Expression", {
-                            //     "namespace": aResolvedValue(valSel("namespace")),
-                            //     "variable stack": aResolvedValue(valSel("variable stack"))
-                            // })),
-                            // //numerical
-                            // "numerical": constrainedOption({
-                            //     "out": optionConstraint(valSel("type"), "number", externalTypeSelection("typesystem", "Type"))
-                            // }, component("Numerical Expression", {
-                            //     "namespace": aResolvedValue(valSel("namespace")),
-                            //     "variable stack": aResolvedValue(valSel("variable stack"))
-                            // })),
-                            //string
-                            "string": constrainedOption({
-                                "out": optionConstraint(valSel("expected type"), "string", tempExternalTypeSelection("typesystem", "Type"))
-                            }, component("String Expression", {
-                                "namespace": aResolvedValue(valSel("namespace")),
-                                "variable stack": aResolvedValue(valSel("variable stack"))
-                            })),
-                            // //any
-                            // "conditional": option(group({
-                            //     "test": prop(component("Boolean Expression Or Selection", {
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         "variable stack": aResolvedValue(valSel("variable stack"))
-                            //     })),
-                            //     "true": prop(component("Expression", {
-                            //         "variable stack": aResolvedValue(valSel("variable stack")),
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //         "type": aResolvedValue(valSel("type")),
-                            //     })),
-                            //     "false": prop(component("Expression", {
-                            //         "expected type": aResolvedValue(valSel("expected type")),
-                            //         "variable stack": aResolvedValue(valSel("variable stack")),
-                            //         "namespace": aResolvedValue(valSel("namespace")),
-                            //     })),
-                            // })),
-                            // //"identifier": option(terminal("identifier")),
-                            // // "new": option(group({
-                            // //     "class": prop(terminal("identifier")),
-                            // //     "parameters": prop(dictionary(component("Expression", {}))),
-                            // // })),
-                            // // "noSubstitutionTemplateLiteral": empty("NoSubstitutionTemplateLiteral"),
-                            // "null": constrainedOption({
-                            //     "out": optionConstraint(valSel("TBD"), "null", externalTypeSelection("typesystem", "Type"))
-                            // }, group({
-    
-                            // })),
-                            // //"parenthesized": option(component("Expression", {})),
-                            // "symbol": option(component("Address Selection", { //something that is stored
-                            //     "namespace": aResolvedValue(valSel("namespace")),
-                            //     "variable stack": aResolvedValue(valSel("variable stack"))
-                            // })),
-                            // // "template": composite("TemplateExpression", group({
-                            // //     "head": member(empty("TemplateHead", { "text": terminal() })),
-                            // //     "spans": member(array(composite("TemplateSpan", group({
-                            // //         "expression": member(component("Expression")),
-                            // //         "type": member(choice({
-                            // //             "middle": empty("TemplateMiddle", { "text": terminal() }),
-                            // //             "tail": empty("TemplateTail", { "text": terminal() }),
-                            // //         })),
-                            // //     })))),
-                            // // })),
-                        })
-                    ),
-                    // "Numerical Expression": globalTypeDefinition({
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    // }, taggedUnion({
-                    //     "minus": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "plus": option(group({
-                    //         "left hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //         "right hand side": prop(component("Numerical Expression Or Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })),
-                    //     })),
-                    //     "predecrement": option(component("Numerical Expression Or Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "preincrement": option(component("Numerical Expression Or Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "postdecrement": option(component("Numerical Expression Or Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "postincrement": option(component("Numerical Expression Or Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "numeric literal": option(terminal("numeric literal")),
-                    // })),
-                    // "Numerical Expression Or Selection": globalTypeDefinition({
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    // }, taggedUnion({
-                    //     "expression": option(component("Numerical Expression", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "selection": option(component("Address Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })/*, externalTypeSelection("typesystem", "Type", [tu("number"), ])*/),
-                    // })),
-                    "Source File": globalTypeDefinition(group({
-                        // "symbols": prop(component("Symbols", {
-                        //     "namespace": aResolvedValue(valSel("namespace"))
-                        // })),
-                    })),
-                    // "Assign": globalTypeDefinition({
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    // }, group({
-                    //     "target": prop(component("Address Selection", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "right hand side": prop(component("Expression", {
-                    //         "expected type": aResolvedValue(valSel("target", s_component())),
-                    //         "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //     })),
-                    // })),
-                    // "Statements": globalTypeDefinition({
-                    //     "parameters": pExternalResolvedValue("typesystem", "Parameters", false),
-                    //     "type parameters": pExternalResolvedValue("typesystem", "Type Parameters", false),
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    // }, array(taggedUnion({
-                    //     "block": option(component("Block", {
-                    //         "parameters": aResolvedValue(valSel("parameters")),
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack")),
-                    //     })),
-                    //     "with": option(group({
-                    //         "address": prop(component("Address Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         })),
-                    //         "action": prop(taggedUnion({
-                    //             "call": constrainedOption({
-                    //                 "procedure address": optionConstraint(valSel("address", s_component()), "procedure", externalTypeSelection("typesystem", "Type", [tu("procedure")]))
-                    //             }, group({
-                    //                 "type arguments": prop(component("Type Arguments", {
-                    //                     "type parameters": aResolvedValue(valSel("function")),
-                    //                     "namespace": aResolvedValue(valSel("namespace")),
-                    //                 })),
-                    //                 "arguments": prop(constrainedDictionary(
-                    //                     { "parameter": dictConstraint(valSel("function"), externalTypeSelection("typesystem", "Parameters")) },
-                    //                     component("Expression", {
-                    //                         "expected type": aResolvedValue(valSel("parameter")),
-                    //                         "variable stack": aResolvedValue(valSel("variable stack")),
-                    //                         "namespace": aResolvedValue(valSel("namespace")),
-                    //                     })
-                    //                 )),
-                    //             })),
-                    //             "assign": option(component("Assign", {
-                    //                 "namespace": aResolvedValue(valSel("namespace")),
-                    //                 "variable stack": aResolvedValue(valSel("variable stack")),
-                    //             })),
-                    //             "minus assign": constrainedOption({
-                    //                 "number address": optionConstraint(valSel("address", s_component()), "number", typeSelection("Foo"))
-                    //             }, group({/*must be number*/
-                    //                 "right hand side": prop(component("Number Expression Or Selection", {
-                    //                     "namespace": aResolvedValue(valSel("namespace")),
-                    //                     "variable stack": aResolvedValue(valSel("variable stack")),
-                    //                 })),
-                    //             })),
-                    //             "plus assign": constrainedOption({
-                    //                 "number address": optionConstraint(valSel("address", s_component()), "number", typeSelection("Foo"))
-                    //             }, group({/*must be number*/
-                    //                 "right hand side": prop(component("Expression", {
-                    //                     "namespace": aResolvedValue(valSel("namespace")),
-                    //                     "variable stack": aResolvedValue(valSel("variable stack")),
-                    //                 })),
-                    //             })),
-                    //             "switch": constrainedOption({
-                    //                 "tagged union address": optionConstraint(valSel("address", s_component()), "tagged union", typeSelection("Foo"))
-                    //             }, group({
-                    //                 "cases": prop(constrainedDictionary(
-                    //                     { "option": dictConstraint(valSel("tagged union address", s_group("options")), externalTypeSelection("typesystem", "Type", [tu("tagged union"), grp("options")])) },
-                    //                     group({
-                    //                         "block": prop(component("Block", {
-                    //                             "function": aResolvedValue(valSel("function")),
-                    //                             "namespace": aResolvedValue(valSel("namespace")),
-                    //                             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //                         }))
-                    //                     })
-                    //                 )),
-                    //                 "default": prop(optional(component("Block", {
-                    //                     "function": aResolvedValue(valSel("function")),
-                    //                     "namespace": aResolvedValue(valSel("namespace")),
-                    //                     "variable stack": aResolvedValue(valSel("variable stack")),
-                    //                 }))),
-                    //             })),
-                    //         }))
-                    //     })),
-                    //     "for": option(group({
-                    //         "condition": prop(component("Boolean Expression", {
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //         })),
-                    //         "incrementer": prop(component("Assign", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         })),
-                    //         "block": prop(component("Block", {
-                    //             "function": aResolvedValue(valSel("function")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         })),
-                    //     })),
-                    //     "if": option(group({
-                    //         "condition": prop(component("Boolean Expression Or Selection", {
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //         })),
-                    //         "then": prop(component("Block", {
-                    //             "function": aResolvedValue(valSel("function")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-    
-                    //         })),
-                    //         "else": prop(optional(component("Block", {
-                    //             "function": aResolvedValue(valSel("function")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         }))),
-                    //     })),
-                    //     // "labeled": composite("LabeledStatement", group({
-                    //     //     "label": member(component("identifier")),
-                    //     //     "statement": member(component("statement")),
-                    //     // })),
-                    //     // "return": option(group({
-                    //     //     "expression": prop(optional(component("Expression", {
-                    //     //         "expected type": aResolvedValue(valSel("function", s_group("return type", result()))),
-                    //     //         "variable stack": aResolvedValue(valSel("variable stack")),
-                    //     //         "namespace": aResolvedValue(valSel("namespace")),
-                    //     //     })))
-                    //     // })),
-                    //     // "throw": option(component("Expression", {})),
-                    //     // "try": option(group({
-                    //     //     "block": prop(component("Block", {})),
-                    //     //     "catchClause": prop(group({
-                    //     //         "variable": prop(component("variableDeclaration")),
-                    //     //         "block": member(component("block")),
-                    //     //     }))),
-                    //     // }))),
-                    //     "while": option(group({
-                    //         "condition": prop(component("Boolean Expression Or Selection", {
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //         })),
-                    //         "block": prop(component("Block", {
-                    //             "function": aResolvedValue(valSel("function")),
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack")),
-                    //         })),
-                    //     })),
-                    // }))),
-                    "String Expression": globalTypeDefinition(
-                        taggedUnion({
-                            "string literal": option(terminal("string literal")),
-                        })
-                    )
-                    ,
-                    // "String Expression Or Selection": globalTypeDefinition({
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    //     "variable stack": pResolvedValue("Variables", false),
-                    // }, taggedUnion({
-                    //     "expression": option(component("String Expression", {
-                    //         "namespace": aResolvedValue(valSel("namespace")),
-                    //         "variable stack": aResolvedValue(valSel("variable stack"))
-                    //     })),
-                    //     "selection": option(group({
-                    //         "selection": prop(component("Address Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace")),
-                    //             "variable stack": aResolvedValue(valSel("variable stack"))
-                    //         })/*, externalTypeSelection("typesystem", "Type", [tu("string"), ])*/),
-                    //         "cast to string": prop(taggedUnion({
-                    //             "string": constrainedOption({
-                    //                 "string": optionConstraint(valSel("selection", s_component()), "string", externalTypeSelection("typesystem", "Type"))
-                    //             }, group({}))
-                    //         }))
-                    //     })),
-                    // })),
-                    // "Symbols": globalTypeDefinition({
-                    //     "namespace": pExternalResolvedValue("typesystem", "Namespace", false),
-                    // }, dictionary(taggedUnion({
-                    //     "namespace": option(group({
-                    //         "symbols": prop(component("Symbols", {
-                    //             "namespace": aResolvedValue(valSel("namespace"))
-                    //         }))
-                    //     })),
-                    //     "symbol": option(group({
-                    //         "type path": prop(component("Type Selection", {
-                    //             "namespace": aResolvedValue(valSel("namespace"))
-                    //         })),
-                    //     })),
-                    // }))),
-                    "Type Arguments": globalTypeDefinition(
-                        constrainedDictionary(
-                            { "x": dictConstraint(valSel("type parameters"), tempExternalTypeSelection("typesystem", "Type Parameters")) },
-                            group({
-                                "type": prop(component("Type Selection", {
-                                    "namespace": aResolvedValue(valSel("namespace"))
-                                }))
-                            })
-                        )
-                    ),
-                    // "Type Selection Tail": globalTypeDefinition(
-                    //     {
-                    //         "namespace": pExternalResolvedValue("typesystem", "Namespace", false)
-                    //     },
-                    //     optional(
-                    //         group({
-                    //             //"step type": prop(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/))),
-                    //             "tail": prop(component("Type Selection Tail", {
-                    //                 "namespace": aResolvedValue(valSel("namespace"))
-                    //             })),
-                    //         }),
-                    //         optionalResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_group("tail", s_component())), valSel("namespace"))),
-                    //     globalTypeResult(externalGlobalTypeSelection("typesystem", "Type"), tailSel(s_optional()))
-                    // ),
-                    "Type Selection": globalTypeDefinition(
-                        group({
-                            "referenced type": prop(resolvedValueReference(valSel("namespace"), tempExternalTypeSelection("typesystem", "Namespace"))),
-                            "type of referenced type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"),
-                                {
-                                    "namespace": constrainedOption(
-                                        {
-                                            "referenced namespace": optionConstraint(valSel("referenced type", s_reference(s_group("type"))), "namespace", tempExternalTypeSelection("typesystem", "Namespace", t_dict( t_grp("type"))))
-                                        },
-                                        component("Type Selection", {
-                                            "namespace": aResolvedValue(valSel("namespace"))
-                                        }),
-                                        tailSel(s_component())
-                                    ),
-                                    "type definition": constrainedOption(
-                                        {
-                                            "referenced type definition": optionConstraint(valSel("referenced type", s_reference(s_group("type"))), "type definition", tempExternalTypeSelection("typesystem", "Namespace", t_dict(t_grp("type"))))
-                                        },
-                                        group({}),
-                                        varSel("referenced type definition", s_group("type")),
-    
-                                    )
-                                }))
-                        }),
-                        // group({
-                        //     // "steps": prop(array(resolvedValueReference(valSel("TBD"), externalTypeSelection("typesystem", "Type" /*constrain type to namespace*/)))),
-                        //     "type": prop(resolvedValueReference(valSel("namespace"), externalTypeSelection("typesystem", "Namespace"), /*constrain to type defintion*/)),
-                        //     "arguments": prop(component("Type Arguments", {
-                        //         "type": aResolvedValue(valSel("type")),
-                        //         "namespace": aResolvedValue(valSel("namespace"))
-                        //     })),
-                        // }),
-                        tailSel(s_group("type of referenced type", s_taggedunion()))
                     ),
                     "Variables": globalTypeDefinition(
+                        dictionary(taggedUnion({
+                            "option constraint": option(resolvedValueReference(valSel("option constraints"), tempTypeSelection("Option Constraints"))),
+                            "dictionary constraint": option(resolvedValueReference(valSel("dictionary constraints"), tempTypeSelection("Dictionary Constraints"))),
+                            "parameter": option(resolvedValueReference(valSel("parameters"), tempTypeSelection("Parameters"))),
+                            "parent variable": option(resolvedValueReference(valSel("parent variables"), tempTypeSelection("Variables"))),
+                            "lookup": option(lookupReference(lparameter("lookup"), tempTypeSelection("Properties"))),
+                        }))
+                    ),
+                    "Dictionary Constraints": globalTypeDefinition(
                         dictionary(group({
-                            "type": prop(resultTaggedUnion(externalGlobalTypeSelection("typesystem", "Type"), {
-                                "parameter": option(group({
-                                    "parameter": prop(resolvedValueReference(valSel("parameters"), tempExternalTypeSelection("typesystem", "Parameters"))),
-                                }), tailSel(s_group("parameter", s_reference(s_group("type"))))),
-                                "variable stack2": option(group({
-                                    "variable": prop(resolvedValueReference(valSel("variable stack"), tempTypeSelection("Variables"))),
-                                }), tailSel(s_group("variable", s_reference(s_group("type", s_taggedunion()))))),
-                                "local": option(group({
-                                    "type": prop(component("Type Selection", {
-                                        "namespace": aResolvedValue(valSel("namespace")),
+                            "temp type": prop(component("Temp Type Selection", {
+                                "global types": aLookup(lparameter("global types")),
+                            })),
+                            "selection": prop(component("Value Selection", {})),
+                        }))
+                    ),
+                    "Option Constraints": globalTypeDefinition(
+                        dictionary(group({
+                            "temp type": prop(component("Temp Type Selection", {
+                                "global types": aLookup(lparameter("global types")),
+                            })), //must be tagged union
+                            "selection": prop(component("Value Selection", {})),
+                            "option": prop(resolvedValueReference(valSel("XXXXA"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
+                        }))
+                    ),
+                    "Type": globalTypeDefinition(
+                        group({
+                            "classes": prop(constrainedDictionary({}, group({}))),
+                            "type": prop(taggedUnion({
+                                "nothing": option(group({
+                                    "result": prop(optional(group({
+                                        "temp type": prop(component("Global Type Selection", {
+                                            "global types": aLookup(lparameter("global types")),
+                                        })),
+                                        "selection": prop(component("Value Selection", {})),
+                                    })))
+                                })),
+                                "terminal": option(group({
+                                    "terminal": prop(component("Atom", {
+                                        "labels": aResolvedValue(valSel("labels")),
+                                        "global types": aLookup(lparameter("global types")),
                                     })),
-                                    "initializer": prop(component("Expression", {
-                                        "expected type": aResolvedValue(valSel("type", s_component())),
-                                        "namespace": aResolvedValue(valSel("namespace")),
-                                        "variable stack": aResolvedValue(valSel("variable stack")),
+                                    "constrained": prop(taggedUnion({
+                                        "no": option(group({
+                                        })),
+                                        "yes": option(group({
+                                            "referencee type": prop(taggedUnion({
+                                                "resolved value": option(group({
+                                                    "temp type": prop(component("Temp Type Selection", {
+                                                        "global types": aLookup(lparameter("global types")),
+                                                    })),
+                                                    "selection": prop(component("Value Selection", {})),
+                                                })),
+                                                "lookup": option(group({
+                                                    "temp type": prop(component("Temp Type Selection", {
+                                                        "global types": aLookup(lparameter("global types")),
+                                                    })),
+                                                    "selection": prop(component("Lookup Selection", {})),
+                                                })),
+                                            })),
+                                        })),
                                     })),
-                                }), tailSel(s_group("type", s_component()))),
+                                })),
+                                "dictionary": option(group({
+                                    "key": prop(component("Atom", {
+                                        "labels": aResolvedValue(valSel("labels")),
+                                        "global types": aLookup(lparameter("global types")),
+                                    })),
+                                    "constraints": prop(component("Dictionary Constraints", {
+                                        "global types": aLookup(lparameter("global types")),
+                                    })),
+                                    "variables": prop(component("Variables", {})),
+                                    "type": prop(component("Type", {
+                                        "global types": aLookup(lparameter("global types")),
+                                    })),
+                                    "autofill": prop(array(group({
+                                        "source": prop(component("Value Selection", {})),
+                                        "initializer": prop(component("Type Initializer", {}))
+                                    })))
+                                })),
+                                "array": option(group({
+                                    // "constraints": prop(dictionary(group({
+                                    //     "temp type": prop(component("Temp Type Selection", {
+                                    //         "global types": aLookup(lparameter("global types")),
+                                    //     })), //derive form initial value?
+                                    //     "initial value": prop(component("Selection", {})),
+                                    //     "element value": prop(component("Selection", {})),
+                                    // }))),
+                                    "type": prop(component("Type", {
+                                        "global types": aLookup(lparameter("global types")),
+                                    })),
+                                })),
+                                "optional": option(group({
+                                    "type": prop(component("Type", {})),
+                                    "result": prop(optional(group({
+                                        "temp type": prop(component("Global Type Selection", {
+                                            "global types": aLookup(lparameter("global types")),
+                                        })),
+                                        "set": prop(component("Any Value Selection", {})),
+                                        "not set": prop(component("Value Selection", {})),//validate result is equal to 'set' result
+                                    })))
+                                })),
+                                "tagged union": option(group({
+                                    "result": prop(optional(component("Global Type Selection", {
+                                        "global types": aLookup(lparameter("global types")),
+                                    }))),
+                                    "options": prop(dictionary(group({
+                                        "constraints": prop(component("Option Constraints", {})),
+                                        "variables": prop(component("Variables", {})),
+                                        "type": prop(component("Type", {
+                                            "global types": aLookup(lparameter("global types")),
+                                        })),
+                                        "result": prop(optional(component("Any Value Selection", {})))
+                                    }))),
+                                    "default": prop(resolvedValueReference(valSel("options"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
+                                })),
+                                "group": option(group({
+                                    "properties": prop(component("Properties", {})),
+                                })),
+                                "component": option(group({
+                                    "context": prop(resultTaggedUnion(globalTypeSelection("Type Library"), {
+                                        "local": option(group({})),
+                                        "import": option(group({
+                                            "library": prop(resolvedValueReference(valSel("imports"), tempTypeSelection("Imports"))),
+                                        })),
+                                    })),
+                                    "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                                    "arguments": prop(constrainedDictionary({
+                                        "parameter": dictConstraint(valSel("type", s_reference(s_group("parameters"))), tempTypeSelection("Parameters"))
+                                    }, group({
+                                        "type": prop(taggedUnion({
+                                            "resolved value": option(component("Value Selection", {})),
+                                            "lookup": option(component("Lookup Selection", {})),
+                                        })),
+                                    }))),
+                                })),
+                            })),
+                        })
+                    ),
+                    "Properties": globalTypeDefinition(
+                        dictionary(group({
+                            "variables": prop(component("Variables", {})),
+                            "type": prop(component("Type", {
+                                "global types": aLookup(lparameter("global types")),
                             })),
                         }))
+                    ),
+                    "Value Selection Tail": globalTypeDefinition(
+                        group({
+                            "step type": prop(resultTaggedUnion(globalTypeSelection("Type"), {
+                                "reference": constrainedOption({
+                                    "reference": optionConstraint(valSel("type"), "terminal", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                })),
+                                "component": constrainedOption({
+                                    "component": optionConstraint(valSel("type"), "component", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                })),
+                                "tagged union": constrainedOption({
+                                    "tagged union": optionConstraint(valSel("type"), "tagged union", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                })),
+                                "optional": constrainedOption({
+                                    "optional": optionConstraint(valSel("type"), "optional", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                })),
+                                "nothing": constrainedOption({
+                                    "nothing": optionConstraint(valSel("type"), "nothing", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                })),
+                                "group": constrainedOption({
+                                    "group": optionConstraint(valSel("type"), "group", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                    "property": prop(resolvedValueReference(valSel("group"), tempTypeSelection("Properties"))),
+                                })),
+                            })),
+                            "tail": prop(optional(component("Value Selection Tail", {
+                                "type": aResolvedValue(valSel("step type", s_taggedunion()))
+                            }), optionalResult(globalTypeSelection("Type"), tailSel(s_component()), valSel("step type")))),
+                        }),
+                        tailSel(s_group("tail", s_optional()))
+                    ),
+                    "Any Value Selection": globalTypeDefinition(
+                        group({
+                            "start": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables")))),
+                            "tail": prop(optional(component("Value Selection Tail", {})))
+                        })
+                    ),
+                    "Value Selection": globalTypeDefinition(
+                        group({
+                            "start": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Variables"))),
+                            "tail": prop(optional(component("Value Selection Tail", {})))
+                        })
+                    ),
+                    "Reference Initializer": globalTypeDefinition(
+                        group({
+                            //FIXME
+                        })),
+                    "Atom Initializer": globalTypeDefinition(
+                        group({
+                            "constrained": prop(taggedUnion({
+                                // "no": option(group({
+                                //     "type": prop(resolvedValueReference(valSel("TBD")), typeSelection("Type Library", [grp("labels")]))),
+                                // })),
+                                "yes": option(component("Reference Initializer", {
+                                })),
+                            })),
+                        })
+                    ),
+                    "Type Initializer": globalTypeDefinition(
+                        taggedUnion({
+                            "terminal": option(component("Atom Initializer", {
+                            })),
+                            // "dictionary": option(group({
+                            //     "key": prop(component("Atom Initializer", {
+                            //         "global types": aSibling(lparameter("global types")),
+                            //     })),
+                            //     "type": prop(component("Type", {
+                            //         "global types": aSibling(lparameter("global types")),
+                            //     })),
+                            //     "autofill": prop(array(group({
+                            //         "source": prop(component("Path", {})),
+                            //         "initializer": prop(component("Type Initializer", {}))
+                            //     })))
+                            // })),
+                            // "array": option(group({
+                            //     "type": prop(component("Type", {
+                            //         "global types": aSibling(lparameter("global types")),
+                            //     })),
+                            //     "constraint": prop(optional(group({
+                            //         "Temp Type Selection": prop(component("Temp Type Selection", {
+                            //             "global types": aSibling(lparameter("global types")),
+                            //         })), //derive form initial value?
+                            //         "initial value": prop(component("Selection", {})),
+                            //         "element value": prop(component("Selection", {})),
+                            //     })))
+                            // })),
+                            "optional": option(group({
+                                "type": prop(optional(component("Type Initializer", {}))),
+                            })),
+                            "tagged union": option(group({
+                                "option": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
+                                "data": prop(component("Type Initializer", {}))
+                            })),
+                            "group": option(group({
+                                "properties": prop(dictionary(group({
+                                    "type": prop(component("Type Initializer", {
+                                    })),
+                                }))),
+                            })),
+                            "component": option(component("Type Initializer", {})),
+                        })
+                    ),
+                    "Lookup Selection": globalTypeDefinition(
+                        taggedUnion({
+                            "resolved dictionary": option(component("Value Selection", {})),
+                            "this": option(group({
+                                "type": prop(taggedUnion({
+                                    "non cyclic": option(group({})),
+                                    "cyclic": option(group({})),
+                                }))
+                            })),
+                            "parameter": option(resolvedValueReference(valSel("TBD"), tempTypeSelection("Parameters"))),
+                        })
+                    ),
+                    "Global Type Selection": globalTypeDefinition(
+                        group({
+                            "import": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Imports")))),
+                            "type": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                        })
+                    ),
+                    "Labels": globalTypeDefinition(
+                        group({
+                            "atom types": prop(dictionary(group({}))),
+                        })
+                    ),
+                    "Parameters": globalTypeDefinition(
+                        dictionary(group({
+                            "type": prop(taggedUnion({
+                                "resolved value": option(group({
+                                    "type": prop(component("Global Type Selection", {})),
+                                    "optional": prop(taggedUnion({
+                                        "no": option(group({})),
+                                        "yes": option(group({})),
+                                    }))
+                                })),
+                                "lookup": option(group({
+                                    "type": prop(component("Global Type Selection", {
+                                        "global types": aLookup(lparameter("global types")),
+                                    })),
+                                    "kind": prop(taggedUnion({
+                                        "non cyclic": option(group({})),
+                                        "cyclic": option(group({})),
+                                    }))
+                                })),
+                            })),
+                        }))
+                    ),
+                    "Imports": globalTypeDefinition(
+                        dictionary(group({}))
+                    ),
+                    "Global Type Declaration": globalTypeDefinition(
+                        group({
+                            "parameters": prop(component("Parameters", {})),
+                            "result": prop(optional(component("Global Type Selection", {}))),
+                        })
+                    ),
+                    "Global Type Definition": globalTypeDefinition(
+                        group({
+                            "variables": prop(component("Variables", {})),
+                            "type": prop(component("Type", {
+                                "global types": aLookup(lparameter("global types")),
+                            })),
+                            "result": prop(optional(component("Any Value Selection", {}))),
+                        })
+                    ),
+                    "Temp Type Selection Tail": globalTypeDefinition(
+                        group({
+                            "step type": prop(resultTaggedUnion(globalTypeSelection("Type"), {
+                                "dictionary": constrainedOption({
+                                    "dictionary": optionConstraint(valSel("type"), "dictionary", tempTypeSelection("Type", t_grp("type")))
+                                }, group({})),
+                                "optional": constrainedOption({
+                                    "optional": optionConstraint(valSel("type"), "optional", tempTypeSelection("Type", t_grp("type")))
+                                }, group({})),
+                                "array": constrainedOption({
+                                    "array": optionConstraint(valSel("type"), "array", tempTypeSelection("Type", t_grp("type")))
+                                }, group({})),
+                                "group": constrainedOption({
+                                    "group": optionConstraint(valSel("type"), "group", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                    "property": prop(resolvedValueReference(valSel("group"), tempTypeSelection("Properties")))
+                                })),
+                                "tagged union": constrainedOption({
+                                    "tagged union": optionConstraint(valSel("type"), "tagged union", tempTypeSelection("Type", t_grp("type")))
+                                }, group({
+                                    "option": prop(resolvedValueReference(valSel("tagged union"), tempTypeSelection("Type", t_grp("type", t_tu("tagged union", t_grp("options")))))),
+                                })),
+                            })),
+                            "tail": prop(optional(component("Temp Type Selection Tail", {})))
+                        })
+                    ),
+                    "Temp Type Selection": globalTypeDefinition(
+                        group({
+        
+                            "global type": prop(component("Global Type Selection", {})),
+                            "tail": prop(optional(component("Temp Type Selection Tail", {})))
+                        })
+                    ),
+                    "Type Library": globalTypeDefinition(
+                        group({
+                            "imports": prop(component("Imports", {})),
+                            "labels": prop(component("Labels", {})),
+                            "global types": prop(group({
+                                "declarations": prop(dictionary(component("Global Type Declaration", {}))),
+                                "definitions": prop(dictionary(component("Global Type Definition", {}))),
+                            })),
+                        })
+                    ),
+                    "Model": globalTypeDefinition(
+                        group({
+                            "type library": prop(component("Type Library", {})),
+                            "root": prop(resolvedValueReference(valSel("type library", s_group("global types", s_group("definitions"))), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                        })
                     ),
                 }),
             }
         },
         'root': {
             'annotation': pd.getLocationInfo(0),
-            'key': "Source File"
+            'key': "Model"
         },
     }
 }
