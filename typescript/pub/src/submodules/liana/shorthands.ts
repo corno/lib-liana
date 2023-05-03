@@ -418,50 +418,50 @@ export function dictionary(type: g_this.T.Type<pd.SourceLocation>/*, autofill?: 
     }
 }
 
-export function globalTypeDeclaration(
-    parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
-    result_type?: g_this.T.Global__Type__Declaration.result.O<pd.SourceLocation>,
-): g_this.T.Global__Type__Declaration<pd.SourceLocation> {
+export function globalTypeResult(
+
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
+    selection: g_this.T.Any__Value__Selection<pd.SourceLocation>,
+): g_this.T.Global__Type.result.O<pd.SourceLocation> {
     return {
-        'parameters': pd.d(parameters),
-        'result': result_type === undefined
-            ? [false]
-            : [true, result_type]
+        'type': type,
+        'selection': selection,
     }
 }
 
-
-export function globalTypeDefinition(
+export function globalType(
+    parameters: RawDictionary<g_this.T.Parameters.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
-    result_selection?: g_this.T.Global__Type__Definition.result.O<pd.SourceLocation>,
-): g_this.T.Global__Type__Definition<pd.SourceLocation> {
-    // const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
-    // def.parameters.__forEach(() => false, ($, key) => {
-    //     pl.cc($.type, ($) => {
-    //         switch ($[0]) {
-    //             case 'resolved value':
-    //                 pl.ss($, ($) => {
+    result?: g_this.T.Global__Type.result.O<pd.SourceLocation>
+): g_this.T.Global__Type<pd.SourceLocation> {
+    const variables: RawDictionary<g_this.T.Variables.D<pd.SourceLocation>> = {}
+    pd.d(parameters).__forEach(() => false, ($, key) => {
+        pl.cc($.type, ($) => {
+            switch ($[0]) {
+                case 'resolved value':
+                    pl.ss($, ($) => {
 
-    //                 })
-    //                 break
-    //             case 'siblings':
-    //                 pl.ss($, ($) => {
-    //                     variables[key] = ['parameter', {
-    //                         'key': key,
-    //                         'annotation': pd.getLocationInfo(1),
-    //                     }]
-    //                 })
-    //                 break
-    //             default: pl.au($[0])
-    //         }
-    //     })
-    // })
+                    })
+                    break
+                case 'lookup':
+                    pl.ss($, ($) => {
+                        variables[key] = ['parameter', {
+                            'key': key,
+                            'annotation': pd.getLocationInfo(1),
+                        }]
+                    })
+                    break
+                default: pl.au($[0])
+            }
+        })
+    })
     return {
+        'parameters': pd.d(parameters),
+        'variables': pd.d(variables),
         'type': type,
-        'variables': pd.d({}),//FIXME
-        'result': result_selection === undefined
+        'result': result === undefined
             ? [false]
-            : [true, result_selection]
+            : [true, result]
     }
 }
 
@@ -670,7 +670,7 @@ export function t_arr(
 export function t_tu(
     opt: string,
     tail?: g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation>,
-    ): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
+): g_this.T.Temp__Type__Selection__Tail<pd.SourceLocation> {
     return {
         'step type': ['tagged union', {
             'annotation': pd.getLocationInfo(1),

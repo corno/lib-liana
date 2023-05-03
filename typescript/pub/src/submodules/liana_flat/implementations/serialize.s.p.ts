@@ -395,7 +395,7 @@ export const $$: A.serialize = ($d) => {
                 })
             })
         }
-        $d.dictionaryForEach($.library['global types'].definitions, ($) => {
+        $d.dictionaryForEach($.library['global types'], ($) => {
             doDictionaries({
                 $: $.value.type,
                 path: pm.wrapRawArray([$.key]),

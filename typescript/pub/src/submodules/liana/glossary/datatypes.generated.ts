@@ -110,7 +110,7 @@ export namespace N {
         export namespace T {}
     }
     
-    export namespace Global_$_$Type_$_$Declaration {
+    export namespace Global_$_$Type {
         
         export namespace N {
             
@@ -131,38 +131,30 @@ export namespace N {
                             
                             export namespace O {
                                 
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                        }
-                        
-                        export namespace T {}
-                    }
-                }
-                
-                export namespace T {}
-            }
-        }
-        
-        export namespace T {}
-    }
-    
-    export namespace Global_$_$Type_$_$Definition {
-        
-        export namespace N {
-            
-            export namespace G {
-                
-                export namespace N {
-                    
-                    export namespace result {
-                        
-                        export namespace N {
-                            
-                            export namespace O {
-                                
-                                export namespace N {}
+                                export namespace N {
+                                    
+                                    export namespace G {
+                                        
+                                        export namespace N {
+                                            
+                                            export namespace selection {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                            
+                                            export namespace _$ltype {
+                                                
+                                                export namespace N {}
+                                                
+                                                export namespace T {}
+                                            }
+                                        }
+                                        
+                                        export namespace T {}
+                                    }
+                                }
                                 
                                 export namespace T {}
                             }
@@ -1506,40 +1498,9 @@ export namespace N {
                         
                         export namespace N {
                             
-                            export namespace G {
+                            export namespace D {
                                 
-                                export namespace N {
-                                    
-                                    export namespace declarations {
-                                        
-                                        export namespace N {
-                                            
-                                            export namespace D {
-                                                
-                                                export namespace N {}
-                                                
-                                                export namespace T {}
-                                            }
-                                        }
-                                        
-                                        export namespace T {}
-                                    }
-                                    
-                                    export namespace definitions {
-                                        
-                                        export namespace N {
-                                            
-                                            export namespace D {
-                                                
-                                                export namespace N {}
-                                                
-                                                export namespace T {}
-                                            }
-                                        }
-                                        
-                                        export namespace T {}
-                                    }
-                                }
+                                export namespace N {}
                                 
                                 export namespace T {}
                             }
@@ -1895,39 +1856,41 @@ export namespace T {
         readonly 'temp type': T.Temp__Type__Selection<GAnnotation>
     }>
     
-    export namespace Global__Type__Declaration {
+    export namespace Global__Type {
         
         export type parameters<GAnnotation> = T.Parameters<GAnnotation>
         
         export namespace result {
             
-            export type O<GAnnotation> = T.Global__Type__Selection<GAnnotation>
-        }
-        
-        export type result<GAnnotation> = [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
-    }
-    
-    export type Global__Type__Declaration<GAnnotation> = {
-        readonly 'parameters': T.Parameters<GAnnotation>
-        readonly 'result': [ false ] | [ true, T.Global__Type__Selection<GAnnotation>]
-    }
-    
-    export namespace Global__Type__Definition {
-        
-        export namespace result {
+            export namespace O {
+                
+                export type selection<GAnnotation> = T.Any__Value__Selection<GAnnotation>
+                
+                export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+            }
             
-            export type O<GAnnotation> = T.Any__Value__Selection<GAnnotation>
+            export type O<GAnnotation> = {
+                readonly 'selection': T.Any__Value__Selection<GAnnotation>
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }
         }
         
-        export type result<GAnnotation> = [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
+        export type result<GAnnotation> = [ false ] | [ true, {
+            readonly 'selection': T.Any__Value__Selection<GAnnotation>
+            readonly 'type': T.Global__Type__Selection<GAnnotation>
+        }]
         
         export type _ltype<GAnnotation> = T.Type<GAnnotation>
         
         export type variables<GAnnotation> = T.Variables<GAnnotation>
     }
     
-    export type Global__Type__Definition<GAnnotation> = {
-        readonly 'result': [ false ] | [ true, T.Any__Value__Selection<GAnnotation>]
+    export type Global__Type<GAnnotation> = {
+        readonly 'parameters': T.Parameters<GAnnotation>
+        readonly 'result': [ false ] | [ true, {
+            readonly 'selection': T.Any__Value__Selection<GAnnotation>
+            readonly 'type': T.Global__Type__Selection<GAnnotation>
+        }]
         readonly 'type': T.Type<GAnnotation>
         readonly 'variables': T.Variables<GAnnotation>
     }
@@ -3033,25 +2996,10 @@ export namespace T {
         
         export namespace global__types {
             
-            export namespace declarations {
-                
-                export type D<GAnnotation> = T.Global__Type__Declaration<GAnnotation>
-            }
-            
-            export type declarations<GAnnotation> = pt.Dictionary<T.Global__Type__Declaration<GAnnotation>>
-            
-            export namespace definitions {
-                
-                export type D<GAnnotation> = T.Global__Type__Definition<GAnnotation>
-            }
-            
-            export type definitions<GAnnotation> = pt.Dictionary<T.Global__Type__Definition<GAnnotation>>
+            export type D<GAnnotation> = T.Global__Type<GAnnotation>
         }
         
-        export type global__types<GAnnotation> = {
-            readonly 'declarations': pt.Dictionary<T.Global__Type__Declaration<GAnnotation>>
-            readonly 'definitions': pt.Dictionary<T.Global__Type__Definition<GAnnotation>>
-        }
+        export type global__types<GAnnotation> = pt.Dictionary<T.Global__Type<GAnnotation>>
         
         export type imports<GAnnotation> = T.Imports<GAnnotation>
         
@@ -3059,10 +3007,7 @@ export namespace T {
     }
     
     export type Type__Library<GAnnotation> = {
-        readonly 'global types': {
-            readonly 'declarations': pt.Dictionary<T.Global__Type__Declaration<GAnnotation>>
-            readonly 'definitions': pt.Dictionary<T.Global__Type__Definition<GAnnotation>>
-        }
+        readonly 'global types': pt.Dictionary<T.Global__Type<GAnnotation>>
         readonly 'imports': T.Imports<GAnnotation>
         readonly 'labels': T.Labels<GAnnotation>
     }

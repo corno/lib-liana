@@ -82,8 +82,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             // "Type Initializer": globalTypeDeclaration({}),
             "Lookup Selection": globalTypeDeclaration({}),
             "Global Type Selection": globalTypeDeclaration({}),
-            "Global Type Declaration": globalTypeDeclaration({}),
-            "Global Type Definition": globalTypeDeclaration({}),
+            "Global Type": globalTypeDeclaration({}),
             "Temp Type Selection Tail": globalTypeDeclaration({
                 "context": pResolvedValue("Type", false)
             }),
@@ -226,7 +225,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                                     "library": prop(resolvedValueReference(valSel("imports"), tempTypeSelection("Imports"))),
                                 })),
                             })),
-                            "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                            "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types")))),
                             "arguments": prop(constrainedDictionary({
                                 "parameter": dictConstraint(valSel("type", s_reference(s_group("parameters"))), tempTypeSelection("Parameters"))
                             }, group({
@@ -368,7 +367,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "Global Type Selection": globalTypeDefinition(
                 group({
                     "import": prop(optional(resolvedValueReference(valSel("TBD"), tempTypeSelection("Imports")))),
-                    "type": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                    "type": prop(resolvedValueReference(valSel("TBD"), tempTypeSelection("Type Library", t_grp("global types")))),
                 })
             ),
             "Labels": globalTypeDefinition(
@@ -401,19 +400,16 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             "Imports": globalTypeDefinition(
                 dictionary(group({}))
             ),
-            "Global Type Declaration": globalTypeDefinition(
+            "Global Type": globalTypeDefinition(
                 group({
                     "parameters": prop(component("Parameters", {})),
-                    "result": prop(optional(component("Global Type Selection", {}))),
-                })
-            ),
-            "Global Type Definition": globalTypeDefinition(
-                group({
                     "variables": prop(component("Variables", {})),
-                    "type": prop(component("Type", {
-                        "global types": aLookup(lparameter("global types")),
-                    })),
-                    "result": prop(optional(component("Any Value Selection", {}))),
+                    "type": prop(component("Type", {})),
+                    "result": prop(optional(group({
+                        "type": prop(component("Global Type Selection", {})),
+                        "selection": prop(component("Any Value Selection", {})),
+
+                    }))),
                 })
             ),
             "Temp Type Selection Tail": globalTypeDefinition(
@@ -453,16 +449,13 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 group({
                     "imports": prop(component("Imports", {})),
                     "labels": prop(component("Labels", {})),
-                    "global types": prop(group({
-                        "declarations": prop(dictionary(component("Global Type Declaration", {}))),
-                        "definitions": prop(dictionary(component("Global Type Definition", {}))),
-                    })),
+                    "global types": prop(dictionary(component("Global Type", {}))),
                 })
             ),
             "Model": globalTypeDefinition(
                 group({
                     "type library": prop(component("Type Library", {})),
-                    "root": prop(resolvedValueReference(valSel("type library", s_group("global types", s_group("definitions"))), tempTypeSelection("Type Library", t_grp("global types", t_grp("definitions"))))),
+                    "root": prop(resolvedValueReference(valSel("type library", s_group("global types")), tempTypeSelection("Type Library", t_grp("global types")))),
                 })
             ),
         }),

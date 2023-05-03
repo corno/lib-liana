@@ -117,7 +117,7 @@ export const $$: A.create121Mapper = ($d) => {
         $i.line(`import * as g_out from ".."`)
         $i.line(``)
 
-        $['global types'].definitions.__forEach(() => false, ($, key) => {
+        $['global types'].__forEach(() => false, ($, key) => {
             $i.nestedLine(($i) => {
                 $i.snippet(`function map_${$d.createIdentifier(key)}($: g_in.T.${$d.createIdentifier(key)}): g_out.T.Element {`)
                 $i.indent(($i) => {

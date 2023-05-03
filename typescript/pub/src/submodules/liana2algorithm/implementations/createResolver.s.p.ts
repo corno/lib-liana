@@ -927,9 +927,9 @@ export const $$: A.createResolver = ($d) => {
 
                 const gt = $.model['type library']['global types']
 
-                $d.dictionaryForEach($.model['type library']['global types'].definitions, ($) => {
-                    const declaration = gt.declarations.__unsafeGetEntry($.key)
+                $d.dictionaryForEach($.model['type library']['global types'], ($) => {
                     const gt_key = $.key
+                    const result = $.value.result
                     $i.line(``)
                     $i.nestedLine(($i) => {
                         $i.snippet(`function map_${$d.createIdentifier($.key)}<Annotation>(`)
@@ -938,7 +938,7 @@ export const $$: A.createResolver = ($d) => {
                                 $i.snippet(`$: g_in.T.${$d.createIdentifier($.key)}<Annotation>,`)
                             })
                             pl.cc($.value, ($) => {
-                                $d.dictionaryForEach(declaration.parameters, ($) => {
+                                $d.dictionaryForEach($.parameters, ($) => {
                                     $i.nestedLine(($i) => {
                                         $i.snippet(`$v_${$d.createIdentifier($.key)}: `)
                                         pl.cc($.value.type, ($) => {
@@ -1039,9 +1039,9 @@ export const $$: A.createResolver = ($d) => {
                                                 $i.snippet(`'result': pl.cc(content, ($): `)
                                                 $i.snippet(`pt.OptionalValue<`)
                                                 pl.optional(
-                                                    declaration.result,
+                                                    result,
                                                     ($) => {
-                                                        doGlobalTypeSelection($, $i)
+                                                        doGlobalTypeSelection($.type, $i)
                                                     },
                                                     () => {
                                                         pl.panic(`NO Definition`)
@@ -1050,7 +1050,7 @@ export const $$: A.createResolver = ($d) => {
                                                 $i.snippet(`<Annotation>>`)
                                                 $i.snippet(` => `)
 
-                                                doAnyValueSelection($, $i, ($i) => {
+                                                doAnyValueSelection($.selection, $i, ($i) => {
                                                     $i.snippet(`[true, $]`)
                                                 })
                                                 $i.snippet(`),`)

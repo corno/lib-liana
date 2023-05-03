@@ -12,10 +12,10 @@ export const $$: A.generateDependencyGraph = () => {
         $i.nestedLine(($i) => {
             $i.snippet(`digraph G {`)
             $i.indent(($i) => {
-                $.data['global types'].declarations.__forEach(() => false, ($, key) => {
+                $.data['global types'].__forEach(() => false, ($, key) => {
                     $i.line(`"${key}"`)
                 })
-                $.data['global types'].declarations.__forEach(() => false, ($, key) => {
+                $.data['global types'].__forEach(() => false, ($, key) => {
                     $.parameters.__forEach(() => false, ($, paramKey) => {
                         pl.cc($.type, ($) => {
                             switch ($[0]) {
@@ -38,14 +38,14 @@ export const $$: A.generateDependencyGraph = () => {
                     pl.optional(
                         $.result,
                         ($) => {
-                            $i.line(`"${key}" -> "${$.type.key}" [label="return type"]`)
+                            $i.line(`"${key}" -> "${$.type.type.key}" [label="return type"]`)
                         },
                         () => {
 
                         }
                     )
                 })
-                $.data['global types'].definitions.__forEach(() => false, ($, key) => {
+                $.data['global types'].__forEach(() => false, ($, key) => {
 
                     function doType($: g_liana.T.Type<Annotation>, $i: g_fp.SYNC.I.Block) {
 
@@ -108,8 +108,7 @@ export const $$: A.generateDependencyGraph = () => {
             $i.snippet(`{`)
             $i.indent(($i) => {
                 const gt = $.data['global types']
-                $.data['global types'].definitions.__forEach(() => false, ($, key) => {
-                    const decl = gt.declarations.__unsafeGetEntry(key)
+                $.data['global types'].__forEach(() => false, ($, key) => {
 
                     $i.nestedLine(($i) => {
                         $i.snippet(`"${key}": {`)
@@ -117,7 +116,7 @@ export const $$: A.generateDependencyGraph = () => {
                             $i.nestedLine(($i) => {
                                 $i.snippet(`'parameters': [`)
                                 $i.indent(($i) => {
-                                    decl.parameters.__forEach(() => false, ($, paramKey) => {
+                                    $.parameters.__forEach(() => false, ($, paramKey) => {
                                         pl.cc($.type, ($) => {
                                             switch ($[0]) {
                                                 case 'resolved value':
@@ -135,9 +134,9 @@ export const $$: A.generateDependencyGraph = () => {
                                         })
                                     })
                                     pl.optional(
-                                        decl.result,
+                                        $.result,
                                         ($) => {
-                                            $i.line(`"${$.type.key}",`)
+                                            $i.line(`"${$.type.type.key}",`)
                                         },
                                         () => {  }
                                     )
