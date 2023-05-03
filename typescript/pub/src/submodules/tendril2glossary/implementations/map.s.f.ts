@@ -4,11 +4,12 @@ import * as pt from 'pareto-core-types'
 
 import * as g_this from "../glossary"
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
-import * as g_liana from "../../liana"
+import * as g_tendril from "../../tendril"
+
 
 import { A } from "../api.generated"
 
-export const $$: A.map = ($d) => {
+export const $$: A.map = ($d, ) => {
     return <Annotation>($: g_this.T.MapData<Annotation>): g_glossary.T.Glossary<g_this.T.OutAnnotation<Annotation>> => {
         const library = $['mapped library']
         const terminalMapping = $['mapped library']['terminal mapping']
@@ -32,7 +33,7 @@ export const $$: A.map = ($d) => {
             }
         }
         function mapGlobalTypeSelection(
-            $: g_liana.T.Global__Type__Selection<Annotation>,
+            $: g_tendril.T.Global__Type__Selection<Annotation>,
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
             return {
                 'context': pl.optional(
@@ -56,10 +57,10 @@ export const $$: A.map = ($d) => {
             }
         }
         function mapTempTypeSelection(
-            $: g_liana.T.Temp__Type__Selection<Annotation>,
+            $: g_tendril.T.Type__Selection<Annotation>,
             getLastSteps: () => pt.Array<string>
         ): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> {
-            function tail2tail($: g_liana.T.Temp__Type__Selection__Tail<Annotation>): pt.Array<string> {
+            function tail2tail($: g_tendril.T.Type__Selection__Tail<Annotation>): pt.Array<string> {
                 return $d.merge(pm.wrapRawArray([
                     pl.cc($['step type'], ($) => {
                         switch ($[0]) {
@@ -107,7 +108,7 @@ export const $$: A.map = ($d) => {
                 ])),
             }
         }
-        function mapTypeToNamespace($: g_liana.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
+        function mapTypeToNamespace($: g_tendril.T.Type<Annotation>): g_glossary.T.Namespace<g_this.T.OutAnnotation<Annotation>> {
             return {
                 'namespaces': pl.cc($, ($) => {
                     return pl.cc($.type, ($) => {
@@ -144,7 +145,7 @@ export const $$: A.map = ($d) => {
                 'types': pl.cc($, ($) => pm.wrapRawDictionary({})),
             }
         }
-        function mapTypeToType($: g_liana.T.Type<Annotation>, $x: g_this.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+        function mapTypeToType($: g_tendril.T.Type<Annotation>, $x: g_this.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             return pl.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'nothing': return pl.ss($, ($) => {
@@ -157,7 +158,7 @@ export const $$: A.map = ($d) => {
                                     result,
                                     ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['group', pm.wrapRawDictionary({
                                         "result": {
-                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
+                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['type']))
                                         }
                                     })],
                                     () => ['null', null],
@@ -183,7 +184,7 @@ export const $$: A.map = ($d) => {
                                             'type': doOpt()
                                         },
                                         "result": {
-                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['temp type']))
+                                            'type': createConstraintType($constraint, () => mapGlobalTypeSelection($['type']))
                                         }
                                     })],
                                     () => doOpt(),
@@ -230,8 +231,8 @@ export const $$: A.map = ($d) => {
                                             return {
                                                 'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                     switch (constraintStrat[0]) {
-                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray(["D"]))]]])
-                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray(["D"]))]])
+                                                        case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['type'], () => pm.wrapRawArray(["D"]))]]])
+                                                        case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['type'], () => pm.wrapRawArray(["D"]))]])
                                                         default: return pl.au(constraintStrat[0])
                                                     }
                                                 })
@@ -295,13 +296,7 @@ export const $$: A.map = ($d) => {
                                             'type': createMappedTerminal(),
                                         }]
                                         : [false],
-                                    "constraint": createOptionalConstraintProperty($x, () => pl.cc($['referencee type'], ($) => {
-                                        switch ($[0]) {
-                                            case 'resolved value': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => pm.wrapRawArray(["D"])))
-                                            case 'lookup': return pl.ss($, ($) => mapTempTypeSelection($['temp type'], () => pm.wrapRawArray(["XXXXXXFIXME*****"])))
-                                            default: return pl.au($[0])
-                                        }
-                                    })),
+                                    "constraint": createOptionalConstraintProperty($x, () => mapTempTypeSelection($['type'], () => pm.wrapRawArray(["D"]))),//FIXME computed
                                     "annotation": createOptionalAnnotation(),
                                 }))]
                             )
@@ -329,8 +324,8 @@ export const $$: A.map = ($d) => {
                                                         return {
                                                             'type': pl.cc($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => {
                                                                 switch (constraintStrat[0]) {
-                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray([$a.option.key]))]]])
-                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['temp type'], () => pm.wrapRawArray([$a.option.key]))]])
+                                                                    case 'optional': return pl.ss(constraintStrat, ($) => ['optional', ['reference', ['type', mapTempTypeSelection($a['type'], () => pm.wrapRawArray([$a.option.key]))]]])
+                                                                    case 'required': return pl.ss(constraintStrat, ($) => ['reference', ['type', mapTempTypeSelection($a['type'], () => pm.wrapRawArray([$a.option.key]))]])
                                                                     default: return pl.au(constraintStrat[0])
                                                                 }
                                                             })
@@ -445,44 +440,7 @@ export const $$: A.map = ($d) => {
 
 
                 }),
-                'algorithms': $d.buildDictionary((add) => {
-                    if ($.settings.algorithms.serialize[0] === true) {
-                        // function typeReference(type: string): g_glossary.T.TypeReference<Annotation> {
-                        //     return {
-                        //         'context': ['local', null],
-                        //         'type': type,
-                        //         // 'type': {
-                        //         //     'annotation': "SSDF",
-                        //         //     'name': type
-                        //         // },
-                        //         'arguments': pm.wrapRawDictionary({}),
-                        //     }
-                        // }
-                        // add({
-                        //     'key': "Serialize",
-                        //     'value': {
-                        //         'return type': ['nothing', null],
-                        //         //'data': typeReference($['mapped model'].model.root.key), //unresolved
-                        //         'input builder': [false],
-                        //         'output builder': [true, {
-                        //             'context': ['import', {
-                        //                 'glossary': "fp",
-                        //                 'arguments': pm.wrapRawDictionary({}),
-                        //             }],
-                        //             'builder': "Line"
-                        //             // 'context': ['import', {
-                        //             //     'name': "fp",
-                        //             //     'annotation': "FFF",
-                        //             // }],
-                        //             // 'interface': {
-                        //             //     'name': "Line",
-                        //             //     'annotation': "FFF",
-                        //             // }
-                        //         }],
-                        //     },
-                        // })
-                    }
-                })
+                'algorithms': pm.wrapRawDictionary({}),
             },
         }
     }

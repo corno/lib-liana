@@ -361,7 +361,7 @@ export const $$: A.createResolver = ($d) => {
                 case 'dictionary':
                     pl.ss($, ($) => {
                         const type = $.type
-                        $i.snippet(`$d.resolveDictionary($, { 'map': ($, $l) => `)
+                        $i.snippet(`$d.resolveDictionary<g_in.T.${typePath}.D<Annotation>, g_out.T.${typePath}.D<Annotation>>($, { 'map': ($, $l) => `)
                         $d.enrichedDictionaryForEach($.constraints, {
                             'onEmpty': () => {
                                 $i.snippet(`pl.cc($.value, ($) => `)
@@ -391,7 +391,7 @@ export const $$: A.createResolver = ($d) => {
                                                         $i.snippet(`>(`)
                                                         $i.indent(($i) => {
                                                             $i.nestedLine(($i) => {
-                                                                $i.snippet(`entryskey,`)
+                                                                $i.snippet(`entrykey,`)
                                                             })
                                                             $i.nestedLine(($i) => {
                                                                 $i.snippet(`($) => [true, $],`)
@@ -466,7 +466,7 @@ export const $$: A.createResolver = ($d) => {
                                         case 'option constraint': return pl.ss($, ($) => [false])
                                         case 'parameter': return pl.ss($, ($) => [false])
                                         case 'parent variable': return pl.ss($, ($) => [false])
-                                        case 'lookup': return pl.ss($, ($) => [true, null])
+                                        //case 'lookup': return pl.ss($, ($) => [true, null])
                                         default: return pl.au($[0])
                                     }
                                 })))

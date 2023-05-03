@@ -1733,13 +1733,6 @@ export namespace N {
                                 export namespace T {}
                             }
                             
-                            export namespace lookup {
-                                
-                                export namespace N {}
-                                
-                                export namespace T {}
-                            }
-                            
                             export namespace option_$_$constraint {
                                 
                                 export namespace N {}
@@ -3932,26 +3925,6 @@ export namespace T {
                 readonly 'key': string
             }
             
-            export namespace lookup {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace constraint {
-                    
-                    export type O<GAnnotation> = T.Properties.D<GAnnotation>
-                }
-                
-                export type constraint<GAnnotation> = [ false ] | [ true, T.Properties.D<GAnnotation>]
-                
-                export type key<GAnnotation> = string
-            }
-            
-            export type lookup<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'constraint': [ false ] | [ true, T.Properties.D<GAnnotation>]
-                readonly 'key': string
-            }
-            
             export namespace option__constraint {
                 
                 export type annotation<GAnnotation> = GAnnotation
@@ -4019,11 +3992,6 @@ export namespace T {
                 readonly 'constraint': [ false ] | [ true, T.Dictionary__Constraints.D<GAnnotation>]
                 readonly 'key': string
             }]
-            | ['lookup', {
-                readonly 'annotation': GAnnotation
-                readonly 'constraint': [ false ] | [ true, T.Properties.D<GAnnotation>]
-                readonly 'key': string
-            }]
             | ['option constraint', {
                 readonly 'annotation': GAnnotation
                 readonly 'constraint': [ false ] | [ true, T.Option__Constraints.D<GAnnotation>]
@@ -4045,11 +4013,6 @@ export namespace T {
         | ['dictionary constraint', {
             readonly 'annotation': GAnnotation
             readonly 'constraint': [ false ] | [ true, T.Dictionary__Constraints.D<GAnnotation>]
-            readonly 'key': string
-        }]
-        | ['lookup', {
-            readonly 'annotation': GAnnotation
-            readonly 'constraint': [ false ] | [ true, T.Properties.D<GAnnotation>]
             readonly 'key': string
         }]
         | ['option constraint', {

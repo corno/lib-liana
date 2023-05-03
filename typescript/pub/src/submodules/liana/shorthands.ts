@@ -479,10 +479,10 @@ export function group(rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocati
         'type': ['group', {
             'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
                 const v = clone(currentVariables)
-                currentVariables[key] = ['lookup', {
-                    'key': key,
-                    'annotation': pd.getLocationInfo(1)
-                }]
+                // currentVariables[key] = ['lookup', {
+                //     'key': key,
+                //     'annotation': pd.getLocationInfo(1)
+                // }]
                 return {
                     'variables': pd.d(v),
                     'type': $,

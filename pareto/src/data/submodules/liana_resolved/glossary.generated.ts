@@ -1236,24 +1236,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
                         },
                     })],
-                    "lookup": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
-                        "annotation": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameterXX', "Annotation"]],
-                        },
-                        "constraint": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['optional', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                'context': ['local', null],
-                                'typeXX': "Properties",
-                                'tailXX': a([
-                                    "D",
-                                ]),
-                                'type arguments': d({}),
-                            }]]],
-                        },
-                        "key": {
-                            'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
-                        },
-                    })],
                     "option constraint": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
                         "annotation": {
                             'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameterXX', "Annotation"]],
@@ -2361,10 +2343,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 'types': d({}),
                                 'namespaces': d({
                                     "dictionary constraint": {
-                                        'types': d({}),
-                                        'namespaces': d({}),
-                                    },
-                                    "lookup": {
                                         'types': d({}),
                                         'namespaces': d({}),
                                     },
