@@ -16,20 +16,28 @@ function tempoptional<T, RT>(
     return pl.optional($, a, () => [false])
 }
 
-export const $$: A.map = () => {
+export const $$: A.map = ($d) => {
     return <Annotation>($: g_liana.T.Type__Library<Annotation>) => {
         function map_Atom($: g_liana.T.Atom<Annotation>): g_tendril.T.Atom<Annotation> {
             return {
                 'type': $.type
             }
         }
-        function map_Type($: g_liana.T.Type<Annotation>): g_tendril.T.Type<Annotation> {
+        function map_Type(
+            $: g_liana.T.Type<Annotation>,
+            $p: {
+                'resolved siblings': pt.Lookup<g_tendril.T.Global__Type<Annotation>>,
+            },
+        ): g_tendril.T.Type<Annotation> {
             return {
                 'type': pl.cc($.type, ($) => {
                     switch ($[0]) {
                         case 'array': return pl.ss($, ($) => {
                             return ['array', {
-                                'type': map_Type($.type)
+                                'type': map_Type(
+                                    $.type,
+                                    $p,
+                                )
                             }]
                         })
                         case 'component': return pl.ss($, ($): g_tendril.T.Type._ltype<Annotation> => {
@@ -56,10 +64,16 @@ export const $$: A.map = () => {
                         })
                         case 'dictionary': return pl.ss($, ($): g_tendril.T.Type._ltype<Annotation> => {
                             return ['dictionary', {
-                                'type': map_Type($.type),
+                                'type': map_Type(
+                                    $.type,
+                                    $p,
+                                ),
                                 'constraints': $.constraints.map(($) => {
                                     return {
-                                        'type': map_Type_Selection($['temp type'])
+                                        'type': map_Type_Selection(
+                                            $['temp type'],
+                                            $p,
+                                        )
                                     }
                                 }),
                                 'key': map_Atom($.key)
@@ -68,7 +82,10 @@ export const $$: A.map = () => {
                         case 'group': return pl.ss($, ($): g_tendril.T.Type._ltype<Annotation> => ['group', {
                             'properties': $.properties.map(($) => {
                                 return {
-                                    'type': map_Type($.type)
+                                    'type': map_Type(
+                                        $.type,
+                                        $p,
+                                    )
                                 }
                             })
                         }])
@@ -77,19 +94,28 @@ export const $$: A.map = () => {
                                 $.result,
                                 ($) => {
                                     return [true, {
-                                        'type': map_Global_Type_Selection(($['temp type']))
+                                        'type': map_Global_Type_Selection(
+                                            $['temp type'],
+                                            $p,
+                                        )
                                     }]
                                 }
                             )
                         }])
                         case 'optional': return pl.ss($, ($) => {
                             return ['optional', {
-                                'type': map_Type($.type),
+                                'type': map_Type(
+                                    $.type,
+                                    $p,
+                                ),
                                 'result': tempoptional(
                                     $.result,
                                     ($) => {
                                         return [true, {
-                                            'type': map_Global_Type_Selection($['temp type'])
+                                            'type': map_Global_Type_Selection(
+                                                $['temp type'],
+                                                $p,
+                                            )
                                         }]
                                     },
                                 )
@@ -98,17 +124,26 @@ export const $$: A.map = () => {
                         case 'tagged union': return pl.ss($, ($): g_tendril.T.Type._ltype<Annotation> => ['tagged union', {
                             'result': tempoptional(
                                 $.result,
-                                ($) => [true, map_Global_Type_Selection($)]
+                                ($) => [true, map_Global_Type_Selection(
+                                    $,
+                                    $p,
+                                )]
                             ),
                             'options': $.options.map(($) => {
                                 return {
                                     'constraints': $.constraints.map(($) => {
                                         return {
-                                            'type': map_Type_Selection($['temp type']),
+                                            'type': map_Type_Selection(
+                                                $['temp type'],
+                                                $p,
+                                            ),
                                             'option': $.option
                                         }
                                     }),
-                                    'type': map_Type($.type)
+                                    'type': map_Type(
+                                        $.type,
+                                        $p,
+                                    )
                                 }
                             })
                         }])
@@ -117,10 +152,16 @@ export const $$: A.map = () => {
                                 switch ($[0]) {
                                     case 'no': return pl.ss($, ($) => ['no', null])
                                     case 'yes': return pl.ss($, ($): g_tendril.T.Type._ltype.terminal.constrained<Annotation> => ['yes', {
-                                        'type':pl.cc($['referencee type'], ($) => {
+                                        'type': pl.cc($['referencee type'], ($) => {
                                             switch ($[0]) {
-                                                case 'lookup': return pl.ss($, ($) => map_Type_Selection($['temp type']))
-                                                case 'resolved value': return pl.ss($, ($) => map_Type_Selection($['temp type']))
+                                                case 'lookup': return pl.ss($, ($) => map_Type_Selection(
+                                                    $['temp type'],
+                                                    $p,
+                                                ))
+                                                case 'resolved value': return pl.ss($, ($) => map_Type_Selection(
+                                                    $['temp type'],
+                                                    $p,
+                                                ))
                                                 default: return pl.au($[0])
                                             }
                                         }),
@@ -166,9 +207,17 @@ export const $$: A.map = () => {
             }
         }
 
-        function map_Type_Selection($: g_liana.T.Temp__Type__Selection<Annotation>): g_tendril.T.Type__Selection<Annotation> {
+        function map_Type_Selection(
+            $: g_liana.T.Temp__Type__Selection<Annotation>,
+            $p: {
+                'resolved siblings': pt.Lookup<g_tendril.T.Global__Type<Annotation>>,
+            },
+        ): g_tendril.T.Type__Selection<Annotation> {
             return {
-                'global type': map_Global_Type_Selection($['global type']),
+                'global type': map_Global_Type_Selection(
+                    $['global type'],
+                    $p,
+                ),
                 'tail': tempoptional(
                     $.tail,
                     ($) => [true, map_Type_Selection_Tail($)]
@@ -176,7 +225,29 @@ export const $$: A.map = () => {
             }
         }
 
-        function map_Global_Type_Selection($: g_liana.T.Global__Type__Selection<Annotation>): g_tendril.T.Global__Type__Selection<Annotation> {
+        function map_Global_Type_Selection(
+            $: g_liana.T.Global__Type__Selection<Annotation>,
+            $p: {
+                'resolved siblings': pt.Lookup<g_tendril.T.Global__Type<Annotation>>,
+            },
+        ): g_tendril.T.Global__Type__Selection<Annotation> {
+            pl.optional(
+                $.import,
+                () => {
+
+                },
+                () => {
+                    $p['resolved siblings'].__getEntry(
+                        $.type.key,
+                        () => {
+
+                        },
+                        () => {
+                            pd.logDebugMessage(`no such entry: ${$.type.key}`)
+                        }
+                    )
+                }
+            )
             return {
                 'import': tempoptional(
                     $.import,
@@ -196,18 +267,31 @@ export const $$: A.map = () => {
             'imports': $.imports.map($ => {
                 return $
             }),
-            'global types': $['global types'].map<g_tendril.T.Type__Library.global__types.D<Annotation>>(($) => {
-                return {
-                    'type': map_Type($.type),
-                    'result': tempoptional(
-                        $.result,
-                        ($) => {
-                            return [true, {
-                                'type': map_Global_Type_Selection($.type)
-                            }]
-                        },
-                    )
-                }
+            'global types': $d.resolveDictionary<g_liana.T.Global__Type<Annotation>, g_tendril.T.Global__Type<Annotation>>($['global types'], {
+                'map': (($, $l) => {
+                    return {
+                        'type': map_Type(
+                            $.value.type,
+                            {
+                                'resolved siblings': $l['non circular siblings']
+                            },
+                        ),
+                        'result': tempoptional(
+                            $.value.result,
+                            ($) => {
+                                return [true, {
+                                    'type': map_Global_Type_Selection(
+                                        $.type,
+                                        {
+                                            'resolved siblings': $l['non circular siblings']
+                                        },
+
+                                    )
+                                }]
+                            },
+                        )
+                    }
+                })
             })
         }
     }

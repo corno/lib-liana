@@ -3,6 +3,7 @@ import * as pd from 'pareto-core-data'
 import { algorithm, dependent, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
+
 const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
@@ -14,6 +15,7 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         //     "serialize": procedure("serializeGlossary", { "Annotation": "GAnnotation" }, "Serialize"),
         // }, {})),
         "map": algorithm(sfunction("this", {}, "Map"), { "Annotation": "Annotation" }, dependent(null, {
+            "resolveDictionary": sfunction("resolve", {}, "SafeResolveDictionary"),
             // "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
             // "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
             // "filter": sfunction("dictionary", {}, "Filter"),

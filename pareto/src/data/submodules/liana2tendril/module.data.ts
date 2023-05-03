@@ -27,7 +27,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
 
                 // "array": external("res-pareto-array"),
                 // "build": external("res-pareto-build"),
-                // "foreach": external("res-pareto-foreach"),
+                "resolve": external("res-pareto-resolve"),
                 // "dictionary": external("res-pareto-dictionary"),
                 "this": this_(),
             }),
