@@ -6,8 +6,6 @@ import * as g_this from "../glossary"
 import * as g_algorithm from "../../algorithm_temp"
 import * as g_tendril from "../../tendril"
 import * as g_tendril2glossary from "../../tendril2glossary"
-import * as g_main from "../../../main"
-
 
 import { A } from "../api.generated"
 
