@@ -58,7 +58,21 @@ export const $$: A.generateDependencyGraph = () => {
                                     break
                                 case 'component':
                                     pl.ss($, ($) => {
-                                        $i.line(`"${key}" -> "${$.type.key}" [label="component"]`)
+                                        pl.cc($.context, ($) => {
+                                            switch ($[0]) {
+                                                case 'import':
+                                                    pl.ss($, ($) => {
+                                                        pd.implementMe("@KLRWEKLSJ")
+                                                    })
+                                                    break
+                                                case 'resolved sibling':
+                                                    pl.ss($, ($) => {
+                                                        $i.line(`"${key}" -> "${$.type.key}" [label="component"]`)
+                                                    })
+                                                    break
+                                                default: pl.au($[0])
+                                            }
+                                        })
                                     })
                                     break
                                 case 'dictionary':
@@ -138,7 +152,7 @@ export const $$: A.generateDependencyGraph = () => {
                                         ($) => {
                                             $i.line(`"${$.type.type.key}",`)
                                         },
-                                        () => {  }
+                                        () => { }
                                     )
                                 })
                                 $i.snippet(`],`)
@@ -147,7 +161,7 @@ export const $$: A.generateDependencyGraph = () => {
                                 $i.snippet(`'components': [`)
                                 $i.indent(($i) => {
                                     function doType($: g_liana.T.Type<Annotation>, $i: g_fp.SYNC.I.Block) {
-                
+
                                         pl.cc($.type, ($) => {
                                             switch ($[0]) {
                                                 case 'array':
@@ -157,7 +171,21 @@ export const $$: A.generateDependencyGraph = () => {
                                                     break
                                                 case 'component':
                                                     pl.ss($, ($) => {
-                                                        $i.line(`"${$.type.key}",`)
+                                                        pl.cc($.context, ($) => {
+                                                            switch ($[0]) {
+                                                                case 'import':
+                                                                    pl.ss($, ($) => {
+                                                                        pd.implementMe(`SDFSKFJ:SEM`)
+                                                                    })
+                                                                    break
+                                                                case 'resolved sibling':
+                                                                    pl.ss($, ($) => {
+                                                                        $i.line(`"${$.type.key}",`)
+                                                                    })
+                                                                    break
+                                                                default: pl.au($[0])
+                                                            }
+                                                        })
                                                     })
                                                     break
                                                 case 'dictionary':
@@ -174,7 +202,7 @@ export const $$: A.generateDependencyGraph = () => {
                                                     break
                                                 case 'nothing':
                                                     pl.ss($, ($) => {
-                
+
                                                     })
                                                     break
                                                 case 'optional':
@@ -191,7 +219,7 @@ export const $$: A.generateDependencyGraph = () => {
                                                     break
                                                 case 'terminal':
                                                     pl.ss($, ($) => {
-                
+
                                                     })
                                                     break
                                                 default: pl.au($[0])

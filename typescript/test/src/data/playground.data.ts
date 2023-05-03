@@ -2,7 +2,7 @@ import * as pd from 'pareto-core-data'
 import * as g_tendril2algorithm from "../../.../../../pub/dist/submodules/tendril2algorithm"
 import {
     aResolvedValue,
-    component, constrainedDictionary,
+    constrainedDictionary,
     constrainedOption, dictConstraint,
     dictionary, externalGlobalTypeSelection,
     globalTypeSelection,

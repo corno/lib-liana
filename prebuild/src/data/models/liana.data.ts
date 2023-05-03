@@ -20,7 +20,7 @@ import {
     t_grp,
     t_tu,
     taggedUnion,
-    tempTypeSelection, globalTypeResult
+    tempTypeSelection, globalTypeResult, lookupReference
 } from "lib-liana/dist/submodules/tendril/shorthands"
 
 export const $: g_tendril.T.Type__Library<pd.SourceLocation> = {
@@ -130,12 +130,15 @@ export const $: g_tendril.T.Type__Library<pd.SourceLocation> = {
                     })),
                     "component": option(group({
                         "context": prop(resultTaggedUnion(globalTypeSelection("Type Library"), {
-                            "local": option(group({})),
-                            "import": option(group({
-                                "library": prop(resolvedValueReference(tempTypeSelection("Imports"))),
+                            "resolved sibling": option(group({
+                                "type": prop(resolvedValueReference( tempTypeSelection("Type Library", t_grp("global types")))),
                             })),
+                            "import": option(group({
+                                "library": prop(resolvedValueReference( tempTypeSelection("Imports"))),
+                                "type": prop(resolvedValueReference( tempTypeSelection("Type Library", t_grp("global types")))),
+                            })),
+                            //cyclic siblings are not possible!!
                         })),
-                        "type": prop(resolvedValueReference(tempTypeSelection("Type Library", t_grp("global types")))),
                         "arguments": prop(constrainedDictionary({
                             "parameter": dictConstraint(tempTypeSelection("Parameters"))
                         }, group({

@@ -403,21 +403,33 @@ export function tempTypeSelection(
 //     }]
 // }
 
-export function component(type: string): g_this.T.Type<pd.SourceLocation> {
+export function resolvedSiblingComponent(type: string): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['component', {
-            'context': ['local', null],
-            'type': r_imp(type, 1),
+            'context': ['resolved sibling', {
+                'type': r_imp(type, 1),
+            }],
         }]
     }
 }
+
+export function cyclicSiblingComponent(type: string): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'type': ['component', {
+            'context': ['cyclic sibling', {
+                'type': r_imp(type, 1),
+            }],
+        }]
+    }
+}
+
 export function importedComponent(library: string, type: string): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['component', {
             'context': ['import', {
-                'library': r_imp(library, 1)
+                'library': r_imp(library, 1),
+                'type': r_imp(type, 1),
             }],
-            'type': r_imp(type, 1),
         }]
     }
 }

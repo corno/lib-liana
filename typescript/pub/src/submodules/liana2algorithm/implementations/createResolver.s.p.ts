@@ -1,4 +1,5 @@
 import * as pl from 'pareto-core-lib'
+import * as pd from 'pareto-core-dev'
 
 import * as g_liana from "../../liana"
 import * as g_fp from "lib-fountain-pen"
@@ -289,11 +290,11 @@ export const $$: A.createResolver = ($d) => {
                     })
                 })
                 break
-                case 'parameter':
-                    pl.ss($, ($) => {
-                        $i.snippet(`$v_${$d.createIdentifier($.key)}`)
-                    })
-                    break
+            case 'parameter':
+                pl.ss($, ($) => {
+                    $i.snippet(`$v_${$d.createIdentifier($.key)}`)
+                })
+                break
             case 'this':
                 pl.ss($, ($) => {
                     $i.snippet(`FOOO`)
@@ -325,7 +326,21 @@ export const $$: A.createResolver = ($d) => {
                     break
                 case 'component':
                     pl.ss($, ($) => {
-                        $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>(`)
+                        pl.cc($.context, ($) => {
+                            switch ($[0]) {
+                                case 'import':
+                                    pl.ss($, ($) => {
+                                        pd.implementMe("???!! IMPORT")
+                                    })
+                                    break
+                                case 'resolved sibling':
+                                    pl.ss($, ($) => {
+                                        $i.snippet(`map_${$d.createIdentifier($.type.key)}<Annotation>(`)
+                                    })
+                                    break
+                                default: pl.au($[0])
+                            }
+                        })
                         $i.indent(($i) => {
                             $i.line(`$,`)
                             $d.dictionaryForEach($.arguments, ($) => {
@@ -411,7 +426,7 @@ export const $$: A.createResolver = ($d) => {
                                                         })
                                                         $i.snippet(`)`)
                                                     })
-        
+
                                                 })
                                             })
                                             $i.nestedLine(($i) => {
@@ -427,7 +442,7 @@ export const $$: A.createResolver = ($d) => {
                                                                 $i.nestedLine(($i) => {
                                                                     $i.snippet(`'${$.key}': $v_${$d.createIdentifier($.key)},`)
                                                                     // doTypeSelection($['temp type path'], $i)
-        
+
                                                                 })
                                                             })
                                                         })

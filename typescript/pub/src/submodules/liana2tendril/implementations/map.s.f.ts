@@ -38,12 +38,20 @@ export const $$: A.map = () => {
                                     switch ($[0]) {
                                         case 'import': return pl.ss($, ($) => ['import', {
                                             'library': $.library,
+                                            'type': $.type,
                                         }])
-                                        case 'local': return pl.ss($, ($) => ['local', $])
+                                        case 'resolved sibling': return pl.ss($, ($) => ['resolved sibling', {
+                                            'type': $.type,
+                                        }])
                                         default: return pl.au($[0])
                                     }
                                 }),
-                                'type': $.type
+                                // 'type':pl.cc($.type, ($) => {
+                                //     switch ($[0]) {
+                                //         case '': return pl.ss($, ($) => pd.implementMe(`case`))
+                                //         default: return pl.au($[0])
+                                //     }
+                                // }),
                             }]
                         })
                         case 'dictionary': return pl.ss($, ($): g_tendril.T.Type._ltype<Annotation> => {

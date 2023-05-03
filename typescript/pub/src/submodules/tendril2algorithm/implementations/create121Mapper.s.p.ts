@@ -23,7 +23,21 @@ export const $$: A.create121Mapper = ($d) => {
                     break
                 case 'component':
                     pl.ss($, ($) => {
-                        $i.snippet(`map_${$d.createIdentifier($.type.key)}($)`)
+                        pl.cc($.context, ($) => {
+                            switch ($[0]) {
+                                case 'import':
+                                    pl.ss($, ($) => {
+                                        pd.implementMe("???? IMPORT")
+                                    })
+                                    break
+                                case 'resolved sibling':
+                                    pl.ss($, ($) => {
+                                        $i.snippet(`map_${$d.createIdentifier($.type.key)}($)`)
+                                    })
+                                    break
+                                default: pl.au($[0])
+                            }
+                        })
                     })
                     break
                 case 'nothing':

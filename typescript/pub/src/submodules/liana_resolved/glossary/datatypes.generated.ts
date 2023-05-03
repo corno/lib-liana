@@ -990,6 +990,13 @@ export namespace N {
                                                                                         
                                                                                         export namespace T {}
                                                                                     }
+                                                                                    
+                                                                                    export namespace _$ltype {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
                                                                                 }
                                                                                 
                                                                                 export namespace T {}
@@ -999,13 +1006,21 @@ export namespace N {
                                                                         export namespace T {}
                                                                     }
                                                                     
-                                                                    export namespace local {
+                                                                    export namespace resolved_$_$sibling {
                                                                         
                                                                         export namespace N {
                                                                             
                                                                             export namespace G {
                                                                                 
-                                                                                export namespace N {}
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace _$ltype {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
                                                                                 
                                                                                 export namespace T {}
                                                                             }
@@ -1018,13 +1033,6 @@ export namespace N {
                                                                 export namespace T {}
                                                             }
                                                         }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                    
-                                                    export namespace _$ltype {
-                                                        
-                                                        export namespace N {}
                                                         
                                                         export namespace T {}
                                                     }
@@ -2804,6 +2812,26 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            
+                            export namespace _ltype {
+                                
+                                export type annotation<GAnnotation> = GAnnotation
+                                
+                                export namespace constraint {
+                                    
+                                    export type O<GAnnotation> = T.Type__Library.global__types.D<GAnnotation>
+                                }
+                                
+                                export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                
+                                export type key<GAnnotation> = string
+                            }
+                            
+                            export type _ltype<GAnnotation> = {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }
                         
                         export type _limport<GAnnotation> = {
@@ -2812,11 +2840,43 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }
                         
-                        export namespace local {}
+                        export namespace resolved__sibling {
+                            
+                            export namespace _ltype {
+                                
+                                export type annotation<GAnnotation> = GAnnotation
+                                
+                                export namespace constraint {
+                                    
+                                    export type O<GAnnotation> = T.Type__Library.global__types.D<GAnnotation>
+                                }
+                                
+                                export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                
+                                export type key<GAnnotation> = string
+                            }
+                            
+                            export type _ltype<GAnnotation> = {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }
                         
-                        export type local<GAnnotation> = null
+                        export type resolved__sibling<GAnnotation> = {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }
                     }
                     
                     export type content<GAnnotation> = 
@@ -2826,8 +2886,19 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }]
-                        | ['local', null]
+                        | ['resolved sibling', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }]
                     
                     export namespace result {
                         
@@ -2845,29 +2916,20 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }]
-                        | ['local', null]
+                        | ['resolved sibling', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }]
                     readonly 'result': [ false ] | [ true, T.Type__Library<GAnnotation>]
-                }
-                
-                export namespace _ltype {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export namespace constraint {
-                        
-                        export type O<GAnnotation> = T.Type__Library.global__types.D<GAnnotation>
-                    }
-                    
-                    export type constraint<GAnnotation> = [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    
-                    export type key<GAnnotation> = string
-                }
-                
-                export type _ltype<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
                 }
             }
             
@@ -2891,14 +2953,20 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }]
-                        | ['local', null]
+                        | ['resolved sibling', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }]
                     readonly 'result': [ false ] | [ true, T.Type__Library<GAnnotation>]
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
                 }
             }
             
@@ -3195,14 +3263,20 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }]
-                        | ['local', null]
+                        | ['resolved sibling', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }]
                     readonly 'result': [ false ] | [ true, T.Type__Library<GAnnotation>]
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
                 }
             }]
             | ['dictionary', {
@@ -3286,14 +3360,20 @@ export namespace T {
                                 readonly 'constraint': [ false ] | [ true, T.Imports.D<GAnnotation>]
                                 readonly 'key': string
                             }
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
                         }]
-                        | ['local', null]
+                        | ['resolved sibling', {
+                            readonly 'type': {
+                                readonly 'annotation': GAnnotation
+                                readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
+                                readonly 'key': string
+                            }
+                        }]
                     readonly 'result': [ false ] | [ true, T.Type__Library<GAnnotation>]
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'constraint': [ false ] | [ true, T.Type__Library.global__types.D<GAnnotation>]
-                    readonly 'key': string
                 }
             }]
             | ['dictionary', {

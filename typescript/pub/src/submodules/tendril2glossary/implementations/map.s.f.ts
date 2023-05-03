@@ -1,6 +1,7 @@
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-map'
 import * as pt from 'pareto-core-types'
+import * as pd from 'pareto-core-dev'
 
 import * as g_this from "../glossary"
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -9,7 +10,7 @@ import * as g_tendril from "../../tendril"
 
 import { A } from "../api.generated"
 
-export const $$: A.map = ($d, ) => {
+export const $$: A.map = ($d,) => {
     return <Annotation>($: g_this.T.MapData<Annotation>): g_glossary.T.Glossary<g_this.T.OutAnnotation<Annotation>> => {
         const library = $['mapped library']
         const terminalMapping = $['mapped library']['terminal mapping']
@@ -193,7 +194,40 @@ export const $$: A.map = ($d, ) => {
                             () => doOpt(),
                         )
                     })
-                    case 'component': return pl.ss($, ($) => ['reference', ['type', {
+                    case 'component': return pl.ss($, ($): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> => ['reference', ['type', pl.cc($.context, ($): g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>> => {
+                        switch ($[0]) {
+                            case 'cyclic sibling': return pl.ss($, ($) => ({
+                                'context': ['local', null], //FIXME!!!
+                                'tailXX': pm.wrapRawArray([]),
+                                'typeXX': $.type.key,
+                                'type arguments': pm.wrapRawDictionary({}),
+                            }))
+                            case 'import': return pl.ss($, ($) => ({
+                                'context': ['import', {
+                                    'glossary': {
+                                        'glossary': {
+                                            'annotation': ['source', $.library.annotation],
+                                            'key': $.library.key
+                                        },
+                                        'glossary arguments': pm.wrapRawDictionary({
+                                            "Annotation": ['glossary parameterXX', "Annotation"]
+                                        }),
+                                    }
+                                }],
+                                'tailXX': pm.wrapRawArray([]),
+                                'typeXX': $.type.key,
+                                'type arguments': pm.wrapRawDictionary({}),
+                            }))
+                            case 'resolved sibling': return pl.ss($, ($) => ({
+                                'context': ['local', null],
+                                'tailXX': pm.wrapRawArray([]),
+                                'typeXX': $.type.key,
+                                'type arguments': pm.wrapRawDictionary({}),
+                            }))
+                            default: return pl.au($[0])
+
+                            /*
+                            {
                         'context': pl.cc($, ($) => {
                             switch ($.context[0]) {
                                 case 'import': return pl.ss($.context, ($) => ['import', {
@@ -214,7 +248,10 @@ export const $$: A.map = ($d, ) => {
                         'typeXX': $.type.key,
                         'tailXX': pm.wrapRawArray([]),
                         'type arguments': pm.wrapRawDictionary<g_glossary.T.DataSpecifier<g_this.T.OutAnnotation<Annotation>>>({}),
-                    }]])
+                    }
+                    */
+                        }
+                    })]])
                     case 'dictionary': return pl.ss($, ($) => pl.cc($, ($) => {
                         const type = $.type
                         const constraints = $.constraints

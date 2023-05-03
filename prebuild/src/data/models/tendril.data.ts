@@ -28,7 +28,7 @@ import {
     t_tu,
     taggedUnion,
     tailSel,
-    tempTypeSelection, valSel, globalTypeResult
+    tempTypeSelection, valSel, globalTypeResult, thisCyclic
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 const forwardComponent = component
@@ -141,12 +141,17 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     })),
                     "component": option(group({
                         "context": prop(resultTaggedUnion(globalTypeSelection("Type Library"), {
-                            "local": option(group({})),
+                            "resolved sibling": option(group({
+                                "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types")))),
+                            })),
                             "import": option(group({
                                 "library": prop(resolvedValueReference(valSel("imports"), tempTypeSelection("Imports"))),
+                                "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types")))),
+                            })),
+                            "cyclic sibling": option(group({
+                                "type": prop(lookupReference(lparameter("TBD"), tempTypeSelection("Type Library", t_grp("global types")))),
                             })),
                         })),
-                        "type": prop(resolvedValueReference(valSel("context", s_taggedunion(s_group("global types", s_group("declarations")))), tempTypeSelection("Type Library", t_grp("global types")))),
                     })),
                 })),
             })

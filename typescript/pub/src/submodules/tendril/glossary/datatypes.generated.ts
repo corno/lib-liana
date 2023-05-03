@@ -365,7 +365,7 @@ export namespace N {
                                                                 
                                                                 export namespace N {
                                                                     
-                                                                    export namespace _$limport {
+                                                                    export namespace cyclic_$_$sibling {
                                                                         
                                                                         export namespace N {
                                                                             
@@ -373,7 +373,7 @@ export namespace N {
                                                                                 
                                                                                 export namespace N {
                                                                                     
-                                                                                    export namespace library {
+                                                                                    export namespace _$ltype {
                                                                                         
                                                                                         export namespace N {}
                                                                                         
@@ -388,13 +388,51 @@ export namespace N {
                                                                         export namespace T {}
                                                                     }
                                                                     
-                                                                    export namespace local {
+                                                                    export namespace _$limport {
                                                                         
                                                                         export namespace N {
                                                                             
                                                                             export namespace G {
                                                                                 
-                                                                                export namespace N {}
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace library {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                    
+                                                                                    export namespace _$ltype {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                                export namespace T {}
+                                                                            }
+                                                                        }
+                                                                        
+                                                                        export namespace T {}
+                                                                    }
+                                                                    
+                                                                    export namespace resolved_$_$sibling {
+                                                                        
+                                                                        export namespace N {
+                                                                            
+                                                                            export namespace G {
+                                                                                
+                                                                                export namespace N {
+                                                                                    
+                                                                                    export namespace _$ltype {
+                                                                                        
+                                                                                        export namespace N {}
+                                                                                        
+                                                                                        export namespace T {}
+                                                                                    }
+                                                                                }
                                                                                 
                                                                                 export namespace T {}
                                                                             }
@@ -407,13 +445,6 @@ export namespace N {
                                                                 export namespace T {}
                                                             }
                                                         }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                    
-                                                    export namespace _$ltype {
-                                                        
-                                                        export namespace N {}
                                                         
                                                         export namespace T {}
                                                     }
@@ -1250,6 +1281,28 @@ export namespace T {
                 
                 export namespace context {
                     
+                    export namespace cyclic__sibling {
+                        
+                        export namespace _ltype {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type _ltype<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
+                    
+                    export type cyclic__sibling<GAnnotation> = {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
+                    
                     export namespace _limport {
                         
                         export namespace library {
@@ -1263,6 +1316,18 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        
+                        export namespace _ltype {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type _ltype<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                     
                     export type _limport<GAnnotation> = {
@@ -1270,48 +1335,84 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }
                     
-                    export namespace local {}
+                    export namespace resolved__sibling {
+                        
+                        export namespace _ltype {
+                            
+                            export type annotation<GAnnotation> = GAnnotation
+                            
+                            export type key<GAnnotation> = string
+                        }
+                        
+                        export type _ltype<GAnnotation> = {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
                     
-                    export type local<GAnnotation> = null
+                    export type resolved__sibling<GAnnotation> = {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }
                 }
                 
                 export type context<GAnnotation> = 
+                    | ['cyclic sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
                     | ['import', {
                         readonly 'library': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }]
-                    | ['local', null]
-                
-                export namespace _ltype {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
-                
-                export type _ltype<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                    | ['resolved sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }
             
             export type component<GAnnotation> = {
                 readonly 'context': 
+                    | ['cyclic sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
                     | ['import', {
                         readonly 'library': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }]
-                    | ['local', null]
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                    | ['resolved sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }
             
             export namespace dictionary {
@@ -1496,17 +1597,28 @@ export namespace T {
             }]
             | ['component', {
                 readonly 'context': 
+                    | ['cyclic sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
                     | ['import', {
                         readonly 'library': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }]
-                    | ['local', null]
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                    | ['resolved sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }]
             | ['dictionary', {
                 readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
@@ -1554,17 +1666,28 @@ export namespace T {
             }]
             | ['component', {
                 readonly 'context': 
+                    | ['cyclic sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
                     | ['import', {
                         readonly 'library': {
                             readonly 'annotation': GAnnotation
                             readonly 'key': string
                         }
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
                     }]
-                    | ['local', null]
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                    | ['resolved sibling', {
+                        readonly 'type': {
+                            readonly 'annotation': GAnnotation
+                            readonly 'key': string
+                        }
+                    }]
             }]
             | ['dictionary', {
                 readonly 'constraints': T.Dictionary__Constraints<GAnnotation>

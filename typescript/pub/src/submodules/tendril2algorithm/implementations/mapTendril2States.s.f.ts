@@ -10,12 +10,19 @@ export const $$: A.mapTendril2States = ($d) => {
     return <Annotation>($: g_tendril2glossary.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
         function mapType($: g_tendril.T.Type<Annotation>): g_algorithm.T.Type<Annotation> {
-            return  pl.cc($.type, ($) => {
+            return pl.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'array': return pl.ss($, ($) => ['array', mapType($.type)])
                     case 'nothing': return pl.ss($, ($) => ['null', null])//IS THIS CORRECT?
                     case 'optional': return pl.ss($, ($) => ['optional', mapType($.type)])
-                    case 'component': return pl.ss($, ($) => ['reference', $.type.key])
+                    case 'component': return pl.ss($, ($): g_algorithm.T.Type<Annotation> => ['reference', pl.cc($.context, ($): g_algorithm.T.Type.reference<Annotation> => {
+                        switch ($[0]) {
+                            case 'cyclic sibling': return pl.ss($, ($) => $.type.key)
+                            case 'resolved sibling': return pl.ss($, ($) => $.type.key)
+                            case 'import': return pl.ss($, ($) => $.type.key)
+                            default: return pl.au($[0])
+                        }
+                    })])
                     case 'dictionary': return pl.ss($, ($) => ['dictionary', mapType($.type)])
                     case 'group': return pl.ss($, ($) => ['group', $.properties.map(($) => ({
                         'type': mapType($.type),
@@ -37,7 +44,7 @@ export const $$: A.mapTendril2States = ($d) => {
                     case 'tagged union': return pl.ss($, ($) => ['taggedUnion', $.options.map(($) => mapType($.type))])
                     default: return pl.au($[0])
                 }
-              
+
             })
         }
         return $.library['global types'].map(($) => mapType($.type))

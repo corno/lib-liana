@@ -744,24 +744,74 @@ export function tempTypeSelection(
 //     }]
 // }
 
-export function component(type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+// export function component(type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+//     return {
+//         'classes': pd.d({}),
+//         'type': ['component', {
+//             'context': ['local', null],
+//             'type': r_imp(type, 1),
+//             'arguments': pd.d(args),
+//         }]
+//     }
+// }
+// export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+//     return {
+//         'classes': pd.d({}),
+//         'type': ['component', {
+//             'context': ['import', {
+//                 'library': r_imp(library, 1)
+//             }],
+//             'type': r_imp(type, 1),
+//             'arguments': pd.d(args),
+//         }]
+//     }
+// }
+
+
+export function resolvedSiblingComponent(
+    type: string,
+    args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>
+): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
         'type': ['component', {
-            'context': ['local', null],
-            'type': r_imp(type, 1),
+            'context': ['resolved sibling', {
+                'type': r_imp(type, 1),
+            }],
+
             'arguments': pd.d(args),
         }]
     }
 }
-export function importedComponent(library: string, type: string, args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>): g_this.T.Type<pd.SourceLocation> {
+
+// export function cyclicSiblingComponent(
+//     type: string,
+//     args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>
+// ): g_this.T.Type<pd.SourceLocation> {
+//     return {
+//         'classes': pd.d({}),
+//         'type': ['component', {
+//             'context': ['cyclic sibling', {
+//                 'type': r_imp(type, 1),
+//             }],
+
+//             'arguments': pd.d(args),
+//         }]
+//     }
+// }
+
+export function importedComponent(
+    library: string, 
+    type: string,
+    args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>
+): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
         'type': ['component', {
             'context': ['import', {
-                'library': r_imp(library, 1)
+                'library': r_imp(library, 1),
+                'type': r_imp(type, 1),
             }],
-            'type': r_imp(type, 1),
             'arguments': pd.d(args),
         }]
     }
