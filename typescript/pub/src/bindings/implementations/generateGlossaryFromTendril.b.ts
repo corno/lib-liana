@@ -1,7 +1,7 @@
 import * as pl from 'pareto-core-lib'
 
 
-import * as a_2glossary from "../../submodules/liana2glossary"
+import * as a_2glossary from "../../submodules/tendril2glossary"
 import * as a_array from "res-pareto-array"
 import * as a_build from "res-pareto-build"
 import * as a_coll from "res-pareto-collation"
@@ -12,7 +12,7 @@ import * as a_glossary_serialize from "lib-pareto-typescript-project/dist/submod
 
 import { A, D } from "../api.generated"
 
-export const $$: A.generateGlossary = <GAnnotation>($d: D.generateGlossary<GAnnotation>) => {
+export const $$: A.generateGlossaryFromTendril = <GAnnotation>($d: D.generateGlossaryFromTendril<GAnnotation>) => {
     return ($: a_2glossary.T.GenerateData<GAnnotation>, $i) => {
         const a = a_foreach.$r.arrayForEach
         const d = a_foreach.$r.createDictionaryForEach({

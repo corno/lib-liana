@@ -13,13 +13,13 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         //     "map": sfunction("this", { "XAnnotation": "GAnnotation" }, "Map"),
         //     "serialize": procedure("serializeGlossary", { "Annotation": "GAnnotation" }, "Serialize"),
         // }, {})),
-        "map": algorithm(sfunction("this", {}, "Map"), { "Annotation": "Annotation" }, dependent(null, {
-            "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-            "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
-            "filter": sfunction("dictionary", {}, "Filter"),
-            "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
-            "merge": sfunction("array", {}, "Merge"),
-            "push": sfunction("array", {}, "Push"),
-        }, {})),
+        // "map": algorithm(sfunction("this", {}, "Map"), { "Annotation": "Annotation" }, dependent(null, {
+        //     "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+        //     "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
+        //     "filter": sfunction("dictionary", {}, "Filter"),
+        //     "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
+        //     "merge": sfunction("array", {}, "Merge"),
+        //     "push": sfunction("array", {}, "Push"),
+        // }, {})),
     }),
 }

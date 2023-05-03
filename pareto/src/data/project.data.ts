@@ -11,10 +11,11 @@ import { $ as liana_resolved } from "./submodules/liana_resolved/module.data"
 import { $ as resolve } from "./submodules/resolve/module.data"
 import { $ as liana_flat } from "./submodules/liana_flat/module.data"
 import { $ as liana2tendril } from "./submodules/liana2tendril/module.data"
-import { $ as liana2glossary } from "./submodules/liana2glossary/module.data"
 import { $ as tendril2glossary } from "./submodules/tendril2glossary/module.data"
-import { $ as liana2api } from "./submodules/liana2api/module.data"
 import { $ as liana2algorithm } from "./submodules/liana2algorithm/module.data"
+import { $ as liana2glossary } from "./submodules/liana2glossary/module.data"
+import { $ as liana2api } from "./submodules/liana2api/module.data"
+import { $ as tendril2algorithm } from "./submodules/tendril2algorithm/module.data"
 import { $ as algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
 import { $ as p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
 import { $ as bindings } from "./bindings/moduledefinition.data"
@@ -49,15 +50,16 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
             "generate_dependencygraph": a_generate_dependencygraph,
             "tendril": tendril,
             "tendril2glossary": tendril2glossary,
+            "liana2glossary": liana2glossary,
+            "liana2algorithm": liana2algorithm,
 
             "liana": liana,
             "liana_resolved": liana_resolved,
             "resolve": resolve,
             "liana_flat": liana_flat,
-            "liana2glossary": liana2glossary,
             "liana2tendril": liana2tendril,
             "liana2api": liana2api,
-            "liana2algorithm": liana2algorithm,
+            "tendril2algorithm": tendril2algorithm,
         }),
 
         'bindings': [true, {

@@ -1,4 +1,5 @@
 import * as pd from 'pareto-core-dev'
+import * as pl from 'pareto-core-lib'
 
 import * as g_main from "../../main"
 
@@ -18,16 +19,47 @@ export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
             //         le.data($.message)
             //     }
             // })($.data['mapped library'].library)
+            const path = $.path
+            pl.cc($.data, ($) => {
+                switch ($[0]) {
+                    case 'liana':
+                        pl.ss($, ($) => {
 
-            a_2glossary.$api.generateGlossary<GAnnotation>({
-                'getSourceLocation': $d.getSourceLocation,
-            })(
-                $,
-                ($) => {
-                    pd.implementMe(`SKDF:SFSKDFL:SDFJ`)
-                    //a_main.$r.logError
+                            a_2glossary.$api.generateGlossaryFromLiana<GAnnotation>({
+                                'getSourceLocation': $d.getSourceLocation,
+                            })(
+                                {
+                                    'data': $,
+                                    'path': path,
+                                },
+                                ($) => {
+                                    pd.implementMe(`SKDF:SFSKDFL:SDFJ`)
+                                    //a_main.$r.logError
+                                }
+                            )
+                        })
+                        break
+                    case 'tendril':
+                        pl.ss($, ($) => {
+
+                            a_2glossary.$api.generateGlossaryFromTendril<GAnnotation>({
+                                'getSourceLocation': $d.getSourceLocation,
+                            })(
+                                {
+                                    'data': $,
+                                    'path': path,
+                                },
+                                ($) => {
+                                    pd.implementMe(`SKDF:SFSKDFL:SDFJ`)
+                                    //a_main.$r.logError
+                                }
+                            )
+                        })
+                        break
+                    default: pl.au($[0])
                 }
-            )
+            })
+
         })
         le.end()
     }

@@ -17,16 +17,16 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "algorithm_temp": imp(),
         "fp": imp(),
         "liana": imp(),
-        "liana2glossary": imp(),
+        "tendril2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
-            // "AlgorithmSettings": type(group({
-            //     "serialize": member(optional(group({
-            //         //data location,
-            //     }))),
-            // })),
+            "AlgorithmSettings": type(group({
+                "serialize": member(optional(group({
+                    //data location,
+                }))),
+            })),
 
             "OutAnnotation": type(taggedUnion({
                 "source": ref(glossaryParameter("Annotation")),
@@ -49,7 +49,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'synchronous': {
         'interfaces': d({}),
         'algorithms': d({
-            "CreateResolver": procedure(data(typeReference("CreateResolverParameters")), sExternalInterfaceReference("fp", "Block")),
+            "MapTendril2States": sfunction(externalTypeReference("algorithm", "States", { "Annotation": typeReference("OutAnnotation") }), data(externalTypeReference("tendril2glossary", "Mapped Library", { "Annotation": glossaryParameter("Annotation") }))),
+            "MapTendril2Serializer": sfunction(externalTypeReference("algorithm_temp", "AlgorithmImplementation", { "Annotation": typeReference("OutAnnotation") }), data(externalTypeReference("tendril2glossary", "Mapped Library", { "Annotation": glossaryParameter("Annotation") }))),
+            "Create121Mapper": procedure(data(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") })), sExternalInterfaceReference("fp", "Block")),
+            //"CreateResolver": procedure(data(typeReference("CreateResolverParameters")), sExternalInterfaceReference("fp", "Block")),
         }),
     },
 

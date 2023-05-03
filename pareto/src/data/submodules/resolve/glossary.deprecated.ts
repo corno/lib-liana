@@ -30,7 +30,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "Error": sInterface(sInterfaceMethod(typeReference("Error")))
         }),
         'algorithms': d({
-            "Resolve": sfunction(externalTypeReference("resolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}), data(externalTypeReference("unresolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}))),
+            //"Resolve": sfunction(externalTypeReference("resolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}), data(externalTypeReference("unresolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}))),
         }),
     },
 }

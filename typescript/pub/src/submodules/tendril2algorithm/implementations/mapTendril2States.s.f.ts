@@ -1,15 +1,15 @@
 import * as pl from 'pareto-core-lib'
 
 import * as g_algorithm from "lib-pareto-typescript-project/dist/submodules/algorithm"
-import * as g_liana from "../../liana"
-import * as g_liana2glossary from "../../liana2glossary"
+import * as g_tendril from "../../tendril"
+import * as g_tendril2glossary from "../../tendril2glossary"
 
 import { A } from "../api.generated"
 
-export const $$: A.mapLiana2States = ($d) => {
-    return <Annotation>($: g_liana2glossary.T.Mapped__Library<Annotation>) => {
+export const $$: A.mapTendril2States = ($d) => {
+    return <Annotation>($: g_tendril2glossary.T.Mapped__Library<Annotation>) => {
         const terminalMapping = $['terminal mapping']
-        function mapType($: g_liana.T.Type<Annotation>): g_algorithm.T.Type<Annotation> {
+        function mapType($: g_tendril.T.Type<Annotation>): g_algorithm.T.Type<Annotation> {
             return  pl.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'array': return pl.ss($, ($) => ['array', mapType($.type)])

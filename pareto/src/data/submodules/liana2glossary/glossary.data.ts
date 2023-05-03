@@ -17,6 +17,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "fs": imp(),
         "glossary": imp(),
         "liana": imp(),
+        "tendril2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -27,40 +28,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             })),
             "MapData": type(group({
                 "mapped library": member(ref(typeReference("Mapped Library"))),
-                "settings": member(group({
-                    "annotations": member(boolean()),
-                    "datamodel": member(optional(group({
-                        "constraints mapping": member(group({
-                            "terminal values": member(boolean()),
-                            "constraints": member(optional(taggedUnion({
-                                "optional": group({}),
-                                "required": group({}),
-                            }))),
-                        })),
-                    }))),
-                    "visitor interface": member(optional(group({
-                        "datamodel": member(taggedUnion({
-                            "internal": group({}),
-                            "exernal": group({
-                                "location": member(string()),
-                            }),
-                        })),
-                    }))),
-                    "algorithms": member(group({
-                        "serialize": member(optional(group({
-                            //data location,
-                        }))),
-                        //resolve
-                    })),
-                })),
+                "settings": member(ref(externalTypeReference("tendril2glossary", "Mapping Settings", { "Annotation": glossaryParameter("Annotation") }))),
             })),
             "Mapped Library": type(group({
                 "library": member(ref(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
-                "terminal mapping": member(dictionary(taggedUnion({
-                    "boolean": null_(),
-                    "number": null_(),
-                    "string": null_(),
-                }))),
+                "terminal mapping": member(ref(externalTypeReference("tendril2glossary", "Terminal Mapping", { "Annotation": glossaryParameter("Annotation") }))),
             })),
             "OutAnnotation": type(taggedUnion({
                 "source": ref(glossaryParameter("Annotation")),
@@ -78,8 +50,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         }),
         'algorithms': d({
             "Generate": procedure(data(typeReference("GenerateData")), sExternalInterfaceReference("common", "String")),
-            "GenerateAndReport": procedure(data(typeReference("GenerateData")), sInterfaceReference("OnWriteFileError")),
-            "Map": sfunction(externalTypeReference("glossary", "Glossary", { "Annotation": typeReference("OutAnnotation") }), data(typeReference("MapData"))),
+            // "GenerateAndReport": procedure(data(typeReference("GenerateData")), sInterfaceReference("OnWriteFileError")),
+            //"Map": sfunction(externalTypeReference("glossary", "Glossary", { "Annotation": typeReference("OutAnnotation") }), data(typeReference("MapData"))),
         }),
     },
 

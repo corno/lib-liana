@@ -1,5 +1,5 @@
 import * as pd from 'pareto-core-data'
-import * as g_liana2algorithm from "../../.../../../pub/dist/submodules/liana2algorithm"
+import * as g_tendril2algorithm from "../../.../../../pub/dist/submodules/tendril2algorithm"
 import {
     aResolvedValue,
     component, constrainedDictionary,
@@ -40,7 +40,7 @@ import {
 } from "../../.../../../pub/dist/submodules/liana/shorthands"
 const d = pd.d
 
-export const $: g_liana2algorithm.T.CreateResolverParameters<pd.SourceLocation> = {
+export const $: g_tendril2algorithm.T.CreateResolverParameters<pd.SourceLocation> = {
     'in': "../../lowlevel_implementation",
     'out': {
         'root': "../../lowlevel_implementation_possiblyresolved",

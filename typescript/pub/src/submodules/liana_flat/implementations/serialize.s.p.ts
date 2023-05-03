@@ -1,18 +1,16 @@
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-map'
 
-import * as g_liana2glossary from "../../liana2glossary"
+import * as g_tendril2glossary from "../../tendril2glossary"
 
-import * as g_liana from "../../liana"
-// import * as g_liana2pareto from "../../liana2pareto"
+import * as g_tendril from "../../tendril"
 import * as g_fp from "lib-fountain-pen"
 import * as g_common from "glo-pareto-common"
-import * as g_main from "../../../main"
 
 import { A } from "../api.generated"
 
 export const $$: A.serialize = ($d) => {
-    return <Annotation>($: g_liana2glossary.T.Mapped__Library<Annotation>, $i: g_fp.SYNC.I.Directory) => {
+    return <Annotation>($: g_tendril2glossary.T.Mapped__Library<Annotation>, $i: g_fp.SYNC.I.Directory) => {
 
         // $i.file(`states.generated.ts`, ($i) => {
         //     $d.serializeStates($d.mapLiana2States($), $i)
@@ -22,7 +20,7 @@ export const $$: A.serialize = ($d) => {
             return $d.createIdentifier($d.getArrayAsString($))
         }
         function doDictionaries($: {
-            $: g_liana.T.Type<Annotation>,
+            $: g_tendril.T.Type<Annotation>,
             path: g_common.T.Path,
             idPath: g_common.T.Path,
             currentName: string,
@@ -87,7 +85,7 @@ export const $$: A.serialize = ($d) => {
                                                 $i.line(`//////`)
                                                 function doScalars(
                                                     $: {
-                                                        $: g_liana.T.Type<Annotation>,
+                                                        $: g_tendril.T.Type<Annotation>,
                                                         isRoot: boolean,
                                                         path: g_common.T.Path,
                                                     }
@@ -197,7 +195,7 @@ export const $$: A.serialize = ($d) => {
                                                         $i.nestedLine(($i) => {
                                                             $i.snippet(`'data': `)
                                                             function writeUnflattener($: {
-                                                                $: g_liana.T.Type<Annotation>,
+                                                                $: g_tendril.T.Type<Annotation>,
                                                                 path: g_common.T.Path,
                                                                 currentName: string,
                                                             }, $i: g_fp.SYNC.I.Line) {

@@ -3,7 +3,6 @@ import * as pd from 'pareto-core-data'
 import { external, main, sibling, this_ } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
-
 import { $ as api } from "./api.data"
 
 import { $ as glossary } from "./glossary.data"
@@ -15,24 +14,29 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
         'glossary': {
             'root': glossary,
             'imports': d({
-                "common": external("glo-pareto-common"),
+                "algorithm": external("lib-pareto-typescript-project/dist/submodules/algorithm"),
+                "algorithm_temp": sibling("algorithm_temp"),
                 "liana": sibling("liana"),
                 "tendril2glossary": sibling("tendril2glossary"),
                 "main": main(),
-                "pareto": external("lib-pareto-typescript-project"),
-                "fs": external("res-pareto-filesystem"),
+                "fp": external("lib-fountain-pen"),
+                "glossary": external("lib-pareto-typescript-project/dist/submodules/glossary"),
+                "api": external("lib-pareto-typescript-project/dist/submodules/project"),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                //"pareto": external("lib-pareto-typescript-project"),
+                "api": external("lib-pareto-typescript-project/dist/submodules/project"),
                 "build": external("res-pareto-build"),
+                "common": external("glo-pareto-common"),
+                "dictionary": external("res-pareto-dictionary"),
                 "foreach": external("res-pareto-foreach"),
+                "resolve": external("res-pareto-resolve"),
                 "this": this_(),
+                "ts": external("res-typescript"),
             }),
         },
     },
     'implementation': ['typescript', null],
-
 }

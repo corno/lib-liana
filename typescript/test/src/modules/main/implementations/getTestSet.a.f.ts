@@ -7,7 +7,7 @@ import * as pa from 'pareto-core-async'
 import * as g_test from "lib-pareto-test"
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
-import * as g_2algorithm from "../../../../../pub/dist/submodules/liana2algorithm"
+import * as g_2algorithm from "../../../../../pub/dist/submodules/tendril2algorithm"
 
 import * as a_pub from "../../../../../pub/dist"
 import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"

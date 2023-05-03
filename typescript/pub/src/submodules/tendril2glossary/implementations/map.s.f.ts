@@ -23,7 +23,7 @@ export const $$: A.map = ($d, ) => {
         }
 
         function createConstraintType(
-            $: g_this.T.MapData.settings.datamodel.O.constraints__mapping.constraints.O<Annotation>,
+            $: g_this.T.Mapping__Settings.datamodel.O.constraints__mapping.constraints.O<Annotation>,
             $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
         ): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             switch ($[0]) {
@@ -145,7 +145,7 @@ export const $$: A.map = ($d, ) => {
                 'types': pl.cc($, ($) => pm.wrapRawDictionary({})),
             }
         }
-        function mapTypeToType($: g_tendril.T.Type<Annotation>, $x: g_this.T.MapData.settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
+        function mapTypeToType($: g_tendril.T.Type<Annotation>, $x: g_this.T.Mapping__Settings.datamodel.O<Annotation>): g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>> {
             return pl.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'nothing': return pl.ss($, ($) => {
@@ -267,7 +267,7 @@ export const $$: A.map = ($d, ) => {
                             )
                         }
                         function createOptionalConstraintProperty(
-                            $x: g_this.T.MapData.settings.datamodel.O<Annotation>,
+                            $x: g_this.T.Mapping__Settings.datamodel.O<Annotation>,
                             $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
                         ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
                             return pl.optional(

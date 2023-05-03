@@ -25,43 +25,45 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                 "data": member(ref(typeReference("MapData"))),
                 "path": member(ref(externalTypeReference("common", "Path"))),
             })),
+            "Mapping Settings": type(group({
+                "annotations": member(boolean()),
+                "datamodel": member(optional(group({
+                    "constraints mapping": member(group({
+                        "terminal values": member(boolean()),
+                        "constraints": member(optional(taggedUnion({
+                            "optional": group({}),
+                            "required": group({}),
+                        }))),
+                    })),
+                }))),
+                // "visitor interface": member(optional(group({
+                //     "datamodel": member(taggedUnion({
+                //         "internal": group({}),
+                //         "exernal": group({
+                //             "location": member(string()),
+                //         }),
+                //     })),
+                // }))),
+                // "algorithms": member(group({
+                //     "serialize": member(optional(group({
+                //         //data location,
+                //     }))),
+                //     //resolve
+                // })),
+            })),
             "MapData": type(group({
                 "mapped library": member(ref(typeReference("Mapped Library"))),
-                "settings": member(group({
-                    "annotations": member(boolean()),
-                    "datamodel": member(optional(group({
-                        "constraints mapping": member(group({
-                            "terminal values": member(boolean()),
-                            "constraints": member(optional(taggedUnion({
-                                "optional": group({}),
-                                "required": group({}),
-                            }))),
-                        })),
-                    }))),
-                    // "visitor interface": member(optional(group({
-                    //     "datamodel": member(taggedUnion({
-                    //         "internal": group({}),
-                    //         "exernal": group({
-                    //             "location": member(string()),
-                    //         }),
-                    //     })),
-                    // }))),
-                    // "algorithms": member(group({
-                    //     "serialize": member(optional(group({
-                    //         //data location,
-                    //     }))),
-                    //     //resolve
-                    // })),
-                })),
+                "settings": member(ref(typeReference("Mapping Settings"))),
             })),
             "Mapped Library": type(group({
                 "library": member(ref(externalTypeReference("tendril", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
-                "terminal mapping": member(dictionary(taggedUnion({
-                    "boolean": null_(),
-                    "number": null_(),
-                    "string": null_(),
-                }))),
+                "terminal mapping": member(ref(typeReference("Terminal Mapping"))),
             })),
+            "Terminal Mapping": type(dictionary(taggedUnion({
+                "boolean": null_(),
+                "number": null_(),
+                "string": null_(),
+            }))),
             "OutAnnotation": type(taggedUnion({
                 "source": ref(glossaryParameter("Annotation")),
                 "internal": string(),

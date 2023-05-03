@@ -18,12 +18,4 @@ export namespace SYNC {
         
         export type Error<GAnnotation> = ($: T.Error<GAnnotation>, ) => void
     }
-    
-    export namespace A {
-        
-        
-        export namespace F {
-            export type Resolve<GAnnotation> = ($: g_unresolved.T.Type__Library<GAnnotation>) => g_resolved.T.Type__Library<GAnnotation>
-        }
-    }
 }

@@ -2,7 +2,7 @@ import * as pl from 'pareto-core-lib'
 import * as pd from 'pareto-core-dev'
 import * as pm from 'pareto-core-map'
 
-import * as g_2algorithm from "../../submodules/liana2algorithm"
+import * as g_liana2algorithm from "../../submodules/liana2algorithm"
 
 import * as a_foreach from "res-pareto-foreach"
 import * as a_coll from "res-pareto-collation"
@@ -20,7 +20,7 @@ export const $$: A.generateResolver = () => {
         a_fp.$b.createFile()(
             ($i) => {
                 $i($.path, ($i) => {
-                    g_2algorithm.$a.createResolver({
+                    g_liana2algorithm.$a.createResolver({
                         'createIdentifier': a_ts.$r.createIdentifier(),
                         'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
                             'compare': a_coll.$r.localeIsABeforeB(),

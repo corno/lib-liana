@@ -13,8 +13,11 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
 
         "serialize_flat": algorithm(procedure("flat", {}, "Serialize"), { "Annotation": "Annotation" }),
         "generateAPI": algorithm(procedure("liana2api", {}, "Generate"), { "Annotation": "Annotation" }),
-        "generateGlossary": algorithm(procedure("liana2glossary", {}, "Generate"), { "Annotation": "Annotation" }, dependent(null, {
-            "getSourceLocation": sfunction("glossary", {"A": "GAnnotation" }, "GetSourceLocation")
+        "generateGlossaryFromLiana": algorithm(procedure("liana2glossary", {}, "Generate"), { "Annotation": "Annotation" }, dependent(null, {
+            "getSourceLocation": sfunction("glossary", { "A": "GAnnotation" }, "GetSourceLocation")
+        }, {})),
+        "generateGlossaryFromTendril": algorithm(procedure("tendril2glossary", {}, "Generate"), { "Annotation": "Annotation" }, dependent(null, {
+            "getSourceLocation": sfunction("glossary", { "A": "GAnnotation" }, "GetSourceLocation")
         }, {})),
         "generateResolver": algorithm(procedure("main", {}, "GenerateResolver"), { "Annotation": "Annotation" })
     }),

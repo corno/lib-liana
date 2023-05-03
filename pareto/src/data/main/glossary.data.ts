@@ -33,7 +33,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({
         "common": imp(),
         "liana2glossary": imp(),
-        "liana2algorithm": imp(),
+        "tendril2glossary": imp(),
+        "tendril2algorithm": imp(),
     }),
     'root': {
         'namespaces': d({}),
@@ -41,12 +42,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "CompileParameters": type(group({
                 "outputs": member(array(group({
                     "path": member(ref(externalTypeReference("common", "Path"))),
-                    "data": member(ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))),
+                    "data": member(taggedUnion({
+                        "liana": ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") })),
+                        "tendril": ref(externalTypeReference("tendril2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))
+                    })),
                 })))
             })),
             "GenerateResolverParameters": type(group({
                 "path": member(ref(externalTypeReference("common", "Path"))),
-                "data": member(ref(externalTypeReference("liana2algorithm", "CreateResolverParameters", { "Annotation": glossaryParameter("Annotation") }))),
+                "data": member(ref(externalTypeReference("tendril2algorithm", "CreateResolverParameters", { "Annotation": glossaryParameter("Annotation") }))),
             })),
             "Error": type(group({
                 "message": member(ref(externalTypeReference("common", "String"))),

@@ -17,13 +17,13 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({
         "common": imp(),
         "fs": imp(),
-        "liana2glossary": imp(),
+        "tendril2glossary": imp(),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
             "GenerateData": type(group({
-                "data": member(ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))),
+                "data": member(ref(externalTypeReference("tendril2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))),
                 "path": member(ref(externalTypeReference("common", "Path"))),
             })),
             "OutAnnotation": type(taggedUnion({
