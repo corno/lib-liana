@@ -237,14 +237,8 @@ export const $$: A.map = ($d) => {
 
                 },
                 () => {
-                    $p['resolved siblings'].__getEntry(
+                    $p['resolved siblings'].__unsafeGetEntry(
                         $.type.key,
-                        () => {
-
-                        },
-                        () => {
-                            pd.logDebugMessage(`no such entry: ${$.type.key}`)
-                        }
                     )
                 }
             )

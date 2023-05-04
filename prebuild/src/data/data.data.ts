@@ -64,7 +64,7 @@ export const $: g_liana.T.CompileParameters <pd.SourceLocation> = {
         },
         {
             'path': pd.a([`../../pareto/src/data/submodules/tendril/glossary.generated.ts`]),
-            'data': ['liana', {
+            'data': ['tendril', {
                 'settings': {
                     'annotations': true,
                     'datamodel': [true, {
