@@ -106,7 +106,7 @@ export const $: g_tendril.T.Type__Library<pd.SourceLocation> = {
                                 "type": prop(resolvedValueReference(tempTypeSelection("Type Library", t_grp("global types")))),
                             })),
                             "cyclic sibling": option(group({
-                                "type": prop(lookupReference(tempTypeSelection("Type Library", t_grp("global types")))),
+                                "type": prop(lookupReference(tempTypeSelection("Type Library", t_grp("global types")), true)),
                             })),
                         })),
                     })),
