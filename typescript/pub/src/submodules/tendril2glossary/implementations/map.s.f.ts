@@ -305,17 +305,17 @@ export const $$: A.map = ($d,) => {
                         }
                         function createOptionalConstraintProperty(
                             $x: g_this.T.Mapping__Settings.datamodel.O<Annotation>,
-                            $cb: () => g_glossary.T.DataSpecifier._ltype<g_this.T.OutAnnotation<Annotation>>
+                            $cb: () => g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>>
                         ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
                             return pl.optional(
                                 $x['constraints mapping'].constraints,
                                 ($) => pl.cc($, ($) => {
                                     switch ($[0]) {
                                         case 'optional': return pl.ss($, ($) => [true, {
-                                            'type': ['optional', ['reference', ['type', $cb()]]]
+                                            'type': ['optional', $cb()]
                                         }])
                                         case 'required': return pl.ss($, ($) => [true, {
-                                            'type': ['reference', ['type', $cb()]]
+                                            'type': $cb()
                                         }])
                                         default: return pl.au($[0])
                                     }
@@ -333,7 +333,16 @@ export const $$: A.map = ($d,) => {
                                             'type': createMappedTerminal(),
                                         }]
                                         : [false],
-                                    "constraint": createOptionalConstraintProperty($x, () => mapTempTypeSelection($['type'], () => pm.wrapRawArray(["D"]))),//FIXME computed
+                                    "constraint": createOptionalConstraintProperty($x, () => {
+                                        const x =  mapTempTypeSelection($['type'], () => pm.wrapRawArray(["D"]))
+                                        return pl.cc($.computed, ($) => {
+                                            switch ($[0]) {
+                                                case 'no': return pl.ss($, ($) => ['reference', ['type', x]])
+                                                case 'yes': return pl.ss($, ($) => ['computed', ['reference', ['type', x]]])
+                                                default: return pl.au($[0])
+                                            }
+                                        })
+                                    }),//FIXME computed
                                     "annotation": createOptionalAnnotation(),
                                 }))]
                             )
