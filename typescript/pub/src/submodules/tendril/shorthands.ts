@@ -107,6 +107,7 @@ export function resolvedValueReference(
 
 export function lookupReference(
     type: g_this.T.Type__Selection<pd.SourceLocation>,
+    computed: boolean
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['terminal', {
@@ -118,7 +119,7 @@ export function lookupReference(
             },
             'constrained': ['yes', {
                 'type': type,
-                'computed': ['no', null],
+                'computed': computed ? ['yes', null] : ['no', null],
             }],
         }]
     }

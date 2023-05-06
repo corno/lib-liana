@@ -237,9 +237,9 @@ export const $$: A.map = ($d) => {
 
                 },
                 () => {
-                    $p['resolved siblings'].__unsafeGetEntry(
-                        $.type.key,
-                    )
+                    // $p['resolved siblings'].__unsafeGetEntry(
+                    //     $.type.key,
+                    // )
                 }
             )
             return {

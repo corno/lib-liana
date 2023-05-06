@@ -10,6 +10,9 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         "compile": algorithm(procedure("main", {}, "Compile"), { "Annotation": "Annotation" }, dependent(null, {
             "getSourceLocation": sfunction("glossary", { "A": "GAnnotation" }, "GetSourceLocation")
         }, {})),
+        // "compileModel": algorithm(procedure("main", {}, "CompileModel"), { "Annotation": "Annotation" }, dependent(null, {
+        //     "getSourceLocation": sfunction("glossary", { "A": "GAnnotation" }, "GetSourceLocation")
+        // }, {})),
 
         "serialize_flat": algorithm(procedure("flat", {}, "Serialize"), { "Annotation": "Annotation" }),
         "generateAPI": algorithm(procedure("liana2api", {}, "Generate"), { "Annotation": "Annotation" }),

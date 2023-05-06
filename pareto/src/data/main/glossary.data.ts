@@ -48,6 +48,21 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                     })),
                 })))
             })),
+            // "CompileModelParameters": type(group({
+            //     "path": member(ref(externalTypeReference("common", "Path"))),
+            //     //"library": member(ref(externalTypeReference("liana", "Type Library", {}, { "Annotation": glossaryParameter("Annotation") }))),
+            //     "library": member(ref(externalTypeReference("liana", "Type Library", { "XAnnotation": glossaryParameter("XAnnotation") }))),
+
+            //     "terminal mapping": member(dictionary(taggedUnion({
+            //         "boolean": null_(),
+            //         "number": null_(),
+            //         "string": null_(),
+            //     }))),
+            //     "resolver": member(optional(group({
+            //         "path": member(ref(externalTypeReference("common", "Path"))),
+            //     })))
+            
+            // })),
             "GenerateResolverParameters": type(group({
                 "path": member(ref(externalTypeReference("common", "Path"))),
                 "data": member(ref(externalTypeReference("tendril2algorithm", "CreateResolverParameters", { "Annotation": glossaryParameter("Annotation") }))),
@@ -113,6 +128,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         }),
         'algorithms': d({
             "Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError")),
+            //"CompileModel": procedure(data(typeReference("CompileModelParameters")), sInterfaceReference("OnError")),
             "GenerateResolver": procedure(data(typeReference("GenerateResolverParameters")), sInterfaceReference("Nothing")),
         }),
     },
