@@ -22,7 +22,7 @@ import * as a_resolve from "res-pareto-resolve"
 
 const d = pm.wrapRawDictionary
 
-import { $ as d_playground } from "../../../data/playground.data"
+import { $ as d_playground } from "../../../data/playground_old.data"
 import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
 
 import { A } from "../api.generated"

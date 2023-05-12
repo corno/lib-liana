@@ -291,6 +291,14 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             'type arguments': d({}),
                         }]],
                     },
+                    "variables": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                            'context': ['local', null],
+                            'typeXX': "Variables",
+                            'tailXX': a([]),
+                            'type arguments': d({}),
+                        }]],
+                    },
                 })]
             },
             "Root": {
@@ -451,14 +459,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                         'tailXX': a([]),
                                         'type arguments': d({}),
                                     }]]],
-                                },
-                                "variables": {
-                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
-                                        'context': ['local', null],
-                                        'typeXX': "Variables",
-                                        'tailXX': a([]),
-                                        'type arguments': d({}),
-                                    }]],
                                 },
                             })],
                             "nothing": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
@@ -1143,6 +1143,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                 'types': d({}),
                                 'namespaces': d({}),
                             },
+                            "variables": {
+                                'types': d({}),
+                                'namespaces': d({}),
+                            },
                         }),
                     },
                 }),
@@ -1325,10 +1329,6 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                                                                         'namespaces': d({}),
                                                                     },
                                                                 }),
-                                                            },
-                                                            "variables": {
-                                                                'types': d({}),
-                                                                'namespaces': d({}),
                                                             },
                                                         }),
                                                     },

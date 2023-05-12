@@ -629,6 +629,13 @@ export namespace N {
                         
                         export namespace T {}
                     }
+                    
+                    export namespace variables {
+                        
+                        export namespace N {}
+                        
+                        export namespace T {}
+                    }
                 }
                 
                 export namespace T {}
@@ -924,13 +931,6 @@ export namespace N {
                                                                 export namespace T {}
                                                             }
                                                         }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                    
-                                                    export namespace variables {
-                                                        
-                                                        export namespace N {}
                                                         
                                                         export namespace T {}
                                                     }
@@ -1940,10 +1940,13 @@ export namespace T {
     export namespace Property {
         
         export type _ltype = T.Type
+        
+        export type variables = T.Variables
     }
     
     export type Property = {
         readonly 'type': T.Type
+        readonly 'variables': T.Variables
     }
     
     export type Root = T.Model
@@ -2162,13 +2165,10 @@ export namespace T {
                 }
                 
                 export type properties = pt.Dictionary<T.Property>
-                
-                export type variables = T.Variables
             }
             
             export type group = {
                 readonly 'properties': pt.Dictionary<T.Property>
-                readonly 'variables': T.Variables
             }
             
             export namespace nothing {
@@ -2323,7 +2323,6 @@ export namespace T {
             }]
             | ['group', {
                 readonly 'properties': pt.Dictionary<T.Property>
-                readonly 'variables': T.Variables
             }]
             | ['nothing', {
                 readonly 'result': [ false ] | [ true, T.Value__Selection]
@@ -2381,7 +2380,6 @@ export namespace T {
             }]
             | ['group', {
                 readonly 'properties': pt.Dictionary<T.Property>
-                readonly 'variables': T.Variables
             }]
             | ['nothing', {
                 readonly 'result': [ false ] | [ true, T.Value__Selection]

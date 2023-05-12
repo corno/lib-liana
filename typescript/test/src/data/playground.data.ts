@@ -1,125 +1,103 @@
 import * as pd from 'pareto-core-data'
-import * as g_tendril2algorithm from "../../.../../../pub/dist/submodules/tendril2algorithm"
-import * as g_liana from "../../.../../../pub/dist/submodules/liana"
+
+import * as g_liana from "../../../pub/dist/submodules/unresolved"
+
 import {
-    aResolvedValue,
-    constrainedDictionary,
-    constrainedOption, dictConstraint,
-    dictionary, externalGlobalTypeSelection,
-    globalTypeSelection,
-    group,
-    nothing, nothingResult,
-    option, optionConstraint, optional,
-    optionalResult,
-    pExternalResolvedValue,
-    pResolvedValue,
     globalType,
+    dictionary,
+    group,
     prop,
-    resolvedValueReference,
-    resultTaggedUnion,
-    s_component,
-    s_reference,
-    s_group,
-    s_nothing,
-    s_optional, s_taggedunion,
-    t_dict,
-    t_grp,
-    t_tu,
-    taggedUnion,
-    tempExternalTypeSelection,
-    tempTypeSelection,
-    terminal,
-    valSel,
-    tailSel,
-    varSel,
-    lookupReference,
-    thisNonCyclic,
-    aLookup,
-    lparameter,
-    array,
-    pCyclicLookup,
-    pNonCyclicLookup,
-    resolvedSiblingComponent
-} from "../../.../../../pub/dist/submodules/liana/shorthands"
+    state,
+    atom,
+    stateGroup,
+    pResolvedValue,
+    component,
+    typeRef,
+
+    constrainedState, stateConstraint, v_ref,
+    aResolvedValue,
+    valueSelection,
+    dictionaryReference,
+    v_grp,
+    constrainedDictionary,
+} from "../../../pub/dist/submodules/unresolved/shorthands"
 const d = pd.d
 
 export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
     'imports': pd.d({}),
-    'labels': {
-        'atom types': pd.d({
-            "bedrag": null,
-            "bestand": null,
-            "dagen": null,
-            "datum": null,
-            "multiline text": null,
-            "promillage": null,
-            "identifier": null,
-            "single line text": null,
-        }),
-    },
+    'atom types': pd.d({
+        "bedrag": null,
+        "bestand": null,
+        "dagen": null,
+        "datum": null,
+        "multiline text": null,
+        "promillage": null,
+        "identifier": null,
+        "single line text": null,
+    }),
     'global types': pd.d({
         "Stamdata": globalType(
             {},
             group({
                 "gebruikers": prop(dictionary(group({
-                    "volledige naam": prop(terminal("single line text")),
+                    "volledige naam": prop(atom("single line text")),
                 }))),
                 "balans": prop(group({
                     "hoofdcategorieen fiscus": prop(dictionary(group({
-                        "zijde": prop(taggedUnion({
-                            "activa": option(group({})),
-                            "passiva": option(group({})),
+                        "zijde": prop(stateGroup({
+                            "activa": state(group({})),
+                            "passiva": state(group({})),
                         })),
                         "subcategorieen": prop(dictionary(group({}))),
                     }))),
                     "hoofdcategorieen": prop(dictionary(group({
-                        "zijde": prop(taggedUnion({
-                            "activa": option(group({})),
-                            "passiva": option(group({})),
+                        "zijde": prop(stateGroup({
+                            "activa": state(group({})),
+                            "passiva": state(group({})),
                         })),
                         "subcategorieen": prop(dictionary(group({
-                            "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), tempTypeSelection("Stamdata", t_grp("balans", t_grp("hoofdcategorieen fiscus"))))),
-                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", s_reference(s_group("subcategorieen"))), tempTypeSelection("Stamdata", t_grp("balans", t_grp("hoofdcategorieen fiscus", t_dict(t_grp("subcategorieen"))))))),
+                            "hoofdcategorie fiscus": prop(dictionaryReference(valueSelection("hoofdcategorieen fiscus"))),
+                            "subcategorie fiscus": prop(dictionaryReference(valueSelection("hoofdcategorie fiscus", v_ref(v_grp("subcategorieen"))))),
                         }))),
                     }))),
                     "grootboekrekeningen": prop(dictionary(group({
-                        "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), tempTypeSelection("Stamdata", t_grp("balans", t_grp("hoofdcategorieen"))))),
-                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", s_reference(s_group("subcategorieen"))), tempTypeSelection("Stamdata", t_grp("balans", t_grp("hoofdcategorieen", t_dict(t_grp("subcategorieen"))))))),
-                        "zijde": prop(taggedUnion({
-                            "activa": option(group({})),
-                            "passiva": option(group({})),
+                        "hoofdcategorie": prop(dictionaryReference(valueSelection("hoofdcategorieen"))),
+                        "subcategorie": prop(dictionaryReference(valueSelection("hoofdcategorie", v_ref(v_grp("subcategorieen"))))),
+                        "zijde": prop(stateGroup({
+                            "activa": state(group({})),
+                            "passiva": state(group({})),
                         })),
                     }))),
                 })),
                 "resultaat": prop(group({
                     "hoofdcategorieen fiscus": prop(dictionary(group({
-                        "zijde": prop(taggedUnion({
-                            "kosten": option(group({})),
-                            "opbrengsten": option(group({})),
+                        "zijde": prop(stateGroup({
+                            "kosten": state(group({})),
+                            "opbrengsten": state(group({})),
                         })),
                         "subcategorieen": prop(dictionary(group({}))),
                     }))),
                     "hoofdcategorieen": prop(dictionary(group({
-                        "zijde": prop(taggedUnion({
-                            "kosten": option(group({})),
-                            "opbrengsten": option(group({})),
+                        "zijde": prop(stateGroup({
+                            "kosten": state(group({})),
+                            "opbrengsten": state(group({})),
                         })),
                         "subcategorieen": prop(dictionary(group({
-                            "hoofdcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorieen fiscus"), tempTypeSelection("Stamdata", t_grp("resultaat", t_grp("hoofdcategorieen fiscus"))))),
-                            "subcategorie fiscus": prop(resolvedValueReference(valSel("hoofdcategorie fiscus", s_reference(s_group("subcategorieen"))), tempTypeSelection("Stamdata", t_grp("resultaat", t_grp("hoofdcategorieen fiscus", t_dict(t_grp("subcategorieen"))))))),
+                            "hoofdcategorie fiscus": prop(dictionaryReference(valueSelection("hoofdcategorieen fiscus"))),
+                            "subcategorie fiscus": prop(dictionaryReference(valueSelection("hoofdcategorie fiscus", v_ref(v_grp("subcategorieen"))))),
                         }))),
                     }))),
                     "correctietypes vennootschapsbelasting": prop(dictionary(group({}))),
                     "grootboekrekeningen": prop(dictionary(group({
-                        "hoofdcategorie": prop(resolvedValueReference(valSel("hoofdcategorieen"), tempTypeSelection("Stamdata", t_grp("resultaat", t_grp("hoofdcategorieen"))))),
-                        "subcategorie": prop(resolvedValueReference(valSel("hoofdcategorie", s_reference(s_group("subcategorieen"))), tempTypeSelection("Stamdata", t_grp("resultaat", t_grp("hoofdcategorieen", t_dict(t_grp("subcategorieen"))))))),
-                        "zijde": prop(taggedUnion({
-                            "opbrengsten": option(group({})),
-                            "kosten": option(group({
-                                "correctie op vennootschapsbelasting": prop(taggedUnion({
-                                    "nee": option(group({})),
-                                    "ja": option(group({
-                                        "correctietype": prop(resolvedValueReference(valSel("correctietypes vennootschapsbelasting"), tempTypeSelection("Stamdata", t_grp("resultaat", t_grp("correctietypes vennootschapsbelasting"))))),
+                        "hoofdcategorie": prop(dictionaryReference(valueSelection("hoofdcategorieen"))),
+                        "subcategorie": prop(dictionaryReference(valueSelection("hoofdcategorie", v_ref(v_grp("subcategorieen"))))),
+                        "zijde": prop(stateGroup({
+                            "opbrengsten": state(group({})),
+                            "kosten": state(group({
+                                "correctie op vennootschapsbelasting": prop(stateGroup({
+                                    "nee": state(group({})),
+                                    "ja": state(group({
+                                        "correctietype": prop(dictionaryReference(valueSelection("correctietypes vennootschapsbelasting"))),
                                     })),
                                 })),
                             })),
@@ -127,10 +105,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     }))),
                 })),
                 "BTW-categorieen": prop(dictionary(group({
-                    "BTW-heffing": prop(taggedUnion({
-                        "nee": option(group({})),
-                        "ja": option(group({
-                            "BTW-promillage": prop(terminal("promillage")),
+                    "BTW-heffing": prop(stateGroup({
+                        "nee": state(group({})),
+                        "ja": state(group({
+                            "BTW-promillage": prop(atom("promillage")),
                         })),
                     })),
                 }))),
@@ -138,10 +116,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     "projecten": prop(dictionary(group({
                         "offertes": prop(dictionary(group({
                             "opbrengsten": prop(dictionary(group({
-                                "type": prop(taggedUnion({
-                                    "project": option(group({
-                                        "betaaldatum": prop(terminal("datum")),
-                                        "bedrag": prop(terminal("bedrag")),
+                                "type": prop(stateGroup({
+                                    "project": state(group({
+                                        "betaaldatum": prop(atom("datum")),
+                                        "bedrag": prop(atom("bedrag")),
                                     })),
                                 })),
                             }))),
@@ -149,7 +127,7 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                     }))),
                     "licentieovereenkomsten": prop(dictionary(group({
                         "periodes": prop(dictionary(group({
-                            "bedrag": prop(terminal("bedrag")),
+                            "bedrag": prop(atom("bedrag")),
                         }))),
                     }))),
                 }))),
@@ -166,23 +144,23 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
             group({
                 "jaren": prop(dictionary(group({
                     "inkopen": prop(dictionary(group({
-                        "openstaand": prop(terminal("bedrag"))
+                        "openstaand": prop(atom("bedrag"))
                     }))),
                     "verkopen": prop(dictionary(group({
-                        "openstaand": prop(terminal("bedrag"))
+                        "openstaand": prop(atom("bedrag"))
                     }))),
                     "BTW periodes": prop(dictionary(group({
-                        "openstaand": prop(terminal("bedrag"))
+                        "openstaand": prop(atom("bedrag"))
                     }))),
                 }))),
                 "informele rekeningen": prop(dictionary(group({
-                    "eindsaldo": prop(terminal("bedrag"))
+                    "eindsaldo": prop(atom("bedrag"))
                 }))),
                 "overige balans items": prop(dictionary(group({
-                    "eindsaldo": prop(terminal("bedrag"))
+                    "eindsaldo": prop(atom("bedrag"))
                 }))),
                 "bankrekeningen": prop(dictionary(group({
-                    "eindsaldo": prop(terminal("bedrag"))
+                    "eindsaldo": prop(atom("bedrag"))
                 }))),
             })
         ),
@@ -195,10 +173,10 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "balans grootboekrekeningen": prop(constrainedDictionary({
                     //typePath("Stamdata", t_grp("balans", t_grp("grootboekrekeningen"))), tbd()
                 }, group({
-                    "type": prop(taggedUnion({
-                        "bankrekening": option(group({})),
-                        "informele rekening": option(group({})),
-                        "overig": option(group({})),
+                    "type": prop(stateGroup({
+                        "bankrekening": state(group({})),
+                        "informele rekening": state(group({})),
+                        "overig": state(group({})),
                     })),
                 }))),
                 "resultaat grootboekrekeningen": prop(constrainedDictionary({
@@ -208,51 +186,51 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "informele rekeningen": prop(constrainedDictionary({
                     //typePath("Stamdata", t_grp("informele rekeningen")), tbd()
                 }, group({
-                    "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "beginsaldo": prop(terminal("bedrag")),
-                    "nieuw": prop(taggedUnion({
-                        "nee": option(group({
-                            "rekening": prop(resolvedValueReference(valSel("overloop", s_group("informele rekeningen")), tempTypeSelection("Overloop", t_grp("informele rekeningen")))),
+                    "grootboekrekening": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "beginsaldo": prop(atom("bedrag")),
+                    "nieuw": prop(stateGroup({
+                        "nee": state(group({
+                            "rekening": prop(dictionaryReference(valueSelection("overloop", v_grp("informele rekeningen")))),
                         })),
-                        "ja": option(group({})),
+                        "ja": state(group({})),
                     })),
                 }))),
                 "overige balans items": prop(dictionary(group({
-                    "beginsaldo": prop(terminal("bedrag")),
-                    "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "nieuw": prop(taggedUnion({
-                        "nee": option(group({
-                            "balans item": prop(resolvedValueReference(valSel("overloop", s_group("overige balans items")), tempTypeSelection("Overloop", t_grp("overige balans items")))),
+                    "beginsaldo": prop(atom("bedrag")),
+                    "grootboekrekening": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "nieuw": prop(stateGroup({
+                        "nee": state(group({
+                            "balans item": prop(dictionaryReference(valueSelection("overloop", v_grp("overige balans items")))),
                         })),
-                        "ja": option(group({})),
+                        "ja": state(group({})),
                     })),
                 }))),
-                "startdatum boekjaar": prop(terminal("datum")),
-                "beginsaldo Winstreserve": prop(terminal("bedrag")),
-                "afgesloten": prop(taggedUnion({
-                    "nee": option(group({
+                "startdatum boekjaar": prop(atom("datum")),
+                "beginsaldo Winstreserve": prop(atom("bedrag")),
+                "afgesloten": prop(stateGroup({
+                    "nee": state(group({
                     })),
-                    "ja": option(group({})),
+                    "ja": state(group({})),
                 })),
                 "grootboeken": prop(group({
-                    "resultaat dit jaar": prop(resolvedValueReference(valSel("resultaat grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("resultaat grootboekrekeningen")))),
-                    "winstreserve": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "BTW afrondingen": prop(resolvedValueReference(valSel("resultaat grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("resultaat grootboekrekeningen")))),
-                    "beginsaldo nog aan te geven BTW": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "nog aan te geven BTW": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "inkoop saldo": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "verkoop saldo": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                    "BTW periode": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
+                    "resultaat dit jaar": prop(dictionaryReference(valueSelection("resultaat grootboekrekeningen"))),
+                    "winstreserve": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "BTW afrondingen": prop(dictionaryReference(valueSelection("resultaat grootboekrekeningen"))),
+                    "beginsaldo nog aan te geven BTW": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "nog aan te geven BTW": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "inkoop saldo": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "verkoop saldo": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
+                    "BTW periode": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
                 })),
                 "bankrekeningen": prop(dictionary(group({
-                    "beginsaldo": prop(terminal("bedrag")),
-                    "nieuw": prop(taggedUnion({
-                        "nee": option(group({
-                            "rekening": prop(resolvedValueReference(valSel("overloop", s_group("bankrekeningen")), tempTypeSelection("Overloop", t_grp("bankrekeningen")))),
+                    "beginsaldo": prop(atom("bedrag")),
+                    "nieuw": prop(stateGroup({
+                        "nee": state(group({
+                            "rekening": prop(dictionaryReference(valueSelection("overloop", v_grp("bankrekeningen")))),
                         })),
-                        "ja": option(group({})),
+                        "ja": state(group({})),
                     })),
-                    "grootboekrekening": prop(resolvedValueReference(valSel("balans grootboekrekeningen"), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
+                    "grootboekrekening": prop(dictionaryReference(valueSelection("balans grootboekrekeningen"))),
                 }))),
             })
         ),
@@ -266,159 +244,159 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "salarisrondes": prop(dictionary(group({
                 }))),
                 "BTW periodes": prop(dictionary(group({
-                    "omschrijving": prop(terminal("multiline text")),
-                    "status": prop(taggedUnion({
-                        "aangegeven": option(group({
-                            "bedrag": prop(terminal("bedrag")),
-                            "afronding": prop(terminal("bedrag")),
-                            "datum": prop(terminal("datum")),
+                    "omschrijving": prop(atom("multiline text")),
+                    "status": prop(stateGroup({
+                        "aangegeven": state(group({
+                            "bedrag": prop(atom("bedrag")),
+                            "afronding": prop(atom("bedrag")),
+                            "datum": prop(atom("datum")),
                         })),
-                        "openstaand": option(group({})),
+                        "openstaand": state(group({})),
                     })),
                     "1. BTW-categorieen": prop(constrainedDictionary({
-                        //valSel("XXXX"), tempTypeSelection("Stamdata", t_grp("BTW-categorieen"))
+                        //valueSelection("XXXX"), tempTypeSelection("Stamdata", t_grp("BTW-categorieen"))
                     }, group({
                     }))),
                     "documenten": prop(dictionary(group({
-                        "bestand": prop(terminal("bestand")),
+                        "bestand": prop(atom("bestand")),
                     }))),
                 }))),
                 "overige balans items": prop(dictionary(group({ //constrain
                     "memoriaal boekingen": prop(dictionary(group({
-                        "bedrag": prop(terminal("bedrag")),
-                        "datum": prop(terminal("datum")),
-                        "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", s_group("balans grootboekrekeningen")), tempTypeSelection("Jaarstamdata", t_grp("balans grootboekrekeningen")))),
-                        "omschrijving": prop(terminal("multiline text")),
+                        "bedrag": prop(atom("bedrag")),
+                        "datum": prop(atom("datum")),
+                        "grootboekrekening": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("balans grootboekrekeningen")))),
+                        "omschrijving": prop(atom("multiline text")),
                     }))),
                 }))),
                 "inkopen": prop(dictionary(group({
-                    "datum": prop(terminal("datum")),
-                    "brondocument": prop(taggedUnion({
-                        "toegevoegd": option(terminal("bestand")),
-                        "nog toevoegen": option(group({})),
-                        "niet van toepassing": option(group({})),
-                        "ontbreekt": option(group({})),
+                    "datum": prop(atom("datum")),
+                    "brondocument": prop(stateGroup({
+                        "toegevoegd": state(atom("bestand")),
+                        "nog toevoegen": state(group({})),
+                        "niet van toepassing": state(group({})),
+                        "ontbreekt": state(group({})),
                     })),
-                    "type": prop(taggedUnion({
-                        "bonnetje": option(group({})),
-                        "inkoop": option(group({
-                            "crediteur": prop(resolvedValueReference(valSel("stamdata", s_group("leveranciers")), tempTypeSelection("Stamdata", t_grp("leveranciers")))),
-                            "factuurnummer": prop(terminal("identifier")),
+                    "type": prop(stateGroup({
+                        "bonnetje": state(group({})),
+                        "inkoop": state(group({
+                            "crediteur": prop(dictionaryReference(valueSelection("stamdata", v_grp("leveranciers")))),
+                            "factuurnummer": prop(atom("identifier")),
                         })),
-                        "salaris": option(group({
-                            "ronde": prop(resolvedValueReference(valSel("salarisrondes"), tempTypeSelection("Boekingen", t_grp("salarisrondes")))),
-                            "type": prop(taggedUnion({
-                                "salaris": option(group({
-                                    "medewerker": prop(resolvedValueReference(valSel("stamdata", s_group("medewerkers")), tempTypeSelection("Stamdata", t_grp("medewerkers")))),
+                        "salaris": state(group({
+                            "ronde": prop(dictionaryReference(valueSelection("salarisrondes"))),
+                            "type": prop(stateGroup({
+                                "salaris": state(group({
+                                    "medewerker": prop(dictionaryReference(valueSelection("stamdata", v_grp("medewerkers")))),
                                 })),
-                                "loonheffing": option(group({})),
-                                "wBSO": option(group({})),
+                                "loonheffing": state(group({})),
+                                "wBSO": state(group({})),
                             }))
                         })),
                     })),
                     "BTW-regime": prop(group({
-                        "BTW-periode": prop(resolvedValueReference(valSel("BTW periodes"), tempTypeSelection("Boekingen", t_grp("BTW periodes")))),
-                        "type": prop(taggedUnion({
-                            "standaard": option(group({})),
-                            "geen BTW van toepassing": option(group({})),
-                            "binnenland heffing verlegd": option(group({})),
-                            "intracommunautair": option(group({})),
-                            "import van buiten de EU": option(group({})),
+                        "BTW-periode": prop(dictionaryReference(valueSelection("BTW periodes"))),
+                        "type": prop(stateGroup({
+                            "standaard": state(group({})),
+                            "geen BTW van toepassing": state(group({})),
+                            "binnenland heffing verlegd": state(group({})),
+                            "intracommunautair": state(group({})),
+                            "import van buiten de EU": state(group({})),
                         }))
                     })),
-                    "afhandeling": prop(taggedUnion({
-                        "mutaties": option(group({})),
-                        "rekening courant": option(resolvedValueReference(valSel("jaarstamdata", s_group("informele rekeningen")), tempTypeSelection("Jaarstamdata", t_grp("informele rekeningen")))),
-                        "nog te betalen": option(group({
-                            "betalingstermijn": prop(terminal("dagen")),
+                    "afhandeling": prop(stateGroup({
+                        "mutaties": state(group({})),
+                        "rekening courant": state(dictionaryReference(valueSelection("jaarstamdata", v_grp("informele rekeningen")))),
+                        "nog te betalen": state(group({
+                            "betalingstermijn": prop(atom("dagen")),
                         })),
                     })),
                     "regels": prop(dictionary(group({
-                        "omschrijving": prop(terminal("multiline text")),
-                        "bedrag": prop(taggedUnion({
-                            "bekend": option(group({
-                                "bedrag inclusief BTW": prop(terminal("bedrag")),
-                                "BTW": prop(terminal("bedrag")),
+                        "omschrijving": prop(atom("multiline text")),
+                        "bedrag": prop(stateGroup({
+                            "bekend": state(group({
+                                "bedrag inclusief BTW": prop(atom("bedrag")),
+                                "BTW": prop(atom("bedrag")),
                             })),
-                            "nog niet bekend": option(group({
-                                "aantekeningen": prop(terminal("multiline text")),
+                            "nog niet bekend": state(group({
+                                "aantekeningen": prop(atom("multiline text")),
                             })),
                         })),
-                        "type": prop(taggedUnion({
-                            "kosten": option(group({
-                                "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", s_group("resultaat grootboekrekeningen")), tempTypeSelection("Jaarstamdata", t_grp("resultaat grootboekrekeningen")))),
+                        "type": prop(stateGroup({
+                            "kosten": state(group({
+                                "grootboekrekening": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("resultaat grootboekrekeningen")))),
                             })),
-                            "balans": option(group({
-                                "balans item": prop(resolvedValueReference(valSel("jaarstamdata", s_group("overige balans items")), tempTypeSelection("Jaarstamdata", t_grp("overige balans items")))),
+                            "balans": state(group({
+                                "balans item": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("overige balans items")))),
                             })),
                         })),
                     }))),
                 }))),
                 "verkopen": prop(dictionary(group({
-                    "brondocument": prop(taggedUnion({
-                        "nog toevoegen": option(group({
+                    "brondocument": prop(stateGroup({
+                        "nog toevoegen": state(group({
                         })),
-                        "toegevoegd": option(group({
-                            "document": prop(terminal("bestand")),
-                        })),
-                    })),
-                    "betalingstermijn": prop(terminal("dagen")),
-                    "debiteur": prop(resolvedValueReference(valSel("stamdata", s_group("klanten")), tempTypeSelection("Stamdata", t_grp("klanten")))),
-                    "BTW-periode": prop(resolvedValueReference(valSel("BTW periodes"), tempTypeSelection("Boekingen", t_grp("BTW periodes")))),
-
-                    "contracttype": prop(taggedUnion({
-                        "licentieovereenkomst": option(group({
-                            "overeenkomst": prop(resolvedValueReference(valSel("debiteur", s_reference(s_group("licentieovereenkomsten"))), tempTypeSelection("Stamdata", t_grp("klanten", t_dict(t_grp("licentieovereenkomsten")))))),
-                        })),
-                        "project": option(group({
-                            "project": prop(resolvedValueReference(valSel("debiteur", s_reference(s_group("projecten"))), tempTypeSelection("Stamdata", t_grp("klanten", t_dict(t_grp("projecten")))))),
-                            "offerte": prop(resolvedValueReference(valSel("project", s_reference(s_group("offertes"))), tempTypeSelection("Stamdata", t_grp("klanten", t_dict(t_grp("projecten", t_dict(t_grp("offertes")))))))),
+                        "toegevoegd": state(group({
+                            "document": prop(atom("bestand")),
                         })),
                     })),
+                    "betalingstermijn": prop(atom("dagen")),
+                    "debiteur": prop(dictionaryReference(valueSelection("stamdata", v_grp("klanten")))),
+                    "BTW-periode": prop(dictionaryReference(valueSelection("BTW periodes"))),
 
-                    "afhandeling": prop(taggedUnion({
-                        "mutaties": option(group({
+                    "contracttype": prop(stateGroup({
+                        "licentieovereenkomst": state(group({
+                            "overeenkomst": prop(dictionaryReference(valueSelection("debiteur", v_ref(v_grp("licentieovereenkomsten"))))),
                         })),
-                        "rekening courant": option(group({
-                            "rekening courant": prop(resolvedValueReference(valSel("jaarstamdata", s_group("informele rekeningen")), tempTypeSelection("Jaarstamdata", t_grp("informele rekeningen")))),
+                        "project": state(group({
+                            "project": prop(dictionaryReference(valueSelection("debiteur", v_ref(v_grp("projecten"))))),
+                            "offerte": prop(dictionaryReference(valueSelection("project", v_ref(v_grp("offertes"))))),
+                        })),
+                    })),
+
+                    "afhandeling": prop(stateGroup({
+                        "mutaties": state(group({
+                        })),
+                        "rekening courant": state(group({
+                            "rekening courant": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("informele rekeningen")))),
                         })),
                     })),
                     "regels": prop(dictionary(group({
-                        "omschrijving": prop(terminal("multiline text")),
-                        "bedrag exclusief BTW": prop(terminal("bedrag")),
-                        "type": prop(taggedUnion({
-                            "opbrengsten": option(group({
-                                "grootboekrekening": prop(resolvedValueReference(valSel("jaarstamdata", s_group("resultaat grootboekrekeningen")), tempTypeSelection("Jaarstamdata", t_grp("resultaat grootboekrekeningen")))),
+                        "omschrijving": prop(atom("multiline text")),
+                        "bedrag exclusief BTW": prop(atom("bedrag")),
+                        "type": prop(stateGroup({
+                            "opbrengsten": state(group({
+                                "grootboekrekening": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("resultaat grootboekrekeningen")))),
                             })),
-                            "balans": option(group({
-                                "balans item": prop(resolvedValueReference(valSel("jaarstamdata", s_group("overige balans items")), tempTypeSelection("Jaarstamdata", t_grp("overige balans items")))),
-                            })),
-                        })),
-                        "BTW-regime": prop(taggedUnion({
-                            "standaard": option(group({
-                                "BTW-cateogrie": prop(resolvedValueReference(valSel("BTW-periode", s_reference(s_group("1. BTW-categorieen"))), tempTypeSelection("Boekingen", t_grp("BTW periodes", t_dict(t_grp("1. BTW-categorieen")))))),
-                            })),
-                            "binnenland heffing verlegd": option(group({
-                            })),
-                            "intracommunautair": option(group({
-                            })),
-                            "export buiten de EU": option(group({
-                            })),
-                            "installatie of afstandsverkopen binnen de EU": option(group({
+                            "balans": state(group({
+                                "balans item": prop(dictionaryReference(valueSelection("jaarstamdata", v_grp("overige balans items")))),
                             })),
                         })),
-                        "contracttype2": prop(taggedUnion({
-                            "los": option(group({
+                        "BTW-regime": prop(stateGroup({
+                            "standaard": state(group({
+                                "BTW-cateogrie": prop(dictionaryReference(valueSelection("BTW-periode", v_ref(v_grp("1. BTW-categorieen"))))),
                             })),
-                            "licentieovereenkomst": constrainedOption({
-                                "parent": optionConstraint(valSel("contracttype"), "licentieovereenkomst", tempTypeSelection("Boekingen", t_grp("verkopen", t_dict(t_grp("contracttype")))))
-                            }, group({
-                                "periode": prop(resolvedValueReference(valSel("parent", s_group("overeenkomst", s_reference(s_group("periodes")))), tempTypeSelection("Stamdata", t_grp("klanten", t_dict(t_grp("licentieovereenkomsten", t_dict(t_grp("periodes")))))))),
+                            "binnenland heffing verlegd": state(group({
                             })),
-                            "project": constrainedOption({
-                                "parent": optionConstraint(valSel("contracttype"), "project", tempTypeSelection("Boekingen", t_grp("verkopen", t_dict(t_grp("contracttype")))))
+                            "intracommunautair": state(group({
+                            })),
+                            "export buiten de EU": state(group({
+                            })),
+                            "installatie of afstandsverkopen binnen de EU": state(group({
+                            })),
+                        })),
+                        "contracttype2": prop(stateGroup({
+                            "los": state(group({
+                            })),
+                            "licentieovereenkomst": constrainedState({
+                                "parent": stateConstraint(valueSelection("contracttype"), "licentieovereenkomst")
                             }, group({
-                                "opbrengst": prop(resolvedValueReference(valSel("parent", s_group("offerte", s_reference(s_group("opbrengsten")))), tempTypeSelection("Stamdata", t_grp("klanten", t_dict(t_grp("projecten", t_dict(t_grp("offertes", t_dict(t_grp("opbrengsten")))))))))),
+                                "periode": prop(dictionaryReference(valueSelection("parent", v_grp("overeenkomst", v_ref(v_grp("periodes")))))),
+                            })),
+                            "project": constrainedState({
+                                "parent": stateConstraint(valueSelection("contracttype"), "project")
+                            }, group({
+                                "opbrengst": prop(dictionaryReference(valueSelection("parent", v_grp("offerte", v_ref(v_grp("opbrengsten")))))),
                             })),
                         })),
                     }))),
@@ -431,19 +409,19 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 "boekingen": pResolvedValue("Boekingen", false),
                 "overloop": pResolvedValue("Overloop", false),
             },
-            taggedUnion({
-                "overloop": option(group({
-                    "jaar": prop(resolvedValueReference(valSel("overloop", s_group("jaren")), tempTypeSelection("Overloop", t_grp("jaren")))),
-                    "type": prop(taggedUnion({
-                        "inkoop": option(resolvedValueReference(valSel("jaar", s_reference(s_group("inkopen"))), tempTypeSelection("Overloop", t_grp("jaren", t_dict(t_grp("inkopen")))))),
-                        "verkoop": option(resolvedValueReference(valSel("jaar", s_reference(s_group("verkopen"))), tempTypeSelection("Overloop", t_grp("jaren", t_dict(t_grp("verkopen")))))),
-                        "BTW-periode": option(resolvedValueReference(valSel("jaar", s_reference(s_group("BTW periodes"))), tempTypeSelection("Overloop", t_grp("jaren", t_dict(t_grp("BTW periodes")))))),
+            stateGroup({
+                "overloop": state(group({
+                    "jaar": prop(dictionaryReference(valueSelection("overloop", v_grp("jaren")))),
+                    "type": prop(stateGroup({
+                        "inkoop": state(dictionaryReference(valueSelection("jaar", v_ref(v_grp("inkopen"))))),
+                        "verkoop": state(dictionaryReference(valueSelection("jaar", v_ref(v_grp("verkopen"))))),
+                        "BTW-periode": state(dictionaryReference(valueSelection("jaar", v_ref(v_grp("BTW periodes"))))),
                     }))
                 })),
-                "inkoop": option(resolvedValueReference(valSel("boekingen", s_group("inkopen")), tempTypeSelection("Boekingen", t_grp("inkopen")))),
-                "verkoop": option(resolvedValueReference(valSel("boekingen", s_group("verkopen")), tempTypeSelection("Boekingen", t_grp("verkopen")))),
-                "BTW-periode": option(resolvedValueReference(valSel("boekingen", s_group("BTW periodes")), tempTypeSelection("Boekingen", t_grp("BTW periodes")))),
-                "informele rekening": option(resolvedValueReference(valSel("jaarstamdata", s_group("informele rekeningen")), tempTypeSelection("Jaarstamdata", t_grp("informele rekeningen")))),
+                "inkoop": state(dictionaryReference(valueSelection("boekingen", v_grp("inkopen")))),
+                "verkoop": state(dictionaryReference(valueSelection("boekingen", v_grp("verkopen")))),
+                "BTW-periode": state(dictionaryReference(valueSelection("boekingen", v_grp("BTW periodes")))),
+                "informele rekening": state(dictionaryReference(valueSelection("jaarstamdata", v_grp("informele rekeningen")))),
             })
         ),
         "Jaar": globalType(
@@ -451,45 +429,45 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
 
             },
             group({
-                "stamdata": prop(resolvedSiblingComponent("Stamdata", {})),
-                "overloop": prop(resolvedSiblingComponent("Overloop", {
-                    "stamdata": aResolvedValue(valSel("stamdata")),
+                "stamdata": prop(component(typeRef("Stamdata"), {})),
+                "overloop": prop(component(typeRef("Overloop"), {
+                    "stamdata": aResolvedValue(valueSelection("stamdata")),
                 })),
-                "jaarstamdata": prop(resolvedSiblingComponent("Jaarstamdata", {
-                    "overloop": aResolvedValue(valSel("overloop")),
-                    "stamdata": aResolvedValue(valSel("stamdata")),
+                "jaarstamdata": prop(component(typeRef("Jaarstamdata"), {
+                    "overloop": aResolvedValue(valueSelection("overloop")),
+                    "stamdata": aResolvedValue(valueSelection("stamdata")),
                 })),
-                "boekingen": prop(resolvedSiblingComponent("Boekingen", {
-                    "stamdata": aResolvedValue(valSel("stamdata")),
-                    "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                    "overloop": aResolvedValue(valSel("overloop")),
+                "boekingen": prop(component(typeRef("Boekingen"), {
+                    "stamdata": aResolvedValue(valueSelection("stamdata")),
+                    "jaarstamdata": aResolvedValue(valueSelection("jaarstamdata")),
+                    "overloop": aResolvedValue(valueSelection("overloop")),
                 })),
                 "afhandeling": prop(group({
                     "verrekenposten": prop(dictionary(group({
                         "mutaties": prop(dictionary(group({
-                            "bedrag": prop(terminal("bedrag")),
-                            "afhandeling": prop(resolvedSiblingComponent("Afhandeling", {
-                                "boekingen": aResolvedValue(valSel("boekingen")),
-                                "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                                "overloop": aResolvedValue(valSel("overloop")),
+                            "bedrag": prop(atom("bedrag")),
+                            "afhandeling": prop(component(typeRef("Afhandeling"), {
+                                "boekingen": aResolvedValue(valueSelection("boekingen")),
+                                "jaarstamdata": aResolvedValue(valueSelection("jaarstamdata")),
+                                "overloop": aResolvedValue(valueSelection("overloop")),
                             })),
                         }))),
                     }))),
                     "bankrekeningen": prop(dictionary(group({
                         "mutaties": prop(dictionary(group({
-                            "omschrijving": prop(terminal("multiline text")),
-                            "bedrag": prop(terminal("bedrag")),
-                            "datum": prop(terminal("datum")),
-                            "status": prop(taggedUnion({
-                                "nog te verwerken": option(group({})),
-                                "verwerkt": option(group({
-                                    "afhandeling": prop(taggedUnion({
-                                        "alg": option(resolvedSiblingComponent("Afhandeling", {
-                                            "boekingen": aResolvedValue(valSel("boekingen")),
-                                            "jaarstamdata": aResolvedValue(valSel("jaarstamdata")),
-                                            "overloop": aResolvedValue(valSel("overloop")),
+                            "omschrijving": prop(atom("multiline text")),
+                            "bedrag": prop(atom("bedrag")),
+                            "datum": prop(atom("datum")),
+                            "status": prop(stateGroup({
+                                "nog te verwerken": state(group({})),
+                                "verwerkt": state(group({
+                                    "afhandeling": prop(stateGroup({
+                                        "alg": state(component(typeRef("Afhandeling"), {
+                                            "boekingen": aResolvedValue(valueSelection("boekingen")),
+                                            "jaarstamdata": aResolvedValue(valueSelection("jaarstamdata")),
+                                            "overloop": aResolvedValue(valueSelection("overloop")),
                                         })),
-                                        "verrekenpost": option(resolvedValueReference(valSel("verrekenposten"), tempTypeSelection("Jaar", t_grp("afhandeling", t_grp("verrekenposten"))))),
+                                        "verrekenpost": state(dictionaryReference(valueSelection("verrekenposten"))),
                                     })),
                                 })),
                             })),

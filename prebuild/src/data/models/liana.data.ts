@@ -96,6 +96,7 @@ export const $: g_pareto_lang_data_settings.T.GenerateSubmodulesParameters = {
                         ),
                         "Property": globalType(
                             group({
+                                "variables": prop(component(typeRef("Variables", true))),
                                 "type": prop(component(typeRef("Type", true))),
                             })
                         ),
@@ -130,7 +131,6 @@ export const $: g_pareto_lang_data_settings.T.GenerateSubmodulesParameters = {
                                         "type": prop(component(typeRef("Type", true))),
                                     })),
                                     "group": state(group({
-                                        "variables": prop(component(typeRef("Variables"))),
                                         "properties": prop(dictionary(component(typeRef("Property")))),
                                     })),
                                     "nothing": state(group({

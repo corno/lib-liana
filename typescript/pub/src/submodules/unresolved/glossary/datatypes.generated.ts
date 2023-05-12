@@ -629,6 +629,13 @@ export namespace N {
                         
                         export namespace T {}
                     }
+                    
+                    export namespace variables {
+                        
+                        export namespace N {}
+                        
+                        export namespace T {}
+                    }
                 }
                 
                 export namespace T {}
@@ -924,13 +931,6 @@ export namespace N {
                                                                 export namespace T {}
                                                             }
                                                         }
-                                                        
-                                                        export namespace T {}
-                                                    }
-                                                    
-                                                    export namespace variables {
-                                                        
-                                                        export namespace N {}
                                                         
                                                         export namespace T {}
                                                     }
@@ -1916,10 +1916,13 @@ export namespace T {
     export namespace Property {
         
         export type _ltype<GAnnotation> = T.Type<GAnnotation>
+        
+        export type variables<GAnnotation> = T.Variables<GAnnotation>
     }
     
     export type Property<GAnnotation> = {
         readonly 'type': T.Type<GAnnotation>
+        readonly 'variables': T.Variables<GAnnotation>
     }
     
     export type Root<GAnnotation> = T.Model<GAnnotation>
@@ -2112,13 +2115,10 @@ export namespace T {
                 }
                 
                 export type properties<GAnnotation> = pt.Dictionary<T.Property<GAnnotation>>
-                
-                export type variables<GAnnotation> = T.Variables<GAnnotation>
             }
             
             export type group<GAnnotation> = {
                 readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
-                readonly 'variables': T.Variables<GAnnotation>
             }
             
             export namespace nothing {
@@ -2271,7 +2271,6 @@ export namespace T {
             }]
             | ['group', {
                 readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
-                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['nothing', {
                 readonly 'result': [ false ] | [ true, T.Value__Selection<GAnnotation>]
@@ -2327,7 +2326,6 @@ export namespace T {
             }]
             | ['group', {
                 readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
-                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['nothing', {
                 readonly 'result': [ false ] | [ true, T.Value__Selection<GAnnotation>]
