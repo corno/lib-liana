@@ -3,6 +3,12 @@ import * as pd from 'pareto-core-data'
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as d_main_ } from "./main/module.data"
+
+
+import { $ as d_resolved } from "./submodules/resolved/module.data"
+import { $ as d_unresolved } from "./submodules/unresolved/module.data"
+import { $ as d_possiblyresolved } from "./submodules/possiblyresolved/module.data"
+
 import { $ as d_errorMessaging } from "./submodules/errormessaging/module.data"
 import { $ as d_tendril } from "./submodules/tendril/module.data"
 import { $ as d_liana } from "./submodules/liana/module.data"
@@ -47,6 +53,13 @@ export const $: g_project.T.Project<pd.SourceLocation> = {
     'type': ['library', {
         'main': d_main_,
         'submodules': d({
+
+
+            "unresolved": d_unresolved,
+            "resolved": d_resolved,
+            //"resolve": d_resolve,
+            "possiblyresolved": d_possiblyresolved,
+
             "algorithm_temp": d_algorithm_temp,
             "errorMessaging": d_errorMessaging,
             "p2ts_temp": d_p2ts_temp,

@@ -13,7 +13,7 @@ import * as a_resolve from "res-pareto-resolve"
 
 export const $$: A.generateGlossaryFromLiana = <GAnnotation>($d: D.generateGlossaryFromLiana<GAnnotation>) => {
     return ($: g_liana2glossary.T.GenerateData<GAnnotation>, $i: g_common.SYNC.I.String) => t2g({
-        'getSourceLocation': $d.getSourceLocation
+        'serializeAnnotation': $d.serializeAnnotation
     })(
         {
             'path': $.path,

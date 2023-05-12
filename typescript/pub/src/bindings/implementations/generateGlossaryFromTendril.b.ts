@@ -37,17 +37,12 @@ export const $$: A.generateGlossaryFromTendril = <GAnnotation>($d: D.generateGlo
                 $c($.path, ($i) => {
                     a_glossary_serialize.$a.serialize<a_2glossary.T.OutAnnotation<GAnnotation>>({
                         'dictionaryForEach': d,
-                        'getSourceLocation': ($) => pl.cc($, ($) => {
-                            switch ($[0]) {
-                                case 'internal': return pl.ss($, ($) => ({
-                                    'file': "INTERNAL",
-                                    'line': 0,
-                                    'column': 0,
-                                }))
-                                case 'source': return pl.ss($, ($) => $d.getSourceLocation($))
-                                default: return pl.au($[0])
-                            }
+                        'serializeAnnotation': ($, $i) => pl.cc($, ($) => {
+                            $i.snippet(`null`)
                         }),
+                        'serializeAnnotationType': ($, $i) => {
+                            $i.snippet(`null`)
+                        }
                     })(
                         x,
                         $i,

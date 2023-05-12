@@ -26,7 +26,7 @@ export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
                         pl.ss($, ($) => {
 
                             a_2glossary.$api.generateGlossaryFromLiana<GAnnotation>({
-                                'getSourceLocation': $d.getSourceLocation,
+                                'serializeAnnotation': $d.serializeAnnotation,
                             })(
                                 {
                                     'data': $,
@@ -43,7 +43,7 @@ export const $$: A.compile = <GAnnotation>($d: D.compile<GAnnotation>) => {
                         pl.ss($, ($) => {
 
                             a_2glossary.$api.generateGlossaryFromTendril<GAnnotation>({
-                                'getSourceLocation': $d.getSourceLocation,
+                                'serializeAnnotation': $d.serializeAnnotation,
                             })(
                                 {
                                     'data': $,

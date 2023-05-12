@@ -10,16 +10,16 @@ import * as g_tendril2glossary from "../submodules/tendril2glossary"
 export namespace D {
     
     export type compile<GAnnotation> = {
-        readonly 'getSourceLocation': g_glossary.SYNC.A.F.GetSourceLocation<GAnnotation>
+        readonly 'serializeAnnotation': g_glossary.SYNC.A.P.SerializeAnnotation<GAnnotation>
     }
     
     
     export type generateGlossaryFromLiana<GAnnotation> = {
-        readonly 'getSourceLocation': g_glossary.SYNC.A.F.GetSourceLocation<GAnnotation>
+        readonly 'serializeAnnotation': g_glossary.SYNC.A.P.SerializeAnnotation<GAnnotation>
     }
     
     export type generateGlossaryFromTendril<GAnnotation> = {
-        readonly 'getSourceLocation': g_glossary.SYNC.A.F.GetSourceLocation<GAnnotation>
+        readonly 'serializeAnnotation': g_glossary.SYNC.A.P.SerializeAnnotation<GAnnotation>
     }
     
     
