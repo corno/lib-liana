@@ -1,2 +1,69 @@
-digraph G {}
-{}
+digraph G {
+    "Stamdata"
+    "Overloop"
+    "Jaarstamdata"
+    "Boekingen"
+    "Afhandeling"
+    "Jaar"
+    "Overloop" -> "Stamdata" [label="parameter"]
+    "Jaarstamdata" -> "Stamdata" [label="parameter"]
+    "Jaarstamdata" -> "Overloop" [label="parameter"]
+    "Boekingen" -> "Stamdata" [label="parameter"]
+    "Boekingen" -> "Jaarstamdata" [label="parameter"]
+    "Boekingen" -> "Overloop" [label="parameter"]
+    "Afhandeling" -> "Jaarstamdata" [label="parameter"]
+    "Afhandeling" -> "Boekingen" [label="parameter"]
+    "Afhandeling" -> "Overloop" [label="parameter"]
+    "Jaar" -> "Stamdata" [label="component"]
+    "Jaar" -> "Overloop" [label="component"]
+    "Jaar" -> "Jaarstamdata" [label="component"]
+    "Jaar" -> "Boekingen" [label="component"]
+    "Jaar" -> "Afhandeling" [label="component"]
+    "Jaar" -> "Afhandeling" [label="component"]
+}
+{
+    "Stamdata": {
+        'parameters': [],
+        'components': [],
+    },
+    "Overloop": {
+        'parameters': [
+            "Stamdata",
+        ],
+        'components': [],
+    },
+    "Jaarstamdata": {
+        'parameters': [
+            "Stamdata",
+            "Overloop",
+        ],
+        'components': [],
+    },
+    "Boekingen": {
+        'parameters': [
+            "Stamdata",
+            "Jaarstamdata",
+            "Overloop",
+        ],
+        'components': [],
+    },
+    "Afhandeling": {
+        'parameters': [
+            "Jaarstamdata",
+            "Boekingen",
+            "Overloop",
+        ],
+        'components': [],
+    },
+    "Jaar": {
+        'parameters': [],
+        'components': [
+            "Stamdata",
+            "Overloop",
+            "Jaarstamdata",
+            "Boekingen",
+            "Afhandeling",
+            "Afhandeling",
+        ],
+    },
+}

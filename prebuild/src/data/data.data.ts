@@ -2,7 +2,7 @@ import * as pd from 'pareto-core-data'
 
 import * as g_liana from "lib-liana/dist/main"
 
-import { $ as liana_new } from "./models/liana.data"
+import { $ as liana_new } from "./models/liana_old.data"
 import { $ as tendril } from "./models/tendril.data"
 import { $ as resolve_function_signatures } from "./models/resolve function signatures"
 

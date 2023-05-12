@@ -8,6 +8,7 @@ import * as g_test from "lib-pareto-test"
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
 import * as g_2algorithm from "../../../../../pub/dist/submodules/tendril2algorithm"
+import * as g_liana2tendril from "../../../../../pub/dist/submodules/liana2tendril"
 
 import * as a_pub from "../../../../../pub/dist"
 import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
@@ -102,7 +103,7 @@ export const $$: A.getTestSet = ($) => {
         ($i) => {
             $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
                 a_dependencygraph.$a.generateDependencyGraph()({
-                    'data': d_playground.model['type library'],
+                    'data': d_playground,
                 }, $i)
             })
         },
@@ -120,7 +121,7 @@ export const $$: A.getTestSet = ($) => {
                     // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                     //     'compare': a_coll.$r.localeIsABeforeB(),
                     // })
-                })(d_playground.model['type library'], $i)
+                })(d_playground, $i)
             })
         },
         {
@@ -130,10 +131,22 @@ export const $$: A.getTestSet = ($) => {
         }
     )
 
-    a_pub.$b.generateResolver()({
-        'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
-        'data': d_playground,
-    }, null)
+    g_liana2tendril.$a.map({
+        'resolveDictionary': a_resolve.$r.safeResolveDictionary({
+            'onError': () => {
+                pv.logDebugMessage(`ERROR!!!!!!!`)
+            }
+        })
+        //'createIdentifier': a_ts.$r.createIdentifier(),
+        // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+        //     'compare': a_coll.$r.localeIsABeforeB(),
+        // })
+    })(d_playground)
+
+    // a_pub.$b.generateResolver()({
+    //     'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
+    //     'data': d_playground,
+    // }, null)
 
     function x<Annotation>($: g_liana.T.Model<Annotation>) {
         // const res = g_resolve.$a.resolve<Annotation>({
