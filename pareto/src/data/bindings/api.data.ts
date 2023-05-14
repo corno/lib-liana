@@ -25,6 +25,7 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
             "serializeAnnotation": procedure("glossary", { "A": "GAnnotation" }, "SerializeAnnotation"),
             //"serializeAnnotationType": procedure("glossary", { "A": "GAnnotation" }, "SerializeAnnotationType"),
         }, {})),
-        "generateResolver": algorithm(procedure("main", {}, "GenerateResolver"), { "Annotation": "Annotation" })
+        "generateResolver": algorithm(procedure("main", {}, "GenerateResolver"), { "Annotation": "Annotation" }),
+        "resolve": algorithm(sfunction("resolve", {}, "Resolve"), { "Annotation": "Annotation" })
     }),
 }

@@ -26,6 +26,7 @@ export const $: g_project.T.ModuleDefinition<pd.SourceLocation> = {
             "flat": submodule("liana_flat"),
             "tendril2glossary": submodule("tendril2glossary"),
             "liana2glossary": submodule("liana2glossary"),
+            "resolve": submodule("resolve"),
             "liana2api": submodule("liana2api"),
             "glossary": external("lib-pareto-typescript-project/dist/submodules/glossary_serialize"),
             "main": main(),

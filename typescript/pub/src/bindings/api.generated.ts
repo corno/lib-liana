@@ -5,6 +5,7 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 import * as g_liana2api from "../submodules/liana2api"
 import * as g_liana2glossary from "../submodules/liana2glossary"
 import * as g_main from "../main"
+import * as g_resolve from "../submodules/resolve"
 import * as g_tendril2glossary from "../submodules/tendril2glossary"
 
 export namespace D {
@@ -23,6 +24,7 @@ export namespace D {
     }
     
     
+    
 }
 
 export namespace A {
@@ -37,6 +39,8 @@ export namespace A {
     
     export type generateResolver = <GAnnotation>() => g_main.SYNC.A.P.GenerateResolver<GAnnotation>
     
+    export type resolve = <GAnnotation>() => g_resolve.SYNC.A.F.Resolve<GAnnotation>
+    
     export type serialize_$flat = <GAnnotation>() => g_flat.SYNC.A.P.Serialize<GAnnotation>
 }
 
@@ -46,5 +50,6 @@ export type API = {
     readonly 'generateGlossaryFromLiana': A.generateGlossaryFromLiana
     readonly 'generateGlossaryFromTendril': A.generateGlossaryFromTendril
     readonly 'generateResolver': A.generateResolver
+    readonly 'resolve': A.resolve
     readonly 'serialize_flat': A.serialize_$flat
 }
