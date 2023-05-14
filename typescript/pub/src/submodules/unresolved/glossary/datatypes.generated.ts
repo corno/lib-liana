@@ -1343,143 +1343,99 @@ export namespace T {
     
     export namespace Atom__Types {
         
-        export namespace D {}
+        export type annotation<GAnnotation> = GAnnotation
         
-        export type D<GAnnotation> = null
+        export namespace dictionary {
+            
+            export namespace D {}
+            
+            export type D<GAnnotation> = null
+        }
+        
+        export type dictionary<GAnnotation> = pt.Dictionary<null>
     }
     
-    export type Atom__Types<GAnnotation> = pt.Dictionary<null>
+    export type Atom__Types<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<null>
+    }
     
     export namespace Dictionary__Constraints {
         
-        export namespace D {
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
             
-            export namespace dictionary {
+            export namespace D {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
+                export namespace dictionary {
                     
                     export namespace dense {
                         
-                        export namespace no {
-                            
-                            export type annotation<GAnnotation> = GAnnotation
-                            
-                            export namespace content {}
-                            
-                            export type content<GAnnotation> = null
-                        }
+                        export namespace no {}
                         
-                        export type no<GAnnotation> = {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }
+                        export type no<GAnnotation> = null
                         
-                        export namespace yes {
-                            
-                            export type annotation<GAnnotation> = GAnnotation
-                            
-                            export namespace content {}
-                            
-                            export type content<GAnnotation> = null
-                        }
+                        export namespace yes {}
                         
-                        export type yes<GAnnotation> = {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }
+                        export type yes<GAnnotation> = null
                     }
                     
                     export type dense<GAnnotation> = 
-                        | ['no', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
-                        | ['yes', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
+                        | ['no', null]
+                        | ['yes', null]
                     
                     export type dictionary<GAnnotation> = T.Dictionary__Selection<GAnnotation>
                 }
                 
-                export type content<GAnnotation> = {
+                export type dictionary<GAnnotation> = {
                     readonly 'dense': 
-                        | ['no', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
-                        | ['yes', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
+                        | ['no', null]
+                        | ['yes', null]
                     readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
                 }
             }
             
-            export type dictionary<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
+            export type D<GAnnotation> = 
+                | ['dictionary', {
                     readonly 'dense': 
-                        | ['no', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
-                        | ['yes', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
+                        | ['no', null]
+                        | ['yes', null]
                     readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
-            }
+                }]
         }
         
-        export type D<GAnnotation> = 
+        export type dictionary<GAnnotation> = pt.Dictionary<
             | ['dictionary', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'dense': 
-                        | ['no', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
-                        | ['yes', {
-                            readonly 'annotation': GAnnotation
-                            readonly 'content': null
-                        }]
-                    readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
+                readonly 'dense': 
+                    | ['no', null]
+                    | ['yes', null]
+                readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
             }]
+        >
     }
     
-    export type Dictionary__Constraints<GAnnotation> = pt.Dictionary<
-        | ['dictionary', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
+    export type Dictionary__Constraints<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<
+            | ['dictionary', {
                 readonly 'dense': 
-                    | ['no', {
-                        readonly 'annotation': GAnnotation
-                        readonly 'content': null
-                    }]
-                    | ['yes', {
-                        readonly 'annotation': GAnnotation
-                        readonly 'content': null
-                    }]
+                    | ['no', null]
+                    | ['yes', null]
                 readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-            }
-        }]
-    >
+            }]
+        >
+    }
     
     export namespace Dictionary__Selection {
         
-        export type dictionary<GAnnotation> = null
+        export type dictionary<GAnnotation> = GAnnotation
         
         export type _ltype<GAnnotation> = T.No__Context__Value__Selection<GAnnotation>
     }
     
     export type Dictionary__Selection<GAnnotation> = {
-        readonly 'dictionary': null
+        readonly 'dictionary': GAnnotation
         readonly 'type': T.No__Context__Value__Selection<GAnnotation>
     }
     
@@ -1510,151 +1466,134 @@ export namespace T {
         
         export namespace _limport {
             
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {
+            export namespace library {
                 
-                export namespace library {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type library<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                
-                export namespace _ltype {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
-                
-                export type _ltype<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                export type key<GAnnotation> = string
             }
             
-            export type content<GAnnotation> = {
-                readonly 'library': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            export type library<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+            
+            export namespace _ltype {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export type key<GAnnotation> = string
+            }
+            
+            export type _ltype<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }
         
         export type _limport<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'library': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'library': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+            readonly 'type': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }
         
         export namespace resolved__sibling {
             
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {
+            export namespace _ltype {
                 
-                export namespace _ltype {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type _ltype<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+                export type key<GAnnotation> = string
             }
             
-            export type content<GAnnotation> = {
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            export type _ltype<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }
         
         export type resolved__sibling<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'type': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }
     }
     
     export type Global__Type__Selection<GAnnotation> = 
         | ['import', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'library': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'library': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
+            }
+            readonly 'type': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }]
         | ['resolved sibling', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'type': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'type': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }]
     
     export namespace Global__Types {
         
-        export type D<GAnnotation> = T.Global__Type<GAnnotation>
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
+            
+            export type D<GAnnotation> = T.Global__Type<GAnnotation>
+        }
+        
+        export type dictionary<GAnnotation> = pt.Dictionary<T.Global__Type<GAnnotation>>
     }
     
-    export type Global__Types<GAnnotation> = pt.Dictionary<T.Global__Type<GAnnotation>>
+    export type Global__Types<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<T.Global__Type<GAnnotation>>
+    }
     
     export namespace Imports {
         
-        export namespace D {
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export namespace D {
+                
+                export type annotation<GAnnotation> = GAnnotation
+                
+                export namespace content {}
+                
+                export type content<GAnnotation> = null
+            }
             
-            export namespace content {}
-            
-            export type content<GAnnotation> = null
+            export type D<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'content': null
+            }
         }
         
-        export type D<GAnnotation> = {
+        export type dictionary<GAnnotation> = pt.Dictionary<{
             readonly 'annotation': GAnnotation
             readonly 'content': null
-        }
+        }>
     }
     
-    export type Imports<GAnnotation> = pt.Dictionary<{
+    export type Imports<GAnnotation> = {
         readonly 'annotation': GAnnotation
-        readonly 'content': null
-    }>
+        readonly 'dictionary': pt.Dictionary<{
+            readonly 'annotation': GAnnotation
+            readonly 'content': null
+        }>
+    }
     
     export namespace Model {
         
@@ -1713,78 +1652,55 @@ export namespace T {
     
     export namespace Parameters {
         
-        export namespace D {
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
             
-            export namespace optional {
+            export namespace D {
                 
-                export namespace no {
+                export namespace optional {
                     
-                    export type annotation<GAnnotation> = GAnnotation
+                    export namespace no {}
                     
-                    export namespace content {}
+                    export type no<GAnnotation> = null
                     
-                    export type content<GAnnotation> = null
+                    export namespace yes {}
+                    
+                    export type yes<GAnnotation> = null
                 }
                 
-                export type no<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }
+                export type optional<GAnnotation> = 
+                    | ['no', null]
+                    | ['yes', null]
                 
-                export namespace yes {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export namespace content {}
-                    
-                    export type content<GAnnotation> = null
-                }
-                
-                export type yes<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }
+                export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             }
             
-            export type optional<GAnnotation> = 
-                | ['no', {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }]
-                | ['yes', {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }]
-            
-            export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+            export type D<GAnnotation> = {
+                readonly 'optional': 
+                    | ['no', null]
+                    | ['yes', null]
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
+            }
         }
         
-        export type D<GAnnotation> = {
+        export type dictionary<GAnnotation> = pt.Dictionary<{
             readonly 'optional': 
-                | ['no', {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }]
-                | ['yes', {
-                    readonly 'annotation': GAnnotation
-                    readonly 'content': null
-                }]
+                | ['no', null]
+                | ['yes', null]
             readonly 'type': T.Global__Type__Selection<GAnnotation>
-        }
+        }>
     }
     
-    export type Parameters<GAnnotation> = pt.Dictionary<{
-        readonly 'optional': 
-            | ['no', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': null
-            }]
-            | ['yes', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': null
-            }]
-        readonly 'type': T.Global__Type__Selection<GAnnotation>
-    }>
+    export type Parameters<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<{
+            readonly 'optional': 
+                | ['no', null]
+                | ['yes', null]
+            readonly 'type': T.Global__Type__Selection<GAnnotation>
+        }>
+    }
     
     export namespace Property {
         
@@ -1802,10 +1718,20 @@ export namespace T {
     
     export namespace State__Constraints {
         
-        export type D<GAnnotation> = T.State__Selection<GAnnotation>
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
+            
+            export type D<GAnnotation> = T.State__Selection<GAnnotation>
+        }
+        
+        export type dictionary<GAnnotation> = pt.Dictionary<T.State__Selection<GAnnotation>>
     }
     
-    export type State__Constraints<GAnnotation> = pt.Dictionary<T.State__Selection<GAnnotation>>
+    export type State__Constraints<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<T.State__Selection<GAnnotation>>
+    }
     
     export namespace State__Selection {
         
@@ -1821,7 +1747,7 @@ export namespace T {
             readonly 'key': string
         }
         
-        export type state__group<GAnnotation> = null
+        export type state__group<GAnnotation> = GAnnotation
         
         export type _ltype<GAnnotation> = T.No__Context__Value__Selection<GAnnotation>
     }
@@ -1831,7 +1757,7 @@ export namespace T {
             readonly 'annotation': GAnnotation
             readonly 'key': string
         }
-        readonly 'state group': null
+        readonly 'state group': GAnnotation
         readonly 'type': T.No__Context__Value__Selection<GAnnotation>
     }
     
@@ -1841,53 +1767,29 @@ export namespace T {
             
             export namespace array {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
-                    
-                    export type _ltype<GAnnotation> = T.Type<GAnnotation>
-                }
-                
-                export type content<GAnnotation> = {
-                    readonly 'type': T.Type<GAnnotation>
-                }
+                export type _ltype<GAnnotation> = T.Type<GAnnotation>
             }
             
             export type array<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'type': T.Type<GAnnotation>
-                }
+                readonly 'type': T.Type<GAnnotation>
             }
             
             export namespace atom {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
-                    
-                    export type atom<GAnnotation> = T.Atom<GAnnotation>
-                }
-                
-                export type content<GAnnotation> = {
-                    readonly 'atom': T.Atom<GAnnotation>
-                }
+                export type atom<GAnnotation> = T.Atom<GAnnotation>
             }
             
             export type atom<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
             }
             
             export namespace component {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
+                export namespace arguments {
                     
-                    export namespace arguments {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace dictionary {
                         
                         export namespace D {
                             
@@ -1897,32 +1799,16 @@ export namespace T {
                                 
                                 export namespace _ltype {
                                     
-                                    export namespace resolved__value {
-                                        
-                                        export type annotation<GAnnotation> = GAnnotation
-                                        
-                                        export type content<GAnnotation> = T.No__Context__Value__Selection<GAnnotation>
-                                    }
-                                    
-                                    export type resolved__value<GAnnotation> = {
-                                        readonly 'annotation': GAnnotation
-                                        readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                    }
+                                    export type resolved__value<GAnnotation> = T.No__Context__Value__Selection<GAnnotation>
                                 }
                                 
                                 export type _ltype<GAnnotation> = 
-                                    | ['resolved value', {
-                                        readonly 'annotation': GAnnotation
-                                        readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                    }]
+                                    | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                             }
                             
                             export type content<GAnnotation> = {
                                 readonly 'type': 
-                                    | ['resolved value', {
-                                        readonly 'annotation': GAnnotation
-                                        readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                    }]
+                                    | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                             }
                         }
                         
@@ -1930,194 +1816,131 @@ export namespace T {
                             readonly 'annotation': GAnnotation
                             readonly 'content': {
                                 readonly 'type': 
-                                    | ['resolved value', {
-                                        readonly 'annotation': GAnnotation
-                                        readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                    }]
+                                    | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                             }
                         }
                     }
                     
-                    export type arguments<GAnnotation> = pt.Dictionary<{
+                    export type dictionary<GAnnotation> = pt.Dictionary<{
                         readonly 'annotation': GAnnotation
                         readonly 'content': {
                             readonly 'type': 
-                                | ['resolved value', {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                }]
+                                | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                         }
                     }>
-                    
-                    export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
                 }
                 
-                export type content<GAnnotation> = {
-                    readonly 'arguments': pt.Dictionary<{
+                export type arguments<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'annotation': GAnnotation
                         readonly 'content': {
                             readonly 'type': 
-                                | ['resolved value', {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                }]
+                                | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                         }
                     }>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
+                
+                export type _ltype<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             }
             
             export type component<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'arguments': pt.Dictionary<{
+                readonly 'arguments': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'annotation': GAnnotation
                         readonly 'content': {
                             readonly 'type': 
-                                | ['resolved value', {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                }]
+                                | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                         }
                     }>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }
             
             export namespace dictionary {
                 
-                export type annotation<GAnnotation> = GAnnotation
+                export type constraints<GAnnotation> = T.Dictionary__Constraints<GAnnotation>
                 
-                export namespace content {
-                    
-                    export type constraints<GAnnotation> = T.Dictionary__Constraints<GAnnotation>
-                    
-                    export type key<GAnnotation> = T.Atom<GAnnotation>
-                    
-                    export type _ltype<GAnnotation> = T.Type<GAnnotation>
-                    
-                    export type variables<GAnnotation> = T.Variables<GAnnotation>
-                }
+                export type key<GAnnotation> = T.Atom<GAnnotation>
                 
-                export type content<GAnnotation> = {
-                    readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
-                    readonly 'key': T.Atom<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                export type _ltype<GAnnotation> = T.Type<GAnnotation>
+                
+                export type variables<GAnnotation> = T.Variables<GAnnotation>
             }
             
             export type dictionary<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
-                    readonly 'key': T.Atom<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
+                readonly 'key': T.Atom<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }
             
             export namespace group {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
+                export namespace properties {
                     
-                    export namespace properties {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace dictionary {
                         
                         export type D<GAnnotation> = T.Property<GAnnotation>
                     }
                     
-                    export type properties<GAnnotation> = pt.Dictionary<T.Property<GAnnotation>>
+                    export type dictionary<GAnnotation> = pt.Dictionary<T.Property<GAnnotation>>
                 }
                 
-                export type content<GAnnotation> = {
-                    readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
+                export type properties<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<T.Property<GAnnotation>>
                 }
             }
             
             export type group<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
+                readonly 'properties': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<T.Property<GAnnotation>>
                 }
             }
             
-            export namespace nothing {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {}
-                
-                export type content<GAnnotation> = null
-            }
+            export namespace nothing {}
             
-            export type nothing<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': null
-            }
+            export type nothing<GAnnotation> = null
             
             export namespace optional {
                 
-                export type annotation<GAnnotation> = GAnnotation
+                export type constraints<GAnnotation> = T.State__Constraints<GAnnotation>
                 
-                export namespace content {
-                    
-                    export type constraints<GAnnotation> = T.State__Constraints<GAnnotation>
-                    
-                    export type _ltype<GAnnotation> = T.Type<GAnnotation>
-                    
-                    export type variables<GAnnotation> = T.Variables<GAnnotation>
-                }
+                export type _ltype<GAnnotation> = T.Type<GAnnotation>
                 
-                export type content<GAnnotation> = {
-                    readonly 'constraints': T.State__Constraints<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                export type variables<GAnnotation> = T.Variables<GAnnotation>
             }
             
             export type optional<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.State__Constraints<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.State__Constraints<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }
             
             export namespace resolved__reference {
                 
-                export type annotation<GAnnotation> = GAnnotation
+                export type atom<GAnnotation> = T.Atom<GAnnotation>
                 
-                export namespace content {
-                    
-                    export type atom<GAnnotation> = T.Atom<GAnnotation>
-                    
-                    export type dictionary<GAnnotation> = T.Dictionary__Selection<GAnnotation>
-                }
-                
-                export type content<GAnnotation> = {
-                    readonly 'atom': T.Atom<GAnnotation>
-                    readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
+                export type dictionary<GAnnotation> = T.Dictionary__Selection<GAnnotation>
             }
             
             export type resolved__reference<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                    readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
+                readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
             }
             
             export namespace state__group {
                 
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export namespace content {
+                export namespace states {
                     
-                    export namespace states {
+                    export type annotation<GAnnotation> = GAnnotation
+                    
+                    export namespace dictionary {
                         
                         export namespace D {
                             
@@ -2135,15 +1958,16 @@ export namespace T {
                         }
                     }
                     
-                    export type states<GAnnotation> = pt.Dictionary<{
+                    export type dictionary<GAnnotation> = pt.Dictionary<{
                         readonly 'constraints': T.State__Constraints<GAnnotation>
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
                     }>
                 }
                 
-                export type content<GAnnotation> = {
-                    readonly 'states': pt.Dictionary<{
+                export type states<GAnnotation> = {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'constraints': T.State__Constraints<GAnnotation>
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
@@ -2152,9 +1976,9 @@ export namespace T {
             }
             
             export type state__group<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'states': pt.Dictionary<{
+                readonly 'states': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'constraints': T.State__Constraints<GAnnotation>
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
@@ -2165,71 +1989,50 @@ export namespace T {
         
         export type _ltype<GAnnotation> = 
             | ['array', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'type': T.Type<GAnnotation>
-                }
+                readonly 'type': T.Type<GAnnotation>
             }]
             | ['atom', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
             }]
             | ['component', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'arguments': pt.Dictionary<{
+                readonly 'arguments': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'annotation': GAnnotation
                         readonly 'content': {
                             readonly 'type': 
-                                | ['resolved value', {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                }]
+                                | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                         }
                     }>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
             | ['dictionary', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
-                    readonly 'key': T.Atom<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
+                readonly 'key': T.Atom<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['group', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
+                readonly 'properties': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<T.Property<GAnnotation>>
                 }
             }]
-            | ['nothing', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': null
-            }]
+            | ['nothing', null]
             | ['optional', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.State__Constraints<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.State__Constraints<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['resolved reference', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                    readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
+                readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
             }]
             | ['state group', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'states': pt.Dictionary<{
+                readonly 'states': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'constraints': T.State__Constraints<GAnnotation>
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
@@ -2241,71 +2044,50 @@ export namespace T {
     export type Type<GAnnotation> = {
         readonly 'type': 
             | ['array', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'type': T.Type<GAnnotation>
-                }
+                readonly 'type': T.Type<GAnnotation>
             }]
             | ['atom', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
             }]
             | ['component', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'arguments': pt.Dictionary<{
+                readonly 'arguments': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'annotation': GAnnotation
                         readonly 'content': {
                             readonly 'type': 
-                                | ['resolved value', {
-                                    readonly 'annotation': GAnnotation
-                                    readonly 'content': T.No__Context__Value__Selection<GAnnotation>
-                                }]
+                                | ['resolved value', T.No__Context__Value__Selection<GAnnotation>]
                         }
                     }>
-                    readonly 'type': T.Global__Type__Selection<GAnnotation>
                 }
+                readonly 'type': T.Global__Type__Selection<GAnnotation>
             }]
             | ['dictionary', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
-                    readonly 'key': T.Atom<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.Dictionary__Constraints<GAnnotation>
+                readonly 'key': T.Atom<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['group', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'properties': pt.Dictionary<T.Property<GAnnotation>>
+                readonly 'properties': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<T.Property<GAnnotation>>
                 }
             }]
-            | ['nothing', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': null
-            }]
+            | ['nothing', null]
             | ['optional', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'constraints': T.State__Constraints<GAnnotation>
-                    readonly 'type': T.Type<GAnnotation>
-                    readonly 'variables': T.Variables<GAnnotation>
-                }
+                readonly 'constraints': T.State__Constraints<GAnnotation>
+                readonly 'type': T.Type<GAnnotation>
+                readonly 'variables': T.Variables<GAnnotation>
             }]
             | ['resolved reference', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'atom': T.Atom<GAnnotation>
-                    readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
-                }
+                readonly 'atom': T.Atom<GAnnotation>
+                readonly 'dictionary': T.Dictionary__Selection<GAnnotation>
             }]
             | ['state group', {
-                readonly 'annotation': GAnnotation
-                readonly 'content': {
-                    readonly 'states': pt.Dictionary<{
+                readonly 'states': {
+                    readonly 'annotation': GAnnotation
+                    readonly 'dictionary': pt.Dictionary<{
                         readonly 'constraints': T.State__Constraints<GAnnotation>
                         readonly 'type': T.Type<GAnnotation>
                         readonly 'variables': T.Variables<GAnnotation>
@@ -2333,125 +2115,82 @@ export namespace T {
         
         export namespace component {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export type component<GAnnotation> = GAnnotation
             
-            export namespace content {
+            export namespace tail {
                 
-                export type component<GAnnotation> = null
-                
-                export namespace tail {
-                    
-                    export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
-                }
-                
-                export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+                export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
             }
             
-            export type content<GAnnotation> = {
-                readonly 'component': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export type component<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'component': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            readonly 'component': GAnnotation
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export namespace group {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export type group<GAnnotation> = GAnnotation
             
-            export namespace content {
+            export namespace property {
                 
-                export type group<GAnnotation> = null
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export namespace property {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
-                
-                export type property<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                
-                export namespace tail {
-                    
-                    export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
-                }
-                
-                export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+                export type key<GAnnotation> = string
             }
             
-            export type content<GAnnotation> = {
-                readonly 'group': null
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+            export type property<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
+            
+            export namespace tail {
+                
+                export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
+            }
+            
+            export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export type group<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'group': null
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+            readonly 'group': GAnnotation
+            readonly 'property': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export namespace reference {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export type reference<GAnnotation> = GAnnotation
             
-            export namespace content {
+            export namespace tail {
                 
-                export type reference<GAnnotation> = null
-                
-                export namespace tail {
-                    
-                    export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
-                }
-                
-                export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+                export type O<GAnnotation> = T.Value__Selection__Tail<GAnnotation>
             }
             
-            export type content<GAnnotation> = {
-                readonly 'reference': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            export type tail<GAnnotation> = [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export type reference<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'reference': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            readonly 'reference': GAnnotation
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }
         
         export namespace state__group {
             
-            export type annotation<GAnnotation> = GAnnotation
+            export type result__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
             
-            export namespace content {
+            export type state__group<GAnnotation> = GAnnotation
+            
+            export namespace states {
                 
-                export type result__type<GAnnotation> = T.Global__Type__Selection<GAnnotation>
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type state__group<GAnnotation> = null
-                
-                export namespace states {
+                export namespace dictionary {
                     
                     export namespace D {
                         
@@ -2466,16 +2205,15 @@ export namespace T {
                     }
                 }
                 
-                export type states<GAnnotation> = pt.Dictionary<{
+                export type dictionary<GAnnotation> = pt.Dictionary<{
                     readonly 'annotation': GAnnotation
                     readonly 'content': T.Any__Value__Selection<GAnnotation>
                 }>
             }
             
-            export type content<GAnnotation> = {
-                readonly 'result type': T.Global__Type__Selection<GAnnotation>
-                readonly 'state group': null
-                readonly 'states': pt.Dictionary<{
+            export type states<GAnnotation> = {
+                readonly 'annotation': GAnnotation
+                readonly 'dictionary': pt.Dictionary<{
                     readonly 'annotation': GAnnotation
                     readonly 'content': T.Any__Value__Selection<GAnnotation>
                 }>
@@ -2483,11 +2221,11 @@ export namespace T {
         }
         
         export type state__group<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'result type': T.Global__Type__Selection<GAnnotation>
-                readonly 'state group': null
-                readonly 'states': pt.Dictionary<{
+            readonly 'result type': T.Global__Type__Selection<GAnnotation>
+            readonly 'state group': GAnnotation
+            readonly 'states': {
+                readonly 'annotation': GAnnotation
+                readonly 'dictionary': pt.Dictionary<{
                     readonly 'annotation': GAnnotation
                     readonly 'content': T.Any__Value__Selection<GAnnotation>
                 }>
@@ -2497,36 +2235,27 @@ export namespace T {
     
     export type Value__Selection__Tail<GAnnotation> = 
         | ['component', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'component': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            readonly 'component': GAnnotation
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }]
         | ['group', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'group': null
-                readonly 'property': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
+            readonly 'group': GAnnotation
+            readonly 'property': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }]
         | ['reference', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'reference': null
-                readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
-            }
+            readonly 'reference': GAnnotation
+            readonly 'tail': [ false ] | [ true, T.Value__Selection__Tail<GAnnotation>]
         }]
         | ['state group', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'result type': T.Global__Type__Selection<GAnnotation>
-                readonly 'state group': null
-                readonly 'states': pt.Dictionary<{
+            readonly 'result type': T.Global__Type__Selection<GAnnotation>
+            readonly 'state group': GAnnotation
+            readonly 'states': {
+                readonly 'annotation': GAnnotation
+                readonly 'dictionary': pt.Dictionary<{
                     readonly 'annotation': GAnnotation
                     readonly 'content': T.Any__Value__Selection<GAnnotation>
                 }>
@@ -2539,61 +2268,33 @@ export namespace T {
             
             export type annotation<GAnnotation> = GAnnotation
             
-            export namespace content {
+            export type key<GAnnotation> = string
+        }
+        
+        export type dictionary__constraint<GAnnotation> = {
+            readonly 'annotation': GAnnotation
+            readonly 'key': string
+        }
+        
+        export namespace parameter {
+            
+            export namespace parameter {
                 
                 export type annotation<GAnnotation> = GAnnotation
                 
                 export type key<GAnnotation> = string
             }
             
-            export type content<GAnnotation> = {
+            export type parameter<GAnnotation> = {
                 readonly 'annotation': GAnnotation
                 readonly 'key': string
-            }
-        }
-        
-        export type dictionary__constraint<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
-        }
-        
-        export namespace parameter {
-            
-            export type annotation<GAnnotation> = GAnnotation
-            
-            export namespace content {
-                
-                export namespace parameter {
-                    
-                    export type annotation<GAnnotation> = GAnnotation
-                    
-                    export type key<GAnnotation> = string
-                }
-                
-                export type parameter<GAnnotation> = {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
-            }
-            
-            export type content<GAnnotation> = {
-                readonly 'parameter': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
             }
         }
         
         export type parameter<GAnnotation> = {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'parameter': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'parameter': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }
         
@@ -2601,121 +2302,77 @@ export namespace T {
             
             export type annotation<GAnnotation> = GAnnotation
             
-            export namespace content {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export type key<GAnnotation> = string
-            }
-            
-            export type content<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            export type key<GAnnotation> = string
         }
         
         export type parent__variable<GAnnotation> = {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }
         
         export namespace sibling__property {
             
             export type annotation<GAnnotation> = GAnnotation
             
-            export namespace content {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export type key<GAnnotation> = string
-            }
-            
-            export type content<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            export type key<GAnnotation> = string
         }
         
         export type sibling__property<GAnnotation> = {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }
         
         export namespace state__constraint {
             
             export type annotation<GAnnotation> = GAnnotation
             
-            export namespace content {
-                
-                export type annotation<GAnnotation> = GAnnotation
-                
-                export type key<GAnnotation> = string
-            }
-            
-            export type content<GAnnotation> = {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            export type key<GAnnotation> = string
         }
         
         export type state__constraint<GAnnotation> = {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }
     }
     
     export type Variable<GAnnotation> = 
         | ['dictionary constraint', {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }]
         | ['parameter', {
-            readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'parameter': {
-                    readonly 'annotation': GAnnotation
-                    readonly 'key': string
-                }
+            readonly 'parameter': {
+                readonly 'annotation': GAnnotation
+                readonly 'key': string
             }
         }]
         | ['parent variable', {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }]
         | ['sibling property', {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }]
         | ['state constraint', {
             readonly 'annotation': GAnnotation
-            readonly 'content': {
-                readonly 'annotation': GAnnotation
-                readonly 'key': string
-            }
+            readonly 'key': string
         }]
     
     export namespace Variables {
         
-        export type D<GAnnotation> = T.Variable<GAnnotation>
+        export type annotation<GAnnotation> = GAnnotation
+        
+        export namespace dictionary {
+            
+            export type D<GAnnotation> = T.Variable<GAnnotation>
+        }
+        
+        export type dictionary<GAnnotation> = pt.Dictionary<T.Variable<GAnnotation>>
     }
     
-    export type Variables<GAnnotation> = pt.Dictionary<T.Variable<GAnnotation>>
+    export type Variables<GAnnotation> = {
+        readonly 'annotation': GAnnotation
+        readonly 'dictionary': pt.Dictionary<T.Variable<GAnnotation>>
+    }
 }

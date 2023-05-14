@@ -20,12 +20,12 @@ import {
     dictionaryReference,
     v_grp,
     constrainedDictionary,
+    typeLibrary,
 } from "../../../pub/dist/submodules/unresolved/shorthands"
-const d = pd.d
 
-export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
-    'imports': pd.d({}),
-    'atom types': pd.d({
+export const $: g_liana.T.Type__Library<pd.SourceLocation> = typeLibrary(
+    {},
+    {
         "bedrag": null,
         "bestand": null,
         "dagen": null,
@@ -34,8 +34,8 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
         "promillage": null,
         "identifier": null,
         "single line text": null,
-    }),
-    'global types': pd.d({
+    },
+    {
         "Stamdata": globalType(
             {},
             group({
@@ -476,5 +476,5 @@ export const $: g_liana.T.Type__Library<pd.SourceLocation> = {
                 })),
             })
         ),
-    }),
-}
+    },
+)

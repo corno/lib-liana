@@ -99,7 +99,7 @@ export const $$: A.getTestSet = ($) => {
 
     //pv.logDebugMessage(`${count} errors`)
 
-    
+
 
 
     a_fp.$b.createFile()(
@@ -134,10 +134,10 @@ export const $$: A.getTestSet = ($) => {
         }
     )
 
-    a_resolve.$a.resolve(
+    const resolved = a_resolve.$a.resolve<pd.SourceLocation>(
         {
             'mergeAndIgnore': a_dictionary.$r.mergeAndIgnore({
-                'error':{
+                'error': {
                     'data': () => {
                         pv.logDebugMessage(`ERRRRORORRR`)
                     },
@@ -149,26 +149,27 @@ export const $$: A.getTestSet = ($) => {
             'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
                 'onError': ($) => {
                     pv.logDebugMessage(`ERRRRORRRR1 ${$}`)
- 
+
                 }
             })
         },
         {
             'onError': ($) => {
+                pv.logDebugMessage(`${$.annotation.file}:${$.annotation.line}:${$.annotation.column}`)
                 pl.cc($.message, ($) => {
                     switch ($[0]) {
-                        case 'no such entry': 
+                        case 'no such entry':
                             pl.ss($, ($) => {
                                 pv.logDebugMessage(`NO SUCH ENTRY: ${$.key}`)
 
                             })
                             break
-                            case 'not the right state': 
-                                pl.ss($, ($) => {
-                                    pv.logDebugMessage(`NOT THE RIGHT STATE: ${$.found}`)
-    
-                                })
-                                break
+                        case 'not the right state':
+                            pl.ss($, ($) => {
+                                pv.logDebugMessage(`NOT THE RIGHT STATE: ${$.found}`)
+
+                            })
+                            break
                         default: pl.au($[0])
                     }
                 })
@@ -184,6 +185,41 @@ export const $$: A.getTestSet = ($) => {
             },
 
         }
+    })
+
+    resolved['type library']['global types'].__forEach(() => false, ($, key) => {
+        pv.logDebugMessage(key)
+        $.variables.__forEach(() => false, ($, key) => {
+            pv.logDebugMessage(`   ${key}`)
+            switch ($[0]) {
+                case 'dictionary constraint':
+                    pl.ss($, ($) => {
+
+                    })
+                    break
+                case 'parameter':
+                    pl.ss($, ($) => {
+                        pv.logDebugMessage(`          YEP`)
+                    })
+                    break
+                case 'parent variable':
+                    pl.ss($, ($) => {
+
+                    })
+                    break
+                case 'sibling property':
+                    pl.ss($, ($) => {
+
+                    })
+                    break
+                case 'state constraint':
+                    pl.ss($, ($) => {
+
+                    })
+                    break
+                default: pl.au($[0])
+            }
+        })
     })
 
     g_liana2tendril.$a.map({
