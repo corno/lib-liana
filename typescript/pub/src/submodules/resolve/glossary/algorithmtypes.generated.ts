@@ -2,8 +2,8 @@ import * as pt from 'pareto-core-types'
 
 import { T } from "./datatypes.generated"
 
-import * as g_resolved from "../../liana"
-import * as g_unresolved from "../../liana_resolved"
+import * as g_in from "../../unresolved"
+import * as g_out from "../../resolved"
 
 export namespace ASYNC {
     
@@ -16,6 +16,14 @@ export namespace SYNC {
     
     export namespace I {
         
-        export type Error<GAnnotation> = ($: T.Error<GAnnotation>, ) => void
+        export type OnError<GAnnotation> = ($: T.Error<GAnnotation>, ) => void
+    }
+    
+    export namespace A {
+        
+        
+        export namespace F {
+            export type Resolve<GAnnotation> = ($: T.Resolve__Parameters<GAnnotation>) => g_out.T.Root
+        }
     }
 }

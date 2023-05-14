@@ -3,6 +3,7 @@ import * as ps from 'pareto-core-state'
 import * as pm from 'pareto-core-map'
 import * as pv from 'pareto-core-dev'
 import * as pa from 'pareto-core-async'
+import * as pd from 'pareto-core-data'
 
 import * as g_test from "lib-pareto-test"
 import * as g_liana from "../../../../../pub/dist/submodules/liana"
@@ -18,11 +19,13 @@ import * as a_coll from "res-pareto-collation"
 import * as a_fp from "lib-fountain-pen"
 import * as a_ts from "res-typescript"
 import * as a_dictionary from "res-pareto-dictionary"
-import * as a_resolve from "res-pareto-resolve"
+import * as a_resolvex from "res-pareto-resolve"
+import * as a_resolve from "../../../../../pub/dist/submodules/resolve"
 
 const d = pm.wrapRawDictionary
 
-import { $ as d_playground } from "../../../data/playground_old.data"
+import { $ as d_playground_old } from "../../../data/playground_old.data"
+import { $ as d_playground } from "../../../data/playground.data"
 import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
 
 import { A } from "../api.generated"
@@ -103,7 +106,7 @@ export const $$: A.getTestSet = ($) => {
         ($i) => {
             $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
                 a_dependencygraph.$a.generateDependencyGraph()({
-                    'data': d_playground,
+                    'data': d_playground_old,
                 }, $i)
             })
         },
@@ -121,7 +124,7 @@ export const $$: A.getTestSet = ($) => {
                     // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
                     //     'compare': a_coll.$r.localeIsABeforeB(),
                     // })
-                })(d_playground, $i)
+                })(d_playground_old, $i)
             })
         },
         {
@@ -131,8 +134,60 @@ export const $$: A.getTestSet = ($) => {
         }
     )
 
+    a_resolve.$a.resolve(
+        {
+            'mergeAndIgnore': a_dictionary.$r.mergeAndIgnore({
+                'error':{
+                    'data': () => {
+                        pv.logDebugMessage(`ERRRRORORRR`)
+                    },
+                    'end': () => {
+
+                    },
+                }
+            }),
+            'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
+                'onError': ($) => {
+                    pv.logDebugMessage(`ERRRRORRRR1 ${$}`)
+ 
+                }
+            })
+        },
+        {
+            'onError': ($) => {
+                pl.cc($.message, ($) => {
+                    switch ($[0]) {
+                        case 'no such entry': 
+                            pl.ss($, ($) => {
+                                pv.logDebugMessage(`NO SUCH ENTRY: ${$.key}`)
+
+                            })
+                            break
+                            case 'not the right state': 
+                                pl.ss($, ($) => {
+                                    pv.logDebugMessage(`NOT THE RIGHT STATE: ${$.found}`)
+    
+                                })
+                                break
+                        default: pl.au($[0])
+                    }
+                })
+            }
+        }
+    )({
+        'imports': pm.wrapRawDictionary({}),
+        'root': {
+            'type library': d_playground,
+            'root': {
+                'annotation': pd.getLocationInfo(0),
+                'key': "Jaar"
+            },
+
+        }
+    })
+
     g_liana2tendril.$a.map({
-        'resolveDictionary': a_resolve.$r.safeResolveDictionary({
+        'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
             'onError': () => {
                 pv.logDebugMessage(`ERROR!!!!!!!`)
             }
@@ -141,7 +196,7 @@ export const $$: A.getTestSet = ($) => {
         // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
         //     'compare': a_coll.$r.localeIsABeforeB(),
         // })
-    })(d_playground)
+    })(d_playground_old)
 
     // a_pub.$b.generateResolver()({
     //     'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),

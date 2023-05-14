@@ -13,8 +13,8 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
         'glossary': {
             'root': glossary,
             'imports': d({
-                "unresolved": sibling("liana_resolved"),
-                "resolved": sibling("liana"),
+                "in": sibling("unresolved"),
+                "out": sibling("resolved"),
             }),
 
         },
@@ -22,6 +22,8 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'root': api,
             'imports': d({
                 "this": this_(),
+                "resolve": external("res-pareto-resolve"),
+                "dictionary": external("res-pareto-dictionary")
             }),
         },
     },

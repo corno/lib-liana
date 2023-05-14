@@ -35,8 +35,28 @@ function r_imp(name: string, depth: number): g_common.T.AnnotatedKey<pd.SourceLo
 export function array(type: g_this.T.Type<pd.SourceLocation>): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['array', {
-            'type': type,
-            //'constraint': [false]
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'type': type,
+                //'constraint': [false]
+            }
+        }]
+    }
+}
+
+export function constrainedOptional(
+    constraints: RawDictionary<g_this.T.State__Constraints.D<pd.SourceLocation>>,
+    type: g_this.T.Type<pd.SourceLocation>
+): g_this.T.Type<pd.SourceLocation> {
+    return {
+        'type': ['optional', {
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'constraints': pd.d(constraints),
+                'variables': pd.d({}),
+                'type': type,
+                //'constraint': [false]
+            }
         }]
     }
 }
@@ -46,29 +66,32 @@ export function optional(
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['optional', {
-            'type': type,
-            'result': [false]
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'constraints': pd.d<g_this.T.State__Constraints.D<pd.SourceLocation>>({}),
+                'variables': pd.d({}),
+                'type': type,
+                //'constraint': [false]
+            }
         }]
     }
 }
 
 export function nothing(
-    valSel?: g_this.T.Value__Selection<pd.SourceLocation>
+    valSel?: g_this.T.No__Context__Value__Selection<pd.SourceLocation>
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['nothing', {
-            'result': valSel === undefined ? [false] : [true, valSel]
+            'annotation': pd.getLocationInfo(1),
+            'content': null,
         }]
     }
 }
 
 export function prop(
     type: g_this.T.Type<pd.SourceLocation>
-): g_this.T.Property<pd.SourceLocation> {
-    return {
-        'variables': pd.d({}),
-        'type': type
-    }
+): g_this.T.Type<pd.SourceLocation> {
+    return type
 }
 
 export function dependentProp(
@@ -78,8 +101,12 @@ export function dependentProp(
     return {
         'variables': pd.d(siblings).map(($) => {
             return ['sibling property', {
-                'key': $,
-                'annotation': pd.getLocationInfo(1)
+                'annotation': pd.getLocationInfo(1),
+                'content': {
+
+                    'key': $,
+                    'annotation': pd.getLocationInfo(1)
+                }
             }]
         }),
         'type': type,
@@ -87,42 +114,50 @@ export function dependentProp(
 }
 
 export function dictionaryReference(
-    type: g_this.T.Value__Selection<pd.SourceLocation>,
+    type: g_this.T.No__Context__Value__Selection<pd.SourceLocation>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['resolved reference', {
-            'atom': {
-                'type': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': "identifier",
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'atom': {
+                    'type': {
+                        'annotation': pd.getLocationInfo(1),
+                        'key': "identifier",
+                    }
+                },
+                'dictionary': {
+                    'dictionary': null,
+                    'type': type,
                 }
-            },
-            'value': ['dictionary', {
-                'type': type,
-                'cast': ['dictionary', {
-                    'annotation': pd.getLocationInfo(1),
-                    'content': null,
-                }],
-            }],
+            }
         }]
     }
 }
 
-export function lookupReference(
-    type: g_this.T.Lookup__Selection<pd.SourceLocation>,
-): g_this.T.Type<pd.SourceLocation> {
-    return {
-        'type': ['resolved reference', {
-            'atom': {
-                'type': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': "identifier",
-                }
-            },
-            'value': ['lookup', type],
-        }]
-    }
-}
+// export function lookupReference(
+//     type: g_this.T.Lookup__Selection<pd.SourceLocation>,
+// ): g_this.T.Type<pd.SourceLocation> {
+//     return {
+//         'type': ['resolved reference', {
+//             'annotation': pd.getLocationInfo(1),
+//             'content': {
+//                 'atom': {
+//                     'type': {
+//                         'annotation': pd.getLocationInfo(1),
+//                         'key': "identifier",
+//                     }
+//                 },
+//                 'value': ['lookup', {
+
+//                     'annotation': pd.getLocationInfo(1),
+//                     'content': type,
+
+//                 }],
+//             }
+//         }]
+//     }
+// }
 
 // export function cyclicReference(
 //     gloRef: g_this.T.Global__Type__Selection<pd.SourceLocation>,
@@ -140,24 +175,37 @@ export function lookupReference(
 //     }
 // }
 
-export function lookupConstraint(
-    lookupSelection: g_this.T.Lookup__Selection<pd.SourceLocation>
-): g_this.T.Dictionary__Constraints.D<pd.SourceLocation> {
-    return ['lookup', lookupSelection]
-}
+// export function lookupConstraint(
+//     lookupSelection: g_this.T.Lookup__Selection<pd.SourceLocation>
+// ): g_this.T.Dictionary__Constraints.D<pd.SourceLocation> {
+//     return ['lookup', {
+//         'annotation': pd.getLocationInfo(1),
+//         'content': lookupSelection,
+//     }]
+// }
+
 export function dictionaryConstraint(
-    type: g_this.T.Value__Selection<pd.SourceLocation>,
+    type: g_this.T.No__Context__Value__Selection<pd.SourceLocation>,
     dense: boolean
 ): g_this.T.Dictionary__Constraints.D<pd.SourceLocation> {
     return ['dictionary', {
-        'dictionary': {
-            'type': type,
-            'cast': ['dictionary', {
-                'annotation': pd.getLocationInfo(1),
-                'content': null,
-            }],
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+
+            'dictionary': {
+                'type': type,
+                'dictionary': null,
+            },
+            'dense': dense
+                ? ['yes', {
+                    'annotation': pd.getLocationInfo(1),
+                    'content': null,
+                }]
+                : ['no', {
+                    'annotation': pd.getLocationInfo(1),
+                    'content': null,
+                }]
         },
-        'dense': dense ? ['yes', null] : ['no', null]
     }]
 }
 
@@ -168,16 +216,19 @@ export function constrainedDictionary(
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['dictionary', {
-            'key': {
-                'type': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': "identifier",
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'key': {
+                    'type': {
+                        'annotation': pd.getLocationInfo(1),
+                        'key': "identifier",
+                    },
                 },
-            },
-            'constraints': pd.d(constraints),
-            'variables': pd.d({}),
-            'type': type,
-            //'autofill': pd.a([]),
+                'constraints': pd.d(constraints),
+                'variables': pd.d({}),
+                'type': type,
+                //'autofill': pd.a([]),
+            }
         }]
     }
 }
@@ -185,14 +236,17 @@ export function constrainedDictionary(
 export function dictionary(type: g_this.T.Type<pd.SourceLocation>/*, autofill?: g_this.T.Type._ltype.dictionary.autofill.A<pd.SourceLocation>[]*/): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['dictionary', {
-            // 'annotation': li,
-            'key': {
-                'type': r_imp("identifier", 1)
-            },
-            'constraints': pd.d({}),
-            'variables': pd.d({}),
-            'type': type,
-            //'autofill': pd.a(autofill === undefined ? [] : autofill),
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                // 'annotation': li,
+                'key': {
+                    'type': r_imp("identifier", 1)
+                },
+                'constraints': pd.d<g_this.T.Dictionary__Constraints.D<pd.SourceLocation>>({}),
+                'variables': pd.d({}),
+                'type': type,
+                //'autofill': pd.a(autofill === undefined ? [] : autofill),
+            }
         }]
     }
 }
@@ -211,84 +265,73 @@ export function globalType(
 }
 
 export function group(
-    rawProperties: RawDictionary<g_this.T.Property<pd.SourceLocation>>,
+    rawProperties: RawDictionary<g_this.T.Type<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
+    const allPrecedingSiblings: RawDictionary<g_this.T.Variable<pd.SourceLocation>> = {}
     return {
         'type': ['group', {
-            'properties': pd.d(rawProperties),
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'properties': pd.d(rawProperties).__mapWithKey(($, key) => {
+                    const precedingSiblings: RawDictionary<g_this.T.Variable<pd.SourceLocation>> = {}
+                    pd.d(allPrecedingSiblings).__forEach(() => false, ($, key) => {
+                        precedingSiblings[key] = $
+                    })
+                    allPrecedingSiblings[key] = ['sibling property', {
+                        'annotation': pd.getLocationInfo(1),
+                        'content': {
+                            'annotation': pd.getLocationInfo(1),
+                            'key': key,
+                        },
+                    }]
+                    return {
+                        'variables': pd.d(precedingSiblings),
+                        'type': $
+                    }
+                }),
+            }
         }]
     }
 }
 
 export function state(
     type: g_this.T.Type<pd.SourceLocation>,
-    result?: g_this.T.Any__Value__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.state__group.states.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.state__group.content.states.D<pd.SourceLocation> {
     return {
         'constraints': pd.d({}),
         'variables': pd.d({}),
         'type': type,
-        'result': result === undefined ? [false] : [true, result]
     }
 }
 
 
 export function stateConstraint(
-    type: g_this.T.Value__Selection<pd.SourceLocation>,
+    type: g_this.T.No__Context__Value__Selection<pd.SourceLocation>,
     option: string,
 ): g_this.T.State__Constraints.D<pd.SourceLocation> {
     return {
         'type': type,
-        'cast': ['state group', {
+        'state group': null,
+        'state': {
             'annotation': pd.getLocationInfo(1),
-            'content': {
-
-                'state': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': option
-                }
-            }
-        }]
+            'key': option
+        }
     }
 }
 
 export function constrainedState(
     constraints: RawDictionary<g_this.T.State__Constraints.D<pd.SourceLocation>>,
     type: g_this.T.Type<pd.SourceLocation>,
-    result?: g_this.T.Any__Value__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.state__group.states.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.state__group.content.states.D<pd.SourceLocation> {
     return {
         'constraints': pd.d(constraints),
         'variables': pd.d({}),
         'type': type,
-        'result': result === undefined ? [false] : [true, result]
-    }
-}
-
-export function resultStateGroup(
-    result: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    states: RawDictionary<g_this.T.Type._ltype.state__group.states.D<pd.SourceLocation>>,
-): g_this.T.Type<pd.SourceLocation> {
-    let firstKey: null | string = null
-    pd.d(states).__mapWithKey(($, key) => {
-        if (firstKey === null) {
-            firstKey = key
-        }
-    })
-    if (firstKey === null) {
-        firstKey = "--NO STATES--"
-    }
-
-    return {
-        'type': ['state group', {
-            'result': [true, result],
-            'states': pd.d(states),
-        }]
     }
 }
 
 export function stateGroup(
-    states: RawDictionary<g_this.T.Type._ltype.state__group.states.D<pd.SourceLocation>>,
+    states: RawDictionary<g_this.T.Type._ltype.state__group.content.states.D<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
     let firstKey: null | string = null
     pd.d(states).__mapWithKey(($, key) => {
@@ -302,8 +345,10 @@ export function stateGroup(
 
     return {
         'type': ['state group', {
-            'result': [false],
-            'states': pd.d(states),
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'states': pd.d(states),
+            },
         }]
     }
 }
@@ -311,11 +356,14 @@ export function stateGroup(
 export function atom(type: string): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['atom', {
-            'atom': {
-                'type': {
-                    'annotation': pd.getLocationInfo(1),
-                    'key': type,
-                }
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'atom': {
+                    'type': {
+                        'annotation': pd.getLocationInfo(1),
+                        'key': type,
+                    }
+                },
             },
         }]
     }
@@ -325,44 +373,45 @@ export function v_grp(
     prop: string,
     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
-    return {
-        'step type': ['group', {
-            'annotation': pd.getLocationInfo(1),
-            'content': {
-                'property': r_imp(prop, 1),
-            },
-        }],
-        'tail': tail === undefined ? [false] : [true, tail]
-    }
+    return ['group', {
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'group': null,
+            'property': r_imp(prop, 1),
+            'tail': tail === undefined ? [false] : [true, tail]
+        },
+    }]
+
 }
 
 export function v_sg(
-    opt: string,
-    tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
+    type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
+    states: RawDictionary<g_this.T.Value__Selection__Tail.state__group.content.states.D<pd.SourceLocation>>,
 ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
-    return {
-        'step type': ['state group', {
-            'annotation': pd.getLocationInfo(1),
-            'content': null,
-        }],
-        'tail': tail === undefined ? [false] : [true, tail]
-    }
+    return ['state group', {
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'state group': null,
+            'result type': type,
+            'states': pd.d(states)
+        },
+    }]
 }
 
 export function v_ref(
     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
 ): g_this.T.Value__Selection__Tail<pd.SourceLocation> {
-    return {
-        'step type': ['reference', {
-            'annotation': pd.getLocationInfo(1),
-            'content': null,
-        }],
-        'tail': tail === undefined ? [false] : [true, tail]
-    }
+    return ['reference', {
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'reference': null,
+            'tail': tail === undefined ? [false] : [true, tail]
+        },
+    }]
 }
 
 // export function dictionarySelection(
-//     valueSelection: g_this.T.Value__Selection<pd.SourceLocation>,
+//     valueSelection: g_this.T.No__Context__Value__Selection<pd.SourceLocation>,
 // ): g_this.T.Dictionary__Selection<pd.SourceLocation> {
 //     return {
 //         'type': valueSelection,
@@ -374,7 +423,7 @@ export function v_ref(
 // }
 
 // export function stateSelection(
-//     valueSelection: g_this.T.Value__Selection<pd.SourceLocation>,
+//     valueSelection: g_this.T.No__Context__Value__Selection<pd.SourceLocation>,
 //     state: string,
 // ): g_this.T.State__Selection<pd.SourceLocation> {
 //     return {
@@ -394,7 +443,7 @@ export function v_ref(
 export function valueSelection(
     variable: string,
     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
-): g_this.T.Value__Selection<pd.SourceLocation> {
+): g_this.T.No__Context__Value__Selection<pd.SourceLocation> {
     return {
         'start': {
             'annotation': pd.getLocationInfo(1),
@@ -407,7 +456,7 @@ export function valueSelection(
 export function anyValueSelection(
     variable: string,
     tail?: g_this.T.Value__Selection__Tail<pd.SourceLocation>,
-): g_this.T.Value__Selection<pd.SourceLocation> {
+): g_this.T.No__Context__Value__Selection<pd.SourceLocation> {
     return {
         'start': {
             'annotation': pd.getLocationInfo(1),
@@ -439,7 +488,7 @@ export function fromContextSelection(
     }
 }
 
-// export function tuStep(option: string): g_this.T.Value__Selection.tail.A<pd.SourceLocation> {
+// export function tuStep(option: string): g_this.T.No__Context__Value__Selection.tail.A<pd.SourceLocation> {
 //     return ['tagged union', {
 //         'option': {
 //             'annotation': pd.getLocationInfo(1),
@@ -448,88 +497,124 @@ export function fromContextSelection(
 //     }]
 // }
 
-export function aLookup(
-    lookupSelection: g_this.T.Lookup__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
-    return {
-        'annotation': pd.getLocationInfo(1),
-        'content': {
-            'type': ['lookup', lookupSelection]
-        }
-    }
-}
+// export function aLookup(
+//     lookupSelection: g_this.T.Lookup__Selection<pd.SourceLocation>
+// ): g_this.T.Type._ltype.component.content.arguments.D<pd.SourceLocation> {
+//     return {
+//         'annotation': pd.getLocationInfo(1),
+//         'content': {
+//             'type': ['lookup', {
+//                 'annotation': pd.getLocationInfo(1),
+//                 'content': lookupSelection
+//             }]
+//         }
+//     }
+// }
 
 export function aResolvedValue(
-    valueSelection: g_this.T.Value__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
+    valueSelection: g_this.T.No__Context__Value__Selection<pd.SourceLocation>
+): g_this.T.Type._ltype.component.content.arguments.D<pd.SourceLocation> {
     return {
         'annotation': pd.getLocationInfo(1),
         'content': {
-            'type': ['resolved value', valueSelection]
+            'type': ['resolved value', {
+                'annotation': pd.getLocationInfo(1),
+                'content': valueSelection
+            }]
         }
     }
 }
 
 export function component(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>,
+    args: RawDictionary<g_this.T.Type._ltype.component.content.arguments.D<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['component', {
-            'type': type,
-            'arguments': pd.d(args),
+            'annotation': pd.getLocationInfo(1),
+            'content': {
+                'type': type,
+                'arguments': pd.d(args),
+            }
         }]
     }
 }
 
 export function typeRef(type: string): g_this.T.Global__Type__Selection<pd.SourceLocation> {
     return ['resolved sibling', {
-        'type': {
-            'key': type,
-            'annotation': pd.getLocationInfo(1)
-        }
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'type': {
+                'key': type,
+                'annotation': pd.getLocationInfo(1)
+            }
+        },
     }]
 }
 
 export function imported(library: string, type: string): g_this.T.Global__Type__Selection<pd.SourceLocation> {
     return ['import', {
-        'library': r_imp(library, 1),
-        'type': r_imp(type, 1),
+        'annotation': pd.getLocationInfo(1),
+        'content': {
+            'library': r_imp(library, 1),
+            'type': r_imp(type, 1),
+        },
     }]
 }
 
 export function pResolvedValue(gt: string, optional: boolean): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
-        'type': ['resolved value', {
-            'type': ['resolved sibling', {
+        'type': ['resolved sibling', {
+            'annotation': pd.getLocationInfo(1),
+            'content': {
                 'type': r_imp(gt, 1),
+            },
+        }],
+        'optional': optional
+            ? ['yes', {
+                'annotation': pd.getLocationInfo(1),
+                'content': null,
+            }]
+            : ['no', {
+                'annotation': pd.getLocationInfo(1),
+                'content': null,
             }],
-            'optional': optional ? ['yes', null] : ['no', null]
-        }]
     }
 }
 export function pExternal(imp: string, gt: string, optional: boolean): g_this.T.Parameters.D<pd.SourceLocation> {
     return {
-        'type': ['resolved value', {
-            'type': ['import', {
+        'type': ['import', {
+            'annotation': pd.getLocationInfo(1),
+            'content': {
                 'library': {
                     'key': imp,
                     'annotation': pd.getLocationInfo(1),
                 },
                 'type': r_imp(gt, 1),
+            },
+        }],
+        'optional': optional
+            ? ['yes', {
+                'annotation': pd.getLocationInfo(1),
+                'content': null,
+            }]
+            : ['no', {
+                'annotation': pd.getLocationInfo(1),
+                'content': null,
             }],
-            'optional': optional ? ['yes', null] : ['no', null]
-        }]
     }
 }
 
-export function pLookup(
-    type: g_this.T.Global__Type__Selection<pd.SourceLocation>
-): g_this.T.Parameters.D<pd.SourceLocation> {
-    return {
-        'type': ['lookup', {
-            //'kind': ['non cyclic', null],
-            'type': type
-        }]
-    }
-}
+// export function pLookup(
+//     type: g_this.T.Global__Type__Selection<pd.SourceLocation>
+// ): g_this.T.Parameters.D<pd.SourceLocation> {
+//     return {
+//         'type': ['lookup', {
+//             'annotation': pd.getLocationInfo(1),
+//             'content': {
+//                 //'kind': ['non cyclic', null],
+//                 'type': type
+//             },
+//         }]
+//     }
+// }

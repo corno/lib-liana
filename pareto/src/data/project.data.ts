@@ -32,7 +32,7 @@ import { external, main, submodule } from "lib-pareto-typescript-project/dist/su
 
 const d = pd.d
 
-export const $: g_project.T.Project<pd.SourceLocation> = {
+export const $: g_project.T.Project<pd.SourceLocation | null> = {
     'author': "Corno",
     'description': "Liana",
     'license': "TBD",

@@ -1,36 +1,53 @@
 import * as pd from 'pareto-core-data'
 
-import { data, externalTypeReference, glossaryParameter, group, imp, member, number, procedure, sExternalInterfaceReference, sInterface, sInterfaceMethod, sfunction, string, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import { data, dictionary, externalTypeReference, glossaryParameter, group, imp, member, number, procedure, ref, sExternalInterfaceReference, sInterface, sInterfaceMethod, sfunction, string, taggedUnion, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'glossary parameters': d({
-        "Annotation": null,
-    }),
     'imports': d({
-        "unresolved": imp(),
-        "resolved": imp(),
-        "model": imp(),
+        "in": imp(),
+        "out": imp(),
     }),
-    'root': {
-        'namespaces': d({}),
-        'types': d({
-            "Error": type(string())
+
+        'glossary parameters': d({
+            "Annotation": null,
         }),
-    },
-    'asynchronous': {
-        'interfaces': d({}),
-        'algorithms': d({}),
-    },
-    'synchronous': {
-        'interfaces': d({
-            "Error": sInterface(sInterfaceMethod(typeReference("Error")))
-        }),
-        'algorithms': d({
-            //"Resolve": sfunction(externalTypeReference("resolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}), data(externalTypeReference("unresolved", "Type Library", {"Annotation": glossaryParameter("Annotation"),}))),
-        }),
-    },
+
+        'root': {
+            'namespaces': d({}),
+            'types': d({
+                "Error": type(group({
+                    "annotation": member(ref(glossaryParameter("Annotation"))),
+                    "message": member(taggedUnion({
+                        "no such entry": group({
+                            "key": member(string())
+                        }),
+                        "not the right state": group({
+                            "expected": member(string()),
+                            "found": member(string())
+                        })
+                    }))
+                })),
+                "Resolve Parameters": type(group({
+                    "root": member(ref(externalTypeReference("in", "Root", { "Annotation": glossaryParameter("Annotation"), }))),
+                    "imports": member(dictionary(ref(externalTypeReference("out", "Type Library"))))
+
+                }))
+            }),
+        },
+        'asynchronous': {
+            'interfaces': d({}),
+            'algorithms': d({}),
+        },
+        'synchronous': {
+            'interfaces': d({
+                "OnError": sInterface(sInterfaceMethod(typeReference("Error")))
+            }),
+            'algorithms': d({
+                "Resolve": sfunction(externalTypeReference("out", "Root"), data(typeReference("Resolve Parameters"))),
+            }),
+        },
 }
