@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "lib-liana": "^0.118.0",
+    "lib-liana": "^0.119.0",
     "lib-pareto-lang-data": "^0.9.3",
     "pareto-core-data": "^0.6.1",
     "pareto-core-dev": "^0.6.1",

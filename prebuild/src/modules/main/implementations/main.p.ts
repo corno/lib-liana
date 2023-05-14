@@ -23,7 +23,9 @@ export const $$: A.main = ($) => {
     const el = a_main.$r.createErrorLogger().construct()
 
     a_liana.$b.compile<pd.SourceLocation>({
-        'getSourceLocation': ($) => $,
+        'serializeAnnotation': ($, $i) => {
+            $i.snippet(`null`)
+        },
     })(data, ($) => {
         pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
     })
