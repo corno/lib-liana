@@ -15,11 +15,11 @@ import { A, D } from "../api.generated"
 export const $$: A.generateGlossaryFromTendril = <GAnnotation>($d: D.generateGlossaryFromTendril<GAnnotation>) => {
     return ($: a_2glossary.T.GenerateData<GAnnotation>, $i) => {
         const a = a_foreach.$r.arrayForEach
-        const d = a_foreach.$r.createDictionaryForEach({
+        const d = a_foreach.$r.dictionaryForEach({
             compare: a_coll.$r.localeIsABeforeB(),
         })
         const ea = a_foreach.$r.enrichedArrayForEach
-        const ed = a_foreach.$r.createEnrichedDictionaryForEach({
+        const ed = a_foreach.$r.enrichedDictionaryForEach({
             compare: a_coll.$r.localeIsABeforeB(),
         })
 
@@ -79,7 +79,7 @@ export const $$: A.generateGlossaryFromTendril = <GAnnotation>($d: D.generateGlo
 
         // a_2glossary.$a.createGenerator(
         //     {
-        //         'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+        //         'dictionaryForEach': a_foreach.$r.dictionaryForEach({
         //             'compare': a_coll.$r.localeIsABeforeB(),
         //         }),
         //         'decorateDictionaryEntriesWithKey': a_foreach.$r.decorateDictionaryEntriesWithKey,

@@ -121,7 +121,7 @@ export const $$: A.getTestSet = ($) => {
             $i(pm.wrapRawArray([$.testDirectory, "playground mapper.ts"]), ($i) => {
                 g_2algorithm.$a.create121Mapper({
                     'createIdentifier': a_ts.$r.createIdentifier(),
-                    // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+                    // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
                     //     'compare': a_coll.$r.localeIsABeforeB(),
                     // })
                 })(d_playground_old, $i)
@@ -229,7 +229,7 @@ export const $$: A.getTestSet = ($) => {
             }
         })
         //'createIdentifier': a_ts.$r.createIdentifier(),
-        // 'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+        // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
         //     'compare': a_coll.$r.localeIsABeforeB(),
         // })
     })(d_playground_old)
@@ -343,11 +343,11 @@ export const $$: A.getTestSet = ($) => {
     // const serializer = g_liana2pareto.$a.createLiana2SerializerMapper({
     // })(accountingModel)
     // const a = g_foreach.$r.arrayForEach
-    // const d = g_foreach.$r.createDictionaryForEach({
+    // const d = g_foreach.$r.dictionaryForEach({
     //     'compare': g_coll.$r.localeIsABeforeB,
     // })
     // const ea = g_foreach.$r.enrichedArrayForEach
-    // const ed = g_foreach.$r.createEnrichedDictionaryForEach({
+    // const ed = g_foreach.$r.enrichedDictionaryForEach({
     //     'compare': g_coll.$r.localeIsABeforeB,
     // })
 

@@ -22,10 +22,10 @@ export const $$: A.generateResolver = () => {
                 $i($.path, ($i) => {
                     g_liana2algorithm.$a.createResolver({
                         'createIdentifier': a_ts.$r.createIdentifier(),
-                        'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+                        'dictionaryForEach': a_foreach.$r.dictionaryForEach({
                             'compare': a_coll.$r.localeIsABeforeB(),
                         }),
-                        'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+                        'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
                             'compare': a_coll.$r.localeIsABeforeB(),
                         }),
                         'isEmpty': a_dictionary.$r.isEmpty(),

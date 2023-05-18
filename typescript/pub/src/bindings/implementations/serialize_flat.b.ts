@@ -20,11 +20,11 @@ export const $$: A.serialize_$flat = () => {
             // 'serializeStates': a_pareto2typescript.$a.createStatesSerializer(
             //     {
             //         'arrayForEach': a_foreach.$r.arrayForEach,
-            //         'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+            //         'dictionaryForEach': a_foreach.$r.dictionaryForEach({
             //             'compare': a_coll.$r.localeIsABeforeB,
             //         }),
             //         'enrichedArrayForEach': a_foreach.$r.enrichedArrayForEach,
-            //         'enrichedDictionaryForEach': a_foreach.$r.createEnrichedDictionaryForEach({
+            //         'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
             //             'compare': a_coll.$r.localeIsABeforeB,
             //         }),
             //         'createIdentifier': a_ts.$r.createIdentifier(),
@@ -35,7 +35,7 @@ export const $$: A.serialize_$flat = () => {
                 'maximum': [false],
                 'separator': "_",
             }),
-            'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+            'dictionaryForEach': a_foreach.$r.dictionaryForEach({
                 'compare': () => false,//HACK: serialize in the order they have been added
             }),
             'push': a_array.$r.push(),

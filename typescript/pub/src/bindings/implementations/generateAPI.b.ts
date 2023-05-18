@@ -15,17 +15,17 @@ export const $$: A.generateAPI = () => {
     return ($, $i) => {
         pd.implementMe("SDFSDKL:JFSDFKJS:DF")
         // const a = a_foreach.$r.arrayForEach
-        // const d = a_foreach.$r.createDictionaryForEach({
+        // const d = a_foreach.$r.dictionaryForEach({
         //     compare: a_coll.$r.localeIsABeforeB,
         // })
         // const ea = a_foreach.$r.enrichedArrayForEach
-        // const ed = a_foreach.$r.createEnrichedDictionaryForEach({
+        // const ed = a_foreach.$r.enrichedDictionaryForEach({
         //     compare: a_coll.$r.localeIsABeforeB,
         // })
 
         // $a.createGenerator(
         //     {
-        //         'dictionaryForEach': a_foreach.$r.createDictionaryForEach({
+        //         'dictionaryForEach': a_foreach.$r.dictionaryForEach({
         //             'compare': a_coll.$r.localeIsABeforeB,
         //         }),
         //         'decorateDictionaryEntriesWithKey': a_foreach.$r.decorateDictionaryEntriesWithKey,
