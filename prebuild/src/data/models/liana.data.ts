@@ -23,6 +23,7 @@ import {
     lookupReference,
     constraint,
     t_dict,
+    typeLibrary,
 } from "lib-pareto-lang-data/dist/submodules/unresolved/shorthands"
 
 
@@ -44,13 +45,13 @@ export const $: g_pareto_lang_data_settings.T.GenerateSubmodulesParameters = {
         })({
             'imports': d({}),
             'root': {
-                'type library': {
-                    'imports': pd.d({}),
-                    'atom types': pd.d({
+                'type library': typeLibrary(
+                    {},
+                    {
                         "text": null,
                         "identifier": null,
-                    }),
-                    'global types': pd.d({
+                    },
+                    {
                         "Atom Types": globalType(
                             dictionary(group({}))
                         ),
@@ -287,8 +288,8 @@ export const $: g_pareto_lang_data_settings.T.GenerateSubmodulesParameters = {
                         "Root": globalType(
                             component(typeRef("Model"))
                         )
-                    }),
-                },
+                    },
+                ),
                 'root': {
                     'annotation': pd.getLocationInfo(0),
                     'key': "Root"
