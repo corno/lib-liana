@@ -4,7 +4,6 @@ import { T } from "./datatypes.generated"
 
 import * as g_common from "glo-pareto-common"
 import * as g_fs from "res-pareto-filesystem"
-import * as g_liana from "../../liana"
 import * as g_main from "../../../main"
 import * as g_pareto from "lib-pareto-typescript-project"
 import * as g_tendril2glossary from "../../tendril2glossary"

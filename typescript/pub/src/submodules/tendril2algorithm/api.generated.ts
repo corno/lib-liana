@@ -9,29 +9,8 @@ import * as g_resolve from "res-pareto-resolve"
 import * as g_this from "./glossary"
 import * as g_ts from "res-typescript"
 
-export namespace D {
-    
-    export type create121Mapper<GAnnotation> = {
-        readonly 'createIdentifier': g_ts.SYNC.A.F.CreateIdentifier
-    }
-    
-    
-    export type mapTendril2States<GAnnotation> = {
-        readonly 'decorateDictionaryEntriesWithKey': g_foreach.SYNC.A.F.DecorateDictionaryEntriesWithKey
-    }
-}
+export namespace D {}
 
-export namespace A {
-    
-    export type create121Mapper = <GAnnotation>($d: D.create121Mapper<GAnnotation>, ) => g_this.SYNC.A.P.Create121Mapper<GAnnotation>
-    
-    export type mapTendril2Serializer = <GAnnotation>() => g_this.SYNC.A.F.MapTendril2Serializer<GAnnotation>
-    
-    export type mapTendril2States = <GAnnotation>($d: D.mapTendril2States<GAnnotation>, ) => g_this.SYNC.A.F.MapTendril2States<GAnnotation>
-}
+export namespace A {}
 
-export type API = {
-    readonly 'create121Mapper': A.create121Mapper
-    readonly 'mapTendril2Serializer': A.mapTendril2Serializer
-    readonly 'mapTendril2States': A.mapTendril2States
-}
+export type API = null

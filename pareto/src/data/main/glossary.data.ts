@@ -39,15 +39,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'root': {
         'namespaces': d({}),
         'types': d({
-            "CompileParameters": type(group({
-                "outputs": member(array(group({
-                    "path": member(ref(externalTypeReference("common", "Path"))),
-                    "data": member(taggedUnion({
-                        "liana": ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") })),
-                        "tendril": ref(externalTypeReference("tendril2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))
-                    })),
-                })))
-            })),
+            // "CompileParameters": type(group({
+            //     "outputs": member(array(group({
+            //         "path": member(ref(externalTypeReference("common", "Path"))),
+            //         "data": member(taggedUnion({
+            //             "liana": ref(externalTypeReference("liana2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") })),
+            //             "tendril": ref(externalTypeReference("tendril2glossary", "MapData", { "Annotation": glossaryParameter("Annotation") }))
+            //         })),
+            //     })))
+            // })),
             // "CompileModelParameters": type(group({
             //     "path": member(ref(externalTypeReference("common", "Path"))),
             //     //"library": member(ref(externalTypeReference("liana", "Type Library", {}, { "Annotation": glossaryParameter("Annotation") }))),
@@ -63,10 +63,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             //     })))
             
             // })),
-            "GenerateResolverParameters": type(group({
-                "path": member(ref(externalTypeReference("common", "Path"))),
-                "data": member(ref(externalTypeReference("tendril2algorithm", "CreateResolverParameters", { "Annotation": glossaryParameter("Annotation") }))),
-            })),
+            // "GenerateResolverParameters": type(group({
+            //     "path": member(ref(externalTypeReference("common", "Path"))),
+            //     "data": member(ref(externalTypeReference("tendril2algorithm", "CreateResolverParameters", { "Annotation": glossaryParameter("Annotation") }))),
+            // })),
             "Error": type(group({
                 "message": member(ref(externalTypeReference("common", "String"))),
                 // `no such global type: ${$['global type'].key}, (${_keys(tl['global types'])})`,
@@ -127,9 +127,9 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             "Nothing": sInterface(['group', { 'members': pd.d({}) }]),
         }),
         'algorithms': d({
-            "Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError")),
+            //"Compile": procedure(data(typeReference("CompileParameters")), sInterfaceReference("OnError")),
             //"CompileModel": procedure(data(typeReference("CompileModelParameters")), sInterfaceReference("OnError")),
-            "GenerateResolver": procedure(data(typeReference("GenerateResolverParameters")), sInterfaceReference("Nothing")),
+            //"GenerateResolver": procedure(data(typeReference("GenerateResolverParameters")), sInterfaceReference("Nothing")),
         }),
     },
 

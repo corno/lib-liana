@@ -7,15 +7,15 @@ const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "mapTendril2States": algorithm(sfunction("this", {}, "MapTendril2States"), { "Annotation": "Annotation" }, dependent(null, {
-            "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        }, {})),
-        "mapTendril2Serializer": algorithm(sfunction("this", {}, "MapTendril2Serializer"), { "Annotation": "Annotation" }, dependent(null, {
-            //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        }, {})),
-        "create121Mapper": algorithm(procedure("this", {}, "Create121Mapper"), { "Annotation": "Annotation" }, dependent(null, {
-            "createIdentifier": sfunction("ts", {}, "CreateIdentifier")
-        }, {})),
+        // "mapTendril2States": algorithm(sfunction("this", {}, "MapTendril2States"), { "Annotation": "Annotation" }, dependent(null, {
+        //     "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+        // }, {})),
+        // "mapTendril2Serializer": algorithm(sfunction("this", {}, "MapTendril2Serializer"), { "Annotation": "Annotation" }, dependent(null, {
+        //     //"decorateDictionaryEntriesWithKey": functionReference("this", {}, "foreach", {}, "DecorateDictionaryEntriesWithKey"),
+        // }, {})),
+        // "create121Mapper": algorithm(procedure("this", {}, "Create121Mapper"), { "Annotation": "Annotation" }, dependent(null, {
+        //     "createIdentifier": sfunction("ts", {}, "CreateIdentifier")
+        // }, {})),
         // "createResolver": algorithm(procedure("this", {}, "CreateResolver"), { "Annotation": "Annotation" }, dependent(null, {
         //     "createIdentifier": sfunction("ts", {}, "CreateIdentifier"),
         //     "enrichedDictionaryForEach": procedure("foreach", {}, "EnrichedDictionaryForEach"),

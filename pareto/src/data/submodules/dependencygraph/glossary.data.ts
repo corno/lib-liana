@@ -19,20 +19,20 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "fp": imp(),
         // "main": imp({ "Annotation": glossaryParameter("Annotation") }),
         // "api": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "liana": imp(),
+        //"liana": imp(),
         // "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {
         'namespaces': d({}),
         'types': d({
-            "GenerateDependencyGraphParameters": type(group({
-                "data": member(ref(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
-                //"path": member(ref(externalTypeReference("common", "Path"))),
-            })),
-            "OutAnnotation": type(taggedUnion({
-                "source": ref(glossaryParameter("Annotation")),
-                "internal": string(),
-            })),
+            // "GenerateDependencyGraphParameters": type(group({
+            //     "data": member(ref(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
+            //     //"path": member(ref(externalTypeReference("common", "Path"))),
+            // })),
+            // "OutAnnotation": type(taggedUnion({
+            //     "source": ref(glossaryParameter("Annotation")),
+            //     "internal": string(),
+            // })),
         }),
     },
     'asynchronous': {
@@ -44,9 +44,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             // "OnWriteFileError": sInterface(sInterfaceMethod(externalTypeReference("fs", "AnnotatedWriteFileError"))),
         }),
         'algorithms': d({
-            "GenerateDependencyGraph": procedure(data(typeReference("GenerateDependencyGraphParameters")), sExternalInterfaceReference("fp", "Block")),
-            //"GenerateAndReport": sfunc(typeReference("GenerateData"), null, builderReference("OnWriteFileError"), null),
-            //"Map": sfunction(externalTypeReference("api", "API"), data(typeReference("MapData"))),
+            //"GenerateDependencyGraph": procedure(data(typeReference("GenerateDependencyGraphParameters")), sExternalInterfaceReference("fp", "Block")),
+
         }),
     },
 

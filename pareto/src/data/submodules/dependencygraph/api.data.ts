@@ -7,15 +7,11 @@ const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "generateDependencyGraph": algorithm(procedure("this", {}, "GenerateDependencyGraph"), { "Annotation": "Annotation" }, dependent(null, {
-            // "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-            // "map": sfunction("this", { "Annotation": "Annotation" }, "Map"),
-            // "serialize": sfunction("api", {}, "Serialize"),
-            // "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
-        }, {})),
-        // "map": algorithm(sfunction("this", {}, "Map"), {}, dependent(null, {
-        //     "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        //     "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
+        // "generateDependencyGraph": algorithm(procedure("this", {}, "GenerateDependencyGraph"), { "Annotation": "Annotation" }, dependent(null, {
+        //     // "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+        //     // "map": sfunction("this", { "Annotation": "Annotation" }, "Map"),
+        //     // "serialize": sfunction("api", {}, "Serialize"),
+        //     // "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
         // }, {})),
     }),
 }

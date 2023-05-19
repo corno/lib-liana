@@ -17,7 +17,7 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'root': glossary,
             'imports': d({
                 "common": external("glo-pareto-common"),
-                "in": sibling("liana"),
+                "in": sibling("resolved"),
                 "out": external("lib-pareto-lang-data/dist/submodules/unresolved"),
             }),
         },

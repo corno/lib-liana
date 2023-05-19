@@ -11,16 +11,11 @@ import { $ as d_possiblyresolved } from "./submodules/possiblyresolved/module.da
 
 import { $ as d_errorMessaging } from "./submodules/errormessaging/module.data"
 import { $ as d_tendril } from "./submodules/tendril/module.data"
-import { $ as d_liana } from "./submodules/liana/module.data"
 import { $ as d_generate_dependencygraph } from "./submodules/dependencygraph/module.data"
-import { $ as d_liana_resolved } from "./submodules/liana_resolved/module.data"
 import { $ as d_resolve } from "./submodules/resolve/module.data"
-import { $ as d_liana_flat } from "./submodules/liana_flat/module.data"
 import { $ as d_liana2tendril } from "./submodules/liana2tendril/module.data"
-import { $ as d_2alan } from "./submodules/2alan/module.data"
 import { $ as d_liana2paretolangdata } from "./submodules/liana2paretolangdata/module.data"
 import { $ as d_tendril2glossary } from "./submodules/tendril2glossary/module.data"
-import { $ as d_liana2algorithm } from "./submodules/liana2algorithm/module.data"
 import { $ as d_liana2glossary } from "./submodules/liana2glossary/module.data"
 import { $ as d_liana2api } from "./submodules/liana2api/module.data"
 import { $ as d_tendril2algorithm } from "./submodules/tendril2algorithm/module.data"
@@ -67,14 +62,9 @@ export const $: g_project.T.Project<pd.SourceLocation | null> = {
             "tendril": d_tendril,
             "tendril2glossary": d_tendril2glossary,
             "liana2glossary": d_liana2glossary,
-            "liana2algorithm": d_liana2algorithm,
 
-            "liana": d_liana,
-            "liana_resolved": d_liana_resolved,
             "resolve": d_resolve,
-            "liana_flat": d_liana_flat,
             "liana2tendril": d_liana2tendril,
-            "2alan": d_2alan,
             "liana2paretolangdata": d_liana2paretolangdata,
             "liana2api": d_liana2api,
             "tendril2algorithm": d_tendril2algorithm,

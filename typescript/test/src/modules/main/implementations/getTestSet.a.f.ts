@@ -6,7 +6,6 @@ import * as pa from 'pareto-core-async'
 import * as pd from 'pareto-core-data'
 
 import * as g_test from "lib-pareto-test"
-import * as g_liana from "../../../../../pub/dist/submodules/liana"
 import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
 import * as g_2algorithm from "../../../../../pub/dist/submodules/tendril2algorithm"
 import * as g_liana2tendril from "../../../../../pub/dist/submodules/liana2tendril"
@@ -24,9 +23,7 @@ import * as a_resolve from "../../../../../pub/dist/submodules/resolve"
 
 const d = pm.wrapRawDictionary
 
-import { $ as d_playground_old } from "../../../data/playground_old.data"
 import { $ as d_playground } from "../../../data/playground.data"
-import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
 
 import { A } from "../api.generated"
 
@@ -102,37 +99,37 @@ export const $$: A.getTestSet = ($) => {
 
 
 
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
-                a_dependencygraph.$a.generateDependencyGraph()({
-                    'data': d_playground_old,
-                }, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "playground mapper.ts"]), ($i) => {
-                g_2algorithm.$a.create121Mapper({
-                    'createIdentifier': a_ts.$r.createIdentifier(),
-                    // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
-                    //     'compare': a_coll.$r.localeIsABeforeB(),
-                    // })
-                })(d_playground_old, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
+    // a_fp.$b.createFile()(
+    //     ($i) => {
+    //         $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
+    //             a_dependencygraph.$a.generateDependencyGraph()({
+    //                 'data': d_playground_old,
+    //             }, $i)
+    //         })
+    //     },
+    //     {
+    //         'logError': () => {
+    //             pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
+    //         }
+    //     }
+    // )
+    // a_fp.$b.createFile()(
+    //     ($i) => {
+    //         $i(pm.wrapRawArray([$.testDirectory, "playground mapper.ts"]), ($i) => {
+    //             g_2algorithm.$a.create121Mapper({
+    //                 'createIdentifier': a_ts.$r.createIdentifier(),
+    //                 // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
+    //                 //     'compare': a_coll.$r.localeIsABeforeB(),
+    //                 // })
+    //             })(d_playground_old, $i)
+    //         })
+    //     },
+    //     {
+    //         'logError': () => {
+    //             pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
+    //         }
+    //     }
+    // )
 
     const resolved = a_resolve.$a.resolve<pd.SourceLocation>(
         {
@@ -222,54 +219,25 @@ export const $$: A.getTestSet = ($) => {
         })
     })
 
-    g_liana2tendril.$a.map({
-        'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
-            'onError': () => {
-                pv.logDebugMessage(`ERROR!!!!!!!`)
-            }
-        })
-        //'createIdentifier': a_ts.$r.createIdentifier(),
-        // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
-        //     'compare': a_coll.$r.localeIsABeforeB(),
-        // })
-    })(d_playground_old)
+    // g_liana2tendril.$a.map({
+    //     'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
+    //         'onError': () => {
+    //             pv.logDebugMessage(`ERROR!!!!!!!`)
+    //         }
+    //     })
+    //     //'createIdentifier': a_ts.$r.createIdentifier(),
+    //     // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
+    //     //     'compare': a_coll.$r.localeIsABeforeB(),
+    //     // })
+    // })(d_playground_old)
 
     // a_pub.$b.generateResolver()({
     //     'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
     //     'data': d_playground,
     // }, null)
 
-    function x<Annotation>($: g_liana.T.Model<Annotation>) {
-        // const res = g_resolve.$a.resolve<Annotation>({
-        //     'onError': ($) => {
-        //         pv.logDebugMessage($.message)
-        //     }
-        // })($['type library'])
-        // pl.optional(
-        //     res,
-        //     () => {
-
-        //     },
-        //     () => {
-
-        //     }
-        // )
-        // switch (res[0]) {
-        //     case false:
-        //         //pv.logDebugMessage(`NOT SET`)
-        //         break
-        //     case true:
-        //         pl.ss(res, ($) => {
-        //             //pv.logDebugMessage(`SET`)
-
-        //             //pv.logDebugMessage(`has errors? ${$['has errors']}`)
-        //         })
-        //         break
-        //     default: pl.au(res[0])
-        // }
-    }
     // x(lianaModel)
-    x(d_simpleModel)
+    //x(d_simpleModel)
 
     // const mappedGlossary = gliana2glossary.$a.({
     //     'mappedModel': {

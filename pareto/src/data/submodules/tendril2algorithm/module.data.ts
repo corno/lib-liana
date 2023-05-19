@@ -16,7 +16,6 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "algorithm": external("lib-pareto-typescript-project/dist/submodules/algorithm"),
                 "algorithm_temp": sibling("algorithm_temp"),
-                "liana": sibling("liana"),
                 "tendril2glossary": sibling("tendril2glossary"),
                 "main": main(),
                 "fp": external("lib-fountain-pen"),

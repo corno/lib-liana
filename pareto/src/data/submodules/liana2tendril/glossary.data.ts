@@ -33,7 +33,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         'interfaces': d({
         }),
         'algorithms': d({
-            "Map": sfunction(externalTypeReference("tendril", "Type Library", { "Annotation": glossaryParameter("Annotation") }), data(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
+            //"Map": sfunction(externalTypeReference("tendril", "Type Library", { "Annotation": glossaryParameter("Annotation") }), data(externalTypeReference("liana", "Type Library", { "Annotation": glossaryParameter("Annotation") }))),
         }),
     },
 
