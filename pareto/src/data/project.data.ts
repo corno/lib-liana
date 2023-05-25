@@ -2,7 +2,7 @@ import * as pd from 'pareto-core-data'
 
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
-import { $ as d_main_ } from "./main/module.data"
+import { $ as d_main } from "./main/module.data"
 
 
 import { $ as d_resolved } from "./submodules/resolved/module.data"
@@ -10,20 +10,10 @@ import { $ as d_unresolved } from "./submodules/unresolved/module.data"
 import { $ as d_possiblyresolved } from "./submodules/possiblyresolved/module.data"
 
 import { $ as d_errorMessaging } from "./submodules/errormessaging/module.data"
-import { $ as d_tendril } from "./submodules/tendril/module.data"
 import { $ as d_generate_dependencygraph } from "./submodules/dependencygraph/module.data"
 import { $ as d_resolve } from "./submodules/resolve/module.data"
-import { $ as d_liana2tendril } from "./submodules/liana2tendril/module.data"
-import { $ as d_liana2paretolangdata } from "./submodules/liana2paretolangdata/module.data"
-import { $ as d_tendril2glossary } from "./submodules/tendril2glossary/module.data"
-import { $ as d_liana2glossary } from "./submodules/liana2glossary/module.data"
-import { $ as d_liana2api } from "./submodules/liana2api/module.data"
-import { $ as d_tendril2algorithm } from "./submodules/tendril2algorithm/module.data"
-import { $ as d_algorithm_temp } from "./submodules/algorithm_temp/module.deprectated"
-import { $ as d_p2ts_temp } from "./submodules/pareto2typescript_temp/module.data"
+import { $ as d_2paretolangdata } from "./submodules/2paretolangdata/module.data"
 import { $ as d_bindings } from "./bindings/moduledefinition.data"
-
-import { external, main, submodule } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 const d = pd.d
 
@@ -46,28 +36,20 @@ export const $: g_project.T.Project<pd.SourceLocation | null> = {
         "res-typescript": null,
     }),
     'type': ['library', {
-        'main': d_main_,
+        'main': d_main,
         'submodules': d({
 
 
             "unresolved": d_unresolved,
             "resolved": d_resolved,
-            //"resolve": d_resolve,
             "possiblyresolved": d_possiblyresolved,
 
-            "algorithm_temp": d_algorithm_temp,
-            "errorMessaging": d_errorMessaging,
-            "p2ts_temp": d_p2ts_temp,
-            "generate_dependencygraph": d_generate_dependencygraph,
-            "tendril": d_tendril,
-            "tendril2glossary": d_tendril2glossary,
-            "liana2glossary": d_liana2glossary,
-
             "resolve": d_resolve,
-            "liana2tendril": d_liana2tendril,
-            "liana2paretolangdata": d_liana2paretolangdata,
-            "liana2api": d_liana2api,
-            "tendril2algorithm": d_tendril2algorithm,
+
+            "errorMessaging": d_errorMessaging,
+            "generate_dependencygraph": d_generate_dependencygraph,
+
+            "2paretolangdata": d_2paretolangdata,
         }),
 
         'bindings': [true, {

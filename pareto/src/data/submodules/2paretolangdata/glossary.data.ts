@@ -10,7 +10,6 @@ const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'glossary parameters': d({
-        "Annotation": null,
     }),
     'imports': d({
         "in": imp(),
@@ -30,7 +29,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         'interfaces': d({
         }),
         'algorithms': d({
-            "Map": sfunction(externalTypeReference("out", "Type Library", { "Annotation": glossaryParameter("Annotation") }), data(externalTypeReference("in", "Type Library"))),
+            "Map": sfunction(externalTypeReference("out", "Type Library", { "Annotation": externalTypeReference("common", "Null") }), data(externalTypeReference("in", "Type Library"))),
         }),
     },
 

@@ -3,6 +3,7 @@ import * as pd from 'pareto-core-data'
 import { algorithm, dependent, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
+
 const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
@@ -13,13 +14,14 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
         //     "map": sfunction("this", { "XAnnotation": "GAnnotation" }, "Map"),
         //     "serialize": procedure("serializeGlossary", { "Annotation": "GAnnotation" }, "Serialize"),
         // }, {})),
-        // "map": algorithm(sfunction("this", {}, "Map"), { "Annotation": "Annotation" }, dependent(null, {
-        //     "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
-        //     "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
-        //     "filter": sfunction("dictionary", {}, "Filter"),
-        //     "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
-        //     "merge": sfunction("array", {}, "Merge"),
-        //     "push": sfunction("array", {}, "Push"),
-        // }, {})),
+        "map": algorithm(sfunction("this", {}, "Map"), {}, dependent(null, {
+            "resolveDictionary": sfunction("resolve", {}, "SafeResolveDictionary"),
+            // "decorateDictionaryEntriesWithKey": sfunction("foreach", {}, "DecorateDictionaryEntriesWithKey"),
+            // "buildDictionary": sfunction("build", {}, "BuildUnsafeDictionary"),
+            // "filter": sfunction("dictionary", {}, "Filter"),
+            // "isEmpty": sfunction("dictionary", {}, "IsEmpty"),
+            // "merge": sfunction("array", {}, "Merge"),
+            // "push": sfunction("array", {}, "Push"),
+        }, {})),
     }),
 }

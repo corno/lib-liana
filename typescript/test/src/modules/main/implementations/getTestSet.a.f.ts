@@ -6,17 +6,6 @@ import * as pa from 'pareto-core-async'
 import * as pd from 'pareto-core-data'
 
 import * as g_test from "lib-pareto-test"
-import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
-import * as g_2algorithm from "../../../../../pub/dist/submodules/tendril2algorithm"
-import * as g_liana2tendril from "../../../../../pub/dist/submodules/liana2tendril"
-
-import * as a_pub from "../../../../../pub/dist"
-import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
-import * as a_dependencygraph from "../../../../../pub/dist/submodules/generate_dependencygraph"
-import * as a_foreach from "res-pareto-foreach"
-import * as a_coll from "res-pareto-collation"
-import * as a_fp from "lib-fountain-pen"
-import * as a_ts from "res-typescript"
 import * as a_dictionary from "res-pareto-dictionary"
 import * as a_resolvex from "res-pareto-resolve"
 import * as a_resolve from "../../../../../pub/dist/submodules/resolve"

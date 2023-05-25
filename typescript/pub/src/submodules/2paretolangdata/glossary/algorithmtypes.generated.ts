@@ -2,9 +2,9 @@ import * as pt from 'pareto-core-types'
 
 import { T } from "./datatypes.generated"
 
-import * as g_algorithm from "../../algorithm_temp"
 import * as g_common from "glo-pareto-common"
-import * as g_fp from "lib-fountain-pen"
+import * as g_in from "../../resolved"
+import * as g_out from "lib-pareto-lang-data/dist/submodules/unresolved"
 
 export namespace ASYNC {
     
@@ -18,8 +18,8 @@ export namespace SYNC {
     export namespace A {
         
         
-        export namespace P {
-            export type SerializeImplementation<GAnnotation> = ($: g_algorithm.T.Implementation<GAnnotation>, $i: g_fp.SYNC.I.Directory) => void
+        export namespace F {
+            export type Map = ($: g_in.T.Type__Library) => g_out.T.Type__Library<g_common.T.Null>
         }
     }
 }

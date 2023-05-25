@@ -14,9 +14,6 @@ export const $: g_project.T.Module<pd.SourceLocation> = {
             'root': glossary,
             'imports': d({
                 "common": external("glo-pareto-common"),
-                "tendril2glossary": tempSubmodule("tendril2glossary"),
-                "liana2glossary": tempSubmodule("liana2glossary"),
-                "tendril2algorithm": tempSubmodule("tendril2algorithm"),
             }),
         },
         'api': {

@@ -7,8 +7,7 @@ import * as a_main from "res-pareto-main"
 import * as a_pld from "lib-pareto-lang-data"
 
 
-import { $ as data } from "../../../data/data.data"
-import { $ as d_liana } from "../../../data/models/liana.data"
+import { $ as d_liana } from "../../../data/models/model.data"
 
 import { A } from "../api.generated"
 
@@ -20,14 +19,4 @@ export const $$: A.main = ($) => {
     
     x(d_liana, null)
 
-    const el = a_main.$r.createErrorLogger().construct()
-
-    a_liana.$b.compile<pd.SourceLocation>({
-        'serializeAnnotation': ($, $i) => {
-            $i.snippet(`null`)
-        },
-    })(data, ($) => {
-        pv.logDebugMessage(a_liana_error.$a.createErrorMessage()($))
-    })
-    el.end()
 }
