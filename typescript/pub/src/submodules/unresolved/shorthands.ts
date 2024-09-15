@@ -469,7 +469,7 @@ export function fromContextSelection(
 
 export function aResolvedValue(
     valueSelection: g_this.T.No__Context__Value__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.component.arguments.dictionary.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.component._larguments.dictionary.D<pd.SourceLocation> {
     return {
         'annotation': pd.getLocationInfo(1),
         'content': {
@@ -480,7 +480,7 @@ export function aResolvedValue(
 
 export function component(
     type: g_this.T.Global__Type__Selection<pd.SourceLocation>,
-    args: RawDictionary<g_this.T.Type._ltype.component.arguments.dictionary.D<pd.SourceLocation>>,
+    args: RawDictionary<g_this.T.Type._ltype.component._larguments.dictionary.D<pd.SourceLocation>>,
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'type': ['component', {

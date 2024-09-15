@@ -1,6 +1,7 @@
 import * as pl from 'pareto-core-lib'
 import * as pt from 'pareto-core-types'
 import * as pm from 'pareto-core-map'
+import * as tmp from 'pareto-core-internals'
 
 import * as g_this from "../glossary"
 import * as g_in from "../../unresolved"
@@ -9,17 +10,20 @@ import * as g_out from "../../resolved"
 import { A, D } from "../api.generated"
 import { select } from "./select.s.f"
 
+// function optional<T, R>(
+//     $: pt.RawOptionalValue<T>,
+//     set: ($: T) => R,
+//     notSet: () => R
+// ): R {
+//     return tmp.wrapRawOptionalValue($).map(set, notSet)
+// }
+
 function mapOptional<T, RT>(
-    $: pt.OptionalValue<T>,
+    $: pt.RawOptionalValue<T>,
     a: ($: T) => RT,
 ): pt.OptionalValue<RT> {
-    return pl.optional(
-        $,
-        ($): pt.OptionalValue<RT> => {
-            const out = a($)
-            return [true, out]
-        },
-        () => [false]
+    return tmp.wrapRawOptionalValue($).mapToNewOptional(
+        ($) => a($)
     )
 }
 
@@ -257,8 +261,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                 switch ($[0]) {
                     case 'dictionary constraint': return pl.ss($, ($) => {
                         const x$ = $
-                        return ['dictionary constraint', pl.optional(
-                            $p['dictionary constraints'],
+                        return ['dictionary constraint', $p['dictionary constraints'].map(
                             ($) => getAnnotatedEntry($, x$),
                             () => {
                                 return pl.panic(`no dictionary constraints`)
@@ -268,8 +271,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     case 'parameter': return pl.ss($, ($) => {
                         const x$ = $
                         return ['parameter', {
-                            'parameter': pl.optional(
-                                $p['parameters'],
+                            'parameter': $p['parameters'].map(
                                 ($) => getAnnotatedEntry($, x$.parameter),
                                 () => {
                                     return pl.panic(`no parameters`)
@@ -279,8 +281,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     })
                     case 'parent variable': return pl.ss($, ($) => {
                         const x$ = $
-                        return ['parent variable', pl.optional(
-                            $p['parent variables'],
+                        return ['parent variable', $p['parent variables'].map(
                             ($) => getAnnotatedEntry($, x$),
                             () => {
                                 return pl.panic(`no parent variables`)
@@ -289,8 +290,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     })
                     case 'sibling property': return pl.ss($, ($) => {
                         const x$ = $
-                        return ['sibling property', pl.optional(
-                            $p['sibling properties'],
+                        return ['sibling property', $p['sibling properties'].map(
                             ($) => getAnnotatedLookupEntry($, x$),
                             () => {
 
@@ -300,8 +300,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     })
                     case 'state constraint': return pl.ss($, ($) => {
                         const x$ = $
-                        return ['state constraint', pl.optional(
-                            $p['state constraints'],
+                        return ['state constraint', $p['state constraints'].map(
                             ($) => getAnnotatedEntry($, x$),
                             () => {
                                 return pl.panic(`no state constraints`)
@@ -312,8 +311,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                 }
             })),
             'secondary': $d.mergeAndIgnore({
-                'primary': pl.optional(
-                    $p['parent variables'],
+                'primary': $p['parent variables'].map(
                     ($) => {
                         return $.__mapWithKey(($, key) => {
                             return ['parent variable', {
@@ -325,8 +323,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     () => pm.wrapRawDictionary({})
                 ),
                 'secondary': $d.mergeAndIgnore({
-                    'primary': pl.optional(
-                        $p['parameters'],
+                    'primary': $p['parameters'].map(
                         ($) => {
                             return $.__mapWithKey(($, key) => {
                                 return ['parameter', {
@@ -340,8 +337,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                         () => pm.wrapRawDictionary({})
                     ),
                     'secondary': $d.mergeAndIgnore({
-                        'primary': pl.optional(
-                            $p['dictionary constraints'],
+                        'primary': $p['dictionary constraints'].map(
                             ($) => {
                                 return $.__mapWithKey(($, key) => {
                                     return ['dictionary constraint', {
@@ -353,8 +349,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                             () => pm.wrapRawDictionary({})
                         ),
                         'secondary': $d.mergeAndIgnore({
-                            'primary': pl.optional(
-                                $p['state constraints'],
+                            'primary': $p['state constraints'].map(
                                 ($) => {
                                     return $.__mapWithKey(($, key) => {
                                         return ['state constraint', {
@@ -390,7 +385,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
 
                         return ['component', {
                             'type': v_type,
-                            'arguments': $.arguments.dictionary.__mapWithKey(($, key) => pl.cc($, ($): g_out.T.Type._ltype.component.arguments.D => {
+                            'arguments': $.arguments.dictionary.__mapWithKey(($, key) => pl.cc($, ($): g_out.T.Type._ltype.component._larguments.D => {
                                 return {
                                     'constraints': {
                                         'parameter': getEntryForConstrainedDictionaryEntry(select.Global__Type__Selection(v_type).parameters, key, $.annotation)
@@ -405,7 +400,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                                                 //     })]
 
                                                 // })
-                                                case 'resolved value': return pl.ss($, ($): g_out.T.Type._ltype.component.arguments.D.content._ltype => ['resolved value', resolve_Value__Selection($, {
+                                                case 'resolved value': return pl.ss($, ($): g_out.T.Type._ltype.component._larguments.D.content._ltype => ['resolved value', resolve_Value__Selection($, {
                                                     'imports': $p.imports,
                                                     'sibling global types': $p['sibling global types'],
                                                     'variables': $p.variables,
@@ -443,11 +438,11 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                             }
                         }))
                         const v_variables: g_out.T.Variables = resolve_Variables($.variables, {
-                            'dictionary constraints': [true, v_constraints],
-                            'parameters': [false],
-                            'sibling properties': [false],
-                            'state constraints': [false],
-                            'parent variables': [true, $p.variables],
+                            'dictionary constraints': pl.set(v_constraints),
+                            'parameters': pl.notSet(),
+                            'sibling properties': pl.notSet(),
+                            'state constraints': pl.notSet(),
+                            'parent variables': pl.set($p.variables),
                         })
                         return ['dictionary', {
                             'constraints': v_constraints,
@@ -466,11 +461,11 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                             'properties': $d.resolveDictionary($.properties.dictionary, {
                                 'map': (($, $l) => {
                                     const v_variables: g_out.T.Variables = resolve_Variables($.value.variables, {
-                                        'dictionary constraints': [false],
-                                        'parameters': [false],
-                                        'sibling properties': [true, $l['non circular siblings']],
-                                        'state constraints': [false],
-                                        'parent variables': [true, $p.variables],
+                                        'dictionary constraints': pl.notSet(),
+                                        'parameters': pl.notSet(),
+                                        'sibling properties': pl.set($l['non circular siblings']),
+                                        'state constraints': pl.notSet(),
+                                        'parent variables': pl.set($p.variables),
                                     })
                                     return {
                                         'variables': v_variables,
@@ -489,11 +484,11 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                     case 'optional': return pl.ss($, ($): g_out.T.Type._ltype => {
                         const v_constraints = $.constraints.dictionary.map(($) => resolve_State__Selection($, $p))
                         const v_variables: g_out.T.Variables = resolve_Variables($.variables, {
-                            'dictionary constraints': [false],
-                            'parameters': [false],
-                            'sibling properties': [false],
-                            'state constraints': [true, v_constraints],
-                            'parent variables': [true, $p.variables],
+                            'dictionary constraints': pl.notSet(),
+                            'parameters': pl.notSet(),
+                            'sibling properties': pl.notSet(),
+                            'state constraints': pl.set(v_constraints),
+                            'parent variables': pl.set($p.variables),
                         })
 
                         return ['optional', {
@@ -513,11 +508,11 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                                 'map': ($, $l) => {
                                     const v_constraints = $.value.constraints.dictionary.map(($) => resolve_State__Selection($, $p))
                                     const v_variables: g_out.T.Variables = resolve_Variables($.value.variables, {
-                                        'dictionary constraints': [false],
-                                        'parameters': [false],
-                                        'sibling properties': [false],
-                                        'state constraints': [true, v_constraints],
-                                        'parent variables': [true, $p.variables],
+                                        'dictionary constraints': pl.notSet(),
+                                        'parameters': pl.notSet(),
+                                        'sibling properties': pl.notSet(),
+                                        'state constraints': pl.set(v_constraints),
+                                        'parent variables': pl.set($p.variables),
                                     })
                                     return {
                                         'constraints': v_constraints,
@@ -664,7 +659,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
         )
         return {
             'start': v_start,
-            'tail': v_tail,
+            'tail': v_tail.raw,
         }
     }
 
@@ -677,8 +672,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
             $.tail,
             ($) => resolve_Value__Selection__Tail($, {
                 'variables': $p.variables,
-                'context': pl.optional(
-                    v_start,
+                'context': v_start.map(
                     ($) => select.Variable($.referent),
                     () => $p.context,
                 ),
@@ -687,8 +681,8 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
             }),
         )
         return {
-            'start': v_start,
-            'tail': v_tail,
+            'start': v_start.raw,
+            'tail': v_tail.raw,
         }
     }
 
@@ -752,7 +746,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                 )
                 return ['component', {
                     'component': v_component,
-                    'tail': v_tail,
+                    'tail': v_tail.raw,
                 }]
             })
             case 'group': return pl.ss($, ($) => {
@@ -785,7 +779,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                 return ['group', {
                     'group': v_group,
                     'property': v_property,
-                    'tail': v_tail,
+                    'tail': v_tail.raw,
                 }]
             })
             // case 'nothing': return pl.ss($, ($) => {
@@ -876,7 +870,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                 )
                 return ['reference', {
                     'reference': v_reference,
-                    'tail': v_tail,
+                    'tail': v_tail.raw,
                 }]
             })
             case 'state group': return pl.ss($, ($): g_out.T.Value__Selection__Tail => {
@@ -972,11 +966,11 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                         }
                     })
                     const v_variables: g_out.T.Variables = resolve_Variables($.value.variables, {
-                        'dictionary constraints': [false],
-                        'parameters': [true, v_parameters],
-                        'sibling properties': [false],
-                        'state constraints': [false],
-                        'parent variables': [false],
+                        'dictionary constraints': pl.notSet(),
+                        'parameters': pl.set(v_parameters),
+                        'sibling properties': pl.notSet(),
+                        'state constraints': pl.notSet(),
+                        'parent variables': pl.notSet(),
                     })
                     const v_type: g_out.T.Type = resolve_Type($.value.type, {
                         'atom types': v_atom__types,
@@ -994,7 +988,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                                 'sibling global types': $l['non circular siblings']
                             })
                         }
-                    )
+                    ).raw
                     return {
                         'parameters': v_parameters,
                         'variables': v_variables,

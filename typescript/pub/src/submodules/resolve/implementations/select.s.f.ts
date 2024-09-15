@@ -1,5 +1,6 @@
 import * as pl from 'pareto-core-lib'
 import * as pt from 'pareto-core-types'
+import * as tmp from 'pareto-core-internals'
 
 import * as g_out from "../../resolved"
 
@@ -36,22 +37,20 @@ export namespace select {
 
     export const Value__Selection__Tail: Select.Value__Selection__Tail = ($) => {
         switch ($[0]) {
-            case 'component': return pl.ss($, ($) => pl.optional(
-                $.tail,
+            case 'component': return pl.ss($, ($) => tmp.wrapRawOptionalValue($.tail).map(
                 ($) => Value__Selection__Tail($),
                 () => Global__Type__Selection($.component.type).type
             ))
-            case 'group': return pl.ss($, ($) => pl.optional(
-                $.tail,
+            case 'group': return pl.ss($, ($) => tmp.wrapRawOptionalValue($.tail).map(
                 ($) => Value__Selection__Tail($),
                 () => $.property.referent.type
             ))
             //case 'optional': return pl.ss($, ($) => $.optional.type)
-            case 'reference': return pl.ss($, ($) => pl.optional(
-                $.tail,
-                ($) => Value__Selection__Tail($),
-                () => No__Context__Value__Selection($.reference.dictionary.type)
-            ))
+            case 'reference': return pl.ss($, ($) => tmp.wrapRawOptionalValue(
+                $.tail).map(
+                    ($) => Value__Selection__Tail($),
+                    () => No__Context__Value__Selection($.reference.dictionary.type)
+                ))
             case 'state group': return pl.ss($, ($) => Global__Type__Selection($['result type']).type)
 
             default: return pl.au($[0])
@@ -59,8 +58,7 @@ export namespace select {
     }
 
     export const No__Context__Value__Selection: Select.No__Context__Value__Selection = ($) => {
-        return pl.optional(
-            $.tail,
+        return tmp.wrapRawOptionalValue($.tail).map(
             ($) => Value__Selection__Tail($),
             () => Variable($.start.referent)
         )

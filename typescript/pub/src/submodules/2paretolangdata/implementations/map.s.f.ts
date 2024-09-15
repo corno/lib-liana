@@ -13,12 +13,11 @@ function mapOptional<T, RT>(
     $: pt.OptionalValue<T>,
     a: ($: T) => RT,
 ): pt.OptionalValue<RT> {
-    return pl.optional(
-        $,
+    return $.map(
         ($): pt.OptionalValue<RT> => {
-            return [true, a($)]
+            return pl.set(a($))
         },
-        () => [false]
+        () => pl.notSet()
     )
 }
 
@@ -346,15 +345,16 @@ export const $$: A.map = ($d) => {
 
         const map_Type__Library2Type__Library: Map_Type__Library2Type__Library = ($, $p) => {
             return {
-                'imports': {
-                    'annotation': null,
-                    'dictionary': $.imports.map($ => {
-                        return {
-                            'annotation': null,
-                            'content': null,
-                        }
-                    }),
-                },
+                'imports': pl.panic(""),
+                // 'imports': {
+                //     'annotation': null,
+                //     'dictionary': $.imports.map($ => {
+                //         return {
+                //             'annotation': null,
+                //             'content': null,
+                //         }
+                //     }),
+                // },
                 'atom types': {
                     'annotation': null,
                     'dictionary': $['atom types'].map(($): g_out.T.Atom__Types.dictionary.D<null> => {
@@ -363,25 +363,28 @@ export const $$: A.map = ($d) => {
                 },
                 'global types': {
                     'annotation': null,
-                    'dictionary': $d.resolveDictionary<g_in.T.Global__Type, g_out.T.Global__Type<null>>($['global types'], {
-                        'map': (($, $l) => {
-                            return {
-                                'type': map_Type2Type(
-                                    $.value.type,
-                                    {
-                                        'variables': pm.wrapRawDictionary({}),//FIXME
-                                        // 'variables': $.value.parameters.map(($) => {
-                                        //     return {
-                                        //         'import': x,
-                                        //         'global type': x,
-                                        //         'tail': x,
-                                        //     }
-                                        // })
-                                    },
-                                ),
-                            }
-                        })
-                    })
+                    'declarations': pl.panic(""),
+                    'definitions': pl.panic(""),
+                    'implementations': pl.panic(""),
+                    // 'dictionary': $d.resolveDictionary<g_in.T.Global__Type, g_out.T.Global__Type<null>>($['global types'], {
+                    //     'map': (($, $l) => {
+                    //         return {
+                    //             'type': map_Type2Type(
+                    //                 $.value.type,
+                    //                 {
+                    //                     'variables': pm.wrapRawDictionary({}),//FIXME
+                    //                     // 'variables': $.value.parameters.map(($) => {
+                    //                     //     return {
+                    //                     //         'import': x,
+                    //                     //         'global type': x,
+                    //                     //         'tail': x,
+                    //                     //     }
+                    //                     // })
+                    //                 },
+                    //             ),
+                    //         }
+                    //     })
+                    // })
                 }
             }
 
