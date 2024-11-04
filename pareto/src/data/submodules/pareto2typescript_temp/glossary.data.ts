@@ -1,7 +1,7 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    data, externalTypeReference, glossaryParameter, imp,
+    data, externalTypeReference, glossaryParameter,
     procedure,
     sExternalInterfaceReference,
     sInterfaceReference, type, typeReference
@@ -15,8 +15,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'imports': d({
-        "fp": imp(),
-        "algorithm": imp(),
+        "fp": null,
+        "algorithm": null,
     }),
     'root': {
         'namespaces': d({}),

@@ -15,7 +15,7 @@ export const $$: A.map = ($d,) => {
         const library = $['mapped library']
         const terminalMapping = $['mapped library']['terminal mapping']
         const settings = $.settings
-        function createOptionalAnnotation(): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
+        function createOptionalAnnotation(): pt.RawOptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
             return settings.annotations
                 ? [true, {
                     'type': ['reference', ['glossary parameterXX', "Annotation"]],
@@ -258,11 +258,11 @@ export const $$: A.map = ($d,) => {
 
                         return ['dictionary', ($d.isEmpty(constraints))
                             ? mapTypeToType(type, $x)
-                            : ['group', $d.filter(pm.wrapRawDictionary<pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
+                            : ['group', $d.filter(pm.wrapRawDictionary<pt.RawOptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>>>({
                                 "annotation": createOptionalAnnotation(),
                                 "constraints": pl.optional(
                                     $x['constraints mapping'].constraints,
-                                    (constraintStrat): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> => [true, {
+                                    (constraintStrat): pt.RawOptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> => [true, {
                                         'type': ['group', constraints.map(($) => {
                                             const $a = $
                                             return {
@@ -306,7 +306,7 @@ export const $$: A.map = ($d,) => {
                         function createOptionalConstraintProperty(
                             $x: g_this.T.Mapping__Settings.datamodel.O<Annotation>,
                             $cb: () => g_glossary.T.Type<g_this.T.OutAnnotation<Annotation>>
-                        ): pt.OptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
+                        ): pt.RawOptionalValue<g_glossary.T.Type.group.D<g_this.T.OutAnnotation<Annotation>>> {
                             return pl.optional(
                                 $x['constraints mapping'].constraints,
                                 ($) => pl.cc($, ($) => {
@@ -362,7 +362,7 @@ export const $$: A.map = ($d,) => {
                                         "annotation": createOptionalAnnotation(),
                                         "constraints": pl.optional(
                                             $x['constraints mapping'].constraints,
-                                            ($): pt.OptionalValue<g_glossary.T.Type.group.D<Annotation>> => {
+                                            ($): pt.RawOptionalValue<g_glossary.T.Type.group.D<Annotation>> => {
                                                 const constraintStrat = $
                                                 return [true, {
                                                     'type': ['group', constraints.map(($) => {

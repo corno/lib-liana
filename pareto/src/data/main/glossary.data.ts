@@ -15,7 +15,6 @@ import {
     glossaryParameter,
     boolean,
     string,
-    imp,
     ref,
     externalTypeReference,
     sInterfaceMethod,
@@ -31,10 +30,10 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'imports': d({
-        "common": imp(),
-        "liana2glossary": imp(),
-        "tendril2glossary": imp(),
-        "tendril2algorithm": imp(),
+        "common": null,
+        "liana2glossary": null,
+        "tendril2glossary": null,
+        "tendril2algorithm": null,
     }),
     'root': {
         'namespaces': d({}),

@@ -4,7 +4,7 @@ import {
     boolean,
     data,
     dictionary,
-    externalTypeReference, glossaryParameter, group, imp, member, null_, optional, procedure, ref, sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
+    externalTypeReference, glossaryParameter, group, member, null_, optional, procedure, ref, sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -15,11 +15,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'imports': d({
-        "common": imp(),
-        "fp": imp(),
+        "common": null,
+        "fp": null,
         // "main": imp({ "Annotation": glossaryParameter("Annotation") }),
         // "api": imp({ "Annotation": typeReference("OutAnnotation") }),
-        "liana": imp(),
+        "liana": null,
         // "liana2glossary": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
     'root': {

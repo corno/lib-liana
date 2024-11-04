@@ -2,7 +2,7 @@ import * as pd from 'pareto-core-data'
 
 import {
     data,
-    externalTypeReference, glossaryParameter, imp, procedure, sExternalInterfaceReference
+    externalTypeReference, glossaryParameter, procedure, sExternalInterfaceReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -14,8 +14,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'imports': d({
-        "fp": imp(),
-        "tendril2glossary": imp(),
+        "fp": null,
+        "tendril2glossary": null,
     }),
     'root': {
         'namespaces': d({}),

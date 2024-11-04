@@ -10,12 +10,12 @@ import { A, D } from "../api.generated"
 import { select } from "./select.s.f"
 
 function mapOptional<T, RT>(
-    $: pt.OptionalValue<T>,
+    $: pt.RawOptionalValue<T>,
     a: ($: T) => RT,
-): pt.OptionalValue<RT> {
+): pt.RawOptionalValue<RT> {
     return pl.optional(
         $,
-        ($): pt.OptionalValue<RT> => {
+        ($): pt.RawOptionalValue<RT> => {
             const out = a($)
             return [true, out]
         },
@@ -114,11 +114,11 @@ namespace Resolve {
     export type Variables<Annotation> = (
         $: g_in.T.Variables<Annotation>,
         $p: {
-            'dictionary constraints': pt.OptionalValue<g_out.T.Dictionary__Constraints>,
-            'state constraints': pt.OptionalValue<g_out.T.State__Constraints>
-            'parameters': pt.OptionalValue<g_out.T.Parameters>
-            'parent variables': pt.OptionalValue<g_out.T.Variables>
-            'sibling properties': pt.OptionalValue<pt.Lookup<g_out.T.Property>>
+            'dictionary constraints': pt.RawOptionalValue<g_out.T.Dictionary__Constraints>,
+            'state constraints': pt.RawOptionalValue<g_out.T.State__Constraints>
+            'parameters': pt.RawOptionalValue<g_out.T.Parameters>
+            'parent variables': pt.RawOptionalValue<g_out.T.Variables>
+            'sibling properties': pt.RawOptionalValue<pt.Lookup<g_out.T.Property>>
             // 'imports': g_out.T.Imports
             // 'sibling global types': pt.Lookup<g_out.T.Global__Types.D>
         },
@@ -390,7 +390,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
 
                         return ['component', {
                             'type': v_type,
-                            'arguments': $.arguments.dictionary.__mapWithKey(($, key) => pl.cc($, ($): g_out.T.Type._ltype.component.arguments.D => {
+                            'arguments': $.arguments.dictionary.__mapWithKey(($, key) => pl.cc($, ($): g_out.T.Type._ltype.component._larguments.D => {
                                 return {
                                     'constraints': {
                                         'parameter': getEntryForConstrainedDictionaryEntry(select.Global__Type__Selection(v_type).parameters, key, $.annotation)
@@ -405,7 +405,7 @@ export const $$: A.resolve = <Annotation>($d: D.resolve<Annotation>, $se: {
                                                 //     })]
 
                                                 // })
-                                                case 'resolved value': return pl.ss($, ($): g_out.T.Type._ltype.component.arguments.D.content._ltype => ['resolved value', resolve_Value__Selection($, {
+                                                case 'resolved value': return pl.ss($, ($): g_out.T.Type._ltype.component._larguments.D.content._ltype => ['resolved value', resolve_Value__Selection($, {
                                                     'imports': $p.imports,
                                                     'sibling global types': $p['sibling global types'],
                                                     'variables': $p.variables,

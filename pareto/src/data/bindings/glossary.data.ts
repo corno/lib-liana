@@ -15,7 +15,6 @@ import {
     glossaryParameter,
     boolean,
     string,
-    imp,
     ref,
     externalTypeReference,
     sInterfaceMethod,

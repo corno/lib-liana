@@ -914,7 +914,7 @@ export namespace N {
                                                 
                                                 export namespace N {
                                                     
-                                                    export namespace arguments {
+                                                    export namespace _$larguments {
                                                         
                                                         export namespace N {
                                                             
@@ -2451,7 +2451,7 @@ export namespace T {
             
             export namespace component {
                 
-                export namespace arguments {
+                export namespace _larguments {
                     
                     export namespace D {
                         
@@ -2488,7 +2488,7 @@ export namespace T {
                     }
                 }
                 
-                export type arguments<GAnnotation> = pt.Dictionary<{
+                export type _larguments<GAnnotation> = pt.Dictionary<{
                     readonly 'annotation': GAnnotation
                     readonly 'content': {
                         readonly 'type': 

@@ -266,7 +266,7 @@ export function valSel(
 
 export function aResolvedValue(
     valSel: g_this.T.Value__Selection<pd.SourceLocation>,
-): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.component._larguments.D<pd.SourceLocation> {
     return {
         'annotation': pd.getLocationInfo(1),
         'content': {
@@ -306,7 +306,7 @@ export function lparameter(
 
 export function aLookup(
     sel: g_this.T.Lookup__Selection<pd.SourceLocation>
-): g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation> {
+): g_this.T.Type._ltype.component._larguments.D<pd.SourceLocation> {
     return {
         'annotation': pd.getLocationInfo(1),
         'content': {
@@ -770,7 +770,7 @@ export function tempTypeSelection(
 
 export function resolvedSiblingComponent(
     type: string,
-    args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>
+    args: RawDictionary<g_this.T.Type._ltype.component._larguments.D<pd.SourceLocation>>
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),
@@ -803,7 +803,7 @@ export function resolvedSiblingComponent(
 export function importedComponent(
     library: string, 
     type: string,
-    args: RawDictionary<g_this.T.Type._ltype.component.arguments.D<pd.SourceLocation>>
+    args: RawDictionary<g_this.T.Type._ltype.component._larguments.D<pd.SourceLocation>>
 ): g_this.T.Type<pd.SourceLocation> {
     return {
         'classes': pd.d({}),

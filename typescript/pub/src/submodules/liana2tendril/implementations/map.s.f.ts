@@ -10,9 +10,9 @@ import { A } from "../api.generated"
 
 
 function tempoptional<T, RT>(
-    $: pt.OptionalValue<T>,
-    a: ($: T) => pt.OptionalValue<RT>,
-): pt.OptionalValue<RT> {
+    $: pt.RawOptionalValue<T>,
+    a: ($: T) => pt.RawOptionalValue<RT>,
+): pt.RawOptionalValue<RT> {
     return pl.optional($, a, () => [false])
 }
 

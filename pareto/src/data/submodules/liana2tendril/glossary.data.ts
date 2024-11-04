@@ -1,7 +1,7 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    boolean, data, dictionary, externalTypeReference, glossaryParameter, group, imp, member, null_, optional, procedure, ref,
+    boolean, data, dictionary, externalTypeReference, glossaryParameter, group, member, null_, optional, procedure, ref,
     sExternalInterfaceReference, sfunction, sInterface, sInterfaceMethod, sInterfaceReference, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
@@ -13,11 +13,11 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null,
     }),
     'imports': d({
-        "common": imp(),
-        "fs": imp(),
-        "glossary": imp(),
-        "liana": imp(),
-        "tendril": imp(),
+        "common": null,
+        "fs": null,
+        "glossary": null,
+        "liana": null,
+        "tendril": null,
     }),
     'root': {
         'namespaces': d({}),

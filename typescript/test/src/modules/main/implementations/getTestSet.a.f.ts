@@ -1,406 +1,160 @@
-import * as pl from 'pareto-core-lib'
-import * as ps from 'pareto-core-state'
 import * as pm from 'pareto-core-map'
-import * as pv from 'pareto-core-dev'
 import * as pa from 'pareto-core-async'
-import * as pd from 'pareto-core-data'
-
-import * as g_test from "lib-pareto-test"
-import * as g_liana from "../../../../../pub/dist/submodules/liana"
-import * as g_resolve from "../../../../../pub/dist/submodules/resolve"
-import * as g_2algorithm from "../../../../../pub/dist/submodules/tendril2algorithm"
-import * as g_liana2tendril from "../../../../../pub/dist/submodules/liana2tendril"
-
-import * as a_pub from "../../../../../pub/dist"
-import * as a_p2ts from "lib-pareto-typescript-project/dist/submodules/glossary_serialize"
-import * as a_dependencygraph from "../../../../../pub/dist/submodules/generate_dependencygraph"
-import * as a_foreach from "res-pareto-foreach"
-import * as a_coll from "res-pareto-collation"
-import * as a_fp from "lib-fountain-pen"
-import * as a_ts from "res-typescript"
-import * as a_dictionary from "res-pareto-dictionary"
-import * as a_resolvex from "res-pareto-resolve"
-import * as a_resolve from "../../../../../pub/dist/submodules/resolve"
-
-const d = pm.wrapRawDictionary
-
-import { $ as d_playground_old } from "../../../data/playground_old.data"
-import { $ as d_playground } from "../../../data/playground.data"
-import { $ as d_simpleModel } from "../../../data/liana/model/simpleModel.data"
+import * as pd from 'pareto-core-dev'
 
 import { A } from "../api.generated"
+import * as g_sub_2alan_map from './submodules/2alan/map.test'
+import * as g_sub_errorMessaging_createErrorMessage from './submodules/errorMessaging/createErrorMessage.test'
+import * as g_sub_generate_dependencygraph_generateDependencyGraph from './submodules/generate_dependencygraph/generateDependencyGraph.test'
+import * as g_sub_liana_flat_serialize from './submodules/liana_flat/serialize.test'
+import * as g_sub_liana2algorithm_createResolver from './submodules/liana2algorithm/createResolver.test'
+import * as g_sub_liana2paretolangdata_map from './submodules/liana2paretolangdata/map.test'
+import * as g_sub_liana2tendril_map from './submodules/liana2tendril/map.test'
+import * as g_sub_p2ts_temp_serializeImplementation from './submodules/p2ts_temp/serializeImplementation.test'
+import * as g_sub_resolve_resolve from './submodules/resolve/resolve.test'
+import * as g_sub_tendril2algorithm_create121Mapper from './submodules/tendril2algorithm/create121Mapper.test'
+import * as g_sub_tendril2algorithm_mapTendril2Serializer from './submodules/tendril2algorithm/mapTendril2Serializer.test'
+import * as g_sub_tendril2algorithm_mapTendril2States from './submodules/tendril2algorithm/mapTendril2States.test'
+import * as g_sub_tendril2glossary_map from './submodules/tendril2glossary/map.test'
 
 export const $$: A.getTestSet = ($) => {
-    const $XXX = $
-
-    // const resolve = g_liana.$a.createResolver({
-    //     'onError': ($) => {
-    //         pv.logDebugMessage($)
-    //     }
-    // })
-
-    // const writer = g_fp.$b.createDirectory(
-
-    //     [$XXX.testDirectory, 'flat'],
-
-    //     ($i) => {
-    //         // g_pub.$b.serialize_flat(
-    //         //     {
-    //         //         'terminal mapping': pm.wrapRawDictionary({
-    //         //             "bedrag": ['number', null],
-    //         //             "bestand": ['string', null],
-    //         //             "dagen": ['number', null],
-    //         //             "datum": ['number', null],
-    //         //             "multiline text": ['string', null],
-    //         //             "promillage": ['number', null],
-    //         //             "identifier": ['string', null],
-    //         //             "single line text": ['string', null],
-    //         //         }),
-    //         //         'model': accountingModel,
-    //         //     },
-    //         //     $i
-    //         // )
-    //     },
-    //     {
-    //         'nodes': {
-    //             'manualNode': () => {
-    //                 pv.logDebugMessage("FIXME")
-
-    //             },
-    //             'superfluousNode': ($) => {
-    //                 pv.logDebugMessage(g_fp.$a.createSuperfluousNodeMessage($))
-
-    //             }
-    //         },
-    //         'readDirError': () => {
-    //             pv.logDebugMessage("FIXME")
-
-    //         },
-    //         'writeFileError': () => {
-    //             pv.logDebugMessage("FIXME")
-    //         }
-    //     }
-    //     // {
-    //     // onError: ($) => {
-    //     //     pv.logDebugMessage(g_fs.$a.createWriteFileErrorMessage($.error))
-    //     // },
-    // )
-    // let count = 0
-    // g_resolve.$a.createResolver({})(accountingModel, ($) => {
-    //     count += 1
-    //     const reset = "\x1b[0m"
-    //     const lightRed = "\x1b[91m"
-    //     const green = "\x1b[32m"
-    //     const yellow = "\x1b[33m"
-    //     const lightBlue = "\x1b[94m"
-
-    //     pv.logDebugMessage(`${lightBlue}${$.annotation.file}${reset}:${yellow}${$.annotation.line}:${$.annotation.column}${reset} - ${lightRed}error${reset} ${$.message}`)
-    // })
-
-    //pv.logDebugMessage(`${count} errors`)
-
-
-
-
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "depgraph.dot"]), ($i) => {
-                a_dependencygraph.$a.generateDependencyGraph()({
-                    'data': d_playground_old,
-                }, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
-    a_fp.$b.createFile()(
-        ($i) => {
-            $i(pm.wrapRawArray([$.testDirectory, "playground mapper.ts"]), ($i) => {
-                g_2algorithm.$a.create121Mapper({
-                    'createIdentifier': a_ts.$r.createIdentifier(),
-                    // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
-                    //     'compare': a_coll.$r.localeIsABeforeB(),
-                    // })
-                })(d_playground_old, $i)
-            })
-        },
-        {
-            'logError': () => {
-                pv.logDebugMessage("FKSLFSFKSFDL:KSJ")
-            }
-        }
-    )
-
-    const resolved = a_resolve.$a.resolve<pd.SourceLocation>(
-        {
-            'mergeAndIgnore': a_dictionary.$r.mergeAndIgnore({
-                'error': {
-                    'data': () => {
-                        pv.logDebugMessage(`ERRRRORORRR`)
-                    },
-                    'end': () => {
-
-                    },
-                }
-            }),
-            'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
-                'onError': ($) => {
-                    pv.logDebugMessage(`ERRRRORRRR1 ${$}`)
-
-                }
-            })
-        },
-        {
-            'onError': ($) => {
-                pv.logDebugMessage(`${$.annotation.file}:${$.annotation.line}:${$.annotation.column}`)
-                pl.cc($.message, ($) => {
-                    switch ($[0]) {
-                        case 'no such entry':
-                            pl.ss($, ($) => {
-                                pv.logDebugMessage(`NO SUCH ENTRY: ${$.key}`)
-
-                            })
-                            break
-                        case 'not the right state':
-                            pl.ss($, ($) => {
-                                pv.logDebugMessage(`NOT THE RIGHT STATE: ${$.found}`)
-
-                            })
-                            break
-                        default: pl.au($[0])
-                    }
-                })
-            }
-        }
-    )({
-        'imports': pm.wrapRawDictionary({}),
-        'root': {
-            'type library': d_playground,
-            'root': {
-                'annotation': pd.getLocationInfo(0),
-                'key': "Jaar"
-            },
-
-        }
-    })
-
-    resolved['type library']['global types'].__forEach(() => false, ($, key) => {
-        pv.logDebugMessage(key)
-        $.variables.__forEach(() => false, ($, key) => {
-            pv.logDebugMessage(`   ${key}`)
-            switch ($[0]) {
-                case 'dictionary constraint':
-                    pl.ss($, ($) => {
-
-                    })
-                    break
-                case 'parameter':
-                    pl.ss($, ($) => {
-                        pv.logDebugMessage(`          YEP`)
-                    })
-                    break
-                case 'parent variable':
-                    pl.ss($, ($) => {
-
-                    })
-                    break
-                case 'sibling property':
-                    pl.ss($, ($) => {
-
-                    })
-                    break
-                case 'state constraint':
-                    pl.ss($, ($) => {
-
-                    })
-                    break
-                default: pl.au($[0])
-            }
-        })
-    })
-
-    g_liana2tendril.$a.map({
-        'resolveDictionary': a_resolvex.$r.safeResolveDictionary({
-            'onError': () => {
-                pv.logDebugMessage(`ERROR!!!!!!!`)
-            }
-        })
-        //'createIdentifier': a_ts.$r.createIdentifier(),
-        // 'enrichedDictionaryForEach': a_foreach.$r.enrichedDictionaryForEach({
-        //     'compare': a_coll.$r.localeIsABeforeB(),
-        // })
-    })(d_playground_old)
-
-    // a_pub.$b.generateResolver()({
-    //     'path': pm.wrapRawArray([$.testDirectory, "playground resolver2.ts"]),
-    //     'data': d_playground,
-    // }, null)
-
-    function x<Annotation>($: g_liana.T.Model<Annotation>) {
-        // const res = g_resolve.$a.resolve<Annotation>({
-        //     'onError': ($) => {
-        //         pv.logDebugMessage($.message)
-        //     }
-        // })($['type library'])
-        // pl.optional(
-        //     res,
-        //     () => {
-
-        //     },
-        //     () => {
-
-        //     }
-        // )
-        // switch (res[0]) {
-        //     case false:
-        //         //pv.logDebugMessage(`NOT SET`)
-        //         break
-        //     case true:
-        //         pl.ss(res, ($) => {
-        //             //pv.logDebugMessage(`SET`)
-
-        //             //pv.logDebugMessage(`has errors? ${$['has errors']}`)
-        //         })
-        //         break
-        //     default: pl.au(res[0])
-        // }
-    }
-    // x(lianaModel)
-    x(d_simpleModel)
-
-    // const mappedGlossary = gliana2glossary.$a.({
-    //     'mappedModel': {
-
-    //         'model': glossary,
-
-    //         'stringmapping': pm.wrapRawDictionary({
-    //             "identifier": ['string', null]
-    //         }),
-    //     },
-    //     'configuration': {
-
-    //         'datamodel': [true, {
-    //             'annotations': true,
-    //             'properties optional': false,
-    //             'reference mapping': ['string', null],
-    //         }],
-    //         'visitor interface': [true, {
-    //             'datamodel location': "FSSDF",
-    //         }],
-    //         'algorithms': {
-    //             'serialize': [true, null],
-    //         },
-    //     },
-
-    // })
-    // g_liana2pareto.$a.generateModule({
-    //     'path': [`${$XXX.testDirectory}/liana/glossary`],
-    //     'data': {
-    //         'configuration': {
-    //             'datamodel': [true, {
-    //                 'annotations': true,
-    //                 'properties optional': false,
-    //                 'reference mapping': ['string', null],
-    //             }],
-    //             'visitor interface': [true, {
-    //                 'datamodel location': "FSSDF",
-    //             }],
-    //             'algorithms': {
-    //                 'serialize': [true, null],
-    //             },
-    //         },
-    //         'mappedModel': {
-    //             'model': glossary,
-
-    //             'stringmapping': pm.wrapRawDictionary({
-    //                 "identifier": ['string', null]
-    //             }),
-    //         },
-    //     },
-    // })
-    // g_liana2pareto.$a.generateModule({
-    //     'path': [`${$XXX.testDirectory}/liana/accounting`],
-    //     'data': {
-    //         'configuration': {
-    //             'datamodel': [true, {
-    //                 'annotations': true,
-    //                 'properties optional': false,
-    //                 'reference mapping': ['string', null],
-    //             }],
-    //             'visitor interface': [true, {
-    //                 'datamodel location': "FSSDF",
-    //             }],
-    //             'algorithms': {
-    //                 'serialize': [true, null],
-    //             },
-    //         },
-    //         'mappedModel': accountingModel,
-    //     },
-    // })
-    // const serializer = g_liana2pareto.$a.createLiana2SerializerMapper({
-    // })(accountingModel)
-    // const a = g_foreach.$r.arrayForEach
-    // const d = g_foreach.$r.dictionaryForEach({
-    //     'compare': g_coll.$r.localeIsABeforeB,
-    // })
-    // const ea = g_foreach.$r.enrichedArrayForEach
-    // const ed = g_foreach.$r.enrichedDictionaryForEach({
-    //     'compare': g_coll.$r.localeIsABeforeB,
-    // })
-
-    // g_fp.$a.createDirectory({
-    //     'onError': ($) => {
-    //         pv.logDebugMessage($)
-    //     },
-    //     'reportSuperfluousNode': ($) => {
-    //         pv.logDebugMessage($.name)
-    //     },
-    // })(
-    //     [$.testDirectory, "SERIALIZER.ts"],
-    //     ($i) => {
-    //         gp2ts.$a.createImplementationSerializer({
-    //             'arrayForEach': a,
-    //             'dictionaryForEach': d,
-    //             'enrichedArrayForEach': ea,
-    //             'enrichedDictionaryForEach': ed,
-    //             'createIdentifier': g_ts.$a.createIdentifier,
-    //             'createApostrophedString': g_ts.$a.createApostrophedString,
-    //             'createBacktickedString': g_ts.$a.createBacktickedString,
-    //             'createQuotedString': g_ts.$a.createQuotedString,
-    //         })(
-    //             {
-    //                 'implementations': pm.wrapRawDictionary({
-    //                     "serializer": serializer,
-    //                 })
-    //             },
-    //             $i
-    //         )
-    //     }
-    // )
-
-
-
-    // mserialize.$a.createModuleDefinitionSerializer({
-
-    // })(mliana2pareto.$a.createLiana2paretoMapper({})(model), )
-    // mliana2pareto.$a.createLiana2paretoMapper({})(model)
-
-    const builder = ps.createUnsafeDictionaryBuilder<g_test.T.TestElement>()
-    function createTest(name: string, actual: string, expected: string) {
-        builder.add(name, {
-            type: ['test', {
-                type: ['short string', {
-                    actual: actual,
-                    expected: expected
-                }]
-            }]
-        })
-    }
-
     return pa.asyncValue({
-        elements: builder.getDictionary()
+        elements: pm.wrapRawDictionary({
+            "main": {
+                'type': [ 'subset', {
+                    'elements': pm.wrapRawDictionary({})
+                }]
+            },
+            "submodules": {
+                'type': [ 'subset', {
+                    'elements': pm.wrapRawDictionary({
+                        "2alan": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "map":  { 'type': [ 'subset', g_sub_2alan_map.$$($) ]},
+                                })
+                            }]
+                        },
+                        "algorithm_temp": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "errorMessaging": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "createErrorMessage":  { 'type': [ 'subset', g_sub_errorMessaging_createErrorMessage.$$($) ]},
+                                })
+                            }]
+                        },
+                        "generate_dependencygraph": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "generateDependencyGraph":  { 'type': [ 'subset', g_sub_generate_dependencygraph_generateDependencyGraph.$$($) ]},
+                                })
+                            }]
+                        },
+                        "liana": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "liana_flat": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "serialize":  { 'type': [ 'subset', g_sub_liana_flat_serialize.$$($) ]},
+                                })
+                            }]
+                        },
+                        "liana_resolved": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "liana2algorithm": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "createResolver":  { 'type': [ 'subset', g_sub_liana2algorithm_createResolver.$$($) ]},
+                                })
+                            }]
+                        },
+                        "liana2api": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "liana2glossary": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "liana2paretolangdata": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "map":  { 'type': [ 'subset', g_sub_liana2paretolangdata_map.$$($) ]},
+                                })
+                            }]
+                        },
+                        "liana2tendril": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "map":  { 'type': [ 'subset', g_sub_liana2tendril_map.$$($) ]},
+                                })
+                            }]
+                        },
+                        "p2ts_temp": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "serializeImplementation":  { 'type': [ 'subset', g_sub_p2ts_temp_serializeImplementation.$$($) ]},
+                                })
+                            }]
+                        },
+                        "possiblyresolved": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "resolve": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "resolve":  { 'type': [ 'subset', g_sub_resolve_resolve.$$($) ]},
+                                })
+                            }]
+                        },
+                        "resolved": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "tendril": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                        "tendril2algorithm": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "create121Mapper":  { 'type': [ 'subset', g_sub_tendril2algorithm_create121Mapper.$$($) ]},
+                                    "mapTendril2Serializer":  { 'type': [ 'subset', g_sub_tendril2algorithm_mapTendril2Serializer.$$($) ]},
+                                    "mapTendril2States":  { 'type': [ 'subset', g_sub_tendril2algorithm_mapTendril2States.$$($) ]},
+                                })
+                            }]
+                        },
+                        "tendril2glossary": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({
+                                    "map":  { 'type': [ 'subset', g_sub_tendril2glossary_map.$$($) ]},
+                                })
+                            }]
+                        },
+                        "unresolved": {
+                            'type': [ 'subset', {
+                                'elements': pm.wrapRawDictionary({})
+                            }]
+                        },
+                    })
+                }]
+            }
+        })
     })
 }

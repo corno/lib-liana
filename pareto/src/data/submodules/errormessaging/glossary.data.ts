@@ -5,7 +5,6 @@ import {
     typeReference,
     type,
     externalTypeReference,
-    imp,
     sfunction,
     data,
     number,
@@ -18,8 +17,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'glossary parameters': d({
     }),
     'imports': d({
-        "common": imp(),
-        "main": imp(),
+        "common": null,
+        "main": null,
     }),
     'root': {
         'namespaces': d({}),
